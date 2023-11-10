@@ -91,6 +91,7 @@
             "Webkul\\Tax\\": "packages/Webkul/Tax/src",
             "Webkul\\Theme\\": "packages/Webkul/Theme/src",
             "Webkul\\User\\": "packages/Webkul/User/src",
+            "Organon\\Marketplace\\": "packages/Organon/Marketplace/src"
         }
     },
     "autoload-dev": {

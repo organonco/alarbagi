@@ -1,0 +1,208 @@
+<div
+        class="w-full max-w-[870px] mx-auto px-[90px] py-[60px] border border-[#E9E9E9] rounded-[12px] max-md:px-[30px] max-md:py-[30px] h-fit"
+>
+    <h1 class="text-[40px] font-dmserif max-sm:text-[25px]">
+        @lang('marketplace::app.register.title.seller')
+    </h1>
+
+    <p class="mt-[15px] text-[#6E6E6E] text-[20px] max-sm:text-[16px]">
+        @lang('marketplace::app.register.desc.seller')
+    </p>
+
+    <div class="mt-[60px] rounded max-sm:mt-[30px]">
+        <x-shop::form :action="route('shop.marketplace.register')">
+            <x-shop::form.control-group class="mb-4">
+                <x-shop::form.control-group.label class="required">
+                    @lang('marketplace::app.register.labels.shop_name')
+                </x-shop::form.control-group.label>
+
+                <x-shop::form.control-group.control
+                        type="text"
+                        name="name"
+                        class="!p-[20px_25px] rounded-lg"
+                        :value="old('shop_name')"
+                        rules="required"
+                        :label="trans('marketplace::app.register.labels.shop_name')"
+                        :placeholder="trans('marketplace::app.register.labels.shop_name')"
+                >
+                </x-shop::form.control-group.control>
+
+                <x-shop::form.control-group.error
+                        control-name="shop_name"
+                >
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+
+            <x-shop::form.control-group class="mb-4">
+                <x-shop::form.control-group.label class="required">
+                    @lang('marketplace::app.register.labels.shop_bio')
+                </x-shop::form.control-group.label>
+
+                <x-shop::form.control-group.control
+                        type="textarea"
+                        name="description"
+                        class="!p-[20px_25px] rounded-lg"
+                        :value="old('description')"
+                        rules="required"
+                        :label="trans('marketplace::app.register.labels.shop_bio')"
+                        :placeholder="trans('marketplace::app.register.labels.shop_bio')"
+
+                >
+                </x-shop::form.control-group.control>
+
+                <x-shop::form.control-group.error
+                        control-name="description"
+                >
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+
+            <x-shop::form.control-group class="mb-4">
+                <x-shop::form.control-group.label class="required">
+                    @lang('marketplace::app.register.labels.address')
+                </x-shop::form.control-group.label>
+
+                <x-shop::form.control-group.control
+                        type="textarea"
+                        name="address"
+                        class="!p-[20px_25px] rounded-lg"
+                        :value="old('address')"
+                        rules="required"
+                        :label="trans('marketplace::app.register.labels.address')"
+                        :placeholder="trans('marketplace::app.register.labels.address')"
+
+                >
+                </x-shop::form.control-group.control>
+
+                <x-shop::form.control-group.error
+                        control-name="address"
+                >
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+
+
+            <x-shop::form.control-group class="mb-4">
+                <x-shop::form.control-group.label class="required">
+                    @lang('shop::app.customers.signup-form.email')
+                </x-shop::form.control-group.label>
+
+                <x-shop::form.control-group.control
+                        type="email"
+                        name="email"
+                        class="!p-[20px_25px] rounded-lg"
+                        :value="old('email')"
+                        rules="required|email"
+                        :label="trans('shop::app.customers.signup-form.email')"
+                        placeholder="email@example.com"
+                >
+                </x-shop::form.control-group.control>
+
+                <x-shop::form.control-group.error
+                        control-name="email"
+                >
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+
+
+            <x-shop::form.control-group class="mb-6">
+                <x-shop::form.control-group.label class="required">
+                    @lang('shop::app.customers.signup-form.password')
+                </x-shop::form.control-group.label>
+
+                <x-shop::form.control-group.control
+                        type="password"
+                        name="password"
+                        class="!p-[20px_25px] rounded-lg"
+                        :value="old('password')"
+                        rules="required|min:6"
+                        ref="password"
+                        :label="trans('shop::app.customers.signup-form.password')"
+                        :placeholder="trans('shop::app.customers.signup-form.password')"
+                        autocomplete="new-password"
+                >
+                </x-shop::form.control-group.control>
+
+                <x-shop::form.control-group.error
+                        control-name="password"
+                >
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+
+
+            <x-shop::form.control-group class="mb-4">
+                <x-shop::form.control-group.label>
+                    @lang('shop::app.customers.signup-form.confirm-pass')
+                </x-shop::form.control-group.label>
+
+                <x-shop::form.control-group.control
+                        type="password"
+                        name="password_confirmation"
+                        class="!p-[20px_25px] rounded-lg"
+                        value=""
+                        rules="confirmed:@password"
+                        :label="trans('shop::app.customers.signup-form.password')"
+                        :placeholder="trans('shop::app.customers.signup-form.confirm-pass')"
+                >
+                </x-shop::form.control-group.control>
+
+                <x-shop::form.control-group.error
+                        control-name="password_confirmation"
+                >
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+
+
+
+            @if (core()->getConfigData('customer.captcha.credentials.status'))
+                <div class="flex mb-[20px]">
+                    {!! Captcha::render() !!}
+                </div>
+            @endif
+
+            @if (core()->getConfigData('customer.settings.newsletter.subscription'))
+                <div class="flex gap-[6px] items-center select-none">
+                    <input
+                            type="checkbox"
+                            name="is_subscribed"
+                            id="is-subscribed"
+                            class="hidden peer"
+                            onchange="switchVisibility()"
+                    />
+
+                    <label
+                            class="icon-uncheck text-[24px] text-navyBlue peer-checked:icon-check-box peer-checked:text-navyBlue cursor-pointer"
+                            for="is-subscribed"
+                    ></label>
+
+                    <label
+                            class="pl-0 text-[16] text-[#6E6E6E] max-sm:text-[12px] select-none cursor-pointer"
+                            for="is-subscribed"
+                    >
+                        @lang('shop::app.customers.signup-form.subscribe-to-newsletter')
+                    </label>
+                </div>
+            @endif
+
+
+            <div class="flex gap-[36px] flex-wrap items-center mt-[30px]">
+                <button
+                        class="primary-button block w-full max-w-[1260px] py-[16px] px-[43px] mx-auto m-0 ml-[0px] rounded-[18px] text-[16px] text-center"
+                        type="submit"
+                >
+                    @lang('shop::app.customers.signup-form.button-title')
+                </button>
+            </div>
+
+
+        </x-shop::form>
+    </div>
+
+    <p class="my-[20px] text-[#6E6E6E] font-medium">
+        @lang('shop::app.customers.signup-form.account-exists')
+
+        <a class="text-navyBlue"
+           href="{{ route('shop.customer.session.index') }}"
+        >
+            @lang('shop::app.customers.signup-form.sign-in-button')
+        </a>
+    </p>
+</div>

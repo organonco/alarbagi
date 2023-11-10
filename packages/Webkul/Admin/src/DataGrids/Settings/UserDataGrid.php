@@ -22,7 +22,7 @@ class UserDataGrid extends DataGrid
      */
     public function prepareQueryBuilder()
     {
-        $queryBuilder = DB::table('admins as u')
+        $queryBuilder = DB::table('admins as u')->whereNull('seller_id')
             ->leftJoin('roles as ro', 'u.role_id', '=', 'ro.id')
             ->addSelect(
                 'u.id as user_id',

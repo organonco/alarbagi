@@ -51,7 +51,7 @@ return [
             'footer'                      => '© Copyright 2010 - :current_year, Webkul Software (Registered in India). All rights reserved.',
             'form-signup-text'            => 'If you are new to our store, we glad to have you as member.',
             'last-name'                   => 'Last Name',
-            'page-title'                  => 'Become User',
+            'page-title'                  => 'Become a User',
             'password'                    => 'Password',
             'sign-in-button'              => 'Sign In',
             'subscribe-to-newsletter'     => 'Subscribe to newsletter',
