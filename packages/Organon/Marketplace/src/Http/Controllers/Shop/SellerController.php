@@ -38,7 +38,7 @@ class SellerController extends Controller
             'password_confirmation',
         ]);
 
-        $adminData['role_id'] = 1;
+        $adminData['role_id'] = 2;
         $adminData['status'] = 0;
         $adminData['seller_id'] = $seller->id;
 
@@ -49,6 +49,8 @@ class SellerController extends Controller
 
         $admin = $this->adminRepository->create($adminData);
 
-        return redirect()->route('shop.customer.session.index');
+        session()->flash('success', trans('marketplace::app.register.flash_messages.pending_approval'));
+
+        return redirect()->route('admin.session.create');
     }
 }

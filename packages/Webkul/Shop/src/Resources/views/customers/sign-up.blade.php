@@ -7,7 +7,7 @@
 
 <x-shop::layouts
         :has-header="true"
-        :has-feature="true"
+        :has-feature="false"
         :has-footer="true"
 >
     {{-- Page Title --}}

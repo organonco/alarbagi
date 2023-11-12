@@ -6,9 +6,9 @@
 @endPush
 
 <x-shop::layouts
-    :has-header="false"
+    :has-header="true"
     :has-feature="false"
-    :has-footer="false"
+    :has-footer="true"
 >
     {{-- Page Title --}}
     <x-slot:title>
@@ -48,8 +48,6 @@
 
             <div class="mt-[60px] rounded max-sm:mt-[30px]">
                 <x-shop::form :action="route('shop.customer.session.create')">
-
-                    {!! view_render_event('bagisto.shop.customers.login_form_controls.before') !!}
 
                     <x-shop::form.control-group class="mb-4">
                         <x-shop::form.control-group.label class="required">
@@ -140,7 +138,7 @@
 
                     <div class="flex gap-[36px] flex-wrap mt-[30px] items-center">
                         <button
-                            class="primary-button block w-full max-w-[374px] py-[16px] px-[43px] m-0 ml-[0px] mx-auto rounded-[18px] text-[16px] text-center"
+                            class="primary-button block w-full max-w-[1260px] py-[16px] px-[43px] m-0 ml-[0px] mx-auto rounded-[18px] text-[16px] text-center"
                             type="submit"
                         >
                             @lang('shop::app.customers.login-form.button-title')
@@ -148,7 +146,6 @@
 
                         {!! view_render_event('bagisto.shop.customers.login.after') !!}
 
-                        {!! view_render_event('bagisto.shop.customers.login_form_controls.before') !!}
                     </div>
                 </x-shop::form>
             </div>
@@ -163,11 +160,21 @@
                     @lang('shop::app.customers.login-form.create-your-account')
                 </a>
             </p>
+
+            <p class=" text-[#6E6E6E] font-medium">
+                @lang('marketplace::app.login.labels.are_you_a_seller')
+
+                <a
+                        class="text-navyBlue"
+                        href="{{ route('admin.session.create') }}"
+                >
+                    @lang('marketplace::app.login.labels.sign_in_here')
+                </a>
+            </p>
+
+
         </div>
 
-        <p class="mt-[30px] mb-[15px] text-center text-[#6E6E6E] text-xs">
-            @lang('shop::app.customers.login-form.footer', ['current_year'=> date('Y') ])
-        </p>
     </div>
 
     @push('scripts')

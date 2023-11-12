@@ -21,4 +21,14 @@ class Admin extends \Webkul\User\Models\Admin
         'remember_token',
         'seller_id'
     ];
+
+
+    public function isSeller()
+    {
+        return !is_null($this->seller_id);
+    }
+    public function seller()
+    {
+        return $this->belongsTo(SellerProxy::modelClass());
+    }
 }
