@@ -31,4 +31,8 @@ class Admin extends \Webkul\User\Models\Admin
     {
         return $this->belongsTo(SellerProxy::modelClass());
     }
+    public function getSellerId()
+    {
+        return $this->seller_id;
+    }
 }

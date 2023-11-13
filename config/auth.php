@@ -26,7 +26,7 @@ return [
 
         'admins' => [
             'driver' => 'eloquent',
-            'model'  => Webkul\User\Models\Admin::class,
+            'model'  => \Organon\Marketplace\Models\Admin::class,
         ],
     ],
 
