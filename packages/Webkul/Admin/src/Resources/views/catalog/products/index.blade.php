@@ -161,7 +161,7 @@
                         <div class="flex flex-col gap-[6px]">
                             <p
                                 class="text-[16px] text-gray-800 dark:text-white font-semibold"
-                                v-text="(record.seller_name? record.seller_name + ' | ': '') + (record.name? record.name : '')"
+                                v-text="(record.seller_name? record.seller_name: '') + (record.seller_name && record.name ? ' | ' : '') +  (record.name? record.name : '')"
                             >
                             </p>
 

@@ -6,6 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Organon\Marketplace\Models\Admin;
+use Organon\Marketplace\Models\Product;
 use Webkul\Admin\DataGrids\Catalog\ProductDataGrid;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Admin\Http\Requests\InventoryRequest;
@@ -146,10 +147,15 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        /** @var Product $product */
         $product = $this->productRepository->findOrFail($id);
 
-        $inventorySources = $this->inventorySourceRepository->findWhere(['status' => self::ACTIVE_STATUS]);
+        /** @var Admin $admin */
+        $admin = auth('admin')->user();
+        if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
+            abort(401, 'this action is unauthorized');
 
+        $inventorySources = $this->inventorySourceRepository->findWhere(['status' => self::ACTIVE_STATUS]);
         return view('admin::catalog.products.edit', compact('product', 'inventorySources'));
     }
 
@@ -163,6 +169,14 @@ class ProductController extends Controller
     {
         Event::dispatch('catalog.product.update.before', $id);
 
+        /** @var Product $product */
+        $product = $this->productRepository->findOrFail($id);
+
+        /** @var Admin $admin */
+        $admin = auth('admin')->user();
+        if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
+            abort(401, 'this action is unauthorized');
+
         $product = $this->productRepository->update(request()->all(), $id);
 
         Event::dispatch('catalog.product.update.after', $product);
@@ -173,14 +187,20 @@ class ProductController extends Controller
     }
 
     /**
-     * Update inventories.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param InventoryRequest $inventoryRequest
+     * @param $id
+     * @return JsonResponse
      */
     public function updateInventories(InventoryRequest $inventoryRequest, $id)
     {
+        /** @var Product $product */
         $product = $this->productRepository->findOrFail($id);
+
+        /** @var Admin $admin */
+        $admin = auth('admin')->user();
+        if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
+            abort(401, 'this action is unauthorized');
+
 
         Event::dispatch('catalog.product.update.before', $id);
 
@@ -202,6 +222,14 @@ class ProductController extends Controller
      */
     public function uploadLink($id)
     {
+        /** @var Product $product */
+        $product = $this->productRepository->findOrFail($id);
+
+        /** @var Admin $admin */
+        $admin = auth('admin')->user();
+        if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
+            abort(401, 'this action is unauthorized');
+
         return response()->json(
             $this->productDownloadableLinkRepository->upload(request()->all(), $id)
         );
@@ -214,6 +242,15 @@ class ProductController extends Controller
      */
     public function copy(int $id)
     {
+        /** @var Product $product */
+        $product = $this->productRepository->findOrFail($id);
+
+        /** @var Admin $admin */
+        $admin = auth('admin')->user();
+        if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
+            abort(401, 'this action is unauthorized');
+
+
         try {
             $product = $this->productRepository->copy($id);
         } catch (\Exception $e) {
@@ -235,6 +272,15 @@ class ProductController extends Controller
      */
     public function uploadSample($id)
     {
+        /** @var Product $product */
+        $product = $this->productRepository->findOrFail($id);
+
+        /** @var Admin $admin */
+        $admin = auth('admin')->user();
+        if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
+            abort(401, 'this action is unauthorized');
+
+
         return response()->json(
             $this->productDownloadableSampleRepository->upload(request()->all(), $id)
         );
@@ -248,7 +294,13 @@ class ProductController extends Controller
      */
     public function destroy($id): JsonResponse
     {
+        /** @var Product $product */
         $product = $this->productRepository->findOrFail($id);
+
+        /** @var Admin $admin */
+        $admin = auth('admin')->user();
+        if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
+            abort(401, 'this action is unauthorized');
 
         try {
             Event::dispatch('catalog.product.delete.before', $id);
@@ -278,7 +330,15 @@ class ProductController extends Controller
     public function massDestroy(MassDestroyRequest $massDestroyRequest): JsonResponse
     {
         $productIds = $massDestroyRequest->input('indices');
+        foreach ($productIds as $id) {
+            /** @var Product $product */
+            $product = $this->productRepository->findOrFail($id);
 
+            /** @var Admin $admin */
+            $admin = auth('admin')->user();
+            if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
+                abort(401, 'this action is unauthorized');
+        }
         try {
             foreach ($productIds as $productId) {
                 $product = $this->productRepository->find($productId);
@@ -313,6 +373,16 @@ class ProductController extends Controller
         $data = $massUpdateRequest->all();
 
         $productIds = $data['indices'];
+
+        foreach ($productIds as $id) {
+            /** @var Product $product */
+            $product = $this->productRepository->findOrFail($id);
+
+            /** @var Admin $admin */
+            $admin = auth('admin')->user();
+            if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
+                abort(401, 'this action is unauthorized');
+        }
 
         foreach ($productIds as $productId) {
             Event::dispatch('catalog.product.update.before', $productId);
