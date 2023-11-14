@@ -5,24 +5,23 @@ namespace Webkul\Admin\Http\Controllers\Catalog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Arr;
+use Organon\Marketplace\Models\Admin;
+use Webkul\Admin\DataGrids\Catalog\ProductDataGrid;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Admin\Http\Requests\InventoryRequest;
+use Webkul\Admin\Http\Requests\MassDestroyRequest;
+use Webkul\Admin\Http\Requests\MassUpdateRequest;
 use Webkul\Admin\Http\Requests\ProductForm;
+use Webkul\Admin\Http\Resources\AttributeResource;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
+use Webkul\Core\Rules\Slug;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
-use Webkul\Product\Repositories\ProductRepository;
+use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Repositories\ProductAttributeValueRepository;
 use Webkul\Product\Repositories\ProductDownloadableLinkRepository;
 use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
 use Webkul\Product\Repositories\ProductInventoryRepository;
-use Webkul\Admin\Http\Resources\AttributeResource;
-use Webkul\Admin\DataGrids\Catalog\ProductDataGrid;
-use Webkul\Admin\Http\Requests\MassUpdateRequest;
-use Webkul\Admin\Http\Requests\MassDestroyRequest;
-use Webkul\Core\Rules\Slug;
-use Webkul\Product\Helpers\ProductType;
-use Webkul\Product\Facades\ProductImage;
+use Webkul\Product\Repositories\ProductRepository;
 
 class ProductController extends Controller
 {
@@ -37,13 +36,13 @@ class ProductController extends Controller
      * @return void
      */
     public function __construct(
-        protected AttributeFamilyRepository $attributeFamilyRepository,
-        protected InventorySourceRepository $inventorySourceRepository,
-        protected ProductRepository $productRepository,
-        protected ProductAttributeValueRepository $productAttributeValueRepository,
-        protected ProductDownloadableLinkRepository $productDownloadableLinkRepository,
+        protected AttributeFamilyRepository           $attributeFamilyRepository,
+        protected InventorySourceRepository           $inventorySourceRepository,
+        protected ProductRepository                   $productRepository,
+        protected ProductAttributeValueRepository     $productAttributeValueRepository,
+        protected ProductDownloadableLinkRepository   $productDownloadableLinkRepository,
         protected ProductDownloadableSampleRepository $productDownloadableSampleRepository,
-        protected ProductInventoryRepository $productInventoryRepository
+        protected ProductInventoryRepository          $productInventoryRepository
     )
     {
     }
@@ -90,16 +89,16 @@ class ProductController extends Controller
     public function store()
     {
         $this->validate(request(), [
-            'type'                => 'required',
+            'type' => 'required',
             'attribute_family_id' => 'required',
-            'sku'                 => ['required', 'unique:products,sku', new Slug],
-            'super_attributes'    => 'array|min:1',
-            'super_attributes.*'  => 'array|min:1',
+            'sku' => ['required', 'unique:products,sku', new Slug],
+            'super_attributes' => 'array|min:1',
+            'super_attributes.*' => 'array|min:1',
         ]);
 
         if (
             ProductType::hasVariants(request()->input('type'))
-            && ! request()->has('super_attributes')
+            && !request()->has('super_attributes')
         ) {
             $configurableFamily = $this->attributeFamilyRepository
                 ->find(request()->input('attribute_family_id'));
@@ -121,6 +120,11 @@ class ProductController extends Controller
             'family'
         ]);
 
+        /** @var Admin $admin */
+        $admin = auth('admin')->user();
+        if ($admin->isSeller())
+            $data['seller_id'] = $admin->getSellerId();
+
         $product = $this->productRepository->create($data);
 
         Event::dispatch('catalog.product.create.after', $product);
@@ -137,7 +141,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\View\View
      */
     public function edit($id)
@@ -152,7 +156,7 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(ProductForm $request, $id)
@@ -171,7 +175,7 @@ class ProductController extends Controller
     /**
      * Update inventories.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function updateInventories(InventoryRequest $inventoryRequest, $id)
@@ -185,7 +189,7 @@ class ProductController extends Controller
         Event::dispatch('catalog.product.update.after', $product);
 
         return response()->json([
-            'message'      => __('admin::app.catalog.products.saved-inventory-message'),
+            'message' => __('admin::app.catalog.products.saved-inventory-message'),
             'updatedTotal' => $this->productInventoryRepository->where('product_id', $product->id)->sum('qty'),
         ]);
     }
@@ -193,7 +197,7 @@ class ProductController extends Controller
     /**
      * Uploads downloadable file.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function uploadLink($id)
@@ -226,7 +230,7 @@ class ProductController extends Controller
     /**
      * Uploads downloadable sample file.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function uploadSample($id)
@@ -278,12 +282,12 @@ class ProductController extends Controller
         try {
             foreach ($productIds as $productId) {
                 $product = $this->productRepository->find($productId);
-    
+
                 if (isset($product)) {
                     Event::dispatch('catalog.product.delete.before', $productId);
-    
+
                     $this->productRepository->delete($productId);
-    
+
                     Event::dispatch('catalog.product.delete.after', $productId);
                 }
             }
@@ -314,12 +318,12 @@ class ProductController extends Controller
             Event::dispatch('catalog.product.update.before', $productId);
 
             $product = $this->productRepository->update([
-                'status'  => $massUpdateRequest->input('value'),
+                'status' => $massUpdateRequest->input('value'),
             ], $productId);
 
             Event::dispatch('catalog.product.update.after', $product);
         }
-        
+
         return new JsonResponse([
             'message' => trans('admin::app.catalog.products.index.datagrid.mass-update-success')
         ], 200);
@@ -347,24 +351,24 @@ class ProductController extends Controller
         $results = [];
 
         request()->query->add([
-            'status'               => null,
+            'status' => null,
             'visible_individually' => null,
-            'name'                 => request('query'),
-            'sort'                 => 'created_at',
-            'order'                => 'desc',
+            'name' => request('query'),
+            'sort' => 'created_at',
+            'order' => 'desc',
         ]);
 
         $products = $this->productRepository->searchFromDatabase();
 
         foreach ($products as $product) {
             $results[] = [
-                'id'              => $product->id,
-                'sku'             => $product->sku,
-                'name'            => $product->name,
-                'price'           => $product->price,
+                'id' => $product->id,
+                'sku' => $product->sku,
+                'name' => $product->name,
+                'price' => $product->price,
                 'formatted_price' => core()->formatBasePrice($product->price),
-                'images'          => $product->images,
-                'inventories'     => $product->inventories,
+                'images' => $product->images,
+                'inventories' => $product->inventories,
             ];
         }
 
@@ -376,14 +380,14 @@ class ProductController extends Controller
     /**
      * Download image or file.
      *
-     * @param  int  $productId
-     * @param  int  $attributeId
+     * @param int $productId
+     * @param int $attributeId
      * @return \Illuminate\Http\Response
      */
     public function download($productId, $attributeId)
     {
         $productAttribute = $this->productAttributeValueRepository->findOneWhere([
-            'product_id'   => $productId,
+            'product_id' => $productId,
             'attribute_id' => $attributeId,
         ]);
 

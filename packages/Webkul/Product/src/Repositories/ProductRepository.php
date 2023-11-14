@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Core\Eloquent\Repository;
 use Webkul\Customer\Repositories\CustomerRepository;
+use Webkul\Product\Models\ProductProxy;
 
 class ProductRepository extends Repository
 {
@@ -33,7 +34,7 @@ class ProductRepository extends Repository
      */
     public function model(): string
     {
-        return 'Webkul\Product\Contracts\Product';
+        return ProductProxy::modelClass();
     }
 
     /**

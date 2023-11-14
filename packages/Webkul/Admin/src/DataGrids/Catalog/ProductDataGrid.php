@@ -3,6 +3,7 @@
 namespace Webkul\Admin\DataGrids\Catalog;
 
 use Illuminate\Support\Facades\DB;
+use Organon\Marketplace\Models\Admin;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\Core\Models\Channel;
 use Webkul\Core\Models\Locale;
@@ -26,9 +27,10 @@ class ProductDataGrid extends DataGrid
      */
     public function __construct(
         protected AttributeFamilyRepository $attributeFamilyRepository,
-        protected ProductRepository $productRepository,
+        protected ProductRepository         $productRepository,
         protected InventorySourceRepository $inventorySourceRepository
-    ) {
+    )
+    {
     }
 
     /**
@@ -52,10 +54,26 @@ class ProductDataGrid extends DataGrid
 
         $tablePrefix = DB::getTablePrefix();
 
+
+        /** @var Admin $admin */
+        $admin = auth('admin')->user();
+
+        $queryBuilder = DB::table('product_flat');
         /**
          * Query Builder to fetch records from `product_flat` table
          */
-        $queryBuilder = DB::table('product_flat')
+        if ($admin->isSeller())
+            $queryBuilder
+                ->join('products', 'product_flat.product_id', '=', 'products.id')
+                ->leftJoin('sellers', 'sellers.id', '=', 'products.seller_id')
+                ->where('products.seller_id', '=', $admin->getSellerId());
+        else
+            $queryBuilder
+                ->join('products', 'product_flat.product_id', '=', 'products.id')
+                ->leftJoin('sellers', 'sellers.id', '=', 'products.seller_id');
+
+        $queryBuilder
+            ->whereNull('products.parent_id')
             ->leftJoin('attribute_families as af', 'product_flat.attribute_family_id', '=', 'af.id')
             ->leftJoin('product_inventories', 'product_flat.product_id', '=', 'product_inventories.product_id')
             ->leftJoin('product_images', 'product_flat.product_id', '=', 'product_images.product_id')
@@ -84,6 +102,9 @@ class ProductDataGrid extends DataGrid
             )
             ->addSelect(DB::raw('COUNT(DISTINCT ' . $tablePrefix . 'product_images.id) as images_count'));
 
+        if(!$admin->isSeller())
+            $queryBuilder->addSelect('sellers.name as seller_name');
+
         $queryBuilder->groupBy(
             'product_flat.product_id',
             'product_flat.locale',
@@ -98,6 +119,8 @@ class ProductDataGrid extends DataGrid
         $this->addFilter('type', 'product_flat.type');
         $this->addFilter('status', 'product_flat.status');
         $this->addFilter('attribute_family', 'af.name');
+        $this->addFilter('sku', 'product_flat.sku');
+        $this->addFilter('seller_name', 'sellers.name');
 
         return $queryBuilder;
     }
@@ -109,29 +132,40 @@ class ProductDataGrid extends DataGrid
      */
     public function prepareColumns()
     {
+
         $this->addColumn([
-            'index'      => 'name',
-            'label'      => trans('admin::app.catalog.products.index.datagrid.name'),
-            'type'       => 'string',
+            'index' => 'name',
+            'label' => trans('admin::app.catalog.products.index.datagrid.name'),
+            'type' => 'string',
             'searchable' => true,
             'filterable' => true,
-            'sortable'   => true,
+            'sortable' => true,
+        ]);;
+
+
+        $this->addColumn([
+            'index' => 'seller_name',
+            'label' => trans('marketplace::app.catalog.products.index.datagrid.seller_name'),
+            'type' => 'string',
+            'searchable' => true,
+            'filterable' => true,
+            'sortable' => true,
+        ]);;
+
+        $this->addColumn([
+            'index' => 'sku',
+            'label' => trans('admin::app.catalog.products.index.datagrid.sku'),
+            'type' => 'string',
+            'searchable' => true,
+            'filterable' => true,
+            'sortable' => true,
         ]);
 
         $this->addColumn([
-            'index'      => 'sku',
-            'label'      => trans('admin::app.catalog.products.index.datagrid.sku'),
-            'type'       => 'string',
-            'searchable' => true,
-            'filterable' => true,
-            'sortable'   => true,
-        ]);
-
-        $this->addColumn([
-            'index'      => 'attribute_family',
-            'label'      => trans('admin::app.catalog.products.index.datagrid.attribute-family'),
-            'type'       => 'dropdown',
-            'options'    => [
+            'index' => 'attribute_family',
+            'label' => trans('admin::app.catalog.products.index.datagrid.attribute-family'),
+            'type' => 'dropdown',
+            'options' => [
                 'type' => 'basic',
 
                 'params' => [
@@ -140,80 +174,80 @@ class ProductDataGrid extends DataGrid
             ],
             'searchable' => false,
             'filterable' => true,
-            'sortable'   => true,
+            'sortable' => true,
         ]);
 
         $this->addColumn([
-            'index'      => 'base_image',
-            'label'      => trans('admin::app.catalog.products.index.datagrid.image'),
-            'type'       => 'string',
+            'index' => 'base_image',
+            'label' => trans('admin::app.catalog.products.index.datagrid.image'),
+            'type' => 'string',
             'searchable' => false,
             'filterable' => false,
-            'sortable'   => false,
+            'sortable' => false,
         ]);
 
         $this->addColumn([
-            'index'      => 'price',
-            'label'      => trans('admin::app.catalog.products.index.datagrid.price'),
-            'type'       => 'price',
+            'index' => 'price',
+            'label' => trans('admin::app.catalog.products.index.datagrid.price'),
+            'type' => 'price',
             'searchable' => false,
             'filterable' => true,
-            'sortable'   => true,
+            'sortable' => true,
         ]);
 
         $this->addColumn([
-            'index'      => 'quantity',
-            'label'      => trans('admin::app.catalog.products.index.datagrid.qty'),
-            'type'       => 'integer',
+            'index' => 'quantity',
+            'label' => trans('admin::app.catalog.products.index.datagrid.qty'),
+            'type' => 'integer',
             'searchable' => false,
             'filterable' => false,
-            'sortable'   => true,
+            'sortable' => true,
         ]);
 
         $this->addColumn([
-            'index'      => 'product_id',
-            'label'      => trans('admin::app.catalog.products.index.datagrid.id'),
-            'type'       => 'integer',
+            'index' => 'product_id',
+            'label' => trans('admin::app.catalog.products.index.datagrid.id'),
+            'type' => 'integer',
             'searchable' => false,
             'filterable' => true,
-            'sortable'   => true,
+            'sortable' => true,
         ]);
 
         $this->addColumn([
-            'index'      => 'status',
-            'label'      => trans('admin::app.catalog.products.index.datagrid.status'),
-            'type'       => 'boolean',
+            'index' => 'status',
+            'label' => trans('admin::app.catalog.products.index.datagrid.status'),
+            'type' => 'boolean',
             'searchable' => false,
             'filterable' => true,
-            'sortable'   => true,
+            'sortable' => true,
         ]);
 
         $this->addColumn([
-            'index'      => 'category_name',
-            'label'      => trans('admin::app.catalog.products.index.datagrid.category'),
-            'type'       => 'string',
+            'index' => 'category_name',
+            'label' => trans('admin::app.catalog.products.index.datagrid.category'),
+            'type' => 'string',
             'searchable' => false,
             'filterable' => false,
-            'sortable'   => false,
+            'sortable' => false,
         ]);
 
         $this->addColumn([
-            'index'      => 'type',
-            'label'      => trans('admin::app.catalog.products.index.datagrid.type'),
-            'type'       => 'dropdown',
-            'options'    => [
+            'index' => 'type',
+            'label' => trans('admin::app.catalog.products.index.datagrid.type'),
+            'type' => 'dropdown',
+            'options' => [
                 'type' => 'basic',
 
                 'params' => [
                     'options' => collect(config('product_types'))
-                        ->map(fn ($type) => ['label' => $type['name'], 'value' => trans('admin::app.catalog.products.index.create.' . $type['key'])])
+                        ->map(fn($type) => ['label' => $type['name'], 'value' => trans('admin::app.catalog.products.index.create.' . $type['key'])])
                         ->values()
                         ->toArray(),
                 ],
             ],
             'searchable' => true,
             'filterable' => true,
-            'sortable'   => true,
+            'sortable' => true,
         ]);
     }
 
@@ -226,10 +260,10 @@ class ProductDataGrid extends DataGrid
     {
         if (bouncer()->hasPermission('catalog.products.edit')) {
             $this->addAction([
-                'icon'   => 'icon-edit',
-                'title'  => trans('admin::app.catalog.products.index.datagrid.edit'),
+                'icon' => 'icon-edit',
+                'title' => trans('admin::app.catalog.products.index.datagrid.edit'),
                 'method' => 'GET',
-                'url'    => function ($row) {
+                'url' => function ($row) {
                     return route('admin.catalog.products.edit', $row->product_id);
                 },
 
@@ -249,17 +283,17 @@ class ProductDataGrid extends DataGrid
     {
         if (bouncer()->hasPermission('catalog.products.mass-delete')) {
             $this->addMassAction([
-                'title'  => trans('admin::app.catalog.products.index.datagrid.delete'),
-                'url'    => route('admin.catalog.products.mass_delete'),
+                'title' => trans('admin::app.catalog.products.index.datagrid.delete'),
+                'url' => route('admin.catalog.products.mass_delete'),
                 'method' => 'POST',
             ]);
         }
 
         if (bouncer()->hasPermission('catalog.products.mass-update')) {
             $this->addMassAction([
-                'title'   => trans('admin::app.catalog.products.index.datagrid.update-status'),
-                'url'     => route('admin.catalog.products.mass_update'),
-                'method'  => 'POST',
+                'title' => trans('admin::app.catalog.products.index.datagrid.update-status'),
+                'url' => route('admin.catalog.products.mass_update'),
+                'method' => 'POST',
                 'options' => [
                     [
                         'label' => trans('admin::app.catalog.products.index.datagrid.active'),

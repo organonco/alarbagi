@@ -23,5 +23,15 @@ return [
             'are_you_a_seller' => 'Are you a Seller?',
             'sign_in_here' => 'Sign in Here',
         ]
+    ],
+    'catalog' => [
+        'products' => [
+            'index' => [
+                'datagrid' => [
+                    'seller_name' => 'Seller Name',
+                    'seller_name_value' => 'Seller Name: :value',
+                ]
+            ]
+        ]
     ]
 ];

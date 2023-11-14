@@ -257,7 +257,6 @@ abstract class DataGrid
                 }
             }
         }
-
         return $this->queryBuilder;
     }
 

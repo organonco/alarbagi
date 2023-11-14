@@ -2,9 +2,10 @@
 
 namespace Organon\Marketplace\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\ServiceProvider;
 use Organon\Marketplace\Models\Admin;
+use Organon\Marketplace\Models\Product;
 
 class MarketplaceServiceProvider extends ServiceProvider
 {
@@ -34,15 +35,14 @@ class MarketplaceServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'marketplace');
 
-        Event::listen('bagisto.admin.layout.head', function($viewRenderEventManager) {
+        Event::listen('bagisto.admin.layout.head', function ($viewRenderEventManager) {
             $viewRenderEventManager->addTemplate('marketplace::admin.layouts.style');
         });
 
 
         //Extending Models
-        $this->app->concord->registerModel(
-            \Webkul\User\Contracts\Admin::class, Admin::class
-        );
+        $this->app->concord->registerModel(\Webkul\User\Contracts\Admin::class, Admin::class);
+        $this->app->concord->registerModel(\Webkul\Product\Contracts\Product::class, Product::class);
     }
 
     /**

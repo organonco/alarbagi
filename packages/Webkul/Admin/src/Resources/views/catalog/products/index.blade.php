@@ -68,8 +68,9 @@
                 <div class="row grid grid-cols-[2fr_1fr_1fr] grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800  ">
                     <div
                         class="flex gap-[10px] items-center select-none"
-                        v-for="(columnGroup, index) in [['name', 'sku', 'attribute_family'], ['base_image', 'price', 'quantity', 'product_id'], ['status', 'category_name', 'type']]"
+                        v-for="(columnGroup, index) in [['name', 'sku', 'attribute_family', 'seller_name'], ['base_image', 'price', 'quantity', 'product_id'], ['status', 'category_name', 'type']]"
                     >
+
                         @if ($hasPermission)
                             <label
                                 class="flex gap-[4px] items-center w-max cursor-pointer select-none"
@@ -160,7 +161,7 @@
                         <div class="flex flex-col gap-[6px]">
                             <p
                                 class="text-[16px] text-gray-800 dark:text-white font-semibold"
-                                v-text="record.name"
+                                v-text="(record.seller_name? record.seller_name + ' | ': '') + (record.name? record.name : '')"
                             >
                             </p>
 
@@ -175,6 +176,7 @@
                             >
                                 @{{ "@lang('admin::app.catalog.products.index.datagrid.attribute-family-value')".replace(':attribute_family', record.attribute_family) }}
                             </p>
+
                         </div>
                     </div>
 
