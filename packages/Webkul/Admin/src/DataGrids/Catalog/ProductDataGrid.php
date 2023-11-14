@@ -102,8 +102,10 @@ class ProductDataGrid extends DataGrid
             )
             ->addSelect(DB::raw('COUNT(DISTINCT ' . $tablePrefix . 'product_images.id) as images_count'));
 
-        if(!$admin->isSeller())
+        if (!$admin->isSeller()) {
             $queryBuilder->addSelect('sellers.name as seller_name');
+            $this->addFilter('seller_name', 'sellers.name');
+        }
 
         $queryBuilder->groupBy(
             'product_flat.product_id',
@@ -120,7 +122,6 @@ class ProductDataGrid extends DataGrid
         $this->addFilter('status', 'product_flat.status');
         $this->addFilter('attribute_family', 'af.name');
         $this->addFilter('sku', 'product_flat.sku');
-        $this->addFilter('seller_name', 'sellers.name');
 
         return $queryBuilder;
     }
@@ -143,13 +144,15 @@ class ProductDataGrid extends DataGrid
         ]);;
 
 
+        $isAdmin = !auth('admin')->user()->isSeller();
+
         $this->addColumn([
             'index' => 'seller_name',
             'label' => trans('marketplace::app.catalog.products.index.datagrid.seller_name'),
             'type' => 'string',
-            'searchable' => true,
-            'filterable' => true,
-            'sortable' => true,
+            'searchable' => $isAdmin,
+            'filterable' => $isAdmin,
+            'sortable' => $isAdmin,
         ]);;
 
         $this->addColumn([

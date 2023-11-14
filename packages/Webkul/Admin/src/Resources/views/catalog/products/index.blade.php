@@ -68,7 +68,7 @@
                 <div class="row grid grid-cols-[2fr_1fr_1fr] grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800  ">
                     <div
                         class="flex gap-[10px] items-center select-none"
-                        v-for="(columnGroup, index) in [['name', 'sku', 'attribute_family', 'seller_name'], ['base_image', 'price', 'quantity', 'product_id'], ['status', 'category_name', 'type']]"
+                        v-for="(columnGroup, index) in [['name', 'sku', 'attribute_family'], ['base_image', 'price', 'quantity', 'product_id'], ['status', 'category_name', 'type']]"
                     >
 
                         @if ($hasPermission)
