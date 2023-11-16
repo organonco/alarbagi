@@ -39,13 +39,7 @@ class SellerRoleSeeder extends Seeder
                 "catalog.products.edit",
                 "catalog.products.delete",
                 "catalog.products.mass-update",
-                "catalog.products.mass-delete",
-                "catalog.categories",
-                "catalog.categories.create",
-                "catalog.categories.edit",
-                "catalog.categories.delete",
-                "catalog.categories.mass-delete",
-                "catalog.categories.mass-update"
+                "catalog.products.mass-delete"
             ]),
         ]);
 

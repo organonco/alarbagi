@@ -117,12 +117,12 @@
                                     href="{{ Storage::url($product[$customAttributeValue['code']]) }}"
                                     download="{{ $customAttributeValue['label'] }}"
                                 >
-                                    <img 
+                                    <img
                                         class="h-[20px] w-[20px] min-h-[20px] min-w-[20px]"
                                         src="{{ Storage::url($customAttributeValue['value']) }}"
                                     />
                                 </a>
-                            @else 
+                            @else
                                 <div class="grid">
                                     <p class="text-[16px] text-[#7D7D7D]">
                                         {!! $customAttributeValue['value'] ? $customAttributeValue['value'] : '-' !!}
@@ -196,7 +196,7 @@
                                         {{ $customAttributeValue['label'] }}
                                     </p>
                                 </a>
-                            @else 
+                            @else
                                 <div class="grid">
                                     <p class="text-[16px] text-[#6E6E6E]">
                                         {{ $customAttributeValue['value'] ?? '-' }}
@@ -251,9 +251,9 @@
                     ref="formData"
                     @submit="handleSubmit($event, addToCart)"
                 >
-                    <input 
-                        type="hidden" 
-                        name="product_id" 
+                    <input
+                        type="hidden"
+                        name="product_id"
                         value="{{ $product->id }}"
                     >
 
@@ -262,10 +262,10 @@
                         name="is_buy_now"
                         v-model="is_buy_now"
                     >
-                    
-                    <input 
-                        type="hidden" 
-                        name="quantity" 
+
+                    <input
+                        type="hidden"
+                        name="quantity"
                         :value="qty"
                     >
 
@@ -293,13 +293,19 @@
                                     @endif
                                 </div>
 
+                                <h1 class="text-[18px] font-light max-sm:text-[12px]">
+                                    {{ $product->seller_name }}
+                                </h1>
+
+
+
                                 {!! view_render_event('bagisto.shop.products.name.before', ['product' => $product]) !!}
 
                                 <!-- Rating -->
                                 {!! view_render_event('bagisto.shop.products.rating.before', ['product' => $product]) !!}
 
                                 <div class="flex gap-[15px] items-center mt-[15px]">
-                                    <x-shop::products.star-rating 
+                                    <x-shop::products.star-rating
                                         :value="$avgRatings"
                                         :is-editable=false
                                     >
@@ -322,7 +328,7 @@
 
                                     <span class="text-[18px] text-[#6E6E6E]">
                                         @if (
-                                            (bool) core()->getConfigData('taxes.catalogue.pricing.tax_inclusive') 
+                                            (bool) core()->getConfigData('taxes.catalogue.pricing.tax_inclusive')
                                             && $product->getTypeInstance()->getTaxCategory()
                                         )
                                             @lang('shop::app.products.view.tax-inclusive')

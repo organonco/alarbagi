@@ -14,6 +14,10 @@ class Product extends \Webkul\Product\Models\Product
         'seller_id'
     ];
 
+    protected $appends = [
+        'seller_name'
+    ];
+
     /**
      * @return int|null
      */
@@ -36,5 +40,13 @@ class Product extends \Webkul\Product\Models\Product
     public function seller(): BelongsTo
     {
         return $this->belongsTo(SellerProxy::modelClass());
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSellerNameAttribute()
+    {
+        return $this->seller?->name;
     }
 }
