@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id');
             $table->foreignId('seller_id');
+            $table->string('status');
             $table->timestamps();
         });
     }
