@@ -36,5 +36,12 @@ return [
                 ]
             ]
         ]
+    ],
+    'admin' => [
+        'orders' => [
+            'index' => [
+                'page-title' => 'Orders'
+            ]
+        ]
     ]
 ];
