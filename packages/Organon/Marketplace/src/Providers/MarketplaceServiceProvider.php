@@ -67,5 +67,9 @@ class MarketplaceServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/acl.php', 'acl'
         );
+
+        $this->mergeConfigFrom(
+            dirname(__DIR__) . '/Config/admin-menu.php', 'menu.admin'
+        );
     }
 }

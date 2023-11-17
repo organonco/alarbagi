@@ -1,5 +1,8 @@
 <?php
 return [
+    'acl' => [
+        'marketplace' => 'Marketplace'
+    ],
     'register' => [
         'title' => [
             'seller' => 'Become A Seller',

@@ -1,13 +1,13 @@
 <?php
 
-namespace Organon\Marketplace\src\Http\Controllers\Admin;
+namespace Organon\Marketplace\Http\Controllers\Admin;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class MarketplaceController extends Controller
+class OrderController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     

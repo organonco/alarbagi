@@ -4,9 +4,8 @@ return [
     [
         'key' => 'marketplace',
         'name' => 'Marketplace',
-        'route' => 'admin.marketplace.index',
+        'route' => 'marketplace.admin.orders.index',
         'sort' => 2,
-        'icon-class' => 'temp-icon',
-        'icon' => 'temp-icon',
+        'icon' => 'icon-sales',
     ]
 ];

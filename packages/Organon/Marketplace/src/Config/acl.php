@@ -2,9 +2,14 @@
 
 return [
     [
-        'key' => 'marketplace',
-        'name' => 'Marketplace',
-        'route' => 'admin.marketplace.index',
-        'sort' => 2
-    ]
+        'key'   => 'marketplace',
+        'name'  => 'marketplace::app.acl.marketplace',
+        'route' => 'admin.sales.orders.index',
+        'sort'  => 1,
+    ], [
+        'key'   => 'marketplace.orders',
+        'name'  => 'marketplace::app.acl.marketplace',
+        'route' => 'admin.sales.orders.index',
+        'sort'  => 1,
+    ],
 ];
