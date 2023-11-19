@@ -14,7 +14,7 @@ class Admin extends \Webkul\User\Models\Admin
         'status',
         'seller_id'
     ];
-    
+
     protected $hidden = [
         'password',
         'api_token',
@@ -27,12 +27,22 @@ class Admin extends \Webkul\User\Models\Admin
     {
         return !is_null($this->seller_id);
     }
+
     public function seller()
     {
         return $this->belongsTo(SellerProxy::modelClass());
     }
+
     public function getSellerId()
     {
         return $this->seller_id;
+    }
+
+    /**
+     * @return Seller
+     */
+    public function getSeller(): Seller
+    {
+        return $this->seller;
     }
 }

@@ -100,20 +100,25 @@ class OrderRepository extends Repository
                 Event::dispatch('checkout.order.orderitem.save.after', $orderItem);
             }
 
-            $sellerIds = collect($data['items'])
-                ->pluck('product')
-                ->whereNotNull('seller_id')
-                ->map(function($product){
-                    return ['seller_id' => $product['seller_id']];
+            $suborders = collect($data['items'])
+                ->whereNotNull('product.seller_id')
+                ->groupBy('product.seller_id')
+                ->map(function ($products, $seller_id) {
+                    $sum = collect($products)->sum('total');
+                    $numberOfProducts = collect($products)->sum('qty_ordered');
+                    return [
+                        'seller_id' => $seller_id,
+                        'subtotal' => $sum,
+                        'number_of_products' => $numberOfProducts
+                    ];
                 });
 
-            $this->sellerOrderRepository->createMany($order, $sellerIds);
+            $this->sellerOrderRepository->createMany($order, $suborders);
 
             Event::dispatch('checkout.order.save.after', $order);
         } catch (\Exception $e) {
             /* rolling back first */
             DB::rollBack();
-
             /* storing log for errors */
             Log::error(
                 'OrderRepository:createOrderIfNotThenRetry: ' . $e->getMessage(),

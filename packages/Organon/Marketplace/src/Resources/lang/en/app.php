@@ -40,8 +40,20 @@ return [
     'admin' => [
         'orders' => [
             'index' => [
-                'page-title' => 'Orders'
-            ]
+                'page-title' => 'Orders',
+                'datagrid' => [
+                    'order-increment-id' => "Order ID",
+                    'status' => "Status",
+                    'customer-name' => "Customer",
+                    'subtotal' => "Subtotal",
+                    'number_of_products' => "# of Products",
+                    'customer_email' => "Customer Email",
+                    'customer_address' => "Customer Address",
+                    'statuses' => [
+                        'pending' => "Pending"
+                    ]
+                ]
+            ],
         ]
     ]
 ];

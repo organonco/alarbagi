@@ -19,11 +19,11 @@ class SellerOrderRepository extends Repository
 
     /**
      * @param $order
-     * @param $sellerIds
+     * @param $suborders
      * @return void
      */
-    public function createMany($order, $sellerIds)
+    public function createMany($order, $suborders)
     {
-        return $order->sellerOrders()->createMany($sellerIds);
+        return $order->sellerOrders()->createMany($suborders);
     }
 }

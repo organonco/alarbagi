@@ -6,8 +6,9 @@ use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Organon\Marketplace\DataGrids\SellerOrderDataGrid;
 
-class OrderController extends Controller
+class SellerOrderController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     
@@ -31,12 +32,14 @@ class OrderController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the seller orders.
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
+        if(request()->ajax())
+            return app(SellerOrderDataGrid::class)->toJson();
         return view($this->_config['view']);
     }
 
