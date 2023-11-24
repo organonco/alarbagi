@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('seller_id');
             $table->string('status');
             $table->double('subtotal');
+            $table->double('tax_amount');
+            $table->double('grand_total');
             $table->integer('number_of_products');
             $table->timestamps();
         });

@@ -105,10 +105,15 @@ class OrderRepository extends Repository
                 ->groupBy('product.seller_id')
                 ->map(function ($products, $seller_id) {
                     $sum = collect($products)->sum('total');
+                    $taxSum = collect($products)->sum('tax_amount');
+                    $total = $sum + $taxSum;
                     $numberOfProducts = collect($products)->sum('qty_ordered');
+
                     return [
                         'seller_id' => $seller_id,
                         'subtotal' => $sum,
+                        'tax_amount' => $taxSum,
+                        'grand_total' => $total,
                         'number_of_products' => $numberOfProducts
                     ];
                 });

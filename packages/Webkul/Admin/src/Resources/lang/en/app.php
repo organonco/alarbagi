@@ -163,7 +163,7 @@ return [
             ],
 
             'view' => [
-                'amount-per-unit'       => ':amount Per Unit x :qty Quantity',
+                'amount-per-unit'       => ':amount Per Unit x:qty',
                 'billing-address'       => 'Billing Address',
                 'cancel'                => 'Cancel',
                 'comments'              => 'Comments',

@@ -16,6 +16,8 @@ class SellerOrder extends Model implements SellerOrderContract
         'order_id',
         'seller_id',
         'subtotal',
+        'tax_amount',
+        'grand_total',
         'number_of_products'
     ];
 
@@ -38,4 +40,32 @@ class SellerOrder extends Model implements SellerOrderContract
     {
         return $this->belongsTo(SellerProxy::modelClass());
     }
+
+    public function items()
+    {
+        return $this->order->items()->whereHas('product', function($query){
+            return $query->where('seller_id', $this->seller_id);
+        });
+    }
+
+    public function payment()
+    {
+        return $this->order->payment();
+    }
+
+    public function getIncrementIdAttribute()
+    {
+        return $this->order->increment_id;
+    }
+
+    public function getCustomerEmailAttribute()
+    {
+        return $this->order->customer_email;
+    }
+
+    public function getCustomerFullNameAttribute()
+    {
+        return $this->order->customer_full_name;
+    }
+
 }

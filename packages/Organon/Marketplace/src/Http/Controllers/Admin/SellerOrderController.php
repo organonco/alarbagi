@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Organon\Marketplace\DataGrids\SellerOrderDataGrid;
+use Organon\Marketplace\Repositories\SellerOrderRepository;
 
 class SellerOrderController extends Controller
 {
@@ -24,7 +25,7 @@ class SellerOrderController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(private readonly SellerOrderRepository $sellerOrderRepository)
     {
         $this->middleware('admin');
 
@@ -71,7 +72,9 @@ class SellerOrderController extends Controller
      */
     public function edit($id)
     {
-        return view($this->_config['view']);
+        return view($this->_config['view'])->with([
+            'order' => $this->sellerOrderRepository->findWhere(['order_id' => $id])->first()
+        ]);
     }
 
     /**
