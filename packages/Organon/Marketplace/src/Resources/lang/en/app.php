@@ -37,6 +37,30 @@ return [
             ]
         ]
     ],
+    "seller-order" => [
+        'statuses' => [
+            'PENDING' => [
+                'label' => 'Pending',
+                'class' => 'pending'
+            ],
+            'APPROVED' => [
+                'label' => 'Approved',
+                'class' => 'processing'
+            ],
+            'CANCELLED' => [
+                'label' => 'Cancelled',
+                'class' => 'info'
+            ],
+            'PICKED_UP' => [
+                'label' => 'Picked Up',
+                'class' => 'closed'
+            ],
+            'shipped' => [
+                'label' => 'Shipped',
+                'class' => 'info'
+            ]
+        ]
+    ],
     'admin' => [
         'orders' => [
             'index' => [
@@ -49,11 +73,14 @@ return [
                     'number_of_products' => "# of Products",
                     'customer_email' => "Customer Email",
                     'customer_address' => "Customer Address",
-                    'statuses' => [
-                        'pending' => "Pending"
-                    ]
                 ]
             ],
+            'view' => [
+                'approve' => 'Approve',
+                'cancel' => 'Cancel',
+                'cancel-msg' => 'Are you sure you want to cancel this order?',
+                'approve-msg' => 'Are you sure you want to approve this order?',
+            ]
         ]
     ]
 ];

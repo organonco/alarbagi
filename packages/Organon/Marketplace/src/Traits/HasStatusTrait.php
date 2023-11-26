@@ -23,11 +23,19 @@ trait HasStatusTrait
     {
         return Attribute::make(
             get: fn (string $value) => static::getStatusFromValue($value),
-            set: fn ($value) => $this->setStatus($value)
+            set: fn ($value) => $this->set($value)
         );
     }
 
+
     public function setStatus($status)
+    {
+        $this->status = $status;
+        $this->save();
+    }
+
+
+    private function set($status)
     {
         $enumClass = static::getStatusEnum();
         return $status->value;

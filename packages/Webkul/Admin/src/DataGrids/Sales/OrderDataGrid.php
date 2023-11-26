@@ -16,7 +16,7 @@ class OrderDataGrid extends DataGrid
      */
     public function prepareQueryBuilder()
     {
-        $queryBuilder = DB::table('orders')
+        $queryBuilder = DB::table('orders')->orderBy('created_at', 'DESC')
             ->leftJoin('addresses as order_address_shipping', function ($leftJoin) {
                 $leftJoin->on('order_address_shipping.order_id', '=', 'orders.id')
                     ->where('order_address_shipping.address_type', OrderAddress::ADDRESS_TYPE_SHIPPING);

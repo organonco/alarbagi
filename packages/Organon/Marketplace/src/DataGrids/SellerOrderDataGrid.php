@@ -5,6 +5,7 @@ namespace Organon\Marketplace\DataGrids;
 use Illuminate\Support\Facades\DB;
 use Organon\Marketplace\Enums\SellerOrderStatusEnum;
 use Organon\Marketplace\Models\Admin;
+use Organon\Marketplace\Models\SellerOrder;
 use Webkul\DataGrid\DataGrid;
 use Webkul\Sales\Models\OrderAddress;
 
@@ -17,7 +18,7 @@ class SellerOrderDataGrid extends DataGrid
         /** @var Admin $admin */
         $admin = auth('admin')->user();
 
-        $query = DB::table('seller_orders');
+        $query = DB::table('seller_orders')->orderBy('created_at', 'DESC');
         $query->where('seller_id', $admin->getSellerId());
 
         $query->join('orders', 'order_id', '=', 'orders.id');
@@ -72,12 +73,7 @@ class SellerOrderDataGrid extends DataGrid
             'filterable' => true,
             'sortable' => true,
             'closure' => function ($row) {
-                switch ($row->status) {
-                    case SellerOrderStatusEnum::PENDING->value:
-                        return '<p class="label-pending">' . trans('marketplace::app.admin.orders.index.datagrid.statuses.pending') . '</p>';
-                    default:
-                        return null;
-                }
+                return '<p class="label-' . trans('marketplace::app.seller-order.statuses.' . SellerOrder::getStatusFromValue($row->status)->name . '.class') . '">' . trans('marketplace::app.seller-order.statuses.' . SellerOrder::getStatusFromValue($row->status)->name . '.label') . '</p>';
             }
         ]);
         $this->addColumn([

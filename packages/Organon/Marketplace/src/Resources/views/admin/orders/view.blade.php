@@ -13,38 +13,9 @@
                 </p>
 
                 <div>
-                    @switch($order->status)
-                        @case('processing')
-                            <span class="label-processing text-[14px] mx-[5px]">
-                                @lang('admin::app.sales.orders.view.processing')
-                            </span>
-                            @break
-
-                        @case('completed')
-                            <span class="label-closed text-[14px] mx-[5px]">
-                                @lang('admin::app.sales.orders.view.completed')
-                            </span>
-                            @break
-
-                        @case(\Organon\Marketplace\Enums\SellerOrderStatusEnum::PENDING)
-                            <span class="label-pending text-[14px] mx-[5px]">
-                                @lang('admin::app.sales.orders.view.pending')
-                            </span>
-                            @break
-
-                        @case('closed')
-                            <span class="label-closed text-[14px] mx-[5px]">
-                                @lang('admin::app.sales.orders.view.closed')
-                            </span>
-                            @break
-
-                        @case('canceled')
-                            <span class="label-cancelled text-[14px] mx-[5px]">
-                                @lang('admin::app.sales.orders.view.canceled')
-                            </span>
-                            @break
-
-                    @endswitch
+                    <span class="label-{{trans('marketplace::app.seller-order.statuses.'. $order->status->name . '.class')}} text-[14px] mx-[5px]">
+                        @lang('marketplace::app.seller-order.statuses.'. $order->status->name . '.label')
+                    </span>
                 </div>
             </div>
 
@@ -61,6 +32,21 @@
     </div>
 
     <div class="justify-between gap-x-[4px] gap-y-[8px] items-center flex-wrap mt-[20px]">
+        <div class="flex gap-[5px]">
+
+            <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]" @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.orders.view.approve-msg')', agree: () => {this.$refs['approveOrderForm'].submit()}})">
+                <form method="POST" ref="approveOrderForm" action="{{ route('marketplace.admin.orders.approve', $order->order_id) }}"> @csrf </form>
+                <span class="icon-tick text-[24px]"></span>
+                <a href="javascript:void(0);"> @lang('marketplace::app.admin.orders.view.approve')</a>
+            </div>
+
+            <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]" @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.orders.view.cancel-msg')',agree: () => {this.$refs['cancelOrderForm'].submit()}})">
+                <form method="POST" ref="cancelOrderForm" action="{{ route('marketplace.admin.orders.cancel', $order->order_id) }}">@csrf</form>
+                <span class="icon-cancel text-[24px]"></span>
+                <a href="javascript:void(0);">@lang('marketplace::app.admin.orders.view.cancel')</a>
+            </div>
+
+        </div>
 
         {{-- Order details --}}
         <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
@@ -113,7 +99,8 @@
                                             @if (isset($item->additional['attributes']))
                                                 <p class="text-gray-600 dark:text-gray-300">
                                                     @foreach ($item->additional['attributes'] as $attribute)
-                                                        {{ $attribute['attribute_name'] }} : {{ $attribute['option_label'] }}
+                                                        {{ $attribute['attribute_name'] }}
+                                                        : {{ $attribute['option_label'] }}
                                                     @endforeach
                                                 </p>
                                             @endif
