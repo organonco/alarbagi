@@ -34,17 +34,24 @@
     <div class="justify-between gap-x-[4px] gap-y-[8px] items-center flex-wrap mt-[20px]">
         <div class="flex gap-[5px]">
 
-            <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]" @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.orders.view.approve-msg')', agree: () => {this.$refs['approveOrderForm'].submit()}})">
-                <form method="POST" ref="approveOrderForm" action="{{ route('marketplace.admin.orders.approve', $order->order_id) }}"> @csrf </form>
-                <span class="icon-tick text-[24px]"></span>
-                <a href="javascript:void(0);"> @lang('marketplace::app.admin.orders.view.approve')</a>
-            </div>
-
-            <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]" @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.orders.view.cancel-msg')',agree: () => {this.$refs['cancelOrderForm'].submit()}})">
-                <form method="POST" ref="cancelOrderForm" action="{{ route('marketplace.admin.orders.cancel', $order->order_id) }}">@csrf</form>
-                <span class="icon-cancel text-[24px]"></span>
-                <a href="javascript:void(0);">@lang('marketplace::app.admin.orders.view.cancel')</a>
-            </div>
+            @if($order->isApprovable())
+                <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
+                     @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.orders.view.approve-msg')', agree: () => {this.$refs['approveOrderForm'].submit()}})">
+                    <form method="POST" ref="approveOrderForm"
+                          action="{{ route('marketplace.admin.orders.approve', $order->order_id) }}"> @csrf </form>
+                    <span class="icon-tick text-[24px]"></span>
+                    <a href="javascript:void(0);"> @lang('marketplace::app.admin.orders.view.approve')</a>
+                </div>
+            @endif
+            @if($order->isCancellable())
+                <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
+                     @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.orders.view.cancel-msg')',agree: () => {this.$refs['cancelOrderForm'].submit()}})">
+                    <form method="POST" ref="cancelOrderForm"
+                          action="{{ route('marketplace.admin.orders.cancel', $order->order_id) }}">@csrf</form>
+                    <span class="icon-cancel text-[24px]"></span>
+                    <a href="javascript:void(0);">@lang('marketplace::app.admin.orders.view.cancel')</a>
+                </div>
+            @endif
 
         </div>
 

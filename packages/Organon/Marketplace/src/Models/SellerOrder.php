@@ -68,4 +68,14 @@ class SellerOrder extends Model implements SellerOrderContract
         return $this->order->customer_full_name;
     }
 
+    public function isApprovable()
+    {
+        return $this->status == SellerOrderStatusEnum::PENDING;
+    }
+
+    public function isCancellable()
+    {
+        return $this->status == SellerOrderStatusEnum::PENDING;
+    }
+
 }
