@@ -68,6 +68,7 @@ class SessionController extends Controller
                 auth()->guard('admin')->logout();
                 return redirect()->route('admin.session.create');
             }
+            return redirect()->intended(route('marketplace.admin.orders.index'));
         }
 
         return redirect()->intended(route('admin.dashboard.index'));
