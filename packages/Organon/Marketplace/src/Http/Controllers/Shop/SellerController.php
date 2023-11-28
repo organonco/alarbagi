@@ -24,8 +24,7 @@ class SellerController extends Controller
 
         $sellerData = $request->only([
             'name',
-            'description',
-            'address'
+            'slug'
         ]);
 
         /** @var Seller $seller */
@@ -39,7 +38,7 @@ class SellerController extends Controller
         ]);
 
         $adminData['role_id'] = 2;
-        $adminData['status'] = 0;
+        $adminData['status'] = 1;
         $adminData['seller_id'] = $seller->id;
 
         if ($adminData['password'] ?? null) {

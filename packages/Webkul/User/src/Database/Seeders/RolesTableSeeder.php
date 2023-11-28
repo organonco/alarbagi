@@ -18,10 +18,11 @@ class RolesTableSeeder extends Seeder
             'name' => 'Administrator',
             'description' => 'Administrator role',
             'permission_type' => 'custom',
-            'permissions' => [
+            'permissions' => json_encode([
                 "dashboard",
                 "sales",
                 "sales.orders",
+                "sales.sellers",
                 "sales.orders.view",
                 "sales.orders.cancel",
                 "sales.invoices",
@@ -163,7 +164,7 @@ class RolesTableSeeder extends Seeder
                 "settings.taxes.tax-rates.create",
                 "settings.taxes.tax-rates.edit",
                 "configuration"
-            ]
+            ])
         ]);
     }
 }

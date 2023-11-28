@@ -3,6 +3,8 @@
 namespace Organon\Marketplace\DataGrids;
 
 use Illuminate\Support\Facades\DB;
+use Organon\Marketplace\Enums\SellerStatusEnum;
+use Organon\Marketplace\Models\Seller;
 use Webkul\DataGrid\DataGrid;
 
 class SellerDataGrid extends DataGrid
@@ -14,9 +16,11 @@ class SellerDataGrid extends DataGrid
         $query = DB::table('sellers')->orderBy('sellers.created_at', 'DESC');
         $query->join('admins', 'admins.seller_id', '=', 'sellers.id');
 
+        $query->addSelect('sellers.id');
         $query->addSelect('sellers.name as shop_name');
         $query->addSelect('admins.email as email');
-        $query->addSelect('sellers.id');
+        $query->addSelect('sellers.status as status');
+        $query->addSelect('sellers.slug as slug');
 
         return $query;
     }
@@ -26,6 +30,24 @@ class SellerDataGrid extends DataGrid
         $this->addColumn([
             'index' => 'shop_name',
             'label' => trans('marketplace::app.admin.sellers.index.datagrid.shop-name'),
+            'type' => 'string',
+            'searchable' => true,
+            'filterable' => false,
+            'sortable' => false,
+        ]);
+
+        $this->addColumn([
+            'index' => 'status',
+            'label' => trans('marketplace::app.admin.sellers.index.datagrid.status'),
+            'type' => 'string',
+            'searchable' => false,
+            'filterable' => false,
+            'sortable' => true,
+            'closure' => fn($row) => '<p class="label-' . trans('marketplace::app.seller.statuses.' . Seller::getStatusFromValue($row->status)->name . '.class') . '">' . trans('marketplace::app.seller.statuses.' . Seller::getStatusFromValue($row->status)->name . '.label') . '</p>'
+        ]);
+        $this->addColumn([
+            'index' => 'slug',
+            'label' => trans('marketplace::app.admin.sellers.index.datagrid.slug'),
             'type' => 'string',
             'searchable' => true,
             'filterable' => false,

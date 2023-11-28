@@ -2,6 +2,7 @@
 
 namespace Webkul\Admin\Http\Controllers\User;
 
+use Organon\Marketplace\Enums\SellerStatusEnum;
 use Webkul\Admin\Http\Controllers\Controller;
 
 class SessionController extends Controller
@@ -36,24 +37,37 @@ class SessionController extends Controller
     public function store()
     {
         $this->validate(request(), [
-            'email'    => 'required|email',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
 
         $remember = request('remember');
 
-        if (! auth()->guard('admin')->attempt(request(['email', 'password']), $remember)) {
+        if (!auth()->guard('admin')->attempt(request(['email', 'password']), $remember)) {
             session()->flash('error', trans('admin::app.settings.users.login-error'));
 
             return redirect()->back();
         }
 
-        if (! auth()->guard('admin')->user()->status) {
+        if (!auth()->guard('admin')->user()->status) {
             session()->flash('warning', trans('admin::app.settings.users.activate-warning'));
 
             auth()->guard('admin')->logout();
 
             return redirect()->route('admin.session.create');
+        }
+
+
+        if (auth('admin')->user()->isSeller()) {
+            $seller = auth('admin')->user()->getSeller();
+            if ($seller->status != SellerStatusEnum::ACTIVE) {
+                if ($seller->status == SellerStatusEnum::PENDING)
+                    session()->flash('warning', trans('marketplace::app.settings.messages.user-pending'));
+                elseif ($seller->status == SellerStatusEnum::DEACTIVATED)
+                    session()->flash('warning', trans('marketplace::app.settings.messages.user-deactivated'));
+                auth()->guard('admin')->logout();
+                return redirect()->route('admin.session.create');
+            }
         }
 
         return redirect()->intended(route('admin.dashboard.index'));
@@ -62,7 +76,7 @@ class SessionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy()

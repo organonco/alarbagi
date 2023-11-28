@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description', 1000);
-            $table->string('address', 1000);
+            $table->string('slug');
+            $table->string('description', 1000)->nullable();
+            $table->string('address', 1000)->nullable();
+            $table->string('status');
             $table->timestamps();
             $table->softDeletes();
         });

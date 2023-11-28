@@ -25,6 +25,7 @@ class SellerRoleSeeder extends Seeder
             'permission_type' => 'custom',
             "permissions" => json_encode([
                 "dashboard",
+                "marketplace",
                 "marketplace.orders",
                 "catalog",
                 "catalog.products",

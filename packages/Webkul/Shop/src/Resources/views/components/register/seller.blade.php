@@ -35,50 +35,25 @@
 
             <x-shop::form.control-group class="mb-4">
                 <x-shop::form.control-group.label class="required">
-                    @lang('marketplace::app.register.labels.shop_bio')
+                    @lang('marketplace::app.register.labels.slug')
                 </x-shop::form.control-group.label>
 
                 <x-shop::form.control-group.control
-                        type="textarea"
-                        name="description"
+                        type="text"
+                        name="slug"
                         class="!p-[20px_25px] rounded-lg"
-                        :value="old('description')"
+                        :value="old('slug')"
                         rules="required"
-                        :label="trans('marketplace::app.register.labels.shop_bio')"
-                        :placeholder="trans('marketplace::app.register.labels.shop_bio')"
-
+                        :label="trans('marketplace::app.register.labels.slug')"
+                        :placeholder="trans('marketplace::app.register.labels.slug')"
                 >
                 </x-shop::form.control-group.control>
 
                 <x-shop::form.control-group.error
-                        control-name="description"
+                        control-name="slug"
                 >
                 </x-shop::form.control-group.error>
             </x-shop::form.control-group>
-
-            <x-shop::form.control-group class="mb-4">
-                <x-shop::form.control-group.label class="required">
-                    @lang('marketplace::app.register.labels.address')
-                </x-shop::form.control-group.label>
-
-                <x-shop::form.control-group.control
-                        type="textarea"
-                        name="address"
-                        class="!p-[20px_25px] rounded-lg"
-                        :value="old('address')"
-                        rules="required"
-                        :label="trans('marketplace::app.register.labels.address')"
-                        :placeholder="trans('marketplace::app.register.labels.address')"
-
-                >
-                </x-shop::form.control-group.control>
-
-                <x-shop::form.control-group.error
-                        control-name="address"
-                >
-                </x-shop::form.control-group.error>
-            </x-shop::form.control-group>
-
 
             <x-shop::form.control-group class="mb-4">
                 <x-shop::form.control-group.label class="required">

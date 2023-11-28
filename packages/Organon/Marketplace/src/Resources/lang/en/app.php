@@ -17,6 +17,7 @@ return [
             'shop_name' => 'Shop Name',
             'shop_bio' => 'Shop Bio',
             'address' => 'Shop Address',
+            'slug' => 'Shop Slug'
         ],
         'flash_messages' => [
             'pending_approval' => 'Your account is now pending approval from the Admins'
@@ -62,6 +63,22 @@ return [
             ]
         ]
     ],
+    "seller" => [
+        'statuses' => [
+            'PENDING' => [
+                'label' => 'Pending Approval',
+                'class' => 'pending'
+            ],
+            'ACTIVE' => [
+                'label' => 'Active',
+                'class' => 'processing'
+            ],
+            'DEACTIVATED' => [
+                'label' => 'Deactivated',
+                'class' => 'info'
+            ],
+        ]
+    ],
     'admin' => [
         'orders' => [
             'index' => [
@@ -89,8 +106,16 @@ return [
                 'datagrid' => [
                     'shop-name' => 'Shop Name',
                     'email' => 'Contact Email',
+                    'status' => "Status",
+                    'slug' => 'Slug'
                 ]
             ]
+        ]
+    ],
+    'settings' => [
+        'messages' => [
+            'user-pending' => "Your account is pending approval from admins",
+            'user-deactivated' => "Your account has been deactivated"
         ]
     ]
 ];
