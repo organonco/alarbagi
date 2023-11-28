@@ -41,7 +41,7 @@ class SellerOrderController extends Controller
     {
         if (request()->ajax())
             return app(SellerOrderDataGrid::class)->toJson();
-        return view($this->_config['view']);
+        return view('marketplace::admin.orders.index');
     }
 
     /**
@@ -52,7 +52,7 @@ class SellerOrderController extends Controller
      */
     public function edit($id)
     {
-        return view($this->_config['view'])->with([
+        return view('marketplace::admin.orders.view')->with([
             'order' => $this->sellerOrderRepository->findWhere(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail()
         ]);
     }

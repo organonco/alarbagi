@@ -36,7 +36,7 @@ class SellerController extends Controller
     {
         if (request()->ajax())
             return app(SellerDataGrid::class)->toJson();
-        return view($this->_config['view']);
+        return view('marketplace::admin.sellers.index');
     }
 
     public function edit($id)

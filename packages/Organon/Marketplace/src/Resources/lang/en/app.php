@@ -110,6 +110,14 @@ return [
                     'slug' => 'Slug'
                 ]
             ]
+        ],
+        'account' => [
+            'profile' => [
+                'page-title' => 'Shop Profile',
+            ],
+            'settings' => [
+                'page-title' => 'Shop Settings'
+            ]
         ]
     ],
     'settings' => [
