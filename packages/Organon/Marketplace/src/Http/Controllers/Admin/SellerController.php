@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
-use Organon\Marketplace\DataGrids\SellerOrderDataGrid;
+use Organon\Marketplace\DataGrids\SellerDataGrid;
 use Organon\Marketplace\Repositories\SellerRepository;
 
 class SellerController extends Controller
@@ -34,10 +34,9 @@ class SellerController extends Controller
 
     public function index()
     {
-        return 123;
-//        if (request()->ajax())
-//            return app(SellerOrderDataGrid::class)->toJson();
-//        return view($this->_config['view']);
+        if (request()->ajax())
+            return app(SellerDataGrid::class)->toJson();
+        return view($this->_config['view']);
     }
 
     public function edit($id)

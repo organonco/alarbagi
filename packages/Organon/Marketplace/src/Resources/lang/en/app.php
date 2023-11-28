@@ -82,6 +82,15 @@ return [
                 'cancel-msg' => 'Are you sure you want to cancel this order?',
                 'approve-msg' => 'Are you sure you want to approve this order?',
             ]
+        ],
+        'sellers' => [
+            'index' => [
+                'page-title' => "Sellers",
+                'datagrid' => [
+                    'shop-name' => 'Shop Name',
+                    'email' => 'Contact Email',
+                ]
+            ]
         ]
     ]
 ];
