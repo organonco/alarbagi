@@ -107,7 +107,7 @@ return [
                     'shop-name' => 'Shop Name',
                     'email' => 'Contact Email',
                     'status' => "Status",
-                    'slug' => 'Slug'
+                    'slug' => 'Slug',
                 ]
             ]
         ],

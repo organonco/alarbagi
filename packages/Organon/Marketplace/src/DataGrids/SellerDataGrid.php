@@ -22,6 +22,11 @@ class SellerDataGrid extends DataGrid
         $query->addSelect('sellers.status as status');
         $query->addSelect('sellers.slug as slug');
 
+        $this->addFilter('shop_name', 'sellers.name');
+        $this->addFilter('status', 'sellers.status');
+        $this->addFilter('slug', 'sellers.slug');
+        $this->addFilter('email', 'admins.email');
+
         return $query;
     }
 
@@ -36,15 +41,29 @@ class SellerDataGrid extends DataGrid
             'sortable' => false,
         ]);
 
+        $statusOptions = [];
+        foreach (SellerStatusEnum::cases() as $case)
+            $statusOptions[] = [
+                'label' => trans('marketplace::app.seller.statuses.' . $case->name . '.label'),
+                'value' => $case->value,
+            ];
+
         $this->addColumn([
             'index' => 'status',
             'label' => trans('marketplace::app.admin.sellers.index.datagrid.status'),
-            'type' => 'string',
-            'searchable' => false,
-            'filterable' => false,
+            'type' => 'dropdown',
+            'options' => [
+                'type' => 'basic',
+                'params' => [
+                    'options' => $statusOptions
+                ],
+            ],
+            'searchable' => true,
+            'filterable' => true,
             'sortable' => true,
-            'closure' => fn($row) => '<p class="label-' . trans('marketplace::app.seller.statuses.' . Seller::getStatusFromValue($row->status)->name . '.class') . '">' . trans('marketplace::app.seller.statuses.' . Seller::getStatusFromValue($row->status)->name . '.label') . '</p>'
+            'closure' => fn($row) => '<p class="label-' . trans('marketplace::app.seller.statuses.' . Seller::getStatusFromValue($row->status)->name . '.class') . '">' . trans('marketplace::app.seller.statuses.' . Seller::getStatusFromValue($row->status)->name . '.label') . '</p>',
         ]);
+
         $this->addColumn([
             'index' => 'slug',
             'label' => trans('marketplace::app.admin.sellers.index.datagrid.slug'),
