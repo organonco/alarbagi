@@ -22,6 +22,13 @@ class SellerController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            'name' => ['required', 'max:255'],
+            'slug' => ['required', 'alpha_dash', "unique:sellers"],
+            'password' => ['required', 'confirmed', 'min:8'],
+            'email' => ['required', 'email']
+        ]);
+
         $sellerData = $request->only([
             'name',
             'slug'
@@ -33,8 +40,7 @@ class SellerController extends Controller
         $adminData = $request->only([
             'name',
             'email',
-            'password',
-            'password_confirmation',
+            'password'
         ]);
 
         $adminData['role_id'] = 2;
