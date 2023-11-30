@@ -45,4 +45,11 @@ class Admin extends \Webkul\User\Models\Admin
     {
         return $this->seller;
     }
+
+    public function getImageUrlAttribute()
+    {
+        if($this->isSeller())
+            return $this->getSeller()->logo_url;
+        return parent::image_url();
+    }
 }

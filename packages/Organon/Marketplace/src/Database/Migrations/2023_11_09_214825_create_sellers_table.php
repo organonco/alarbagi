@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('description', 1000)->nullable();
             $table->string('address', 1000)->nullable();
+            $table->string('payment_method', 4000)->nullable();
             $table->string('status');
             $table->timestamps();
             $table->softDeletes();

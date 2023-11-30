@@ -80,11 +80,12 @@
         {{-- Admin profile --}}
         <x-admin::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
             <x-slot:toggle>
-                @if ($admin->image)
+                @if ($admin->image_url)
                     <button class="flex w-[36px] h-[36px] overflow-hidden rounded-full cursor-pointer hover:opacity-80 focus:opacity-80">
                         <img
                                 src="{{ $admin->image_url }}"
                                 class="w-full"
+                                style="height: 100%"
                         />
                     </button>
                 @else

@@ -114,9 +114,36 @@ return [
         'account' => [
             'profile' => [
                 'page-title' => 'Shop Profile',
+                'labels' => [
+                    'name' => 'Shop Name',
+                    "description" => 'Shop Bio',
+                    "slug" => 'Shop Slug',
+                    "logo" => "Shop Logo",
+                    "address" => "Shop Address"
+                ],
+                'actions' => [
+                    'update' => "Update Profile Data"
+                ],
+                'flash_messages' => [
+                    'updated' => 'Profile Was Updated Successfully',
+                ],
             ],
             'settings' => [
-                'page-title' => 'Shop Settings'
+                'page-title' => 'Shop Settings',
+                'labels' => [
+                    'current' => 'Current Password',
+                    'new' => 'New Password',
+                    'confirmation' => 'New Password Again',
+                    'payment-method' => 'Payment Method',
+                ],
+                'flash_messages' => [
+                    'password-updated' => 'Password Was Updated Successfully',
+                    'payment-method-updated' => 'Payment Method Was Updated Successfully',
+                ],
+                'actions' => [
+                    'update-password' => 'Update Password',
+                    'update-payment-method' => 'Update Payment Method',
+                ]
             ]
         ]
     ],

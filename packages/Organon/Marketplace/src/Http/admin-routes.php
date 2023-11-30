@@ -26,5 +26,7 @@ Route::group([
     Route::get('profile', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'profile'])->name('admin.account.profile.view');
     Route::post('profile', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'updateProfile'])->name('admin.account.profile.update');
     Route::get('settings', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'settings'])->name('admin.account.settings.view');
-    Route::post('settings', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'updateSettings'])->name('admin.account.settings.update');
+    Route::post('settings\password', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'updatePassword'])->name('admin.account.settings.update-password');
+    Route::post('settings\payment-method', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'updatePaymentMethod'])->name('admin.account.settings.update-payment-method');
+
 });
