@@ -26,14 +26,17 @@ class OrderDataGrid extends DataGrid
                     ->where('order_address_billing.address_type', OrderAddress::ADDRESS_TYPE_BILLING);
             })
             ->leftJoin('order_payment', 'orders.id', '=', 'order_payment.order_id')
+            ->leftJoin('seller_orders', 'seller_orders.order_id', '=', 'orders.id')
+            ->groupBy('orders.id')
             ->select(
+                DB::raw('count(1) as number_of_sellers'),
                 'orders.id',
                 'order_payment.method',
                 'orders.increment_id',
                 'orders.base_grand_total',
                 'orders.created_at',
                 'channel_name',
-                'status',
+                'orders.status',
                 'customer_email',
                 'orders.cart_id as image',
                 DB::raw('CONCAT(' . DB::getTablePrefix() . 'orders.customer_first_name, " ", ' . DB::getTablePrefix() . 'orders.customer_last_name) as full_name'),
@@ -60,6 +63,7 @@ class OrderDataGrid extends DataGrid
             'searchable' => true,
             'filterable' => true,
             'sortable'   => true,
+            'closure' => fn($row) => $row->increment_id . " ($row->number_of_sellers Sellers )"
         ]);
 
         $this->addColumn([
