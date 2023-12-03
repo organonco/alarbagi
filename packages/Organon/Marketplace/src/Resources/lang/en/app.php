@@ -109,6 +109,12 @@ return [
                     'status' => "Status",
                     'slug' => 'Slug',
                 ]
+            ],
+            'view' => [
+                'activate' => 'Activate',
+                'deactivate' => 'Deactivate',
+                'activate-msg' => 'Are you sure you want to activate this user? The user will be able to publish products directly to the website',
+                'deactivate-msg' => 'Are you sure you want to deactivate this user? The user will not be able to login until they get re-activated',
             ]
         ],
         'account' => [

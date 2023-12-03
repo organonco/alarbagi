@@ -16,6 +16,9 @@ Route::group([
     'middleware' => ['web', 'admin']
 ], function () {
     Route::get('sellers', [\Organon\Marketplace\Http\Controllers\Admin\SellerController::class, 'index'])->name('admin.sales.sellers.index');
+    Route::get('sellers/{seller_id}', [\Organon\Marketplace\Http\Controllers\Admin\SellerController::class, 'view'])->name('admin.sales.sellers.view');
+    Route::post('sellers/{seller_id}/activate', [\Organon\Marketplace\Http\Controllers\Admin\SellerController::class, 'activate'])->name('admin.sales.sellers.activate');
+    Route::post('sellers/{seller_id}/deactivate', [\Organon\Marketplace\Http\Controllers\Admin\SellerController::class, 'deactivate'])->name('admin.sales.sellers.deactivate');
 });
 
 

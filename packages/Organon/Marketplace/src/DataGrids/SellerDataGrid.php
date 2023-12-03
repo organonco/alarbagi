@@ -95,7 +95,7 @@ class SellerDataGrid extends DataGrid
             'title' => 'test',
             'method' => 'GET',
             'url' => function ($row) {
-                return route('admin.sales.orders.index', $row->id);
+                return route('admin.sales.sellers.view', $row->id);
             },
         ]);
     }

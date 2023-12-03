@@ -39,10 +39,21 @@ class SellerController extends Controller
         return view('marketplace::admin.sellers.index');
     }
 
-    public function edit($id)
+    public function view($id)
     {
-//        return view($this->_config['view'])->with([
-//            'order' => $this->sellerOrderRepository->findWhere(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail()
-//        ]);
+        $seller = $this->sellerRepository->find($id);
+        return view('marketplace::admin.sellers.view')->with(['seller' => $seller]);
+    }
+
+    public function activate($id)
+    {
+        $this->sellerRepository->activate($id);
+        return redirect(route('admin.sales.sellers.view', $id));
+    }
+
+    public function deactivate($id)
+    {
+        $this->sellerRepository->deactivate($id);
+        return redirect(route('admin.sales.sellers.view', $id));
     }
 }

@@ -64,4 +64,14 @@ class Seller extends Model implements SellerContract, HasMedia
     {
         return $this->getFirstMediaUrl(self::COVER_MEDIA_COLLECTION);
     }
+
+    public function isActivatable()
+    {
+        return $this->status != SellerStatusEnum::ACTIVE;
+    }
+
+    public function isDeactivatable()
+    {
+        return $this->status == SellerStatusEnum::ACTIVE;
+    }
 }
