@@ -3,7 +3,7 @@
 namespace Webkul\User\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Webkul\User\Models\Admin;
+use Organon\Marketplace\Models\Seller;
 
 class AdminFactory extends Factory
 {
@@ -12,7 +12,7 @@ class AdminFactory extends Factory
      *
      * @var string
      */
-    protected $model = Admin::class;
+    protected $model = \Organon\Marketplace\Models\Admin::class;
 
     /**
      * Define the model's default state.
@@ -22,11 +22,12 @@ class AdminFactory extends Factory
     public function definition()
     {
         return [
-            'name'     => $this->faker->name(),
-            'email'    => $this->faker->unique()->email,
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->email,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
-            'role_id'  => 1,
-            'status'   => 1
+            'role_id' => 1,
+            'status' => 1,
+            'seller_id' => Seller::factory()->create()
         ];
     }
 }
