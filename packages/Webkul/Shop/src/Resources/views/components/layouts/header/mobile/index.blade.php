@@ -127,7 +127,7 @@
             >
                 <img
                         src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                        alt="Bagisto"
+                        alt="Logo"
                         width="131"
                         height="29"
                 >

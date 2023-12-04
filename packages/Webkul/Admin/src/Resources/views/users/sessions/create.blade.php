@@ -9,8 +9,8 @@
             {{-- Logo --}}
             <img 
                 class="w-max" 
-                src="{{ bagisto_asset('images/logo.svg') }}" 
-                alt="Bagisto Logo"
+                src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                alt="Logo"
             >
 
             <div class="flex flex-col min-w-[300px] bg-white dark:bg-gray-900 rounded-[6px] box-shadow">

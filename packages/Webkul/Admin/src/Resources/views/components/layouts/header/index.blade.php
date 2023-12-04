@@ -21,7 +21,7 @@
                      alt="{{ config('app.name') }}" style="height: 40px; width: 110px;"/>
             @else
                 @if (! request()->cookie('dark_mode'))
-                    <img src="{{ bagisto_asset('images/logo.svg') }}" id="logo-image">
+                    <img src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}" id="logo-image">
                 @else
                     <img src="{{ bagisto_asset('images/dark-logo.svg') }}" id="logo-image">
                 @endif
@@ -147,7 +147,7 @@
                 <img src="{{ Storage::url(core()->getConfigData('general.design.admin_logo.logo_image', core()->getCurrentChannelCode())) }}"
                      alt="{{ config('app.name') }}" style="height: 40px; width: 110px;"/>
             @else
-                <img src="{{ bagisto_asset('images/logo.svg') }}">
+                <img src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}">
             @endif
         </div>
     </x-slot:header>
