@@ -13,8 +13,8 @@
         {{-- Left Navigation --}}
         <div class="flex items-center gap-x-[5px]">
             <x-shop::drawer
-                position="left"
-                width="80%"
+                    position="left"
+                    width="80%"
             >
                 <x-slot:toggle>
                     <span class="icon-hamburger text-[24px] cursor-pointer"></span>
@@ -24,10 +24,10 @@
                     <div class="flex justify-between items-center">
                         <a href="{{ route('shop.home.index') }}">
                             <img
-                                src="{{ bagisto_asset('images/logo.svg') }}"
-                                alt="Bagisto"
-                                width="131"
-                                height="29"
+                                    src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                                    alt="Logo"
+                                    width="131"
+                                    height="29"
                             >
                         </a>
                     </div>
@@ -38,15 +38,15 @@
                     <div class="grid grid-cols-[auto_1fr] gap-[15px] items-center mb-[15px] p-[10px] border border-[#E9E9E9] rounded-[12px]">
                         <div class="">
                             <img
-                                src="{{ auth()->user()?->image_url ??  bagisto_asset('images/user-placeholder.png') }}"
-                                class="w-[60px] h-[60px] rounded-full"
+                                    src="{{ auth()->user()?->image_url ??  bagisto_asset('images/user-placeholder.png') }}"
+                                    class="w-[60px] h-[60px] rounded-full"
                             >
                         </div>
 
                         @guest('customer')
                             <a
-                                href="{{ route('shop.customer.session.create') }}"
-                                class="flex text-[16px] font-medium"
+                                    href="{{ route('shop.customer.session.create') }}"
+                                    class="flex text-[16px] font-medium"
                             >
                                 @lang('Sign up or Login')
 
@@ -91,14 +91,14 @@
                                 {{-- Dropdown Toggler --}}
                                 <div class="w-full flex gap-[10px] justify-between items-center cursor-pointer">
                                     <img
-                                        src="{{ ! empty(core()->getCurrentLocale()->logo_url)
+                                            src="{{ ! empty(core()->getCurrentLocale()->logo_url)
                                                 ? core()->getCurrentLocale()->logo_url
                                                 : bagisto_asset('images/default-language.svg')
                                             }}"
-                                        class="h-full"
-                                        alt="Default locale"
-                                        width="24"
-                                        height="16"
+                                            class="h-full"
+                                            alt="Default locale"
+                                            width="24"
+                                            height="16"
                                     />
 
                                     <span>
@@ -121,15 +121,15 @@
             </x-shop::drawer>
 
             <a
-                href="{{ route('shop.home.index') }}"
-                class="max-h-[30px]"
-                aria-label="Bagisto"
+                    href="{{ route('shop.home.index') }}"
+                    class="max-h-[30px]"
+                    aria-label="Bagisto"
             >
                 <img
-                    src="{{ bagisto_asset('images/logo.svg') }}"
-                    alt="Bagisto"
-                    width="131"
-                    height="29"
+                        src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                        alt="Bagisto"
+                        width="131"
+                        height="29"
                 >
             </a>
         </div>
@@ -139,8 +139,8 @@
             <div class="flex  items-center gap-x-[20px]">
                 @if($showCompare)
                     <a
-                        href="{{ route('shop.compare.index') }}"
-                        aria-label="Compare "
+                            href="{{ route('shop.compare.index') }}"
+                            aria-label="Compare "
                     >
                         <span class="icon-compare text-[24px] cursor-pointer"></span>
                     </a>
@@ -148,7 +148,8 @@
 
                 @include('shop::checkout.cart.mini-cart')
 
-                <x-shop::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
+                <x-shop::dropdown
+                        position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
                     <x-slot:toggle>
                         <span class="icon-users text-[24px] cursor-pointer"></span>
                     </x-slot:toggle>
@@ -170,15 +171,15 @@
 
                             <div class="flex gap-[16px] mt-[25px]">
                                 <a
-                                    href="{{ route('shop.customer.session.create') }}"
-                                    class="block w-max mx-auto m-0 ml-[0px] py-[15px] px-[29px] bg-navyBlue rounded-[18px] text-white text-base font-medium text-center cursor-pointer"
+                                        href="{{ route('shop.customer.session.create') }}"
+                                        class="block w-max mx-auto m-0 ml-[0px] py-[15px] px-[29px] bg-navyBlue rounded-[18px] text-white text-base font-medium text-center cursor-pointer"
                                 >
                                     @lang('shop::app.components.layouts.header.sign-in')
                                 </a>
 
                                 <a
-                                    href="{{ route('shop.customers.register.index') }}"
-                                    class="block w-max mx-auto m-0 ml-[0px] py-[14px] px-[29px] bg-white border-2 border-navyBlue rounded-[18px] text-navyBlue text-base font-medium  text-center cursor-pointer"
+                                        href="{{ route('shop.customers.register.index') }}"
+                                        class="block w-max mx-auto m-0 ml-[0px] py-[14px] px-[29px] bg-white border-2 border-navyBlue rounded-[18px] text-navyBlue text-base font-medium  text-center cursor-pointer"
                                 >
                                     @lang('shop::app.components.layouts.header.sign-up')
                                 </a>
@@ -204,23 +205,23 @@
 
                             <div class="grid gap-[4px] mt-[10px] pb-[10px]">
                                 <a
-                                    class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
-                                    href="{{ route('shop.customers.account.profile.index') }}"
+                                        class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+                                        href="{{ route('shop.customers.account.profile.index') }}"
                                 >
                                     @lang('shop::app.components.layouts.header.profile')
                                 </a>
 
                                 <a
-                                    class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
-                                    href="{{ route('shop.customers.account.orders.index') }}"
+                                        class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+                                        href="{{ route('shop.customers.account.orders.index') }}"
                                 >
                                     @lang('shop::app.components.layouts.header.orders')
                                 </a>
 
                                 @if ($showWishlist)
                                     <a
-                                        class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
-                                        href="{{ route('shop.customers.account.wishlist.index') }}"
+                                            class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+                                            href="{{ route('shop.customers.account.wishlist.index') }}"
                                     >
                                         @lang('shop::app.components.layouts.header.wishlist')
                                     </a>
@@ -229,16 +230,16 @@
                                 {{--Customers logout--}}
                                 @auth('customer')
                                     <x-shop::form
-                                        method="DELETE"
-                                        action="{{ route('shop.customer.session.destroy') }}"
-                                        id="customerLogout"
+                                            method="DELETE"
+                                            action="{{ route('shop.customer.session.destroy') }}"
+                                            id="customerLogout"
                                     >
                                     </x-shop::form>
 
                                     <a
-                                        class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
-                                        href="{{ route('shop.customer.session.destroy') }}"
-                                        onclick="event.preventDefault(); document.getElementById('customerLogout').submit();"
+                                            class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+                                            href="{{ route('shop.customer.session.destroy') }}"
+                                            onclick="event.preventDefault(); document.getElementById('customerLogout').submit();"
                                     >
                                         @lang('shop::app.components.layouts.header.logout')
                                     </a>
@@ -257,22 +258,22 @@
 
         <div class="relative w-full">
             <div
-                class="icon-search flex items-center absolute left-[12px] top-[12px] text-[25px] pointer-events-none">
+                    class="icon-search flex items-center absolute left-[12px] top-[12px] text-[25px] pointer-events-none">
             </div>
 
             <input
-                type="text"
-                class="block w-full px-11 py-3.5 border border-['#E3E3E3'] rounded-xl text-gray-900 text-xs font-medium"
-                name="query"
-                value="{{ request('query') }}"
-                placeholder="@lang('shop::app.components.layouts.header.search-text')"
-                required
+                    type="text"
+                    class="block w-full px-11 py-3.5 border border-['#E3E3E3'] rounded-xl text-gray-900 text-xs font-medium"
+                    name="query"
+                    value="{{ request('query') }}"
+                    placeholder="@lang('shop::app.components.layouts.header.search-text')"
+                    required
             >
 
             <button
-                type="button"
-                class="icon-camera flex items-center absolute top-[12px] right-[12px] pr-3 text-[22px]"
-                aria-label="Search"
+                    type="button"
+                    class="icon-camera flex items-center absolute top-[12px] right-[12px] pr-3 text-[22px]"
+                    aria-label="Search"
             >
             </button>
         </div>
@@ -285,41 +286,41 @@
             <template v-for="(category) in categories">
                 <div class="flex justify-between items-center border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
                     <a
-                        :href="category.url"
-                        class="flex items-center justify-between pb-[20px] mt-[20px]"
-                        v-text="category.name"
+                            :href="category.url"
+                            class="flex items-center justify-between pb-[20px] mt-[20px]"
+                            v-text="category.name"
                     >
                     </a>
 
                     <span
-                        class="text-[24px] cursor-pointer"
-                        :class="{'icon-arrow-down': category.isOpen, 'icon-arrow-right': ! category.isOpen}"
-                        @click="toggle(category)"
+                            class="text-[24px] cursor-pointer"
+                            :class="{'icon-arrow-down': category.isOpen, 'icon-arrow-right': ! category.isOpen}"
+                            @click="toggle(category)"
                     >
                     </span>
                 </div>
 
                 <div
-                    class="grid gap-[8px]"
-                    v-if="category.isOpen"
+                        class="grid gap-[8px]"
+                        v-if="category.isOpen"
                 >
                     <ul v-if="category.children.length">
                         <li v-for="secondLevelCategory in category.children">
                             <div class="flex justify-between items-center ml-3 border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
                                 <a
-                                    :href="secondLevelCategory.url"
-                                    class="flex items-center justify-between pb-[20px] mt-[20px]"
-                                    v-text="secondLevelCategory.name"
+                                        :href="secondLevelCategory.url"
+                                        class="flex items-center justify-between pb-[20px] mt-[20px]"
+                                        v-text="secondLevelCategory.name"
                                 >
                                 </a>
 
                                 <span
-                                    class="text-[24px] cursor-pointer"
-                                    :class="{
+                                        class="text-[24px] cursor-pointer"
+                                        :class="{
                                         'icon-arrow-down': secondLevelCategory.category_show,
                                         'icon-arrow-right': ! secondLevelCategory.category_show
                                     }"
-                                    @click="secondLevelCategory.category_show = ! secondLevelCategory.category_show"
+                                        @click="secondLevelCategory.category_show = ! secondLevelCategory.category_show"
                                 >
                                 </span>
                             </div>
@@ -329,9 +330,9 @@
                                     <li v-for="thirdLevelCategory in secondLevelCategory.children">
                                         <div class="flex justify-between items-center ml-3 border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
                                             <a
-                                                :href="thirdLevelCategory.url"
-                                                class="flex items-center justify-between mt-[20px] ml-3 pb-[20px]"
-                                                v-text="thirdLevelCategory.name"
+                                                    :href="thirdLevelCategory.url"
+                                                    class="flex items-center justify-between mt-[20px] ml-3 pb-[20px]"
+                                                    v-text="thirdLevelCategory.name"
                                             >
                                             </a>
                                         </div>
@@ -339,8 +340,8 @@
                                 </ul>
 
                                 <span
-                                    class="ml-2"
-                                    v-else
+                                        class="ml-2"
+                                        v-else
                                 >
                                     @lang('No category found.')
                                 </span>
@@ -349,8 +350,8 @@
                     </ul>
 
                     <span
-                        class="ml-2"
-                        v-else
+                            class="ml-2"
+                            v-else
                     >
                         @lang('No category found.')
                     </span>
@@ -364,7 +365,7 @@
             template: '#v-mobile-category-template',
 
             data() {
-                return  {
+                return {
                     categories: [],
                 }
             },
@@ -379,14 +380,14 @@
                         .then(response => {
                             this.categories = response.data.data;
                         }).catch(error => {
-                            console.log(error);
-                        });
+                        console.log(error);
+                    });
                 },
 
                 toggle(selectedCategory) {
                     this.categories = this.categories.map((category) => ({
                         ...category,
-                        isOpen: category.id === selectedCategory.id ? ! category.isOpen : false,
+                        isOpen: category.id === selectedCategory.id ? !category.isOpen : false,
                     }));
                 },
             },
