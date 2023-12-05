@@ -730,7 +730,7 @@
 
                     logo: "{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}",
 
-                    dark_logo: "{{ bagisto_asset('images/dark-logo.svg') }}",
+                    dark_logo: "{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}",
                 };
             },
 
