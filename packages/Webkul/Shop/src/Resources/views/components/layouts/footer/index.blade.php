@@ -90,11 +90,9 @@
         </div>
     @endif
 
-    <div class="flex justify-between  px-[60px] py-[13px] bg-[#F1EADF]">
-        <p class="text-[14px] text-[#4D4D4D]">
-            @lang('shop::app.components.layouts.footer.footer-text')
-        </p>
-    </div>
+{{--    <div class="flex justify-between  px-[60px] py-[13px] bg-[#F1EADF]">--}}
+{{--        --}}
+{{--    </div>--}}
 </footer>
 
 {!! view_render_event('bagisto.shop.layout.footer.after') !!}
