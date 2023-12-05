@@ -23,7 +23,7 @@
                 @if (! request()->cookie('dark_mode'))
                     <img src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}" id="logo-image">
                 @else
-                    <img src="{{ bagisto_asset('images/dark-logo.svg') }}" id="logo-image">
+                    <img src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}" id="logo-image">
                 @endif
             @endif
         </a>
