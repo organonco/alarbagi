@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
+use Organon\Marketplace\Enums\SellerStatusEnum;
 use Organon\Marketplace\Repositories\SellerRepository;
 use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
 
@@ -73,14 +74,26 @@ class SellerAccountController extends Controller
         return redirect(route('admin.account.settings.view'));
     }
 
-    public function updatePaymentMethod(Request $request)
+    public function updateSettings(Request $request)
     {
         $request->validate([
-            'payment_method' => ['required', 'max:4000']
+            'payment_method' => ['required', 'max:4000'],
+            'deliver_by' => ['required', 'numeric', 'min:1'],
         ]);
         $this->getAuthenticatedSeller()->update([
-            'payment_method' => $request->get('payment_method')
+            'payment_method' => $request->get('payment_method'),
+            'deliver_by' => $request->get('deliver_by'),
         ]);
+        return redirect(route('admin.account.settings.view'));
+    }
+
+    public function updateAccountStatus(Request $request)
+    {
+        $seller = $this->getAuthenticatedSeller();
+        if($request->active == 'active' && $seller->isUnpauseable())
+            $seller->setStatus(SellerStatusEnum::ACTIVE);
+        elseif($request->active != 'active' && $seller->isPauseable())
+            $seller->setStatus(SellerStatusEnum::PAUSED);
         return redirect(route('admin.account.settings.view'));
     }
 }

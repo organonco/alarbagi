@@ -208,10 +208,6 @@
 
                                 {!! view_render_event('sales.order.customer_full_name.after', ['order' => $order]) !!}
 
-                                <p class="text-gray-600 dark:text-gray-300">
-                                    {{ $order->customer_email }}
-                                </p>
-
                                 {!! view_render_event('sales.order.customer_email.after', ['order' => $order]) !!}
 
                                 {!! view_render_event('sales.order.customer_group.after', ['order' => $order]) !!}

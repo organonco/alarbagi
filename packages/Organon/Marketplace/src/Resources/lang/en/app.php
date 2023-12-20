@@ -36,6 +36,9 @@ return [
                     'seller_name' => 'Seller Name',
                     'seller_name_value' => 'Seller Name: :value',
                 ]
+            ],
+            'view' => [
+                'sold_by' => 'Sold By: :name'
             ]
         ]
     ],
@@ -141,6 +144,8 @@ return [
                     'new' => 'New Password',
                     'confirmation' => 'New Password Again',
                     'payment-method' => 'Payment Method',
+                    'deliver-by' => 'Delivery By (Days)',
+                    'active-status' => 'Active',
                 ],
                 'flash_messages' => [
                     'password-updated' => 'Password Was Updated Successfully',
@@ -149,6 +154,7 @@ return [
                 'actions' => [
                     'update-password' => 'Update Password',
                     'update-payment-method' => 'Update Payment Method',
+                    'update-account-status' => 'Update Account Status',
                 ]
             ]
         ]
@@ -156,7 +162,9 @@ return [
     'settings' => [
         'messages' => [
             'user-pending' => "Your account is pending approval from admins",
-            'user-deactivated' => "Your account has been deactivated"
+            'user-deactivated' => "Your account has been deactivated",
+            'account-deactivated-msg' => 'Your account has been deactivated by admins. Your products will not be visible to customers.',
+            'account-paused-msg' => 'Your account is inactive. Your products will not be visible to customers. Go to settings to reactivate it'
         ]
     ]
 ];

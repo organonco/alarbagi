@@ -1,72 +1,85 @@
 @php
     $admin = auth()->guard('admin')->user();
 @endphp
-
-<header class="flex justify-between items-center px-[16px] py-[10px] bg-white dark:bg-gray-900  border-b-[1px] dark:border-gray-800 sticky top-0 z-[10001]">
-    <div class="flex gap-[6px] items-center">
-        {{-- Hamburger Menu --}}
-        <i
-                class="hidden icon-menu text-[24px] p-[6px] max-lg:block cursor-pointer"
-                @click="$refs.sidebarMenuDrawer.open()"
-        >
-        </i>
-
-        {{-- Logo --}}
-        <a
-                href="{{ route('admin.dashboard.index') }}"
-                class="place-self-start -mt-[4px]"
-        >
-            @if (core()->getConfigData('general.design.admin_logo.logo_image', core()->getCurrentChannelCode()))
-                <img src="{{ Storage::url(core()->getConfigData('general.design.admin_logo.logo_image', core()->getCurrentChannelCode())) }}"
-                     alt="{{ config('app.name') }}" style="height: 40px; width: 110px;"/>
-            @else
-                @if (! request()->cookie('dark_mode'))
-                    <img src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}" id="logo-image">
-                @else
-                    <img src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}" id="logo-image">
-                @endif
-            @endif
-        </a>
-
-        {{-- Mega Search Bar Vue Component --}}
-        <v-mega-search>
-            <div class="flex items-center relative w-[525px] max-w-[525px] ltr:ml-[10px] rtl:mr-[10px]">
-                <i class="icon-search text-[22px] flex items-center absolute ltr:left-[12px] rtl:right-[12px] top-[6px]"></i>
-
-                <input
-                        type="text"
-                        class="bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-lg block w-full px-[40px] py-[5px] leading-6 text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
-                        placeholder="@lang('admin::app.components.layouts.header.mega-search.title')"
-                >
+<header>
+    @if($admin->isSeller())
+        @if($admin->seller->status == \Organon\Marketplace\Enums\SellerStatusEnum::DEACTIVATED)
+            <div style="background-color: darkorange; text-align: center">
+                @lang('marketplace::app.settings.messages.account-deactivated-msg')
             </div>
-        </v-mega-search>
-    </div>
+        @elseif($admin->seller->status == \Organon\Marketplace\Enums\SellerStatusEnum::PAUSED)
+            <div style="background-color: dodgerblue; text-align: center">
+                @lang('marketplace::app.settings.messages.account-paused-msg')
+            </div>
+        @endif
+    @endif
+    <div class="flex justify-between items-center px-[16px] py-[10px] bg-white dark:bg-gray-900  border-b-[1px] dark:border-gray-800 sticky top-0 z-[10001]">
+        <div class="flex gap-[6px] items-center">
+            {{-- Hamburger Menu --}}
+            <i
+                    class="hidden icon-menu text-[24px] p-[6px] max-lg:block cursor-pointer"
+                    @click="$refs.sidebarMenuDrawer.open()"
+            >
+            </i>
 
-    <div class="flex gap-[10px] items-center">
-        {{-- Dark mode Switcher --}}
-        <v-dark>
-            <div class="flex">
+            {{-- Logo --}}
+            <a
+                    href="{{ route('admin.dashboard.index') }}"
+                    class="place-self-start -mt-[4px]"
+            >
+                @if (core()->getConfigData('general.design.admin_logo.logo_image', core()->getCurrentChannelCode()))
+                    <img src="{{ Storage::url(core()->getConfigData('general.design.admin_logo.logo_image', core()->getCurrentChannelCode())) }}"
+                         alt="{{ config('app.name') }}" style="height: 40px; width: 110px;"/>
+                @else
+                    @if (! request()->cookie('dark_mode'))
+                        <img src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                             id="logo-image">
+                    @else
+                        <img src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                             id="logo-image">
+                    @endif
+                @endif
+            </a>
+
+            {{-- Mega Search Bar Vue Component --}}
+            <v-mega-search>
+                <div class="flex items-center relative w-[525px] max-w-[525px] ltr:ml-[10px] rtl:mr-[10px]">
+                    <i class="icon-search text-[22px] flex items-center absolute ltr:left-[12px] rtl:right-[12px] top-[6px]"></i>
+
+                    <input
+                            type="text"
+                            class="bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-lg block w-full px-[40px] py-[5px] leading-6 text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
+                            placeholder="@lang('admin::app.components.layouts.header.mega-search.title')"
+                    >
+                </div>
+            </v-mega-search>
+        </div>
+
+        <div class="flex gap-[10px] items-center">
+            {{-- Dark mode Switcher --}}
+            <v-dark>
+                <div class="flex">
                 <span
                         class="{{ request()->cookie('dark_mode') ? 'icon-light' : 'icon-dark' }} p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950"
                 ></span>
-            </div>
-        </v-dark>
+                </div>
+            </v-dark>
 
-        <a
-                href="{{ route('shop.home.index') }}"
-                target="_blank"
-                class="flex"
-        >
+            <a
+                    href="{{ route('shop.home.index') }}"
+                    target="_blank"
+                    class="flex"
+            >
             <span
                     class="icon-store p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950 "
                     title="@lang('admin::app.components.layouts.header.visit-shop')"
             >
             </span>
-        </a>
+            </a>
 
-        @if(!bouncer()->hasPermission('marketplace'))
-            {{-- Notification Component --}}
-            <v-notifications {{ $attributes }}>
+            @if(!bouncer()->hasPermission('marketplace'))
+                {{-- Notification Component --}}
+                <v-notifications {{ $attributes }}>
             <span class="flex relative">
                 <span
                         class="icon-notification p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950"
@@ -74,63 +87,65 @@
                 >
                 </span>
             </span>
-            </v-notifications>
-        @endif
+                </v-notifications>
+            @endif
 
-        {{-- Admin profile --}}
-        <x-admin::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
-            <x-slot:toggle>
-                @if ($admin->image_url)
-                    <button class="flex w-[36px] h-[36px] overflow-hidden rounded-full cursor-pointer hover:opacity-80 focus:opacity-80">
-                        <img
-                                src="{{ $admin->image_url }}"
-                                class="w-full"
-                                style="height: 100%"
-                        />
-                    </button>
-                @else
-                    <button class="flex justify-center items-center w-[36px] h-[36px] bg-blue-400 rounded-full text-[14px] text-white font-semibold cursor-pointer leading-6 transition-all hover:bg-blue-500 focus:bg-blue-500">
-                        {{ substr($admin->name, 0, 1) }}
-                    </button>
-                @endif
-            </x-slot:toggle>
+            {{-- Admin profile --}}
+            <x-admin::dropdown
+                    position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
+                <x-slot:toggle>
+                    @if ($admin->image_url)
+                        <button class="flex w-[36px] h-[36px] overflow-hidden rounded-full cursor-pointer hover:opacity-80 focus:opacity-80">
+                            <img
+                                    src="{{ $admin->image_url }}"
+                                    class="w-full"
+                                    style="height: 100%"
+                            />
+                        </button>
+                    @else
+                        <button class="flex justify-center items-center w-[36px] h-[36px] bg-blue-400 rounded-full text-[14px] text-white font-semibold cursor-pointer leading-6 transition-all hover:bg-blue-500 focus:bg-blue-500">
+                            {{ substr($admin->name, 0, 1) }}
+                        </button>
+                    @endif
+                </x-slot:toggle>
 
-            {{-- Admin Dropdown --}}
-            <x-slot:content class="!p-[0px]">
-                <div class="grid gap-[10px] px-[20px] py-[10px] border border-b-gray-300 dark:border-gray-800">
-                    {{-- Version --}}
-                    <p class="text-gray-400">
-                        @lang('admin::app.components.layouts.header.app-version', ['version' => 'v' . core()->version()])
-                    </p>
-                </div>
+                {{-- Admin Dropdown --}}
+                <x-slot:content class="!p-[0px]">
+                    <div class="grid gap-[10px] px-[20px] py-[10px] border border-b-gray-300 dark:border-gray-800">
+                        {{-- Version --}}
+                        <p class="text-gray-400">
+                            @lang('admin::app.components.layouts.header.app-version', ['version' => 'v' . core()->version()])
+                        </p>
+                    </div>
 
-                <div class="grid gap-[4px] pb-[10px]">
-                    @if(!bouncer()->hasPermission('marketplace'))
+                    <div class="grid gap-[4px] pb-[10px]">
+                        @if(!bouncer()->hasPermission('marketplace'))
+                            <a
+                                    class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
+                                    href="{{ route('admin.account.edit') }}"
+                            >
+                                @lang('admin::app.components.layouts.header.my-account')
+                            </a>
+                        @endif
+                        {{--Admin logout--}}
+                        <x-admin::form
+                                method="DELETE"
+                                action="{{ route('admin.session.destroy') }}"
+                                id="adminLogout"
+                        >
+                        </x-admin::form>
+
                         <a
                                 class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
-                                href="{{ route('admin.account.edit') }}"
+                                href="{{ route('admin.session.destroy') }}"
+                                onclick="event.preventDefault(); document.getElementById('adminLogout').submit();"
                         >
-                            @lang('admin::app.components.layouts.header.my-account')
+                            @lang('admin::app.components.layouts.header.logout')
                         </a>
-                    @endif
-                    {{--Admin logout--}}
-                    <x-admin::form
-                            method="DELETE"
-                            action="{{ route('admin.session.destroy') }}"
-                            id="adminLogout"
-                    >
-                    </x-admin::form>
-
-                    <a
-                            class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
-                            href="{{ route('admin.session.destroy') }}"
-                            onclick="event.preventDefault(); document.getElementById('adminLogout').submit();"
-                    >
-                        @lang('admin::app.components.layouts.header.logout')
-                    </a>
-                </div>
-            </x-slot:content>
-        </x-admin::dropdown>
+                    </div>
+                </x-slot:content>
+            </x-admin::dropdown>
+        </div>
     </div>
 </header>
 

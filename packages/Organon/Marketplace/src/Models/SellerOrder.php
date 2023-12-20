@@ -70,12 +70,12 @@ class SellerOrder extends Model implements SellerOrderContract
 
     public function isApprovable()
     {
-        return $this->status == SellerOrderStatusEnum::PENDING;
+        return $this->status != SellerOrderStatusEnum::APPROVED;
     }
 
     public function isCancellable()
     {
-        return $this->status == SellerOrderStatusEnum::PENDING;
+        return $this->status != SellerOrderStatusEnum::CANCELLED;
     }
 
 }

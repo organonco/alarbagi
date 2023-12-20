@@ -269,10 +269,12 @@
                             </p>
                         </div>
 
+                        <a :href=`{{ route('shop.product_or_category.index', '') }}/${record.url_key}` target="_blank">
+                            <span class="icon-view text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
+                        </a>
                         <a :href=`{{ route('admin.catalog.products.edit', '') }}/${record.product_id}`>
                             <span class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
                         </a>
-
                     </div>
                 </div>
             </template>
@@ -331,13 +333,11 @@
                                         {!! view_render_event('bagisto.admin.catalog.products.create_form.general.controls.before') !!}
 
                                         <x-admin::form.control-group>
-                                            <x-admin::form.control-group.label class="required">
-                                                @lang('admin::app.catalog.products.index.create.type')
-                                            </x-admin::form.control-group.label>
 
                                             <x-admin::form.control-group.control
-                                                type="select"
+                                                type="hidden"
                                                 name="type"
+                                                value="simple"
                                                 rules="required"
                                                 :label="trans('admin::app.catalog.products.index.create.type')"
                                             >
@@ -352,14 +352,12 @@
                                         </x-admin::form.control-group>
 
                                         <x-admin::form.control-group>
-                                            <x-admin::form.control-group.label class="required">
-                                                @lang('admin::app.catalog.products.index.create.family')
-                                            </x-admin::form.control-group.label>
 
                                             <x-admin::form.control-group.control
-                                                type="select"
+                                                type="hidden"
                                                 name="attribute_family_id"
                                                 rules="required"
+                                                value="1"
                                                 :label="trans('admin::app.catalog.products.index.create.family')"
                                             >
                                                 @foreach($families as $family)

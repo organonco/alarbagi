@@ -29,7 +29,8 @@ class Seller extends Model implements SellerContract, HasMedia
         'description',
         'address',
         'slug',
-        'payment_method'
+        'payment_method',
+        'deliver_by'
     ];
 
     public function admin()
@@ -77,6 +78,16 @@ class Seller extends Model implements SellerContract, HasMedia
     public function isDeactivatable()
     {
         return $this->status == SellerStatusEnum::ACTIVE;
+    }
+
+    public function isPauseable()
+    {
+        return $this->status == SellerStatusEnum::ACTIVE;
+    }
+
+    public function isUnpauseable()
+    {
+        return $this->status == SellerStatusEnum::PAUSED;
     }
 
     /**

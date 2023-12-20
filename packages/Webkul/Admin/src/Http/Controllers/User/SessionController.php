@@ -60,18 +60,14 @@ class SessionController extends Controller
 
         if (auth('admin')->user()->isSeller()) {
             $seller = auth('admin')->user()->getSeller();
-            if ($seller->status != SellerStatusEnum::ACTIVE) {
-                if ($seller->status == SellerStatusEnum::PENDING)
-                    session()->flash('warning', trans('marketplace::app.settings.messages.user-pending'));
-                elseif ($seller->status == SellerStatusEnum::DEACTIVATED)
-                    session()->flash('warning', trans('marketplace::app.settings.messages.user-deactivated'));
+            if ($seller->status == SellerStatusEnum::PENDING) {
+                session()->flash('warning', trans('marketplace::app.settings.messages.user-pending'));
                 auth()->guard('admin')->logout();
                 return redirect()->route('admin.session.create');
             }
-            return redirect(route('marketplace.admin.orders.index'));
         }
 
-        return redirect()->intended(route('admin.dashboard.index'));
+        return redirect(route('marketplace.admin.orders.index'));
     }
 
     /**
@@ -80,7 +76,8 @@ class SessionController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public
+    function destroy()
     {
         auth()->guard('admin')->logout();
 

@@ -294,7 +294,7 @@
                                 </div>
 
                                 <h1 class="text-[18px] font-light max-sm:text-[12px]">
-                                    {{ $product->seller_name }}
+                                    {{__('marketplace::app.catalog.products.view.sold_by', ['name' => $product->seller_name])}}
                                 </h1>
 
 
