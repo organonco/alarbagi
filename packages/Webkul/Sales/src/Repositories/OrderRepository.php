@@ -6,6 +6,7 @@ use Illuminate\Container\Container;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
+use Organon\Marketplace\Enums\SellerOrderStatusEnum;
 use Organon\Marketplace\Repositories\SellerOrderRepository;
 use Webkul\Core\Eloquent\Repository;
 use Webkul\Sales\Generators\OrderSequencer;
@@ -168,6 +169,12 @@ class OrderRepository extends Repository
         }
 
         Event::dispatch('sales.order.cancel.before', $order);
+
+
+        foreach($order->sellerOrders as $sellerOrder){
+            $sellerOrder->setStatus(SellerOrderStatusEnum::CANCELLED_BY_CUSTOMER);
+        }
+
 
         foreach ($order->items as $item) {
             if (!$item->qty_to_cancel) {
