@@ -28,7 +28,8 @@ class ProductDataGrid extends DataGrid
     public function __construct(
         protected AttributeFamilyRepository $attributeFamilyRepository,
         protected ProductRepository         $productRepository,
-        protected InventorySourceRepository $inventorySourceRepository
+        protected InventorySourceRepository $inventorySourceRepository,
+        private $sellerId = null
     )
     {
     }
@@ -62,11 +63,11 @@ class ProductDataGrid extends DataGrid
         /**
          * Query Builder to fetch records from `product_flat` table
          */
-        if ($admin->isSeller())
+        if ($admin->isSeller() || $this->sellerId != null)
             $queryBuilder
                 ->join('products', 'product_flat.product_id', '=', 'products.id')
                 ->leftJoin('sellers', 'sellers.id', '=', 'products.seller_id')
-                ->where('products.seller_id', '=', $admin->getSellerId());
+                ->where('products.seller_id', '=', $this->sellerId ?? $admin->getSellerId());
         else
             $queryBuilder
                 ->join('products', 'product_flat.product_id', '=', 'products.id')

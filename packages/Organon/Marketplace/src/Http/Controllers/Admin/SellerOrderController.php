@@ -40,7 +40,7 @@ class SellerOrderController extends Controller
     public function index()
     {
         if (request()->ajax())
-            return app(SellerOrderDataGrid::class)->toJson();
+            return app(SellerOrderDataGrid::class, ['sellerId' => request()->seller_id])->toJson();
         return view('marketplace::admin.orders.index');
     }
 

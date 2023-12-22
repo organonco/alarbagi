@@ -12,6 +12,12 @@ use Webkul\Sales\Models\OrderAddress;
 class SellerOrderDataGrid extends DataGrid
 {
 
+    public function __construct(private $sellerId = null)
+    {
+        if($this->sellerId == null)
+            $this->sellerId = auth('admin')->user()->getSellerId();
+    }
+
     public function prepareQueryBuilder()
     {
 
@@ -19,7 +25,7 @@ class SellerOrderDataGrid extends DataGrid
         $admin = auth('admin')->user();
 
         $query = DB::table('seller_orders')->orderBy('created_at', 'DESC');
-        $query->where('seller_id', $admin->getSellerId());
+        $query->where('seller_id', $this->sellerId);
 
         $query->join('orders', 'order_id', '=', 'orders.id');
         $query->leftJoin('order_payment', 'orders.id', '=', 'order_payment.order_id');
@@ -44,6 +50,7 @@ class SellerOrderDataGrid extends DataGrid
 
         $query->addSelect(DB::raw('CONCAT(' . DB::getTablePrefix() . 'order_address_shipping.city, ", ", ' . DB::getTablePrefix() . 'order_address_shipping.state,", ", ' . DB::getTablePrefix() . 'order_address_shipping.country) as customer_address'));
 
+        $query->addSelect('orders.id as order_id');
         return $query;
     }
 

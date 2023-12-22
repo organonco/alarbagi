@@ -84,6 +84,10 @@ return [
                 'label' => 'Deactivated',
                 'class' => 'info'
             ],
+            'PAUSED' => [
+                'label' => 'Paused by shop',
+                'class' => 'processing'
+            ]
         ]
     ],
     'admin' => [
@@ -132,7 +136,10 @@ return [
                     "description" => 'Shop Bio',
                     "slug" => 'Shop Slug',
                     "logo" => "Shop Logo",
-                    "address" => "Shop Address"
+                    "address" => "Shop Address",
+                    "deliver_by" => "Deliver By (Minutes)",
+                    "payment_method" => "Payment Method",
+                    "email" => "Email",
                 ],
                 'actions' => [
                     'update' => "Update Profile Data"

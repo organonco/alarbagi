@@ -56,7 +56,7 @@ class ProductController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return app(ProductDataGrid::class)->toJson();
+            return app(ProductDataGrid::class, ['sellerId' => request()->seller_id])->toJson();
         }
 
         $families = $this->attributeFamilyRepository->all();
