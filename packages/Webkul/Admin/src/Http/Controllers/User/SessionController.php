@@ -15,6 +15,9 @@ class SessionController extends Controller
     public function create()
     {
         if (auth()->guard('admin')->check()) {
+            if (auth('admin')->user()->isSeller()) {
+                return redirect(route('marketplace.admin.orders.index'));
+            }
             return redirect()->route('admin.dashboard.index');
         }
 
