@@ -77,9 +77,9 @@
             </span>
             </a>
 
-            @if(!bouncer()->hasPermission('marketplace'))
-                {{-- Notification Component --}}
-                <v-notifications {{ $attributes }}>
+
+            {{-- Notification Component --}}
+            <v-notifications {{ $attributes }}>
             <span class="flex relative">
                 <span
                         class="icon-notification p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950"
@@ -87,8 +87,7 @@
                 >
                 </span>
             </span>
-                </v-notifications>
-            @endif
+            </v-notifications>
 
             {{-- Admin profile --}}
             <x-admin::dropdown
@@ -578,26 +577,17 @@
                     <a
                             class="flex gap-[5px] items-start p-[12px] hover:bg-gray-50 dark:hover:bg-gray-950 border-b-[1px] dark:border-gray-800 last:border-b-0"
                             v-for="notification in notifications"
-                            :href="'{{ route('admin.notification.viewed_notification', ':orderId') }}'.replace(':orderId', notification.order_id)"
+                            :href="notification.url"
                     >
-                        <!-- Notification Icon -->
-                        <span
-                                v-if="notification.order.status in notificationStatusIcon"
-                                class="h-fit"
-                                :class="notificationStatusIcon[notification.order.status]"
-                        >
-                        </span>
-
                         <div class="grid">
                             <!-- Order Id & Status -->
                             <p class="text-gray-800 dark:text-white">
-                                #@{{ notification.order.id }}
-                                @{{ orderTypeMessages[notification.order.status] }}
+                                @{{ notification.text }}
                             </p>
 
                             <!-- Craeted Date In humand Readable Format -->
                             <p class="text-[12px] text-gray-600 dark:text-gray-300">
-                                @{{ notification.order.datetime }}
+                                @{{ notification.datetime_diff }}
                             </p>
                         </div>
                     </a>
@@ -637,56 +627,13 @@
                 return {
                     notifications: [],
 
-                    ordertype: {
-                        pending: {
-                            icon: 'icon-information',
-                            message: 'Order Pending',
-                        },
-                        processing: {
-                            icon: 'icon-processing',
-                            message: 'Order Processing'
-                        },
-                        canceled: {
-                            icon: 'icon-cancel-1',
-                            message: 'Order Canceled'
-                        },
-                        completed: {
-                            icon: 'icon-done',
-                            message: 'Order Completed'
-                        },
-                        closed: {
-                            icon: 'icon-cancel-1',
-                            message: 'Order Closed'
-                        },
-                        pending_payment: {
-                            icon: 'icon-information',
-                            message: 'Payment Pending'
-                        },
-                    },
-
                     totalUnRead: 0,
 
-                    orderTypeMessages: {
-                        'pending': "@lang('admin::app.notifications.order-status-messages.pending')",
-                        'canceled': "@lang('admin::app.notifications.order-status-messages.canceled')",
-                        'closed': "@lang('admin::app.notifications.order-status-messages.closed')",
-                        'completed': "@lang('admin::app.notifications.order-status-messages.completed')",
-                        'processing': "@lang('admin::app.notifications.order-status-messages.processing')",
-                        'pending_payment': "@lang('admin::app.notifications.order-status-messages.pending-payment')",
-                    }
                 }
             },
 
             computed: {
-                notificationStatusIcon() {
-                    return {
-                        pending: 'icon-information text-[24px] text-amber-600 bg-amber-100 rounded-full',
-                        closed: 'icon-repeat text-[24px] text-red-600 bg-red-100 rounded-full',
-                        completed: 'icon-done text-[24px] text-blue-600 bg-blue-100 rounded-full',
-                        canceled: 'icon-cancel-1 text-[24px] text-red-600 bg-red-100 rounded-full',
-                        processing: 'icon-sort-right text-[24px] text-green-600 bg-green-100 rounded-full',
-                    };
-                },
+
             },
 
             mounted() {
