@@ -3,6 +3,7 @@
 namespace Organon\Marketplace\Repositories;
 
 use Organon\Marketplace\Enums\SellerStatusEnum;
+use Organon\Marketplace\Models\Seller;
 use Webkul\Core\Eloquent\Repository;
 
 class SellerRepository extends Repository
@@ -27,5 +28,10 @@ class SellerRepository extends Repository
     public function deactivate($id)
     {
         $this->find($id)->setStatus(SellerStatusEnum::DEACTIVATED);
+    }
+
+    public function findBySlug(string $slug): Seller
+    {
+        return Seller::bySlug($slug);
     }
 }

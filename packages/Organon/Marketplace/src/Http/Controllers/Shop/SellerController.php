@@ -58,4 +58,9 @@ class SellerController extends Controller
 
         return redirect()->route('admin.session.create');
     }
+
+    public function show($slug)
+    {
+        return view('marketplace::shop.view')->with(['seller' => $this->sellerRepository->findBySlug($slug)]);
+    }
 }

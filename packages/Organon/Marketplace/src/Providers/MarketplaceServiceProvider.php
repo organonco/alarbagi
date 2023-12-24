@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Organon\Marketplace\Models\Admin;
 use Organon\Marketplace\Models\Order;
 use Organon\Marketplace\Models\Product;
+use Organon\Marketplace\Models\Seller;
 
 class MarketplaceServiceProvider extends ServiceProvider
 {
@@ -45,6 +46,7 @@ class MarketplaceServiceProvider extends ServiceProvider
         $this->app->concord->registerModel(\Webkul\User\Contracts\Admin::class, Admin::class);
         $this->app->concord->registerModel(\Webkul\Product\Contracts\Product::class, Product::class);
         $this->app->concord->registerModel(\Webkul\Sales\Contracts\Order::class, Order::class);
+        $this->app->concord->registerModel(\Organon\Marketplace\Contracts\Seller::class, Seller::class);
     }
 
     /**

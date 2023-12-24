@@ -256,6 +256,10 @@ class ProductRepository extends Repository
                 ]);
             }
 
+            if(!empty($params['seller_id'])){
+                $qb->where('products.seller_id', $params['seller_id']);
+            }
+
             /**
              * Retrieve all the filterable attributes.
              */

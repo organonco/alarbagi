@@ -49,8 +49,8 @@
     @endif
 
     @pushOnce('scripts')
-        <script 
-            type="text/x-template" 
+        <script
+            type="text/x-template"
             id="v-category-template"
         >
             <div class="container px-[60px] max-lg:px-[30px] max-sm:px-[15px]">
@@ -88,11 +88,11 @@
                                 <!-- Empty Products Container -->
                                 <template v-else>
                                     <div class="grid items-center justify-items-center place-content-center w-[100%] m-auto h-[476px] text-center">
-                                        <img 
+                                        <img
                                             src="{{ bagisto_asset('images/thank-you.png') }}"
                                             alt="placeholder"
                                         />
-                                  
+
                                         <p class="text-[20px]">
                                             @lang('shop::app.categories.view.empty')
                                         </p>
@@ -125,11 +125,11 @@
                                 <!-- Empty Products Container -->
                                 <template v-else>
                                     <div class="grid items-center justify-items-center place-content-center w-[100%] m-auto h-[476px] text-center">
-                                        <img 
+                                        <img
                                             src="{{ bagisto_asset('images/thank-you.png') }}"
                                             alt="placeholder"
                                         />
-                                        
+
                                         <p class="text-[20px]">
                                             @lang('shop::app.categories.view.empty')
                                         </p>
@@ -163,13 +163,13 @@
 
                         isDrawerActive: {
                             toolbar: false,
-                            
+
                             filter: false,
                         },
 
                         filters: {
                             toolbar: {},
-                            
+
                             filter: {},
                         },
 
@@ -213,12 +213,12 @@
                     getProducts() {
                         this.isDrawerActive = {
                             toolbar: false,
-                            
+
                             filter: false,
                         };
 
                         this.$axios.get("{{ route('shop.api.products.index', ['category_id' => $category->id]) }}", {
-                            params: this.queryParams 
+                            params: this.queryParams
                         })
                             .then(response => {
                                 this.isLoading = false;

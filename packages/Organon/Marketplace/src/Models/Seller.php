@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Organon\Marketplace\Contracts\Seller as SellerContract;
 use Organon\Marketplace\Database\Factories\SellerFactory;
 use Organon\Marketplace\Enums\SellerStatusEnum;
+use Organon\Marketplace\Traits\HasSlug;
 use Organon\Marketplace\Traits\HasStatusTrait;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -15,7 +16,6 @@ use Webkul\User\Models\AdminProxy;
 
 class Seller extends Model implements SellerContract, HasMedia
 {
-
     const LOGO_MEDIA_COLLECTION = "logo";
     const COVER_MEDIA_COLLECTION = "cover";
 
@@ -23,6 +23,7 @@ class Seller extends Model implements SellerContract, HasMedia
     use InteractsWithMedia;
     use HasStatusTrait;
     use HasFactory;
+    use HasSlug;
 
     protected $fillable = [
         'name',

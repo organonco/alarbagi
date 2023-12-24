@@ -293,9 +293,9 @@
                                     @endif
                                 </div>
 
-                                <h1 class="text-[18px] font-light max-sm:text-[12px]">
+                                <a class="text-[18px] font-light max-sm:text-[12px]" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
                                     {{__('marketplace::app.catalog.products.view.sold_by', ['name' => $product->seller_name])}}
-                                </h1>
+                                </a>
 
 
 

@@ -15,7 +15,8 @@ class Product extends \Webkul\Product\Models\Product
     ];
 
     protected $appends = [
-        'seller_name'
+        'seller_name',
+        'seller_slug'
     ];
 
     /**
@@ -48,5 +49,13 @@ class Product extends \Webkul\Product\Models\Product
     public function getSellerNameAttribute()
     {
         return $this->seller?->name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSellerSlugAttribute()
+    {
+        return $this->seller?->slug;
     }
 }
