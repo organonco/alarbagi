@@ -15,7 +15,7 @@ class SellerDataGrid extends DataGrid
 
         $query = DB::table('sellers')->orderBy('sellers.created_at', 'DESC');
         $query->join('admins', 'admins.seller_id', '=', 'sellers.id');
-
+        
         $query->addSelect('sellers.id');
         $query->addSelect('sellers.name as shop_name');
         $query->addSelect('admins.email as email');
@@ -26,7 +26,6 @@ class SellerDataGrid extends DataGrid
         $this->addFilter('status', 'sellers.status');
         $this->addFilter('slug', 'sellers.slug');
         $this->addFilter('email', 'admins.email');
-
         return $query;
     }
 

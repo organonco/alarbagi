@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Organon\Marketplace\Enums\SellerOrderStatusEnum;
+use Organon\Marketplace\Models\Order;
 use Organon\Marketplace\Repositories\SellerOrderRepository;
 use Webkul\Core\Eloquent\Repository;
 use Webkul\Sales\Generators\OrderSequencer;
@@ -37,7 +38,7 @@ class OrderRepository extends Repository
      */
     public function model(): string
     {
-        return 'Webkul\Sales\Contracts\Order';
+        return Order::class;
     }
 
     /**
@@ -121,7 +122,6 @@ class OrderRepository extends Repository
 
             $this->sellerOrderRepository->createMany($order, $suborders);
 
-            Event::dispatch('checkout.order.save.after', $order);
         } catch (\Exception $e) {
             /* rolling back first */
             DB::rollBack();
@@ -132,12 +132,12 @@ class OrderRepository extends Repository
             );
 
             /* recalling */
-            $this->createOrderIfNotThenRetry($data);
+//            $this->createOrderIfNotThenRetry($data);
         } finally {
             /* commit in each case */
             DB::commit();
+            Event::dispatch('checkout.order.save.after', $order);
         }
-
         return $order;
     }
 

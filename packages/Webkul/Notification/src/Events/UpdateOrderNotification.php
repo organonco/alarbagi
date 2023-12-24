@@ -7,6 +7,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Organon\Marketplace\Models\Order;
 
 class UpdateOrderNotification implements ShouldBroadcast
 {
@@ -17,7 +18,7 @@ class UpdateOrderNotification implements ShouldBroadcast
      *
      * @return void
      */
-    public function __construct(protected $data)
+    public function __construct(private Order $order)
     {
     }
 

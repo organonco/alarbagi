@@ -9,8 +9,7 @@ class Notification extends \Webkul\Notification\Models\Notification implements N
 {
     protected $fillable = [
         'text',
-        'read',
-        'user_id',
+        'admin_id',
         'route',
         'route_params'
     ];

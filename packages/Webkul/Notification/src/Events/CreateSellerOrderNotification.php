@@ -7,13 +7,13 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
-use Organon\Marketplace\Models\Order;
+use Organon\Marketplace\Models\SellerOrder;
 
-class CreateOrderNotification implements ShouldBroadcast, InternalNotificationInterface
+class CreateSellerOrderNotification implements ShouldBroadcast, InternalNotificationInterface
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public function __construct(private Order $order)
+    public function __construct(private SellerOrder $sellerOrder)
     {
     }
 
@@ -51,16 +51,16 @@ class CreateOrderNotification implements ShouldBroadcast, InternalNotificationIn
 
     public function getText(): string
     {
-        return 'New Order #' . $this->order->id;
+        return 'New Order #' . $this->sellerOrder->order->id;
     }
 
     public function getRoute(): string
     {
-        return 'admin.sales.orders.view';
+        return 'marketplace.admin.orders.view';
     }
 
     public function getRouteParams(): string
     {
-        return json_encode(['id' => $this->order->id]);
+        return json_encode(['order_id' => $this->sellerOrder->id]);
     }
 }

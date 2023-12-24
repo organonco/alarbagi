@@ -2,6 +2,9 @@
 
 namespace Webkul\Notification\Listeners;
 
+use Organon\Marketplace\Models\SellerOrder;
+use Webkul\Notification\Events\CreateSellerOrderNotification;
+use Webkul\Notification\Events\InternalNotificationInterface;
 use Webkul\Notification\Repositories\NotificationRepository;
 use Webkul\Notification\Events\CreateOrderNotification;
 use Webkul\Notification\Events\UpdateOrderNotification;
@@ -13,7 +16,7 @@ class Order
      *
      * @return void
      */
-    public function __construct(protected NotificationRepository $notificationRepository)
+    public function __construct(private NotificationRepository $notificationRepository)
     {
     }
 
@@ -24,9 +27,12 @@ class Order
      */
     public function createOrder($order)
     {
-        $this->notificationRepository->create(['type' => 'order', 'order_id' => $order->id]);
-          
-        event(new CreateOrderNotification);
+        $this->notificationRepository->fromInternalNotification(new CreateOrderNotification($order), null);
+        /** @var SellerOrder $sellerOrder */
+        foreach ($order->sellerOrders as $sellerOrder) {
+            $this->notificationRepository->fromInternalNotification(new CreateSellerOrderNotification($sellerOrder), $sellerOrder->seller->admin->id);
+        }
+
     }
 
     /**
@@ -35,10 +41,9 @@ class Order
      * @return void
      */
     public function updateOrder($order)
-    { 
-        event(new UpdateOrderNotification([
-            'id'     => $order->id,
-            'status' => $order->status,
-        ]));
+    {
+        (new UpdateOrderNotification($order))->toText();
     }
+
+
 }

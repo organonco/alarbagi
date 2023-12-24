@@ -74,13 +74,13 @@ class Order extends Model implements OrderContract
     ];
 
     protected $statusLabel = [
-        self::STATUS_PENDING         => 'Pending',
+        self::STATUS_PENDING => 'Pending',
         self::STATUS_PENDING_PAYMENT => 'Pending Payment',
-        self::STATUS_PROCESSING      => 'Processing',
-        self::STATUS_COMPLETED       => 'Completed',
-        self::STATUS_CANCELED        => 'Canceled',
-        self::STATUS_CLOSED          => 'Closed',
-        self::STATUS_FRAUD           => 'Fraud',
+        self::STATUS_PROCESSING => 'Processing',
+        self::STATUS_COMPLETED => 'Completed',
+        self::STATUS_CANCELED => 'Canceled',
+        self::STATUS_CLOSED => 'Closed',
+        self::STATUS_FRAUD => 'Fraud',
     ];
 
     /**
@@ -271,12 +271,9 @@ class Order extends Model implements OrderContract
      */
     public function haveStockableItems(): bool
     {
-        foreach ($this->items as $item) {
-            if ($item->getTypeInstance()->isStockable()) {
+        foreach ($this->items as $item)
+            if ($item->isStockable())
                 return true;
-            }
-        }
-
         return false;
     }
 
