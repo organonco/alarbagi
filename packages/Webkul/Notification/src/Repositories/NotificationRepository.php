@@ -2,11 +2,14 @@
 
 namespace Webkul\Notification\Repositories;
 
+use Organon\Marketplace\Models\Notification;
+use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
 use Webkul\Core\Eloquent\Repository;
-use Illuminate\Support\Facades\DB;
 
 class NotificationRepository extends Repository
 {
+    use InteractsWithAuthenticatedAdmin;
+
     /**
      * Specify Model class name
      *
@@ -14,7 +17,7 @@ class NotificationRepository extends Repository
      */
     function model(): string
     {
-        return 'Webkul\Notification\Contracts\Notification';
+        return Notification::class;
     }
 
     /**
@@ -27,11 +30,10 @@ class NotificationRepository extends Repository
     {
         $query = $this->model->with('order');
 
-        if (isset($params['status']) && $params['status'] != 'All') {
-            $query->whereHas('order', function ($q) use ($params) {
-                $q->where(['status' => $params['status']]);
-            });
-        }
+        if($this->getAuthenticatedAdmin()->isSeller())
+            $query->where('admin_id', $this->getAuthenticatedAdmin()->id);
+        else
+            $query->whereNull('admin_id');
 
         if (isset($params['read']) && isset($params['limit'])) {
             $query->where('read', $params['read'])->limit($params['limit']);
@@ -41,12 +43,8 @@ class NotificationRepository extends Repository
 
         $notifications = $query->latest()->paginate($params['limit'] ?? 10);
 
-        $statusCounts = $this->model->join('orders', 'notifications.order_id', '=', 'orders.id')
-            ->select('orders.status', DB::raw('COUNT(*) as status_count'))
-            ->groupBy('orders.status')
-            ->get();
 
-        return ['notifications' => $notifications, 'status_counts' => $statusCounts];
+        return ['notifications' => $notifications];
     }
 
     /**
@@ -59,13 +57,12 @@ class NotificationRepository extends Repository
 
         $query = $this->model->with('order');
 
+        if($this->getAuthenticatedAdmin()->isSeller())
+            $query->where('admin_id', $this->getAuthenticatedAdmin()->id);
+        else
+            $query->whereNull('admin_id');
+
         $notifications = $query->latest()->paginate($params['limit'] ?? 10);
-
-        $statusCounts = $this->model->join('orders', 'notifications.order_id', '=', 'orders.id')
-            ->select('orders.status', DB::raw('COUNT(*) as status_count'))
-            ->groupBy('orders.status')
-            ->get();
-
-        return ['notifications' => $notifications, 'status_counts' => $statusCounts];
+        return ['notifications' => $notifications];
     }
 }

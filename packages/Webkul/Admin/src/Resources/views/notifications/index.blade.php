@@ -27,56 +27,26 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col justify-between max-w-max bg-white dark:bg-gray-900 rounded-[6px] box-shadow h-[calc(100vh-179px)]">
-                    <div class="">
-                        <div class="flex border-b-[1px] dark:border-gray-800 overflow-auto journal-scroll">
-                            <div
-                                class="flex py-[15px] px-[15px] gap-[4px] border-b-[2px] dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
-                                :class="{'border-blue-600 dark:border-blue-600': status == data.status}"
-                                ref="tabs"
-                                v-for="data in orderType"
-                                @click="status = data.status; getNotification()"
-                            >
-                                <p
-                                    class="text-gray-600 dark:text-gray-300"
-                                    v-text="data.message"
-                                >
-                                </p>
-
-                                <span
-                                    class="text-[12px] text-white font-semibold py-[1px] px-[6px] bg-gray-400 rounded-[35px]"
-                                    v-text="data.status_count ?? '0'"
-                                >
-                                </span>
-                            </div>    
-
-                        </div>
+                <div class="bg-white dark:bg-gray-900 rounded-[6px] box-shadow w-full">
+                    <div class="w-full">
 
                         <div
-                            class="grid max-h-[calc(100vh-330px)] overflow-auto journal-scroll"
+                            class="grid max-h-[calc(100vh-330px)] overflow-auto journal-scroll w-full"
                             v-if="notifications.length"
                         >
                             <a
-                                :href="'{{ route('admin.notification.viewed_notification', ':orderId') }}'.replace(':orderId', notification.order_id)"
+                                :href="notification.url"
                                 class="flex gap-[5px] p-[16px] items-start hover:bg-gray-50 dark:hover:bg-gray-950"
                                 v-for="notification in notifications"
                                 :class="notification.read ? 'opacity-50' : ''"
                             >
-                                <span
-                                    v-if="notification.order.status in orderType"
-                                    class="h-fit text-[24px] rounded-full"
-                                    :class="orderType[notification.order.status].icon"
-                                >
-                                </span>
-
                                 <div class="grid">
                                     <p class="text-gray-800 dark:text-white">
-                                        #@{{ notification.order.id }}
-                                        @{{ orderType[notification.order.status].message }}
+                                        @{{ notification.text }}
                                     </p>
         
                                     <p class="text-[12px] text-gray-600 dark:text-gray-300">
-                                        @{{ notification.order.datetime }}
+                                        @{{ notification.datetime_diff }}
                                     </p>
                                 </div>
                             </a>
@@ -136,57 +106,6 @@
 
                         pagination: {},
 
-                        status: 'all',
-
-                        orderStatusMessages: {
-                            pending: "@lang('admin::app.notifications.order-status-messages.pending')",
-                            canceled: "@lang('admin::app.notifications.order-status-messages.canceled')",
-                            closed: "@lang('admin::app.notifications.order-status-messages.closed')",
-                            completed: "@lang('admin::app.notifications.order-status-messages.completed')",
-                            processing: "@lang('admin::app.notifications.order-status-messages.processing')" 
-                        },
-
-                        orderStatus: {
-                            all: "@lang('admin::app.notifications.status.all')",
-                            pending: "@lang('admin::app.notifications.status.pending')",
-                            canceled: "@lang('admin::app.notifications.status.canceled')",
-                            closed: "@lang('admin::app.notifications.status.closed')",
-                            completed: "@lang('admin::app.notifications.status.completed')",
-                            processing: "@lang('admin::app.notifications.status.processing')" 
-                        },
-                        
-                        orderType: {
-                            all : {
-                                icon: 'icon',
-                                message: 'All',
-                                status: 'all'
-                            },
-                            pending : {
-                                icon: 'icon-information text-amber-600 bg-amber-100',
-                                message: 'Order Pending',
-                                status: 'pending'
-                            },
-                            processing : {
-                                icon: 'icon-sort-right text-green-600 bg-green-100',
-                                message: 'Order Processing',
-                                status: 'processing'
-                            },
-                            canceled : {
-                                icon: 'icon-cancel-1 text-red-600 bg-red-100',
-                                message: 'Order Canceled',
-                                status: 'canceled'
-                            },
-                            completed : {
-                                icon: 'icon-done text-blue-600 bg-blue-100',
-                                message: 'Order Completed',
-                                status: 'completed'
-                            },
-                            closed : {
-                                icon: 'icon-repeat text-red-600 bg-red-100',
-                                message: 'Order Closed',
-                                status: 'closed'
-                            },
-                        },
                     }
                 },
 
@@ -207,17 +126,6 @@
                         })
                         .then((response) => {
                             this.notifications = response.data.search_results.data;
-
-                            let total = 0;
-
-                            response.data.status_count.forEach((item) => {
-                                this.orderType[item.status].status_count = item.status_count;
-
-                                total += item.status_count;
-                            });
-
-                            this.orderType['all'].status_count = total;
-
                             this.pagination = response.data.search_results;
                         })
                         .catch(error => console.log(error));

@@ -52,4 +52,9 @@ class Admin extends \Webkul\User\Models\Admin
             return $this->getSeller()->logo_url;
         return parent::image_url();
     }
+
+    public function getNotifications()
+    {
+        return $this->hasMany('notifications');
+    }
 }

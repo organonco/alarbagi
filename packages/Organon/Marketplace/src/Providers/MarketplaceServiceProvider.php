@@ -4,10 +4,6 @@ namespace Organon\Marketplace\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use Organon\Marketplace\Models\Admin;
-use Organon\Marketplace\Models\Order;
-use Organon\Marketplace\Models\Product;
-use Organon\Marketplace\Models\Seller;
 
 class MarketplaceServiceProvider extends ServiceProvider
 {
@@ -43,10 +39,11 @@ class MarketplaceServiceProvider extends ServiceProvider
 
 
         //Extending Models
-        $this->app->concord->registerModel(\Webkul\User\Contracts\Admin::class, Admin::class);
-        $this->app->concord->registerModel(\Webkul\Product\Contracts\Product::class, Product::class);
-        $this->app->concord->registerModel(\Webkul\Sales\Contracts\Order::class, Order::class);
-        $this->app->concord->registerModel(\Organon\Marketplace\Contracts\Seller::class, Seller::class);
+        $this->app->concord->registerModel(\Webkul\User\Contracts\Admin::class, \Organon\Marketplace\Models\Admin::class);
+        $this->app->concord->registerModel(\Webkul\Product\Contracts\Product::class, \Organon\Marketplace\Models\Product::class);
+        $this->app->concord->registerModel(\Webkul\Sales\Contracts\Order::class, \Organon\Marketplace\Models\Order::class);
+        $this->app->concord->registerModel(\Organon\Marketplace\Contracts\Seller::class, \Organon\Marketplace\Models\Seller::class);
+        $this->app->concord->registerModel(\Webkul\Notification\Contracts\Notification::class, \Organon\Marketplace\Models\Notification::class);
     }
 
     /**
