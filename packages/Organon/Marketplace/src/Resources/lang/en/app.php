@@ -2,7 +2,8 @@
 return [
     'acl' => [
         'marketplace' => 'Marketplace',
-        'sellers' => 'Sellers'
+        'sellers' => 'Sellers',
+        'invoices'=> 'Invoices'
     ],
     'register' => [
         'title' => [
@@ -90,6 +91,26 @@ return [
             ]
         ]
     ],
+    "seller-invoice" => [
+        'statuses' => [
+            'PENDING' => [
+                'label' => 'Pending Approval',
+                'class' => 'pending'
+            ], 'DRAFT' => [
+                'label' => 'Draft',
+                'class' => 'info'
+            ],'APPROVED' => [
+                'label' => 'Approved',
+                'class' => 'processing'
+            ],'REJECTED' => [
+                'label' => 'Rejected',
+                'class' => 'cancelled'
+            ],'ISSUED' => [
+                'label' => 'Issued',
+                'class' => 'processing'
+            ],
+        ]
+    ],
     'admin' => [
         'orders' => [
             'index' => [
@@ -124,8 +145,11 @@ return [
             'view' => [
                 'activate' => 'Activate',
                 'deactivate' => 'Deactivate',
+                'generate-invoice' => 'Generate Invoice',
+                'edit-invoice' => 'Edit Draft Invoice',
                 'activate-msg' => 'Are you sure you want to activate this user? The user will be able to publish products directly to the website',
                 'deactivate-msg' => 'Are you sure you want to deactivate this user? The user will not be able to login until they get re-activated',
+                'generate-invoice-msg' => 'Are you sure you want to generate an invoice for this seller? You can preview the invoice before generating.',
             ]
         ],
         'account' => [

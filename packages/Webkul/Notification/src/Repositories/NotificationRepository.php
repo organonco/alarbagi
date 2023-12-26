@@ -86,4 +86,9 @@ class NotificationRepository extends Repository
         $query = $this->filter($query);
         return $query->count();
     }
+
+    public function deleteLastNotification($route, $admin_id)
+    {
+        $this->where('route', $route)->where('admin_id', $admin_id)->latest()->first()->delete();
+    }
 }

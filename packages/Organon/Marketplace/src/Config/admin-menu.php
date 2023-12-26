@@ -28,5 +28,5 @@ return [
         'route' => 'admin.account.settings.view',
         'sort' => 4,
         'icon' => 'icon-sales',
-    ]
+    ],
 ];

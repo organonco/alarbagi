@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Organon\Marketplace\Contracts\Seller as SellerContract;
 use Organon\Marketplace\Database\Factories\SellerFactory;
+use Organon\Marketplace\Enums\SellerInvoiceStatusEnum;
 use Organon\Marketplace\Enums\SellerStatusEnum;
 use Organon\Marketplace\Traits\HasSlug;
 use Organon\Marketplace\Traits\HasStatusTrait;
@@ -99,5 +100,27 @@ class Seller extends Model implements SellerContract, HasMedia
     protected static function newFactory(): Factory
     {
         return SellerFactory::new();
+    }
+
+
+    public function sellerOrders()
+    {
+        return $this->hasMany(SellerOrder::class);
+    }
+
+
+    public function invoices()
+    {
+        return $this->hasMany(SellerInvoice::class);
+    }
+
+    public function hasDraftInvoice()
+    {
+        return $this->invoices()->where('status', SellerInvoiceStatusEnum::DRAFT)->count() > 0;
+    }
+
+    public function getDraftInvoiceId()
+    {
+        return $this->invoices()->where('status', SellerInvoiceStatusEnum::DRAFT)->first()->id;
     }
 }

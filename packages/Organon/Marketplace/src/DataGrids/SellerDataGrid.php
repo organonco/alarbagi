@@ -26,6 +26,7 @@ class SellerDataGrid extends DataGrid
         $this->addFilter('status', 'sellers.status');
         $this->addFilter('slug', 'sellers.slug');
         $this->addFilter('email', 'admins.email');
+
         return $query;
     }
 

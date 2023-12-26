@@ -16,6 +16,11 @@ return [
         'name'  => 'marketplace::app.acl.sellers',
         'route' => 'admin.sales.orders.index',
         'sort'  => 1,
+    ], [
+        'key'   => 'sales.seller-invoices',
+        'name'  => 'marketplace::app.acl.invoices',
+        'route' => 'admin.sales.sellers.invoice.index',
+        'sort'  => 1,
     ],[
         'key'   => 'account',
         'name'  => 'Account',

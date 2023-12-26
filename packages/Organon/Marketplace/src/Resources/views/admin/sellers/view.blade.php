@@ -57,6 +57,21 @@
                 </div>
             @endif
 
+            @if($seller->hasDraftInvoice())
+                <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
+                    <span class="icon-calendar text-[24px]"></span>
+                    <a href="{{route('admin.sales.sellers.invoice.view', ['invoice_id' => $seller->getDraftInvoiceId()])}}">@lang('marketplace::app.admin.sellers.view.edit-invoice')</a>
+                </div>
+            @else
+                <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
+                     @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.sellers.view.generate-invoice-msg')',agree: () => {this.$refs['generateInvoiceForm'].submit()}})">
+                    <form method="POST" ref="generateInvoiceForm"
+                          action="{{ route('admin.sales.sellers.invoice.generate', $seller->id) }}">@csrf</form>
+                    <span class="icon-calendar text-[24px]"></span>
+                    <a href="javascript:void(0);">@lang('marketplace::app.admin.sellers.view.generate-invoice')</a>
+                </div>
+            @endif
+
         </div>
 
         <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">

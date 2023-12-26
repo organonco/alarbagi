@@ -37,9 +37,7 @@ trait HasStatusTrait
 
     private function set($status)
     {
-        $enumClass = static::getStatusEnum();
         return $status->value;
-        throw new InvalidStatusException();
     }
 
     public static function getStatusFromValue($value)
