@@ -148,7 +148,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         /** @var Product $product */
-        $product = $this->productRepository->findOrFail($id);
+        $product = $this->productRepository->withoutGlobalScope('seller_status')->findOrFail($id);
 
         /** @var Admin $admin */
         $admin = auth('admin')->user();

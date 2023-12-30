@@ -39,7 +39,7 @@ trait RelatedToSellerTrait
         });
     }
 
-    protected function seller_status(): Attribute
+    protected function sellerStatus(): Attribute
     {
         return Attribute::make(
             get: fn (string $value) => static::getStatusFromValue($value),
