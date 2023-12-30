@@ -3,9 +3,13 @@
 namespace Organon\Marketplace\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Organon\Marketplace\Traits\RelatedToSellerTrait;
+use Webkul\Product\Database\Eloquent\Builder;
 
 class Product extends \Webkul\Product\Models\Product
 {
+    use RelatedToSellerTrait;
+
     protected $fillable = [
         'type',
         'attribute_family_id',
@@ -33,14 +37,6 @@ class Product extends \Webkul\Product\Models\Product
     public function isForSeller(): bool
     {
         return !is_null($this->getSellerId());
-    }
-
-    /**
-     * @return BelongsTo
-     */
-    public function seller(): BelongsTo
-    {
-        return $this->belongsTo(SellerProxy::modelClass());
     }
 
     /**

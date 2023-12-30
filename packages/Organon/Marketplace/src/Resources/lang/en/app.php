@@ -199,7 +199,8 @@ return [
             'user-pending' => "Your account is pending approval from admins",
             'user-deactivated' => "Your account has been deactivated",
             'account-deactivated-msg' => 'Your account has been deactivated by admins. Your products will not be visible to customers.',
-            'account-paused-msg' => 'Your account is inactive. Your products will not be visible to customers. Go to settings to reactivate it'
+            'account-paused-msg' => 'Your account is inactive. Your products will not be visible to customers. Go to settings to reactivate it',
+            'account-pending-msg' => 'Your account is still pending approval by admins. You can add your products, but they will not be visible to customers.'
         ]
     ]
 ];

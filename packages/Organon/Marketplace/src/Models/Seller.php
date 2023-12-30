@@ -22,7 +22,9 @@ class Seller extends Model implements SellerContract, HasMedia
 
 
     use InteractsWithMedia;
-    use HasStatusTrait;
+    use HasStatusTrait {
+        setStatus as setStatusSuper;
+    }
     use HasFactory;
     use HasSlug;
 
@@ -122,5 +124,16 @@ class Seller extends Model implements SellerContract, HasMedia
     public function getDraftInvoiceId()
     {
         return $this->invoices()->where('status', SellerInvoiceStatusEnum::DRAFT)->first()->id;
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function setStatus($status)
+    {
+        $this->setStatusSuper($status);
+        $this->products()->withoutGlobalScope('seller_status')->update(['seller_status' => $status->value]);
     }
 }

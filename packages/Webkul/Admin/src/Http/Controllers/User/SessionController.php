@@ -61,14 +61,14 @@ class SessionController extends Controller
         }
 
 
-        if (auth('admin')->user()->isSeller()) {
-            $seller = auth('admin')->user()->getSeller();
-            if ($seller->status == SellerStatusEnum::PENDING) {
-                session()->flash('warning', trans('marketplace::app.settings.messages.user-pending'));
-                auth()->guard('admin')->logout();
-                return redirect()->route('admin.session.create');
-            }
-        }
+//        if (auth('admin')->user()->isSeller()) {
+//            $seller = auth('admin')->user()->getSeller();
+//            if ($seller->status == SellerStatusEnum::PENDING) {
+//                session()->flash('warning', trans('marketplace::app.settings.messages.user-pending'));
+//                auth()->guard('admin')->logout();
+//                return redirect()->route('admin.session.create');
+//            }
+//        }
 
         return redirect(route('marketplace.admin.orders.index'));
     }
