@@ -184,7 +184,7 @@
                         @includeIf('admin::catalog.products.edit.types.' . $product->type)
 
                         {{-- Related, Cross Sells, Up Sells View Blade File --}}
-                        @include('admin::catalog.products.edit.links')
+{{--                        @include('admin::catalog.products.edit.links')--}}
 
                         {{-- Include Product Type Additional Blade Files If Any --}}
                         @foreach ($product->getTypeInstance()->getAdditionalViews() as $view)
