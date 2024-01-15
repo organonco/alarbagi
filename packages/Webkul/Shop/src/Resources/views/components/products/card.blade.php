@@ -26,7 +26,7 @@
                         ::alt="product.name"
                     ></x-shop::media.images.lazy>
                 </a>
-                
+
                 <div class="action-items bg-black">
                     <p
                         class="inline-block absolute top-[20px] left-[20px] px-[10px]  bg-[#E51A1A] rounded-[44px] text-white text-[14px]"
@@ -71,7 +71,11 @@
             </div>
 
             <div class="grid gap-2.5 content-start max-w-[291px]">
-                <p class="text-base" v-text="product.name"></p>
+                <p class="text-base" v-text="product.name" style="overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;"></p>
 
                 <div
                     class="flex gap-2.5 font-semibold text-lg"
@@ -93,7 +97,7 @@
             class="flex gap-[15px] grid-cols-2 max-w-max relative max-sm:flex-wrap rounded-[4px] overflow-hidden"
             v-else
         >
-            <div class="relative max-w-[250px] max-h-[258px] overflow-hidden group"> 
+            <div class="relative max-w-[250px] max-h-[258px] overflow-hidden group">
                 <a :href="`{{ route('shop.product_or_category.index', '') }}/${product.url_key}`">
                     <x-shop::media.images.lazy
                         class="min-w-[250px] relative after:content-[' '] after:block after:pb-[calc(100%+9px)] bg-[#F5F5F5] group-hover:scale-105 transition-all duration-300"
@@ -102,8 +106,8 @@
                         height="300"
                     ></x-shop::media.images.lazy>
                 </a>
-            
-                <div class="action-items bg-black"> 
+
+                <div class="action-items bg-black">
                     <p
                         class="inline-block absolute top-[20px] left-[20px] px-[10px] bg-[#E51A1A] rounded-[44px] text-white text-[14px]"
                         v-if="product.on_sale"
@@ -120,66 +124,66 @@
 
                     <div class="group-hover:bottom-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
                         @if (core()->getConfigData('general.content.shop.wishlist_option'))
-                            <span 
+                            <span
                                 class="flex justify-center items-center absolute top-[20px] right-[20px] w-[30px] h-[30px] bg-white rounded-md text-[25px] cursor-pointer"
                                 :class="product.is_wishlist ? 'icon-heart-fill' : 'icon-heart'"
                                 @click="addToWishlist()"
                             >
-                            </span> 
+                            </span>
                         @endif
-                        
+
                         @if (core()->getConfigData('general.content.shop.compare_option'))
-                            <span 
+                            <span
                                 class="icon-compare flex justify-center items-center absolute top-[60px] right-[20px] w-[30px] h-[30px] bg-white rounded-md text-[25px] cursor-pointer"
                                 @click="addToCompare(product.id)"
                             >
                             </span>
                         @endif
-                    </div> 
-                </div> 
-            </div> 
+                    </div>
+                </div>
+            </div>
 
-            <div class="grid gap-[15px] content-start"> 
-                <p 
-                    class="text-base" 
+            <div class="grid gap-[15px] content-start">
+                <p
+                    class="text-base"
                     v-text="product.name"
                 >
-                </p> 
+                </p>
 
-                <div 
+                <div
                     class="flex gap-2.5 text-lg font-semibold"
                     v-html="product.price_html"
-                >   
-                </div> 
+                >
+                </div>
 
                 <!-- Needs to implement that in future -->
-                <div class="hidden flex gap-4"> 
+                <div class="hidden flex gap-4">
                     <span class="block w-[30px] h-[30px] rounded-full bg-[#B5DCB4]">
-                    </span> 
+                    </span>
 
                     <span class="block w-[30px] h-[30px] rounded-full bg-[#5C5C5C]">
-                    </span> 
-                </div> 
-                
+                    </span>
+                </div>
+
                 <p class="text-[14px] text-[#6E6E6E]" v-if="! product.avg_ratings">
                     @lang('shop::app.components.products.card.review-description')
                 </p>
-            
+
                 <p v-else class="text-[14px] text-[#6E6E6E]">
-                    <x-shop::products.star-rating 
+                    <x-shop::products.star-rating
                         ::value="product && product.avg_ratings ? product.avg_ratings : 0"
                         :is-editable=false
                     >
                     </x-shop::products.star-rating>
                 </p>
-            
-                <div 
+
+                <div
                     class="primary-button px-[30px] py-[10px] whitespace-nowrap"
                     @click="addToCart()"
                 >
                     @lang('shop::app.components.products.card.add-to-cart')
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
     </script>
 
@@ -203,7 +207,7 @@
                             })
                             .then(response => {
                                 this.product.is_wishlist = ! this.product.is_wishlist;
-                                
+
                                 this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
                             })
                             .catch(error => {});
@@ -253,7 +257,7 @@
                         }
                     } else {
                         localStorage.setItem('compare_items', JSON.stringify([productId]));
-                            
+
                         this.$emitter.emit('add-flash', { type: 'success', message: "@lang('shop::app.components.products.card.add-to-compare')" });
 
                     }
