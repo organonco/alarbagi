@@ -154,18 +154,6 @@ return [
         'icon' => 'settings/store-information.svg',
         'sort' => 2,
     ], [
-        'key'    => 'catalog.products.guest_checkout',
-        'name'   => 'admin::app.configuration.index.catalog.products.guest-checkout.title',
-        'info'   => 'admin::app.configuration.index.catalog.products.guest-checkout.title-info',
-        'sort'   => 1,
-        'fields' => [
-            [
-                'name'  => 'allow_guest_checkout',
-                'title' => 'admin::app.configuration.index.catalog.products.guest-checkout.allow-guest-checkout',
-                'type'  => 'boolean',
-            ],
-        ],
-    ], [
         'key'    => 'catalog.products.product_view_page',
         'name'   => 'admin::app.configuration.index.catalog.products.product-view-page.title',
         'info'   => 'admin::app.configuration.index.catalog.products.product-view-page.title-info',

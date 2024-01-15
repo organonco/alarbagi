@@ -172,7 +172,7 @@ class OrderRepository extends Repository
 
 
         foreach($order->sellerOrders as $sellerOrder){
-            $sellerOrder->setStatus(SellerOrderStatusEnum::CANCELLED_BY_CUSTOMER);
+            $sellerOrder->setStatus(SellerOrderStatusEnum::CANCELLED);
         }
 
 

@@ -40,7 +40,6 @@ return new class extends Migration
             $table->integer('product_id')->unsigned();
             $table->datetime('updated_at')->nullable();
             $table->integer('parent_id')->unsigned()->nullable();
-            $table->boolean('visible_individually')->nullable();
 
             $table->unique(['product_id', 'channel', 'locale'], 'product_flat_unique_index');
             $table->foreign('attribute_family_id')->references('id')->on('attribute_families')->onDelete('restrict');

@@ -138,30 +138,25 @@ class ElasticSearch extends AbstractIndexer
                     'inventory_indices',
                     'variants.inventory_indices',
                 ])
-                ->join('product_attribute_values as visible_individually_pav', function ($join) {
-                    $join->on('products.id', '=', 'visible_individually_pav.product_id')
-                        ->where('visible_individually_pav.attribute_id', 7)
-                        ->where('visible_individually_pav.boolean_value', 1);
-                })
                 ->join('product_attribute_values as status_pav', function ($join) {
                     $join->on('products.id', '=', 'status_pav.product_id')
                         ->where('status_pav.attribute_id', 8)
                         ->where('status_pav.boolean_value', 1);
                 })
                 ->cursorPaginate($this->batchSize);
- 
+
             $this->reindexBatch($paginator->items());
- 
+
             if (! $cursor = $paginator->nextCursor()) {
                 break;
             }
- 
+
             request()->query->add(['cursor' => $cursor->encode()]);
         }
 
         request()->query->remove('cursor');
     }
-    
+
     /**
      * Reindex products by batch size
      *
@@ -186,7 +181,6 @@ class ElasticSearch extends AbstractIndexer
 
                     if (
                         ! $this->product->status
-                        || ! $this->product->visible_individually
                     ) {
                         $removeIndices[$indexName][] = $product->id;
                     } else {
@@ -196,7 +190,7 @@ class ElasticSearch extends AbstractIndexer
                                 '_id'    => $product->id,
                             ],
                         ];
-            
+
                         $refreshIndices['body'][] = $this->getIndices();
                     }
                 }
@@ -226,7 +220,7 @@ class ElasticSearch extends AbstractIndexer
                     'index' => $indexName,
                     'id'    => $id,
                 ];
-    
+
                 try {
                     ElasticsearchClient::delete($params);
                 } catch(\Exception $e) {}
@@ -279,7 +273,7 @@ class ElasticSearch extends AbstractIndexer
                     } else {
                         $groupPrice = $this->product->getTypeInstance()->getMinimalPrice();
                     }
-                    
+
                     $properties[$attribute->code . '_' . $customerGroup->id] = (float) $groupPrice;
                 }
             } elseif ($attribute->type == 'boolean') {
@@ -354,7 +348,7 @@ class ElasticSearch extends AbstractIndexer
 
         return $attributeValues->first();
     }
-    
+
     /**
      * Returns all channels
      *
@@ -368,7 +362,7 @@ class ElasticSearch extends AbstractIndexer
 
         return $this->channels = $this->channelRepository->all();
     }
-    
+
     /**
      * Returns all customer groups
      *

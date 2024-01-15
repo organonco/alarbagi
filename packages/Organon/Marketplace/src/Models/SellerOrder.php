@@ -75,7 +75,7 @@ class SellerOrder extends Model implements SellerOrderContract
 
     public function isCancellable()
     {
-        return $this->status != SellerOrderStatusEnum::CANCELLED;
+        return $this->status != SellerOrderStatusEnum::CANCELLED_BY_SELLER;
     }
 
 }

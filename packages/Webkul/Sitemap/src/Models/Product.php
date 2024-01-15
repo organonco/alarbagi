@@ -16,7 +16,6 @@ class Product extends BaseProduct implements Sitemapable
         if (
             ! $this->url_key
             || ! $this->status
-            || ! $this->visible_individually
         ) {
             return [];
         }

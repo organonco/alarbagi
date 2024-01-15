@@ -97,7 +97,6 @@ class ProductDataGrid extends DataGrid
                 'product_flat.status',
                 'product_flat.price',
                 'product_flat.url_key',
-                'product_flat.visible_individually',
                 'af.name as attribute_family',
                 DB::raw('SUM(DISTINCT ' . $tablePrefix . 'product_inventories.qty) as quantity')
             )

@@ -65,8 +65,8 @@ return [
                 'label' => 'Shipped',
                 'class' => 'info'
             ],
-            'CANCELLED_BY_CUSTOMER' => [
-                'label' => 'Cancelled By Customer',
+            'CANCELLED_BY_SELLER' => [
+                'label' => 'Cancelled By Seller',
                 'class' => 'info'
             ]
         ]

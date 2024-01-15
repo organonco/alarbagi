@@ -45,7 +45,7 @@ class SellerOrderRepository extends Repository
      */
     public function cancel(SellerOrder $sellerOrder)
     {
-        $sellerOrder->setStatus(SellerOrderStatusEnum::CANCELLED);
+        $sellerOrder->setStatus(SellerOrderStatusEnum::CANCELLED_BY_SELLER);
     }
 
 }

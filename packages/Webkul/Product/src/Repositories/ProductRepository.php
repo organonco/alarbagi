@@ -206,7 +206,6 @@ class ProductRepository extends Repository
     {
         $params = array_merge([
             'status'               => 1,
-            'visible_individually' => 1,
             'url_key'              => null,
         ], request()->input());
 
@@ -271,7 +270,6 @@ class ProductRepository extends Repository
             $attributes = $filterableAttributes->whereIn('code', [
                 'name',
                 'status',
-                'visible_individually',
                 'url_key',
             ]);
 
@@ -308,7 +306,6 @@ class ProductRepository extends Repository
                 'price',
                 'name',
                 'status',
-                'visible_individually',
                 'url_key',
             ]);
 

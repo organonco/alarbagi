@@ -74,9 +74,7 @@ class ProductController extends Controller
                 $productDownloadableSample = $this->productDownloadableSampleRepository->findOrFail(request('id'));
 
                 if ($product = $this->productRepository->findOrFail($productDownloadableSample->product_id)) {
-                    if (! $product->visible_individually) {
-                        return redirect()->back();
-                    }
+                    return redirect()->back();
                 }
 
                 if ($productDownloadableSample->type == 'file') {

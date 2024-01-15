@@ -9,7 +9,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 use Organon\Marketplace\Models\Order;
 
-class UpdateOrderNotification implements ShouldBroadcast
+class UpdateOrderNotification implements ShouldBroadcast, InternalNotificationInterface
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -62,5 +62,20 @@ class UpdateOrderNotification implements ShouldBroadcast
     public function broadcastAs()
     {
         return 'update-notification';
+    }
+
+    public function getText(): string
+    {
+        // TODO: Implement getText() method.
+    }
+
+    public function getRoute(): string
+    {
+        // TODO: Implement getRoute() method.
+    }
+
+    public function getRouteParams(): string
+    {
+        // TODO: Implement getRouteParams() method.
     }
 }

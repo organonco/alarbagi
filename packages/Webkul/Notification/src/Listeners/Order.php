@@ -42,7 +42,7 @@ class Order
      */
     public function updateOrder($order)
     {
-        (new UpdateOrderNotification($order))->toText();
+
     }
 
 

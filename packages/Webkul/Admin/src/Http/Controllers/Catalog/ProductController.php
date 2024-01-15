@@ -423,7 +423,6 @@ class ProductController extends Controller
 
         request()->query->add([
             'status' => null,
-            'visible_individually' => null,
             'name' => request('query'),
             'sort' => 'created_at',
             'order' => 'desc',
