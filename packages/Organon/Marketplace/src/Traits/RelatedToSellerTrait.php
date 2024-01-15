@@ -25,7 +25,10 @@ trait RelatedToSellerTrait
 
 
     protected function getDefaultStatus(){
-        return $this->seller->status;
+        if($this->isForSeller())
+            return $this->seller->status;
+        else
+            return SellerStatusEnum::ACTIVE;
     }
 
     protected static function bootRelatedToSellerTrait()
@@ -34,8 +37,8 @@ trait RelatedToSellerTrait
             $builder->where('products.seller_status', SellerStatusEnum::ACTIVE->value);
         });
 
-        static::creating(function ($query) {
-            $query->status = $this->getDefaultStatus();
+        static::creating(function ($item) {
+            $item->seller_status = $item->getDefaultStatus();
         });
     }
 
