@@ -26,6 +26,11 @@ class SellerRoleSeeder extends Seeder
             "permissions" => json_encode([
                 "marketplace",
                 "marketplace.orders",
+                "account",
+                "account.profile",
+                "account.settings",
+                "sales",
+                "sales.seller-invoices",
                 "catalog",
                 "catalog.products",
                 "catalog.products.create",
@@ -33,11 +38,7 @@ class SellerRoleSeeder extends Seeder
                 "catalog.products.edit",
                 "catalog.products.delete",
                 "catalog.products.mass-update",
-                "catalog.products.mass-delete",
-                "catalog.profile",
-                "account",
-                "account.profile",
-                "account.settings"
+                "catalog.products.mass-delete"
             ]),
         ]);
 
