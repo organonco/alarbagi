@@ -146,7 +146,7 @@ abstract class AbstractType
      */
     public function update(array $data, $id, $attribute = 'id')
     {
-        $product = $this->productRepository->find($id);
+        $product = $this->productRepository->withoutGlobalScope('seller_status')->find($id);
 
         $product->update($data);
 

@@ -49,7 +49,7 @@ class ProductForm extends FormRequest
      */
     public function rules()
     {
-        $product = $this->productRepository->find($this->id);
+        $product = $this->productRepository->withoutGlobalScope('seller_status')->find($this->id);
 
         $maxVideoFileSize = core()->getConfigData('catalog.products.attribute.file_attribute_upload_size') ?: '2048';
 

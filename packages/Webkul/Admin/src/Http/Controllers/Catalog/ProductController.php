@@ -27,7 +27,7 @@ use Webkul\Product\Repositories\ProductRepository;
 class ProductController extends Controller
 {
     /*
-    * Using const variable for status 
+    * Using const variable for status
     */
     const ACTIVE_STATUS = 1;
 
@@ -170,12 +170,13 @@ class ProductController extends Controller
         Event::dispatch('catalog.product.update.before', $id);
 
         /** @var Product $product */
-        $product = $this->productRepository->findOrFail($id);
+        $product = $this->productRepository->withoutGlobalScope('seller_status')->findOrFail($id);
 
         /** @var Admin $admin */
         $admin = auth('admin')->user();
         if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
             abort(401, 'this action is unauthorized');
+
 
         $product = $this->productRepository->update(request()->all(), $id);
 

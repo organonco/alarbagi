@@ -60,7 +60,7 @@ class ProductRepository extends Repository
      */
     public function update(array $data, $id, $attribute = 'id')
     {
-        $product = $this->findOrFail($id);
+        $product = $this->withoutGlobalScope('seller_status')->findOrFail($id);
 
         $product = $product->getTypeInstance()->update($data, $id, $attribute);
 

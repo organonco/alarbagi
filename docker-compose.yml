@@ -55,7 +55,9 @@ services:
        networks:
           - sail
        environment:
-          - PMA_ARBITRARY=1
+          PMA_HOST: "mysql"
+          PMA_USER: "${DB_USERNAME}"
+          PMA_PASSWORD: "${DB_PASSWORD}"
 networks:
     sail:
         driver: bridge
