@@ -35,12 +35,18 @@ class ImportCategories extends Command
         parent::__construct();
     }
 
-
     private function createCategory($name, $parent_id = 1)
     {
-        return Category::whereHas('translations', function($q) use ($name){
+        $existing = Category::whereHas('translations', function($q) use ($name){
             $q->where('name', $name);
-        })->first()?? Category::factory()->hasTranslations(['name' => $name, 'slug' => $name, 'description' => ''])->create(['name' => $name, 'parent_id' => $parent_id]);
+        })->first();
+        if($existing)
+            return $existing;
+        else{
+            $new = Category::factory()->create(['name' => $name, 'parent_id' => $parent_id]);
+            $new->translate('en')->update(['name' => $name, 'slug' => str_replace(' ', '-', strtolower(trim($name))), 'url_path' => str_replace(' ', '-', strtolower(trim($name))), 'description' => '']);
+            return $new;
+        }
     }
 
     /**
