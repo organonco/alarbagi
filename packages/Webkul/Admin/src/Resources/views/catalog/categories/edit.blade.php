@@ -57,7 +57,7 @@
                             <span class="icon-language text-[24px] "></span>
 
                             {{ $currentLocale->name }}
-                            
+
                             <input type="hidden" name="locale" value="{{ $currentLocale->code }}"/>
 
                             <span class="icon-sort-down text-[24px]"></span>
@@ -164,7 +164,7 @@
                             <x-admin::form.control-group.label ::class="{ 'required' : isDescriptionRequired}">
                                 @lang('admin::app.catalog.categories.edit.description')
                             </x-admin::form.control-group.label>
-        
+
                             <x-admin::form.control-group.control
                                 type="textarea"
                                 name="description"
@@ -176,7 +176,7 @@
                                 :tinymce="true"
                             >
                             </x-admin::form.control-group.control>
-        
+
                             <x-admin::form.control-group.error
                                 control-name="description"
                             >
@@ -231,7 +231,7 @@
                     <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[16px]">
                         @lang('admin::app.catalog.categories.edit.seo-details')
                     </p>
-                    
+
                     {{-- SEO Title & Description Blade Componnet --}}
                     <x-admin::seo/>
 
@@ -368,7 +368,7 @@
                             </x-admin::form.control-group.label>
 
                             @php $selectedValue = old('display_mode') ?? $category->display_mode @endphp
-                            
+
                             <x-admin::form.control-group.control
                                 type="select"
                                 name="display_mode"
@@ -379,7 +379,7 @@
                                 :label="trans('admin::app.catalog.categories.edit.display-mode')"
                             >
                                 <option value="products_and_description" {{ $selectedValue == 'products_and_description' ? 'selected' : '' }}>
-                                    @lang('admin::app.catalog.categories.edit.products-and-description') 
+                                    @lang('admin::app.catalog.categories.edit.products-and-description')
                                 </option>
 
                                 <option value="products_only" {{ $selectedValue == 'products_only' ? 'selected' : '' }}>
@@ -415,6 +415,27 @@
                             >
                             </x-admin::form.control-group.control>
                         </x-admin::form.control-group>
+
+
+                        <x-admin::form.control-group>
+                            <x-admin::form.control-group.label class="text-gray-800 dark:text-white font-medium">
+                                @lang('admin::app.catalog.categories.edit.trending')
+                            </x-admin::form.control-group.label>
+
+                            @php $trending = old('trending') ?: $category->trending @endphp
+
+                            <x-admin::form.control-group.control
+                                type="switch"
+                                name="trending"
+                                class="cursor-pointer"
+                                value="1"
+                                :label="trans('admin::app.catalog.categories.edit.trending')"
+                                :checked="(boolean)$trending"
+                            >
+                            </x-admin::form.control-group.control>
+                        </x-admin::form.control-group>
+
+
                     </x-slot:content>
                 </x-admin::accordion>
 

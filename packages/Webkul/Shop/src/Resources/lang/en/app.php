@@ -325,7 +325,7 @@ return [
                 'profile'       => 'Profile',
                 'sign-in'       => 'Sign In',
                 'sign-up'       => 'Sign Up',
-                'search-text'   => 'Search products here',
+                'search-text'   => 'What are you looking for?',
                 'search'        => 'Search',
                 'title'         => 'Account',
                 'welcome'       => 'Welcome',

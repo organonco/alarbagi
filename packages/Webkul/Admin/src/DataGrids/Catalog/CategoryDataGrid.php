@@ -44,6 +44,7 @@ class CategoryDataGrid extends DataGrid
                 'cat.position',
                 'cat.status',
                 'ct.locale',
+                'cat.trending',
                 DB::raw('COUNT(DISTINCT ' . DB::getTablePrefix() . 'pc.product_id) as count')
             )
             ->leftJoin('category_translations as ct', function ($leftJoin) use ($whereInLocales) {
@@ -53,7 +54,7 @@ class CategoryDataGrid extends DataGrid
             ->leftJoin('product_categories as pc', 'cat.id', '=', 'pc.category_id')
             ->groupBy('cat.id', 'ct.locale');
 
-        $this->addFilter('category_id', 'cat.id');
+        $this->addFilter('category_id', 'cat.id', 'cat.trending');
 
         return $queryBuilder;
     }
@@ -106,6 +107,16 @@ class CategoryDataGrid extends DataGrid
 
                 return '<span class="badge badge-md badge-danger">' . trans('admin::app.catalog.categories.index.datagrid.inactive') . '</span>';
             },
+        ]);
+
+        $this->addColumn([
+            'index'      => 'trending',
+            'label'      => 'Trending',
+            'type'       => 'boolean',
+            'searchable' => false,
+            'filterable' => true,
+            'sortable'   => true,
+            'closure'    => fn($value) => $value->trending ? 'YES' : 'NO',
         ]);
 
         $this->addColumn([

@@ -3,6 +3,7 @@
 namespace Webkul\Core\Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Organon\Marketplace\Database\Seeders\ContentSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CountryStateTranslationSeeder::class);
         $this->call(ChannelTableSeeder::class);
         $this->call(ConfigTableSeeder::class);
+        $this->call(ContentSeeder::class);
     }
 }

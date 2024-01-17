@@ -967,7 +967,7 @@ return [
                     'id'             => 'ID',
                     'name'           => 'Name',
                     'position'       => 'Position',
-                    'status'         => 'Visible In Menu',
+                    'status'         => 'Active',
                     'active'         => 'Active',
                     'inactive'       => 'Inactive',
                     'no-of-products' => 'Number of Products',
@@ -1007,7 +1007,8 @@ return [
                 'seo-details'              => 'SEO Details',
                 'select-display-mode'      => 'Select Display Mode',
                 'title'                    => 'Add New Category',
-                'visible-in-menu'          => 'Visible In Menu',
+                'visible-in-menu'          => 'Active',
+                'trending'          => 'Trending',
             ],
 
             'edit'  => [
@@ -1039,7 +1040,8 @@ return [
                 'select-parent-category'   => 'Select Parent Category',
                 'select-display-mode'      => 'Select Display Mode',
                 'title'                    => 'Edit Category',
-                'visible-in-menu'          => 'Visible In Menu',
+                'visible-in-menu'          => 'Active',
+                'trending'          => 'Trending',
             ],
 
             'create-success'       => 'category created successfully.',

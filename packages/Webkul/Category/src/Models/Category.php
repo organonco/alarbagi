@@ -46,6 +46,7 @@ class Category extends TranslatableModel implements CategoryContract
         'display_mode',
         'parent_id',
         'additional',
+        'trending'
     ];
 
     /**
@@ -159,7 +160,7 @@ class Category extends TranslatableModel implements CategoryContract
         if ($categoryTranslation = $this->translate(core()->getCurrentLocale()->code)) {
             return url($categoryTranslation->url_path);
         }
-        
+
         return url($this->translate(core()->getDefaultChannelLocaleCode())->url_path);
     }
 

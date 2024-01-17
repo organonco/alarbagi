@@ -72,7 +72,7 @@
             </textarea>
 
             @if ($attributes->get('tinymce', false) || $attributes->get(':tinymce', false))
-                <x-admin::tinymce 
+                <x-admin::tinymce
                     :selector="'textarea#' . $attributes->get('id')"
                     ::field="field"
                 >
@@ -219,7 +219,7 @@
                     v-bind="field"
                     {{ $attributes->except(['v-model', 'rules', ':rules', 'label', ':label']) }}
                 />
-                
+
                 <v-checkbox-handler class="hidden" :field="field" checked="{{ $attributes->get('checked') }}"></v-checkbox-handler>
             </v-field>
 

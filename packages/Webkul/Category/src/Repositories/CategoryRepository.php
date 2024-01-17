@@ -28,38 +28,34 @@ class CategoryRepository extends Repository
      */
     public function getAll(array $params = [])
     {
-        $queryBuilder = $this->query()
-            ->leftJoin('category_translations', 'category_translations.category_id', '=', 'categories.id');
+        $queryBuilder = $this->query()->select('categories.*')
+            ->join('category_translations', 'category_translations.category_id', 'categories.id');
 
         foreach ($params as $key => $value) {
             switch ($key) {
                 case 'name':
                     $queryBuilder->where('category_translations.name', 'like', '%' . urldecode($value) . '%');
-
                     break;
                 case 'description':
                     $queryBuilder->where('category_translations.description', 'like', '%' . urldecode($value) . '%');
-
                     break;
                 case 'status':
                     $queryBuilder->where('categories.status', $value);
-
                     break;
                 case 'only_children':
                     $queryBuilder->whereNotNull('categories.parent_id');
-
                     break;
                 case 'parent_id':
                     $queryBuilder->where('categories.parent_id', $value);
-
                     break;
                 case 'locale':
                     $queryBuilder->where('category_translations.locale', $value);
-
+                    break;
+                case 'trending':
+                    $queryBuilder->where('categories.trending', $value);
                     break;
             }
         }
-
         return $queryBuilder->paginate($params['limit'] ?? 10);
     }
 
@@ -90,7 +86,7 @@ class CategoryRepository extends Repository
         $category = $this->model->create($data);
 
         $this->uploadImages($data, $category);
-        
+
         $this->uploadImages($data, $category, 'banner_path');
 
         if (isset($data['attributes'])) {
@@ -103,8 +99,8 @@ class CategoryRepository extends Repository
     /**
      * Update category.
      *
-     * @param  int  $id
-     * @param  string  $attribute
+     * @param int $id
+     * @param string $attribute
      * @return \Webkul\Category\Contracts\Category
      */
     public function update(array $data, $id, $attribute = 'id')
@@ -129,7 +125,7 @@ class CategoryRepository extends Repository
     /**
      * Specify category tree.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Webkul\Category\Contracts\Category
      */
     public function getCategoryTree($id = null)
@@ -142,7 +138,7 @@ class CategoryRepository extends Repository
     /**
      * Specify category tree.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Support\Collection
      */
     public function getCategoryTreeWithoutDescendant($id = null)
@@ -175,7 +171,7 @@ class CategoryRepository extends Repository
     /**
      * get visible category tree.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Support\Collection
      */
     public function getVisibleCategoryTree($id = null)
@@ -188,8 +184,8 @@ class CategoryRepository extends Repository
     /**
      * Checks slug is unique or not based on locale.
      *
-     * @param  int  $id
-     * @param  string  $slug
+     * @param int $id
+     * @param string $slug
      * @return bool
      */
     public function isSlugUnique($id, $slug)
@@ -200,13 +196,13 @@ class CategoryRepository extends Repository
             ->select(DB::raw(1))
             ->exists();
 
-        return ! $exists;
+        return !$exists;
     }
 
     /**
      * Retrieve category from slug.
      *
-     * @param  string  $slug
+     * @param string $slug
      * @return \Webkul\Category\Contracts\Category
      */
     public function findBySlug($slug)
@@ -219,7 +215,7 @@ class CategoryRepository extends Repository
     /**
      * Retrieve category from slug.
      *
-     * @param  string  $slug
+     * @param string $slug
      * @return \Webkul\Category\Contracts\Category
      */
     public function findBySlugOrFail($slug)
@@ -240,9 +236,9 @@ class CategoryRepository extends Repository
     /**
      * Upload category's images.
      *
-     * @param  array  $data
-     * @param  \Webkul\Category\Contracts\Category  $category
-     * @param  string  $type
+     * @param array $data
+     * @param \Webkul\Category\Contracts\Category $category
+     * @param string $type
      * @return void
      */
     public function uploadImages($data, $category, $type = 'logo_path')
@@ -282,7 +278,7 @@ class CategoryRepository extends Repository
     /**
      * Get partials.
      *
-     * @param  array|null  $columns
+     * @param array|null $columns
      * @return array
      */
     public function getPartial($columns = null)
@@ -292,9 +288,9 @@ class CategoryRepository extends Repository
         $trimmed = [];
 
         foreach ($categories as $key => $category) {
-            if (! empty($category->name)) {
+            if (!empty($category->name)) {
                 $trimmed[$key] = [
-                    'id'   => $category->id,
+                    'id' => $category->id,
                     'name' => $category->name,
                     'slug' => $category->slug,
                 ];
@@ -310,7 +306,7 @@ class CategoryRepository extends Repository
      * To Do: Move column from the `category_translations` to `category` table. And remove
      * this created method.
      *
-     * @param  string  $attributeNames
+     * @param string $attributeNames
      * @return array
      */
     private function setSameAttributeValueToAllLocale(array $data, ...$attributeNames)
