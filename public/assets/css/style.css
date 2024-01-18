@@ -1,3 +1,21 @@
-.background-main{
-    background-color: #5c9eb4
+.sn-background-light-main{
+    background-color: #a8def0 !important;
+}
+
+.sn-background-dark-main{
+    background-color: #15235e !important;
+}
+
+.sn-color-dark-main{
+    color: #15235e !important;
+}
+
+
+.sn-color-light-main{
+    color: #a8def0 !important;
+}
+
+
+.sn-border-none{
+    border: none !important;
 }

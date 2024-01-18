@@ -1,5 +1,5 @@
 <div
-    class="flex justify-between items-center w-full py-[11px] px-16 border border-t-0 border-b-[1px] border-l-0 border-r-0 gap-x-[35px] max-lg:gap-x-[30px] max-[1100px]:gap-x-[25px] background-main">
+    class="flex justify-between items-center w-full py-[11px] px-16 border border-t-0 border-b-[1px] border-l-0 border-r-0 gap-x-[35px] max-lg:gap-x-[30px] max-[1100px]:gap-x-[25px] sn-background-light-main">
 
     <a
         href="{{ route('shop.home.index') }}"
