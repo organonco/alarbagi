@@ -37,8 +37,9 @@ class ImportCategories extends Command
 
     private function createCategory($name, $parent_id = 1)
     {
-        $existing = Category::whereHas('translations', function($q) use ($name){
+        $existing = Category::whereHas('translations', function($q) use ($name, $parent_id){
             $q->where('name', $name);
+            $q->where('parent_id', $parent_id);
         })->first();
         if($existing)
             return $existing;
