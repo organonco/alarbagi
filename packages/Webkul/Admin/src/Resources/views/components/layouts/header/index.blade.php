@@ -36,11 +36,11 @@
                              alt="{{ config('app.name') }}" style="height: 40px; width: 110px;"/>
                     @else
                         @if (! request()->cookie('dark_mode'))
-                            <img src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                                 id="logo-image">
+                            <img src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
+                                 id="logo-image" width="120">
                         @else
-                            <img src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                                 id="logo-image">
+                            <img src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
+                                 id="logo-image" width="120">
                         @endif
                     @endif
                 </a>

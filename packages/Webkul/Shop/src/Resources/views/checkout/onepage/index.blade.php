@@ -25,7 +25,7 @@
                     aria-label="Bagisto "
                 >
                     <img
-                        src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                        src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
                         alt="Logo"
                         width="131"
                         height="29"
@@ -48,7 +48,7 @@
     @pushOnce('scripts')
         <script type="text/x-template" id="v-checkout-template">
             <div class="grid grid-cols-[1fr_auto] gap-[30px] max-lg:grid-cols-[1fr]">
-                <div    
+                <div
                     class="overflow-y-auto"
                     ref="scrollBottom"
                 >
@@ -59,7 +59,7 @@
                     @include('shop::checkout.onepage.payment')
 
                 </div>
-                
+
                 @include('shop::checkout.onepage.summary')
             </div>
         </script>
@@ -78,7 +78,7 @@
 
                 created() {
                     this.getOrderSummary();
-                }, 
+                },
 
                 methods: {
                     getOrderSummary() {
