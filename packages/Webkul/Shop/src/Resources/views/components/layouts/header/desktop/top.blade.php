@@ -8,7 +8,7 @@
     >
         <img
             src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
-            width="150"
+            width="170"
             alt="Logo"
             style="margin: 0.2rem"
         >
