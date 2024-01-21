@@ -27,7 +27,7 @@ class ChannelTableSeeder extends Seeder
                 'channel_id'        => 1,
                 'locale'            => 'en',
                 'name'              => 'Default',
-                'home_seo'          => '{"meta_title": "Demo store", "meta_keywords": "Demo store meta keyword", "meta_description": "Demo store meta description"}',
+                'home_seo'          => '{"meta_title": "Souq Naif", "meta_keywords": "Souq Naif", "meta_description": "Souq Naif"}',
             ],
         ]);
 
