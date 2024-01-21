@@ -1,4 +1,5 @@
-<div class="w-full flex justify-between px-[60px] py-[10px] border border-t-0 border-b-[1px] border-l-0 border-r-0 max-1180:px-[30px]">
+<div
+    class="w-full flex justify-between px-[60px] py-[10px] border border-t-0 border-b-[1px] border-l-0 border-r-0 max-1180:px-[30px]">
     <v-desktop-category>
         <div class="flex gap-[20px] items-center">
             <span class="shimmer w-[80px] h-[24px] rounded-[4px]"></span>
@@ -74,6 +75,18 @@
                     </div>
                 </div>
             </div>
+            <div
+                class="relative group border-b-[4px] border-transparent hover:border-b-[4px] hover:border-navyBlue"
+            >
+                <span>
+                    <a
+                        href="{{route('shop.customers.register.index-seller')}}"
+                        class="inline-block px-[20px] uppercase"
+                    >
+                        {{trans('marketplace::app.register.title.seller')}}
+                    </a>
+                </span>
+            </div>
         </div>
     </script>
 
@@ -82,7 +95,7 @@
             template: '#v-desktop-category-template',
 
             data() {
-                return  {
+                return {
                     isLoading: true,
 
                     categories: [],
@@ -101,8 +114,8 @@
 
                             this.categories = response.data.data;
                         }).catch(error => {
-                            console.log(error);
-                        });
+                        console.log(error);
+                    });
                 },
 
                 pairCategoryChildren(category) {

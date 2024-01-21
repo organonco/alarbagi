@@ -48,7 +48,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
         Route::controller(RegistrationController::class)->group(function () {
             Route::prefix('register')->group(function () {
                 Route::get('', 'index')->name('shop.customers.register.index');
-
+                Route::get('seller', 'indexSeller')->name('shop.customers.register.index-seller');
                 Route::post('', 'store')->name('shop.customers.register.store');
             });
 

@@ -39,6 +39,17 @@ class RegistrationController extends Controller
         return view('shop::customers.sign-up');
     }
 
+
+    /**
+     * Opens up the user's sign up form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function indexSeller()
+    {
+        return view('shop::customers.sign-up-seller');
+    }
+
     /**
      * Method to store user's sign up form data to DB.
      *

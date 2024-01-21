@@ -17,6 +17,7 @@
             <input
                 type="{{ $type }}"
                 name="{{ $name }}"
+                id="{{ $name }}"
                 v-bind="field"
                 :class="[errors['{{ $name }}'] ? 'border border-red-500 hover:border-red-500' : '']"
                 {{ $attributes->except(['value', ':value', 'v-model', 'rules', ':rules', 'label', ':label'])->merge(['class' => 'w-full mb-3 py-2 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400']) }}

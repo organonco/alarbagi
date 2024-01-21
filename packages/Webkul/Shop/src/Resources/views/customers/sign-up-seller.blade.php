@@ -6,9 +6,9 @@
 @endPush
 
 <x-shop::layouts
-    :has-header="true"
-    :has-feature="false"
-    :has-footer="true"
+        :has-header="true"
+        :has-feature="false"
+        :has-footer="true"
 >
     {{-- Page Title --}}
     <x-slot:title>
@@ -19,7 +19,7 @@
 
             <div class="flex">
 
-                <x-shop::register.buyer></x-shop::register.buyer>
+                <x-shop::register.seller></x-shop::register.seller>
 
             </div>
 

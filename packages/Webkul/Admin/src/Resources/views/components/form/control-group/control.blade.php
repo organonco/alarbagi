@@ -217,7 +217,7 @@
                     id="{{ $name }}"
                     class="sr-only peer"
                     v-bind="field"
-                    {{ $attributes->except(['v-model', 'rules', ':rules', 'label', ':label']) }}
+                    {{ $attributes->except(['v-model', 'rules', ':rules', 'label', ':label', 'onClick']) }}
                 />
 
                 <v-checkbox-handler class="hidden" :field="field" checked="{{ $attributes->get('checked') }}"></v-checkbox-handler>

@@ -19,6 +19,8 @@ class Seller extends Model implements SellerContract, HasMedia
 {
     const LOGO_MEDIA_COLLECTION = "logo";
     const COVER_MEDIA_COLLECTION = "cover";
+    const DOCUMENT_MEDIA_COLLECTION = 'document';
+
 
 
     use InteractsWithMedia;
@@ -34,7 +36,12 @@ class Seller extends Model implements SellerContract, HasMedia
         'address',
         'slug',
         'payment_method',
-        'deliver_by'
+        'deliver_by',
+        'phone',
+        'additional_phone',
+        'landline',
+        'additional_email',
+        'is_personal'
     ];
 
     public function admin()
@@ -62,6 +69,17 @@ class Seller extends Model implements SellerContract, HasMedia
     {
         $this->clearMediaCollection(self::COVER_MEDIA_COLLECTION);
         $this->addMediaFromRequest($key)->toMediaCollection(self::COVER_MEDIA_COLLECTION);
+    }
+
+    public function setDocument($key)
+    {
+        $this->clearMediaCollection(self::DOCUMENT_MEDIA_COLLECTION);
+        $this->addMediaFromRequest($key)->toMediaCollection(self::DOCUMENT_MEDIA_COLLECTION);
+    }
+
+    public function getDocumentUrlAttribute()
+    {
+        return $this->getFirstMediaUrl(self::DOCUMENT_MEDIA_COLLECTION);
     }
 
     public function getLogoUrlAttribute()

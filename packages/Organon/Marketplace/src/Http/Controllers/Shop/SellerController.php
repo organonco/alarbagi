@@ -21,21 +21,34 @@ class SellerController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'name' => ['required', 'max:255'],
             'slug' => ['required', 'alpha_dash', "unique:sellers"],
             'password' => ['required', 'confirmed', 'min:8'],
-            'email' => ['required', 'email']
+            'email' => ['required', 'email'],
+            'phone' => ['required'],
+            'document' => ['required', 'image'],
+            'additional_phone' => ['different:phone'],
+            'additional_email' => ['different:email']
         ]);
 
         $sellerData = $request->only([
             'name',
-            'slug'
+            'slug',
+            'phone',
+            'additional_phone',
+            'additional_email',
+            'landline',
+            'address'
         ]);
+
+
+        $sellerData['is_personal'] = $request->input('is_personal') == 'on';
 
         /** @var Seller $seller */
         $seller = $this->sellerRepository->create($sellerData);
+
+        $seller->setDocument('document');
 
         $adminData = $request->only([
             'name',
