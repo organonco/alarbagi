@@ -266,7 +266,7 @@
                 <x-shop::form.control-group.control
                     type="file"
                     name="document"
-                    rules="required"
+                    rules=""
                     class="!p-[20px_25px] rounded-lg"
                 >
                 </x-shop::form.control-group.control>
