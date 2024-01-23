@@ -258,7 +258,7 @@
 
             <x-shop::form.control-group class="mb-4">
                 <x-shop::form.control-group.label class="required">
-                    <div id="document_label">
+                    <div id="document_label" style="display: inline">
                         @lang('shop::app.customers.signup-form.id')
                     </div>
                 </x-shop::form.control-group.label>

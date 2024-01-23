@@ -24,7 +24,7 @@
                     <div class="flex justify-between items-center">
                         <a href="{{ route('shop.home.index') }}">
                             <img
-                                    src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                                    src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
                                     alt="Logo"
                                     width="131"
                                     height="29"
@@ -126,9 +126,9 @@
                     aria-label="Bagisto"
             >
                 <img
-                        src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                        src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
                         alt="Logo"
-                        width="131"
+                        width="100"
                         height="29"
                 >
             </a>
@@ -283,6 +283,17 @@
 @pushOnce('scripts')
     <script type="text/x-template" id="v-mobile-category-template">
         <div>
+            <div class="flex justify-between items-center border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
+
+                <a
+                    href="{{route('shop.customers.register.index-seller')}}"
+                    class="flex items-center justify-between pb-[20px] mt-[20px]"
+                >
+                    {{trans('marketplace::app.register.title.seller')}}
+                </a>
+
+            </div>
+
             <template v-for="(category) in categories">
                 <div class="flex justify-between items-center border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
                     <a
