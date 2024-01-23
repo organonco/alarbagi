@@ -8,7 +8,7 @@
     $showWishlist = (bool) core()->getConfigData('general.content.shop.wishlist_option');
 @endphp
 
-<div class="gap-[15px] flex-wrap px-[15px] pt-[25px] hidden max-lg:flex max-lg:mb-[15px]">
+<div class="gap-[15px] flex-wrap px-[15px] pt-[25px] hidden max-lg:flex pb-[15px] sn-background-light-main">
     <div class="w-full flex justify-between items-center">
         {{-- Left Navigation --}}
         <div class="flex items-center gap-x-[5px]">
@@ -128,7 +128,7 @@
                 <img
                         src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
                         alt="Logo"
-                        width="100"
+                        width="90"
                         height="29"
                 >
             </a>
