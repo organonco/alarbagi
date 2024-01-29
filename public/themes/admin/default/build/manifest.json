@@ -52,9 +52,9 @@
     "file": "assets/icon-options-ebfcd268.svg",
     "src": "src/Resources/assets/images/settings/shipping-method.svg"
   },
-  "src/Resources/assets/images/logo.svg": {
+  "src/Resources/assets/images/logo.png": {
     "file": "assets/logo-f02a1643.svg",
-    "src": "src/Resources/assets/images/logo.svg"
+    "src": "src/Resources/assets/images/logo.png"
   },
   "src/Resources/assets/images/product-placeholders/front.svg": {
     "file": "assets/front-93490c30.svg",

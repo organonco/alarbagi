@@ -19,11 +19,8 @@
 
         @stack('meta')
 
-        <link
-            rel="icon"
-            sizes="16x16"
-            href="{{ core()->getCurrentChannel()->favicon_url ?? bagisto_asset('images/favicon.ico') }}"
-        />
+        <link rel="icon" href="{{asset('assets/images/favicon.ico')}}" sizes="any">
+        <link rel="apple-touch-icon" href="{{asset('assets/images/apple-touch-icon.png')}}">
 
         @bagistoVite(['src/Resources/assets/css/app.css', 'src/Resources/assets/js/app.js'])
 

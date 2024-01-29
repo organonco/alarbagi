@@ -25,7 +25,7 @@
                     aria-label="Bagisto "
                 >
                     <img
-                        src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
+                        src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.png') }}"
                         alt="Logo"
                         width="131"
                         height="29"
@@ -57,7 +57,7 @@
 
                 <!-- Cart Information -->
                 <template v-else>
-                    <div 
+                    <div
                         class="flex flex-wrap gap-[75px] mt-[30px] pb-[30px] max-1060:flex-col"
                         v-if="cart?.items?.length"
                     >
@@ -84,12 +84,12 @@
                                     </span>
                                 </div>
 
-                                <div 
+                                <div
                                     class="max-sm:ml-[35px] max-sm:mt-[10px]"
                                     v-if="selectedItemsCount"
                                 >
                                     <span
-                                        class="text-[16px] text-[#0A49A7] cursor-pointer" 
+                                        class="text-[16px] text-[#0A49A7] cursor-pointer"
                                         @click="removeSelectedItems"
                                     >
                                         @lang('shop::app.checkout.cart.index.remove')
@@ -99,18 +99,18 @@
                                         <span class="mx-[10px] border-r-[2px] border-[#E9E9E9]"></span>
 
                                         <span
-                                            class="text-[16px] text-[#0A49A7] cursor-pointer" 
+                                            class="text-[16px] text-[#0A49A7] cursor-pointer"
                                             @click="moveToWishlistSelectedItems"
                                         >
                                             @lang('shop::app.checkout.cart.index.move-to-wishlist')
-                                        </span>    
+                                        </span>
                                     @endif
                                 </div>
                             </div>
-                        
+
                             <!-- Cart Item Listing Container -->
-                            <div 
-                                class="grid gap-y-[25px]" 
+                            <div
+                                class="grid gap-y-[25px]"
                                 v-for="item in cart?.items"
                             >
                                 <div class="flex gap-x-[10px] justify-between flex-wrap pb-[18px] border-b-[1px] border-[#E9E9E9]">
@@ -145,12 +145,12 @@
                                         <!-- Cart Item Options Container -->
                                         <div class="grid place-content-start gap-y-[10px]">
 
-                                            <p 
-                                                class="text-[16px] font-medium" 
+                                            <p
+                                                class="text-[16px] font-medium"
                                                 v-text="item.name"
                                             >
                                             </p>
-                                    
+
                                             <!-- Cart Item Options Container -->
                                             <div
                                                 class="grid gap-x-[10px] gap-y-[6px] select-none"
@@ -186,14 +186,14 @@
                                             </div>
 
                                             <div class="sm:hidden">
-                                                <p 
-                                                    class="text-[18px] font-semibold" 
+                                                <p
+                                                    class="text-[18px] font-semibold"
                                                     v-text="item.formatted_total"
                                                 >
                                                 </p>
-                                                
+
                                                 <span
-                                                    class="text-[16px] text-[#0A49A7] cursor-pointer" 
+                                                    class="text-[16px] text-[#0A49A7] cursor-pointer"
                                                     @click="removeItem(item.id)"
                                                 >
                                                     @lang('shop::app.checkout.cart.index.remove')
@@ -211,15 +211,15 @@
                                     </div>
 
                                     <div class="max-sm:hidden text-right">
-                                        <p 
-                                            class="text-[18px] font-semibold" 
+                                        <p
+                                            class="text-[18px] font-semibold"
                                             v-text="item.formatted_total"
                                         >
                                         </p>
-                                        
+
                                         <!-- Cart Item Remove Button -->
                                         <span
-                                            class="text-[16px] text-[#0A49A7] cursor-pointer" 
+                                            class="text-[16px] text-[#0A49A7] cursor-pointer"
                                             @click="removeItem(item.id)"
                                         >
                                             @lang('shop::app.checkout.cart.index.remove')
@@ -229,7 +229,7 @@
                             </div>
 
                             {!! view_render_event('bagisto.shop.checkout.cart.controls.before') !!}
-        
+
                             <!-- Cart Item Actions -->
                             <div class="flex flex-wrap gap-[30px] justify-end">
                                 <a
@@ -237,7 +237,7 @@
                                     href="{{ route('shop.home.index') }}"
                                 >
                                     @lang('shop::app.checkout.cart.index.continue-shopping')
-                                </a> 
+                                </a>
 
                                 <button
                                     class="secondary-button max-h-[55px] rounded-[18px]"
@@ -248,7 +248,7 @@
                             </div>
 
                             {!! view_render_event('bagisto.shop.checkout.cart.controls.after') !!}
-                            
+
                         </div>
 
                         {!! view_render_event('bagisto.shop.checkout.cart.summary.before') !!}
@@ -266,7 +266,7 @@
                         v-else
                     >
                         <img src="{{ bagisto_asset('images/thank-you.png') }}"/>
-                        
+
                         <p class="text-[20px]">
                             @lang('shop::app.checkout.cart.index.empty-product')
                         </p>
@@ -315,7 +315,7 @@
                                     this.$emitter.emit('add-flash', { type: 'info', message: response.data.message });
                                 }
                             })
-                            .catch(error => {});     
+                            .catch(error => {});
                     },
 
                     selectAll() {
