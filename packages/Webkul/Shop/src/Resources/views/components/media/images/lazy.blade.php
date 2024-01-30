@@ -13,21 +13,28 @@
         >
         </div>
 
-        <img
-            v-bind="$attrs"
-            :data-src="src"
-            :id="'image-' + $.uid"
-            @load="onLoad"
-            v-show="! isLoading"
-            style="object-fit: contain; height: 500px; width: 500px"
+        <img v-if="gallery"
+             v-bind="$attrs"
+             :data-src="src"
+             :id="'image-' + $.uid"
+             @load="onLoad"
+             v-show="! isLoading"
+             style="object-fit: contain; height: 500px; width: 500px"
         >
+        <img v-else v-bind="$attrs"
+             :data-src="src"
+             :id="'image-' + $.uid"
+             @load="onLoad"
+             v-show="! isLoading"
+        >
+
     </script>
 
     <script type="module">
         app.component('v-shimmer-image', {
             template: '#v-shimmer-image-template',
 
-            props: ['src'],
+            props: ['src', 'gallery'],
 
             data() {
                 return {
@@ -38,8 +45,8 @@
             mounted() {
                 let self = this;
 
-                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(function(entry) {
+                let lazyImageObserver = new IntersectionObserver(function (entries, observer) {
+                    entries.forEach(function (entry) {
                         if (entry.isIntersecting) {
                             let lazyImage = document.getElementById('image-' + self.$.uid);
 
