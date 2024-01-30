@@ -36,6 +36,7 @@
                 :label="$attribute->admin_name"
                 value="{{ old($attribute->code) ?: $product[$attribute->code] }}"
                 :class="'ltr:pl-[30px] rtl:pr-[30px] ' . ($attribute->code == 'price' ? 'py-2 bg-gray-50 text-[20px] font-bold' : '')"
+                style="padding-left: 60px"
             >
             </x-admin::form.control-group.control>
         </div>
