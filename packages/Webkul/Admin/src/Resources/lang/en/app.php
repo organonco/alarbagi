@@ -3476,10 +3476,6 @@ return [
         'slug-reserved'   => 'This slug is reserved.',
     ],
 
-    'footer' => [
-        'copy-right' => 'Powered by <a href="https://bagisto.com/" target="_blank">Bagisto</a>, A Community Project by <a href="https://webkul.com/" target="_blank">Webkul</a>',
-    ],
-
     'emails' => [
         'dear'   => 'Dear :admin_name',
         'thanks' => 'If you need any kind of help please contact us at <a href=":link" style=":style">:email</a>.<br/>Thanks!',

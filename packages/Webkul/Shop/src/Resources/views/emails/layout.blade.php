@@ -15,21 +15,11 @@
                 {{-- Email Header --}}
                 <div style="margin-bottom: 65px;">
                     <a href="{{ route('shop.home.index') }}">
-                        @if ($logo = core()->getCurrentChannel()->logo_url)
-                            <img
-                                src="{{ $logo }}"
-                                alt="{{ config('app.name') }}"
-                                style="height: 40px; width: 110px;"
-                            />
-                        @else
-                            <img
-                                src="{{ bagisto_asset('images/logo.png', 'shop') }}"
-                                alt="{{ config('app.name') }}"
-                                width="131"
-                                height="29"
-                                style="width: 156px;height: 40px;"
-                            />
-                        @endif
+                        <img
+                            src="{{ asset('assets/images/logo.png') }}"
+                            alt="{{ config('app.name') }}"
+                            width="131"
+                        />
                     </a>
                 </div>
 
@@ -39,8 +29,8 @@
                 {{-- Email Footer --}}
                 <p style="font-size: 16px;color: #202B3C;line-height: 24px;">
                     @lang('shop::app.emails.thanks', [
-                        'link' => 'mailto:shop@shop.com',
-                        'email' => 'shop@shop.com',
+                        'link' => 'mailto:support@souq-naif.com',
+                        'email' => 'support@souq-naif.com',
                         'style' => 'color: #2969FF;'
                     ])
                 </p>

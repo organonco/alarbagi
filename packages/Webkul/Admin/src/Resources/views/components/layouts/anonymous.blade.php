@@ -26,21 +26,8 @@
         rel="stylesheet"
     />
 
-    @if ($favicon = core()->getConfigData('general.design.admin_logo.favicon', core()->getCurrentChannelCode()))
-        <link 
-            type="image/x-icon"
-            href="{{ Storage::url($favicon) }}" 
-            rel="shortcut icon"
-            sizes="16x16"
-        >
-    @else
-        <link 
-            type="image/x-icon"
-            href="{{ bagisto_asset('images/favicon.ico') }}" 
-            rel="shortcut icon"
-            sizes="16x16"
-        />
-    @endif
+    <link rel="icon" href="{{asset('assets/images/favicon.ico')}}" sizes="any">
+    <link rel="apple-touch-icon" href="{{asset('assets/images/apple-touch-icon.png')}}">
 
     @stack('styles')
 

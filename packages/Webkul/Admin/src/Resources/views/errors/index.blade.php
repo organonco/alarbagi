@@ -9,7 +9,7 @@
         <div class="flex gap-[20px] items-center max-w-[745px]">
             <div class="w-full">
                 <img
-                    src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.png') }}"
+                    src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
                     class="mb-[25px]"
                 >
 

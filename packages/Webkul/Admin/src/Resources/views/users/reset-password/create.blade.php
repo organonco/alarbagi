@@ -8,9 +8,9 @@
         <div class="flex flex-col gap-[20px] items-center">
             {{-- Logo --}}
             <img
-                class="w-max"
-                src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.png') }}"
+                src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
                 alt="Logo"
+                width="250"
             >
 
             <div class="flex flex-col min-w-[300px] bg-white dark:bg-gray-900 rounded-[6px] box-shadow">

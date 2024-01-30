@@ -11,7 +11,7 @@
             aria-label="Bagisto "
         >
             <img
-                src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.png') }}"
+                src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
                 width="131"
                 height="29"
                 alt="Logo"
