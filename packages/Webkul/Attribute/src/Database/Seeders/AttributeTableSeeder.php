@@ -421,7 +421,7 @@ class AttributeTableSeeder extends Seeder
                 'id'                  => 25,
                 'code'                => 'brand',
                 'admin_name'          => 'Brand',
-                'type'                => 'select',
+                'type'                => 'text',
                 'validation'          => NULL,
                 'position'            => 28,
                 'is_required'         => 0,
