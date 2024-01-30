@@ -3,7 +3,7 @@
     <script type="module">
         app.component('v-tree-item', {
             inheritAttrs: false,
-            
+
             props: {
                 inputType: {
                     type: String,
@@ -150,7 +150,7 @@
                         )
                     );
                 },
-            },  
+            },
 
             methods: {
                 getLength(items) {
@@ -173,7 +173,7 @@
                                 value: this.hasChildren
                                     ? this.isAllChildrenSelected
                                     : this.items,
-                                
+
                                 onInputChange: (selection) => {
                                     if (this.hasChildren) {
                                         if (this.isAllChildrenSelected) {
@@ -218,6 +218,7 @@
                                 modelValue: this.items[this.valueField],
                                 inputValue: this.value,
                                 value: this.items,
+                                hasChildren: this.hasChildren
                             });
                         }
                     } else if (this.inputType == 'radio') {
@@ -279,11 +280,11 @@
                 generateIcon() {
                     return this.$h('i', {
                         class: [
-                            this.isActive ? 'icon-sort-right' : 
-                            this.hasChildren ? 'icon-sort-down' : '',
+                            this.isActive ? 'icon-sort-down' :
+                            this.hasChildren ? 'icon-sort-right' : '',
                             'text-[20px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950'
                         ],
-                        
+
                         onClick: (selection) => {
                             this.$el.classList.toggle('active');
 
@@ -297,7 +298,7 @@
                 generateFolderIcon() {
                     return this.$h('i', {
                         class: [
-                            this.hasChildren ? 'icon-folder': 'icon-attribute',
+                            this.hasChildren ? '': '',
                             'text-[24px] cursor-pointer'
                         ],
                     });
@@ -320,7 +321,7 @@
                 return this.$h(
                     'div', {
                         class: [
-                            'v-tree-item active inline-block w-full [&>.v-tree-item]:ltr:pl-[25px] [&>.v-tree-item]:rtl:pr-[25px] [&>.v-tree-item]:hidden [&.active>.v-tree-item]:block',
+                            'v-tree-item inline-block w-full [&>.v-tree-item]:ltr:pl-[25px] [&>.v-tree-item]:rtl:pr-[25px] [&>.v-tree-item]:hidden [&.active>.v-tree-item]:block',
                             this.hasChildren ? 'has-children' : 'ltr:!pl-[55px] rtl:!pr-[55px]',
                         ],
                     }, [

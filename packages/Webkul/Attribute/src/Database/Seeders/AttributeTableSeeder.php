@@ -116,11 +116,11 @@ class AttributeTableSeeder extends Seeder
             ], [
                 'id'                  => 9,
                 'code'                => 'short_description',
-                'admin_name'          => 'Short Description',
+                'admin_name'          => 'Highlights',
                 'type'                => 'textarea',
                 'validation'          => NULL,
                 'position'            => 11,
-                'is_required'         => 1,
+                'is_required'         => 0,
                 'is_unique'           => 0,
                 'value_per_locale'    => 1,
                 'value_per_channel'   => 1,
@@ -139,7 +139,7 @@ class AttributeTableSeeder extends Seeder
                 'type'                => 'textarea',
                 'validation'          => NULL,
                 'position'            => 12,
-                'is_required'         => 1,
+                'is_required'         => 0,
                 'is_unique'           => 0,
                 'value_per_locale'    => 1,
                 'value_per_channel'   => 1,
@@ -306,7 +306,7 @@ class AttributeTableSeeder extends Seeder
             ],[
                 'id'                  => 19,
                 'code'                => 'length',
-                'admin_name'          => 'Length',
+                'admin_name'          => 'Length (CM)',
                 'type'                => 'text',
                 'validation'          => 'decimal',
                 'position'            => 22,
@@ -325,7 +325,7 @@ class AttributeTableSeeder extends Seeder
             ], [
                 'id'                  => 20,
                 'code'                => 'width',
-                'admin_name'          => 'Width',
+                'admin_name'          => 'Width (CM)',
                 'type'                => 'text',
                 'validation'          => 'decimal',
                 'position'            => 23,
@@ -363,7 +363,7 @@ class AttributeTableSeeder extends Seeder
             ], [
                 'id'                  => 22,
                 'code'                => 'weight',
-                'admin_name'          => 'Weight',
+                'admin_name'          => 'Weight (KG)',
                 'type'                => 'text',
                 'validation'          => 'decimal',
                 'position'            => 25,
@@ -561,7 +561,7 @@ class AttributeTableSeeder extends Seeder
             ], [
                'id'           => 20,
                'locale'       => 'en',
-               'name'         => 'Height',
+               'name'         => 'Height (CM)',
                'attribute_id' => 20,
             ], [
                'id'           => 21,

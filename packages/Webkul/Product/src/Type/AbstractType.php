@@ -2,9 +2,11 @@
 
 namespace Webkul\Product\Type;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Webkul\Category\Models\Category;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Product\Repositories\ProductRepository;
@@ -263,7 +265,7 @@ abstract class AbstractType
             $data['categories'] = [];
         }
 
-        $product->categories()->sync($data['categories']);
+        $product->categories()->sync($this->getCategoriesWithParents($data['categories']));
 
         $product->up_sells()->sync($data['up_sells'] ?? []);
 
@@ -283,6 +285,22 @@ abstract class AbstractType
         );
 
         return $product;
+    }
+
+    private function getCategoriesWithParents(array $category_ids)
+    {
+        /** @var Collection $categories */
+        $categories = Category::query()->whereIn('id', $category_ids)->get();
+        $i = 0;
+        while(true){
+            if($i >= $categories->count())
+                break;
+            $category = $categories[$i];
+            if(!is_null($category->parent))
+                $categories->push($category->parent);
+            $i++;
+        }
+        return $categories->unique('id')->where('id', "!=", 1)->pluck('id');
     }
 
     /**
