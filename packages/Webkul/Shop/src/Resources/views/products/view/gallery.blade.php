@@ -10,11 +10,12 @@
                 <img
                     :class="`min-w-[100px] max-h-[100px] rounded-[12px] ${ hover ? 'cursor-pointer' : '' }`"
                     v-for="image in media.images"
-                    :src="image.small_image_url"
+                    :src="image.original_image_url"
                     alt="@lang('shop::app.products.view.gallery.thumbnail-image')"
                     width="100"
                     height="100"
                     @mouseover="change(image)"
+                    style="object-fit: contain; height: 609px; width: 560px"
                 />
 
                 <!-- Need to Set Play Button  -->
@@ -50,6 +51,7 @@
                     width="560"
                     height="609"
                     @load="onMediaLoad()"
+                    style="object-fit: contain; height: 609px; width: 560px"
                 />
 
                 <div
@@ -74,7 +76,7 @@
         <!-- Product slider Image with shimmer -->
         <div class="flex gap-[30px] 1180:hidden overflow-auto scrollbar-hide">
             <x-shop::media.images.lazy
-                ::src="image.large_image_url"
+                ::src="image.original_image_url"
                 class="min-w-[450px] max-sm:min-w-full w-[490px]"
                 v-for="image in media.images"
             >

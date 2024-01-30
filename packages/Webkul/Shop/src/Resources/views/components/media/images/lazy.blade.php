@@ -19,6 +19,7 @@
             :id="'image-' + $.uid"
             @load="onLoad"
             v-show="! isLoading"
+            style="object-fit: contain; height: 500px; width: 500px"
         >
     </script>
 
@@ -36,7 +37,7 @@
 
             mounted() {
                 let self = this;
-                
+
                 let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
                     entries.forEach(function(entry) {
                         if (entry.isIntersecting) {
@@ -51,7 +52,7 @@
 
                 lazyImageObserver.observe(document.getElementById('image-shimmer-' + this.$.uid));
             },
-            
+
             methods: {
                 onLoad() {
                     this.isLoading = false;
