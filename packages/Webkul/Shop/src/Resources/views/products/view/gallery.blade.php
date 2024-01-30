@@ -7,8 +7,8 @@
         <div class="flex gap-[30px] h-max sticky top-[30px] max-1180:hidden">
             <!-- Product Image Slider -->
             <div class="flex-24 place-content-start h-509 overflow-x-hidden overflow-y-auto flex gap-[30px] max-w-[100px] flex-wrap">
-                <img 
-                    :class="`min-w-[100px] max-h-[100px] rounded-[12px] ${ hover ? 'cursor-pointer' : '' }`" 
+                <img
+                    :class="`min-w-[100px] max-h-[100px] rounded-[12px] ${ hover ? 'cursor-pointer' : '' }`"
                     v-for="image in media.images"
                     :src="image.small_image_url"
                     alt="@lang('shop::app.products.view.gallery.thumbnail-image')"
@@ -18,18 +18,18 @@
                 />
 
                 <!-- Need to Set Play Button  -->
-                <video 
+                <video
                     class="min-w-[100px] rounded-[12px]"
                     v-for="video in media.videos"
                     @mouseover="change(video)"
                 >
-                    <source 
-                        :src="video.video_url" 
+                    <source
+                        :src="video.video_url"
                         type="video/mp4"
                     />
                 </video>
             </div>
-            
+
             <!-- Media shimmer Effect -->
             <div
                 class="max-w-[560px] max-h-[609px]"
@@ -42,9 +42,9 @@
                 class="max-w-[560px] max-h-[609px]"
                 v-show="! isMediaLoading"
             >
-                <img 
-                    class="min-w-[450px] rounded-[12px]" 
-                    :src="baseFile.path" 
+                <img
+                    class="min-w-[450px] rounded-[12px]"
+                    :src="baseFile.path"
                     v-if="baseFile.type == 'image'"
                     alt="@lang('shop::app.products.view.gallery.product-image')"
                     width="560"
@@ -56,18 +56,18 @@
                     class="min-w-[450px] rounded-[12px]"
                     v-if="baseFile.type == 'video'"
                 >
-                    <video  
-                        controls                             
+                    <video
+                        controls
                         width='475'
                         @load="onMediaLoad()"
                     >
-                        <source 
-                            :src="baseFile.path" 
+                        <source
+                            :src="baseFile.path"
                             type="video/mp4"
                         />
-                    </video>    
+                    </video>
                 </div>
-                
+
             </div>
         </div>
 
@@ -75,7 +75,7 @@
         <div class="flex gap-[30px] 1180:hidden overflow-auto scrollbar-hide">
             <x-shop::media.images.lazy
                 ::src="image.large_image_url"
-                class="min-w-[450px] max-sm:min-w-full w-[490px]" 
+                class="min-w-[450px] max-sm:min-w-full w-[490px]"
                 v-for="image in media.images"
             >
             </x-shop::media.images.lazy>
@@ -112,7 +112,7 @@
 
                     handler(newImages, oldImages) {
                         if (JSON.stringify(newImages) !== JSON.stringify(oldImages)) {
-                            this.baseFile.path = newImages[0].large_image_url; 
+                            this.baseFile.path = newImages[0].original_image_url;
                         }
                     },
                 },
@@ -121,7 +121,7 @@
             mounted() {
                 if (this.media.images.length) {
                     this.baseFile.type = 'image';
-                    this.baseFile.path = this.media.images[0].large_image_url;
+                    this.baseFile.path = this.media.images[0].original_image_url;
                 } else {
                     this.baseFile.type = 'video';
                     this.baseFile.path = this.media.videos[0].video_url;
@@ -141,9 +141,9 @@
                     } else {
                         this.baseFile.type = 'image';
 
-                        this.baseFile.path = file.large_image_url;
+                        this.baseFile.path = file.original_image_url;
                     }
-                    
+
                     this.hover = true;
                 }
             }
