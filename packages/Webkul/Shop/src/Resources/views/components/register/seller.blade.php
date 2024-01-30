@@ -325,7 +325,7 @@
         @lang('shop::app.customers.signup-form.account-exists')
 
         <a class="text-navyBlue"
-           href="{{ route('shop.customer.session.index') }}"
+           href="{{ route('admin.session.create') }}"
         >
             @lang('shop::app.customers.signup-form.sign-in-button')
         </a>
