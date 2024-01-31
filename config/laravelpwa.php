@@ -4,7 +4,7 @@ return [
     'name' => 'Souq Naif',
     'manifest' => [
         'name' => env('APP_NAME', 'Souq Naif'),
-        'short_name' => 'SN',
+        'short_name' => 'Souq Naif',
         'start_url' => '/',
         'background_color' => '#00b4ff',
         'theme_color' => '#15235e',
