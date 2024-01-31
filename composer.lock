@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de69c0ffaf9cb1d1232830003fdf7e9e",
+    "content-hash": "0f6cb032f1e8bde6c67011b7efff7b96",
     "packages": [
         {
             "name": "astrotomic/laravel-translatable",
@@ -7028,6 +7028,57 @@
                 "source": "https://github.com/shetabit/visitor/tree/v4.1.0"
             },
             "time": "2023-07-27T19:17:51+00:00"
+        },
+        {
+            "name": "silviolleite/laravelpwa",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silviolleite/laravel-pwa.git",
+                "reference": "419e751ee220099149e13dfa6c2e7e8b14ab3992"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silviolleite/laravel-pwa/zipball/419e751ee220099149e13dfa6c2e7e8b14ab3992",
+                "reference": "419e751ee220099149e13dfa6c2e7e8b14ab3992",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LaravelPWA\\Providers\\LaravelPWAServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LaravelPWA\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Silvio Luis Leite",
+                    "email": "silviolleite@gmail.com"
+                }
+            ],
+            "description": "Looks like an app, feels like an app, but NOT an app.",
+            "keywords": [
+                "laravel",
+                "php",
+                "progressive web apps",
+                "pwa"
+            ],
+            "support": {
+                "issues": "https://github.com/silviolleite/laravel-pwa/issues",
+                "source": "https://github.com/silviolleite/laravel-pwa/tree/master"
+            },
+            "time": "2021-04-01T06:08:00+00:00"
         },
         {
             "name": "spatie/browsershot",
