@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 use Organon\Marketplace\Models\Admin;
 use Organon\Marketplace\Models\Product;
+use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
 use Webkul\Admin\DataGrids\Catalog\ProductDataGrid;
 use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Admin\Http\Requests\InventoryRequest;
@@ -26,6 +27,7 @@ use Webkul\Product\Repositories\ProductRepository;
 
 class ProductController extends Controller
 {
+    use InteractsWithAuthenticatedAdmin;
     /*
     * Using const variable for status
     */
@@ -462,5 +464,20 @@ class ProductController extends Controller
         ]);
 
         return Storage::download($productAttribute['text_value']);
+    }
+
+
+    public function updatePrice($id){
+        request()->validate([
+            'price' => ['required', 'numeric', 'min:0']
+        ]);
+        $newPrice = request()->get('price');
+        $admin = $this->getAuthenticatedAdmin();
+        $product = $this->productRepository->findOrFail($id);
+        if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
+            abort(401, 'this action is unauthorized');
+        $this->productRepository->update(['price' => $newPrice, 'channel' => 'default'], $id);
+        Event::dispatch('catalog.product.update.after', $product);
+        return redirect()->route('admin.catalog.products.index');
     }
 }

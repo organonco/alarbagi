@@ -536,6 +536,7 @@ return [
                     'mass-delete-success'    => 'Selected Products Deleted Successfully',
                     'name'                   => 'Name',
                     'out-of-stock'           => 'Out of Stock',
+                    'stock-unmanaged'           => 'Stock Unmanaged',
                     'price'                  => 'Price',
                     'product-image'          => 'Product Image',
                     'qty'                    => 'Quantity',

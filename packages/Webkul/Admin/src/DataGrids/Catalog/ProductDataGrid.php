@@ -84,6 +84,9 @@ class ProductDataGrid extends DataGrid
                 $leftJoin->on('pc.category_id', '=', 'ct.category_id')
                     ->whereIn('ct.locale', $whereInLocales);
             })
+            ->leftJoin('product_attribute_values as att', function($leftJoin){
+                $leftJoin->on('product_flat.product_id', '=', 'att.product_id')->where('att.attribute_id', '=','28');
+            })
             ->select(
                 'product_flat.locale',
                 'product_flat.channel',
@@ -98,7 +101,9 @@ class ProductDataGrid extends DataGrid
                 'product_flat.price',
                 'product_flat.url_key',
                 'af.name as attribute_family',
-                DB::raw('SUM(DISTINCT ' . $tablePrefix . 'product_inventories.qty) as quantity')
+                DB::raw('SUM(DISTINCT ' . $tablePrefix . 'product_inventories.qty) as quantity'),
+                'product_flat.product_id as id',
+                'att.boolean_value as manage_stock'
             )
             ->addSelect(DB::raw('COUNT(DISTINCT ' . $tablePrefix . 'product_images.id) as images_count'));
 

@@ -27,6 +27,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
 
             Route::put('edit/{id}', 'update')->name('admin.catalog.attributes.update');
 
+
             Route::delete('edit/{id}', 'destroy')->name('admin.catalog.attributes.delete');
 
             Route::post('mass-delete', 'massDestroy')->name('admin.catalog.attributes.mass_delete');
@@ -73,7 +74,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
             Route::post('mass-update', 'massUpdate')->name('admin.catalog.categories.mass_update');
 
             Route::get('search', 'search')->name('admin.catalog.categories.search');
-            
+
             Route::get('tree', 'tree')->name('admin.catalog.categories.tree');
         });
 
@@ -87,6 +88,9 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
          */
         Route::controller(ProductController::class)->prefix('products')->group(function () {
             Route::get('', 'index')->name('admin.catalog.products.index');
+
+            Route::post('edit-price/{id}', 'updatePrice')->name('admin.catalog.update-price');
+
 
             Route::get('create', 'create')->name('admin.catalog.products.create');
 
@@ -109,7 +113,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
             Route::post('mass-action', 'massUpdate')->name('admin.catalog.products.mass_action');
 
             Route::post('mass-update', 'massUpdate')->name('admin.catalog.products.mass_update');
-            
+
             Route::post('mass-delete', 'massDestroy')->name('admin.catalog.products.mass_delete');
 
             Route::get('search', 'search')->name('admin.catalog.products.search');

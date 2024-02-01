@@ -68,7 +68,7 @@
                 <div class="row grid grid-cols-[2fr_1fr_1fr] grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800  ">
                     <div
                         class="flex gap-[10px] items-center select-none"
-                        v-for="(columnGroup, index) in [['name', 'sku', 'attribute_family'], ['base_image', 'price', 'quantity', 'product_id'], ['status', 'category_name', 'type']]"
+                        v-for="(columnGroup, index) in [['name', 'sku'], ['base_image', 'price', 'quantity'], ['status', 'category_name']]"
                     >
 
                         @if ($hasPermission)
@@ -171,12 +171,6 @@
                                 @{{ "@lang('admin::app.catalog.products.index.datagrid.sku-value')".replace(':sku', record.sku) }}
                             </p>
 
-                            <p
-                                class="text-gray-600 dark:text-gray-300"
-                            >
-                                @{{ "@lang('admin::app.catalog.products.index.datagrid.attribute-family-value')".replace(':attribute_family', record.attribute_family) }}
-                            </p>
-
                         </div>
                     </div>
 
@@ -210,11 +204,13 @@
                         </div>
 
                         <div class="flex flex-col gap-[6px]">
-                            <p
-                                class="text-[16px] text-gray-800 dark:text-white font-semibold"
-                                v-text="$admin.formatPrice(record.price)"
-                            >
-                            </p>
+                            <div>
+                                <form :action=`{{ route('admin.catalog.update-price', '') }}/${record.id}` style="display: flex;" method="post">
+                                    @csrf
+                                    <input name="price" :value="record.price" style="width: 150px; border: 1px solid lightgrey; border-radius: 5px; padding-left: 5px"/>
+                                    <button type="submit" style="margin-left: 10px; height: 40px; border: 1px solid lightgrey; border-radius: 5px;" class="transparent-button">save</button>
+                                </form>
+                            </div>
 
                             <!-- Parent Product Quantity -->
                             <div  v-if="['configurable', 'bundle', 'grouped'].includes(record.type)">
@@ -224,9 +220,19 @@
                             </div>
 
                             <div v-else>
+
                                 <p
                                     class="text-gray-600 dark:text-gray-300"
-                                    v-if="record.quantity > 0"
+                                    v-if="!record.manage_stock"
+                                >
+                                    <span class="text-green-600">
+                                        @lang('admin::app.catalog.products.index.datagrid.stock-unmanaged')
+                                    </span>
+                                </p>
+
+                                <p
+                                    class="text-gray-600 dark:text-gray-300"
+                                    v-else-if="record.quantity > 0"
                                 >
                                     <span class="text-green-600">
                                         @{{ "@lang('admin::app.catalog.products.index.datagrid.qty-value')".replace(':qty', record.quantity) }}
@@ -242,10 +248,6 @@
                                     </span>
                                 </p>
                             </div>
-
-                            <p class="text-gray-600 dark:text-gray-300">
-                                @{{ "@lang('admin::app.catalog.products.index.datagrid.id-value')".replace(':id', record.product_id) }}
-                            </p>
                         </div>
                     </div>
 
@@ -259,12 +261,6 @@
                             <p
                                 class="text-gray-600 dark:text-gray-300"
                                 v-text="record.category_name ?? 'N/A'"
-                            >
-                            </p>
-
-                            <p
-                                class="text-gray-600 dark:text-gray-300"
-                                v-text="record.type"
                             >
                             </p>
                         </div>
