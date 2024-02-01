@@ -678,7 +678,7 @@ return [
                     'state' => 'State',
                     'select-state' => 'Select State',
                     'save-address' => 'Save this address',
-                    'telephone' => 'Telephone',
+                    'telephone' => 'Phone Number',
                 ],
 
                 'index' => [
