@@ -122,13 +122,11 @@
 
             <a
                     href="{{ route('shop.home.index') }}"
-                    class="max-h-[30px]"
-                    aria-label="Bagisto"
             >
                 <img
                         src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
                         alt="Logo"
-                        width="90"
+                        width="120"
                         height="29"
                 >
             </a>
