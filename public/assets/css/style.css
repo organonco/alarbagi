@@ -39,4 +39,8 @@
     .phone-hidden {
         display: none;
     }
+
+    .container{
+        padding: 0 30px
+    }
 }
