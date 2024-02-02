@@ -20,19 +20,6 @@
                     <span class="icon-hamburger text-[24px] cursor-pointer"></span>
                 </x-slot:toggle>
 
-                <x-slot:header>
-                    <div class="flex justify-between items-center">
-                        <a href="{{ route('shop.home.index') }}">
-                            <img
-                                    src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
-                                    alt="Logo"
-                                    width="131"
-                                    height="29"
-                            >
-                        </a>
-                    </div>
-                </x-slot:header>
-
                 <x-slot:content>
                     {{-- Account Profile Hero Section --}}
                     <div class="grid grid-cols-[auto_1fr] gap-[15px] items-center mb-[15px] p-[10px] border border-[#E9E9E9] rounded-[12px]">
