@@ -5,7 +5,7 @@
         <div class="flex gap-10 overflow-auto scrollbar-hide max-sm:gap-4">
             @for ($i = 0;  $i < $count; $i++)
                 <div class="grid grid-cols-1 gap-[15px] justify-items-center min-w-[120px]">
-                    <div class="shimmer relative w-[110px] h-[110px] overflow-hidden rounded-full">
+                    <div class="shimmer relative w-[110px] h-[110px] overflow-hidden rounded-full categories-carousel">
                         <img class="bg-[#F5F5F5] rounded-sm">
                     </div>
 

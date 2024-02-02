@@ -23,7 +23,7 @@
                     >
                         <a
                             :href="category.url_path"
-                            class="w-[110px] h-[110px] bg-[#F5F5F5] rounded-full"
+                            class="w-[110px] h-[110px] bg-[#F5F5F5] rounded-full categories-carousel"
                             :aria-label="category.name"
                         >
                             <template v-if="category.images.logo_url">
@@ -31,7 +31,7 @@
                                     ::src="category.images.logo_url"
                                     width="110"
                                     height="110"
-                                    class="w-[110px] h-[110px] rounded-full"
+                                    class="w-[110px] h-[110px] rounded-full categories-carousel"
                                     ::alt="category.name"
                                 ></x-shop::media.images.lazy>
                             </template>
@@ -51,13 +51,13 @@
                 </div>
 
                 <span
-                    class="flex items-center justify-center absolute top-[37px] -left-[41px] w-[50px] h-[50px] bg-white border border-black rounded-full transition icon-arrow-left-stylish text-[25px] hover:bg-black hover:text-white max-lg:-left-[29px] cursor-pointer"
+                    class="flex items-center justify-center absolute top-[37px] -left-[41px] w-[50px] h-[50px] bg-white border border-black rounded-full transition icon-arrow-left-stylish text-[25px] hover:bg-black hover:text-white max-lg:-left-[29px] cursor-pointer phone-hidden"
                     @click="swipeLeft"
                 >
                 </span>
 
                 <span
-                    class="flex items-center justify-center absolute top-[37px] -right-[22px] w-[50px] h-[50px] bg-white border border-black rounded-full transition icon-arrow-right-stylish text-[25px] hover:bg-black hover:text-white max-lg:-right-[29px] cursor-pointer"
+                    class="flex items-center justify-center absolute top-[37px] -right-[22px] w-[50px] h-[50px] bg-white border border-black rounded-full transition icon-arrow-right-stylish text-[25px] hover:bg-black hover:text-white max-lg:-right-[29px] cursor-pointer phone-hidden"
                     @click="swipeRight"
                 >
                 </span>
