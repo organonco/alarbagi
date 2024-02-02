@@ -34,4 +34,10 @@ class ProductAttributeValueRepository extends Repository
 
         return ! $count;
     }
+
+
+    public function hasTheSameValueCount($attributeId, $value, $productId)
+    {
+        return $this->model->where('product_id', '!=', $productId)->where('attribute_id', $attributeId)->where('text_value', 'LIKE', "%" . $value)->count();
+    }
 }

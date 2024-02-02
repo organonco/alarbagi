@@ -151,6 +151,10 @@ abstract class AbstractType
         $product = $this->productRepository->withoutGlobalScope('seller_status')->find($id);
 
         $product->update($data);
+        $existingUrlKeys = $this->attributeValueRepository->hasTheSameValueCount(3, $data['url_key'], $id);
+
+        if($existingUrlKeys > 0)
+            $data['url_key'] .= '-' . $existingUrlKeys;
 
         $route = request()->route()?->getName();
 
