@@ -5,16 +5,6 @@
         </x-slot>
 
 
-        {{--        <div class="container px-[60px] max-lg:px-[30px] max-sm:px-[15px]">--}}
-        {{--            <div class="flex justify-between items-center mt-[30px]">--}}
-        {{--                <h2 class="text-[26px] font-medium">--}}
-        {{--                    {{$seller->name}}--}}
-        {{--                </h2>--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
-
-
-
         {{-- Hero Image --}}
         @if ($seller->banner_path)
             <div class="container mt-[30px] px-[60px] max-lg:px-[30px]">
@@ -47,11 +37,14 @@
             >
                 <div class="container px-[60px] max-lg:px-[30px] max-sm:px-[15px] py-[60px]">
 
+
+                    @if(($seller->logo_url))
                     <div style="display: flex; justify-content: center">
                         <div class="profile-img-wrapper">
                             <img src="{{$seller->logo_url}}" class="profile-img"/>
                         </div>
                     </div>
+                    @endif
                     <h2 class="text-[26px] font-bold mt-[30px] text-center mb-[30px]">
                         {{$seller->name}}
                     </h2>
@@ -67,16 +60,16 @@
 
                     <div class="flex gap-[40px] items-start md:mt-[40px] max-lg:gap-[20px]">
                         <!-- Product Listing Filters -->
-                        {{--                                            @include('shop::categories.filters')--}}
+{{--                                                                    @include('shop::categories.filters')--}}
 
 
 
                         <!-- Product Listing Container -->
                         <div class="flex-1">
 
-                            <div class="hidden">
+{{--                            <div class="hidden">--}}
                                 @include('shop::categories.toolbar')
-                            </div>
+{{--                            </div>--}}
 
                             <!-- Product List Card Container -->
                             <div
@@ -291,7 +284,7 @@
                 .profile-img-wrapper {
                     overflow: hidden;
                     display: inline-block;
-                    border: 1px solid black;
+                    border: 1px solid #EFEFEF;
                     border-radius: 50%;
                 }
 
