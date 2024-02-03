@@ -32,6 +32,7 @@
                                     width="110"
                                     height="110"
                                     class="w-[110px] h-[110px] rounded-full categories-carousel"
+                                    style="border: 1px solid #AFAFAF"
                                     ::alt="category.name"
                                 ></x-shop::media.images.lazy>
                             </template>
