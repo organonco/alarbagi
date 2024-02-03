@@ -63,4 +63,7 @@
     .categories-carousel-text{
         font-size: 12px;
     }
+    .gap-05-mobile{
+        gap: 0rem;
+    }
 }
