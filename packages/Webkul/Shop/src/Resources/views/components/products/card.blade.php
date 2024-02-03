@@ -29,7 +29,7 @@
 
                 <div class="action-items bg-black">
                     <p
-                        class="inline-block absolute top-[20px] left-[20px] px-[10px]  bg-[#E51A1A] rounded-[44px] text-white text-[14px]"
+                        class="inline-block absolute top-[20px] left-[20px] px-[10px]  sn-background-light-main rounded-[44px] text-white text-[14px]"
                         v-if="product.on_sale"
                     >
                         @lang('shop::app.components.products.card.sale')
