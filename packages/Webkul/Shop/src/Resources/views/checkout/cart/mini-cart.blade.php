@@ -23,25 +23,21 @@
             <!-- Drawer Header -->
             <x-slot:header>
                 <div class="flex justify-between items-center">
-                    <p class="text-[26px] font-medium">
+                    <p class="text-[26px] font-medium sn-color-light-main">
                         @lang('shop::app.checkout.cart.mini-cart.shopping-cart')
                     </p>
                 </div>
-
-                <p class="text-[16px]">
-                    @lang('shop::app.checkout.cart.mini-cart.offer-on-orders')
-                </p>
             </x-slot:header>
 
             <!-- Drawer Content -->
             <x-slot:content>
                 <!-- Cart Item Listing -->
-                <div 
-                    class="grid gap-[50px] mt-[35px]" 
+                <div
+                    class="grid gap-[50px] mt-[35px]"
                     v-if="cart?.items?.length"
                 >
-                    <div 
-                        class="flex gap-x-[20px]" 
+                    <div
+                        class="flex gap-x-[20px]"
                         v-for="item in cart?.items"
                     >
                         <!-- Cart Item Image -->
@@ -55,7 +51,7 @@
                         <!-- Cart Item Information -->
                         <div class="grid flex-1 gap-y-[10px] place-content-start justify-stretch">
                             <div class="flex flex-wrap justify-between">
-                                
+
                                 <p
                                     class="text-[16px] font-medium max-w-[80%]"
                                     v-text="item.name"
@@ -147,12 +143,12 @@
             <x-slot:footer>
                 <div v-if="cart?.items?.length">
                     <div class="flex justify-between items-center mt-[60px] mb-[30px] px-[25px] pb-[8px] border-b-[1px] border-[#E9E9E9]">
-                        <p class="text-[14px] font-medium text-[#6E6E6E]">
+                        <p class="text-[14px] font-medium sn-color-light-main">
                             @lang('shop::app.checkout.cart.mini-cart.subtotal')
                         </p>
 
                         <p
-                            class="text-[30px] font-semibold"
+                            class="text-[30px] font-semibold sn-color-light-main"
                             v-text="cart.formatted_grand_total"
                         >
                         </p>
@@ -162,7 +158,7 @@
                     <div class="px-[25px]">
                         <a
                             href="{{ route('shop.checkout.onepage.index') }}"
-                            class="block w-full mx-auto m-0 ml-[0px] py-[15px] px-[43px] bg-navyBlue rounded-[18px] text-white text-base font-medium text-center cursor-pointer max-sm:px-[20px]"
+                            class="block w-full mx-auto m-0 ml-[0px] py-[15px] px-[43px] sn-button-primary text-center"
                         >
                             @lang('shop::app.checkout.cart.mini-cart.continue-to-checkout')
                         </a>
