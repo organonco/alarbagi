@@ -8,7 +8,7 @@
     <script type="text/x-template" id="v-product-card-template">
         <!-- Grid Card -->
         <div
-            class='grid gap-2 content-start w-full relative' style="border: 1px solid #D0D0D0;"
+            class='grid gap-2 content-start w-full relative' style="border: 1px solid #EFEFEF;"
             v-if="mode != 'list'"
         >
             <div class="relative overflow-hidden group max-w-[291px] max-h-[300px] rounded-[4px]">
