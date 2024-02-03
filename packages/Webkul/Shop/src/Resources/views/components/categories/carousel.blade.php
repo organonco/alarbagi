@@ -42,7 +42,8 @@
                             class=""
                         >
                             <p
-                                class="text-center text-black text-[18px] max-sm:font-normal"
+                                class="text-center sn-color-secondary text-[18px] max-sm:font-normal"
+                                style=""
                                 v-text="category.name"
                             >
                             </p>

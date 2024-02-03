@@ -71,11 +71,11 @@
             </div>
 
             <div class="grid gap-2.5 content-start max-w-[291px]">
-                <p class="text-base" v-text="product.name" style="overflow: hidden;
+                <p class="text-base sn-color-secondary" v-text="product.name" style="overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; color: #6a6a6a"></p>
+  -webkit-box-orient: vertical;"></p>
 
                 <div
                     class="flex gap-2.5 font-semibold text-lg sn-color-light-main"
