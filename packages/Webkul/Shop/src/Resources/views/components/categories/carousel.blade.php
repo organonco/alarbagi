@@ -18,7 +18,7 @@
                     class="flex gap-10 overflow-auto scroll-smooth scrollbar-hide max-sm:gap-4 gap-05-mobile"
                 >
                     <div
-                        class="grid grid-cols-1 gap-[15px] justify-items-center min-w-[120px] max-w-[120px] font-medium"
+                        class="grid grid-cols-1 gap-[15px] justify-items-center min-w-[110px] max-w-[110px] font-medium"
                         v-for="category in categories"
                     >
                         <a
