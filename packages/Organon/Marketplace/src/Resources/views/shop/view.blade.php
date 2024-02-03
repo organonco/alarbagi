@@ -148,7 +148,7 @@
 
                             <!-- Load More Button -->
                             <button
-                                    class="sn-button-primary"
+                                    class="sn-button-primary block mx-auto w-max mt-[60px]"
                                     @click="loadMoreProducts"
                                     v-if="links.next"
                             >
