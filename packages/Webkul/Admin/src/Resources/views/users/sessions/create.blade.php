@@ -89,7 +89,7 @@
                             @lang('admin::app.users.sessions.forget-password-link')
                         </a>
                         <button
-                            class="px-[14px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer">
+                            class="sn-button-primary">
                             @lang('admin::app.users.sessions.submit-btn')
                         </button>
                     </div>

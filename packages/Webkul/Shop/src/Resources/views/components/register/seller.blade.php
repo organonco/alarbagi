@@ -1,11 +1,11 @@
 <div
     class="w-full max-w-[870px] mx-auto px-[90px] py-[60px] border border-[#E9E9E9] rounded-[12px] max-md:px-[30px] max-md:py-[30px] h-fit"
 >
-    <h1 class="text-[40px] font-dmserif max-sm:text-[25px]">
+    <h1 class="text-[40px] font-dmserif max-sm:text-[25px] sn-color-light-main">
         @lang('marketplace::app.register.title.seller')
     </h1>
 
-    <p class="mt-[15px] text-[#6E6E6E] text-[20px] max-sm:text-[16px]">
+    <p class="mt-[15px] sn-color-secondary text-[20px] max-sm:text-[16px]">
         @lang('marketplace::app.register.desc.seller')
     </p>
 
@@ -310,7 +310,7 @@
 
             <div class="flex gap-[36px] flex-wrap items-center mt-[30px]">
                 <button
-                    class="primary-button block w-full max-w-[1260px] py-[16px] px-[43px] mx-auto m-0 ml-[0px] rounded-[18px] text-[16px] text-center"
+                    class="block w-full max-w-[1260px] sn-button-primary"
                     type="submit"
                 >
                     @lang('shop::app.customers.signup-form.button-title')
