@@ -42,7 +42,7 @@
                             class=""
                         >
                             <p
-                                class="text-center sn-color-secondary text-[18px] max-sm:font-normal"
+                                class="text-center sn-color-secondary text-[18px] max-sm:font-normal categories-carousel-text"
                                 style=""
                                 v-text="category.name"
                             >

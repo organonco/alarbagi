@@ -60,4 +60,7 @@
     .container{
         padding: 0 30px
     }
+    .categories-carousel-text{
+        font-size: 12px;
+    }
 }
