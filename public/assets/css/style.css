@@ -33,6 +33,10 @@
     font-weight: bold;
 }
 
+.sn-border-main{
+    border-color: #00b4ff;
+}
+
 @media (max-width: 480px) {
     .banner {
         padding-right: 0px !important;
