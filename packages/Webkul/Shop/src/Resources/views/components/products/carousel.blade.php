@@ -10,7 +10,7 @@
     <script type="text/x-template" id="v-products-carousel-template">
         <div class="container mt-20 max-lg:px-[30px] max-sm:mt-[30px]" v-if="! isLoading && products.length">
             <div class="flex justify-between">
-                <h3 class="text-[30px] font-dmserif max-sm:text-[25px]" v-text="title"></h3>
+                <h3 class="text-[30px] font-dmserif max-sm:text-[25px] sn-color-light-main" v-text="title"></h3>
 
                 <div class="flex gap-8 justify-between items-center">
                     <span
@@ -40,7 +40,7 @@
 
             <a
                 :href="navigationLink"
-                class="secondary-button block w-max mt-[60px] mx-auto py-[11px] px-[43px] rounded-[18px] text-base text-center"
+                class="sn-button-primary block w-max mt-[60px] mx-auto py-[11px] rounded-[18px]"
                 v-if="navigationLink"
             >
                 @lang('shop::app.components.products.carousel.view-all')

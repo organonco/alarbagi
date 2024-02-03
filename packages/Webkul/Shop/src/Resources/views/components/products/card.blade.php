@@ -75,10 +75,10 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;"></p>
+  -webkit-box-orient: vertical; color: #6a6a6a"></p>
 
                 <div
-                    class="flex gap-2.5 font-semibold text-lg"
+                    class="flex gap-2.5 font-semibold text-lg sn-color-light-main"
                     v-html="product.price_html"
                 >
                 </div>
@@ -151,7 +151,7 @@
                 </p>
 
                 <div
-                    class="flex gap-2.5 text-lg font-semibold"
+                    class="flex gap-2.5 text-lg font-semibold sn-color-light-main"
                     v-html="product.price_html"
                 >
                 </div>

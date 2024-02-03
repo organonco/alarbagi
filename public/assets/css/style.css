@@ -20,6 +20,14 @@
     border: none !important;
 }
 
+.sn-button-primary{
+    color: white;
+    background-color: #00b4ff;
+    border-radius: 12px;
+    border: none;
+    padding: 15px 30px;
+}
+
 @media (max-width: 480px) {
     .banner {
         padding-right: 0px !important;
