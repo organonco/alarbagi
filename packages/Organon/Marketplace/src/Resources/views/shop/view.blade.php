@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     @endif
-                    <h2 class="text-[26px] font-bold mt-[30px] text-center mb-[30px]">
+                    <h2 class="text-[26px] font-bold mt-[30px] text-center mb-[30px] sn-color-light-main">
                         {{$seller->name}}
                     </h2>
 
@@ -53,7 +53,7 @@
                         {{$seller->address}}
                     </div>
 
-                    <div class="text-center mt-[30px]">
+                    <div class="text-center mt-[30px] sn-color-secondary">
                         {{$seller->description}}
                     </div>
 
@@ -148,7 +148,7 @@
 
                             <!-- Load More Button -->
                             <button
-                                    class="secondary-button block mx-auto w-max py-[11px] mt-[60px] px-[43px] rounded-[18px] text-base text-center"
+                                    class="sn-button-primary"
                                     @click="loadMoreProducts"
                                     v-if="links.next"
                             >
