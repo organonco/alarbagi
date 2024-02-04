@@ -135,35 +135,17 @@
                 },
 
                 computed: {
-                    queryParams() {
-                        let queryParams = Object.assign({}, this.filters.filter, this.filters.toolbar);
 
-                        return this.removeJsonEmptyValues(queryParams);
-                    },
+                },
 
-                    queryString() {
-                        return this.jsonToQueryString(this.queryParams);
-                    },
+                mounted: function() {
+                    this.getProducts()
                 },
 
                 watch: {
-                    queryParams() {
-                        this.getProducts();
-                    },
-
-                    queryString() {
-                        window.history.pushState({}, '', '?' + this.queryString);
-                    },
                 },
 
                 methods: {
-                    setFilters(type, filters) {
-                        this.filters[type] = filters;
-                    },
-
-                    clearFilters(type, filters) {
-                        this.filters[type] = {};
-                    },
 
                     getProducts() {
                         this.isDrawerActive = {
@@ -172,14 +154,11 @@
                             filter: false,
                         };
 
-                        this.$axios.get("{{ route('shop.api.products.index', $filters ?? []) }}", {
-                            params: this.queryParams
+                        this.$axios.get("{{ route('shop.api.products.index', $filters) }}".replace(/&amp;/g, '&') , {
                         })
                             .then(response => {
                                 this.isLoading = false;
-
                                 this.products = response.data.data;
-
                                 this.links = response.data.links;
                             }).catch(error => {
                             console.log(error);
@@ -198,29 +177,6 @@
                         }
                     },
 
-                    removeJsonEmptyValues(params) {
-                        Object.keys(params).forEach(function (key) {
-                            if ((!params[key] && params[key] !== undefined)) {
-                                delete params[key];
-                            }
-
-                            if (Array.isArray(params[key])) {
-                                params[key] = params[key].join(',');
-                            }
-                        });
-
-                        return params;
-                    },
-
-                    jsonToQueryString(params) {
-                        let parameters = new URLSearchParams();
-
-                        for (const key in params) {
-                            parameters.append(key, params[key]);
-                        }
-
-                        return parameters.toString();
-                    }
                 },
             });
         </script>
