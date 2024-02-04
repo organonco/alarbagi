@@ -15,9 +15,11 @@
         >
             <div class="container px-[60px] max-lg:px-[30px] max-sm:px-[15px] py-[60px]">
 
+                <h2 class="text-[26px] font-bold mt-[30px] text-center mb-[30px] sn-color-light-main">
+                    {{$title}}
+                </h2>
                 <div class="flex gap-[40px] items-start md:mt-[40px] max-lg:gap-[20px]">
                     <div class="flex-1">
-                        @include('shop::categories.toolbar')
                         <div
                             class="grid grid-cols-1 gap-[25px] mt-[30px]"
                             v-if="filters.toolbar.mode === 'list'"
