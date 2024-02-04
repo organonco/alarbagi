@@ -97,6 +97,6 @@ class ProductController extends Controller
 
     public function index()
     {
-        return view('shop::products.index')->with(['filters' => request()->filters]);
+        return view('shop::products.index')->with(request()->all());
     }
 }
