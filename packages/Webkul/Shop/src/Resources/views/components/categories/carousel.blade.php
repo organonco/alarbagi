@@ -23,7 +23,7 @@
                     >
                         <a
                             :href="category.url_path"
-                            class="w-[110px] h-[110px] bg-[#F5F5F5] rounded-full categories-carousel"
+                            class="w-[110px] h-[110px] categories-carousel"
                             :aria-label="category.name"
                         >
                             <template v-if="category.images.logo_url">
@@ -31,8 +31,7 @@
                                     ::src="category.images.logo_url"
                                     width="110"
                                     height="110"
-                                    class="w-[110px] h-[110px] rounded-full categories-carousel"
-                                    style="border: 1px solid #AFAFAF"
+                                    class="w-[110px] h-[110px] categories-carousel"
                                     ::alt="category.name"
                                 ></x-shop::media.images.lazy>
                             </template>
