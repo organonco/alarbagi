@@ -18,20 +18,20 @@
                     class="flex gap-10 overflow-auto scroll-smooth scrollbar-hide max-sm:gap-4 gap-05-mobile"
                 >
                     <div
-                        class="grid grid-cols-1 gap-[15px] justify-items-center min-w-[110px] max-w-[110px] font-medium"
+                        class="grid grid-cols-1 gap-[15px] justify-items-center min-w-[150px] max-w-[150px] font-medium"
                         v-for="category in categories"
                     >
                         <a
                             :href="category.url_path"
-                            class="w-[110px] h-[110px] categories-carousel"
+                            class="w-[150px] h-[150px] categories-carousel"
                             :aria-label="category.name"
                         >
                             <template v-if="category.images.logo_url">
                                 <x-shop::media.images.lazy
                                     ::src="category.images.logo_url"
-                                    width="110"
-                                    height="110"
-                                    class="w-[110px] h-[110px] categories-carousel"
+                                    width="150"
+                                    height="150"
+                                    class="w-[150px] h-[150px] categories-carousel"
                                     ::alt="category.name"
                                 ></x-shop::media.images.lazy>
                             </template>
