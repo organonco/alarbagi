@@ -65,5 +65,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
         Route::get('product/{id}/{attribute_id}', 'download')->defaults('_config', [
             'view' => 'shop.products.index',
         ])->name('shop.product.file.download');
+
+        Route::get('products', 'index')->name('shop.products.index');
     });
 });

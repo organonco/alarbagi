@@ -40,6 +40,7 @@
 .sn-border-main{
     border-color: #00b4ff;
 }
+.grid-cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 
 @media (max-width: 480px) {
     .banner {
@@ -69,5 +70,8 @@
     }
     .gap-05-mobile{
         gap: 0rem;
+    }
+    .products-carousel{
+
     }
 }

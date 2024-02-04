@@ -3,6 +3,7 @@
 namespace Webkul\Shop\Http\Controllers;
 
 use Illuminate\Support\Facades\Storage;
+use Organon\Marketplace\DataGrids\SellerDataGrid;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Product\Repositories\ProductAttributeValueRepository;
 use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
@@ -92,5 +93,10 @@ class ProductController extends Controller
         } catch (\Exception $e) {
             abort(404);
         }
+    }
+
+    public function index()
+    {
+        return view('shop::products.index')->with(['filters' => request()->filters]);
     }
 }

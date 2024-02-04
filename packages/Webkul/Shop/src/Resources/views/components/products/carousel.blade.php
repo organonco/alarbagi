@@ -18,11 +18,10 @@
 
             <div
                 ref=""
-                class="flex gap-8 [&>*]:flex-[0] mt-[40px] overflow-auto scroll-smooth scrollbar-hide max-sm:mt-[20px]"
-                style="flex-wrap: wrap"
+                class="grid grid-cols-4 gap-8 max-1060:grid-cols-2 max-sm:justify-items-center max-sm:gap-[16px] mt-[40px] max-sm:mt-[20px]"
             >
                 <x-shop::products.card
-                    class="min-w-[291px]"
+                    ::mode="'grid'"
                     v-for="product in products"
                 >
                 </x-shop::products.card>
