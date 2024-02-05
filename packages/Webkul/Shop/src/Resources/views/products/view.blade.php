@@ -279,13 +279,13 @@
                                 {!! view_render_event('bagisto.shop.products.name.before', ['product' => $product]) !!}
 
                                 <div class="flex gap-[15px] justify-between">
-                                    <h1 class="text-[30px] font-medium max-sm:text-[20px]">
+                                    <h1 class="text-[30px] font-medium max-sm:text-[20px] sn-color-light-main">
                                         {{ $product->name }}
                                     </h1>
 
                                     @if (core()->getConfigData('general.content.shop.wishlist_option'))
                                         <div
-                                            class="flex items-center justify-center min-w-[46px] min-h-[46px] max-h-[46px] bg-white border border-black rounded-full text-[24px] transition-all hover:opacity-[0.8] cursor-pointer"
+                                            class="flex items-center justify-center min-w-[46px] min-h-[46px] max-h-[46px] bg-white border border-black rounded-full text-[24px] transition-all hover:opacity-[0.8] cursor-pointer sn-border-main sn-color-light-main"
                                             :class="isWishlist ? 'icon-heart-fill' : 'icon-heart'"
                                             @click="addToWishlist"
                                         >
@@ -293,7 +293,7 @@
                                     @endif
                                 </div>
 
-                                <a class="text-[18px] font-light max-sm:text-[12px]" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
+                                <a class="text-[18px] font-light max-sm:text-[12px] sn-color-secondary" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
                                     {{__('marketplace::app.catalog.products.view.sold_by', ['name' => $product->seller_name])}}
                                 </a>
 
@@ -323,7 +323,7 @@
                                 <!-- Pricing -->
                                 {!! view_render_event('bagisto.shop.products.price.before', ['product' => $product]) !!}
 
-                                <p class="flex gap-2.5 items-center mt-[25px] text-[24px] !font-medium max-sm:mt-[15px] max-sm:text-[18px]">
+                                <p class="flex gap-2.5 items-center mt-[25px] text-[24px] !font-medium max-sm:mt-[15px] max-sm:text-[18px] sn-color-light-main">
                                     {!! $product->getTypeInstance()->getPriceHtml() !!}
 
                                     <span class="text-[18px] text-[#6E6E6E]">
@@ -364,7 +364,7 @@
                                         <x-shop::quantity-changer
                                             name="quantity"
                                             value="1"
-                                            class="gap-x-[16px] py-[15px] px-[26px] rounded-[12px]"
+                                            class="gap-x-[16px] py-[15px] px-[26px] rounded-[12px] sn-button-secondary"
                                         >
                                         </x-shop::quantity-changer>
                                     @endif
@@ -376,7 +376,7 @@
 
                                     <button
                                         type="submit"
-                                        class="secondary-button w-full max-w-full"
+                                        class="sn-button-primary"
                                         {{ ! $product->isSaleable(1) ? 'disabled' : '' }}
                                     >
                                         @lang('shop::app.products.view.add-to-cart')

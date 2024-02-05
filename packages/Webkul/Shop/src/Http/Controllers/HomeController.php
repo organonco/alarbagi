@@ -2,6 +2,7 @@
 
 namespace Webkul\Shop\Http\Controllers;
 
+use Webkul\Category\Repositories\CategoryRepository;
 use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 
 class HomeController extends Controller
@@ -15,7 +16,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(protected ThemeCustomizationRepository $themeCustomizationRepository)
+    public function __construct(protected ThemeCustomizationRepository $themeCustomizationRepository, protected CategoryRepository $categoryRepository)
     {
     }
 
@@ -30,10 +31,11 @@ class HomeController extends Controller
 
         $customizations = $this->themeCustomizationRepository->orderBy('sort_order')->findWhere([
             'status'     => self::STATUS,
-            'channel_id' => core()->getCurrentChannel()->id
+            'channel_id' => core()->getCurrentChannel()->id,
         ]);
 
-        return view('shop::home.index', compact('customizations'));
+        $categories = $this->categoryRepository->where('parent_id', '1')->get();
+        return view('shop::home.index', compact('customizations'))->with(['categories' => $categories]);
     }
 
     /**

@@ -63,8 +63,17 @@
                     :navigation-link="route('shop.products.index', array_merge($data['filters'], ['title' => $data['title']]) ?? [])"
                 >
                 </x-shop::products.carousel>
-
                 @break
         @endswitch
+    @endforeach
+
+    @foreach($categories as $category)
+        @php($filters = ['sort' => 'created_at-desc', 'limit' => '8', 'category_id' => $category['id']])
+            <x-shop::products.carousel
+                title="{{$category->name}}"
+                :src="route('shop.api.products.index', $filters ?? [])"
+                :navigation-link="route('shop.product_or_category.index', $category['slug'])"
+            >
+            </x-shop::products.carousel>
     @endforeach
 </x-shop::layouts>

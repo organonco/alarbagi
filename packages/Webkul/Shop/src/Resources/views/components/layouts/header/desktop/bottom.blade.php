@@ -25,7 +25,19 @@
             v-else
         >
             <div
-                class="relative group border-b-[4px] border-transparent hover:border-b-[4px] hover:border-navyBlue"
+                class="relative group border-b-[4px] border-transparent sn-color-light-main"
+            >
+                <span>
+                    <a
+                        href="{{route('shop.customers.register.index-seller')}}"
+                        class="inline-block px-[20px] uppercase"
+                    >
+                        {{trans('marketplace::app.register.title.seller')}}
+                    </a>
+                </span>
+            </div>
+            <div
+                class="relative group border-b-[4px] border-transparent hover:border-b-[4px] hover:border-primary"
                 v-for="category in categories"
             >
                 <span>
@@ -75,18 +87,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="relative group border-b-[4px] border-transparent hover:border-b-[4px] hover:border-navyBlue"
-            >
-                <span>
-                    <a
-                        href="{{route('shop.customers.register.index-seller')}}"
-                        class="inline-block px-[20px] uppercase"
-                    >
-                        {{trans('marketplace::app.register.title.seller')}}
-                    </a>
-                </span>
-            </div>
+
         </div>
     </script>
 

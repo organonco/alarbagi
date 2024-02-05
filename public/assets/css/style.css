@@ -37,6 +37,19 @@
     font-weight: bold;
 }
 
+.sn-button-secondary{
+    color: #00b4ff;
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid #00b4ff;
+    padding: 15px 30px;
+    font-weight: bold;
+}
+
+.hover\:border-primary:hover{
+    border-color: #00b4ff;
+}
+
 .sn-border-main{
     border-color: #00b4ff;
 }
