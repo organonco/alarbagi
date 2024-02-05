@@ -18,7 +18,7 @@
 
             <div
                 ref=""
-                class="grid max-1060:grid-cols-2 grid-cols-4 gap-8 max-sm:justify-items-center max-sm:gap-[16px] mt-[40px] max-sm:mt-[20px]"
+                class="grid grid-cols-2-4 gap-8 max-sm:justify-items-center max-sm:gap-[16px] mt-[40px] max-sm:mt-[20px]"
             >
                 <x-shop::products.card
                     ::mode="'grid'"
