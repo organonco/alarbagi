@@ -78,7 +78,7 @@
   -webkit-box-orient: vertical;"></p>
 
                 <div
-                    class="flex gap-2.5 font-semibold text-lg sn-color-light-main"
+                    class="flex gap-2.5 gap-05-mobile font-semibold text-lg sn-color-light-main flex-wrap"
                     v-html="product.price_html"
                 >
                 </div>
