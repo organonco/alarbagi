@@ -37,6 +37,15 @@
     font-weight: bold;
 }
 
+.sn-button-primary-mini{
+    color: white;
+    background-color: #00b4ff;
+    border-radius: 12px;
+    border: none;
+    padding: 5px 15px;
+    font-weight: bold;
+}
+
 .sn-button-secondary{
     color: #00b4ff;
     background-color: white;

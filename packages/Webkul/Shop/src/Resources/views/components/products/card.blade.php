@@ -61,7 +61,7 @@
                         @endif
 
                         <button
-                            class="absolute bottom-[15px] left-[50%] py-[11px] px-[43px] bg-white rounded-xl text-navyBlue text-xs w-max font-medium cursor-pointer -translate-x-[50%] translate-y-[54px] group-hover:translate-y-0 transition-all duration-300"
+                            class="absolute bottom-[15px] left-[50%] -translate-x-[50%] translate-y-[54px] group-hover:translate-y-0 transition-all duration-300 sn-button-secondary"
                             @click="addToCart()"
                         >
                             @lang('shop::app.components.products.card.add-to-cart')
