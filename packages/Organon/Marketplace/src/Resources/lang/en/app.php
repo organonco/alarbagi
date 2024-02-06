@@ -161,7 +161,7 @@ return [
                     "slug" => 'Shop Slug',
                     "logo" => "Shop Logo",
                     "address" => "Shop Address",
-                    "deliver_by" => "Deliver By (Minutes)",
+                    "deliver_by" => "Deliver By (Days)",
                     "payment_method" => "Payment Method",
                     "email" => "Email",
                 ],

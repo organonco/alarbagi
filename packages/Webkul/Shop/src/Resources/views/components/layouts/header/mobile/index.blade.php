@@ -35,9 +35,7 @@
                                     href="{{ route('shop.customer.session.create') }}"
                                     class="flex text-[16px] font-medium"
                             >
-                                @lang('Sign up or Login')
-
-                                <i class="icon-double-arrow text-[24px] ml-[10px]"></i>
+                                @lang('shop::app.components.layouts.header.sign-up-or-sign-in')
                             </a>
                         @endguest
 

@@ -29,13 +29,15 @@ class TranslatableModel extends Model
      */
     protected function locale()
     {
+        if(request()->has('locale'))
+            return request()->get('locale');
+
         if ($this->isChannelBased()) {
             return core()->getDefaultChannelLocaleCode();
         } else {
             if ($this->defaultLocale) {
                 return $this->defaultLocale;
             }
-
             return config('translatable.locale') ?: app()->make('translator')->getLocale();
         }
     }

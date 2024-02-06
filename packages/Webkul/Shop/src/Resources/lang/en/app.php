@@ -758,7 +758,7 @@ return [
         'go-to-home' => 'Go To Home',
 
         '404' => [
-            'description' => 'Oops! The page you\'re looking for is on vacation. It seems we couldn\'t find what you were searching for.',
+            'description' => 'Oops! The page you\'re looking for is not available. It seems we couldn\'t find what you were searching for.',
             'title' => '404 Page Not Found',
         ],
 

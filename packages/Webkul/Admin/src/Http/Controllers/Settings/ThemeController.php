@@ -36,7 +36,7 @@ class ThemeController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * 
+     *
      * @return \Illuminate\Http\JsonResponse|string
      */
     public function store()
@@ -92,13 +92,16 @@ class ThemeController extends Controller
     public function update($id)
     {
         $locale = core()->getRequestedLocaleCode();
-
         $data = request()->all();
 
         if ($data['type'] == 'static_content') {
-            $data[$locale]['options']['html'] = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $data[$locale]['options']['html']); 
-            $data[$locale]['options']['css'] = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $data[$locale]['options']['css']); 
+            $data[$locale]['options']['html'] = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $data[$locale]['options']['html']);
+            $data[$locale]['options']['css'] = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $data[$locale]['options']['css']);
+        }else{
+            $data[$locale]['options'] = $data['options'];
+            unset($data['options']);
         }
+
 
         $data['status'] = request()->input('status') == 'on';
 
@@ -112,11 +115,12 @@ class ThemeController extends Controller
 
         if ($data['type'] == 'image_carousel') {
             $this->themeCustomizationRepository->uploadImage(
-                request()->all('options'), 
+                request()->all('options'),
                 $theme,
                 request()->input('deleted_sliders', [])
             );
         }
+
 
         Event::dispatch('theme_customization.update.after', $theme);
 

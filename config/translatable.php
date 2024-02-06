@@ -13,6 +13,7 @@ return [
     'locales' => [
         'en',
         'fr',
+        'ar',
         'es' => [
             'MX', // mexican spanish
             'CO', // colombian spanish

@@ -6,9 +6,9 @@
 @endPush
 
 <x-shop::layouts
-    :has-header="false"
+    :has-header="true"
     :has-feature="false"
-    :has-footer="false"
+    :has-footer="true"
 >
     {{-- Page Title --}}
     <x-slot:title>
@@ -16,27 +16,12 @@
     </x-slot>
 
     <div class="container mt-20 max-1180:px-[20px]">
-        {{-- Company Logo --}}
-        <div class="flex gap-x-[54px] items-center max-[1180px]:gap-x-[35px]">
-            <a
-                href="{{ route('shop.home.index') }}"
-                class="m-[0_auto_20px_auto]"
-                aria-label="Bagisto "
-            >
-                <img
-                    src="{{ asset('assets/images/logo.png') }}"
-                    alt="Logo"
-                    width="131"
-                    height="29"
-                >
-            </a>
-        </div>
 
         {{-- Form Container --}}
         <div
             class="w-full max-w-[870px] m-auto px-[90px] py-[60px] border border-[#E9E9E9] rounded-[12px] max-md:px-[30px] max-md:py-[30px]"
         >
-            <h1 class="text-[40px] font-dmserif max-sm:text-[25px]">
+            <h1 class="text-[40px] font-dmserif max-sm:text-[25px] sn-color-light-main">
                 @lang('shop::app.customers.forgot-password.title')
             </h1>
 
@@ -82,7 +67,7 @@
 
                     <div class="flex gap-[36px] flex-wrap mt-[30px] items-center">
                         <button
-                            class="primary-button block w-full max-w-[374px] m-0 ml-[0px] mx-auto px-[43px] py-[16px] rounded-[18px] text-[16px] text-center"
+                            class="sn-button-primary"
                             type="submit"
                         >
                             @lang('shop::app.customers.forgot-password.submit')
