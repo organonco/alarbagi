@@ -152,11 +152,11 @@ abstract class AbstractType
 
         $product->update($data);
 
-        if(isset($data['url_key']))
+        if(isset($data['url_key'])) {
             $existingUrlKeys = $this->attributeValueRepository->hasTheSameValueCount(3, $data['url_key'], $id);
-
-        if($existingUrlKeys > 0)
-            $data['url_key'] .= '-' . $existingUrlKeys;
+            if ($existingUrlKeys > 0)
+                $data['url_key'] .= '-' . $existingUrlKeys;
+        }
 
         $route = request()->route()?->getName();
 
