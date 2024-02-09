@@ -576,7 +576,7 @@ class Core
             ? $this->getAllCurrencies()->where('code', $currencyCode)->first()
             : $this->getCurrentCurrency();
 
-        $formatter = new \NumberFormatter(app()->getLocale(), \NumberFormatter::CURRENCY);
+        $formatter = new \NumberFormatter('en', \NumberFormatter::CURRENCY);
 
         $formatter->setAttribute(\NumberFormatter::FRACTION_DIGITS, $currency->decimal ?? 2);
 
@@ -1073,7 +1073,7 @@ class Core
         if (empty($id)) {
             return;
         }
-        
+
         if (array_key_exists($id, $this->taxCategoriesById)) {
             return $this->taxCategoriesById[$id];
         }
