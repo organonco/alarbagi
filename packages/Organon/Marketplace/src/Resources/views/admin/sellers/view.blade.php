@@ -115,7 +115,7 @@
                 <div class="bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                     <div class="p-[16px]">
                         <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[30px]">
-                            Products
+                            Orders
                         </p>
                         <x-admin::datagrid :src="route('marketplace.admin.orders.index', ['seller_id' => $seller->id])"
                                            :isMultiRow="true">
@@ -235,7 +235,7 @@
                 <div class="bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                     <div class="p-[16px]">
                         <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[30px]">
-                            Orders
+                            Products
                         </p>
                         <x-admin::datagrid
                                 src="{{ route('admin.catalog.products.index', ['seller_id' => $seller->id]) }}"
