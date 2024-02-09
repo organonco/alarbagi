@@ -39,7 +39,7 @@
             >
 
             @if (core()->getConfigData('general.content.shop.image_search'))
-                @include('shop::search.images.index')
+{{--                @include('shop::search.images.index')--}}
             @endif
         </div>
     </form>
