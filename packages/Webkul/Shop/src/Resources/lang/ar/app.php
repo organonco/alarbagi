@@ -422,7 +422,7 @@ return [
                 'add-to-cart' => 'أضف إلى عربة التسوق',
                 'new' => 'جديد',
                 'review-description' => 'كن أول من يقوم بمراجعة هذا المنتج',
-                'sale' => 'بيع',
+                'sale' => 'حسم',
             ],
 
             'carousel' => [
