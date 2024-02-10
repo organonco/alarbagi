@@ -5,8 +5,18 @@
 
     @push('styles')
         <style>
+            .info-table {
+                width: 100%;
+                border-top: 1px solid #aaaaaa;
+            }
+
             .info-table td {
-                padding-right: 80px;
+                padding: 10px;
+                border-bottom: 1px solid #aaaaaa;
+            }
+
+            .border-left {
+                border-left: 1px solid #aaaaaa;
             }
         </style>
     @endpush
@@ -17,10 +27,13 @@
             <div class="flex gap-[10px] items-center">
                 <p class="text-[20px] text-gray-800 dark:text-white font-bold leading-[24px]">
                     {{$seller->name}}
+                    ({{$seller->is_personal ? trans('marketplace::app.seller.is_personal.true') : trans('marketplace::app.seller.is_personal.false')}}
+                    )
                 </p>
 
                 <div>
-                    <span class="label-{{trans('marketplace::app.seller.statuses.'. $seller->status->name . '.class')}} text-[14px] mx-[5px]">
+                    <span
+                            class="label-{{trans('marketplace::app.seller.statuses.'. $seller->status->name . '.class')}} text-[14px] mx-[5px]">
                         @lang('marketplace::app.seller.statuses.'. $seller->status->name . '.label')
                     </span>
                 </div>
@@ -39,8 +52,9 @@
         <div class="flex gap-[5px]">
 
             @if($seller->isActivatable())
-                <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
-                     @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.sellers.view.activate-msg')', agree: () => {this.$refs['activateForm'].submit()}})">
+                <div
+                        class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
+                        @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.sellers.view.activate-msg')', agree: () => {this.$refs['activateForm'].submit()}})">
                     <form method="POST" ref="activateForm"
                           action="{{ route('admin.sales.sellers.activate', $seller->id) }}"> @csrf </form>
                     <span class="icon-tick text-[24px]"></span>
@@ -48,8 +62,9 @@
                 </div>
             @endif
             @if($seller->isDeactivatable())
-                <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
-                     @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.sellers.view.deactivate-msg')',agree: () => {this.$refs['deactivateForm'].submit()}})">
+                <div
+                        class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
+                        @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.sellers.view.deactivate-msg')',agree: () => {this.$refs['deactivateForm'].submit()}})">
                     <form method="POST" ref="deactivateForm"
                           action="{{ route('admin.sales.sellers.deactivate', $seller->id) }}">@csrf</form>
                     <span class="icon-cancel text-[24px]"></span>
@@ -58,13 +73,15 @@
             @endif
 
             @if($seller->hasDraftInvoice())
-                <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
+                <div
+                        class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
                     <span class="icon-calendar text-[24px]"></span>
                     <a href="{{route('admin.sales.sellers.invoice.view', ['invoice_id' => $seller->getDraftInvoiceId()])}}">@lang('marketplace::app.admin.sellers.view.edit-invoice')</a>
                 </div>
             @else
-                <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
-                     @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.sellers.view.generate-invoice-msg')',agree: () => {this.$refs['generateInvoiceForm'].submit()}})">
+                <div
+                        class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
+                        @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.sellers.view.generate-invoice-msg')',agree: () => {this.$refs['generateInvoiceForm'].submit()}})">
                     <form method="POST" ref="generateInvoiceForm"
                           action="{{ route('admin.sales.sellers.invoice.generate', $seller->id) }}">@csrf</form>
                     <span class="icon-calendar text-[24px]"></span>
@@ -82,27 +99,71 @@
                             Shop Info
                         </p>
                         <div class="info-box text-gray-800 dark:text-white">
-                            <table>
+                            <table class="info-table">
                                 @foreach(['name','description','address','slug','payment_method','deliver_by'] as $key)
                                     <tr class="info-table">
                                         <td>
-                                            @lang('marketplace::app.admin.account.profile.labels.' . $key):
-
+                                            @lang('marketplace::app.admin.account.profile.labels.' . $key)
                                         </td>
-                                        <td>
-                                            {{$seller[$key] ?? '-'}}
+                                        <td class="border-left text-center">
+                                            {{$seller[$key]}}
                                         </td>
                                     </tr>
                                 @endforeach
                                 <tr class="info-table">
                                     <td>
-                                        @lang('marketplace::app.admin.account.profile.labels.' . 'email'):
-
+                                        @lang('marketplace::app.admin.account.profile.labels.' . 'email')
                                     </td>
-                                    <td>
+                                    <td class="border-left text-center">
                                         {{$seller->admin['email']}}
                                     </td>
                                 </tr>
+                                @foreach(['additional_email','phone','additional_phone','landline'] as $key)
+                                    <tr class="info-table">
+                                        <td>
+                                            @lang('marketplace::app.admin.account.profile.labels.' . $key)
+                                        </td>
+                                        <td class="border-left text-center">
+                                            {{$seller[$key]}}
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                <tr class="info-table">
+                                    <td>
+                                        @if($seller->is_personal)
+                                            @lang('marketplace::app.admin.account.profile.labels.id_card')
+                                        @else
+                                            @lang('marketplace::app.admin.account.profile.labels.license')
+                                        @endif
+                                    </td>
+                                    <td class="border-left text-center" style="display: flex; justify-content: center">
+                                        @if($seller['document_url'])
+                                            <a href="{{$seller['document_url']}}" target="_blank">
+                                                <button class="primary-button">View Document</button>
+                                            </a>
+                                        @else
+                                            Document not available
+                                        @endif
+                                    </td>
+                                </tr>
+
+                                <tr class="info-table">
+                                    <td>
+                                        @lang('marketplace::app.admin.account.profile.labels.id_card_back')
+                                    </td>
+                                    <td class="border-left text-center" style="display: flex; justify-content: center">
+                                        @if($seller['document_back_url'])
+                                            <a href="{{$seller['document_back_url']}}" target="_blank">
+                                                <button class="primary-button">View Document</button>
+                                            </a>
+                                        @else
+                                            Document not available
+                                        @endif
+                                    </td>
+                                </tr>
+
+
                             </table>
                         </div>
                     </div>
@@ -121,7 +182,8 @@
                                            :isMultiRow="true">
                             <template #header="{ columns, records, sortPage, selectAllRecords, applied, isLoading}">
                                 <template v-if="! isLoading">
-                                    <div class="row grid grid-cols-4 grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800">
+                                    <div
+                                            class="row grid grid-cols-4 grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800">
                                         <div
                                                 class="flex gap-[10px] items-center select-none"
                                                 v-for="(columnGroup, index) in [['increment_id', 'orders.created_at', 'seller_orders.status'], ['number_of_products', 'subtotal', 'method'], ['customer_name', 'customer_email', 'customer_address']]"
@@ -212,7 +274,8 @@
 
                                         <div class="flex justify-end items-center">
                                             <a :href=`{{ route('admin.sales.orders.view', '') }}/${record.order_id}`>
-                                                <span class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"></span>
+                                                <span
+                                                        class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"></span>
                                             </a>
                                         </div>
                                     </div>
@@ -247,7 +310,8 @@
 
                             <template #header="{ columns, records, sortPage, selectAllRecords, applied, isLoading}">
                                 <template v-if="! isLoading">
-                                    <div class="row grid grid-cols-[2fr_1fr_1fr] grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800  ">
+                                    <div
+                                            class="row grid grid-cols-[2fr_1fr_1fr] grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800  ">
                                         <div
                                                 class="flex gap-[10px] items-center select-none"
                                                 v-for="(columnGroup, index) in [['name', 'sku', 'attribute_family'], ['base_image', 'price', 'quantity', 'product_id'], ['status', 'category_name', 'type']]"
@@ -383,7 +447,8 @@
                                                 </template>
 
                                                 <template v-else>
-                                                    <div class="w-full h-[60px] max-w-[60px] max-h-[60px] relative border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion">
+                                                    <div
+                                                            class="w-full h-[60px] max-w-[60px] max-h-[60px] relative border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion">
                                                         <img
                                                                 src="{{ bagisto_asset('images/product-placeholders/front.svg')}}"
                                                         >
@@ -460,10 +525,12 @@
 
                                             <a :href=`{{ route('shop.product_or_category.index', '') }}/${record.url_key}`
                                                target="_blank">
-                                                <span class="icon-view text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
+                                                <span
+                                                        class="icon-view text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
                                             </a>
                                             <a :href=`{{ route('admin.catalog.products.edit', '') }}/${record.product_id}`>
-                                                <span class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
+                                                <span
+                                                    class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
                                             </a>
                                         </div>
                                     </div>
@@ -472,7 +539,7 @@
                                 {{-- Datagrid Body Shimmer --}}
                                 <template v-else>
                                     <x-admin::shimmer.datagrid.table.body
-                                            :isMultiRow="true"></x-admin::shimmer.datagrid.table.body>
+                                        :isMultiRow="true"></x-admin::shimmer.datagrid.table.body>
                                 </template>
                             </template>
                         </x-admin::datagrid>

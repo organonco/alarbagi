@@ -28,6 +28,7 @@ class SellerController extends Controller
             'email' => ['required', 'email'],
             'phone' => ['required'],
             'document' => ['required', 'image'],
+            'document_back' => ['required', 'image'],
             'additional_phone' => ['different:phone'],
             'additional_email' => ['different:email']
         ]);
@@ -49,6 +50,7 @@ class SellerController extends Controller
         $seller = $this->sellerRepository->create($sellerData);
 
         $seller->setDocument('document');
+        $seller->setDocumentBack('document_back');
 
         $adminData = $request->only([
             'name',

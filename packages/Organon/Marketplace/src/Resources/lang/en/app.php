@@ -89,6 +89,10 @@ return [
                 'label' => 'Paused by shop',
                 'class' => 'processing'
             ]
+        ],
+        'is_personal' => [
+            'true' => 'Individual Account',
+            'false' => 'Company',
         ]
     ],
     "seller-invoice" => [
@@ -164,6 +168,14 @@ return [
                     "deliver_by" => "Deliver By (Days)",
                     "payment_method" => "Payment Method",
                     "email" => "Email",
+                    'additional_email' => "Additional Email",
+                    'phone' => "Phone Number",
+                    'additional_phone' => "Additional Phone Number",
+                    'landline' => "Landline",
+                    'license' => "License",
+                    'id_card' => "ID Card (Front)",
+                    'id_card_back' => "ID Card (Back)",
+
                 ],
                 'actions' => [
                     'update' => "Update Profile Data"

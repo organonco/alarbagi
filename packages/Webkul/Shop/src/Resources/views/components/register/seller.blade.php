@@ -276,6 +276,26 @@
                 </x-shop::form.control-group.error>
             </x-shop::form.control-group>
 
+            <div id="document_back">
+                <x-shop::form.control-group class="mb-4">
+                    <x-shop::form.control-group.label class="required">
+                        <div style="display: inline">
+                            @lang('shop::app.customers.signup-form.id-back')
+                        </div>
+                    </x-shop::form.control-group.label>
+                    <x-shop::form.control-group.control
+                        type="file"
+                        name="document_back"
+                        rules=""
+                        class="!p-[20px_25px] rounded-lg"
+                    >
+                    </x-shop::form.control-group.control>
+                    <x-shop::form.control-group.error
+                        control-name="document_back"
+                    >
+                    </x-shop::form.control-group.error>
+                </x-shop::form.control-group>
+            </div>
 
             @if (core()->getConfigData('customer.captcha.credentials.status'))
                 <div class="flex mb-[20px]">
@@ -342,11 +362,14 @@
         function switchType() {
             const switchElement = document.getElementById('is_personal');
             const labelElement = document.getElementById('document_label');
+            const documentBackDiv = document.getElementById('document_back');
 
             if (switchElement.checked) {
                 labelElement.innerHTML = "@lang('shop::app.customers.signup-form.id')"
+                documentBackDiv.style.display = 'block'
             } else {
                 labelElement.innerHTML = "@lang('shop::app.customers.signup-form.license')"
+                documentBackDiv.style.display = 'none'
             }
         }
 
