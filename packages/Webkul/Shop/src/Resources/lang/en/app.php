@@ -339,6 +339,7 @@ return [
                 'welcome' => 'Welcome',
                 'welcome-guest' => 'Welcome Guest',
                 'wishlist' => 'Wishlist',
+                'sign-up-or-sign-in' => 'Sign up or Sign in',
             ],
 
             'footer' => [

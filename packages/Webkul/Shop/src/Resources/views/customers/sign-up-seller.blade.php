@@ -12,7 +12,7 @@
 >
     {{-- Page Title --}}
     <x-slot:title>
-        @lang('shop::app.customers.signup-form.page-title')
+        @lang('marketplace::app.register.title.seller')
         </x-slot>
 
         <div class="mt-20 max-1180:px-[20px]">
