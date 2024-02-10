@@ -181,8 +181,8 @@
                 <option value="">@lang('Select Country')</option>
 
                 @foreach (core()->countries() as $country)
-                    <option 
-                        {{ $country->code === config('app.default_country') ? 'selected' : '' }}  
+                    <option
+                        {{ $country->code === config('app.default_country') ? 'selected' : '' }}
                         value="{{ $country->code }}"
                     >
                         {{ $country->name }}
@@ -310,7 +310,7 @@
             >
             </label>
 
-            <label 
+            <label
                 class="block text-[16px] cursor-pointer"
                 for="default_address"
             >
@@ -320,7 +320,7 @@
 
         <button
             type="submit"
-            class="primary-button m-0 block text-base w-max py-[11px] px-[43px] rounded-[18px] text-center"
+            class="sn-button-primary"
         >
             @lang('shop::app.customers.account.addresses.save')
         </button>

@@ -3,7 +3,7 @@
     <x-slot:title>
         @lang('shop::app.customers.account.orders.view.page-title', ['order_id' => $order->increment_id])
     </x-slot:title>
-    
+
     {{-- Breadcrumbs --}}
     @section('breadcrumbs')
         <x-shop::breadcrumbs name="orders.view" :entity="$order"></x-shop::breadcrumbs>
@@ -26,7 +26,7 @@
             </form>
 
             <a
-                class="secondary-button flex items-center gap-x-[10px] py-[12px] px-[20px] border-[#E9E9E9] font-normal"
+                class="sn-button-secondary"
                 href="javascript:void(0);"
                 @click="$emitter.emit('open-confirm-modal', {
                     message: '@lang('shop::app.customers.account.orders.view.cancel-confirm-msg')',

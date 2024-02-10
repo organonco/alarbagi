@@ -2,7 +2,7 @@
     {{-- Page Title --}}
     <x-slot:title>
         @lang('shop::app.customers.account.addresses.edit')
-        @lang('shop::app.customers.account.addresses.title') 
+        @lang('shop::app.customers.account.addresses.title')
     </x-slot>
 
     {{-- Breadcrumbs --}}
@@ -174,8 +174,8 @@
                 </option>
 
                 @foreach (core()->countries() as $country)
-                    <option 
-                        {{ $country->code === config('app.default_country') ? 'selected' : '' }}  
+                    <option
+                        {{ $country->code === config('app.default_country') ? 'selected' : '' }}
                         value="{{ $country->code }}"
                     >
                         {{ $country->name }}
@@ -285,11 +285,11 @@
 
         <button
             type="submit"
-            class="primary-button m-0 block text-base w-max py-[11px] px-[43px] rounded-[18px] text-center"
+            class="sn-button-primary"
         >
             @lang('shop::app.customers.account.addresses.save')
         </button>
-        
+
         {!! view_render_event('bagisto.shop.customers.account.address.edit_form_controls.after', ['address' => $address]) !!}
 
     </x-shop::form>

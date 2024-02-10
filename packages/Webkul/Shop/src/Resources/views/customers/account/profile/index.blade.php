@@ -16,7 +16,7 @@
 
         <a
             href="{{ route('shop.customers.account.profile.edit') }}"
-            class="secondary-button py-[12px] px-[20px] border-[#E9E9E9] font-normal"
+            class="sn-button-secondary"
         >
             @lang('shop::app.customers.account.profile.edit')
         </a>
@@ -80,7 +80,7 @@
         <x-shop::modal>
             <x-slot:toggle>
                 <div
-                    class="primary-button py-[11px] px-[43px] rounded-[18px]"
+                    class="sn-button-danger"
                 >
                     @lang('shop::app.customers.account.profile.delete-profile')
                 </div>
@@ -117,7 +117,7 @@
                     <div class="p-[30px] bg-white mt-[20px]">
                         <button
                             type="submit"
-                            class="primary-button flex py-[11px] px-[43px] rounded-[18px] max-sm:text-[14px] max-sm:px-[25px]"
+                            class="sn-button-primary"
                         >
                             @lang('shop::app.customers.account.profile.delete')
                         </button>

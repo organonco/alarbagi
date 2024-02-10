@@ -55,6 +55,15 @@
     font-weight: bold;
 }
 
+.sn-button-danger{
+    color: red;
+    background-color: white;
+    border-radius: 12px;
+    border: 1px solid red;
+    padding: 15px 30px;
+    font-weight: bold;
+}
+
 .hover\:border-primary:hover{
     border-color: #00b4ff;
 }
