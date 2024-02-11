@@ -36,7 +36,8 @@
                 </p>
 
                 <div>
-                    <span class="label-{{trans('marketplace::app.seller-invoice.statuses.'. $invoice->status->name . '.class')}} text-[14px] mx-[5px]">
+                    <span
+                        class="label-{{trans('marketplace::app.seller-invoice.statuses.'. $invoice->status->name . '.class')}} text-[14px] mx-[5px]">
                         @lang('marketplace::app.seller-invoice.statuses.'. $invoice->status->name . '.label')
                     </span>
                 </div>
@@ -46,6 +47,12 @@
 
                 @if($is_owner)
                     @if($invoice->status == \Organon\Marketplace\Enums\SellerInvoiceStatusEnum::DRAFT)
+                        <x-admin::form :action="route('admin.sales.sellers.invoice.destroy', $invoice->id)">
+                            <button class="secondary-button" style="color: red; border-color: red; margin-right: 10px"
+                                    type="submit">
+                                Delete
+                            </button>
+                        </x-admin::form>
                         <x-admin::form :action="route('admin.sales.sellers.invoice.send', $invoice->id)">
                             <button class="primary-button" type="submit">
                                 Send To Seller
@@ -127,6 +134,14 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 90%; height: 50px; font-weight: bolder">
+                                        Fees
+                                    </td>
+                                    <td style="width: 10%; font-weight: bolder">
+                                        {{$invoice->fees}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 90%; height: 50px; font-weight: bolder">
                                         Total
                                     </td>
                                     <td style="width: 10%; font-weight: bolder">
@@ -151,31 +166,31 @@
                             <x-admin::form :action="route('admin.sales.sellers.invoice.add_item', $invoice->id)">
                                 <x-admin::form.control-group>
                                     <x-admin::form.control-group.control
-                                            type="text"
-                                            name="comment"
-                                            placeholder="For"
-                                            label="For"
+                                        type="text"
+                                        name="comment"
+                                        placeholder="For"
+                                        label="For"
                                     >
                                     </x-admin::form.control-group.control>
                                     <x-shop::form.control-group.error
-                                            control-name="comment"></x-shop::form.control-group.error>
+                                        control-name="comment"></x-shop::form.control-group.error>
                                 </x-admin::form.control-group>
 
                                 <x-admin::form.control-group>
                                     <x-admin::form.control-group.control
-                                            type="number"
-                                            name="amount"
-                                            placeholder="Amount"
-                                            label="Amount"
+                                        type="number"
+                                        name="amount"
+                                        placeholder="Amount"
+                                        label="Amount"
                                     >
                                     </x-admin::form.control-group.control>
                                     <x-shop::form.control-group.error
-                                            control-name="amount"></x-shop::form.control-group.error>
+                                        control-name="amount"></x-shop::form.control-group.error>
                                 </x-admin::form.control-group>
                                 <div class="flex gap-[36px] flex-wrap items-center mt-[20px]">
                                     <button
-                                            class="primary-button py-[8px] w-full block px-[43px] mx-auto m-0 ml-[0px] rounded-[18px] text-[16px] text-center"
-                                            type="submit"
+                                        class="primary-button py-[8px] w-full block px-[43px] mx-auto m-0 ml-[0px] rounded-[18px] text-[16px] text-center"
+                                        type="submit"
                                     >
                                         Add Item
                                     </button>
@@ -209,9 +224,9 @@
                                         @if($is_owner && $invoice->status == \Organon\Marketplace\Enums\SellerInvoiceStatusEnum::DRAFT && $item->type == \Organon\Marketplace\Enums\SellerInvoiceItemTypeEnum::EXTRA)
                                             <td style="width: 2%; height: 50px">
                                                 <x-admin::form
-                                                        :action="route('admin.sales.sellers.invoice.delete_item', ['invoice_id' => $invoice->id, 'item_id' => $item->id])"
-                                                        method="DELETE"
-                                                        ref="delete_item_form">
+                                                    :action="route('admin.sales.sellers.invoice.delete_item', ['invoice_id' => $invoice->id, 'item_id' => $item->id])"
+                                                    method="DELETE"
+                                                    ref="delete_item_form">
                                                     <button type="submit"
                                                             class="icon-delete rounded-[6px] text-[24px] peer-checked:icon-checked peer-checked:text-blue-600">
                                                     </button>

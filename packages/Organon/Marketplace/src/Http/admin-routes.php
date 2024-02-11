@@ -18,6 +18,7 @@ Route::group([
     Route::get('seller-invoices/{invoice_id}', [\Organon\Marketplace\Http\Controllers\Admin\SellerInvoiceController::class, 'view'])->name('admin.sales.sellers.invoice.view');
     Route::get('seller-invoices', [\Organon\Marketplace\Http\Controllers\Admin\SellerInvoiceController::class, 'index'])->name('admin.sales.sellers.invoice.index');
     Route::post('seller-invoices/{invoice_id}/send', [\Organon\Marketplace\Http\Controllers\Admin\SellerInvoiceController::class, 'sendToSeller'])->name('admin.sales.sellers.invoice.send');
+    Route::post('seller-invoices/{invoice_id}', [\Organon\Marketplace\Http\Controllers\Admin\SellerInvoiceController::class, 'destroy'])->name('admin.sales.sellers.invoice.destroy');
     Route::post('seller-invoices/{invoice_id}/unsend', [\Organon\Marketplace\Http\Controllers\Admin\SellerInvoiceController::class, 'unsendToSeller'])->name('admin.sales.sellers.invoice.unsend');
     Route::post('seller-invoices/{invoice_id}/approve', [\Organon\Marketplace\Http\Controllers\Admin\SellerInvoiceController::class, 'approve'])->name('admin.sales.sellers.invoice.approve');
     Route::post('seller-invoices/{invoice_id}/issue', [\Organon\Marketplace\Http\Controllers\Admin\SellerInvoiceController::class, 'issue'])->name('admin.sales.sellers.invoice.issue');

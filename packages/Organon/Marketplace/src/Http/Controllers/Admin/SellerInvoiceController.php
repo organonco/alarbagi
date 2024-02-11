@@ -7,11 +7,13 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 use Organon\Marketplace\DataGrids\SellerInvoiceDataGrid;
+use Organon\Marketplace\Enums\SellerInvoiceStatusEnum;
 use Organon\Marketplace\Models\Seller;
+use Organon\Marketplace\Models\SellerInvoice;
 use Organon\Marketplace\Notifications\InvoiceIssuedNotification;
 use Organon\Marketplace\Notifications\NewInvoiceNotification;
-use Organon\Marketplace\Repositories\SellerInvoiceRepository;
-use Organon\Marketplace\Repositories\SellerRepository;
+use Organon\Marketplace\Notifications\Repositories\SellerInvoiceRepository;
+use Organon\Marketplace\Notifications\Repositories\SellerRepository;
 use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
 use Webkul\Notification\Repositories\NotificationRepository;
 
@@ -130,6 +132,16 @@ class SellerInvoiceController extends Controller
         $invoice = $this->sellerInvoiceRepository->find($invoice_id);
         $this->notificationRepository->fromInternalNotification(new InvoiceIssuedNotification($invoice), $invoice->seller->admin->id);
         return redirect(route('admin.sales.sellers.invoice.view', ['invoice_id' => $invoice_id]));
+    }
+
+    public function destroy($invoice_id)
+    {
+        /** @var SellerInvoice $invoice */
+        $invoice = $this->sellerInvoiceRepository->find($invoice_id);
+        if($invoice->status != SellerInvoiceStatusEnum::DRAFT)
+            abort(401);
+        $invoice->delete();
+        return view('marketplace::admin.seller-invoice.index');
     }
 
 }

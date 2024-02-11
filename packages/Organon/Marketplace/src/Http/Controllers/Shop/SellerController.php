@@ -7,7 +7,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
-use Organon\Marketplace\Repositories\SellerRepository;
+use Organon\Marketplace\Notifications\Repositories\SellerRepository;
 use Organon\Marketplace\src\Contracts\Seller;
 use Webkul\User\Repositories\AdminRepository;
 

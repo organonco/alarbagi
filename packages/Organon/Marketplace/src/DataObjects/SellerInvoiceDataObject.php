@@ -11,6 +11,7 @@ class SellerInvoiceDataObject
     private float $subtotal;
     private float $extras;
     private float $total;
+    private float $fees;
 
 
     /**
@@ -25,6 +26,7 @@ class SellerInvoiceDataObject
     {
         $this->calculateSubtotal();
         $this->calculateExtras();
+        $this->calculateFees();
         $this->calculateTotal();
     }
 
@@ -82,7 +84,21 @@ class SellerInvoiceDataObject
 
     private function calculateTotal()
     {
-        $this->total = $this->subtotal + $this->extras;
+        $this->total = $this->subtotal + $this->extras + $this->fees;
+    }
+
+    public function calculateFees()
+    {
+        $fees = 0;
+        foreach ($this->items as $item)
+            if ($item->getType() == SellerInvoiceItemTypeEnum::FEE)
+                $fees += $item->getAmount();
+        $this->fees = $fees;
+    }
+
+    public function getFees()
+    {
+        return $this->fees;
     }
 
 
@@ -102,6 +118,7 @@ class SellerInvoiceDataObject
             'extras' => $this->getExtras(),
             'total' => $this->getTotal(),
             'status' => $this->getStatus(),
+            'fees' => $this->getFees(),
             'seller_id' => $this->getSellerId(),
             'items' => $itemsArray
         ];

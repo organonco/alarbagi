@@ -1,6 +1,6 @@
 <?php
 
-namespace Organon\Marketplace\Repositories;
+namespace Organon\Marketplace\Notifications\Repositories;
 
 use Organon\Marketplace\Contracts\SellerOrder;
 use Organon\Marketplace\Enums\SellerOrderStatusEnum;

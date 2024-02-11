@@ -1361,7 +1361,7 @@ return [
             'create' => [
                 'title'              => 'Create Customer\'s Address',
                 'create-address-btn' => 'Add New Address',
-                'company-name'       => 'Company Name',
+                'company-name'       => 'Company Name / House Number / Apartment Number',
                 'vat-id'             => 'Vat ID',
                 'address-1'          => 'Address 1',
                 'address-2'          => 'Address 2',
@@ -1380,7 +1380,7 @@ return [
 
             'edit' => [
                 'title'            => 'Address Edit',
-                'company-name'     => 'Company Name',
+                'company-name'     => 'Company Name / House Number / Apartment Number',
                 'vat-id'           => 'Vat ID',
                 'address-1'        => 'Address 1',
                 'address-2'        => 'Address 2',

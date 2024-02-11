@@ -29,11 +29,6 @@ class SellerInvoiceItemDataObject
         return $this->comment;
     }
 
-    public function getSellerOrderId(): int
-    {
-        return $this->sellerOrderId;
-    }
-
     public function toArray(): array
     {
         return [

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Organon\Marketplace\Enums\SellerStatusEnum;
-use Organon\Marketplace\Repositories\SellerRepository;
+use Organon\Marketplace\Notifications\Repositories\SellerRepository;
 use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
 
 class SellerAccountController extends Controller

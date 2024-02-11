@@ -1,6 +1,6 @@
 <?php
 
-namespace Organon\Marketplace\Repositories;
+namespace Organon\Marketplace\Notifications\Repositories;
 
 use Organon\Marketplace\DataObjects\SellerInvoiceDataObject;
 use Organon\Marketplace\DataObjects\SellerInvoiceItemDataObject;
@@ -28,8 +28,18 @@ class SellerInvoiceRepository extends Repository
     {
         $invoiceItems = [];
         $sellerOrders = $seller->sellerOrders()->where('status', SellerOrderStatusEnum::APPROVED->value)->get();
-        foreach ($sellerOrders as $sellerOrder)
+        $total = 0;
+
+        //Seller Orders
+        foreach ($sellerOrders as $sellerOrder) {
+            $total += $sellerOrder->grand_total;
             $invoiceItems[] = new SellerInvoiceItemDataObject($sellerOrder->grand_total, SellerInvoiceItemTypeEnum::ORDER, "Order #" . $sellerOrder->order_id . " - " . $sellerOrder->created_at->format('d/m/Y'), $sellerOrder);
+        }
+        //Fees
+        $percentage = config('invoice.percentage');
+        if($total > 0)
+            $invoiceItems[] = new SellerInvoiceItemDataObject(-1 * $total * $percentage / 100, SellerInvoiceItemTypeEnum::FEE, "Souq Naif Fees: ($total AED x $percentage%)", null);
+
         $invoice = new SellerInvoiceDataObject(SellerInvoiceStatusEnum::DRAFT, $invoiceItems, $seller->id);
         return $invoice;
     }

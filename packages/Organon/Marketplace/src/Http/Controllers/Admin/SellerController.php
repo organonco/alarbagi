@@ -7,7 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 use Organon\Marketplace\DataGrids\SellerDataGrid;
-use Organon\Marketplace\Repositories\SellerRepository;
+use Organon\Marketplace\Notifications\Repositories\SellerRepository;
 
 class SellerController extends Controller
 {

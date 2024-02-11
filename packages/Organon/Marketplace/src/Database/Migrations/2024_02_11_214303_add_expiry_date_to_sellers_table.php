@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('sellers', function (Blueprint $table) {
-            $table->date('expiry_date')->nullable();
+            $table->dropColumn('expiry_date');
         });
     }
 };

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Log;
 use Organon\Marketplace\Enums\SellerOrderStatusEnum;
 use Organon\Marketplace\Models\Order;
-use Organon\Marketplace\Repositories\SellerOrderRepository;
+use Organon\Marketplace\Notifications\Repositories\SellerOrderRepository;
 use Webkul\Core\Eloquent\Repository;
 use Webkul\Sales\Generators\OrderSequencer;
 use Webkul\Sales\Models\Order as OrderModel;

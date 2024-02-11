@@ -15,6 +15,7 @@ class SellerInvoice extends Model implements SellerInvoiceContract
     protected $fillable = [
         'subtotal',
         'extras',
+        'fees',
         'total',
         'status',
         'seller_id'
