@@ -8,11 +8,11 @@
         <x-shop::drawer>
             <!-- Drawer Toggler -->
             <x-slot:toggle>
-                <span class="relative">
-                    <span class="icon-cart text-[24px] cursor-pointer"></span>
+                <span class="relative cart-floating-button sn-background-light-main" style="z-index: 200">
+                    <span class="text-[24px] icon-cart"></span>
 
                     <span
-                        class="absolute  px-[7px] top-[-15px] left-[18px] py-[5px] bg-[#060C3B] rounded-[44px] text-white text-[10px] font-semibold leading-[9px]"
+                        class="absolute  px-[7px] py-[5px] bg-[#060C3B] rounded-[44px] text-white text-[10px] font-semibold leading-[9px] number"
                         v-if="cart?.items_qty"
                     >
                         @{{ cart.items_qty }}
