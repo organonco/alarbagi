@@ -128,6 +128,7 @@ class RegistrationController extends Controller
             $this->customerRepository->syncNewRegisteredCustomerInformation($customer);
 
             session()->flash('success', trans('shop::app.customers.signup-form.verified'));
+            auth()->guard('customer')->login($customer);
         } else {
             session()->flash('warning', trans('shop::app.customers.signup-form.verify-failed'));
         }
