@@ -17,7 +17,7 @@
                 </x-shop::form.control-group.label>
 
                 <x-shop::form.control-group.control
-                    type="text"
+                    type="textarea"
                     name="name"
                     class="!p-[20px_25px] rounded-lg"
                     :value="old('name')"
