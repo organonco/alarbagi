@@ -42,7 +42,8 @@ class Seller extends Model implements SellerContract, HasMedia
         'additional_phone',
         'landline',
         'additional_email',
-        'is_personal'
+        'is_personal',
+        'expiry_date'
     ];
 
     public function admin()
@@ -165,5 +166,11 @@ class Seller extends Model implements SellerContract, HasMedia
     {
         $this->setStatusSuper($status);
         $this->products()->withoutGlobalScope('seller_status')->update(['seller_status' => $status->value]);
+    }
+
+    public function getIsExpiredAttribute()
+    {
+        return $this->expiry_date && (new \DateTime() > new \DateTime($this->expiry_date));
+
     }
 }

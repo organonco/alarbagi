@@ -31,6 +31,7 @@ Route::group([
     Route::post('sellers/{seller_id}/activate', [\Organon\Marketplace\Http\Controllers\Admin\SellerController::class, 'activate'])->name('admin.sales.sellers.activate');
     Route::post('sellers/{seller_id}/deactivate', [\Organon\Marketplace\Http\Controllers\Admin\SellerController::class, 'deactivate'])->name('admin.sales.sellers.deactivate');
     Route::post('sellers/{seller_id}/invoice', [\Organon\Marketplace\Http\Controllers\Admin\SellerInvoiceController::class, 'generate'])->name('admin.sales.sellers.invoice.generate');
+    Route::post('sellers/{seller_id}/expiry', [\Organon\Marketplace\Http\Controllers\Admin\SellerController::class, 'updateExpiryDate'])->name('admin.sales.sellers.expiry');
 });
 
 

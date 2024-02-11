@@ -56,4 +56,9 @@ class SellerController extends Controller
         $this->sellerRepository->deactivate($id);
         return redirect(route('admin.sales.sellers.view', $id));
     }
+    public function updateExpiryDate($id)
+    {
+        $this->sellerRepository->update(request()->only(['expiry_date']), $id);
+        return redirect(route('admin.sales.sellers.view', $id));
+    }
 }

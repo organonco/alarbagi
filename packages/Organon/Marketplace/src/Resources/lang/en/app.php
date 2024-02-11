@@ -144,6 +144,7 @@ return [
                     'email' => 'Contact Email',
                     'status' => "Status",
                     'slug' => 'Slug',
+                    "expiry_date" => "Expiry Date"
                 ]
             ],
             'view' => [
@@ -175,6 +176,7 @@ return [
                     'license' => "License",
                     'id_card' => "ID Card (Front)",
                     'id_card_back' => "ID Card (Back)",
+                    'expiry_date' => "Expiry Date"
 
                 ],
                 'actions' => [

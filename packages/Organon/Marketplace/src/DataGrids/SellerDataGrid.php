@@ -15,17 +15,19 @@ class SellerDataGrid extends DataGrid
 
         $query = DB::table('sellers')->orderBy('sellers.created_at', 'DESC');
         $query->join('admins', 'admins.seller_id', '=', 'sellers.id');
-        
+
         $query->addSelect('sellers.id');
         $query->addSelect('sellers.name as shop_name');
         $query->addSelect('admins.email as email');
         $query->addSelect('sellers.status as status');
         $query->addSelect('sellers.slug as slug');
+        $query->addSelect('sellers.expiry_date as expiry_date');
 
         $this->addFilter('shop_name', 'sellers.name');
         $this->addFilter('status', 'sellers.status');
         $this->addFilter('slug', 'sellers.slug');
         $this->addFilter('email', 'admins.email');
+        $this->addFilter('expiry_date', 'sellers.expiry_date');
 
         return $query;
     }
@@ -40,6 +42,27 @@ class SellerDataGrid extends DataGrid
             'filterable' => false,
             'sortable' => false,
         ]);
+
+        $this->addColumn([
+            'index' => 'expiry_date',
+            'label' => trans('marketplace::app.admin.sellers.index.datagrid.expiry_date'),
+            'type' => 'string',
+            'searchable' => true,
+            'filterable' => false,
+            'sortable' => false,
+            'closure' => function($row){
+                if(!isset($row->expiry_date)){
+                    return "Not Set";
+                }
+                $date = $row->expiry_date;
+                $now = new \DateTime();
+                if($now > new \DateTime($date))
+                    return "$date (Expired)";
+                else
+                    return $date;
+            }
+        ]);
+
 
         $statusOptions = [];
         foreach (SellerStatusEnum::cases() as $case)
