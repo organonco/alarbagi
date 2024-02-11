@@ -15,6 +15,11 @@ return [
             'title' => 'استعادة كلمة المرور',
         ],
 
+        'verify-email' => [
+            'submit' => 'إعادة الإرسال',
+            'title' => 'إعادة إرسال بريد التحقق',
+        ],
+
         'reset-password' => [
             'back-link-title' => 'العودة إلى تسجيل الدخول',
             'confirm-password' => 'تأكيد كلمة المرور',

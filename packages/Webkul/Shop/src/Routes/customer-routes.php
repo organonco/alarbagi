@@ -57,7 +57,8 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
              */
             Route::get('verify-account/{token}', 'verifyAccount')->name('shop.customers.verify');
 
-            Route::get('resend/verification/{email}', 'resendVerificationEmail')->name('shop.customers.resend.verification_email');
+            Route::post('resend/verification', 'resendVerificationEmail')->name('shop.customers.resend.verification_email');
+            Route::get('resend/verification', 'showResendVerificationEmail')->name('shop.customers.resend.verification_email.show');
         });
 
         /**

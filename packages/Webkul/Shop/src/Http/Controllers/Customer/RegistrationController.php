@@ -136,14 +136,10 @@ class RegistrationController extends Controller
         return redirect()->route('shop.customer.session.index');
     }
 
-    /**
-     * Resend verification email.
-     *
-     * @param  string  $email
-     * @return \Illuminate\Http\Response
-     */
-    public function resendVerificationEmail($email)
+    public function resendVerificationEmail()
     {
+        $email = request()->input('email');
+
         $verificationData = [
             'email' => $email,
             'token' => md5(uniqid(rand(), true)),
@@ -154,7 +150,7 @@ class RegistrationController extends Controller
         $this->customerRepository->update(['token' => $verificationData['token']], $customer->id);
 
         try {
-            Mail::queue(new EmailVerificationNotification($verificationData));
+            Mail::queue(new EmailVerificationNotification($customer));
 
             if (Cookie::has('enable-resend')) {
                 \Cookie::queue(\Cookie::forget('enable-resend'));
@@ -174,5 +170,11 @@ class RegistrationController extends Controller
         session()->flash('success', trans('shop::app.customers.signup-form.verification-sent'));
 
         return redirect()->back();
+    }
+
+    public function showResendVerificationEmail()
+    {
+        $email = request()->email;
+        return view('shop::customers.resend-email', ['email' => $email]);
     }
 }

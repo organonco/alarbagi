@@ -25,6 +25,11 @@ return [
             'title' => 'Reset Password',
         ],
 
+        'verify-email' => [
+            'submit' => 'Resend',
+            'title' => 'Resend Verification Email',
+        ],
+
         'login-form' => [
             'button-title' => 'Sign In',
             'create-your-account' => 'Create your account',

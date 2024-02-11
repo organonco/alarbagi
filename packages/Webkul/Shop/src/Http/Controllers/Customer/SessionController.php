@@ -51,7 +51,7 @@ class SessionController extends Controller
 
             auth()->guard('customer')->logout();
 
-            return redirect()->back();
+            return redirect()->route('shop.customers.resend.verification_email.show', ['email' => $loginRequest->get('email')]);
         }
 
         /**
