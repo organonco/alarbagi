@@ -8,7 +8,7 @@
         <x-shop::drawer>
             <!-- Drawer Toggler -->
             <x-slot:toggle>
-                <span class="relative cart-floating-button sn-background-light-main" style="z-index: 200">
+                <span class="relative cart-floating-button sn-background-light-main" style="z-index: 1">
                     <span class="text-[24px] icon-cart"></span>
 
                     <span
