@@ -98,7 +98,6 @@ class Customer extends Authenticatable implements CustomerContract
     {
         $this->notify(new ResetPasswordNotification($token));
     }
-
     /**
      * Get image url for the customer profile.
      *

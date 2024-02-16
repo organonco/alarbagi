@@ -19,7 +19,7 @@
              :id="'image-' + $.uid"
              @load="onLoad"
              v-show="! isLoading"
-             style="object-fit: contain; height: 500px; width: 500px"
+             style="height: 500px; width: 500px"
         >
         <img v-else v-bind="$attrs"
              :data-src="src"

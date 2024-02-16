@@ -42,7 +42,6 @@ class ProductImageRepository extends ProductMediaRepository
     public function uploadImages($data, $product): void
     {
         $this->upload($data, $product, 'images');
-
         if (isset($data['variants'])) {
             $this->uploadVariantImages($data['variants']);
         }

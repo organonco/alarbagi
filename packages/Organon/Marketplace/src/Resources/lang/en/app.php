@@ -21,7 +21,8 @@ return [
             'slug' => 'Shop Slug'
         ],
         'flash_messages' => [
-            'pending_approval' => 'Your account is now pending approval from the Admins'
+            'pending_approval' => 'Your account is now pending approval from the Admins',
+            'pending-verification' => 'Check your email to verify your account'
         ],
     ],
     'login' => [
@@ -88,6 +89,10 @@ return [
             'PAUSED' => [
                 'label' => 'Paused by shop',
                 'class' => 'processing'
+            ],
+            'UNVERIFIED' => [
+                'label' => 'Not Verified',
+                'class' => 'pending'
             ]
         ],
         'is_personal' => [
@@ -210,7 +215,6 @@ return [
     ],
     'settings' => [
         'messages' => [
-            'user-pending' => "Your account is pending approval from admins",
             'user-deactivated' => "Your account has been deactivated",
             'account-deactivated-msg' => 'Your account has been deactivated by admins. Your products will not be visible to customers.',
             'account-paused-msg' => 'Your account is inactive. Your products will not be visible to customers. Go to settings to reactivate it',

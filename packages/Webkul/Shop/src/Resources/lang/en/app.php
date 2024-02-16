@@ -63,7 +63,7 @@ return [
             'success-verify' => 'Account created successfully, an e-mail has been sent for verification.',
             'success-verify-email-unsent' => 'Account created successfully, but verification e-mail unsent.',
             'success' => 'Account created successfully.',
-            'verified' => 'Your account has been verified, try to login now.',
+            'verified' => 'Your account has been verified.',
             'verify-failed' => 'We cannot verify your mail account.',
             'verification-not-sent' => 'Error! Problem in sending verification email, please try again later.',
             'verification-sent' => 'Verification email sent',

@@ -592,7 +592,7 @@ return [
                 ],
 
                 'images' => [
-                    'info'  => 'Image resolution should be like 609px X 560px',
+                    'info'  => 'Image dimensions should be 1 / 1',
                     'title' => 'Images',
                 ],
 

@@ -5,6 +5,7 @@ namespace Webkul\Shop\Mail\Customer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Webkul\User\Contracts\Admin;
 
 class EmailVerificationNotification extends Mailable
 {
@@ -13,7 +14,7 @@ class EmailVerificationNotification extends Mailable
     /**
      * Create a new mailable instance.
      *
-     * @param  \Webkul\Customer\Contracts\Customer  $customer
+     * @param \Webkul\Customer\Contracts\Customer|Admin $customer
      * @return void
      */
     public function __construct(public $customer)
@@ -28,7 +29,7 @@ class EmailVerificationNotification extends Mailable
     public function build()
     {
         return $this->from(core()->getSenderEmailDetails()['email'], core()->getSenderEmailDetails()['name'])
-            ->to($this->customer->email)
+            ->to($this->customer['email'])
             ->subject(trans('shop::app.emails.customers.verification.subject'))
             ->view('shop::emails.customers.email-verification');
     }

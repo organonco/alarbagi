@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::table('sellers', function (Blueprint $table) {
             $table->date('expiry_date')->nullable();
+            $table->string('token')->nullable();
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('sellers', function (Blueprint $table) {
             $table->dropColumn('expiry_date');
+            $table->dropColumn('token');
         });
     }
 };

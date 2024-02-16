@@ -43,7 +43,8 @@ class Seller extends Model implements SellerContract, HasMedia
         'landline',
         'additional_email',
         'is_personal',
-        'expiry_date'
+        'expiry_date',
+        'token'
     ];
 
     public function admin()
@@ -58,7 +59,7 @@ class Seller extends Model implements SellerContract, HasMedia
 
     protected static function getDefaultStatus()
     {
-        return SellerStatusEnum::PENDING;
+        return SellerStatusEnum::UNVERIFIED;
     }
 
     public function setLogo($key)
@@ -107,7 +108,7 @@ class Seller extends Model implements SellerContract, HasMedia
 
     public function isActivatable()
     {
-        return $this->status != SellerStatusEnum::ACTIVE;
+        return $this->status == SellerStatusEnum::DEACTIVATED || $this->status == SellerStatusEnum::PENDING;
     }
 
     public function isDeactivatable()
