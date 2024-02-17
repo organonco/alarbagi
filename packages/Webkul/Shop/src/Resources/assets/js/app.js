@@ -13,8 +13,10 @@ import { createApp } from "vue/dist/vue.esm-bundler";
  * all the `vee-validate` settings.
  */
 import { configure, defineRule, Field, Form, ErrorMessage } from "vee-validate";
-import { localize } from "@vee-validate/i18n";
+import {localize, setLocale} from "@vee-validate/i18n";
 import en from "@vee-validate/i18n/dist/locale/en.json";
+import ar from "@vee-validate/i18n/dist/locale/ar.json";
+
 import * as AllRules from '@vee-validate/rules';
 
 /**
@@ -44,6 +46,7 @@ defineRule("phone", (value) => {
     return true;
 });
 
+
 configure({
     /**
      * Built-in error messages and custom error messages are available. Multiple
@@ -57,12 +60,22 @@ configure({
                 phone: "This {field} must be a valid phone number",
             },
         },
+        ar: {
+            ...ar,
+            messages: {
+                ...ar.messages,
+                phone: "{field} يجب أن يكون رقم هاتف صحيح",
+            },
+        },
     }),
 
     validateOnBlur: true,
     validateOnInput: true,
     validateOnChange: true,
 });
+
+
+setLocale(document.getElementsByTagName("html")[0].lang)
 
 /**
  * Main root application registry.
@@ -81,7 +94,7 @@ window.app = createApp({
                     let lazyImage = entry.target;
 
                     lazyImage.src = lazyImage.dataset.src;
-                    
+
                     lazyImage.classList.remove("lazy");
 
                     lazyImageObserver.unobserve(lazyImage);
