@@ -8,7 +8,7 @@ class DashboardController extends Controller
 {
     /**
      * Create a controller instance.
-     * 
+     *
      * @param  \Webkul\Admin\Helpers\Dashboard  $dashboardHelper
      * @return void
      */
@@ -18,7 +18,7 @@ class DashboardController extends Controller
 
     /**
      * Dashboard page.
-     * 
+     *
      * @return \Illuminate\View\View|\Illuminate\Http\JsonResponse
      */
     public function index()

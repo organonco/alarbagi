@@ -33,6 +33,11 @@ class Bouncer
             return redirect()->route('admin.session.create');
         }
 
+
+        if($this->checkDashboard(auth()->guard($guard)->user()))
+            return redirect()->route('marketplace.admin.orders.index');
+
+
         /**
          * If somehow the user deleted all permissions, then it should be
          * auto logged out and need to contact the administrator again.
@@ -92,4 +97,11 @@ class Bouncer
             bouncer()->allow($acl->roles[Route::currentRouteName()]);
         }
     }
+
+
+    private function checkDashboard($user)
+    {
+        return Route::currentRouteName() == 'admin.dashboard.index' && $user->isSeller();
+    }
 }
+

@@ -18,4 +18,9 @@ trait InteractsWithAuthenticatedAdmin
     {
         return $this->getAuthenticatedAdmin()?->getSeller();
     }
+
+    private function isAuthenticatedAdminSeller() : bool
+    {
+        return !is_null($this->getAuthenticatedSeller());
+    }
 }
