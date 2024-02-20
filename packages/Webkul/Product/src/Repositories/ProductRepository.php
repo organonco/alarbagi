@@ -58,11 +58,11 @@ class ProductRepository extends Repository
      * @param  string  $attribute
      * @return \Webkul\Product\Contracts\Product
      */
-    public function update(array $data, $id, $attribute = 'id')
+    public function update(array $data, $id, $attribute = 'id', $ignoreEmpty = false)
     {
         $product = $this->withoutGlobalScope('seller_status')->findOrFail($id);
 
-        $product = $product->getTypeInstance()->update($data, $id, $attribute);
+        $product = $product->getTypeInstance()->update($data, $id, $attribute, $ignoreEmpty);
 
         $product->refresh();
 
@@ -72,6 +72,7 @@ class ProductRepository extends Repository
 
         return $product;
     }
+
 
     /**
      * Copy product.

@@ -208,7 +208,7 @@
                                 <form :action=`{{ route('admin.catalog.update-price', '') }}/${record.id}` style="display: flex;" method="post">
                                     @csrf
                                     <input name="price" :value="record.price" style="width: 150px; border: 1px solid lightgrey; border-radius: 5px; padding-left: 5px"/>
-                                    <button type="submit" style="margin-left: 10px; height: 40px; border: 1px solid lightgrey; border-radius: 5px;" class="transparent-button">save</button>
+                                    <button type="submit" style="margin-left: 10px; height: 40px; border: 1px solid lightgrey; border-radius: 5px;" class="transparent-button">save price</button>
                                 </form>
                             </div>
 
@@ -230,23 +230,33 @@
                                     </span>
                                 </p>
 
-                                <p
-                                    class="text-gray-600 dark:text-gray-300"
-                                    v-else-if="record.quantity > 0"
-                                >
-                                    <span class="text-green-600">
-                                        @{{ "@lang('admin::app.catalog.products.index.datagrid.qty-value')".replace(':qty', record.quantity) }}
-                                    </span>
-                                </p>
 
-                                <p
-                                    class="text-gray-600 dark:text-gray-300"
-                                    v-else
-                                >
-                                    <span class="text-red-600">
-                                        @lang('admin::app.catalog.products.index.datagrid.out-of-stock')
-                                    </span>
-                                </p>
+                                <div v-else>
+                                    <form :action=`{{ route('admin.catalog.update-stock', '') }}/${record.id}` style="display: flex;" method="post">
+                                        @csrf
+                                        <input name="stock" :value="record.quantity" :style="'width: 150px; border: 1px solid lightgrey; border-radius: 5px; padding-left: 5px;' + (record.quantity <= 0 ? 'border: 1px solid red' : '')"/>
+                                        <button type="submit" style="margin-left: 10px; height: 40px; border: 1px solid lightgrey; border-radius: 5px;" class="transparent-button">save stock</button>
+                                    </form>
+                                </div>
+
+{{--                                --}}
+{{--                                <p--}}
+{{--                                    class="text-gray-600 dark:text-gray-300"--}}
+{{--                                    v-else-if="record.quantity > 0"--}}
+{{--                                >--}}
+{{--                                    <span class="text-green-600">--}}
+{{--                                        @{{ "@lang('admin::app.catalog.products.index.datagrid.qty-value')".replace(':qty', record.quantity) }}--}}
+{{--                                    </span>--}}
+{{--                                </p>--}}
+
+{{--                                <p--}}
+{{--                                    class="text-gray-600 dark:text-gray-300"--}}
+{{--                                    v-else--}}
+{{--                                >--}}
+{{--                                    <span class="text-red-600">--}}
+{{--                                        @lang('admin::app.catalog.products.index.datagrid.out-of-stock')--}}
+{{--                                    </span>--}}
+{{--                                </p>--}}
                             </div>
                         </div>
                     </div>

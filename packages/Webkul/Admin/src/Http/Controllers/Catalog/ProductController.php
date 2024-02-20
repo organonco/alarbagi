@@ -476,7 +476,21 @@ class ProductController extends Controller
         $product = $this->productRepository->findOrFail($id);
         if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
             abort(401, 'this action is unauthorized');
-        $this->productRepository->update(['price' => $newPrice, 'channel' => 'default'], $id);
+        $this->productRepository->update(['price' => $newPrice, 'channel' => 'default'], $id, 'id', true);
+        Event::dispatch('catalog.product.update.after', $product);
+        return redirect()->route('admin.catalog.products.index');
+    }
+
+    public function updateStock($id){
+        request()->validate([
+            'stock' => ['required', 'numeric', 'min:0']
+        ]);
+        $newStock = request()->get('stock');
+        $admin = $this->getAuthenticatedAdmin();
+        $product = $this->productRepository->findOrFail($id);
+        if ($admin->isSeller() && $admin->getSellerId() != $product->getSellerId())
+            abort(401, 'this action is unauthorized');
+        $this->productRepository->update(['inventories' => [1 => $newStock], 'channel' => 'default'], $id, 'id', true);
         Event::dispatch('catalog.product.update.after', $product);
         return redirect()->route('admin.catalog.products.index');
     }

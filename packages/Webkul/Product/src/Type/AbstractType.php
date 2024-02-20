@@ -144,9 +144,10 @@ abstract class AbstractType
      * @param  array  $data
      * @param  int  $id
      * @param  string  $attribute
+     * @param bool $ignoreEmpty
      * @return \Webkul\Product\Contracts\Product
      */
-    public function update(array $data, $id, $attribute = 'id')
+    public function update(array $data, $id, $attribute = 'id', $ignoreEmpty = false)
     {
         $product = $this->productRepository->withoutGlobalScope('seller_status')->find($id);
 
@@ -161,6 +162,10 @@ abstract class AbstractType
         $route = request()->route()?->getName();
 
         foreach ($product->attribute_family->custom_attributes as $attribute) {
+
+            if($ignoreEmpty && !isset($data[$attribute['code']]))
+                continue;
+
             if (
                 $attribute->type === 'boolean'
                 && $route !== 'admin.catalog.products.mass_update'
