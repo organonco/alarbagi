@@ -74,7 +74,7 @@
                         if (i == this.currentIndex - 1) {
                             continue;
                         }
-                        
+
                         slides[i].style.display = 'none';
                     }
 

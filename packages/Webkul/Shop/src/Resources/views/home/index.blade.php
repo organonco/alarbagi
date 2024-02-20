@@ -18,8 +18,10 @@
             align-items: center;
             justify-content: center;
         }
+
         .cart-floating-button .number {
-            top: 5px; left: 12px
+            top: 5px;
+            left: 12px
         }
     </style>
 @endpush
@@ -83,6 +85,35 @@
                         :navigation-link="route('shop.products.index', array_merge($data['filters'], ['title' => $data['title']]) ?? [])"
                     >
                     </x-shop::products.carousel>
+                    @break
+                @case($customization::SMALL_BANNER)
+                    <div class="banner container mt-20">
+                        @if($customization->options['images'][0]['link'])
+                            <a href="{{$customization->options['images'][0]['link']}}" target="_blank">
+                                <img src="{{asset($customization->options['images'][0]['image'])}}"/>
+                            </a>
+                        @else
+                            <img src="{{asset($customization->options['images'][0]['image'])}}"/>
+                        @endif
+                    </div>
+                    @break
+
+                @case($customization::IMAGE_WITH_TEXT)
+
+                    <div class="container section-gap home-page-container">
+                        <div class="inline-col-wrapper">
+                            <div class="inline-col-image-wrapper">
+                                <img src="{{asset($customization->options['banner'])}}" width="632" height="510" alt="">
+                            </div>
+                            <div class="inline-col-content-wrapper">
+                                <h2 class="inline-col-title sn-color-light-main"> {{$customization['options']['title']}} </h2>
+                                <p class="inline-col-description sn-color-secondary">{{$customization['options']['text']}}</p>
+                                <a href="{{$customization->options['link']}}" target="_blank">
+                                    <button class="sn-button-primary" style="color: white">View All</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     @break
             @endswitch
         @endforeach

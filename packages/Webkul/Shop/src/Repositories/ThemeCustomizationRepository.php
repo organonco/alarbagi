@@ -19,12 +19,33 @@ class ThemeCustomizationRepository extends Repository
         return ThemeCustomization::class;
     }
 
+
+    public function saveImageWithText($options, $theme)
+    {
+        $options = $options['options'];
+
+        if (!isset($options['banner']) && isset($theme['options']['banner'])) {
+            $options['banner'] = $theme['options']['banner'];
+        }
+
+        elseif (isset($options['banner'])) {
+            $image = $options['banner'];
+            $manager = new ImageManager();
+            $path = 'theme/' . $theme->id . '/' . Str::random(40) . '.webp';
+            Storage::put($path, $manager->make($image['image'])->encode('webp'));
+            $options['banner'] = 'storage/' . $path;
+        }
+        $theme->options = $options;
+        $theme->save();
+    }
+
+
     /**
      * Upload images
      *
-     * @param  array  $imageOptions
-     * @param  \Webkul\Shop\Contracts\ThemeCustomization  $theme
-     * 
+     * @param array $imageOptions
+     * @param \Webkul\Shop\Contracts\ThemeCustomization $theme
+     *
      * @return void|string
      */
     public function uploadImage($imageOptions, $theme, $deletedSliderImages = [])
@@ -37,23 +58,29 @@ class ThemeCustomizationRepository extends Repository
             $options = [];
 
             foreach ($imageOptions['options'] as $image) {
+                if (!is_array($image))
+                    continue;
+
                 if ($image['image'] instanceof UploadedFile) {
+
+                    if (!isset($image['link'])) {
+                        $image['link'] = '';
+                    }
+
                     $manager = new ImageManager();
-    
                     $path = 'theme/' . $theme->id . '/' . Str::random(40) . '.webp';
-    
+
                     Storage::put($path, $manager->make($image['image'])->encode('webp'));
 
                     if (
-                        isset($imageOptions['type']) 
+                        isset($imageOptions['type'])
                         && $imageOptions['type'] == 'static_content'
                     ) {
                         return Storage::url($path);
                     }
-
                     $options['images'][] = [
                         'image' => 'storage/' . $path,
-                        'link'  => $image['link'],
+                        'link' => $image['link'],
                     ];
                 } else {
                     $options['images'][] = $image;
@@ -62,7 +89,7 @@ class ThemeCustomizationRepository extends Repository
         }
 
         $theme->options = $options ?? [];
-    
+
         $theme->save();
     }
 }

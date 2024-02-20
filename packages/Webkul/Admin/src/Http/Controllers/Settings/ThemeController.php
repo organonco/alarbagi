@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Storage;
 use Webkul\Admin\Http\Controllers\Controller;
+use Webkul\Shop\Models\ThemeCustomization;
 use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 use Webkul\Admin\DataGrids\Theme\ThemeDatagrid;
 
@@ -50,7 +51,7 @@ class ThemeController extends Controller
         $this->validate(request(), [
             'name'       => 'required',
             'sort_order' => 'required|numeric',
-            'type'       => 'in:product_carousel,category_carousel,static_content,image_carousel,footer_links',
+            'type'       => 'in:product_carousel,category_carousel,static_content,image_carousel,footer_links,image_with_text,small_banner',
             'channel_id' => 'required|in:'.implode(',', (core()->getAllChannels()->pluck("id")->toArray())),
         ]);
 
@@ -97,7 +98,7 @@ class ThemeController extends Controller
         if ($data['type'] == 'static_content') {
             $data[$locale]['options']['html'] = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $data[$locale]['options']['html']);
             $data[$locale]['options']['css'] = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $data[$locale]['options']['css']);
-        }else{
+        }elseif(isset($data['options'])){
             $data[$locale]['options'] = $data['options'];
             unset($data['options']);
         }
@@ -105,15 +106,17 @@ class ThemeController extends Controller
 
         $data['status'] = request()->input('status') == 'on';
 
-        if ($data['type'] == 'image_carousel') {
+        if ($data['type'] == 'image_carousel' || $data['type'] == ThemeCustomization::SMALL_BANNER || $data['type'] == ThemeCustomization::IMAGE_WITH_TEXT) {
             unset($data['options']);
+            unset($data[$locale]['options']);
         }
+
 
         Event::dispatch('theme_customization.update.before', $id);
 
         $theme = $this->themeCustomizationRepository->update($data, $id);
 
-        if ($data['type'] == 'image_carousel') {
+        if ($data['type'] == 'image_carousel' || $data['type'] == ThemeCustomization::SMALL_BANNER && isset(request()->options)) {
             $this->themeCustomizationRepository->uploadImage(
                 request()->all('options'),
                 $theme,
@@ -121,6 +124,8 @@ class ThemeController extends Controller
             );
         }
 
+        if($data['type'] == ThemeCustomization::IMAGE_WITH_TEXT)
+            $this->themeCustomizationRepository->saveImageWithText(request()->all('options'), $theme);
 
         Event::dispatch('theme_customization.update.after', $theme);
 

@@ -170,6 +170,8 @@
                             static_content: "@lang('admin::app.settings.themes.create.type.static-content')",
                             image_carousel: "@lang('admin::app.settings.themes.create.type.image-carousel')",
                             footer_links: "@lang('admin::app.settings.themes.create.type.footer-links')",
+                            image_with_text: "@lang('admin::app.settings.themes.create.type.image-with-text')",
+                            small_banner: "@lang('admin::app.settings.themes.create.type.small-banner')"
                         }
                     };
                 },

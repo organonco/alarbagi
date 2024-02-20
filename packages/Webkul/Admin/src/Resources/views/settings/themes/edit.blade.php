@@ -1751,6 +1751,444 @@
             </div>
         </script>
 
+
+
+        {{-- G - Small Banner Template --}}
+        <script type="text/x-template" id="v-small-banner-template">
+            <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
+                <div class=" flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
+                    <div class="p-[16px] bg-white dark:bg-gray-900 rounded box-shadow">
+                        <div class="flex gap-x-[10px] justify-between items-center mb-[10px]">
+                            <div class="flex flex-col gap-[4px]">
+                                <p class="text-[16px] text-gray-800 dark:text-white font-semibold">
+                                    @lang('admin::app.settings.themes.edit.small-banner')
+                                </p>
+
+                                <p class="text-[12px] text-gray-500 dark:text-gray-300 font-medium">
+                                    @lang('admin::app.settings.themes.edit.small-banner-description')
+                                </p>
+                            </div>
+                        </div>
+
+                        <span class="block w-full mb-[16px] mt-[16px] border-b-[1px] dark:border-gray-800"></span>
+
+
+                        <x-admin::form.control-group class="mb-[10px]">
+                            <x-admin::form.control-group.label class="required">
+                                @lang('admin::app.settings.themes.edit.small-banner')
+                            </x-admin::form.control-group.label>
+
+
+                            <x-admin::form.control-group.control
+                                type="file"
+                                name="options[banner][image]"
+                                :label="trans('admin::app.settings.themes.edit.small-banner')"
+                                :placeholder="trans('admin::app.settings.themes.edit.small-banner')"
+                            >
+                            </x-admin::form.control-group.control>
+
+                            <x-admin::form.control-group.error
+                                control-name="banner"
+                            >
+                            </x-admin::form.control-group.error>
+                        </x-admin::form.control-group>
+
+
+                        <x-admin::form.control-group class="mb-[10px]">
+                            <x-admin::form.control-group.label>
+                                Link
+                            </x-admin::form.control-group.label>
+
+
+                            <x-admin::form.control-group.control
+                                type="text"
+                                name="options[banner][link]"
+                                label="link"
+
+                            >
+                            </x-admin::form.control-group.control>
+
+                            <x-admin::form.control-group.error
+                                control-name="link"
+                            >
+                            </x-admin::form.control-group.error>
+                        </x-admin::form.control-group>
+
+
+                    </div>
+
+                    @if(isset($theme->options['images']))
+                    <div class="p-[16px] bg-white dark:bg-gray-900 rounded box-shadow">
+                        <div class="flex gap-x-[10px] justify-between items-center mb-[10px]">
+                            <div class="flex flex-col gap-[4px]">
+                                <img src="{{asset($theme->options['images'][0]['image'])}}"/>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+
+                <!-- General -->
+                <div class="flex flex-col gap-[8px] w-[360px] max-w-full max-sm:w-full">
+                    <x-admin::accordion>
+                        <x-slot:header>
+                            <p class="p-[10px] text-gray-600 dark:text-gray-300 text-[16px] font-semibold">
+                                @lang('admin::app.settings.themes.edit.general')
+                            </p>
+                        </x-slot:header>
+
+                        <x-slot:content>
+                            <input type="hidden" name="type" value="small_banner">
+
+                            <x-admin::form.control-group class="mb-[10px]">
+                                <x-admin::form.control-group.label class="required">
+                                    @lang('admin::app.settings.themes.edit.name')
+                                </x-admin::form.control-group.label>
+
+                                <v-field
+                                    type="text"
+                                    name="name"
+                                    value="{{ $theme->name }}"
+                                    rules="required"
+                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                    :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                    label="@lang('admin::app.settings.themes.edit.name')"
+                                    placeholder="@lang('admin::app.settings.themes.edit.name')"
+                                >
+                                </v-field>
+
+                                <x-admin::form.control-group.error
+                                    control-name="name"
+                                >
+                                </x-admin::form.control-group.error>
+                            </x-admin::form.control-group>
+
+                            <x-admin::form.control-group class="mb-[10px]">
+                                <x-admin::form.control-group.label class="required">
+                                    @lang('admin::app.settings.themes.edit.sort-order')
+                                </x-admin::form.control-group.label>
+
+                                <v-field
+                                    type="text"
+                                    name="sort_order"
+                                    value="{{ $theme->sort_order }}"
+                                    rules="required|min_value:1"
+                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                    :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                    label="@lang('admin::app.settings.themes.edit.sort-order')"
+                                    placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
+                                >
+                                </v-field>
+
+                                <x-admin::form.control-group.error
+                                    control-name="sort_order"
+                                >
+                                </x-admin::form.control-group.error>
+                            </x-admin::form.control-group>
+
+                            <x-admin::form.control-group>
+                                <x-admin::form.control-group.label class="required">
+                                    @lang('admin::app.settings.themes.edit.channels')
+                                </x-admin::form.control-group.label>
+
+                                <x-admin::form.control-group.control
+                                    type="select"
+                                    name="channel_id"
+                                    rules="required"
+                                    :value="$theme->channel_id"
+                                >
+                                    @foreach($channels as $channel)
+                                        <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                                    @endforeach
+                                </x-admin::form.control-group.control>
+
+                                <x-admin::form.control-group.error control-name="channel_id"></x-admin::form.control-group.error>
+                            </x-admin::form.control-group>
+
+                            <x-admin::form.control-group>
+                                <x-admin::form.control-group.label class="required">
+                                    @lang('admin::app.settings.themes.edit.status')
+                                </x-admin::form.control-group.label>
+
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <v-field
+                                        type="checkbox"
+                                        name="status"
+                                        class="hidden"
+                                        v-slot="{ field }"
+                                        value="{{ $theme->status }}"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            name="status"
+                                            id="status"
+                                            class="sr-only peer"
+                                            v-bind="field"
+                                            :checked="{{ $theme->status }}"
+                                        />
+                                    </v-field>
+
+                                    <label
+                                        class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
+                                        for="status"
+                                    ></label>
+                                </label>
+
+                                <x-admin::form.control-group.error
+                                    control-name="status"
+                                >
+                                </x-admin::form.control-group.error>
+                            </x-admin::form.control-group>
+                        </x-slot:content>
+                    </x-admin::accordion>
+                </div>
+            </div>
+        </script>
+
+        {{-- G - Small Banner Template END --}}
+
+
+
+
+        {{-- G - Image With Text --}}
+        <script type="text/x-template" id="v-image-with-text-template">
+            <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
+                <div class=" flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
+                    <div class="p-[16px] bg-white dark:bg-gray-900 rounded box-shadow">
+                        <div class="flex gap-x-[10px] justify-between items-center mb-[10px]">
+                            <div class="flex flex-col gap-[4px]">
+                                <p class="text-[16px] text-gray-800 dark:text-white font-semibold">
+                                    @lang('admin::app.settings.themes.edit.image-with-text')
+                                </p>
+
+                                <p class="text-[12px] text-gray-500 dark:text-gray-300 font-medium">
+                                    @lang('admin::app.settings.themes.edit.image-with-text-description')
+                                </p>
+                            </div>
+                        </div>
+
+                        <span class="block w-full mb-[16px] mt-[16px] border-b-[1px] dark:border-gray-800"></span>
+
+
+                        <x-admin::form.control-group class="mb-[10px]">
+                            <x-admin::form.control-group.label class="required">
+                                @lang('admin::app.settings.themes.edit.image')
+                            </x-admin::form.control-group.label>
+
+
+                            <x-admin::form.control-group.control
+                                type="file"
+                                name="options[banner][image]"
+                                :label="trans('admin::app.settings.themes.edit.image')"
+                                :placeholder="trans('admin::app.settings.themes.edit.image')"
+                            >
+                            </x-admin::form.control-group.control>
+
+                            <x-admin::form.control-group.error
+                                control-name="banner"
+                            >
+                            </x-admin::form.control-group.error>
+                        </x-admin::form.control-group>
+
+
+
+                        @php($theme['options'] = $theme['options'] ? $theme['options'] : ['title' => "", 'text' => "", 'link' => ''])
+                        <x-admin::form.control-group class="mb-[10px]">
+                            <x-admin::form.control-group.label class="required">
+                                Title
+                            </x-admin::form.control-group.label>
+
+
+                            <x-admin::form.control-group.control
+                                type="text"
+                                name="options[title]"
+                                label="title"
+                                value="{{$theme['options']['title']}}"
+                            >
+                            </x-admin::form.control-group.control>
+
+                            <x-admin::form.control-group.error
+                                control-name="title"
+                            >
+                            </x-admin::form.control-group.error>
+                        </x-admin::form.control-group>
+
+                        <x-admin::form.control-group class="mb-[10px]">
+                            <x-admin::form.control-group.label class="required">
+                                Text
+                            </x-admin::form.control-group.label>
+
+
+                            <x-admin::form.control-group.control
+                                type="textarea"
+                                name="options[text]"
+                                label="text"
+                                value="{{$theme['options']['text']}}"
+                            >
+                            </x-admin::form.control-group.control>
+
+                            <x-admin::form.control-group.error
+                                control-name="text"
+                            >
+                            </x-admin::form.control-group.error>
+                        </x-admin::form.control-group>
+
+
+                        <x-admin::form.control-group class="mb-[10px]">
+                            <x-admin::form.control-group.label class="required">
+                                Link
+                            </x-admin::form.control-group.label>
+
+
+                            <x-admin::form.control-group.control
+                                type="text"
+                                name="options[link]"
+                                label="link"
+                                value="{{$theme['options']['link']}}"
+                            >
+                            </x-admin::form.control-group.control>
+
+                            <x-admin::form.control-group.error
+                                control-name="link"
+                            >
+                            </x-admin::form.control-group.error>
+                        </x-admin::form.control-group>
+
+
+                    </div>
+
+                    @if(isset($theme->options['images']))
+                        <div class="p-[16px] bg-white dark:bg-gray-900 rounded box-shadow">
+                            <div class="flex gap-x-[10px] justify-between items-center mb-[10px]">
+                                <div class="flex flex-col gap-[4px]">
+                                    <img src="{{asset($theme->options['images'][0]['image'])}}"/>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+
+                <!-- General -->
+                <div class="flex flex-col gap-[8px] w-[360px] max-w-full max-sm:w-full">
+                    <x-admin::accordion>
+                        <x-slot:header>
+                            <p class="p-[10px] text-gray-600 dark:text-gray-300 text-[16px] font-semibold">
+                                @lang('admin::app.settings.themes.edit.general')
+                            </p>
+                        </x-slot:header>
+
+                        <x-slot:content>
+                            <input type="hidden" name="type" value="image_with_text">
+
+                            <x-admin::form.control-group class="mb-[10px]">
+                                <x-admin::form.control-group.label class="required">
+                                    @lang('admin::app.settings.themes.edit.name')
+                                </x-admin::form.control-group.label>
+
+                                <v-field
+                                    type="text"
+                                    name="name"
+                                    value="{{ $theme->name }}"
+                                    rules="required"
+                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                    :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                    label="@lang('admin::app.settings.themes.edit.name')"
+                                    placeholder="@lang('admin::app.settings.themes.edit.name')"
+                                >
+                                </v-field>
+
+                                <x-admin::form.control-group.error
+                                    control-name="name"
+                                >
+                                </x-admin::form.control-group.error>
+                            </x-admin::form.control-group>
+
+                            <x-admin::form.control-group class="mb-[10px]">
+                                <x-admin::form.control-group.label class="required">
+                                    @lang('admin::app.settings.themes.edit.sort-order')
+                                </x-admin::form.control-group.label>
+
+                                <v-field
+                                    type="text"
+                                    name="sort_order"
+                                    value="{{ $theme->sort_order }}"
+                                    rules="required|min_value:1"
+                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                    :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                    label="@lang('admin::app.settings.themes.edit.sort-order')"
+                                    placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
+                                >
+                                </v-field>
+
+                                <x-admin::form.control-group.error
+                                    control-name="sort_order"
+                                >
+                                </x-admin::form.control-group.error>
+                            </x-admin::form.control-group>
+
+                            <x-admin::form.control-group>
+                                <x-admin::form.control-group.label class="required">
+                                    @lang('admin::app.settings.themes.edit.channels')
+                                </x-admin::form.control-group.label>
+
+                                <x-admin::form.control-group.control
+                                    type="select"
+                                    name="channel_id"
+                                    rules="required"
+                                    :value="$theme->channel_id"
+                                >
+                                    @foreach($channels as $channel)
+                                        <option value="{{ $channel->id }}">{{ $channel->name }}</option>
+                                    @endforeach
+                                </x-admin::form.control-group.control>
+
+                                <x-admin::form.control-group.error control-name="channel_id"></x-admin::form.control-group.error>
+                            </x-admin::form.control-group>
+
+                            <x-admin::form.control-group>
+                                <x-admin::form.control-group.label class="required">
+                                    @lang('admin::app.settings.themes.edit.status')
+                                </x-admin::form.control-group.label>
+
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <v-field
+                                        type="checkbox"
+                                        name="status"
+                                        class="hidden"
+                                        v-slot="{ field }"
+                                        value="{{ $theme->status }}"
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            name="status"
+                                            id="status"
+                                            class="sr-only peer"
+                                            v-bind="field"
+                                            :checked="{{ $theme->status }}"
+                                        />
+                                    </v-field>
+
+                                    <label
+                                        class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
+                                        for="status"
+                                    ></label>
+                                </label>
+
+                                <x-admin::form.control-group.error
+                                    control-name="status"
+                                >
+                                </x-admin::form.control-group.error>
+                            </x-admin::form.control-group>
+                        </x-slot:content>
+                    </x-admin::accordion>
+                </div>
+            </div>
+        </script>
+
+        {{-- G - Image With Text END --}}
+
+
+
         {{-- Parent Theme Customizer Component --}}
         <script type="module">
             app.component('v-theme-customizer', {
@@ -1768,6 +2206,8 @@
                             static_content: 'v-static-theme',
                             image_carousel: 'v-slider-theme',
                             footer_links: 'v-footer-link-theme',
+                            small_banner: 'v-small-banner-theme',
+                            image_with_text: 'v-image-with-text-theme',
                         }
                     };
                 },
@@ -1903,6 +2343,100 @@
                 },
             });
         </script>
+
+
+        <script type="module">
+            app.component('v-small-banner-theme', {
+                template: '#v-small-banner-template',
+
+                props: ['errors'],
+
+                data() {
+                    return {
+                        options: @json($theme->options),
+                    };
+                },
+
+                created() {
+                    if (this.options === null) {
+                        this.options = { filters: {} };
+                    }
+
+                    if (! this.options.filters) {
+                        this.options.filters = {};
+                    }
+
+                    this.options.filters = Object.keys(this.options.filters)
+                        .filter(key => ! ['sort', 'limit', 'title'].includes(key))
+                        .map(key => ({
+                            key: key,
+                            value: this.options.filters[key]
+                        }));
+                },
+
+                methods: {
+                    addFilter(params) {
+                        this.options.filters.push(params);
+
+                        this.$refs.productFilterModal.toggle();
+                    },
+
+                    remove(filter) {
+                        let index = this.options.filters.indexOf(filter);
+
+                        this.options.filters.splice(index, 1);
+                    },
+                },
+            });
+        </script>
+
+
+
+        <script type="module">
+            app.component('v-image-with-text-theme', {
+                template: '#v-image-with-text-template',
+
+                props: ['errors'],
+
+                data() {
+                    return {
+                        options: @json($theme->options),
+                    };
+                },
+
+                created() {
+                    if (this.options === null) {
+                        this.options = { filters: {} };
+                    }
+
+                    if (! this.options.filters) {
+                        this.options.filters = {};
+                    }
+
+                    this.options.filters = Object.keys(this.options.filters)
+                        .filter(key => ! ['sort', 'limit', 'title'].includes(key))
+                        .map(key => ({
+                            key: key,
+                            value: this.options.filters[key]
+                        }));
+                },
+
+                methods: {
+                    addFilter(params) {
+                        this.options.filters.push(params);
+
+                        this.$refs.productFilterModal.toggle();
+                    },
+
+                    remove(filter) {
+                        let index = this.options.filters.indexOf(filter);
+
+                        this.options.filters.splice(index, 1);
+                    },
+                },
+            });
+        </script>
+
 
         {{-- Category Theme Component --}}
         <script type="module">

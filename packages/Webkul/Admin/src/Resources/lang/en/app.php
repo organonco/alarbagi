@@ -2553,6 +2553,8 @@ return [
                     'product-carousel'  => 'Product Carousel',
                     'static-content'    => 'Static Content',
                     'title'             => 'Type',
+                    'image-with-text' => "Image with Text",
+                    'small-banner' => "Small Banner"
                 ],
             ],
 
@@ -2608,6 +2610,10 @@ return [
                 'update-slider'                 => 'Update Slider',
                 'value-input'                   => 'Value',
                 'value'                         => 'Value: :value',
+                'small-banner' => "Small Banner",
+                'small-banner-description' => "Shows a wide banner (must be at least 4/1)",
+                'image-with-text' => "Image With Text",
+                'image-with-text-description' => "Shows an Image, with text and a button on the side",
             ],
 
             'create-success' => 'Theme created successfully',
