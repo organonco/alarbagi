@@ -70,26 +70,32 @@
                 </div>
             </div>
 
-            <div class="grid gap-2.5 content-start max-w-[291px]" style="padding: 10px">
-                <p class="text-base sn-color-secondary" v-text="product.name" style="overflow: hidden;
+            <a
+                :href="`{{ route('shop.product_or_category.index', '') }}/${product.url_key}`"
+                :aria-label="product.name + ' '"
+            >
+
+                <div class="grid gap-2.5 content-start max-w-[291px]" style="padding: 10px">
+                    <p class="text-base sn-color-secondary" v-text="product.name" style="overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;"></p>
 
-                <div
-                    class="flex gap-2.5 gap-05-mobile font-semibold text-lg sn-color-light-main flex-wrap"
-                    v-html="product.price_html"
-                >
-                </div>
+                    <div
+                        class="flex gap-2.5 gap-05-mobile font-semibold text-lg sn-color-light-main flex-wrap"
+                        v-html="product.price_html"
+                    >
+                    </div>
 
-                <!-- Needs to implement that in future -->
-                <div class="hidden flex gap-4 mt-[8px]">
-                    <span class="block w-[30px] h-[30px] bg-[#B5DCB4] rounded-full cursor-pointer"></span>
+                    <!-- Needs to implement that in future -->
+                    <div class="hidden flex gap-4 mt-[8px]">
+                        <span class="block w-[30px] h-[30px] bg-[#B5DCB4] rounded-full cursor-pointer"></span>
 
-                    <span class="block w-[30px] h-[30px] bg-[#5C5C5C] rounded-full cursor-pointer"></span>
+                        <span class="block w-[30px] h-[30px] bg-[#5C5C5C] rounded-full cursor-pointer"></span>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
 
         <!-- List Card -->
@@ -203,17 +209,18 @@
                 addToWishlist() {
                     if (this.isCustomer) {
                         this.$axios.post(`{{ route('shop.api.customers.account.wishlist.store') }}`, {
-                                product_id: this.product.id
-                            })
+                            product_id: this.product.id
+                        })
                             .then(response => {
-                                this.product.is_wishlist = ! this.product.is_wishlist;
+                                this.product.is_wishlist = !this.product.is_wishlist;
 
-                                this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                                this.$emitter.emit('add-flash', {type: 'success', message: response.data.data.message});
                             })
-                            .catch(error => {});
-                        } else {
-                            window.location.href = "{{ route('shop.customer.session.index')}}";
-                        }
+                            .catch(error => {
+                            });
+                    } else {
+                        window.location.href = "{{ route('shop.customer.session.index')}}";
+                    }
                 },
 
                 addToCompare(productId) {
@@ -222,19 +229,22 @@
                      */
                     if (this.isCustomer) {
                         this.$axios.post('{{ route("shop.api.compare.store") }}', {
-                                'product_id': productId
-                            })
+                            'product_id': productId
+                        })
                             .then(response => {
-                                this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                                this.$emitter.emit('add-flash', {type: 'success', message: response.data.data.message});
                             })
                             .catch(error => {
                                 if ([400, 422].includes(error.response.status)) {
-                                    this.$emitter.emit('add-flash', { type: 'warning', message: error.response.data.data.message });
+                                    this.$emitter.emit('add-flash', {
+                                        type: 'warning',
+                                        message: error.response.data.data.message
+                                    });
 
                                     return;
                                 }
 
-                                this.$emitter.emit('add-flash', { type: 'error', message: error.response.data.message});
+                                this.$emitter.emit('add-flash', {type: 'error', message: error.response.data.message});
                             });
 
                         return;
@@ -246,19 +256,28 @@
                     let items = this.getStorageValue() ?? [];
 
                     if (items.length) {
-                        if (! items.includes(productId)) {
+                        if (!items.includes(productId)) {
                             items.push(productId);
 
                             localStorage.setItem('compare_items', JSON.stringify(items));
 
-                            this.$emitter.emit('add-flash', { type: 'success', message: "@lang('shop::app.components.products.card.add-to-compare')" });
+                            this.$emitter.emit('add-flash', {
+                                type: 'success',
+                                message: "@lang('shop::app.components.products.card.add-to-compare')"
+                            });
                         } else {
-                            this.$emitter.emit('add-flash', { type: 'warning', message: "@lang('shop::app.components.products.card.already-in-compare')" });
+                            this.$emitter.emit('add-flash', {
+                                type: 'warning',
+                                message: "@lang('shop::app.components.products.card.already-in-compare')"
+                            });
                         }
                     } else {
                         localStorage.setItem('compare_items', JSON.stringify([productId]));
 
-                        this.$emitter.emit('add-flash', { type: 'success', message: "@lang('shop::app.components.products.card.add-to-compare')" });
+                        this.$emitter.emit('add-flash', {
+                            type: 'success',
+                            message: "@lang('shop::app.components.products.card.add-to-compare')"
+                        });
 
                     }
                 },
@@ -266,7 +285,7 @@
                 getStorageValue(key) {
                     let value = localStorage.getItem('compare_items');
 
-                    if (! value) {
+                    if (!value) {
                         return [];
                     }
 
@@ -275,24 +294,24 @@
 
                 addToCart() {
                     this.$axios.post('{{ route("shop.api.checkout.cart.store") }}', {
-                            'quantity': 1,
-                            'product_id': this.product.id,
-                        })
+                        'quantity': 1,
+                        'product_id': this.product.id,
+                    })
                         .then(response => {
                             if (response.data.data.redirect_uri) {
                                 window.location.href = response.data.data.redirect_uri;
                             }
 
                             if (response.data.message) {
-                                this.$emitter.emit('update-mini-cart', response.data.data );
+                                this.$emitter.emit('update-mini-cart', response.data.data);
 
-                                this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                                this.$emitter.emit('add-flash', {type: 'success', message: response.data.message});
                             } else {
-                                this.$emitter.emit('add-flash', { type: 'warning', message: response.data.data.message });
+                                this.$emitter.emit('add-flash', {type: 'warning', message: response.data.data.message});
                             }
                         })
                         .catch(error => {
-                            this.$emitter.emit('add-flash', { type: 'error', message: response.data.message });
+                            this.$emitter.emit('add-flash', {type: 'error', message: response.data.message});
                         });
                 },
             },
