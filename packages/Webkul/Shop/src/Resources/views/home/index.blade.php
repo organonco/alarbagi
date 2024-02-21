@@ -110,7 +110,7 @@
                                     <h2 class="inline-col-title sn-color-light-main"> {{$customization['options']['title']}} </h2>
                                     <p class="inline-col-description sn-color-secondary">{{$customization['options']['text']}}</p>
                                     <a href="{{$customization->options['link']}}" target="_blank">
-                                        <button class="sn-button-primary" style="color: white">View All</button>
+                                        <button class="sn-button-primary" style="color: white">@lang('shop::app.components.products.carousel.view-all')</button>
                                     </a>
                                 </div>
                             </div>
