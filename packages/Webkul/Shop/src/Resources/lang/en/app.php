@@ -1,6 +1,23 @@
 <?php
 
 return [
+    'footer' => [
+        [
+            'title' => 'Best Shipping',
+            'text' => 'Shop now and get your order fast!',
+            'icon' => 'icon-truck'
+        ],
+        [
+            'title' => 'Best Prices',
+            'text' => 'Sign up now to get the best deals.',
+            'icon' => 'icon-dollar-sign'
+        ],
+        [
+            'title' => '24/7 Support',
+            'text' => 'We\'re here to help! Give us a call!',
+            'icon' => 'icon-support'
+        ],
+    ],
     'customers' => [
         'forgot-password' => [
             'back' => 'Back to sign In ?',

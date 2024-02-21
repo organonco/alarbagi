@@ -1,6 +1,24 @@
 <?php
 
 return [
+    'footer' => [
+        [
+            'title' => 'أفضل توصيل',
+            'text' => 'تسوق الآن واحصل على مشترياتك بسرعة',
+            'icon' => 'icon-truck'
+        ],
+        [
+            'title' => 'أفضل الأسعار',
+            'text' => 'سجل الآن واحصل على أفضل الأسعار',
+            'icon' => 'icon-dollar-sign'
+        ],
+        [
+            'title' => 'دعم 24/7',
+            'text' => 'نحن هنا لمساعدتك! اتصل بنا!',
+            'icon' => 'icon-support'
+        ],
+    ],
+
     'customers' => [
         'forgot-password' => [
             'back' => 'العودة إلى تسجيل الدخول؟',
