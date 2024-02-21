@@ -14,12 +14,12 @@
 
             <div class="flex gap-x-[10px] items-center">
                 <!-- Update Exchange Rate Button -->
-                <a
-                    href="{{ route('admin.settings.exchange_rates.update_rates') }}"
-                    class="primary-button"
-                >
-                    @lang('admin::app.settings.exchange-rates.index.update-rates')
-                </a>
+{{--                <a--}}
+{{--                    href="{{ route('admin.settings.exchange_rates.update_rates') }}"--}}
+{{--                    class="primary-button"--}}
+{{--                >--}}
+{{--                    @lang('admin::app.settings.exchange-rates.index.update-rates')--}}
+{{--                </a>--}}
 
                  <!-- Create Button -->
                 @if (bouncer()->hasPermission('settings.exchange_rates.create'))
@@ -50,10 +50,10 @@
                 </p>
 
                 <div class="flex gap-x-[10px] items-center">
-                    <!-- Update Exchange Rate Button -->
-                    <a href="{{ route('admin.settings.exchange_rates.update_rates') }}" class="primary-button">
-                        @lang('admin::app.settings.exchange-rates.index.update-rates')
-                    </a>
+{{--                    <!-- Update Exchange Rate Button -->--}}
+{{--                    <a href="{{ route('admin.settings.exchange_rates.update_rates') }}" class="primary-button">--}}
+{{--                        @lang('admin::app.settings.exchange-rates.index.update-rates')--}}
+{{--                    </a>--}}
 
                      <!-- Create Button -->
                     @if (bouncer()->hasPermission('settings.exchange_rates.create'))
@@ -126,13 +126,13 @@
                     >
                         <!-- Id -->
                         <p v-text="record.currency_exchange_id"></p>
-        
+
                         <!-- Status -->
                         <p v-text="record.currency_name"></p>
-        
+
                         <!-- Email -->
                         <p v-text="record.currency_rate"></p>
-        
+
                         <!-- Actions -->
                         <div class="flex justify-end">
                             <a @click="id=1; editModal(record.actions.find(action => action.title === 'Edit')?.url)">

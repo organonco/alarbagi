@@ -243,26 +243,26 @@ return [
     [
         'key'        => 'settings',
         'name'       => 'admin::app.components.layouts.sidebar.settings',
-        'route'      => 'admin.settings.locales.index',
+        'route'      => 'admin.settings.currencies.index',
         'sort'       => 8,
         'icon'       => 'icon-settings',
         'icon-class' => 'settings-icon',
     ], [
-        'key'        => 'settings.locales',
-        'name'       => 'admin::app.components.layouts.sidebar.locales',
-        'route'      => 'admin.settings.locales.index',
-        'sort'       => 1,
-        'icon'       => '',
-    ], [
         'key'        => 'settings.currencies',
         'name'       => 'admin::app.components.layouts.sidebar.currencies',
         'route'      => 'admin.settings.currencies.index',
-        'sort'       => 2,
+        'sort'       => 1,
         'icon'       => '',
     ], [
         'key'        => 'settings.exchange_rates',
         'name'       => 'admin::app.components.layouts.sidebar.exchange-rates',
         'route'      => 'admin.settings.exchange_rates.index',
+        'sort'       => 2,
+        'icon'       => '',
+    ], [
+        'key'        => 'settings.locales',
+        'name'       => 'admin::app.components.layouts.sidebar.locales',
+        'route'      => 'admin.settings.locales.index',
         'sort'       => 3,
         'icon'       => '',
     ], [

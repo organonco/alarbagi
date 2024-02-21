@@ -3238,7 +3238,7 @@ return [
                 'channels'                 => 'Channels',
                 'communications'           => 'Communications',
                 'campaigns'                => 'Campaigns',
-                'cms'                      => 'CMS',
+                'cms'                      => 'Pages',
                 'discount'                 => 'Discount',
                 'dashboard'                => 'Dashboard',
                 'email-templates'          => 'Email Templates',

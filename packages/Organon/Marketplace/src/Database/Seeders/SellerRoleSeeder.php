@@ -17,7 +17,6 @@ class SellerRoleSeeder extends Seeder
     {
         Model::unguard();
 
-        // Add seeder code here
         DB::table('roles')->insert([
             'id' => 2,
             'name' => 'Seller',
@@ -42,5 +41,69 @@ class SellerRoleSeeder extends Seeder
             ]),
         ]);
 
+        DB::table('roles')->insert([
+            'id' => 3,
+            'name' => "Manager",
+            'description' => "Manager Role",
+            'permission_type' => 'custom',
+            'permissions' => json_encode([
+                "dashboard",
+                "sales",
+                "sales.sellers",
+                "sales.seller-invoices",
+                "sales.orders",
+                "sales.orders.view",
+                "sales.orders.cancel",
+                "catalog",
+                "catalog.products",
+                "catalog.products.create",
+                "catalog.products.copy",
+                "catalog.products.edit",
+                "catalog.products.delete",
+                "catalog.products.mass-update",
+                "catalog.products.mass-delete",
+                "catalog.categories",
+                "catalog.categories.create",
+                "catalog.categories.edit",
+                "catalog.categories.delete",
+                "catalog.categories.mass-delete",
+                "catalog.categories.mass-update",
+                "customers",
+                "customers.customers",
+                "customers.customers.create",
+                "customers.customers.edit",
+                "customers.customers.delete",
+                "customers.customers.mass-update",
+                "customers.customers.mass-delete",
+                "customers.addresses",
+                "customers.addresses.create",
+                "customers.addresses.edit",
+                "customers.addresses.delete",
+                "customers.reviews",
+                "customers.reviews.edit",
+                "customers.reviews.delete",
+                "customers.reviews.mass-update",
+                "customers.reviews.mass-delete",
+                "customers.orders",
+                "reporting",
+                "reporting.sales",
+                "reporting.customers",
+                "reporting.products",
+                "cms",
+                "cms.create",
+                "cms.edit",
+                "cms.delete",
+                "cms.mass-delete",
+                "settings",
+                "settings.currencies",
+                "settings.currencies.create",
+                "settings.currencies.edit",
+                "settings.currencies.delete",
+                "settings.exchange_rates",
+                "settings.exchange_rates.create",
+                "settings.exchange_rates.edit",
+                "settings.exchange_rates.delete"
+            ])
+        ]);
     }
 }

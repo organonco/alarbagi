@@ -68,9 +68,9 @@
                 @case ($customization::CATEGORY_CAROUSEL)
                     {{-- Categories carousel --}}
                     <x-shop::categories.carousel
-                        :title="$data['title'] ?? ''"
-                        :src="route('shop.api.categories.index', $data['filters'] ?? [])"
-                        :navigation-link="route('shop.home.index')"
+                            :title="$data['title'] ?? ''"
+                            :src="route('shop.api.categories.index', $data['filters'] ?? [])"
+                            :navigation-link="route('shop.home.index')"
                     >
                     </x-shop::categories.carousel>
 
@@ -79,10 +79,10 @@
                 @case ($customization::PRODUCT_CAROUSEL)
                     {{-- Product Carousel --}}
                     <x-shop::products.carousel
-                        {{-- title="Men's Collections" --}}
-                        :title="$data['title'] ?? ''"
-                        :src="route('shop.api.products.index', $data['filters'] ?? [])"
-                        :navigation-link="route('shop.products.index', array_merge($data['filters'], ['title' => $data['title']]) ?? [])"
+                            {{-- title="Men's Collections" --}}
+                            :title="$data['title'] ?? ''"
+                            :src="route('shop.api.products.index', $data['filters'] ?? [])"
+                            :navigation-link="route('shop.products.index', array_merge($data['filters'], ['title' => $data['title']]) ?? [])"
                     >
                     </x-shop::products.carousel>
                     @break
@@ -99,21 +99,23 @@
                     @break
 
                 @case($customization::IMAGE_WITH_TEXT)
-
-                    <div class="container section-gap home-page-container">
-                        <div class="inline-col-wrapper">
-                            <div class="inline-col-image-wrapper">
-                                <img src="{{asset($customization->options['banner'])}}" width="632" height="510" alt="">
-                            </div>
-                            <div class="inline-col-content-wrapper">
-                                <h2 class="inline-col-title sn-color-light-main"> {{$customization['options']['title']}} </h2>
-                                <p class="inline-col-description sn-color-secondary">{{$customization['options']['text']}}</p>
-                                <a href="{{$customization->options['link']}}" target="_blank">
-                                    <button class="sn-button-primary" style="color: white">View All</button>
-                                </a>
+                    @if($customization->options)
+                        <div class="container section-gap home-page-container">
+                            <div class="inline-col-wrapper">
+                                <div class="inline-col-image-wrapper">
+                                    <img src="{{asset($customization->options['banner'])}}" width="632" height="510"
+                                         alt="">
+                                </div>
+                                <div class="inline-col-content-wrapper">
+                                    <h2 class="inline-col-title sn-color-light-main"> {{$customization['options']['title']}} </h2>
+                                    <p class="inline-col-description sn-color-secondary">{{$customization['options']['text']}}</p>
+                                    <a href="{{$customization->options['link']}}" target="_blank">
+                                        <button class="sn-button-primary" style="color: white">View All</button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                     @break
             @endswitch
         @endforeach
@@ -121,9 +123,9 @@
         @foreach($categories as $category)
             @php($filters = ['sort' => 'created_at-desc', 'limit' => '8', 'category_id' => $category['id']])
             <x-shop::products.carousel
-                title="{{$category->name}}"
-                :src="route('shop.api.products.index', $filters ?? [])"
-                :navigation-link="route('shop.product_or_category.index', $category['slug'])"
+                    title="{{$category->name}}"
+                    :src="route('shop.api.products.index', $filters ?? [])"
+                    :navigation-link="route('shop.product_or_category.index', $category['slug'])"
             >
             </x-shop::products.carousel>
     @endforeach

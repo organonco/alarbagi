@@ -199,25 +199,25 @@
                             </div>
                         </div>
 
-                        {{-- Unpaid Invoices --}}
-                        <div class="flex gap-[10px] flex-1 min-w-[200px]">
-                            <div class="w-full h-[60px] max-w-[60px] max-h-[60px] dark:invert dark:mix-blend-exclusion">
-                                <img
-                                    src="{{ bagisto_asset('images/unpaid-invoices.svg')}}"
-                                    title="@lang('admin::app.dashboard.index.total-unpaid-invoices')"
-                                >
-                            </div>
+{{--                        --}}{{-- Unpaid Invoices --}}
+{{--                        <div class="flex gap-[10px] flex-1 min-w-[200px]">--}}
+{{--                            <div class="w-full h-[60px] max-w-[60px] max-h-[60px] dark:invert dark:mix-blend-exclusion">--}}
+{{--                                <img--}}
+{{--                                    src="{{ bagisto_asset('images/unpaid-invoices.svg')}}"--}}
+{{--                                    title="@lang('admin::app.dashboard.index.total-unpaid-invoices')"--}}
+{{--                                >--}}
+{{--                            </div>--}}
 
-                            <div class="grid gap-[4px] place-content-start">
-                                <p class="text-[16px] text-gray-800 dark:text-white font-semibold">
-                                    {{ core()->formatBasePrice($statistics['over_all']['total_unpaid_invoices']) }}
-                                </p>
+{{--                            <div class="grid gap-[4px] place-content-start">--}}
+{{--                                <p class="text-[16px] text-gray-800 dark:text-white font-semibold">--}}
+{{--                                    {{ core()->formatBasePrice($statistics['over_all']['total_unpaid_invoices']) }}--}}
+{{--                                </p>--}}
 
-                                <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
-                                    @lang('admin::app.dashboard.index.total-unpaid-invoices')
-                                </p>
-                            </div>
-                        </div>
+{{--                                <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">--}}
+{{--                                    @lang('admin::app.dashboard.index.total-unpaid-invoices')--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </div>
@@ -404,7 +404,7 @@
                                     @endswitch
                                 </div>
                             </div>
-        
+
                             {{-- Payment And Channel Detailes --}}
                             <div class="flex flex-col gap-[6px]">
                                 {{-- Grand Total --}}
@@ -479,7 +479,7 @@
 
                                         {{-- Count of Rest Images --}}
                                         @if (
-                                            $item->items->count() - 3 
+                                            $item->items->count() - 3
                                             && $item->items->count() > 4
                                         )
                                             <a href="{{ route('admin.sales.orders.view', $item->id) }}">
@@ -503,103 +503,103 @@
                 </div>
             </div>
 
-            {{-- Stock Thereshold --}}
-            <div class="flex flex-col gap-[8px]  ">
-                <p class="text-[16px] text-gray-600 dark:text-gray-300 font-semibold">
-                    @lang('admin::app.dashboard.index.stock-threshold')
-                </p>
+{{--            --}}{{-- Stock Thereshold --}}
+{{--            <div class="flex flex-col gap-[8px]  ">--}}
+{{--                <p class="text-[16px] text-gray-600 dark:text-gray-300 font-semibold">--}}
+{{--                    @lang('admin::app.dashboard.index.stock-threshold')--}}
+{{--                </p>--}}
 
-                {{-- Products List --}}
-                @if(! $statistics['stock_threshold']->isEmpty())
-                    <div class="rounded-[4px] box-shadow">
-                        @foreach ($statistics['stock_threshold'] as $item)
-                            <!-- Single Product -->
-                            <div class="relative">
-                                <div class="row grid grid-cols-2 gap-y-[24px] p-[16px] bg-white dark:bg-gray-900 border-b-[1px] dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-950 max-sm:grid-cols-[1fr_auto]">
-                                    <div class="flex gap-[10px]">
-                                        @if ($item->product?->base_image_url)
-                                            <div class="">
-                                                <img
-                                                    class="min-h-[65px] min-w-[65px] max-h-[65px] max-w-[65px] rounded-[4px]"
-                                                    src="{{ $item->product->base_image_url }}"
-                                                >
-                                            </div>
-                                        @else
-                                            <div class="w-full h-[65px] max-w-[65px] max-h-[65px] relative border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] overflow-hidden dark:invert dark:mix-blend-exclusion">
-                                                <img src="{{ bagisto_asset('images/product-placeholders/front.svg')}}">
+{{--                --}}{{-- Products List --}}
+{{--                @if(! $statistics['stock_threshold']->isEmpty())--}}
+{{--                    <div class="rounded-[4px] box-shadow">--}}
+{{--                        @foreach ($statistics['stock_threshold'] as $item)--}}
+{{--                            <!-- Single Product -->--}}
+{{--                            <div class="relative">--}}
+{{--                                <div class="row grid grid-cols-2 gap-y-[24px] p-[16px] bg-white dark:bg-gray-900 border-b-[1px] dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-950 max-sm:grid-cols-[1fr_auto]">--}}
+{{--                                    <div class="flex gap-[10px]">--}}
+{{--                                        @if ($item->product?->base_image_url)--}}
+{{--                                            <div class="">--}}
+{{--                                                <img--}}
+{{--                                                    class="min-h-[65px] min-w-[65px] max-h-[65px] max-w-[65px] rounded-[4px]"--}}
+{{--                                                    src="{{ $item->product->base_image_url }}"--}}
+{{--                                                >--}}
+{{--                                            </div>--}}
+{{--                                        @else--}}
+{{--                                            <div class="w-full h-[65px] max-w-[65px] max-h-[65px] relative border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] overflow-hidden dark:invert dark:mix-blend-exclusion">--}}
+{{--                                                <img src="{{ bagisto_asset('images/product-placeholders/front.svg')}}">--}}
 
-                                                <p class="w-full absolute bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">
-                                                    @lang('admin::app.dashboard.index.product-image')
-                                                </p>
-                                            </div>
-                                        @endif
+{{--                                                <p class="w-full absolute bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">--}}
+{{--                                                    @lang('admin::app.dashboard.index.product-image')--}}
+{{--                                                </p>--}}
+{{--                                            </div>--}}
+{{--                                        @endif--}}
 
-                                        <div class="flex flex-col gap-[6px]">
-                                            {{-- Product Name --}}
-                                            <p class="text-[16px] text-gray-800 dark:text-white font-semibold">
-                                                @if (isset($item->product->name))
-                                                    {{ $item->product->name }}
-                                                @endif
-                                            </p>
+{{--                                        <div class="flex flex-col gap-[6px]">--}}
+{{--                                            --}}{{-- Product Name --}}
+{{--                                            <p class="text-[16px] text-gray-800 dark:text-white font-semibold">--}}
+{{--                                                @if (isset($item->product->name))--}}
+{{--                                                    {{ $item->product->name }}--}}
+{{--                                                @endif--}}
+{{--                                            </p>--}}
 
-                                            {{-- Product SKU --}}
-                                            <p class="text-gray-600 dark:text-gray-300">
-                                                @lang('admin::app.dashboard.index.sku', ['sku' => $item->product->sku])
-                                            </p>
+{{--                                            --}}{{-- Product SKU --}}
+{{--                                            <p class="text-gray-600 dark:text-gray-300">--}}
+{{--                                                @lang('admin::app.dashboard.index.sku', ['sku' => $item->product->sku])--}}
+{{--                                            </p>--}}
 
-                                            {{-- Product Number --}}
-                                            <p class="text-gray-600 dark:text-gray-300">
-                                                @if (
-                                                    isset($item->product->product_number)
-                                                    && ! empty($item->product->product_number)
-                                                )
-                                                    @lang('admin::app.dashboard.index.product-number', ['product_number' => $item->product->product_number])
-                                                @endif
-                                            </p>
-                                        </div>
-                                    </div>
+{{--                                            --}}{{-- Product Number --}}
+{{--                                            <p class="text-gray-600 dark:text-gray-300">--}}
+{{--                                                @if (--}}
+{{--                                                    isset($item->product->product_number)--}}
+{{--                                                    && ! empty($item->product->product_number)--}}
+{{--                                                )--}}
+{{--                                                    @lang('admin::app.dashboard.index.product-number', ['product_number' => $item->product->product_number])--}}
+{{--                                                @endif--}}
+{{--                                            </p>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
 
-                                    <div class="flex gap-[6px] items-center justify-between">
-                                        <div class="flex flex-col gap-[6px]">
-                                            {{-- Product Price --}}
-                                            <p class="text-[16px] text-gray-800 dark:text-white font-semibold">
-                                                @if (isset($item->product->price))
-                                                    {{ core()->formatBasePrice($item->product->price) }}
-                                                @endif
-                                            </p>
+{{--                                    <div class="flex gap-[6px] items-center justify-between">--}}
+{{--                                        <div class="flex flex-col gap-[6px]">--}}
+{{--                                            --}}{{-- Product Price --}}
+{{--                                            <p class="text-[16px] text-gray-800 dark:text-white font-semibold">--}}
+{{--                                                @if (isset($item->product->price))--}}
+{{--                                                    {{ core()->formatBasePrice($item->product->price) }}--}}
+{{--                                                @endif--}}
+{{--                                            </p>--}}
 
-                                            {{-- Total Product Stock --}}
-                                            <p class="{{ $item->total_qty > 10 ? 'text-emerald-500' : 'text-red-500' }} ">
-                                                @lang('admin::app.dashboard.index.total-stock', ['total_stock' => $item->total_qty])
-                                            </p>
-                                        </div>
+{{--                                            --}}{{-- Total Product Stock --}}
+{{--                                            <p class="{{ $item->total_qty > 10 ? 'text-emerald-500' : 'text-red-500' }} ">--}}
+{{--                                                @lang('admin::app.dashboard.index.total-stock', ['total_stock' => $item->total_qty])--}}
+{{--                                            </p>--}}
+{{--                                        </div>--}}
 
-                                        {{-- View More Icon --}}
-                                        <a href="{{ route('admin.catalog.products.edit', $item->product_id) }}">
-                                            <span class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                @else
-                    <div class="rounded-[4px] box-shadow">
-                        <div class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px] ">
-                            <img src="{{ bagisto_asset('images/icon-add-product.svg') }}" class="w-[80px] h-[80px] dark:invert dark:mix-blend-exclusion">
-                            <div class="flex flex-col items-center">
-                                <p class="text-[16px] text-gray-400 font-semibold">
-                                    @lang('admin::app.dashboard.index.empty-threshold')
-                                </p>
-            
-                                <p class="text-gray-400">
-                                    @lang('admin::app.dashboard.index.empty-threshold-description')
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                @endif    
-            </div>
+{{--                                        --}}{{-- View More Icon --}}
+{{--                                        <a href="{{ route('admin.catalog.products.edit', $item->product_id) }}">--}}
+{{--                                            <span class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"></span>--}}
+{{--                                        </a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                @else--}}
+{{--                    <div class="rounded-[4px] box-shadow">--}}
+{{--                        <div class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px] ">--}}
+{{--                            <img src="{{ bagisto_asset('images/icon-add-product.svg') }}" class="w-[80px] h-[80px] dark:invert dark:mix-blend-exclusion">--}}
+{{--                            <div class="flex flex-col items-center">--}}
+{{--                                <p class="text-[16px] text-gray-400 font-semibold">--}}
+{{--                                    @lang('admin::app.dashboard.index.empty-threshold')--}}
+{{--                                </p>--}}
+
+{{--                                <p class="text-gray-400">--}}
+{{--                                    @lang('admin::app.dashboard.index.empty-threshold-description')--}}
+{{--                                </p>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endif--}}
+{{--            </div>--}}
         </div>
 
         {{-- Right Section --}}
@@ -615,7 +615,7 @@
             </v-store-stats>
         </div>
     </div>
-    
+
     @push('scripts')
         <script type="module" src="{{ bagisto_asset('js/chart.js') }}"></script>
 
@@ -639,26 +639,26 @@
                                 <x-admin::form.control-group.label class="!text-gray-800 dark:!text-white font-medium">
                                     @lang('admin::app.dashboard.index.start-date')
                                 </x-admin::form.control-group.label>
-    
+
                                 <x-admin::form.control-group.control
                                     type="date"
-                                    name="startDate" 
+                                    name="startDate"
                                     class="cursor-pointer"
                                     :placeholder="trans('admin::app.dashboard.index.start-date')"
                                     v-model="filters.start"
                                 >
                                 </x-admin::form.control-group.control>
                             </x-admin::form.control-group>
-    
+
                             <!-- End Date Filter -->
                             <x-admin::form.control-group class="flex-1 mb-[10px]">
                                 <x-admin::form.control-group.label class="!text-gray-800 dark:!text-white font-medium">
                                     @lang('admin::app.dashboard.index.end-date')
                                 </x-admin::form.control-group.label>
-    
+
                                 <x-admin::form.control-group.control
                                     type="date"
-                                    name="endDate" 
+                                    name="endDate"
                                     class="cursor-pointer"
                                     :placeholder="trans('admin::app.dashboard.index.end-date')"
                                     v-model="filters.end"
@@ -666,7 +666,7 @@
                                 </x-admin::form.control-group.control>
                             </x-admin::form.control-group>
                         </div>
-    
+
                         <!-- Total Sales Detailes -->
                         <div class="grid gap-[16px] px-[16px] py-[8px] border-b dark:border-gray-800">
                             <div class="flex gap-[8px] justify-between">
@@ -674,26 +674,26 @@
                                     <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
                                         @lang('admin::app.dashboard.index.total-sales')
                                     </p>
-    
+
                                     <!-- Total Order Revenue -->
                                     <p class="text-[18px] text-gray-800 dark:text-white font-bold">
                                         @{{ statistics.sales.total_sales?.formatted_total }}
                                     </p>
                                 </div>
-    
+
                                 <div class="flex flex-col gap-[4px] justify-between">
                                     <!-- Orders Time Duration -->
                                     <p class="text-[12px] text-gray-400 font-semibold text-right dark:text-white">
                                         @{{ "@lang('admin::app.dashboard.index.date-duration')".replace(':start', formatStart ?? 0).replace(':end', formatEnd ?? 0) }}
                                     </p>
-    
+
                                     <!-- Total Orders -->
                                     <p class="text-[12px] text-gray-400 font-semibold text-right dark:text-white">
                                         @{{ "@lang('admin::app.dashboard.index.order')".replace(':total_orders', statistics.sales.total_orders?.current ?? 0) }}
                                     </p>
                                 </div>
                             </div>
-    
+
                             <!-- Sales Graph -->
                             <canvas
                                 id="totalSalesChart"
@@ -701,7 +701,7 @@
                             >
                             </canvas>
                         </div>
-    
+
                         <!-- Total Visitors Detailes -->
                         <div class="grid gap-[16px] px-[16px] py-[8px] border-b dark:border-gray-800">
                             <div class="flex gap-[8px] justify-between">
@@ -709,26 +709,26 @@
                                     <p class="text-[12px] text-gray-600 dark:text-gray-300 font-semibold">
                                         @lang('admin::app.dashboard.index.visitors')
                                     </p>
-    
+
                                     <!-- Total Order Revenue -->
                                     <p class="text-[18px] text-gray-800 dark:text-white font-bold">
                                         @{{ statistics.visitors.total.current }}
                                     </p>
                                 </div>
-    
+
                                 <div class="flex flex-col gap-[4px] justify-between">
                                     <!-- Orders Time Duration -->
                                     <p class="text-[12px] text-gray-400 font-semibold text-right dark:text-white">
                                         @{{ "@lang('admin::app.dashboard.index.date-duration')".replace(':start', formatStart ?? 0).replace(':end', formatEnd ?? 0) }}
                                     </p>
-    
+
                                     <!-- Total Orders -->
                                     <p class="text-[12px] text-gray-400 font-semibold text-right dark:text-white">
                                         @{{ "@lang('admin::app.dashboard.index.unique-visitors')".replace(':count', statistics.visitors.unique?.current ?? 0) }}
                                     </p>
                                 </div>
                             </div>
-    
+
                             <!-- Visitors Graph -->
                             <canvas
                                 id="totalVisitorsChart"
@@ -778,7 +778,7 @@
                                         class="w-full h-[65px] max-w-[65px] max-h-[65px] relative border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] overflow-hidden dark:invert dark:mix-blend-exclusion"
                                     >
                                         <img src="{{ bagisto_asset('images/product-placeholders/front.svg')}}">
-                                        
+
                                         <p class="w-full absolute bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">
                                             @lang('admin::app.dashboard.index.product-image')
                                         </p>
@@ -820,13 +820,13 @@
                                         src="{{ bagisto_asset('images/icon-add-product.svg') }}"
                                         class="w-[80px] h-[80px] dark:invert dark:mix-blend-exclusion"
                                     >
-    
+
                                     <!-- Add Variants Information -->
                                     <div class="flex flex-col items-center">
                                         <p class="text-[16px] text-gray-400 font-semibold">
                                             @lang('admin::app.dashboard.index.add-product')
                                         </p>
-    
+
                                         <p class="text-gray-400">
                                             @lang('admin::app.dashboard.index.product-info')
                                         </p>
@@ -987,7 +987,7 @@
 
                         this.salesChart = new Chart(ctx, {
                             type: 'bar',
-                            
+
                             data: {
                                 labels: data.map(({ label }) => label),
                                 datasets: [{
@@ -996,7 +996,7 @@
                                     backgroundColor: '#598de6',
                                 }]
                             },
-                    
+
                             options: {
                                 plugins: {
                                     legend: {
@@ -1026,7 +1026,7 @@
 
                         this.visitorsChart = new Chart(ctx, {
                             type: 'bar',
-                            
+
                             data: {
                                 labels: data.map(({ label }) => label),
                                 datasets: [{
@@ -1035,7 +1035,7 @@
                                     backgroundColor: '#f87171',
                                 }]
                             },
-                    
+
                             options: {
                                 plugins: {
                                     legend: {
@@ -1065,6 +1065,6 @@
                     }
                 }
             });
-        </script>   
+        </script>
     @endpush
 </x-admin::layouts>
