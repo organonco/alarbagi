@@ -3,20 +3,20 @@
 }
 
 .sn-background-light-main {
-    background-color: #00b4ff !important;
+    background-color: #5c9eb4 !important;
 }
 
 .sn-background-dark-main {
-    background-color: #15235e !important;
+    background-color: #172436 !important;
 }
 
 .sn-color-dark-main {
-    color: #15235e !important;
+    color: #172436 !important;
 }
 
 
 .sn-color-light-main {
-    color: #00b4ff !important;
+    color: #5c9eb4 !important;
 }
 
 
@@ -30,7 +30,7 @@
 
 .sn-button-primary{
     color: white;
-    background-color: #00b4ff;
+    background-color: #5c9eb4;
     border-radius: 12px;
     border: none;
     padding: 15px 30px;
@@ -39,7 +39,7 @@
 
 .sn-button-primary-mini{
     color: white;
-    background-color: #00b4ff;
+    background-color: #5c9eb4;
     border-radius: 12px;
     border: none;
     padding: 5px 15px;
@@ -47,10 +47,10 @@
 }
 
 .sn-button-secondary{
-    color: #00b4ff;
+    color: #5c9eb4;
     background-color: white;
     border-radius: 12px;
-    border: 1px solid #00b4ff;
+    border: 1px solid #5c9eb4;
     padding: 15px 30px;
     font-weight: bold;
 }
@@ -65,11 +65,11 @@
 }
 
 .hover\:border-primary:hover{
-    border-color: #00b4ff;
+    border-color: #5c9eb4;
 }
 
 .sn-border-main{
-    border-color: #00b4ff;
+    border-color: #5c9eb4;
 }
 
 .grid-cols-2-4{grid-template-columns:repeat(4,minmax(0,1fr)) !important;}
