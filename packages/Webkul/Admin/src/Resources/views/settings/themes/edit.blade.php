@@ -12,9 +12,9 @@
     @endphp
 
     <x-admin::form
-        :action="route('admin.settings.themes.update', $theme->id)"
-        enctype="multipart/form-data"
-        v-slot="{ errors }"
+            :action="route('admin.settings.themes.update', $theme->id)"
+            enctype="multipart/form-data"
+            v-slot="{ errors }"
     >
         <div class="flex justify-between items-center">
             <p class="text-[20px] text-gray-800 dark:text-white font-bold">
@@ -24,16 +24,16 @@
             <div class="flex gap-x-[10px] items-center">
                 <div class="flex gap-x-[10px] items-center">
                     <a
-                        href="{{ route('admin.settings.themes.index') }}"
-                        class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white"
+                            href="{{ route('admin.settings.themes.index') }}"
+                            class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white"
                     >
                         @lang('admin::app.settings.themes.edit.back')
                     </a>
                 </div>
 
                 <button
-                    type="submit"
-                    class="primary-button"
+                        type="submit"
+                        class="primary-button"
                 >
                     @lang('admin::app.settings.themes.edit.save-btn')
                 </button>
@@ -48,8 +48,8 @@
                     {{-- Dropdown Toggler --}}
                     <x-slot:toggle>
                         <button
-                            type="button"
-                            class="transparent-button px-[4px] py-[6px] hover:bg-gray-200 dark:hover:bg-gray-800 focus:bg-gray-200 dark:focus:bg-gray-800 dark:text-white"
+                                type="button"
+                                class="transparent-button px-[4px] py-[6px] hover:bg-gray-200 dark:hover:bg-gray-800 focus:bg-gray-200 dark:focus:bg-gray-800 dark:text-white"
                         >
                             <span class="icon-language text-[24px]"></span>
 
@@ -65,8 +65,8 @@
                     <x-slot:content class="!p-[0px]">
                         @foreach ($currentChannel->locales as $locale)
                             <a
-                                href="?{{ Arr::query(['channel' => $currentChannel->code, 'locale' => $locale->code]) }}"
-                                class="flex gap-[10px] px-5 py-2 text-[16px] cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-gray-100 dark:bg-gray-950' : ''}}"
+                                    href="?{{ Arr::query(['channel' => $currentChannel->code, 'locale' => $locale->code]) }}"
+                                    class="flex gap-[10px] px-5 py-2 text-[16px] cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-gray-100 dark:bg-gray-950' : ''}}"
                             >
                                 {{ $locale->name }}
                             </a>
@@ -84,9 +84,9 @@
         <script type="text/x-template" id="v-theme-customizer-template">
             <div>
                 <component
-                    :errors="errors"
-                    :is="componentName"
-                    ref="dynamicComponentThemeRef"
+                        :errors="errors"
+                        :is="componentName"
+                        ref="dynamicComponentThemeRef"
                 >
                 </component>
             </div>
@@ -110,8 +110,8 @@
 
                                 <div class="flex gap-[10px]">
                                     <div
-                                        class="secondary-button"
-                                        @click="$refs.addSliderModal.toggle()"
+                                            class="secondary-button"
+                                            @click="$refs.addSliderModal.toggle()"
                                     >
                                         @lang('admin::app.settings.themes.edit.slider-add-btn')
                                     </div>
@@ -119,56 +119,58 @@
                             </div>
 
                             <template v-for="(deletedSlider, index) in deletedSliders">
-                                <input type="hidden" :name="'deleted_sliders['+ index +'][image]'" :value="deletedSlider.image" />
+                                <input type="hidden" :name="'deleted_sliders['+ index +'][image]'"
+                                       :value="deletedSlider.image"/>
                             </template>
 
                             <div
-                                class="grid pt-[16px]"
-                                v-if="sliders.images.length"
-                                v-for="(image, index) in sliders.images"
+                                    class="grid pt-[16px]"
+                                    v-if="sliders.images.length"
+                                    v-for="(image, index) in sliders.images"
                             >
                                 <!-- Hidden Input -->
-                                <input type="file" class="hidden" :name="'options['+ index +'][image]'" :ref="'imageInput_' + index" />
-                                <input type="hidden" :name="'options['+ index +'][link]'" :value="image.link" />
-                                <input type="hidden" :name="'options['+ index +'][image]'" :value="image.image" />
+                                <input type="file" class="hidden" :name="'options['+ index +'][image]'"
+                                       :ref="'imageInput_' + index"/>
+                                <input type="hidden" :name="'options['+ index +'][link]'" :value="image.link"/>
+                                <input type="hidden" :name="'options['+ index +'][image]'" :value="image.image"/>
 
                                 <!-- Details -->
                                 <div
-                                    class="flex gap-[10px] justify-between py-5 cursor-pointer"
-                                    :class="{
+                                        class="flex gap-[10px] justify-between py-5 cursor-pointer"
+                                        :class="{
                                         'border-b-[1px] border-slate-300 dark:border-gray-800': index < sliders.images.length - 1
                                     }"
                                 >
                                     <div class="flex gap-[10px]">
                                         <div class="grid gap-[6px] place-content-start">
                                             <p class="text-gray-600 dark:text-gray-300">
-                                                <div>
-                                                    @lang('admin::app.settings.themes.edit.link'):
+                                            <div>
+                                                @lang('admin::app.settings.themes.edit.link'):
 
-                                                    <span class="text-gray-600 dark:text-gray-300 transition-all">
+                                                <span class="text-gray-600 dark:text-gray-300 transition-all">
                                                         @{{ image.link }}
                                                     </span>
-                                                </div>
+                                            </div>
                                             </p>
 
                                             <p class="text-gray-600 dark:text-gray-300">
-                                                <div class="flex justify-between">
-                                                    @lang('admin::app.settings.themes.edit.image'):
+                                            <div class="flex justify-between">
+                                                @lang('admin::app.settings.themes.edit.image'):
 
-                                                    <span class="text-gray-600 dark:text-gray-300 transition-all">
+                                                <span class="text-gray-600 dark:text-gray-300 transition-all">
                                                         <a
-                                                            :href="'{{ config('app.url') }}' + image.image"
-                                                            :ref="'image_' + index"
-                                                            target="_blank"
-                                                            class="ltr:ml-2 rtl:mr-2 text-blue-600 transition-all hover:underline"
+                                                                :href="'{{ config('app.url') }}' + image.image"
+                                                                :ref="'image_' + index"
+                                                                target="_blank"
+                                                                class="ltr:ml-2 rtl:mr-2 text-blue-600 transition-all hover:underline"
                                                         >
                                                             <span
-                                                                :ref="'imageName_' + index"
-                                                                v-text="image.image"
+                                                                    :ref="'imageName_' + index"
+                                                                    v-text="image.image"
                                                             ></span>
                                                         </a>
                                                     </span>
-                                                </div>
+                                            </div>
                                             </p>
                                         </div>
                                     </div>
@@ -177,8 +179,8 @@
                                     <div class="grid gap-[4px] place-content-start text-right">
                                         <div class="flex gap-x-[20px] items-center">
                                             <p
-                                                class="text-red-600 cursor-pointer transition-all hover:underline"
-                                                @click="remove(image)"
+                                                    class="text-red-600 cursor-pointer transition-all hover:underline"
+                                                    @click="remove(image)"
                                             >
                                                 @lang('admin::app.settings.themes.edit.delete')
                                             </p>
@@ -188,13 +190,13 @@
                             </div>
 
                             <div
-                                class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px]"
-                                v-else
+                                    class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px]"
+                                    v-else
                             >
                                 <img
-                                    class="w-[120px] h-[120px] border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion"
-                                    src="{{ bagisto_asset('images/product-placeholders/front.svg') }}"
-                                    alt="add-product-to-store"
+                                        class="w-[120px] h-[120px] border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion"
+                                        src="{{ bagisto_asset('images/product-placeholders/front.svg') }}"
+                                        alt="add-product-to-store"
                                 >
 
                                 <div class="flex flex-col items-center">
@@ -228,18 +230,18 @@
                                     </x-admin::form.control-group.label>
 
                                     <v-field
-                                        type="text"
-                                        name="name"
-                                        value="{{ $theme->name }}"
-                                        rules="required"
-                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                        :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                        label="@lang('admin::app.settings.themes.edit.name')"
-                                        placeholder="@lang('admin::app.settings.themes.edit.name')"
+                                            type="text"
+                                            name="name"
+                                            value="{{ $theme->name }}"
+                                            rules="required"
+                                            class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                            :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                            label="@lang('admin::app.settings.themes.edit.name')"
+                                            placeholder="@lang('admin::app.settings.themes.edit.name')"
                                     ></v-field>
 
                                     <x-admin::form.control-group.error
-                                        control-name="name"
+                                            control-name="name"
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
@@ -250,19 +252,19 @@
                                     </x-admin::form.control-group.label>
 
                                     <v-field
-                                        type="text"
-                                        name="sort_order"
-                                        rules="required|min_value:1"
-                                        value="{{ $theme->sort_order }}"
-                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                        :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                        label="@lang('admin::app.settings.themes.edit.sort-order')"
-                                        placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
+                                            type="text"
+                                            name="sort_order"
+                                            rules="required|min_value:1"
+                                            value="{{ $theme->sort_order }}"
+                                            class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                            :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                            label="@lang('admin::app.settings.themes.edit.sort-order')"
+                                            placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
                                     >
                                     </v-field>
 
                                     <x-admin::form.control-group.error
-                                        control-name="sort_order"
+                                            control-name="sort_order"
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
@@ -273,17 +275,18 @@
                                     </x-admin::form.control-group.label>
 
                                     <x-admin::form.control-group.control
-                                        type="select"
-                                        name="channel_id"
-                                        rules="required"
-                                        :value="$theme->channel_id"
+                                            type="select"
+                                            name="channel_id"
+                                            rules="required"
+                                            :value="$theme->channel_id"
                                     >
                                         @foreach($channels as $channel)
                                             <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                                         @endforeach
                                     </x-admin::form.control-group.control>
 
-                                    <x-admin::form.control-group.error control-name="channel_id"></x-admin::form.control-group.error>
+                                    <x-admin::form.control-group.error
+                                            control-name="channel_id"></x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
 
                                 <x-admin::form.control-group>
@@ -293,30 +296,30 @@
 
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <v-field
-                                            type="checkbox"
-                                            name="status"
-                                            class="hidden"
-                                            v-slot="{ field }"
-                                            :value="{{ $theme->status }}"
-                                        >
-                                            <input
                                                 type="checkbox"
                                                 name="status"
-                                                id="status"
-                                                class="sr-only peer"
-                                                v-bind="field"
-                                                :checked="{{ $theme->status }}"
+                                                class="hidden"
+                                                v-slot="{ field }"
+                                                :value="{{ $theme->status }}"
+                                        >
+                                            <input
+                                                    type="checkbox"
+                                                    name="status"
+                                                    id="status"
+                                                    class="sr-only peer"
+                                                    v-bind="field"
+                                                    :checked="{{ $theme->status }}"
                                             />
                                         </v-field>
 
                                         <label
-                                            class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
-                                            for="status"
+                                                class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
+                                                for="status"
                                         ></label>
                                     </label>
 
                                     <x-admin::form.control-group.error
-                                        control-name="status"
+                                            control-name="status"
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
@@ -327,13 +330,13 @@
                 </div>
 
                 <x-admin::form
-                    v-slot="{ meta, errors, handleSubmit }"
-                    as="div"
+                        v-slot="{ meta, errors, handleSubmit }"
+                        as="div"
                 >
                     <form
-                        @submit="handleSubmit($event, saveSliderImage)"
-                        enctype="multipart/form-data"
-                        ref="createSliderForm"
+                            @submit="handleSubmit($event, saveSliderImage)"
+                            enctype="multipart/form-data"
+                            ref="createSliderForm"
                     >
                         <x-admin::modal ref="addSliderModal">
                             <x-slot:header>
@@ -350,9 +353,9 @@
                                         </x-admin::form.control-group.label>
 
                                         <x-admin::form.control-group.control
-                                            type="text"
-                                            name="{{ $currentLocale->code }}[link]"
-                                            :placeholder="trans('admin::app.settings.themes.edit.link')"
+                                                type="text"
+                                                name="{{ $currentLocale->code }}[link]"
+                                                :placeholder="trans('admin::app.settings.themes.edit.link')"
                                         >
                                         </x-admin::form.control-group.control>
                                     </x-admin::form.control-group>
@@ -363,15 +366,15 @@
                                         </x-admin::form.control-group.label>
 
                                         <x-admin::form.control-group.control
-                                            type="image"
-                                            name="slider_image"
-                                            rules="required"
-                                            :is-multiple="false"
+                                                type="image"
+                                                name="slider_image"
+                                                rules="required"
+                                                :is-multiple="false"
                                         >
                                         </x-admin::form.control-group.control>
 
                                         <x-admin::form.control-group.error
-                                            control-name="slider_image"
+                                                control-name="slider_image"
                                         >
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
@@ -386,15 +389,15 @@
                                 <div class="flex gap-x-[10px] items-center">
                                     <!-- Save Button -->
                                     <button
-                                        type="submit"
-                                        class="px-[12px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer"
+                                            type="submit"
+                                            class="px-[12px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer"
                                     >
                                         @lang('admin::app.settings.themes.edit.save-btn')
                                     </button>
                                 </div>
                             </x-slot:footer>
-                          </x-admin::modal>
-                      </form>
+                        </x-admin::modal>
+                    </form>
                 </x-admin::form>
             </div>
         </script>
@@ -422,19 +425,19 @@
                             </x-admin::form.control-group.label>
 
                             <v-field
-                                type="text"
-                                name="options[title]"
-                                value="{{ $theme->options['title'] ?? '' }}"
-                                class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                :class="[errors['options[title]'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                rules="required"
-                                label="@lang('admin::app.settings.themes.edit.filter-title')"
-                                placeholder="@lang('admin::app.settings.themes.edit.filter-title')"
+                                    type="text"
+                                    name="options[title]"
+                                    value="{{ $theme->options['title'] ?? '' }}"
+                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                    :class="[errors['options[title]'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                    rules="required"
+                                    label="@lang('admin::app.settings.themes.edit.filter-title')"
+                                    placeholder="@lang('admin::app.settings.themes.edit.filter-title')"
                             >
                             </v-field>
 
                             <x-admin::form.control-group.error
-                                control-name="options[title]"
+                                    control-name="options[title]"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
@@ -445,19 +448,20 @@
                             </x-admin::form.control-group.label>
 
                             <v-field
-                                name="options[filters][sort]"
-                                v-slot="{ field }"
-                                rules="required"
-                                value="{{ $theme->options['filters']['sort'] ?? '' }}"
-                                label="@lang('admin::app.settings.themes.edit.sort')"
+                                    name="options[filters][sort]"
+                                    v-slot="{ field }"
+                                    rules="required"
+                                    value="{{ $theme->options['filters']['sort'] ?? '' }}"
+                                    label="@lang('admin::app.settings.themes.edit.sort')"
                             >
                                 <select
-                                    name="options[filters][sort]"
-                                    v-bind="field"
-                                    class="custom-select flex w-full min-h-[39px] py-[6px] px-[12px] bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400 dark:hover:border-gray-400"
-                                    :class="[errors['options[filters][sort]'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        name="options[filters][sort]"
+                                        v-bind="field"
+                                        class="custom-select flex w-full min-h-[39px] py-[6px] px-[12px] bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400 dark:hover:border-gray-400"
+                                        :class="[errors['options[filters][sort]'] ? 'border border-red-600 hover:border-red-600' : '']"
                                 >
-                                    <option value="" selected disabled>@lang('admin::app.settings.themes.edit.select')</option>
+                                    <option value="" selected
+                                            disabled>@lang('admin::app.settings.themes.edit.select')</option>
 
                                     @foreach (
                                         product_toolbar()->getAvailableOrders()->pluck('title', 'value')
@@ -469,7 +473,7 @@
                             </v-field>
 
                             <x-admin::form.control-group.error
-                                control-name="options[filters][sort]"
+                                    control-name="options[filters][sort]"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
@@ -480,20 +484,21 @@
                             </x-admin::form.control-group.label>
 
                             <v-field
-                                type="select"
-                                name="options[filters][limit]"
-                                v-slot="{ field }"
-                                rules="required"
-                                value="{{ $theme->options['filters']['limit'] ?? '' }}"
-                                label="@lang('admin::app.settings.themes.edit.limit')"
+                                    type="select"
+                                    name="options[filters][limit]"
+                                    v-slot="{ field }"
+                                    rules="required"
+                                    value="{{ $theme->options['filters']['limit'] ?? '' }}"
+                                    label="@lang('admin::app.settings.themes.edit.limit')"
                             >
                                 <select
-                                    name="options[filters][limit]"
-                                    v-bind="field"
-                                    class="custom-select flex w-full min-h-[39px] py-[6px] px-[12px] bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400 dark:hover:border-gray-400"
-                                    :class="[errors['options[filters][limit]'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        name="options[filters][limit]"
+                                        v-bind="field"
+                                        class="custom-select flex w-full min-h-[39px] py-[6px] px-[12px] bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-800 rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400 dark:hover:border-gray-400"
+                                        :class="[errors['options[filters][limit]'] ? 'border border-red-600 hover:border-red-600' : '']"
                                 >
-                                    <option value="" selected disabled>@lang('admin::app.settings.themes.edit.select')</option>
+                                    <option value="" selected
+                                            disabled>@lang('admin::app.settings.themes.edit.select')</option>
 
                                     @foreach (product_toolbar()->getAvailableLimits() as $availableLimit)
                                         <option value="{{ $availableLimit }}">{{ $availableLimit }}</option>
@@ -503,7 +508,7 @@
 
 
                             <x-admin::form.control-group.error
-                                control-name="options[filters][limit]"
+                                    control-name="options[filters][limit]"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
@@ -519,8 +524,8 @@
 
                             <div class="flex gap-[10px]">
                                 <div
-                                    class="secondary-button"
-                                    @click="$refs.productFilterModal.toggle()"
+                                        class="secondary-button"
+                                        @click="$refs.productFilterModal.toggle()"
                                 >
                                     @lang('admin::app.settings.themes.edit.add-filter-btn')
                                 </div>
@@ -529,30 +534,32 @@
 
                         <!-- Filters Lists -->
                         <div
-                            class="grid"
-                            v-if="options.filters.length"
-                            v-for="(filter, index) in options.filters"
+                                class="grid"
+                                v-if="options.filters.length"
+                                v-for="(filter, index) in options.filters"
                         >
                             <!-- Hidden Input -->
                             <input type="hidden" :name="'options[filters][' + filter.key +']'" :value="filter.value">
 
                             <!-- Details -->
                             <div
-                                class="flex gap-[10px] justify-between py-5 cursor-pointer"
-                                :class="{
+                                    class="flex gap-[10px] justify-between py-5 cursor-pointer"
+                                    :class="{
                                     'border-b-[1px] border-slate-300 dark:border-gray-800': index < options.filters.length - 1
                                 }"
                             >
                                 <div class="flex gap-[10px]">
                                     <div class="grid gap-[6px] place-content-start">
                                         <p class="text-gray-600 dark:text-gray-300">
-                                            <div>
-                                                @{{ "@lang('admin::app.settings.themes.edit.key')".replace(':key', filter.key) }}
-                                            </div>
+                                        <div>
+                                            @{{ "@lang('admin::app.settings.themes.edit.key')".replace(':key',
+                                            filter.key) }}
+                                        </div>
                                         </p>
 
                                         <p class="text-gray-600 dark:text-gray-300">
-                                            @{{ "@lang('admin::app.settings.themes.edit.value')".replace(':value', filter.value) }}
+                                            @{{ "@lang('admin::app.settings.themes.edit.value')".replace(':value',
+                                            filter.value) }}
                                         </p>
                                     </div>
                                 </div>
@@ -561,8 +568,8 @@
                                 <div class="grid gap-[4px] place-content-start text-right">
                                     <div class="flex gap-x-[20px] items-center">
                                         <p
-                                            class="text-red-600 cursor-pointer transition-all hover:underline"
-                                            @click="remove(filter)"
+                                                class="text-red-600 cursor-pointer transition-all hover:underline"
+                                                @click="remove(filter)"
                                         >
                                             @lang('admin::app.settings.themes.edit.delete')
                                         </p>
@@ -572,13 +579,13 @@
                         </div>
                         <!-- Filters Illustration -->
                         <div
-                            class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px] "
-                            v-else
+                                class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px] "
+                                v-else
                         >
                             <img
-                                class="w-[120px] h-[120px] p-2 dark:invert dark:mix-blend-exclusion"
-                                src="{{ bagisto_asset('images/empty-placeholders/default-empty.svg') }}"
-                                alt="add-product-to-store"
+                                    class="w-[120px] h-[120px] p-2 dark:invert dark:mix-blend-exclusion"
+                                    src="{{ bagisto_asset('images/empty-placeholders/default-empty.svg') }}"
+                                    alt="add-product-to-store"
                             >
 
                             <div class="flex flex-col items-center">
@@ -612,19 +619,19 @@
                                 </x-admin::form.control-group.label>
 
                                 <v-field
-                                    type="text"
-                                    name="name"
-                                    value="{{ $theme->name }}"
-                                    rules="required"
-                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                    :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                    label="@lang('admin::app.settings.themes.edit.name')"
-                                    placeholder="@lang('admin::app.settings.themes.edit.name')"
+                                        type="text"
+                                        name="name"
+                                        value="{{ $theme->name }}"
+                                        rules="required"
+                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                        :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        label="@lang('admin::app.settings.themes.edit.name')"
+                                        placeholder="@lang('admin::app.settings.themes.edit.name')"
                                 >
                                 </v-field>
 
                                 <x-admin::form.control-group.error
-                                    control-name="name"
+                                        control-name="name"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -635,19 +642,19 @@
                                 </x-admin::form.control-group.label>
 
                                 <v-field
-                                    type="text"
-                                    name="sort_order"
-                                    value="{{ $theme->sort_order }}"
-                                    rules="required|min_value:1"
-                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                    :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                    label="@lang('admin::app.settings.themes.edit.sort-order')"
-                                    placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
+                                        type="text"
+                                        name="sort_order"
+                                        value="{{ $theme->sort_order }}"
+                                        rules="required|min_value:1"
+                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                        :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        label="@lang('admin::app.settings.themes.edit.sort-order')"
+                                        placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
                                 >
                                 </v-field>
 
                                 <x-admin::form.control-group.error
-                                    control-name="sort_order"
+                                        control-name="sort_order"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -658,17 +665,18 @@
                                 </x-admin::form.control-group.label>
 
                                 <x-admin::form.control-group.control
-                                    type="select"
-                                    name="channel_id"
-                                    rules="required"
-                                    :value="$theme->channel_id"
+                                        type="select"
+                                        name="channel_id"
+                                        rules="required"
+                                        :value="$theme->channel_id"
                                 >
                                     @foreach($channels as $channel)
                                         <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                                     @endforeach
                                 </x-admin::form.control-group.control>
 
-                                <x-admin::form.control-group.error control-name="channel_id"></x-admin::form.control-group.error>
+                                <x-admin::form.control-group.error
+                                        control-name="channel_id"></x-admin::form.control-group.error>
                             </x-admin::form.control-group>
 
                             <x-admin::form.control-group>
@@ -678,30 +686,30 @@
 
                                 <label class="relative inline-flex items-center cursor-pointer">
                                     <v-field
-                                        type="checkbox"
-                                        name="status"
-                                        class="hidden"
-                                        v-slot="{ field }"
-                                        value="{{ $theme->status }}"
-                                    >
-                                        <input
                                             type="checkbox"
                                             name="status"
-                                            id="status"
-                                            class="sr-only peer"
-                                            v-bind="field"
-                                            :checked="{{ $theme->status }}"
+                                            class="hidden"
+                                            v-slot="{ field }"
+                                            value="{{ $theme->status }}"
+                                    >
+                                        <input
+                                                type="checkbox"
+                                                name="status"
+                                                id="status"
+                                                class="sr-only peer"
+                                                v-bind="field"
+                                                :checked="{{ $theme->status }}"
                                         />
                                     </v-field>
 
                                     <label
-                                        class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
-                                        for="status"
+                                            class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
+                                            for="status"
                                     ></label>
                                 </label>
 
                                 <x-admin::form.control-group.error
-                                    control-name="status"
+                                        control-name="status"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -711,8 +719,8 @@
 
                 <!-- For Fitler Form -->
                 <x-admin::form
-                    v-slot="{ meta, errors, handleSubmit }"
-                    as="div"
+                        v-slot="{ meta, errors, handleSubmit }"
+                        as="div"
                 >
                     <form @submit="handleSubmit($event, addFilter)">
                         <x-admin::modal ref="productFilterModal">
@@ -731,16 +739,16 @@
                                         </x-admin::form.control-group.label>
 
                                         <x-admin::form.control-group.control
-                                            type="text"
-                                            name="key"
-                                            rules="required"
-                                            :label="trans('admin::app.settings.themes.edit.key-input')"
-                                            :placeholder="trans('admin::app.settings.themes.edit.key-input')"
+                                                type="text"
+                                                name="key"
+                                                rules="required"
+                                                :label="trans('admin::app.settings.themes.edit.key-input')"
+                                                :placeholder="trans('admin::app.settings.themes.edit.key-input')"
                                         >
                                         </x-admin::form.control-group.control>
 
                                         <x-admin::form.control-group.error
-                                            control-name="key"
+                                                control-name="key"
                                         >
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
@@ -752,16 +760,16 @@
                                         </x-admin::form.control-group.label>
 
                                         <x-admin::form.control-group.control
-                                            type="text"
-                                            name="value"
-                                            rules="required"
-                                            :label="trans('admin::app.settings.themes.edit.value-input')"
-                                            :placeholder="trans('admin::app.settings.themes.edit.value-input')"
+                                                type="text"
+                                                name="value"
+                                                rules="required"
+                                                :label="trans('admin::app.settings.themes.edit.value-input')"
+                                                :placeholder="trans('admin::app.settings.themes.edit.value-input')"
                                         >
                                         </x-admin::form.control-group.control>
 
                                         <x-admin::form.control-group.error
-                                            control-name="value"
+                                                control-name="value"
                                         >
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
@@ -772,8 +780,8 @@
                                 <div class="flex gap-x-[10px] items-center">
                                     <!-- Save Button -->
                                     <button
-                                        type="submit"
-                                        class="px-[12px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer"
+                                            type="submit"
+                                            class="px-[12px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer"
                                     >
                                         @lang('admin::app.settings.themes.edit.save-btn')
                                     </button>
@@ -808,26 +816,27 @@
                             </x-admin::form.control-group.label>
 
                             <v-field
-                                name="options[filters][sort]"
-                                value="{{ $theme->options['filters']['sort'] ?? ''}}"
-                                v-slot="{ field }"
-                                rules="required"
-                                label="@lang('admin::app.settings.themes.edit.sort')"
+                                    name="options[filters][sort]"
+                                    value="{{ $theme->options['filters']['sort'] ?? ''}}"
+                                    v-slot="{ field }"
+                                    rules="required"
+                                    label="@lang('admin::app.settings.themes.edit.sort')"
                             >
                                 <select
-                                    name="options[filters][sort]"
-                                    v-bind="field"
-                                    class="custom-select flex w-full min-h-[39px] py-[6px] px-[12px] bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400"
-                                    :class="[errors['options[filters][sort]'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        name="options[filters][sort]"
+                                        v-bind="field"
+                                        class="custom-select flex w-full min-h-[39px] py-[6px] px-[12px] bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400"
+                                        :class="[errors['options[filters][sort]'] ? 'border border-red-600 hover:border-red-600' : '']"
                                 >
-                                    <option value="" selected disabled>@lang('admin::app.settings.themes.edit.select')</option>
+                                    <option value="" selected
+                                            disabled>@lang('admin::app.settings.themes.edit.select')</option>
                                     <option value="desc">@lang('admin::app.settings.themes.edit.desc')</option>
                                     <option value="asc">@lang('admin::app.settings.themes.edit.asc')</option>
                                 </select>
                             </v-field>
 
                             <x-admin::form.control-group.error
-                                control-name="options[filters][sort]"
+                                    control-name="options[filters][sort]"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
@@ -838,19 +847,19 @@
                             </x-admin::form.control-group.label>
 
                             <v-field
-                                type="text"
-                                name="options[filters][limit]"
-                                value="{{ $theme->options['filters']['limit'] ?? '' }}"
-                                class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                :class="[errors['options[filters][limit]'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                rules="required|min_value:1"
-                                label="@lang('admin::app.settings.themes.edit.limit')"
-                                placeholder="@lang('admin::app.settings.themes.edit.limit')"
+                                    type="text"
+                                    name="options[filters][limit]"
+                                    value="{{ $theme->options['filters']['limit'] ?? '' }}"
+                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                    :class="[errors['options[filters][limit]'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                    rules="required|min_value:1"
+                                    label="@lang('admin::app.settings.themes.edit.limit')"
+                                    placeholder="@lang('admin::app.settings.themes.edit.limit')"
                             >
                             </v-field>
 
                             <x-admin::form.control-group.error
-                                control-name="options[filters][limit]"
+                                    control-name="options[filters][limit]"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
@@ -867,8 +876,8 @@
 
                             <div class="flex gap-[10px]">
                                 <div
-                                    class="secondary-button"
-                                    @click="$refs.categoryFilterModal.toggle()"
+                                        class="secondary-button"
+                                        @click="$refs.categoryFilterModal.toggle()"
                                 >
                                     @lang('admin::app.settings.themes.edit.add-filter-btn')
                                 </div>
@@ -877,30 +886,32 @@
 
                         <!-- Filters Lists -->
                         <div
-                            class="grid"
-                            v-if="options.filters.length"
-                            v-for="(filter, index) in options.filters"
+                                class="grid"
+                                v-if="options.filters.length"
+                                v-for="(filter, index) in options.filters"
                         >
                             <!-- Hidden Input -->
                             <input type="hidden" :name="'options[filters][' + filter.key +']'" :value="filter.value">
 
                             <!-- Details -->
                             <div
-                                class="flex gap-[10px] justify-between py-5 cursor-pointer"
-                                :class="{
+                                    class="flex gap-[10px] justify-between py-5 cursor-pointer"
+                                    :class="{
                                     'border-b-[1px] border-slate-300 dark:border-gray-800': index < options.filters.length - 1
                                 }"
                             >
                                 <div class="flex gap-[10px]">
                                     <div class="grid gap-[6px] place-content-start">
                                         <p class="text-gray-600 dark:text-gray-300">
-                                            <div>
-                                                @{{ "@lang('admin::app.settings.themes.edit.key')".replace(':key', filter.key) }}
-                                            </div>
+                                        <div>
+                                            @{{ "@lang('admin::app.settings.themes.edit.key')".replace(':key',
+                                            filter.key) }}
+                                        </div>
                                         </p>
 
                                         <p class="text-gray-600 dark:text-gray-300">
-                                            @{{ "@lang('admin::app.settings.themes.edit.value')".replace(':value', filter.value) }}
+                                            @{{ "@lang('admin::app.settings.themes.edit.value')".replace(':value',
+                                            filter.value) }}
                                         </p>
                                     </div>
                                 </div>
@@ -909,8 +920,8 @@
                                 <div class="grid gap-[4px] place-content-start text-right">
                                     <div class="flex gap-x-[20px] items-center">
                                         <p
-                                            class="text-red-600 cursor-pointer transition-all hover:underline"
-                                            @click="remove(filter)"
+                                                class="text-red-600 cursor-pointer transition-all hover:underline"
+                                                @click="remove(filter)"
                                         >
                                             @lang('admin::app.settings.themes.edit.delete')
                                         </p>
@@ -921,13 +932,13 @@
 
                         <!-- Filters Illustration -->
                         <div
-                            class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px] "
-                            v-else
+                                class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px] "
+                                v-else
                         >
                             <img
-                                class="w-[120px] h-[120px] p-2 dark:invert dark:mix-blend-exclusion"
-                                src="{{ bagisto_asset('images/empty-placeholders/default-empty.svg') }}"
-                                alt="add-category-to-store"
+                                    class="w-[120px] h-[120px] p-2 dark:invert dark:mix-blend-exclusion"
+                                    src="{{ bagisto_asset('images/empty-placeholders/default-empty.svg') }}"
+                                    alt="add-category-to-store"
                             >
 
                             <div class="flex flex-col items-center">
@@ -942,8 +953,8 @@
                             </div>
 
                             <div
-                                class="secondary-button"
-                                @click="$refs.categoryFilterModal.toggle()"
+                                    class="secondary-button"
+                                    @click="$refs.categoryFilterModal.toggle()"
                             >
                                 @lang('admin::app.settings.themes.edit.add-filter-btn')
                             </div>
@@ -969,19 +980,19 @@
                                 </x-admin::form.control-group.label>
 
                                 <v-field
-                                    type="text"
-                                    name="name"
-                                    value="{{ $theme->name }}"
-                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                    :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                    rules="required"
-                                    label="@lang('admin::app.settings.themes.edit.name')"
-                                    placeholder="@lang('admin::app.settings.themes.edit.name')"
+                                        type="text"
+                                        name="name"
+                                        value="{{ $theme->name }}"
+                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                        :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        rules="required"
+                                        label="@lang('admin::app.settings.themes.edit.name')"
+                                        placeholder="@lang('admin::app.settings.themes.edit.name')"
                                 >
                                 </v-field>
 
                                 <x-admin::form.control-group.error
-                                    control-name="name"
+                                        control-name="name"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -992,19 +1003,19 @@
                                 </x-admin::form.control-group.label>
 
                                 <v-field
-                                    type="text"
-                                    name="sort_order"
-                                    value="{{ $theme->sort_order }}"
-                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                    :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                    rules="required|min_value:1"
-                                    label="@lang('admin::app.settings.themes.edit.sort-order')"
-                                    placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
+                                        type="text"
+                                        name="sort_order"
+                                        value="{{ $theme->sort_order }}"
+                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                        :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        rules="required|min_value:1"
+                                        label="@lang('admin::app.settings.themes.edit.sort-order')"
+                                        placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
                                 >
                                 </v-field>
 
                                 <x-admin::form.control-group.error
-                                    control-name="sort_order"
+                                        control-name="sort_order"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -1015,17 +1026,18 @@
                                 </x-admin::form.control-group.label>
 
                                 <x-admin::form.control-group.control
-                                    type="select"
-                                    name="channel_id"
-                                    rules="required"
-                                    :value="$theme->channel_id"
+                                        type="select"
+                                        name="channel_id"
+                                        rules="required"
+                                        :value="$theme->channel_id"
                                 >
                                     @foreach($channels as $channel)
                                         <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                                     @endforeach
                                 </x-admin::form.control-group.control>
 
-                                <x-admin::form.control-group.error control-name="channel_id"></x-admin::form.control-group.error>
+                                <x-admin::form.control-group.error
+                                        control-name="channel_id"></x-admin::form.control-group.error>
                             </x-admin::form.control-group>
 
                             <x-admin::form.control-group>
@@ -1035,30 +1047,30 @@
 
                                 <label class="relative inline-flex items-center cursor-pointer">
                                     <v-field
-                                        type="checkbox"
-                                        name="status"
-                                        class="hidden"
-                                        v-slot="{ field }"
-                                        value="{{ $theme->status }}"
-                                    >
-                                        <input
                                             type="checkbox"
                                             name="status"
-                                            id="status"
-                                            class="sr-only peer"
-                                            v-bind="field"
-                                            :checked="{{ $theme->status }}"
+                                            class="hidden"
+                                            v-slot="{ field }"
+                                            value="{{ $theme->status }}"
+                                    >
+                                        <input
+                                                type="checkbox"
+                                                name="status"
+                                                id="status"
+                                                class="sr-only peer"
+                                                v-bind="field"
+                                                :checked="{{ $theme->status }}"
                                         />
                                     </v-field>
 
                                     <label
-                                        class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
-                                        for="status"
+                                            class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
+                                            for="status"
                                     ></label>
                                 </label>
 
                                 <x-admin::form.control-group.error
-                                    control-name="status"
+                                        control-name="status"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -1068,8 +1080,8 @@
 
                 <!-- For Fitler Form -->
                 <x-admin::form
-                    v-slot="{ meta, errors, handleSubmit }"
-                    as="div"
+                        v-slot="{ meta, errors, handleSubmit }"
+                        as="div"
                 >
                     <form @submit="handleSubmit($event, addFilter)">
                         <x-admin::modal ref="categoryFilterModal">
@@ -1088,16 +1100,16 @@
                                         </x-admin::form.control-group.label>
 
                                         <x-admin::form.control-group.control
-                                            type="text"
-                                            name="key"
-                                            rules="required"
-                                            :label="trans('admin::app.settings.themes.edit.key-input')"
-                                            :placeholder="trans('admin::app.settings.themes.edit.key-input')"
+                                                type="text"
+                                                name="key"
+                                                rules="required"
+                                                :label="trans('admin::app.settings.themes.edit.key-input')"
+                                                :placeholder="trans('admin::app.settings.themes.edit.key-input')"
                                         >
                                         </x-admin::form.control-group.control>
 
                                         <x-admin::form.control-group.error
-                                            control-name="key"
+                                                control-name="key"
                                         >
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
@@ -1109,16 +1121,16 @@
                                         </x-admin::form.control-group.label>
 
                                         <x-admin::form.control-group.control
-                                            type="text"
-                                            name="value"
-                                            rules="required"
-                                            :label="trans('admin::app.settings.themes.edit.value-input')"
-                                            :placeholder="trans('admin::app.settings.themes.edit.value-input')"
+                                                type="text"
+                                                name="value"
+                                                rules="required"
+                                                :label="trans('admin::app.settings.themes.edit.value-input')"
+                                                :placeholder="trans('admin::app.settings.themes.edit.value-input')"
                                         >
                                         </x-admin::form.control-group.control>
 
                                         <x-admin::form.control-group.error
-                                            control-name="value"
+                                                control-name="value"
                                         >
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
@@ -1129,8 +1141,8 @@
                                 <div class="flex gap-x-[10px] items-center">
                                     <!-- Save Button -->
                                     <button
-                                        type="submit"
-                                        class="px-[12px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer"
+                                            type="submit"
+                                            class="px-[12px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer"
                                     >
                                         @lang('admin::app.settings.themes.edit.save-btn')
                                     </button>
@@ -1159,25 +1171,25 @@
                             </div>
 
                             <div
-                                class="flex gap-[10px]"
-                                v-if="isHtmlEditorActive"
+                                    class="flex gap-[10px]"
+                                    v-if="isHtmlEditorActive"
                             >
                                 <!-- Hidden Input Filed for upload images -->
                                 <label
-                                    class="secondary-button"
-                                    for="static_image"
+                                        class="secondary-button"
+                                        for="static_image"
                                 >
                                     @lang('admin::app.settings.themes.edit.add-image-btn')
                                 </label>
 
                                 <input
-                                    type="file"
-                                    name="static_image"
-                                    id="static_image"
-                                    class="hidden"
-                                    accept="image/*"
-                                    ref="static_image"
-                                    @change="storeImage($event)"
+                                        type="file"
+                                        name="static_image"
+                                        id="static_image"
+                                        class="hidden"
+                                        accept="image/*"
+                                        ref="static_image"
+                                        @change="storeImage($event)"
                                 >
                             </div>
                         </div>
@@ -1186,30 +1198,30 @@
                             <div class="tabs">
                                 <div class="flex gap-[15px] mb-[15px] pt-[8px] border-b-[2px] max-sm:hidden">
                                     <p @click="switchEditor('v-html-editor-theme', 1)">
-                                        <div
+                                    <div
                                             class="transition pb-[14px] px-[10px] text-[16px] font-medium text-gray-600 dark:text-gray-300 cursor-pointer"
                                             :class="{'mb-[-1px] border-b-[2px] border-blue-600': inittialEditor == 'v-html-editor-theme'}"
-                                        >
-                                            @lang('admin::app.settings.themes.edit.html')
-                                        </div>
+                                    >
+                                        @lang('admin::app.settings.themes.edit.html')
+                                    </div>
                                     </p>
 
                                     <p @click="switchEditor('v-css-editor-theme', 0);">
-                                        <div
+                                    <div
                                             class="transition pb-[14px] px-[10px] text-[16px] font-medium text-gray-600 dark:text-gray-300 cursor-pointer"
                                             :class="{'mb-[-1px] border-b-[2px] border-blue-600': inittialEditor == 'v-css-editor-theme'}"
-                                        >
-                                            @lang('admin::app.settings.themes.edit.css')
-                                        </div>
+                                    >
+                                        @lang('admin::app.settings.themes.edit.css')
+                                    </div>
                                     </p>
 
                                     <p @click="switchEditor('v-static-content-previewer', 0);">
-                                        <div
+                                    <div
                                             class="transition pb-[14px] px-[10px] text-[16px] font-medium text-gray-600 dark:text-gray-300 cursor-pointer"
                                             :class="{'mb-[-1px] border-b-[2px] border-blue-600': inittialEditor == 'v-static-content-previewer'}"
-                                        >
-                                            @lang('admin::app.settings.themes.edit.preview')
-                                        </div>
+                                    >
+                                        @lang('admin::app.settings.themes.edit.preview')
+                                    </div>
                                     </p>
                                 </div>
                             </div>
@@ -1220,10 +1232,10 @@
 
                         <KeepAlive>
                             <component
-                                :is="inittialEditor"
-                                ref="editor"
-                                @editor-data="editorData"
-                                :options="options"
+                                    :is="inittialEditor"
+                                    ref="editor"
+                                    @editor-data="editorData"
+                                    :options="options"
                             >
                             </component>
                         </KeepAlive>
@@ -1248,19 +1260,19 @@
                                 </x-admin::form.control-group.label>
 
                                 <v-field
-                                    type="text"
-                                    name="name"
-                                    value="{{ $theme->name }}"
-                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                    :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                    rules="required"
-                                    label="@lang('admin::app.settings.themes.edit.name')"
-                                    placeholder="@lang('admin::app.settings.themes.edit.name')"
+                                        type="text"
+                                        name="name"
+                                        value="{{ $theme->name }}"
+                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                        :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        rules="required"
+                                        label="@lang('admin::app.settings.themes.edit.name')"
+                                        placeholder="@lang('admin::app.settings.themes.edit.name')"
                                 >
                                 </v-field>
 
                                 <x-admin::form.control-group.error
-                                    control-name="name"
+                                        control-name="name"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -1271,19 +1283,19 @@
                                 </x-admin::form.control-group.label>
 
                                 <v-field
-                                    type="text"
-                                    name="sort_order"
-                                    value="{{ $theme->sort_order }}"
-                                    rules="required|min_value:1"
-                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                    :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                    label="@lang('admin::app.settings.themes.edit.sort-order')"
-                                    placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
+                                        type="text"
+                                        name="sort_order"
+                                        value="{{ $theme->sort_order }}"
+                                        rules="required|min_value:1"
+                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                        :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        label="@lang('admin::app.settings.themes.edit.sort-order')"
+                                        placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
                                 >
                                 </v-field>
 
                                 <x-admin::form.control-group.error
-                                    control-name="sort_order"
+                                        control-name="sort_order"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -1294,17 +1306,18 @@
                                 </x-admin::form.control-group.label>
 
                                 <x-admin::form.control-group.control
-                                    type="select"
-                                    name="channel_id"
-                                    rules="required"
-                                    :value="$theme->channel_id"
+                                        type="select"
+                                        name="channel_id"
+                                        rules="required"
+                                        :value="$theme->channel_id"
                                 >
                                     @foreach($channels as $channel)
                                         <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                                     @endforeach
                                 </x-admin::form.control-group.control>
 
-                                <x-admin::form.control-group.error control-name="channel_id"></x-admin::form.control-group.error>
+                                <x-admin::form.control-group.error
+                                        control-name="channel_id"></x-admin::form.control-group.error>
                             </x-admin::form.control-group>
 
                             <x-admin::form.control-group>
@@ -1314,30 +1327,30 @@
 
                                 <label class="relative inline-flex items-center cursor-pointer">
                                     <v-field
-                                        type="checkbox"
-                                        name="status"
-                                        class="hidden"
-                                        v-slot="{ field }"
-                                        value="{{ $theme->status }}"
-                                    >
-                                        <input
                                             type="checkbox"
                                             name="status"
-                                            id="status"
-                                            class="sr-only peer"
-                                            v-bind="field"
-                                            :checked="{{ $theme->status }}"
+                                            class="hidden"
+                                            v-slot="{ field }"
+                                            value="{{ $theme->status }}"
+                                    >
+                                        <input
+                                                type="checkbox"
+                                                name="status"
+                                                id="status"
+                                                class="sr-only peer"
+                                                v-bind="field"
+                                                :checked="{{ $theme->status }}"
                                         />
                                     </v-field>
 
                                     <label
-                                        class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
-                                        for="status"
+                                            class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
+                                            for="status"
                                     ></label>
                                 </label>
 
                                 <x-admin::form.control-group.error
-                                    control-name="status"
+                                        control-name="status"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -1388,8 +1401,8 @@
 
                                 <div class="flex gap-[10px]">
                                     <div
-                                        class="secondary-button"
-                                        @click="isUpdating=false;$refs.addLinksModal.toggle()"
+                                            class="secondary-button"
+                                            @click="isUpdating=false;$refs.addLinksModal.toggle()"
                                     >
                                         @lang('admin::app.settings.themes.edit.add-link')
                                     </div>
@@ -1398,69 +1411,73 @@
 
                             <!-- Footer Links -->
                             <div
-                                v-if="Object.keys(footerLinks).length"
-                                v-for="(footerLink, index) in footerLinks"
+                                    v-if="Object.keys(footerLinks).length"
+                                    v-for="(footerLink, index) in footerLinks"
                             >
                                 <!-- Information -->
                                 <div
-                                    class="grid border-b-[1px] last:border-b-0 border-slate-300 dark:border-gray-800"
-                                    v-for="(link, key) in footerLink"
+                                        class="grid border-b-[1px] last:border-b-0 border-slate-300 dark:border-gray-800"
+                                        v-for="(link, key) in footerLink"
                                 >
                                     <!-- Hidden Input -->
-                                    <input type="hidden" :name="'options['+ link.column +'][' + key +']'" :value="link.column">
-                                    <input type="hidden" :name="'options['+ link.column +'][' + key +'][url]'" :value="link.url">
-                                    <input type="hidden" :name="'options['+ link.column +'][' + key +'][title]'" :value="link.title">
-                                    <input type="hidden" :name="'options['+ link.column +'][' + key +'][sort_order]'" :value="link.sort_order">
+                                    <input type="hidden" :name="'options['+ link.column +'][' + key +']'"
+                                           :value="link.column">
+                                    <input type="hidden" :name="'options['+ link.column +'][' + key +'][url]'"
+                                           :value="link.url">
+                                    <input type="hidden" :name="'options['+ link.column +'][' + key +'][title]'"
+                                           :value="link.title">
+                                    <input type="hidden" :name="'options['+ link.column +'][' + key +'][sort_order]'"
+                                           :value="link.sort_order">
 
                                     <div class="flex gap-[10px] justify-between py-5 cursor-pointer">
                                         <div class="flex gap-[10px] ">
                                             <div class="grid gap-[6px] place-content-start">
                                                 <p class="text-gray-600 dark:text-gray-300">
-                                                    <div>
-                                                        @lang('admin::app.settings.themes.edit.column'):
+                                                <div>
+                                                    @lang('admin::app.settings.themes.edit.column'):
 
-                                                        <span class="text-gray-600 dark:text-gray-300 transition-all">
+                                                    <span class="text-gray-600 dark:text-gray-300 transition-all">
                                                             @{{ link.column }}
                                                         </span>
-                                                    </div>
+                                                </div>
                                                 </p>
 
                                                 <p class="text-gray-600 dark:text-gray-300">
-                                                    <div>
-                                                        @lang('admin::app.settings.themes.edit.path'):
+                                                <div>
+                                                    @lang('admin::app.settings.themes.edit.path'):
 
-                                                        <a
+                                                    <a
                                                             :href="link.url"
                                                             target="_blank"
                                                             class="text-blue-600 transition-all hover:underline"
                                                             v-text="link.url"
-                                                        >
-                                                        </a>
-                                                    </div>
+                                                    >
+                                                    </a>
+                                                </div>
                                                 </p>
 
                                                 <p class="text-gray-600 dark:text-gray-300">
-                                                    <div>
-                                                        @lang('admin::app.settings.themes.edit.filter-title'):
+                                                <div>
+                                                    @lang('admin::app.settings.themes.edit.filter-title'):
 
-                                                        <span
+                                                    <span
                                                             class="text-gray-600 dark:text-gray-300 transition-all"
                                                             v-text="link.title"
-                                                        >
+                                                    >
                                                         </span>
-                                                    </div>
+                                                </div>
                                                 </p>
 
                                                 <p class="text-gray-600 dark:text-gray-300">
-                                                    <div>
-                                                        @lang('admin::app.settings.themes.edit.sort-order'):
+                                                <div>
+                                                    @lang('admin::app.settings.themes.edit.sort-order'):
 
-                                                        <span
+                                                    <span
                                                             class="text-gray-600 dark:text-gray-300 transition-all"
                                                             v-text="link.sort_order"
-                                                        >
+                                                    >
                                                         </span>
-                                                    </div>
+                                                </div>
                                                 </p>
                                             </div>
                                         </div>
@@ -1469,15 +1486,15 @@
                                         <div class="grid gap-[4px] place-content-start text-right">
                                             <div class="flex gap-x-[20px] items-center">
                                                 <p
-                                                    class="text-blue-600 cursor-pointer transition-all hover:underline"
-                                                    @click="edit(link)"
+                                                        class="text-blue-600 cursor-pointer transition-all hover:underline"
+                                                        @click="edit(link)"
                                                 >
                                                     @lang('admin::app.settings.themes.edit.edit')
                                                 </p>
 
                                                 <p
-                                                    class="text-red-600 cursor-pointer transition-all hover:underline"
-                                                    @click="remove(link)"
+                                                        class="text-red-600 cursor-pointer transition-all hover:underline"
+                                                        @click="remove(link)"
                                                 >
                                                     @lang('admin::app.settings.themes.edit.delete')
                                                 </p>
@@ -1488,13 +1505,13 @@
                             </div>
 
                             <div
-                                v-else
-                                class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px] "
+                                    v-else
+                                    class="grid gap-[14px] justify-center justify-items-center py-[40px] px-[10px] "
                             >
                                 <img
-                                    class="w-[120px] h-[120px] border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion"
-                                    src="{{ bagisto_asset('images/empty-placeholders/default-empty.svg') }}"
-                                    alt="add-product-to-store"
+                                        class="w-[120px] h-[120px] border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion"
+                                        src="{{ bagisto_asset('images/empty-placeholders/default-empty.svg') }}"
+                                        alt="add-product-to-store"
                                 >
 
                                 <div class="flex flex-col items-center">
@@ -1533,19 +1550,19 @@
                                     </x-admin::form.control-group.label>
 
                                     <v-field
-                                        type="text"
-                                        name="name"
-                                        value="{{ $theme->name }}"
-                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                        :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                        rules="required"
-                                        label="@lang('admin::app.settings.themes.edit.name')"
-                                        placeholder="@lang('admin::app.settings.themes.edit.name')"
+                                            type="text"
+                                            name="name"
+                                            value="{{ $theme->name }}"
+                                            class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                            :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                            rules="required"
+                                            label="@lang('admin::app.settings.themes.edit.name')"
+                                            placeholder="@lang('admin::app.settings.themes.edit.name')"
                                     >
                                     </v-field>
 
                                     <x-admin::form.control-group.error
-                                        control-name="name"
+                                            control-name="name"
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
@@ -1556,19 +1573,19 @@
                                     </x-admin::form.control-group.label>
 
                                     <v-field
-                                        type="text"
-                                        name="sort_order"
-                                        value="{{ $theme->sort_order }}"
-                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                        :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                        rules="required"
-                                        label="@lang('admin::app.settings.themes.edit.sort-order')"
-                                        placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
+                                            type="text"
+                                            name="sort_order"
+                                            value="{{ $theme->sort_order }}"
+                                            class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                            :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                            rules="required"
+                                            label="@lang('admin::app.settings.themes.edit.sort-order')"
+                                            placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
                                     >
                                     </v-field>
 
                                     <x-admin::form.control-group.error
-                                        control-name="sort_order"
+                                            control-name="sort_order"
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
@@ -1579,17 +1596,18 @@
                                     </x-admin::form.control-group.label>
 
                                     <x-admin::form.control-group.control
-                                        type="select"
-                                        name="channel_id"
-                                        rules="required"
-                                        :value="$theme->channel_id"
+                                            type="select"
+                                            name="channel_id"
+                                            rules="required"
+                                            :value="$theme->channel_id"
                                     >
                                         @foreach($channels as $channel)
                                             <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                                         @endforeach
                                     </x-admin::form.control-group.control>
 
-                                    <x-admin::form.control-group.error control-name="channel_id"></x-admin::form.control-group.error>
+                                    <x-admin::form.control-group.error
+                                            control-name="channel_id"></x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
 
                                 <x-admin::form.control-group>
@@ -1599,30 +1617,30 @@
 
                                     <label class="relative inline-flex items-center cursor-pointer">
                                         <v-field
-                                            type="checkbox"
-                                            name="status"
-                                            class="hidden"
-                                            v-slot="{ field }"
-                                            :value="{{ $theme->status }}"
-                                        >
-                                            <input
                                                 type="checkbox"
                                                 name="status"
-                                                id="status"
-                                                class="sr-only peer"
-                                                v-bind="field"
-                                                :checked="{{ $theme->status }}"
+                                                class="hidden"
+                                                v-slot="{ field }"
+                                                :value="{{ $theme->status }}"
+                                        >
+                                            <input
+                                                    type="checkbox"
+                                                    name="status"
+                                                    id="status"
+                                                    class="sr-only peer"
+                                                    v-bind="field"
+                                                    :checked="{{ $theme->status }}"
                                             />
                                         </v-field>
 
                                         <label
-                                            class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
-                                            for="status"
+                                                class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
+                                                for="status"
                                         ></label>
                                     </label>
 
                                     <x-admin::form.control-group.error
-                                        control-name="status"
+                                            control-name="status"
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
@@ -1633,9 +1651,9 @@
 
                 <!-- For Fitler Form -->
                 <x-admin::form
-                    v-slot="{ meta, errors, handleSubmit }"
-                    as="div"
-                    ref="footerLinkUpdateOrCreateModal"
+                        v-slot="{ meta, errors, handleSubmit }"
+                        as="div"
+                        ref="footerLinkUpdateOrCreateModal"
                 >
                     <form @submit="handleSubmit($event, updateOrCreate)">
                         <x-admin::modal ref="addLinksModal">
@@ -1653,12 +1671,12 @@
                                         </x-admin::form.control-group.label>
 
                                         <x-admin::form.control-group.control
-                                            type="select"
-                                            name="column"
-                                            rules="required"
-                                            :label="trans('admin::app.settings.themes.edit.column')"
-                                            :placeholder="trans('admin::app.settings.themes.edit.column')"
-                                            ::disabled="isUpdating"
+                                                type="select"
+                                                name="column"
+                                                rules="required"
+                                                :label="trans('admin::app.settings.themes.edit.column')"
+                                                :placeholder="trans('admin::app.settings.themes.edit.column')"
+                                                ::disabled="isUpdating"
                                         >
                                             <option value="column_1">1</option>
                                             <option value="column_2">2</option>
@@ -1666,7 +1684,7 @@
                                         </x-admin::form.control-group.control>
 
                                         <x-admin::form.control-group.error
-                                            control-name="column"
+                                                control-name="column"
                                         >
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
@@ -1677,16 +1695,16 @@
                                         </x-admin::form.control-group.label>
 
                                         <x-admin::form.control-group.control
-                                            type="text"
-                                            name="title"
-                                            rules="required"
-                                            :label="trans('admin::app.settings.themes.edit.footer-title')"
-                                            :placeholder="trans('admin::app.settings.themes.edit.footer-title')"
+                                                type="text"
+                                                name="title"
+                                                rules="required"
+                                                :label="trans('admin::app.settings.themes.edit.footer-title')"
+                                                :placeholder="trans('admin::app.settings.themes.edit.footer-title')"
                                         >
                                         </x-admin::form.control-group.control>
 
                                         <x-admin::form.control-group.error
-                                            control-name="title"
+                                                control-name="title"
                                         >
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
@@ -1697,17 +1715,17 @@
                                         </x-admin::form.control-group.label>
 
                                         <x-admin::form.control-group.control
-                                            type="text"
-                                            name="url"
-                                            rules="required"
-                                            :label="trans('admin::app.settings.themes.edit.path')"
-                                            :placeholder="trans('admin::app.settings.themes.edit.path')"
-                                            ::disabled="isUpdating"
+                                                type="text"
+                                                name="url"
+                                                rules="required"
+                                                :label="trans('admin::app.settings.themes.edit.path')"
+                                                :placeholder="trans('admin::app.settings.themes.edit.path')"
+                                                ::disabled="isUpdating"
                                         >
                                         </x-admin::form.control-group.control>
 
                                         <x-admin::form.control-group.error
-                                            control-name="url"
+                                                control-name="url"
                                         >
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
@@ -1718,16 +1736,16 @@
                                         </x-admin::form.control-group.label>
 
                                         <x-admin::form.control-group.control
-                                            type="text"
-                                            name="sort_order"
-                                            rules="required|numeric"
-                                            :label="trans('admin::app.settings.themes.edit.sort-order')"
-                                            :placeholder="trans('admin::app.settings.themes.edit.sort-order')"
+                                                type="text"
+                                                name="sort_order"
+                                                rules="required|numeric"
+                                                :label="trans('admin::app.settings.themes.edit.sort-order')"
+                                                :placeholder="trans('admin::app.settings.themes.edit.sort-order')"
                                         >
                                         </x-admin::form.control-group.control>
 
                                         <x-admin::form.control-group.error
-                                            control-name="sort_order"
+                                                control-name="sort_order"
                                         >
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
@@ -1738,8 +1756,8 @@
                                 <div class="flex gap-x-[10px] items-center">
                                     <!-- Save Button -->
                                     <button
-                                        type="submit"
-                                        class="px-[12px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer"
+                                            type="submit"
+                                            class="px-[12px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer"
                                     >
                                         @lang('admin::app.settings.themes.edit.save-btn')
                                     </button>
@@ -1780,15 +1798,15 @@
 
 
                             <x-admin::form.control-group.control
-                                type="file"
-                                name="options[banner][image]"
-                                :label="trans('admin::app.settings.themes.edit.small-banner')"
-                                :placeholder="trans('admin::app.settings.themes.edit.small-banner')"
+                                    type="file"
+                                    name="options[banner][image]"
+                                    :label="trans('admin::app.settings.themes.edit.small-banner')"
+                                    :placeholder="trans('admin::app.settings.themes.edit.small-banner')"
                             >
                             </x-admin::form.control-group.control>
 
                             <x-admin::form.control-group.error
-                                control-name="banner"
+                                    control-name="banner"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
@@ -1801,15 +1819,15 @@
 
 
                             <x-admin::form.control-group.control
-                                type="text"
-                                name="options[banner][link]"
-                                label="link"
+                                    type="text"
+                                    name="options[banner][link]"
+                                    label="link"
 
                             >
                             </x-admin::form.control-group.control>
 
                             <x-admin::form.control-group.error
-                                control-name="link"
+                                    control-name="link"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
@@ -1818,13 +1836,13 @@
                     </div>
 
                     @if(isset($theme->options['images']))
-                    <div class="p-[16px] bg-white dark:bg-gray-900 rounded box-shadow">
-                        <div class="flex gap-x-[10px] justify-between items-center mb-[10px]">
-                            <div class="flex flex-col gap-[4px]">
-                                <img src="{{asset($theme->options['images'][0]['image'])}}"/>
+                        <div class="p-[16px] bg-white dark:bg-gray-900 rounded box-shadow">
+                            <div class="flex gap-x-[10px] justify-between items-center mb-[10px]">
+                                <div class="flex flex-col gap-[4px]">
+                                    <img src="{{asset($theme->options['images'][0]['image'])}}"/>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endif
                 </div>
 
@@ -1846,19 +1864,19 @@
                                 </x-admin::form.control-group.label>
 
                                 <v-field
-                                    type="text"
-                                    name="name"
-                                    value="{{ $theme->name }}"
-                                    rules="required"
-                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                    :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                    label="@lang('admin::app.settings.themes.edit.name')"
-                                    placeholder="@lang('admin::app.settings.themes.edit.name')"
+                                        type="text"
+                                        name="name"
+                                        value="{{ $theme->name }}"
+                                        rules="required"
+                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                        :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        label="@lang('admin::app.settings.themes.edit.name')"
+                                        placeholder="@lang('admin::app.settings.themes.edit.name')"
                                 >
                                 </v-field>
 
                                 <x-admin::form.control-group.error
-                                    control-name="name"
+                                        control-name="name"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -1869,19 +1887,19 @@
                                 </x-admin::form.control-group.label>
 
                                 <v-field
-                                    type="text"
-                                    name="sort_order"
-                                    value="{{ $theme->sort_order }}"
-                                    rules="required|min_value:1"
-                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                    :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                    label="@lang('admin::app.settings.themes.edit.sort-order')"
-                                    placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
+                                        type="text"
+                                        name="sort_order"
+                                        value="{{ $theme->sort_order }}"
+                                        rules="required|min_value:1"
+                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                        :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        label="@lang('admin::app.settings.themes.edit.sort-order')"
+                                        placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
                                 >
                                 </v-field>
 
                                 <x-admin::form.control-group.error
-                                    control-name="sort_order"
+                                        control-name="sort_order"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -1892,17 +1910,18 @@
                                 </x-admin::form.control-group.label>
 
                                 <x-admin::form.control-group.control
-                                    type="select"
-                                    name="channel_id"
-                                    rules="required"
-                                    :value="$theme->channel_id"
+                                        type="select"
+                                        name="channel_id"
+                                        rules="required"
+                                        :value="$theme->channel_id"
                                 >
                                     @foreach($channels as $channel)
                                         <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                                     @endforeach
                                 </x-admin::form.control-group.control>
 
-                                <x-admin::form.control-group.error control-name="channel_id"></x-admin::form.control-group.error>
+                                <x-admin::form.control-group.error
+                                        control-name="channel_id"></x-admin::form.control-group.error>
                             </x-admin::form.control-group>
 
                             <x-admin::form.control-group>
@@ -1912,30 +1931,30 @@
 
                                 <label class="relative inline-flex items-center cursor-pointer">
                                     <v-field
-                                        type="checkbox"
-                                        name="status"
-                                        class="hidden"
-                                        v-slot="{ field }"
-                                        value="{{ $theme->status }}"
-                                    >
-                                        <input
                                             type="checkbox"
                                             name="status"
-                                            id="status"
-                                            class="sr-only peer"
-                                            v-bind="field"
-                                            :checked="{{ $theme->status }}"
+                                            class="hidden"
+                                            v-slot="{ field }"
+                                            value="{{ $theme->status }}"
+                                    >
+                                        <input
+                                                type="checkbox"
+                                                name="status"
+                                                id="status"
+                                                class="sr-only peer"
+                                                v-bind="field"
+                                                :checked="{{ $theme->status }}"
                                         />
                                     </v-field>
 
                                     <label
-                                        class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
-                                        for="status"
+                                            class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
+                                            for="status"
                                     ></label>
                                 </label>
 
                                 <x-admin::form.control-group.error
-                                    control-name="status"
+                                        control-name="status"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -1977,38 +1996,36 @@
 
 
                             <x-admin::form.control-group.control
-                                type="file"
-                                name="options[banner][image]"
-                                :label="trans('admin::app.settings.themes.edit.image')"
-                                :placeholder="trans('admin::app.settings.themes.edit.image')"
+                                    type="file"
+                                    name="options[banner][image]"
+                                    :label="trans('admin::app.settings.themes.edit.image')"
+                                    :placeholder="trans('admin::app.settings.themes.edit.image')"
                             >
                             </x-admin::form.control-group.control>
 
                             <x-admin::form.control-group.error
-                                control-name="banner"
+                                    control-name="banner"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
 
 
 
-                        @php($theme['options'] = $theme['options'] ? $theme['options'] : ['title' => "", 'text' => "", 'link' => ''])
                         <x-admin::form.control-group class="mb-[10px]">
                             <x-admin::form.control-group.label class="required">
                                 Title
                             </x-admin::form.control-group.label>
 
 
-                            <x-admin::form.control-group.control
-                                type="text"
-                                name="options[title]"
-                                label="title"
-                                value="{{$theme['options']['title']}}"
-                            >
-                            </x-admin::form.control-group.control>
+                            <input
+                                    name="options[title]"
+                                    v-model="options.title"
+                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                            />
+
 
                             <x-admin::form.control-group.error
-                                control-name="title"
+                                    control-name="title"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
@@ -2019,16 +2036,15 @@
                             </x-admin::form.control-group.label>
 
 
-                            <x-admin::form.control-group.control
-                                type="textarea"
-                                name="options[text]"
-                                label="text"
-                                value="{{$theme['options']['text']}}"
-                            >
-                            </x-admin::form.control-group.control>
+                            <textarea
+                                    name="options[text]"
+                                    rows="4"
+                                    v-model="options.text"
+                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                            />
 
                             <x-admin::form.control-group.error
-                                control-name="text"
+                                    control-name="text"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
@@ -2040,16 +2056,14 @@
                             </x-admin::form.control-group.label>
 
 
-                            <x-admin::form.control-group.control
-                                type="text"
-                                name="options[link]"
-                                label="link"
-                                value="{{$theme['options']['link']}}"
-                            >
-                            </x-admin::form.control-group.control>
+                            <input
+                                    name="options[link]"
+                                    v-model="options.link"
+                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                            />
 
                             <x-admin::form.control-group.error
-                                control-name="link"
+                                    control-name="link"
                             >
                             </x-admin::form.control-group.error>
                         </x-admin::form.control-group>
@@ -2086,19 +2100,19 @@
                                 </x-admin::form.control-group.label>
 
                                 <v-field
-                                    type="text"
-                                    name="name"
-                                    value="{{ $theme->name }}"
-                                    rules="required"
-                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                    :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                    label="@lang('admin::app.settings.themes.edit.name')"
-                                    placeholder="@lang('admin::app.settings.themes.edit.name')"
+                                        type="text"
+                                        name="name"
+                                        value="{{ $theme->name }}"
+                                        rules="required"
+                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                        :class="[errors['name'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        label="@lang('admin::app.settings.themes.edit.name')"
+                                        placeholder="@lang('admin::app.settings.themes.edit.name')"
                                 >
                                 </v-field>
 
                                 <x-admin::form.control-group.error
-                                    control-name="name"
+                                        control-name="name"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -2109,19 +2123,19 @@
                                 </x-admin::form.control-group.label>
 
                                 <v-field
-                                    type="text"
-                                    name="sort_order"
-                                    value="{{ $theme->sort_order }}"
-                                    rules="required|min_value:1"
-                                    class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
-                                    :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
-                                    label="@lang('admin::app.settings.themes.edit.sort-order')"
-                                    placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
+                                        type="text"
+                                        name="sort_order"
+                                        value="{{ $theme->sort_order }}"
+                                        rules="required|min_value:1"
+                                        class="flex w-full min-h-[39px] py-2 px-3 border rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400 dark:hover:border-gray-400 focus:border-gray-400 dark:focus:border-gray-400 dark:bg-gray-900 dark:border-gray-800"
+                                        :class="[errors['sort_order'] ? 'border border-red-600 hover:border-red-600' : '']"
+                                        label="@lang('admin::app.settings.themes.edit.sort-order')"
+                                        placeholder="@lang('admin::app.settings.themes.edit.sort-order')"
                                 >
                                 </v-field>
 
                                 <x-admin::form.control-group.error
-                                    control-name="sort_order"
+                                        control-name="sort_order"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -2132,17 +2146,18 @@
                                 </x-admin::form.control-group.label>
 
                                 <x-admin::form.control-group.control
-                                    type="select"
-                                    name="channel_id"
-                                    rules="required"
-                                    :value="$theme->channel_id"
+                                        type="select"
+                                        name="channel_id"
+                                        rules="required"
+                                        :value="$theme->channel_id"
                                 >
                                     @foreach($channels as $channel)
                                         <option value="{{ $channel->id }}">{{ $channel->name }}</option>
                                     @endforeach
                                 </x-admin::form.control-group.control>
 
-                                <x-admin::form.control-group.error control-name="channel_id"></x-admin::form.control-group.error>
+                                <x-admin::form.control-group.error
+                                        control-name="channel_id"></x-admin::form.control-group.error>
                             </x-admin::form.control-group>
 
                             <x-admin::form.control-group>
@@ -2152,30 +2167,30 @@
 
                                 <label class="relative inline-flex items-center cursor-pointer">
                                     <v-field
-                                        type="checkbox"
-                                        name="status"
-                                        class="hidden"
-                                        v-slot="{ field }"
-                                        value="{{ $theme->status }}"
-                                    >
-                                        <input
                                             type="checkbox"
                                             name="status"
-                                            id="status"
-                                            class="sr-only peer"
-                                            v-bind="field"
-                                            :checked="{{ $theme->status }}"
+                                            class="hidden"
+                                            v-slot="{ field }"
+                                            value="{{ $theme->status }}"
+                                    >
+                                        <input
+                                                type="checkbox"
+                                                name="status"
+                                                id="status"
+                                                class="sr-only peer"
+                                                v-bind="field"
+                                                :checked="{{ $theme->status }}"
                                         />
                                     </v-field>
 
                                     <label
-                                        class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
-                                        for="status"
+                                            class="rounded-full dark:peer-focus:ring-blue-800 peer-checked:bg-blue-600 w-[36px] h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-navyBlue peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all"
+                                            for="status"
                                     ></label>
                                 </label>
 
                                 <x-admin::form.control-group.error
-                                    control-name="status"
+                                        control-name="status"
                                 >
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
@@ -2212,7 +2227,7 @@
                     };
                 },
 
-                created(){
+                created() {
                     this.componentName = this.themeType["{{ $theme->type }}"];
                 },
             });
@@ -2238,18 +2253,18 @@
                         this.sliders == null
                         || this.sliders.length == 0
                     ) {
-                        this.sliders = { images: [] };
+                        this.sliders = {images: []};
                     }
                 },
 
                 methods: {
-                    saveSliderImage(params, { resetForm ,setErrors }) {
+                    saveSliderImage(params, {resetForm, setErrors}) {
                         let formData = new FormData(this.$refs.createSliderForm);
 
                         try {
                             const sliderImage = formData.get("slider_image[]");
 
-                            if (! sliderImage) {
+                            if (!sliderImage) {
                                 throw new Error("{{ trans('admin::app.settings.themes.edit.slider-required') }}");
                             }
 
@@ -2276,7 +2291,7 @@
                         dataTransfer.items.add(file);
 
                         setTimeout(() => {
-                            this.$refs['image_' + index][0].href =  URL.createObjectURL(file);
+                            this.$refs['image_' + index][0].href = URL.createObjectURL(file);
 
                             this.$refs['imageName_' + index][0].innerHTML = file.name;
 
@@ -2313,15 +2328,15 @@
 
                 created() {
                     if (this.options === null) {
-                        this.options = { filters: {} };
+                        this.options = {filters: {}};
                     }
 
-                    if (! this.options.filters) {
+                    if (!this.options.filters) {
                         this.options.filters = {};
                     }
 
                     this.options.filters = Object.keys(this.options.filters)
-                        .filter(key => ! ['sort', 'limit', 'title'].includes(key))
+                        .filter(key => !['sort', 'limit', 'title'].includes(key))
                         .map(key => ({
                             key: key,
                             value: this.options.filters[key]
@@ -2359,15 +2374,15 @@
 
                 created() {
                     if (this.options === null) {
-                        this.options = { filters: {} };
+                        this.options = {filters: {}};
                     }
 
-                    if (! this.options.filters) {
+                    if (!this.options.filters) {
                         this.options.filters = {};
                     }
 
                     this.options.filters = Object.keys(this.options.filters)
-                        .filter(key => ! ['sort', 'limit', 'title'].includes(key))
+                        .filter(key => !['sort', 'limit', 'title'].includes(key))
                         .map(key => ({
                             key: key,
                             value: this.options.filters[key]
@@ -2406,33 +2421,12 @@
 
                 created() {
                     if (this.options === null) {
-                        this.options = { filters: {} };
+                        this.options = {title: '', text: '', link: ''}
                     }
-
-                    if (! this.options.filters) {
-                        this.options.filters = {};
-                    }
-
-                    this.options.filters = Object.keys(this.options.filters)
-                        .filter(key => ! ['sort', 'limit', 'title'].includes(key))
-                        .map(key => ({
-                            key: key,
-                            value: this.options.filters[key]
-                        }));
                 },
 
                 methods: {
-                    addFilter(params) {
-                        this.options.filters.push(params);
 
-                        this.$refs.productFilterModal.toggle();
-                    },
-
-                    remove(filter) {
-                        let index = this.options.filters.indexOf(filter);
-
-                        this.options.filters.splice(index, 1);
-                    },
                 },
             });
         </script>
@@ -2453,15 +2447,15 @@
 
                 created() {
                     if (this.options === null) {
-                        this.options = { filters: {} };
+                        this.options = {filters: {}};
                     }
 
-                    if (! this.options.filters) {
+                    if (!this.options.filters) {
                         this.options.filters = {};
                     }
 
                     this.options.filters = Object.keys(this.options.filters)
-                        .filter(key => ! ['sort', 'limit', 'title'].includes(key))
+                        .filter(key => !['sort', 'limit', 'title'].includes(key))
                         .map(key => ({
                             key: key,
                             value: this.options.filters[key]
@@ -2503,7 +2497,7 @@
 
                 created() {
                     if (this.options === null) {
-                        this.options = { html: {} };
+                        this.options = {html: {}};
                     }
                 },
 
@@ -2535,7 +2529,7 @@
 
                         const validFiles = Array.from(imageInput.files).every(file => file.type.includes('image/'));
 
-                        if (! validFiles) {
+                        if (!validFiles) {
                             this.$emitter.emit('add-flash', {
                                 type: 'warning',
                                 message: "@lang('admin::app.settings.themes.edit.image-upload-message')"
@@ -2561,7 +2555,7 @@
 
                 data() {
                     return {
-                        options:{
+                        options: {
                             html: `{!! $theme->translate($currentLocale->code)['options']['html'] ?? '' !!}`,
                         },
 
@@ -2599,13 +2593,13 @@
                     storeImage($event) {
                         let selectedImage = $event.target.files[0];
 
-                        if (! selectedImage) {
+                        if (!selectedImage) {
                             return;
                         }
 
                         const allowedImageTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/jpg'];
 
-                        if (! allowedImageTypes.includes(selectedImage.type)) {
+                        if (!allowedImageTypes.includes(selectedImage.type)) {
                             return;
                         }
 
@@ -2629,7 +2623,8 @@
                                     line: cursorPointer.line, ch: cursorPointer.ch + response.data.length
                                 });
                             })
-                            .catch((error) => {});
+                            .catch((error) => {
+                            });
                     },
                 },
             });
@@ -2642,7 +2637,7 @@
 
                 data() {
                     return {
-                        options:{
+                        options: {
                             css: `{!! $theme->translate($currentLocale->code)['options']['css'] ?? '' !!}`,
                         }
                     };
@@ -2689,7 +2684,7 @@
 
                         html = html.replaceAll('src=""', '').replaceAll('data-src', 'src').replaceAll('src="storage/theme/', "src=\"{{ config('app.url') }}/storage/theme/");
 
-                        return html + '<style type=\"text/css\">' +   this.options.css + '</style>';
+                        return html + '<style type=\"text/css\">' + this.options.css + '</style>';
                     },
                 },
             });
@@ -2747,7 +2742,7 @@
 
                         this.footerLinks[params.column] = updatedFooterLinks;
 
-                        if (! updatedFooterLinks.some((item) => item.url === params.url)) {
+                        if (!updatedFooterLinks.some((item) => item.url === params.url)) {
                             if (!this.footerLinks.hasOwnProperty(params.column)) {
                                 this.footerLinks[params.column] = [];
                             }
@@ -2785,8 +2780,8 @@
 
         {{-- Code mirror script CDN --}}
         <script
-            type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.js"
+                type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.js"
         >
         </script>
 
@@ -2807,8 +2802,8 @@
     @pushOnce('styles')
         {{-- Code mirror style cdn --}}
         <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.css"
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.13.4/codemirror.css"
         >
         </link>
     @endPushOnce
