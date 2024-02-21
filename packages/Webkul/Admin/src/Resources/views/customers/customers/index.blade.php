@@ -36,7 +36,7 @@
     {!! view_render_event('bagisto.admin.customers.customers.list.before') !!}
 
     <x-admin::datagrid src="{{ route('admin.customers.customers.index') }}" ref="customer_data" :isMultiRow="true">
-        @php 
+        @php
             $hasPermission = bouncer()->hasPermission('customers.customers.mass-update') || bouncer()->hasPermission('customers.customers.mass-delete');
         @endphp
 
@@ -46,7 +46,7 @@
                 <div class="row grid grid-cols-[2fr_1fr_1fr] grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800">
                     <div
                         class="flex gap-[10px] items-center select-none"
-                        v-for="(columnGroup, index) in [['full_name', 'email', 'phone'], ['status', 'gender', 'group'], ['revenue', 'order_count', 'address_count']]"
+                        v-for="(columnGroup, index) in [['full_name', 'email', 'phone'], ['status', 'gender'], ['revenue', 'order_count', 'address_count']]"
                     >
                         @if ($hasPermission)
                             <label
@@ -182,11 +182,11 @@
                         >
                         </p>
 
-                        <p
-                            class="text-gray-600 dark:text-gray-300"
-                            v-text="record.group ?? 'N/A'"
-                        >
-                        </p>
+{{--                        <p--}}
+{{--                            class="text-gray-600 dark:text-gray-300"--}}
+{{--                            v-text="record.group ?? 'N/A'"--}}
+{{--                        >--}}
+{{--                        </p>--}}
                     </div>
 
                     <div class="flex gap-x-[16px] justify-between items-center">
@@ -205,21 +205,20 @@
                                 @{{ "@lang('admin::app.customers.customers.index.datagrid.address')".replace(':address', record.address_count) }}
                             </p>
                         </div>
+{{--                        <div class="flex items-center">--}}
+{{--                            <a--}}
+{{--                                class="icon-login text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"--}}
+{{--                                :href=`{{ route('admin.customers.customers.login_as_customer', '') }}/${record.customer_id}`--}}
+{{--                                target="_blank"--}}
+{{--                            >--}}
+{{--                            </a>--}}
 
-                        <div class="flex items-center">
-                            <a
-                                class="icon-login text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
-                                :href=`{{ route('admin.customers.customers.login_as_customer', '') }}/${record.customer_id}`
-                                target="_blank"
-                            >
-                            </a>
-
-                            <a
-                                class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
-                                :href=`{{ route('admin.customers.customers.view', '') }}/${record.customer_id}`
-                            >
-                            </a>
-                        </div>
+{{--                            <a--}}
+{{--                                class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"--}}
+{{--                                :href=`{{ route('admin.customers.customers.view', '') }}/${record.customer_id}`--}}
+{{--                            >--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
                     </div>
                 </div>
             </template>
@@ -428,7 +427,7 @@
                                                 <option value="">
                                                     @lang('admin::app.customers.customers.index.create.select-customer-group')
                                                 </option>
-                                                
+
                                                 @foreach ($groups as $group)
                                                     <option value="{{ $group->id }}"> {{ $group->name}} </option>
                                                 @endforeach
