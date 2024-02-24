@@ -268,6 +268,9 @@ abstract class AbstractType
             }
         }
 
+        if($ignoreEmpty)
+            return $product;
+
         if ($route == 'admin.catalog.products.mass_update') {
             return $product;
         }
