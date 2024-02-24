@@ -18,8 +18,8 @@
             @if (bouncer()->hasPermission('catalog.products.create') && auth()->guard('admin')->user()->isSeller())
                 <v-create-product-form>
                     <button
-                        type="button"
-                        class="primary-button"
+                            type="button"
+                            class="primary-button"
                     >
                         @lang('admin::app.catalog.products.index.create-btn')
                     </button>
@@ -43,28 +43,28 @@
             <template v-if="! isLoading">
                 <div class="row grid grid-cols-[2fr_1fr_1fr] grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800  ">
                     <div
-                        class="flex gap-[10px] items-center select-none"
-                        v-for="(columnGroup, index) in [['name', 'sku'], ['base_image', 'price', 'quantity'], ['status', 'category_name']]"
+                            class="flex gap-[10px] items-center select-none"
+                            v-for="(columnGroup, index) in [['name', 'sku'], ['base_image', 'price', 'quantity'], ['status', 'category_name']]"
                     >
 
                         @if ($hasPermission)
                             <label
-                                class="flex gap-[4px] items-center w-max cursor-pointer select-none"
-                                for="mass_action_select_all_records"
-                                v-if="! index"
+                                    class="flex gap-[4px] items-center w-max cursor-pointer select-none"
+                                    for="mass_action_select_all_records"
+                                    v-if="! index"
                             >
                                 <input
-                                    type="checkbox"
-                                    name="mass_action_select_all_records"
-                                    id="mass_action_select_all_records"
-                                    class="hidden peer"
-                                    :checked="['all', 'partial'].includes(applied.massActions.meta.mode)"
-                                    @change="selectAllRecords"
+                                        type="checkbox"
+                                        name="mass_action_select_all_records"
+                                        id="mass_action_select_all_records"
+                                        class="hidden peer"
+                                        :checked="['all', 'partial'].includes(applied.massActions.meta.mode)"
+                                        @change="selectAllRecords"
                                 >
 
                                 <span
-                                    class="icon-uncheckbox cursor-pointer rounded-[6px] text-[24px]"
-                                    :class="[
+                                        class="icon-uncheckbox cursor-pointer rounded-[6px] text-[24px]"
+                                        :class="[
                                         applied.massActions.meta.mode === 'all' ? 'peer-checked:icon-checked peer-checked:text-blue-600' : (
                                             applied.massActions.meta.mode === 'partial' ? 'peer-checked:icon-checkbox-partial peer-checked:text-blue-600' : ''
                                         ),
@@ -78,12 +78,12 @@
                             <span class="[&>*]:after:content-['_/_']">
                                 <template v-for="column in columnGroup">
                                     <span
-                                        class="after:content-['/'] last:after:content-['']"
-                                        :class="{
+                                            class="after:content-['/'] last:after:content-['']"
+                                            :class="{
                                             'text-gray-800 dark:text-white font-medium': applied.sort.column == column,
                                             'cursor-pointer hover:text-gray-800 dark:hover:text-white': columns.find(columnTemp => columnTemp.index === column)?.sortable,
                                         }"
-                                        @click="
+                                            @click="
                                             columns.find(columnTemp => columnTemp.index === column)?.sortable ? sortPage(columns.find(columnTemp => columnTemp.index === column)): {}
                                         "
                                     >
@@ -93,9 +93,9 @@
                             </span>
 
                             <i
-                                class="ltr:ml-[5px] rtl:mr-[5px] text-[16px] text-gray-800 dark:text-white align-text-bottom"
-                                :class="[applied.sort.order === 'asc' ? 'icon-down-stat': 'icon-up-stat']"
-                                v-if="columnGroup.includes(applied.sort.column)"
+                                    class="ltr:ml-[5px] rtl:mr-[5px] text-[16px] text-gray-800 dark:text-white align-text-bottom"
+                                    :class="[applied.sort.order === 'asc' ? 'icon-down-stat': 'icon-up-stat']"
+                                    v-if="columnGroup.includes(applied.sort.column)"
                             ></i>
                         </p>
                     </div>
@@ -112,39 +112,40 @@
         <template #body="{ columns, records, setCurrentSelectionMode, applied, isLoading }">
             <template v-if="! isLoading">
                 <div
-                    class="row grid grid-cols-[2fr_1fr_1fr] grid-rows-1 px-[16px] py-[10px] border-b-[1px] dark:border-gray-800   transition-all hover:bg-gray-50 dark:hover:bg-gray-950  "
-                    v-for="record in records"
+                        class="row grid grid-cols-[2fr_1fr_1fr] grid-rows-1 px-[16px] py-[10px] border-b-[1px] dark:border-gray-800   transition-all hover:bg-gray-50 dark:hover:bg-gray-950  "
+                        v-for="record in records"
                 >
                     {{-- Name, SKU, Attribute Family Columns --}}
                     <div class="flex gap-[10px]">
                         @if ($hasPermission)
                             <input
-                                type="checkbox"
-                                :name="`mass_action_select_record_${record.product_id}`"
-                                :id="`mass_action_select_record_${record.product_id}`"
-                                :value="record.product_id"
-                                class="hidden peer"
-                                v-model="applied.massActions.indices"
-                                @change="setCurrentSelectionMode"
+                                    type="checkbox"
+                                    :name="`mass_action_select_record_${record.product_id}`"
+                                    :id="`mass_action_select_record_${record.product_id}`"
+                                    :value="record.product_id"
+                                    class="hidden peer"
+                                    v-model="applied.massActions.indices"
+                                    @change="setCurrentSelectionMode"
                             >
 
                             <label
-                                class="icon-uncheckbox rounded-[6px] text-[24px] cursor-pointer peer-checked:icon-checked peer-checked:text-blue-600"
-                                :for="`mass_action_select_record_${record.product_id}`"
+                                    class="icon-uncheckbox rounded-[6px] text-[24px] cursor-pointer peer-checked:icon-checked peer-checked:text-blue-600"
+                                    :for="`mass_action_select_record_${record.product_id}`"
                             ></label>
                         @endif
 
                         <div class="flex flex-col gap-[6px]">
                             <p
-                                class="text-[16px] text-gray-800 dark:text-white font-semibold"
-                                v-text="(record.seller_name? record.seller_name: '') + (record.seller_name && record.name ? ' | ' : '') +  (record.name? record.name : '')"
+                                    class="text-[16px] text-gray-800 dark:text-white font-semibold"
+                                    v-text="(record.seller_name? record.seller_name: '') + (record.seller_name && record.name ? ' | ' : '') +  (record.name? record.name : '')"
                             >
                             </p>
 
                             <p
-                                class="text-gray-600 dark:text-gray-300"
+                                    class="text-gray-600 dark:text-gray-300"
                             >
-                                @{{ "@lang('admin::app.catalog.products.index.datagrid.sku-value')".replace(':sku', record.sku) }}
+                                @{{ "@lang('admin::app.catalog.products.index.datagrid.sku-value')".replace(':sku',
+                                record.sku) }}
                             </p>
 
                         </div>
@@ -155,13 +156,13 @@
                         <div class="relative">
                             <template v-if="record.base_image">
                                 <img
-                                    class="min-h-[65px] min-w-[65px] max-h-[65px] max-w-[65px] rounded-[4px]"
-                                    :src=`{{ Storage::url('') }}${record.base_image}`
+                                        class="min-h-[65px] min-w-[65px] max-h-[65px] max-w-[65px] rounded-[4px]"
+                                        :src=`{{ Storage::url('') }}${record.base_image}`
                                 />
 
                                 <span
-                                    class="absolute bottom-[1px] ltr:left-[1px] rtl:right-[1px] text-[12px] font-bold text-white bg-darkPink rounded-full px-[6px]"
-                                    v-text="record.images_count"
+                                        class="absolute bottom-[1px] ltr:left-[1px] rtl:right-[1px] text-[12px] font-bold text-white bg-darkPink rounded-full px-[6px]"
+                                        v-text="record.images_count"
                                 >
                                 </span>
                             </template>
@@ -169,7 +170,7 @@
                             <template v-else>
                                 <div class="w-full h-[60px] max-w-[60px] max-h-[60px] relative border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion">
                                     <img
-                                        src="{{ bagisto_asset('images/product-placeholders/front.svg')}}"
+                                            src="{{ bagisto_asset('images/product-placeholders/front.svg')}}"
                                     >
 
                                     <p class="w-full absolute bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">
@@ -179,55 +180,58 @@
                             </template>
                         </div>
 
-                        <div class="flex flex-col gap-[6px]">
-                            <div>
-                                <form :action=`{{ route('admin.catalog.update-price', '') }}/${record.id}` style="display: flex;" method="post">
+                        <form :action=`{{ route('admin.catalog.update-price-and-stock', '') }}/${record.id}`
+                              style="display: flex;" method="post">
+                            <div class="flex flex-col gap-[6px]">
+                                <div>
                                     @csrf
-                                    <input name="price" :value="record.price" style="width: 150px; border: 1px solid lightgrey; border-radius: 5px; padding-left: 5px"/>
-                                    <button type="submit" style="margin-left: 10px; height: 40px; border: 1px solid lightgrey; border-radius: 5px;" class="transparent-button">save price</button>
-                                </form>
-                            </div>
+                                    <input name="price" :value="record.price"
+                                           style="width: 150px; border: 1px solid lightgrey; border-radius: 5px; padding-left: 5px"/>
+                                </div>
 
-                            <!-- Parent Product Quantity -->
-                            <div  v-if="['configurable', 'bundle', 'grouped'].includes(record.type)">
-                                <p class="text-gray-600 dark:text-gray-300">
-                                    <span class="text-red-600" v-text="'N/A'"></span>
-                                </p>
-                            </div>
+                                <!-- Parent Product Quantity -->
+                                <div v-if="['configurable', 'bundle', 'grouped'].includes(record.type)">
+                                    <p class="text-gray-600 dark:text-gray-300">
+                                        <span class="text-red-600" v-text="'N/A'"></span>
+                                    </p>
+                                </div>
 
-                            <div v-else>
+                                <div v-else>
 
-                                <p
-                                    class="text-gray-600 dark:text-gray-300"
-                                    v-if="!record.manage_stock"
-                                >
+                                    <p
+                                            class="text-gray-600 dark:text-gray-300"
+                                            v-if="!record.manage_stock"
+                                    >
                                     <span class="text-green-600">
                                         @lang('admin::app.catalog.products.index.datagrid.stock-unmanaged')
                                     </span>
-                                </p>
+                                    </p>
 
 
-                                <div v-else>
-                                    <form :action=`{{ route('admin.catalog.update-stock', '') }}/${record.id}` style="display: flex;" method="post">
-                                        @csrf
-                                        <input name="stock" :value="record.quantity" :style="'width: 150px; border: 1px solid lightgrey; border-radius: 5px; padding-left: 5px;' + (record.quantity <= 0 ? 'border: 1px solid red' : '')"/>
-                                        <button type="submit" style="margin-left: 10px; height: 40px; border: 1px solid lightgrey; border-radius: 5px;" class="transparent-button">save stock</button>
-                                    </form>
+                                    <div v-else>
+                                        <input name="stock" :value="record.quantity"
+                                               :style="'width: 150px; border: 1px solid lightgrey; border-radius: 5px; padding-left: 5px;' + (record.quantity <= 0 ? 'border: 1px solid red' : '')"/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                            <button type="submit"
+                                    style="margin-left: 10px; height: 40px; border: 1px solid lightgrey; border-radius: 5px;"
+                                    class="transparent-button">save
+                            </button>
+                        </form>
                     </div>
 
                     {{-- Status, Category, Type Columns --}}
                     <div class="flex gap-x-[16px] justify-between items-center">
                         <div class="flex flex-col gap-[6px]">
                             <p :class="[record.status ? 'label-active': 'label-info']">
-                                @{{ record.status ? "@lang('admin::app.catalog.products.index.datagrid.active')" : "@lang('admin::app.catalog.products.index.datagrid.disable')" }}
+                                @{{ record.status ? "@lang('admin::app.catalog.products.index.datagrid.active')" :
+                                "@lang('admin::app.catalog.products.index.datagrid.disable')" }}
                             </p>
 
                             <p
-                                class="text-gray-600 dark:text-gray-300"
-                                v-text="record.category_name ?? 'N/A'"
+                                    class="text-gray-600 dark:text-gray-300"
+                                    v-text="record.category_name ?? 'N/A'"
                             >
                             </p>
                         </div>
@@ -257,17 +261,17 @@
                 <!-- Product Create Button -->
                 @if (bouncer()->hasPermission('catalog.products.create') && auth()->guard('admin')->user()->isSeller())
                     <button
-                        type="button"
-                        class="primary-button"
-                        @click="$refs.productCreateModal.toggle()"
+                            type="button"
+                            class="primary-button"
+                            @click="$refs.productCreateModal.toggle()"
                     >
                         @lang('admin::app.catalog.products.index.create-btn')
                     </button>
                 @endif
 
                 <x-admin::form
-                    v-slot="{ meta, errors, handleSubmit }"
-                    as="div"
+                        v-slot="{ meta, errors, handleSubmit }"
+                        as="div"
                 >
                     <form @submit="handleSubmit($event, create)">
                         <!-- Customer Create Modal -->
@@ -275,15 +279,15 @@
                             <x-slot:header>
                                 <!-- Modal Header -->
                                 <p
-                                    class="text-[18px] text-gray-800 dark:text-white font-bold"
-                                    v-if="! attributes.length"
+                                        class="text-[18px] text-gray-800 dark:text-white font-bold"
+                                        v-if="! attributes.length"
                                 >
                                     @lang('admin::app.catalog.products.index.create.title')
                                 </p>
 
                                 <p
-                                    class="text-[18px] text-gray-800 dark:text-white font-bold"
-                                    v-else
+                                        class="text-[18px] text-gray-800 dark:text-white font-bold"
+                                        v-else
                                 >
                                     @lang('admin::app.catalog.products.index.create.configurable-attributes')
                                 </p>
@@ -298,11 +302,11 @@
                                         <x-admin::form.control-group>
 
                                             <x-admin::form.control-group.control
-                                                type="hidden"
-                                                name="type"
-                                                value="simple"
-                                                rules="required"
-                                                :label="trans('admin::app.catalog.products.index.create.type')"
+                                                    type="hidden"
+                                                    name="type"
+                                                    value="simple"
+                                                    rules="required"
+                                                    :label="trans('admin::app.catalog.products.index.create.type')"
                                             >
                                                 @foreach(config('product_types') as $key => $type)
                                                     <option value="{{ $key }}">
@@ -311,17 +315,18 @@
                                                 @endforeach
                                             </x-admin::form.control-group.control>
 
-                                            <x-admin::form.control-group.error control-name="type"></x-admin::form.control-group.error>
+                                            <x-admin::form.control-group.error
+                                                    control-name="type"></x-admin::form.control-group.error>
                                         </x-admin::form.control-group>
 
                                         <x-admin::form.control-group>
 
                                             <x-admin::form.control-group.control
-                                                type="hidden"
-                                                name="attribute_family_id"
-                                                rules="required"
-                                                value="1"
-                                                :label="trans('admin::app.catalog.products.index.create.family')"
+                                                    type="hidden"
+                                                    name="attribute_family_id"
+                                                    rules="required"
+                                                    value="1"
+                                                    :label="trans('admin::app.catalog.products.index.create.family')"
                                             >
                                                 @foreach($families as $family)
                                                     <option value="{{ $family->id }}">
@@ -330,7 +335,8 @@
                                                 @endforeach
                                             </x-admin::form.control-group.control>
 
-                                            <x-admin::form.control-group.error control-name="attribute_family_id"></x-admin::form.control-group.error>
+                                            <x-admin::form.control-group.error
+                                                    control-name="attribute_family_id"></x-admin::form.control-group.error>
                                         </x-admin::form.control-group>
 
                                         <x-admin::form.control-group class="mb-[10px]">
@@ -339,14 +345,15 @@
                                             </x-admin::form.control-group.label>
 
                                             <x-admin::form.control-group.control
-                                                type="text"
-                                                name="sku"
-                                                ::rules="{ required: true, regex: /^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/ }"
-                                                :label="trans('admin::app.catalog.products.index.create.sku')"
+                                                    type="text"
+                                                    name="sku"
+                                                    ::rules="{ required: true, regex: /^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/ }"
+                                                    :label="trans('admin::app.catalog.products.index.create.sku')"
                                             >
                                             </x-admin::form.control-group.control>
 
-                                            <x-admin::form.control-group.error control-name="sku"></x-admin::form.control-group.error>
+                                            <x-admin::form.control-group.error
+                                                    control-name="sku"></x-admin::form.control-group.error>
                                         </x-admin::form.control-group>
 
                                         {!! view_render_event('bagisto.admin.catalog.products.create_form.general.controls.before') !!}
@@ -356,8 +363,8 @@
                                         {!! view_render_event('bagisto.admin.catalog.products.create_form.attributes.controls.before') !!}
 
                                         <div
-                                            class="mb-[10px]"
-                                            v-for="attribute in attributes"
+                                                class="mb-[10px]"
+                                                v-for="attribute in attributes"
                                         >
                                             <label class="block leading-[24px] text-[12px] text-gray-800 dark:text-white font-medium">
                                                 @{{ attribute.name }}
@@ -365,14 +372,14 @@
 
                                             <div class="flex flex-wrap gap-[4px] min-h-[38px] p-[6px] border dark:border-gray-800 rounded-[6px]">
                                                 <p
-                                                    class="flex items-center py-[3px] px-[8px] bg-gray-600 rounded-[4px] text-white font-semibold"
-                                                    v-for="option in attribute.options"
+                                                        class="flex items-center py-[3px] px-[8px] bg-gray-600 rounded-[4px] text-white font-semibold"
+                                                        v-for="option in attribute.options"
                                                 >
                                                     @{{ option.name }}
 
                                                     <span
-                                                        class="icon-cross text-white text-[18px] ltr:ml-[5px] rtl:mr-[5px] cursor-pointer"
-                                                        @click="removeOption(option)"
+                                                            class="icon-cross text-white text-[18px] ltr:ml-[5px] rtl:mr-[5px] cursor-pointer"
+                                                            @click="removeOption(option)"
                                                     ></span>
                                                 </p>
                                             </div>
@@ -387,17 +394,17 @@
                                 <!-- Modal Submission -->
                                 <div class="flex gap-x-[10px] items-center">
                                     <button
-                                        type="button"
-                                        class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white "
-                                        v-if="attributes.length"
-                                        @click="attributes = []"
+                                            type="button"
+                                            class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white "
+                                            v-if="attributes.length"
+                                            @click="attributes = []"
                                     >
                                         @lang('admin::app.catalog.products.index.create.back-btn')
                                     </button>
 
                                     <button
-                                        type="submit"
-                                        class="primary-button"
+                                            type="submit"
+                                            class="primary-button"
                                     >
                                         @lang('admin::app.catalog.products.index.create.save-btn')
                                     </button>

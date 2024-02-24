@@ -89,8 +89,7 @@ Route::group(['middleware' => ['admin'], 'prefix' => config('app.admin_url')], f
         Route::controller(ProductController::class)->prefix('products')->group(function () {
             Route::get('', 'index')->name('admin.catalog.products.index');
 
-            Route::post('edit-price/{id}', 'updatePrice')->name('admin.catalog.update-price');
-            Route::post('edit-stock/{id}', 'updateStock')->name('admin.catalog.update-stock');
+            Route::post('edit-price/{id}', 'updatePriceAndStock')->name('admin.catalog.update-price-and-stock');
 
 
             Route::get('create', 'create')->name('admin.catalog.products.create');

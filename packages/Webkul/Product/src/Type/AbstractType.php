@@ -268,9 +268,6 @@ abstract class AbstractType
             }
         }
 
-        if($ignoreEmpty)
-            return $product;
-
         if ($route == 'admin.catalog.products.mass_update') {
             return $product;
         }
@@ -278,6 +275,11 @@ abstract class AbstractType
         if (! isset($data['categories'])) {
             $data['categories'] = [];
         }
+
+        $this->productInventoryRepository->saveInventories($data, $product);
+
+        if($ignoreEmpty)
+            return $product;
 
         $product->categories()->sync($this->getCategoriesWithParents($data['categories']));
 
