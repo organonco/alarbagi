@@ -34,13 +34,19 @@
                 <p class="text-[20px] text-gray-800 dark:text-white font-bold leading-[24px]">
                     Invoice Preview For {{$invoice->seller->name}}
                 </p>
-
                 <div>
                     <span
                         class="label-{{trans('marketplace::app.seller-invoice.statuses.'. $invoice->status->name . '.class')}} text-[14px] mx-[5px]">
                         @lang('marketplace::app.seller-invoice.statuses.'. $invoice->status->name . '.label')
                     </span>
                 </div>
+                <p class="text-[20px] text-gray-800 dark:text-white font-bold leading-[24px]">
+                    #{{$invoice->id}}
+                </p>
+                |
+                <p class="text-[20px] text-gray-800 dark:text-white font-bold leading-[24px]">
+                    {{$invoice->created_at->format('d/m/Y')}}
+                </p>
             </div>
 
             <div style="display: flex">

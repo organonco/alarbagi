@@ -33,11 +33,16 @@ class SellerInvoiceRepository extends Repository
         //Seller Orders
         foreach ($sellerOrders as $sellerOrder) {
             $total += $sellerOrder->grand_total;
-            $invoiceItems[] = new SellerInvoiceItemDataObject($sellerOrder->grand_total, SellerInvoiceItemTypeEnum::ORDER, "Order #" . $sellerOrder->order_id . " - " . $sellerOrder->created_at->format('d/m/Y'), $sellerOrder);
+            $invoiceItems[] = new SellerInvoiceItemDataObject(
+                $sellerOrder->grand_total,
+                SellerInvoiceItemTypeEnum::ORDER,
+                "Order #" . $sellerOrder->order_id . " - " . $sellerOrder->created_at->format('d/m/Y'),
+                $sellerOrder
+            );
         }
         //Fees
         $percentage = config('invoice.percentage');
-        if($total > 0)
+        if ($total > 0)
             $invoiceItems[] = new SellerInvoiceItemDataObject(-1 * $total * $percentage / 100, SellerInvoiceItemTypeEnum::FEE, "Souq Naif Fees: ($total AED x $percentage%)", null);
 
         $invoice = new SellerInvoiceDataObject(SellerInvoiceStatusEnum::DRAFT, $invoiceItems, $seller->id);
