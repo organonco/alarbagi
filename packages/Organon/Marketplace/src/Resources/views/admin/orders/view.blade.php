@@ -23,7 +23,7 @@
 
             {{-- Back Button --}}
             <a
-                    href="{{ route('admin.sales.orders.index') }}"
+                    href="{{ route('marketplace.admin.orders.index') }}"
                     class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white"
             >
                 @lang('admin::app.account.edit.back-btn')
