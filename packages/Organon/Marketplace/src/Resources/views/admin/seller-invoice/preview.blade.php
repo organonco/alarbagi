@@ -91,7 +91,7 @@
                     @if($invoice->status == \Organon\Marketplace\Enums\SellerInvoiceStatusEnum::PENDING ||  $invoice->status == \Organon\Marketplace\Enums\SellerInvoiceStatusEnum::REJECTED)
                         <x-admin::form :action="route('admin.sales.sellers.invoice.approve', $invoice->id)">
                             <button class="primary-button" style="margin-left: 20px;" type="submit">
-                                Approve
+                                Accept
                             </button>
                         </x-admin::form>
                     @endif
