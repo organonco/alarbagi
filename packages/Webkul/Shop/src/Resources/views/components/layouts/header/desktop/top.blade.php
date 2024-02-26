@@ -49,6 +49,15 @@
         {{-- Mini cart --}}
         @include('shop::checkout.cart.mini-cart')
 
+
+        @auth('customer')
+        <a
+                href="{{ route('shop.customers.account.wishlist.index') }}"
+        >
+            <span class="icon-heart inline-block text-[24px] cursor-pointer"></span>
+        </a>
+        @endauth
+
         {{-- user profile --}}
         <x-shop::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
             <x-slot:toggle>
