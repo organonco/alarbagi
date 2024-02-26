@@ -181,8 +181,8 @@ class ProductDataGrid extends DataGrid
                 ],
             ],
             'searchable' => false,
-            'filterable' => true,
-            'sortable' => true,
+            'filterable' => false,
+            'sortable' => false,
         ]);
 
         $this->addColumn([
@@ -224,10 +224,25 @@ class ProductDataGrid extends DataGrid
         $this->addColumn([
             'index' => 'status',
             'label' => trans('admin::app.catalog.products.index.datagrid.status'),
-            'type' => 'boolean',
+            'type' => 'dropdown',
             'searchable' => false,
             'filterable' => true,
             'sortable' => true,
+            'options' => [
+                'type' => 'basic',
+                'params' => [
+                    'options' => [
+                        [
+                            'label' => 'active',
+                            'value' => 1
+                        ],
+                        [
+                            'label' => 'not active',
+                            'value' => 0
+                        ]
+                    ]
+                ],
+            ],
         ]);
 
         $this->addColumn([
@@ -254,7 +269,7 @@ class ProductDataGrid extends DataGrid
                 ],
             ],
             'searchable' => true,
-            'filterable' => true,
+            'filterable' => false,
             'sortable' => true,
         ]);
     }
