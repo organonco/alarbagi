@@ -10,6 +10,16 @@
     font-display: block;
 }
 
+@font-face {
+    font-family: "font awesome";
+    src: url("../fonts/FontAwesome.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+
+
 @layer components {
     input {
         @apply outline-none;
@@ -96,7 +106,8 @@
     }
 
     .icon-cart:before {
-        content: "\e90e";
+        font-family: "font awesome" !important;
+        content: "\f07A";
     }
 
     .icon-check-box:before {

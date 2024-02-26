@@ -1,8 +1,12 @@
 {
   "src/Resources/assets/css/app.css": {
-    "file": "assets/app-c6139ab7.css",
+    "file": "assets/app-61c94ff4.css",
     "isEntry": true,
     "src": "src/Resources/assets/css/app.css"
+  },
+  "src/Resources/assets/fonts/FontAwesome.woff": {
+    "file": "assets/FontAwesome-9764dafd.woff",
+    "src": "src/Resources/assets/fonts/FontAwesome.woff"
   },
   "src/Resources/assets/fonts/velicon.woff": {
     "file": "assets/velicon-2b79b97c.woff",
@@ -88,7 +92,7 @@
     "css": [
       "assets/app-05f8acf7.css"
     ],
-    "file": "assets/app-4a3b8410.js",
+    "file": "assets/app-2c7e340f.js",
     "isEntry": true,
     "src": "src/Resources/assets/js/app.js"
   }
