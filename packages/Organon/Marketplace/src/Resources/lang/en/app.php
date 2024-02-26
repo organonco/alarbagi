@@ -40,7 +40,9 @@ return [
                 ]
             ],
             'view' => [
-                'sold_by' => 'Sold By: :name'
+                'sold_by' => 'Sold By: :name',
+                'available' => ':qty Available',
+                'out_of_stock' => 'Out of Stock'
             ]
         ]
     ],

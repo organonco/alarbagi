@@ -296,6 +296,18 @@
                                 <a class="text-[18px] font-light max-sm:text-[12px] sn-color-secondary" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
                                     {{__('marketplace::app.catalog.products.view.sold_by', ['name' => $product->seller_name])}}
                                 </a>
+                                <br/>
+
+
+                                @if($product->stock_quantity > 0)
+                                <a class="text-[18px] font-light max-sm:text-[12px] sn-color-secondary" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
+                                    {{__('marketplace::app.catalog.products.view.available', ['qty' => $product->stock_quantity])}}
+                                </a>
+                                @elseif($product->stock_quantity == 0)
+                                <a class="text-[18px] font-light max-sm:text-[12px] sn-color-secondary" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
+                                    {{__('marketplace::app.catalog.products.view.out_of_stock')}}
+                                </a>
+                                @endif
 
 
 
@@ -400,24 +412,6 @@
                                 @endif
 
                                 {!! view_render_event('bagisto.shop.products.view.buy_now.after', ['product' => $product]) !!}
-
-                                <!-- Share Buttons -->
-                                <div class="flex gap-[35px] mt-[40px] max-sm:flex-wrap max-sm:justify-center">
-                                    {!! view_render_event('bagisto.shop.products.view.compare.before', ['product' => $product]) !!}
-
-                                    <div
-                                        class="flex gap-[10px] justify-center items-center cursor-pointer"
-                                        @click="is_buy_now=0; addToCompare({{ $product->id }})"
-                                    >
-                                        @if (core()->getConfigData('general.content.shop.compare_option'))
-                                            <span class="icon-compare text-[24px]"></span>
-
-                                            @lang('shop::app.products.view.compare')
-                                        @endif
-                                    </div>
-
-                                    {!! view_render_event('bagisto.shop.products.view.compare.after', ['product' => $product]) !!}
-                                </div>
                             </div>
                         </div>
                     </div>
