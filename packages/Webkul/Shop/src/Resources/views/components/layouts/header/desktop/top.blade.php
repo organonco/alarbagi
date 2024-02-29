@@ -56,7 +56,7 @@
             >
                 <div style="display: flex; flex-direction: column; align-items: center">
                     <span class="icon-heart inline-block text-[24px] cursor-pointer sn-color-white"></span>
-                    <span class="sn-color-white">User</span>
+                    <span class="sn-color-white">@lang('shop::app.components.layouts.header.wishlist')</span>
                 </div>
             </a>
         @endauth
@@ -66,7 +66,7 @@
             <x-slot:toggle>
                 <div style="display: flex; flex-direction: column; align-items: center">
                     <span class="icon-users inline-block text-[24px] cursor-pointer sn-color-white"></span>
-                    <span class="sn-color-white">User</span>
+                    <span class="sn-color-white">@lang('shop::app.components.layouts.header.account')</span>
                 </div>
             </x-slot:toggle>
 
