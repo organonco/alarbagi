@@ -3,27 +3,7 @@
 @endphp
 
 @push('styles')
-    <style>
-        .cart-floating-button {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #0C9;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
 
-        .cart-floating-button .number {
-            top: 5px;
-            left: 12px
-        }
-    </style>
 @endpush
 
 {{-- SEO Meta Content --}}
