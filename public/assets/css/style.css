@@ -64,6 +64,10 @@
     font-weight: bold;
 }
 
+.sn-color-white{
+color: white;
+}
+
 .hover\:border-primary:hover{
     border-color: #5c9eb4;
 }
