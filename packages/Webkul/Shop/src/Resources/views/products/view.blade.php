@@ -300,11 +300,11 @@
 
 
                                 @if($product->stock_quantity > 0)
-                                <a class="text-[18px] font-light max-sm:text-[12px] sn-color-secondary" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
+                                <a class="text-[18px] font-light max-sm:text-[12px] sn-color-light-main" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
                                     {{__('marketplace::app.catalog.products.view.available', ['qty' => $product->stock_quantity])}}
                                 </a>
                                 @elseif($product->stock_quantity == 0)
-                                <a class="text-[18px] font-light max-sm:text-[12px] sn-color-secondary" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
+                                <a class="text-[18px] font-light max-sm:text-[12px] sn-color-light-main" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
                                     {{__('marketplace::app.catalog.products.view.out_of_stock')}}
                                 </a>
                                 @endif
