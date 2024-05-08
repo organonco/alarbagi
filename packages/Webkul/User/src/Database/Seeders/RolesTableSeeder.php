@@ -20,6 +20,8 @@ class RolesTableSeeder extends Seeder
             'permission_type' => 'custom',
             'permissions' => json_encode([
                 "dashboard",
+                "delivery",
+                "delivery.warehouses",
                 "sales",
                 "sales.sellers",
                 "sales.seller-invoices",

@@ -27,7 +27,7 @@ return [
         'route'      => 'admin.sales.sellers.invoice.index',
         'sort'       => 1,
         'icon'       => '',
-    ],[
+    ], [
         'key'        => 'sales.orders',
         'name'       => 'admin::app.components.layouts.sidebar.orders',
         'route'      => 'admin.sales.orders.index',
@@ -64,7 +64,7 @@ return [
         'sort'       => 7,
         'icon'       => '',
     ],
-    
+
     /**
      * Catalog.
      */
@@ -128,7 +128,7 @@ return [
         'sort'       => 3,
         'icon'       => '',
     ],
-    
+
     /**
      * CMS.
      */
@@ -139,7 +139,7 @@ return [
         'sort'       => 5,
         'icon'       => 'icon-cms',
     ],
-    
+
 
     /**
      * Marketing.
@@ -206,7 +206,7 @@ return [
         'sort'       => 3,
         'icon'       => '',
     ],
-    
+
     /**
      * Reporting.
      */

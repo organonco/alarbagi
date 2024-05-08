@@ -37,7 +37,9 @@ class SellerRoleSeeder extends Seeder
                 "catalog.products.edit",
                 "catalog.products.delete",
                 "catalog.products.mass-update",
-                "catalog.products.mass-delete"
+                "catalog.products.mass-delete",
+                "delivery",
+                "delivery.warehouses"
             ]),
         ]);
 
@@ -102,7 +104,9 @@ class SellerRoleSeeder extends Seeder
                 "settings.exchange_rates",
                 "settings.exchange_rates.create",
                 "settings.exchange_rates.edit",
-                "settings.exchange_rates.delete"
+                "settings.exchange_rates.delete",
+                "delivery",
+                "delivery.warehouses"
             ])
         ]);
     }
