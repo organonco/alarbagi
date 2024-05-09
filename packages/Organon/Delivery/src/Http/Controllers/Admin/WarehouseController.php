@@ -1,6 +1,6 @@
 <?php
 
-namespace Organon\Delivery\Http\Controllers\Shop;
+namespace Organon\Delivery\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;

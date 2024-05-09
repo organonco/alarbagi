@@ -13,5 +13,11 @@ return [
         'route' => 'admin.delivery.warehouses.index',
         'sort' => 1,
         'icon' => 'icon-sales',
+    ], [
+        'key' => 'delivery.warehouse_admins',
+        'name' => 'Warehouse Admins',
+        'route' => 'admin.delivery.warehouse_admins.index',
+        'sort' => 2,
+        'icon' => 'icon-sales',
     ],
 ];

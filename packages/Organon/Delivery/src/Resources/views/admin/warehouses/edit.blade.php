@@ -1,22 +1,22 @@
 <x-admin::layouts>
     <x-slot:title>
-        @lang('delivery::app.admin.titles.edit_warehouse')
+        {{ __('Edit Warehouse') }}
     </x-slot:title>
 
     <x-admin::form :action="route('admin.delivery.warehouses.update', $warehouse->id)" enctype="multipart/form-data">
         <div class="flex gap-[16px] justify-between items-center max-sm:flex-wrap">
             <p class="text-[20px] text-gray-800 dark:text-white font-bold">
-                @lang('delivery::app.admin.titles.edit_warehouse')
+                {{ __('Edit Warehouse') }}
             </p>
 
             <div class="flex gap-x-[10px] items-center">
                 <a href="{{ route('admin.delivery.warehouses.index') }}"
                     class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white ">
-                    @lang('delivery::app.admin.buttons.cancel')
+                    {{ __('Back') }}
                 </a>
 
                 <button type="submit" class="primary-button">
-                    @lang('delivery::app.admin.buttons.save_warehouse')
+                    {{ __('Save Warehouse') }}
                 </button>
             </div>
         </div>
@@ -29,12 +29,12 @@
 
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label class="required">
-                            @lang('delivery::app.admin.inputs.name')
+                            {{ __('Name') }}
                         </x-admin::form.control-group.label>
 
                         <x-admin::form.control-group.control type="text" name="name" maxlength="1000"
-                            placeholder="{{ trans('delivery::app.admin.inputs.name') }}"
-                            label="{{ trans('delivery::app.admin.inputs.name') }}" value="{{ $warehouse->name }}">
+                            placeholder="{{ __('Name') }}" label="{{ __('Name') }}"
+                            value="{{ $warehouse->name }}">
                         </x-admin::form.control-group.control>
 
                         <x-admin::form.control-group.error control-name="name">
@@ -44,12 +44,12 @@
 
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label class="required">
-                            @lang('delivery::app.admin.inputs.address')
+                            {{ __('Address') }}
                         </x-admin::form.control-group.label>
 
                         <x-admin::form.control-group.control type="textarea" name="address" rows="5"
-                            maxlength="1000" placeholder="{{ trans('delivery::app.admin.inputs.address') }}"
-                            label="{{ trans('delivery::app.admin.inputs.address') }}" value="{{ $warehouse->address }}">
+                            maxlength="1000" placeholder="{{ __('Address') }}" label="{{ __('Address') }}"
+                            value="{{ $warehouse->address }}">
                         </x-admin::form.control-group.control>
 
                         <x-admin::form.control-group.error control-name="address">
@@ -59,12 +59,11 @@
 
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label class="required">
-                            @lang('delivery::app.admin.inputs.emirate')
+                            {{ __('Emirate') }}
                         </x-admin::form.control-group.label>
 
                         <x-admin::form.control-group.control type="select" name="emirate"
-                            placeholder="{{ trans('delivery::app.admin.inputs.emirate') }}"
-                            label="{{ trans('delivery::app.admin.inputs.emirate') }}">
+                            placeholder="{{ __('Emirate') }}" label="{{ __('Emirate') }}">
                             @foreach ($emirates as $emirate)
                                 <option value="{{ $emirate }}">
                                     {{ $emirate }}
@@ -79,13 +78,12 @@
 
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label class="required">
-                            @lang('delivery::app.admin.inputs.additional_info')
+                            {{ __('Additional Info') }}
                         </x-admin::form.control-group.label>
 
                         <x-admin::form.control-group.control type="textarea" name="additional_info" rows="5"
-                            maxlength="1000" placeholder="{{ trans('delivery::app.admin.inputs.additional_info') }}"
-                            label="{{ trans('delivery::app.admin.inputs.additional_info') }}"
-                            value="{{ $warehouse->additional_info }}">
+                            maxlength="1000" placeholder="{{ __('Additional Info') }}"
+                            label="{{ __('Additional Info') }}" value="{{ $warehouse->additional_info }}">
                         </x-admin::form.control-group.control>
 
                         <x-admin::form.control-group.error control-name="additional_info">

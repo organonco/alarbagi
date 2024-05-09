@@ -1,23 +1,23 @@
 <x-admin::layouts>
     <x-slot:title>
-        {{ __('Create Warehouse') }}
+        {{ __('Create Warehouse Admin') }}
     </x-slot:title>
 
-    <x-admin::form :action="route('admin.delivery.warehouses.store')" enctype="multipart/form-data">
+    <x-admin::form :action="route('admin.delivery.warehouse_admins.store')" enctype="multipart/form-data">
 
         <div class="flex gap-[16px] justify-between items-center max-sm:flex-wrap">
             <p class="text-[20px] text-gray-800 dark:text-white font-bold">
-                {{ __('Create Warehouse') }}
+                {{ __('Create Warehouse Admin') }}
             </p>
 
             <div class="flex gap-x-[10px] items-center">
-                <a href="{{ route('admin.delivery.warehouses.index') }}"
+                <a href="{{ route('admin.delivery.warehouse_admins.index') }}"
                     class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white ">
                     {{ __('Back') }}
                 </a>
 
                 <button type="submit" class="primary-button">
-                    {{ __('Create Warehouse') }}
+                    {{ __('Create Warehouse Admin') }}
                 </button>
             </div>
         </div>
@@ -41,53 +41,46 @@
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
 
+                    <x-admin::form.control-group class="mb-[10px]">
+                        <x-admin::form.control-group.label class="required">
+                            {{ __('Email') }}
+                        </x-admin::form.control-group.label>
+
+                        <x-admin::form.control-group.control type="text" name="email" maxlength="1000"
+                            placeholder="{{ __('Email') }}" label="{{ __('Email') }}">
+                        </x-admin::form.control-group.control>
+
+                        <x-admin::form.control-group.error control-name="email">
+                        </x-admin::form.control-group.error>
+                    </x-admin::form.control-group>
+
 
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label class="required">
-                            {{ __('Address') }}
+                            {{ __('Phone') }}
                         </x-admin::form.control-group.label>
 
-                        <x-admin::form.control-group.control type="textarea" name="address" rows="5"
-                            maxlength="1000" placeholder="{{ __('Address') }}" label="{{ __('Address') }}">
+                        <x-admin::form.control-group.control type="text" name="phone" maxlength="1000"
+                            placeholder="{{ __('Phone') }}" label="{{ __('Phone') }}">
                         </x-admin::form.control-group.control>
 
-                        <x-admin::form.control-group.error control-name="address">
+                        <x-admin::form.control-group.error control-name="phone">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
-
 
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label class="required">
-                            {{ __('Emirate') }}
+                            {{ __('Password') }}
                         </x-admin::form.control-group.label>
 
-                        <x-admin::form.control-group.control type="select" name="emirate"
-                            placeholder="{{ __('Emirate') }}" label="{{ __('Emirate') }}">
-                            @foreach ($emirates as $emirate)
-                                <option value="{{ $emirate }}">
-                                    {{ $emirate }}
-                                </option>
-                            @endforeach
+                        <x-admin::form.control-group.control type="text" name="password" maxlength="1000"
+                            placeholder="{{ __('Password') }}" label="{{ __('Password') }}">
                         </x-admin::form.control-group.control>
 
-                        <x-admin::form.control-group.error control-name="emirate">
+                        <x-admin::form.control-group.error control-name="password">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
 
-
-                    <x-admin::form.control-group class="mb-[10px]">
-                        <x-admin::form.control-group.label>
-                            {{ __('Additional Info') }}
-                        </x-admin::form.control-group.label>
-
-                        <x-admin::form.control-group.control type="textarea" name="additional_info" rows="5"
-                            maxlength="1000" placeholder="{{ __('Additional Info') }}"
-                            label="{{ __('Additional Info') }}">
-                        </x-admin::form.control-group.control>
-
-                        <x-admin::form.control-group.error control-name="additional_info">
-                        </x-admin::form.control-group.error>
-                    </x-admin::form.control-group>
 
                 </div>
             </div>

@@ -10,7 +10,14 @@ return [
     [
         'key' => 'delivery.warehouses',
         'name' => 'Warehouses',
-        'route' => 'admin.delivery.index',
+        'route' => '',
+        'sort' => 1
+    ],
+
+    [
+        'key' => 'delivery.warehouse_admins',
+        'name' => 'Warehouse Admins',
+        'route' => '',
         'sort' => 1
     ]
 

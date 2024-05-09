@@ -5,7 +5,7 @@ namespace Organon\Delivery\DataGrids;
 use Illuminate\Support\Facades\DB;
 use Webkul\DataGrid\DataGrid;
 
-class WarehousesDataGrid extends DataGrid
+class WarehouseAdminsDataGrid extends DataGrid
 {
 
     public function __construct(private $sellerId = null)
@@ -17,18 +17,18 @@ class WarehousesDataGrid extends DataGrid
     public function prepareQueryBuilder()
     {
 
-        $query = DB::table('warehouses')->orderBy('warehouses.created_at', 'DESC');
+        $query = DB::table('warehouse_admins')->orderBy('warehouse_admins.created_at', 'DESC');
 
         if (!is_null($this->sellerId))
             $query->where('seller_id', $this->sellerId);
 
-        $query->leftJoin('sellers', 'sellers.id', '=', 'warehouses.seller_id');
+        $query->leftJoin('sellers', 'sellers.id', '=', 'warehouse_admins.seller_id');
 
-        $query->addSelect('warehouses.id as id');
+        $query->addSelect('warehouse_admins.id as id');
         $query->addSelect('sellers.name as seller_name');
-        $query->addSelect('warehouses.name as warehouse_name');
-        $query->addSelect('warehouses.address as address');
-        $query->addSelect('warehouses.emirate as emirate');
+        $query->addSelect('warehouse_admins.name as name');
+        $query->addSelect('warehouse_admins.phone as phone');
+        $query->addSelect('warehouse_admins.email as email');
 
         return $query;
     }
@@ -36,8 +36,8 @@ class WarehousesDataGrid extends DataGrid
     public function prepareColumns()
     {
         $this->addColumn([
-            'index' => 'warehouse_name',
-            'label' => __("Warehouse Name"),
+            'index' => 'name',
+            'label' => __('Name'),
             'type' => 'string',
             'searchable' => true,
             'filterable' => true,
@@ -46,7 +46,7 @@ class WarehousesDataGrid extends DataGrid
         if (is_null($this->sellerId))
             $this->addColumn([
                 'index' => 'seller_name',
-                'label' => __("Warehouse Owner"),
+                'label' => __('Seller Name'),
                 'closure'    => function ($row) {
                     return is_null($row->seller_name) ? "Souq Naif" : $row->seller_name;
                 },
@@ -55,17 +55,19 @@ class WarehousesDataGrid extends DataGrid
                 'filterable' => true,
                 'sortable' => true,
             ]);
+
         $this->addColumn([
-            'index' => 'emirate',
-            'label' => __("Emirate"),
+            'index' => 'email',
+            'label' => __('Email'),
             'type' => 'string',
             'searchable' => true,
             'filterable' => true,
             'sortable' => true,
         ]);
+
         $this->addColumn([
-            'index' => 'address',
-            'label' => __("Address"),
+            'index' => 'phone',
+            'label' => __('Phone'),
             'type' => 'string',
             'searchable' => true,
             'filterable' => true,
@@ -85,7 +87,7 @@ class WarehousesDataGrid extends DataGrid
             'title' => 'test',
             'method' => 'GET',
             'url' => function ($row) {
-                return route('admin.delivery.warehouses.edit', $row->id);
+                return route('admin.delivery.warehouse_admins.edit', $row->id);
             },
         ]);
     }
