@@ -20,4 +20,19 @@ class Warehouse extends Model implements WarehouseContract
     {
         return $this->belongsTo(Seller::class);
     }
+
+    public function warehouseAdmins()
+    {
+        return $this->belongsToMany(WarehouseAdmin::class);
+    }
+
+    public function isForSeller()
+    {
+        return !is_null($this->seller_id);
+    }
+
+    public function scopeForSeller($query, $sellerId)
+    {
+        return $query->where('seller_id', $sellerId);
+    }
 }
