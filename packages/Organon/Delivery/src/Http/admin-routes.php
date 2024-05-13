@@ -1,5 +1,6 @@
 <?php
 
+use Organon\Delivery\Http\Controllers\Admin\DeliveryBoyController;
 use Organon\Delivery\Http\Controllers\Admin\WarehouseAdminController;
 use Organon\Delivery\Http\Controllers\Admin\WarehouseController;
 
@@ -24,5 +25,15 @@ Route::group([
         Route::get('edit/{id}', [WarehouseAdminController::class, 'edit'])->name('admin.delivery.warehouse_admins.edit');
         Route::post('edit/{id}', [WarehouseAdminController::class, 'update'])->name('admin.delivery.warehouse_admins.update');
         Route::post('edit-password/{id}', [WarehouseAdminController::class, 'updatePassword'])->name('admin.delivery.warehouse_admins.update_password');
+    });
+
+
+    Route::group(['prefix' => 'delivery_people'], function () {
+        Route::get('', [DeliveryBoyController::class, 'index'])->name('admin.delivery.delivery_boys.index');
+        Route::get('create', [DeliveryBoyController::class, 'create'])->name('admin.delivery.delivery_boys.create');
+        Route::post('create', [DeliveryBoyController::class, 'store'])->name('admin.delivery.delivery_boys.store');
+        Route::get('edit/{id}', [DeliveryBoyController::class, 'edit'])->name('admin.delivery.delivery_boys.edit');
+        Route::post('edit/{id}', [DeliveryBoyController::class, 'update'])->name('admin.delivery.delivery_boys.update');
+        Route::post('edit-password/{id}', [DeliveryBoyController::class, 'updatePassword'])->name('admin.delivery.delivery_boys.update_password');
     });
 });

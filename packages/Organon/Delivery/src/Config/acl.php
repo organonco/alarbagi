@@ -6,17 +6,19 @@ return [
         'name' => 'Delivery',
         'route' => '',
         'sort' => 2
-    ],
-    [
+    ], [
         'key' => 'delivery.warehouses',
         'name' => 'Warehouses',
         'route' => '',
         'sort' => 1
-    ],
-
-    [
+    ], [
         'key' => 'delivery.warehouse_admins',
         'name' => 'Warehouse Admins',
+        'route' => '',
+        'sort' => 1
+    ], [
+        'key' => 'delivery.delivery_boys',
+        'name' => 'Delivery People',
         'route' => '',
         'sort' => 1
     ]
