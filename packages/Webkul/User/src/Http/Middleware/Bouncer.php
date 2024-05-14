@@ -20,7 +20,7 @@ class Bouncer
         $redirectRoutes = [
             'admin' => 'admin.session.create',
             'warehouse_admin' => 'warehouse.session.create',
-            'delivery_boy' => 'delivery.session.create'
+            'driver' => 'driver.session.create'
         ];
 
         if (!auth()->guard($guard)->check()) {
