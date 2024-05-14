@@ -17,8 +17,8 @@ return [
         'route' => '',
         'sort' => 1
     ], [
-        'key' => 'delivery.delivery_boys',
-        'name' => 'Delivery People',
+        'key' => 'delivery.drivers',
+        'name' => 'Drivers',
         'route' => '',
         'sort' => 1
     ]

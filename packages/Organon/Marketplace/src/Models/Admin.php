@@ -39,16 +39,16 @@ class Admin extends \Webkul\User\Models\Admin
     }
 
     /**
-     * @return Seller
+     * @return ?Seller
      */
-    public function getSeller(): Seller
+    public function getSeller(): ?Seller
     {
         return $this->seller;
     }
 
     public function getImageUrlAttribute()
     {
-        if($this->isSeller())
+        if ($this->isSeller())
             return $this->getSeller()->logo_url;
         return parent::image_url();
     }

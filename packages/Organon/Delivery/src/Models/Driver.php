@@ -3,10 +3,10 @@
 namespace Organon\Delivery\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Organon\Delivery\Contracts\DeliveryBoy as DeliveryBoyContract;
+use Organon\Delivery\Contracts\Driver as DriverContract;
 use Organon\Marketplace\Models\Seller;
 
-class DeliveryBoy extends Model implements DeliveryBoyContract
+class Driver extends Model implements DriverContract
 {
     protected $fillable = [
         'name',

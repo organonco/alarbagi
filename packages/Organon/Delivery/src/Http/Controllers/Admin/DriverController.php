@@ -5,15 +5,12 @@ namespace Organon\Delivery\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
-use Organon\Delivery\DataGrids\DeliveryBoysDataGrid;
-use Organon\Delivery\Models\Warehouse;
-use Organon\Delivery\DataGrids\WarehouseAdminsDataGrid;
-use Organon\Delivery\Models\DeliveryBoy;
-use Organon\Delivery\Models\WarehouseAdmin;
+use Organon\Delivery\DataGrids\DriversDataGrid;
+use Organon\Delivery\Models\Driver;
 use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
 
 
-class DeliveryBoyController extends Controller
+class DriverController extends Controller
 {
     use InteractsWithAuthenticatedAdmin;
 
@@ -26,13 +23,13 @@ class DeliveryBoyController extends Controller
     public function index()
     {
         if (request()->ajax())
-            return app(DeliveryBoysDataGrid::class, ['sellerId' => request()->seller_id])->toJson();
-        return view('delivery::admin.delivery_boys.index');
+            return app(DriversDataGrid::class, ['sellerId' => request()->seller_id])->toJson();
+        return view('delivery::admin.drivers.index');
     }
 
     public function create()
     {
-        return view('delivery::admin.delivery_boys.create');
+        return view('delivery::admin.drivers.create');
     }
 
 
@@ -40,12 +37,12 @@ class DeliveryBoyController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|unique:delivery_boys|max:255|email',
+            'email' => 'required|unique:drivers|max:255|email',
             'phone' => 'required|max:255|regex:/^\+?[0-9]*$/',
             'password' => 'required',
         ]);
 
-        $deliveryBoy = DeliveryBoy::create(
+        $deliveryBoy = Driver::create(
             array_merge(
                 $request->all(),
                 [
@@ -55,43 +52,43 @@ class DeliveryBoyController extends Controller
             )
         );
 
-        return redirect(route('admin.delivery.delivery_boys.index'));
+        return redirect(route('admin.delivery.drivers.index'));
     }
 
     public function edit($id)
     {
         if ($this->getAuthenticatedAdmin()->isSeller())
-            $deliveryBoy = DeliveryBoy::where('seller_id', $this->getAuthenticatedAdmin()->getSellerId())->findOrFail($id);
+            $deliveryBoy = Driver::where('seller_id', $this->getAuthenticatedAdmin()->getSellerId())->findOrFail($id);
         else
-            $deliveryBoy = DeliveryBoy::findOrFail($id);
+            $deliveryBoy = Driver::findOrFail($id);
 
-        return view('delivery::admin.delivery_boys.edit', compact('deliveryBoy'));
+        return view('delivery::admin.drivers.edit', compact('deliveryBoy'));
     }
 
     public function update($id, Request $request)
     {
         if ($this->getAuthenticatedAdmin()->isSeller())
-            $deliveryBoy = DeliveryBoy::where('seller_id', $this->getAuthenticatedAdmin()->getSellerId())->findOrFail($id);
+            $deliveryBoy = Driver::where('seller_id', $this->getAuthenticatedAdmin()->getSellerId())->findOrFail($id);
         else
-            $deliveryBoy = DeliveryBoy::findOrFail($id);
+            $deliveryBoy = Driver::findOrFail($id);
 
         $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|max:255|email|unique:delivery_boys,email,' . $deliveryBoy->id,
+            'email' => 'required|max:255|email|unique:drivers,email,' . $deliveryBoy->id,
             'phone' => 'required|max:255|regex:/^\+?[0-9]*$/',
         ]);
         $deliveryBoy->update($request->all());
 
-        return redirect(route('admin.delivery.delivery_boys.index'));
+        return redirect(route('admin.delivery.drivers.index'));
     }
 
 
     public function updatePassword($id, Request $request)
     {
         if ($this->getAuthenticatedAdmin()->isSeller())
-            $deliveryBoy = DeliveryBoy::where('seller_id', $this->getAuthenticatedAdmin()->getSellerId())->findOrFail($id);
+            $deliveryBoy = Driver::where('seller_id', $this->getAuthenticatedAdmin()->getSellerId())->findOrFail($id);
         else
-            $deliveryBoy = DeliveryBoy::findOrFail($id);
+            $deliveryBoy = Driver::findOrFail($id);
 
         $request->validate([
             'password' => "required|confirmed"
@@ -99,6 +96,6 @@ class DeliveryBoyController extends Controller
 
         $deliveryBoy->update(['password' => Hash::make($request->input('password'))]);
 
-        return redirect(route('admin.delivery.delivery_boys.index'));
+        return redirect(route('admin.delivery.drivers.index'));
     }
 }

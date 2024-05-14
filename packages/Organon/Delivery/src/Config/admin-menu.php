@@ -20,9 +20,9 @@ return [
         'sort' => 2,
         'icon' => 'icon-sales',
     ], [
-        'key' => 'delivery.delivery_boys',
-        'name' => 'Delivery People',
-        'route' => 'admin.delivery.delivery_boys.index',
+        'key' => 'delivery.drivers',
+        'name' => 'Drivers',
+        'route' => 'admin.delivery.drivers.index',
         'sort' => 2,
         'icon' => 'icon-sales',
     ],

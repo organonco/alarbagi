@@ -2,6 +2,6 @@
 
 namespace Organon\Delivery\Contracts;
 
-interface DeliveryBoy
+interface Driver
 {
 }

@@ -44,7 +44,7 @@ class Themes
      */
     public function __construct()
     {
-        if (! Str::contains(request()->url(), config('app.admin_url') . '/')) {
+        if (!Str::contains(request()->url(), config('app.admin_url') . '/')) {
             $this->defaultThemeCode = Config::get('themes.admin-default', null);
         } else {
             $this->defaultThemeCode = Config::get('themes.default', null);
@@ -85,7 +85,7 @@ class Themes
                 isset($data['vite']) ? $data['vite'] : [],
             );
 
-            if (! empty($data['parent'])) {
+            if (!empty($data['parent'])) {
                 $parentThemes[$code] = $data['parent'];
             }
         }
@@ -134,7 +134,7 @@ class Themes
                 $data['vite'] ?? [],
             );
 
-            if (! empty($data['parent'])) {
+            if (!empty($data['parent'])) {
                 $parentThemes[$code] = $data['parent'];
             }
         }
@@ -171,7 +171,7 @@ class Themes
         $paths = $theme->getViewPaths();
 
         foreach ($this->laravelViewsPath as $path) {
-            if (! in_array($path, $paths)) {
+            if (!in_array($path, $paths)) {
                 $paths[] = $path;
             }
         }

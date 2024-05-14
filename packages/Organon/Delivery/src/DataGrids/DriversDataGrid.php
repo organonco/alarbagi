@@ -3,32 +3,34 @@
 namespace Organon\Delivery\DataGrids;
 
 use Illuminate\Support\Facades\DB;
+use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
 use Webkul\DataGrid\DataGrid;
 
-class DeliveryBoysDataGrid extends DataGrid
+class DriversDataGrid extends DataGrid
 {
+
+    use InteractsWithAuthenticatedAdmin;
 
     public function __construct(private $sellerId = null)
     {
-        if ($this->sellerId == null)
-            $this->sellerId = auth('admin')->user()->getSellerId();
+        $this->sellerId = $this->getAuthenticatedAdmin()->getSellerId();
     }
 
     public function prepareQueryBuilder()
     {
 
-        $query = DB::table('delivery_boys')->orderBy('delivery_boys.created_at', 'DESC');
+        $query = DB::table('drivers')->orderBy('drivers.created_at', 'DESC');
 
         if (!is_null($this->sellerId))
             $query->where('seller_id', $this->sellerId);
 
-        $query->leftJoin('sellers', 'sellers.id', '=', 'delivery_boys.seller_id');
+        $query->leftJoin('sellers', 'sellers.id', '=', 'drivers.seller_id');
 
-        $query->addSelect('delivery_boys.id as id');
+        $query->addSelect('drivers.id as id');
         $query->addSelect('sellers.name as seller_name');
-        $query->addSelect('delivery_boys.name as name');
-        $query->addSelect('delivery_boys.phone as phone');
-        $query->addSelect('delivery_boys.email as email');
+        $query->addSelect('drivers.name as name');
+        $query->addSelect('drivers.phone as phone');
+        $query->addSelect('drivers.email as email');
 
         return $query;
     }
@@ -87,7 +89,7 @@ class DeliveryBoysDataGrid extends DataGrid
             'title' => 'test',
             'method' => 'GET',
             'url' => function ($row) {
-                return route('admin.delivery.delivery_boys.edit', $row->id);
+                return route('admin.delivery.drivers.edit', $row->id);
             },
         ]);
     }

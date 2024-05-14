@@ -17,9 +17,18 @@ class Bouncer
      */
     public function handle($request, \Closure $next, $guard = 'admin')
     {
-        if (! auth()->guard($guard)->check()) {
-            return redirect()->route('admin.session.create');
+        $redirectRoutes = [
+            'admin' => 'admin.session.create',
+            'warehouse_admin' => 'warehouse.session.create',
+            'delivery_boy' => 'delivery.session.create'
+        ];
+
+        if (!auth()->guard($guard)->check()) {
+            return redirect()->route($redirectRoutes[$guard]);
         }
+
+        if ($guard != 'admin')
+            return $next($request);
 
         Event::dispatch('bagisto.updates.check');
 
@@ -27,14 +36,14 @@ class Bouncer
          * If user status is changed by admin. Then session should be
          * logged out.
          */
-        if (! (bool) auth()->guard($guard)->user()->status) {
+        if (!(bool) auth()->guard($guard)->user()->status) {
             auth()->guard($guard)->logout();
 
-            return redirect()->route('admin.session.create');
+            return redirect()->route($redirectRoutes[$guard]);
         }
 
 
-        if($this->checkDashboard(auth()->guard($guard)->user()))
+        if ($this->checkDashboard(auth()->guard($guard)->user()))
             return redirect()->route('marketplace.admin.orders.index');
 
 
@@ -47,7 +56,7 @@ class Bouncer
 
             session()->flash('error', __('admin::app.error.403.message'));
 
-            return redirect()->route('admin.session.create');
+            return redirect()->route($redirectRoutes[$guard]);
         }
 
         return $next($request);
@@ -60,7 +69,7 @@ class Bouncer
      */
     public function isPermissionsEmpty()
     {
-        if (! $role = auth()->guard('admin')->user()->role) {
+        if (!$role = auth()->guard('admin')->user()->role) {
             abort(401, 'This action is unauthorized.');
         }
 
@@ -89,7 +98,7 @@ class Bouncer
     {
         $acl = app('acl');
 
-        if (! $acl) {
+        if (!$acl) {
             return;
         }
 
@@ -104,4 +113,3 @@ class Bouncer
         return Route::currentRouteName() == 'admin.dashboard.index' && $user->isSeller();
     }
 }
-

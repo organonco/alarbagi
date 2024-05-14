@@ -109,4 +109,32 @@ class WarehouseAdminController extends Controller
 
         return redirect(route('admin.delivery.warehouse_admins.index'));
     }
+
+    public function createSession()
+    {
+        if (auth()->guard('warehouse_admin')->check())
+            return redirect()->route('warehouse.dashboard');
+        return view('delivery::warehouse_admin.session.create');
+    }
+
+    public function storeSession(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (!auth()->guard('warehouse_admin')->attempt(request(['email', 'password']), true)) {
+            session()->flash('error', __('Incorrect Email or Password'));
+            return redirect()->back();
+        }
+
+        return redirect(route('warehouse.dashboard'));
+    }
+
+
+    public function testView()
+    {
+        return view('delivery::warehouse_admin.index');
+    }
 }
