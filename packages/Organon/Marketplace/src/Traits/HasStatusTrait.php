@@ -3,7 +3,6 @@
 namespace Organon\Marketplace\Traits;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
-use Organon\Marketplace\Enums\SellerOrderStatusEnum;
 use Organon\Marketplace\Exceptions\InvalidStatusException;
 
 trait HasStatusTrait

@@ -15,7 +15,8 @@ class Product extends \Webkul\Product\Models\Product
         'attribute_family_id',
         'sku',
         'parent_id',
-        'seller_id'
+        'seller_id',
+        'seller_status'
     ];
 
     protected $appends = [
@@ -27,7 +28,7 @@ class Product extends \Webkul\Product\Models\Product
     public function getStockQuantityAttribute()
     {
         $managed = $this->attribute_values()->where('attribute_id', '=', 28)->first();
-        if($managed->boolean_value)
+        if ($managed->boolean_value)
             return $this->inventories()->sum('qty');
         else return -1;
     }

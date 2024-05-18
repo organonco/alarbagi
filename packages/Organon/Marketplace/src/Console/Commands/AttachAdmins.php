@@ -3,7 +3,9 @@
 namespace Organon\Marketplace\Console\Commands;
 
 use Illuminate\Console\Command;
+use Organon\Marketplace\Enums\SellerStatusEnum;
 use Organon\Marketplace\Models\Admin;
+use Organon\Marketplace\Models\Product;
 use Webkul\Product\Repositories\ProductRepository;
 
 class AttachAdmins extends Command
@@ -41,8 +43,18 @@ class AttachAdmins extends Command
     {
         $numberOfAdmins = $this->argument('number_of_admins');
         $admins = Admin::factory($numberOfAdmins)->create();
-        $products = $this->productRepository->all();
-        foreach($products as $product)
+        $latestAdmin = Admin::where('email', 'LIKE', '%@example.com')->where('email', 'LIKE', "seller%")->orderBy('id', "DESC")->first();
+        $latestEmail = $latestAdmin ? $latestAdmin->email : "seller0@example.com";
+        $startingIndex = (intval(substr($latestEmail, 6, strlen($latestEmail) - 18))) + 1;
+
+        $products = Product::withoutGlobalScopes()->get();
+        foreach ($products as $product)
             $product->update(['seller_id' => fake()->randomElement($admins)->getSellerId()]);
+
+        foreach ($admins as $index => $admin) {
+            $admin->email = "seller" . $index + $startingIndex . "@example.com";
+            $admin->seller->setStatus(SellerStatusEnum::ACTIVE);
+            $admin->save();
+        }
     }
 }

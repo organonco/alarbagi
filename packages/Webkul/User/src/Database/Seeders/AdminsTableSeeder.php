@@ -16,12 +16,24 @@ class AdminsTableSeeder extends Seeder
             'id'         => 1,
             'name'       => 'Example',
             'email'      => 'admin@example.com',
-            'password'   => bcrypt('admin123'),
+            'password'   => bcrypt('12345678'),
             'api_token'  => Str::random(80),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             'status'     => 1,
             'role_id'    => 1,
+        ]);
+
+        DB::table('admins')->insert([
+            'id'         => 2,
+            'name'       => 'Example',
+            'email'      => 'manager@example.com',
+            'password'   => bcrypt('12345678'),
+            'api_token'  => Str::random(80),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            'status'     => 1,
+            'role_id'    => 3,
         ]);
     }
 }
