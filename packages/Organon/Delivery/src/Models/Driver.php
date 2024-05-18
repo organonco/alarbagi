@@ -2,11 +2,11 @@
 
 namespace Organon\Delivery\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Organon\Delivery\Contracts\Driver as DriverContract;
 use Organon\Marketplace\Models\Seller;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Driver extends Model implements DriverContract
+class Driver extends Authenticatable implements DriverContract
 {
     protected $fillable = [
         'name',

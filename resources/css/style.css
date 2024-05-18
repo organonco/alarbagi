@@ -1,0 +1,15 @@
+.card{
+    @apply p-4 rounded-lg bg-gray-800 text-white
+}
+
+.card .header{
+    @apply font-extrabold text-2xl
+}
+
+.card .content{
+    @apply font-normal text-lg
+}
+
+.card hr{
+    @apply w-7 border-2 mb-4
+}

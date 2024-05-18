@@ -24,7 +24,7 @@ return [
 
         'driver' => [
             'driver'   => 'session',
-            'provider' => 'warehouse_admins',
+            'provider' => 'driver',
         ],
     ],
 

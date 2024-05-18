@@ -2,7 +2,6 @@
 
 namespace Organon\Delivery\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Organon\Delivery\Contracts\WarehouseAdmin as WarehouseAdminContract;
 use Organon\Marketplace\Models\Seller;
 use Illuminate\Foundation\Auth\User as Authenticatable;
