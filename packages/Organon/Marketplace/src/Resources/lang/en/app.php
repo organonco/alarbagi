@@ -3,7 +3,7 @@ return [
     'acl' => [
         'marketplace' => 'Marketplace',
         'sellers' => 'Sellers',
-        'invoices'=> 'Invoices'
+        'invoices' => 'Invoices'
     ],
     'register' => [
         'title' => [
@@ -53,7 +53,7 @@ return [
                 'class' => 'pending'
             ],
             'APPROVED' => [
-                'label' => 'Approved',
+                'label' => 'Processing',
                 'class' => 'processing'
             ],
             'CANCELLED' => [
@@ -110,13 +110,13 @@ return [
             ], 'DRAFT' => [
                 'label' => 'Draft',
                 'class' => 'info'
-            ],'APPROVED' => [
+            ], 'APPROVED' => [
                 'label' => 'Approved',
                 'class' => 'processing'
-            ],'REJECTED' => [
+            ], 'REJECTED' => [
                 'label' => 'Rejected',
                 'class' => 'cancelled'
-            ],'ISSUED' => [
+            ], 'ISSUED' => [
                 'label' => 'Issued',
                 'class' => 'processing'
             ],
