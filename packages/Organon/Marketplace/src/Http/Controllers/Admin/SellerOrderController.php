@@ -6,12 +6,15 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
+use Organon\Delivery\Helpers\QRGeneratorHelper;
+use Organon\Delivery\Models\Warehouse;
 use Organon\Marketplace\DataGrids\SellerOrderDataGrid;
 use Organon\Marketplace\Notifications\Repositories\SellerOrderRepository;
+use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
 
 class SellerOrderController extends Controller
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests, InteractsWithAuthenticatedAdmin;
 
     /**
      * Contains route related configuration
@@ -53,7 +56,9 @@ class SellerOrderController extends Controller
     public function edit($id)
     {
         return view('marketplace::admin.orders.view')->with([
-            'order' => $this->sellerOrderRepository->findWhere(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail()
+            'order' => $this->sellerOrderRepository->findWhere(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail(),
+            'warehouses' => $this->getAuthenticatedSeller()->warehouses()->pluck('name', 'id'),
+            'qr' => QRGeneratorHelper::test()
         ]);
     }
 
@@ -78,6 +83,20 @@ class SellerOrderController extends Controller
     {
         $sellerOrder = $this->sellerOrderRepository->findWhere(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail();
         $this->sellerOrderRepository->cancel($sellerOrder);
+        return redirect()->route('marketplace.admin.orders.view', ['order_id' => $id]);
+    }
+
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function ready($id)
+    {
+        request()->validate(['warehouse_id' => 'required']);
+        $warehouse = Warehouse::forSeller($this->getAuthenticatedAdmin()->getSellerId())->findOrFail(request()->warehouse_id);
+        $sellerOrder = $this->sellerOrderRepository->findWhere(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail();
+        $this->sellerOrderRepository->ready($sellerOrder);
         return redirect()->route('marketplace.admin.orders.view', ['order_id' => $id]);
     }
 }

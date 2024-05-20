@@ -71,7 +71,11 @@ return [
             'CANCELLED_BY_SELLER' => [
                 'label' => 'Cancelled By Seller',
                 'class' => 'info'
-            ]
+            ],
+            'READY_FOR_PICKUP' => [
+                'label' => 'Ready for pickup',
+                'class' => 'processing'
+            ],
         ]
     ],
     "seller" => [
@@ -138,7 +142,9 @@ return [
             ],
             'view' => [
                 'approve' => 'Approve',
+                'print' => 'Print Label',
                 'cancel' => 'Cancel',
+                'prepare' => "Set as ready for pickup",
                 'cancel-msg' => 'Are you sure you want to cancel this order?',
                 'approve-msg' => 'Are you sure you want to approve this order?',
             ]

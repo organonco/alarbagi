@@ -43,7 +43,7 @@ class SellerOrder extends Model implements SellerOrderContract
 
     public function items()
     {
-        return $this->order->items()->whereHas('product', function($query){
+        return $this->order->items()->whereHas('product', function ($query) {
             return $query->where('seller_id', $this->seller_id);
         });
     }
@@ -70,12 +70,21 @@ class SellerOrder extends Model implements SellerOrderContract
 
     public function isApprovable()
     {
-        return $this->status != SellerOrderStatusEnum::APPROVED;
+        return $this->status == SellerOrderStatusEnum::PENDING || $this->status == SellerOrderStatusEnum::CANCELLED_BY_SELLER;
     }
 
     public function isCancellable()
     {
-        return $this->status != SellerOrderStatusEnum::CANCELLED_BY_SELLER;
+        return $this->status == SellerOrderStatusEnum::PENDING || $this->status == SellerOrderStatusEnum::APPROVED;
     }
 
+    public function isPreparable()
+    {
+        return $this->status == SellerOrderStatusEnum::APPROVED;
+    }
+
+    public function isPrintable()
+    {
+        return $this->status == SellerOrderStatusEnum::APPROVED || $this->status == SellerOrderStatusEnum::READY_FOR_PICKUP;
+    }
 }

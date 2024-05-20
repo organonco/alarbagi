@@ -5,6 +5,7 @@ namespace Organon\Marketplace\Models;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Organon\Delivery\Models\Warehouse;
 use Organon\Marketplace\Contracts\Seller as SellerContract;
 use Organon\Marketplace\Database\Factories\SellerFactory;
 use Organon\Marketplace\Enums\SellerInvoiceStatusEnum;
@@ -172,6 +173,10 @@ class Seller extends Model implements SellerContract, HasMedia
     public function getIsExpiredAttribute()
     {
         return $this->expiry_date && (new \DateTime() > new \DateTime($this->expiry_date));
+    }
 
+    public function warehouses()
+    {
+        return $this->hasMany(Warehouse::class);
     }
 }

@@ -48,4 +48,13 @@ class SellerOrderRepository extends Repository
         $sellerOrder->setStatus(SellerOrderStatusEnum::CANCELLED_BY_SELLER);
     }
 
+
+    /**
+     * @param SellerOrder $sellerOrder
+     * @return void
+     */
+    public function ready(SellerOrder $sellerOrder)
+    {
+        $sellerOrder->setStatus(SellerOrderStatusEnum::READY_FOR_PICKUP);
+    }
 }

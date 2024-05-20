@@ -2,7 +2,57 @@
     <x-slot:title>
         @lang('admin::app.sales.orders.view.title', ['order_id' => $order->increment_id])
     </x-slot:title>
+    <x-admin::modal ref="prepare-modal">
+        <x-slot:header>
+            <p class="text-[18px] text-gray-800 dark:text-white font-bold">
+                Set Order as Ready for picked
+            </p>
+        </x-slot:header>
+        <x-slot:content>
+            @if (count($warehouses) > 0)
+                <form action="{{ route('marketplace.admin.orders.ready', $order->id) }}" method="POST"
+                    enctype="multipart/form-data" ref="prepare-form">
+                    @csrf
+                    <div class="px-[16px] py-[10px]">
+                        <p class="text-gray-800 mb-[16px] font-bold">
+                            This action will notify Souq Naif admins to send a driver to pickup this package from the
+                            selected warehouse.
+                        </p>
+                        <x-admin::form.control-group class="w-full">
+                            <x-admin::form.control-group.label>
+                                {{ __('Select Warehouse') }}
+                            </x-admin::form.control-group.label>
+                            <select name="warehouse_id"
+                                class='custom-select flex w-full min-h-[39px] py-[6px] px-[12px] bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-[6px] text-[14px] text-gray-600 dark:text-gray-300 font-normal transition-all hover:border-gray-400 dark:hover:border-gray-400'>
+                                @foreach ($warehouses as $id => $name)
+                                    <option value="{{ $id }}">
+                                        {{ $name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </x-admin::form.control-group>
+                    </div>
+                </form>
+            @else
+                <div class="px-[16px] py-[10px]">
+                    <p class="text-gray-800 mb-[16px] font-bold">
+                        Please create warehouses & warehouse admins before you set the order as ready for pickup
+                    </p>
+                </div>
+            @endif
+        </x-slot:content>
+        <x-slot:footer>
+            @if (count($warehouses) > 0)
+                <button @click="this.$refs['prepare-form'].submit()" class="primary-button"> Set </button>
+            @else
+                <button @click="this.$refs['prepare-modal'].close()"> Close </button>
+            @endif
+        </x-slot:footer>
 
+
+        {{-- <form method="POST" ref="approveOrderForm"
+            action="{{ route('marketplace.admin.orders.approve', $order->order_id) }}"> @csrf </form> --}}
+    </x-admin::modal>
     {{-- Header --}}
     <div class="grid">
         <div class="flex gap-[16px] justify-between items-center max-sm:flex-wrap">
@@ -13,8 +63,9 @@
                 </p>
 
                 <div>
-                    <span class="label-{{trans('marketplace::app.seller-order.statuses.'. $order->status->name . '.class')}} text-[14px] mx-[5px]">
-                        @lang('marketplace::app.seller-order.statuses.'. $order->status->name . '.label')
+                    <span
+                        class="label-{{ trans('marketplace::app.seller-order.statuses.' . $order->status->name . '.class') }} text-[14px] mx-[5px]">
+                        @lang('marketplace::app.seller-order.statuses.' . $order->status->name . '.label')
                     </span>
                 </div>
             </div>
@@ -22,10 +73,8 @@
             {!! view_render_event('sales.order.title.after', ['order' => $order]) !!}
 
             {{-- Back Button --}}
-            <a
-                    href="{{ route('marketplace.admin.orders.index') }}"
-                    class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white"
-            >
+            <a href="{{ route('marketplace.admin.orders.index') }}"
+                class="transparent-button hover:bg-gray-200 dark:hover:bg-gray-800 dark:text-white">
                 @lang('admin::app.account.edit.back-btn')
             </a>
         </div>
@@ -34,27 +83,40 @@
     <div class="justify-between gap-x-[4px] gap-y-[8px] items-center flex-wrap mt-[20px]">
         <div class="flex gap-[5px]">
 
-            @if($order->isApprovable())
+            @if ($order->isApprovable())
                 <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
-                     @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.orders.view.approve-msg')', agree: () => {this.$refs['approveOrderForm'].submit()}})">
+                    @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.orders.view.approve-msg')', agree: () => {this.$refs['approveOrderForm'].submit()}})">
                     <form method="POST" ref="approveOrderForm"
-                          action="{{ route('marketplace.admin.orders.approve', $order->order_id) }}"> @csrf </form>
+                        action="{{ route('marketplace.admin.orders.approve', $order->order_id) }}"> @csrf </form>
                     <span class="icon-tick text-[24px]"></span>
                     <a href="javascript:void(0);"> @lang('marketplace::app.admin.orders.view.approve')</a>
                 </div>
             @endif
-            @if($order->isCancellable())
+            @if ($order->isCancellable())
                 <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
-                     @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.orders.view.cancel-msg')',agree: () => {this.$refs['cancelOrderForm'].submit()}})">
+                    @click="$emitter.emit('open-confirm-modal', {message: '@lang('marketplace::app.admin.orders.view.cancel-msg')',agree: () => {this.$refs['cancelOrderForm'].submit()}})">
                     <form method="POST" ref="cancelOrderForm"
-                          action="{{ route('marketplace.admin.orders.cancel', $order->order_id) }}">@csrf</form>
+                        action="{{ route('marketplace.admin.orders.cancel', $order->order_id) }}">@csrf</form>
                     <span class="icon-cancel text-[24px]"></span>
                     <a href="javascript:void(0);">@lang('marketplace::app.admin.orders.view.cancel')</a>
                 </div>
             @endif
+            @if ($order->isPreparable())
+                <div class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"
+                    @click="$refs['prepare-modal'].open()">
+                    <span class="icon-tick text-[24px]"></span>
+                    <a href="javascript:void(0);"> @lang('marketplace::app.admin.orders.view.prepare')</a>
+                </div>
+            @endif
+            @if ($order->isPrintable())
+                <div
+                    class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
+                    <span class="icon-printer text-[24px]"></span>
+                    <a href="javascript:void(0);"> @lang('marketplace::app.admin.orders.view.print')</a>
+                </div>
+            @endif
 
         </div>
-
         {{-- Order details --}}
         <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
             {{-- Left Component --}}
@@ -73,18 +135,19 @@
                     {{-- Order items --}}
                     <div class="grid">
                         @foreach ($order->items as $item)
-                            <div class="flex gap-[10px] justify-between px-[16px] py-[24px] border-b-[1px] border-slate-300 dark:border-gray-800">
+                            <div
+                                class="flex gap-[10px] justify-between px-[16px] py-[24px] border-b-[1px] border-slate-300 dark:border-gray-800">
                                 <div class="flex gap-[10px]">
-                                    @if($item->product?->base_image_url)
-                                        <img
-                                                class="w-full h-[60px] max-w-[60px] max-h-[60px] relative rounded-[4px]"
-                                                src="{{ $item->product?->base_image_url }}"
-                                        >
+                                    @if ($item->product?->base_image_url)
+                                        <img class="w-full h-[60px] max-w-[60px] max-h-[60px] relative rounded-[4px]"
+                                            src="{{ $item->product?->base_image_url }}">
                                     @else
-                                        <div class="w-full h-[60px] max-w-[60px] max-h-[60px] relative border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion">
+                                        <div
+                                            class="w-full h-[60px] max-w-[60px] max-h-[60px] relative border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion">
                                             <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
 
-                                            <p class="absolute w-full bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">
+                                            <p
+                                                class="absolute w-full bottom-[5px] text-[6px] text-gray-400 text-center font-semibold">
                                                 @lang('admin::app.sales.invoices.view.product-image')
                                             </p>
                                         </div>
@@ -99,8 +162,8 @@
                                             <p class="text-gray-600 dark:text-gray-300">
                                                 @lang('admin::app.sales.orders.view.amount-per-unit', [
                                                     'amount' => core()->formatBasePrice($item->base_price),
-                                                    'qty'    => $item->qty_ordered,
-                                                    ])
+                                                    'qty' => $item->qty_ordered,
+                                                ])
                                             </p>
 
                                             @if (isset($item->additional['attributes']))
@@ -123,7 +186,8 @@
 
                                 <div class="grid gap-[4px] place-content-start">
                                     <div class="">
-                                        <p class="flex items-center gap-x-[4px] justify-end text-[16px] text-gray-800 dark:text-white font-semibold">
+                                        <p
+                                            class="flex items-center gap-x-[4px] justify-end text-[16px] text-gray-800 dark:text-white font-semibold">
                                             {{ core()->formatBasePrice($item->base_total + $item->base_tax_amount - $item->base_discount_amount) }}
                                         </p>
                                     </div>
@@ -134,7 +198,7 @@
                                         </p>
 
                                         <p class="text-gray-600 dark:text-gray-300">
-                                            {{ (float)$item->tax_percent }}%
+                                            {{ (float) $item->tax_percent }}%
                                             @lang('admin::app.sales.orders.view.tax', ['tax' => core()->formatBasePrice($item->base_tax_amount)])
                                         </p>
                                         @if ($order->base_discount_amount > 0)
@@ -192,6 +256,36 @@
             {{-- Right Component --}}
             <div class="flex flex-col gap-[8px] w-[360px] max-w-full max-sm:w-full">
                 {{-- Customer and address information --}}
+                @if ($order->isPrintable())
+                    <x-admin::accordion>
+                        <x-slot:header>
+                            <p class="text-gray-600 dark:text-gray-300 text-[16px] p-[10px] font-semibold">
+                                {{ __('Label') }}
+                            </p>
+                        </x-slot:header>
+
+                        <x-slot:content>
+                            <hr style="margin-bottom: 10%" />
+                            <div id="printable_label">
+                                <div style="display: flex; flex-direction: column; align-items: center; gap: 20px">
+                                    <div>
+                                        {{ $qr }}
+                                    </div>
+                                    <div style="font-size: 20px">
+                                        Package #CF32145
+                                    </div>
+                                </div>
+                            </div>
+                            <hr style="margin: 10%" />
+                            <div style="display: flex; flex-direction: column; align-items: center">
+                                <div
+                                    class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
+                                    <span class="icon-printer text-[24px]"></span>
+                                    <button onclick="printLabel()"> @lang('marketplace::app.admin.orders.view.print') </a>
+                                </div>
+                        </x-slot:content>
+                    </x-admin::accordion>
+                @endif
                 <x-admin::accordion>
                     <x-slot:header>
                         <p class="text-gray-600 dark:text-gray-300 text-[16px] p-[10px] font-semibold">
@@ -226,7 +320,9 @@
                                     </p>
                                 </div>
 
-                                @include ('admin::sales.address', ['address' => $order->billing_address])
+                                @include ('admin::sales.address', [
+                                    'address' => $order->billing_address,
+                                ])
 
                                 {!! view_render_event('sales.order.billing_address.after', ['order' => $order]) !!}
                             </div>
@@ -275,14 +371,14 @@
 
                                 {{-- Order Date --}}
                                 <p class="text-gray-600 dark:text-gray-300">
-                                    {{core()->formatDate($order->created_at) }}
+                                    {{ core()->formatDate($order->created_at) }}
                                 </p>
 
                                 {!! view_render_event('sales.order.created_at.after', ['order' => $order]) !!}
 
                                 {{-- Order Status --}}
                                 <p class="text-gray-600 dark:text-gray-300">
-                                    {{$order->status->value}}
+                                    {{ $order->status->value }}
                                 </p>
 
                                 {!! view_render_event('sales.order.status_label.after', ['order' => $order]) !!}
@@ -298,4 +394,16 @@
             {!! view_render_event('sales.order.tabs.after', ['order' => $order]) !!}
         </div>
     </div>
+    @push('scripts')
+        <script type="text/javascript">
+            function printLabel() {
+                var printContents = document.getElementById("printable_label").innerHTML;
+                w = window.open();
+                w.document.write(printContents);
+                w.print();
+                w.close();
+            }
+        </script>
+    @endpush
+
 </x-admin::layouts>

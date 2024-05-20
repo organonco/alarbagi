@@ -5,9 +5,13 @@ namespace Organon\Delivery\Models;
 use Organon\Delivery\Contracts\WarehouseAdmin as WarehouseAdminContract;
 use Organon\Marketplace\Models\Seller;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Organon\Marketplace\Traits\RelatedToSellerTrait;
 
 class WarehouseAdmin extends Authenticatable implements WarehouseAdminContract
 {
+
+    use RelatedToSellerTrait;
+
     protected $fillable = [
         'name',
         'email',

@@ -44,6 +44,7 @@
         "pusher/pusher-php-server": "^7.0",
         "shetabit/visitor": "^4.1",
         "silviolleite/laravelpwa": "dev-master",
+        "simplesoftwareio/simple-qrcode": "~4",
         "spatie/laravel-medialibrary": "^10.0.0",
         "spatie/laravel-responsecache": "^7.4",
         "spatie/laravel-sitemap": "^6.2"
