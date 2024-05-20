@@ -13,7 +13,8 @@ class Warehouse extends Model implements WarehouseContract
         'seller_id',
         'address',
         'additional_info',
-        'emirate'
+        'emirate',
+        'warehouse_admin_id'
     ];
 
     public function seller()
@@ -21,9 +22,9 @@ class Warehouse extends Model implements WarehouseContract
         return $this->belongsTo(Seller::class);
     }
 
-    public function warehouseAdmins()
+    public function warehouseAdmin()
     {
-        return $this->belongsToMany(WarehouseAdmin::class);
+        return $this->belongsTo(WarehouseAdmin::class);
     }
 
     public function isForSeller()

@@ -89,6 +89,24 @@
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
 
+                    <x-admin::form.control-group class="mb-[10px]">
+                        <x-admin::form.control-group.label class="required">
+                            {{ __('Warehouse Admin') }}
+                        </x-admin::form.control-group.label>
+
+                        <x-admin::form.control-group.control type="select" name="warehouse_admin_id"
+                            placeholder="{{ __('Warehouse Admin') }}" label="{{ __('Warehouse Admin') }}">
+                            @foreach ($warehouse_admins as $admin)
+                                <option value="{{ $admin->id }}">
+                                    {{ $admin->name }}
+                                </option>
+                            @endforeach
+                        </x-admin::form.control-group.control>
+
+                        <x-admin::form.control-group.error control-name="warehouse_admin_id">
+                        </x-admin::form.control-group.error>
+                    </x-admin::form.control-group>
+
                 </div>
             </div>
         </div>

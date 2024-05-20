@@ -30,8 +30,7 @@ class WarehouseAdminController extends Controller
 
     public function create()
     {
-        $warehouses = Warehouse::query()->forSeller($this->getAuthenticatedAdmin()->getSellerId())->get();
-        return view('delivery::admin.warehouse_admins.create', compact('warehouses'));
+        return view('delivery::admin.warehouse_admins.create');
     }
 
 
@@ -42,7 +41,6 @@ class WarehouseAdminController extends Controller
             'email' => 'required|unique:warehouse_admins|max:255|email',
             'phone' => 'required|max:255|regex:/^\+?[0-9]*$/',
             'password' => 'required',
-            'warehouses' => 'array'
         ]);
 
         $warehouseAdmin = WarehouseAdmin::create(
@@ -55,9 +53,6 @@ class WarehouseAdminController extends Controller
             )
         );
 
-        $warehouses = Warehouse::query()->forSeller($warehouseAdmin->seller_id)->whereIn('id', $request->warehouses)->get();
-        $warehouseAdmin->warehouses()->sync($warehouses->pluck('id'));
-
         return redirect(route('admin.delivery.warehouse_admins.index'));
     }
 
@@ -68,9 +63,7 @@ class WarehouseAdminController extends Controller
         else
             $warehouseAdmin = WarehouseAdmin::findOrFail($id);
 
-        $warehouses = Warehouse::query()->forSeller($warehouseAdmin->seller_id)->get();
-
-        return view('delivery::admin.warehouse_admins.edit', compact('warehouseAdmin', 'warehouses'));
+        return view('delivery::admin.warehouse_admins.edit', compact('warehouseAdmin'));
     }
 
     public function update($id, Request $request)
@@ -84,12 +77,8 @@ class WarehouseAdminController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|max:255|email|unique:warehouse_admins,email,' . $warehouseAdmin->id,
             'phone' => 'required|max:255|regex:/^\+?[0-9]*$/',
-            'warehouses' => 'array'
         ]);
         $warehouseAdmin->update($request->all());
-
-        $warehouses = Warehouse::query()->forSeller($warehouseAdmin->seller_id)->whereIn('id', $request->warehouses)->get();
-        $warehouseAdmin->warehouses()->sync($warehouses->pluck('id'));
 
         return redirect(route('admin.delivery.warehouse_admins.index'));
     }
@@ -108,33 +97,5 @@ class WarehouseAdminController extends Controller
         $warehouseAdmin->update(['password' => Hash::make($request->input('password'))]);
 
         return redirect(route('admin.delivery.warehouse_admins.index'));
-    }
-
-    public function createSession()
-    {
-        if (auth()->guard('warehouse_admin')->check())
-            return redirect()->route('warehouse.dashboard');
-        return view('delivery::warehouse_admin.session.create');
-    }
-
-    public function storeSession(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if (!auth()->guard('warehouse_admin')->attempt(request(['email', 'password']), true)) {
-            session()->flash('error', __('Incorrect Email or Password'));
-            return redirect()->back();
-        }
-
-        return redirect(route('warehouse.dashboard'));
-    }
-
-
-    public function testView()
-    {
-        return view('delivery::warehouse_admin.index');
     }
 }

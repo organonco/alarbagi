@@ -69,25 +69,6 @@
                         <x-admin::form.control-group.error control-name="phone">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
-
-
-                    <x-admin::form.control-group class="mb-[10px]">
-                        <x-admin::form.control-group.label class="required">
-                            {{ __('Warehouses') }}
-                        </x-admin::form.control-group.label>
-
-                        <x-admin::form.control-group.control type="multiselect" name="warehouses[]"
-                            placeholder="{{ __('Warehouses') }}" label="{{ __('Warehouses') }}">
-                            @foreach ($warehouses as $warehouse)
-                                <option value="{{ $warehouse->id }}" @selected(in_array($warehouse->id, $warehouseAdmin->selected_warehouses_ids))>
-                                    {{ $warehouse->name }}
-                                </option>
-                            @endforeach
-                        </x-admin::form.control-group.control>
-
-                        <x-admin::form.control-group.error control-name="warehouses">
-                        </x-admin::form.control-group.error>
-                    </x-admin::form.control-group>
                 </div>
             </div>
         </div>

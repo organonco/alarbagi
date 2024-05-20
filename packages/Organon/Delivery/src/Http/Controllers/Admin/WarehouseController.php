@@ -8,6 +8,7 @@ use Illuminate\Validation\Rules\Enum;
 use Organon\Delivery\DataGrids\WarehousesDataGrid;
 use Organon\Delivery\Enums\EmiratesEnum;
 use Organon\Delivery\Models\Warehouse;
+use Organon\Delivery\Models\WarehouseAdmin;
 use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
 
 class WarehouseController extends Controller
@@ -22,7 +23,8 @@ class WarehouseController extends Controller
             'name' => 'required|max:255',
             'additional_info' => 'string|max:3000',
             'address' => 'string|max:3000',
-            'emirate' => ['required', 'string', new Enum(EmiratesEnum::class)]
+            'emirate' => ['required', 'string', new Enum(EmiratesEnum::class)],
+            'warehouse_admin_id' => ['required'],
         ];
     }
 
@@ -36,7 +38,8 @@ class WarehouseController extends Controller
     public function create()
     {
         $emirates = array_column(EmiratesEnum::cases(), 'value');
-        return view('delivery::admin.warehouses.create', compact('emirates'));
+        $warehouse_admins = WarehouseAdmin::forSeller($this->getAuthenticatedAdmin()->getSellerId())->get();
+        return view('delivery::admin.warehouses.create', compact('emirates', 'warehouse_admins'));
     }
 
 
@@ -55,7 +58,8 @@ class WarehouseController extends Controller
         else
             $warehouse = Warehouse::findOrFail($id);
         $emirates = array_column(EmiratesEnum::cases(), 'value');
-        return view('delivery::admin.warehouses.edit', compact('warehouse', 'emirates'));
+        $warehouse_admins = WarehouseAdmin::forSeller($this->getAuthenticatedAdmin()->getSellerId())->get();
+        return view('delivery::admin.warehouses.edit', compact('warehouse', 'emirates', 'warehouse_admins'));
     }
 
     public function update($id, Request $request)

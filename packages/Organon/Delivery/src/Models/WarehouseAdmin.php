@@ -5,12 +5,9 @@ namespace Organon\Delivery\Models;
 use Organon\Delivery\Contracts\WarehouseAdmin as WarehouseAdminContract;
 use Organon\Marketplace\Models\Seller;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Organon\Marketplace\Traits\RelatedToSellerTrait;
 
 class WarehouseAdmin extends Authenticatable implements WarehouseAdminContract
 {
-
-    use RelatedToSellerTrait;
 
     protected $fillable = [
         'name',
@@ -25,9 +22,9 @@ class WarehouseAdmin extends Authenticatable implements WarehouseAdminContract
         return $this->belongsTo(Seller::class);
     }
 
-    public function warehouses()
+    public function warehouse()
     {
-        return $this->belongsToMany(Warehouse::class);
+        return $this->hasOne(Warehouse::class);
     }
 
     public function isForSeller()
@@ -35,8 +32,8 @@ class WarehouseAdmin extends Authenticatable implements WarehouseAdminContract
         return !is_null('sellerId');
     }
 
-    public function getSelectedWarehousesIdsAttribute()
+    public function scopeForSeller($query, $sellerId)
     {
-        return $this->warehouses()->pluck('warehouses.id')->toArray();
+        return $query->where('seller_id', $sellerId);
     }
 }
