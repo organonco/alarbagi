@@ -108,13 +108,6 @@
                     <a href="javascript:void(0);"> @lang('marketplace::app.admin.orders.view.prepare')</a>
                 </div>
             @endif
-            @if ($order->isPrintable())
-                <div
-                    class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
-                    <span class="icon-printer text-[24px]"></span>
-                    <a href="javascript:void(0);"> @lang('marketplace::app.admin.orders.view.print')</a>
-                </div>
-            @endif
 
         </div>
         {{-- Order details --}}
@@ -260,13 +253,13 @@
                     <x-admin::accordion>
                         <x-slot:header>
                             <p class="text-gray-600 dark:text-gray-300 text-[16px] p-[10px] font-semibold">
-                                {{ __('Label') }}
+                                {{ __('Package Label') }}
                             </p>
                         </x-slot:header>
 
                         <x-slot:content>
                             <hr style="margin-bottom: 10%" />
-                            <div id="printable_label">
+                            <div id="printable_label" style="background-color: white; padding: 20px">
                                 <div style="display: flex; flex-direction: column; align-items: center; gap: 20px">
                                     <div>
                                         {{ $qr }}
