@@ -3,6 +3,7 @@
 namespace Organon\Marketplace\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Organon\Delivery\Models\Package;
 use Organon\Marketplace\Contracts\SellerOrder as SellerOrderContract;
 use Organon\Marketplace\Enums\SellerOrderStatusEnum;
 use Organon\Marketplace\Traits\HasStatusTrait;
@@ -39,6 +40,16 @@ class SellerOrder extends Model implements SellerOrderContract
     public function seller()
     {
         return $this->belongsTo(SellerProxy::modelClass());
+    }
+
+    public function package()
+    {
+        return $this->hasOne(Package::class);
+    }
+
+    public function hasPackage()
+    {
+        return !is_null($this->package);
     }
 
     public function items()

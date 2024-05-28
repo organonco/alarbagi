@@ -4,10 +4,15 @@ namespace Organon\Delivery\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Organon\Delivery\Contracts\Warehouse as WarehouseContract;
+use Organon\Delivery\Interfaces\PackageHolder;
+use Organon\Delivery\Traits\HoldsPackages;
 use Organon\Marketplace\Models\Seller;
 
-class Warehouse extends Model implements WarehouseContract
+class Warehouse extends Model implements WarehouseContract, PackageHolder
 {
+
+    use HoldsPackages;
+
     protected $fillable = [
         'name',
         'seller_id',
@@ -35,5 +40,19 @@ class Warehouse extends Model implements WarehouseContract
     public function scopeForSeller($query, $sellerId)
     {
         return $query->where('seller_id', $sellerId);
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+    public function getPhone(): string
+    {
+        return $this->warehouseAdmin->phone;
+    }
+
+    public function getType(): string
+    {
+        return 'warehouse';
     }
 }

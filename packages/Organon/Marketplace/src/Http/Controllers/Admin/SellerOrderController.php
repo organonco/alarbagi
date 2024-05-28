@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller;
 use Organon\Delivery\Helpers\QRGeneratorHelper;
 use Organon\Delivery\Models\Warehouse;
+use Organon\Delivery\Repositories\PackageRepository;
 use Organon\Marketplace\DataGrids\SellerOrderDataGrid;
 use Organon\Marketplace\Notifications\Repositories\SellerOrderRepository;
 use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
@@ -28,8 +29,10 @@ class SellerOrderController extends Controller
      *
      * @return void
      */
-    public function __construct(private readonly SellerOrderRepository $sellerOrderRepository)
-    {
+    public function __construct(
+        private readonly SellerOrderRepository $sellerOrderRepository,
+        private readonly PackageRepository $packageRepository
+    ) {
         $this->middleware('admin');
 
         $this->_config = request('_config');
@@ -56,9 +59,8 @@ class SellerOrderController extends Controller
     public function edit($id)
     {
         return view('marketplace::admin.orders.view')->with([
-            'order' => $this->sellerOrderRepository->findWhere(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail(),
+            'order' => $this->sellerOrderRepository->where(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail(),
             'warehouses' => $this->getAuthenticatedSeller()->warehouses()->pluck('name', 'id'),
-            'qr' => QRGeneratorHelper::test()
         ]);
     }
 
@@ -69,8 +71,11 @@ class SellerOrderController extends Controller
      */
     public function approve($id)
     {
-        $sellerOrder = $this->sellerOrderRepository->findWhere(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail();
+        $sellerOrder = $this->sellerOrderRepository->where(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail();
+
         $this->sellerOrderRepository->approve($sellerOrder);
+        $this->packageRepository->fromSellerOrder($sellerOrder);
+
         return redirect()->route('marketplace.admin.orders.view', ['order_id' => $id]);
     }
 
@@ -81,7 +86,7 @@ class SellerOrderController extends Controller
      */
     public function cancel($id)
     {
-        $sellerOrder = $this->sellerOrderRepository->findWhere(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail();
+        $sellerOrder = $this->sellerOrderRepository->where(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail();
         $this->sellerOrderRepository->cancel($sellerOrder);
         return redirect()->route('marketplace.admin.orders.view', ['order_id' => $id]);
     }
@@ -95,8 +100,13 @@ class SellerOrderController extends Controller
     {
         request()->validate(['warehouse_id' => 'required']);
         $warehouse = Warehouse::forSeller($this->getAuthenticatedAdmin()->getSellerId())->findOrFail(request()->warehouse_id);
-        $sellerOrder = $this->sellerOrderRepository->findWhere(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail();
+        $sellerOrder = $this->sellerOrderRepository->where(['order_id' => $id, 'seller_id' => auth('admin')->user()->getSellerId()])->firstOrFail();
+
+
         $this->sellerOrderRepository->ready($sellerOrder);
+        $package = $this->packageRepository->fromSellerOrder($sellerOrder);
+        $this->packageRepository->addTransaction($package, $warehouse);
+
         return redirect()->route('marketplace.admin.orders.view', ['order_id' => $id]);
     }
 }

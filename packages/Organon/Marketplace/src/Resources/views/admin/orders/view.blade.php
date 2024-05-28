@@ -10,7 +10,7 @@
         </x-slot:header>
         <x-slot:content>
             @if (count($warehouses) > 0)
-                <form action="{{ route('marketplace.admin.orders.ready', $order->id) }}" method="POST"
+                <form action="{{ route('marketplace.admin.orders.ready', $order->order_id) }}" method="POST"
                     enctype="multipart/form-data" ref="prepare-form">
                     @csrf
                     <div class="px-[16px] py-[10px]">
@@ -107,6 +107,14 @@
                     <span class="icon-tick text-[24px]"></span>
                     <a href="javascript:void(0);"> @lang('marketplace::app.admin.orders.view.prepare')</a>
                 </div>
+            @endif
+
+            @if ($order->hasPackage())
+                <a href="{{ route('admin.delivery.packages.view', $order->package->hash) }}"
+                    class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
+                    <span class="icon-location text-[24px]"></span>
+                    @lang('marketplace::app.admin.orders.view.view-package')
+                </a>
             @endif
 
         </div>
@@ -249,7 +257,7 @@
             {{-- Right Component --}}
             <div class="flex flex-col gap-[8px] w-[360px] max-w-full max-sm:w-full">
                 {{-- Customer and address information --}}
-                @if ($order->isPrintable())
+                @if ($order->isPrintable() && !is_null($order->package))
                     <x-admin::accordion>
                         <x-slot:header>
                             <p class="text-gray-600 dark:text-gray-300 text-[16px] p-[10px] font-semibold">
@@ -262,14 +270,26 @@
                             <div id="printable_label" style="background-color: white; padding: 20px">
                                 <div style="display: flex; flex-direction: column; align-items: center; gap: 20px">
                                     <div>
-                                        {{ $qr }}
+                                        {{ $order->package->qr }}
                                     </div>
-                                    <div style="font-size: 20px">
-                                        Package #CF32145
+                                    <div style="display: flex; flex-direction: column; align-items: center; gap: 5px">
+                                        <div style="font-size: 20px">
+                                            Package #{{ $order->package->hash }}
+                                        </div>
+                                        <div>
+                                            {{ $order->package->number_of_items }} Items
+                                        </div>
+                                        <div>
+                                            @foreach ($order->package->orderItems as $item)
+                                                <div>
+                                                    {{ $item->name . ' (x' . $item->qty_ordered . ')' }}
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <hr style="margin: 10%" />
+                            <hr style="margin: 5%" />
                             <div style="display: flex; flex-direction: column; align-items: center">
                                 <div
                                     class="inline-flex gap-x-[8px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">

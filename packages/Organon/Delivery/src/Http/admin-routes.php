@@ -1,6 +1,7 @@
 <?php
 
 use Organon\Delivery\Http\Controllers\Admin\DriverController;
+use Organon\Delivery\Http\Controllers\Admin\PackageController;
 use Organon\Delivery\Http\Controllers\Admin\WarehouseAdminController;
 use Organon\Delivery\Http\Controllers\Admin\WarehouseController;
 use Organon\Delivery\Http\Controllers\Driver\DashboardController as DriverDashboardController;
@@ -41,6 +42,10 @@ Route::group([
             Route::get('edit/{id}', [DriverController::class, 'edit'])->name('drivers.edit');
             Route::post('edit/{id}', [DriverController::class, 'update'])->name('drivers.update');
             Route::post('edit-password/{id}', [DriverController::class, 'updatePassword'])->name('drivers.update_password');
+        });
+
+        Route::group(['prefix' => 'packages'], function () {
+            Route::get('/{hash}', [PackageController::class, 'view'])->name('packages.view');
         });
     });
 });
