@@ -7,9 +7,17 @@
 }
 
 .card .content{
-    @apply font-normal text-lg
+    @apply font-normal text-lg mt-4
+}
+
+.card .description{
+    @apply font-normal text-sm mt-1 text-gray-400
 }
 
 .card hr{
-    @apply w-7 border-2 mb-4
+    @apply w-7 border-2
+}
+
+.plus-icon{
+    @apply  border-2 rounded-3xl px-2
 }

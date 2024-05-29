@@ -6,6 +6,7 @@ use Organon\Delivery\Http\Controllers\Admin\WarehouseAdminController;
 use Organon\Delivery\Http\Controllers\Admin\WarehouseController;
 use Organon\Delivery\Http\Controllers\Driver\DashboardController as DriverDashboardController;
 use Organon\Delivery\Http\Controllers\Driver\SessionController as DriverSessionController;
+use Organon\Delivery\Http\Controllers\WarehouseAdmin\AddPackageController;
 use Organon\Delivery\Http\Controllers\WarehouseAdmin\DashboardController;
 use Organon\Delivery\Http\Controllers\WarehouseAdmin\SessionController;
 
@@ -61,11 +62,12 @@ Route::group([
 
     Route::group(['prefix' => '', 'middleware' => ['admin:warehouse_admin']], function () {
         Route::get('/', DashboardController::class)->name('dashboard');
+        Route::get('/add-package', [AddPackageController::class, 'create'])->name('add-package.create');
+        Route::post('/add-package', [AddPackageController::class, 'store'])->name('add-package.store');
     });
 });
 
-
-
+Route::post('admin/warehouse/add-package', [AddPackageController::class, 'store'])->name('warehouse.add-package.store')->middleware(['web', 'admin:warehouse_admin']);
 
 Route::group([
     'prefix'        => 'admin/driver',

@@ -36,4 +36,14 @@ class WarehouseAdmin extends Authenticatable implements WarehouseAdminContract
     {
         return $query->where('seller_id', $sellerId);
     }
+
+    public function getPackages()
+    {
+        return $this->warehouse->packages;
+    }
+
+    public function getSeller(): Seller
+    {
+        return $this->seller;
+    }
 }

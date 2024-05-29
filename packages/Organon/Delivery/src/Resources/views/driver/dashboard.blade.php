@@ -11,7 +11,7 @@
             fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
             deserunt mollit anim id est
         </div>
-    </div>dashboard
+    </div>
 
 
     <div class="card">

@@ -41,12 +41,17 @@ class Package extends Model implements PackageContract
         return $this->belongsTo(SellerOrder::class);
     }
 
-    public static function findByHash(string $hash, $sellerId = null)
+    public static function findByHash(string $hash, $sellerId = null): self
     {
         if (!is_null($sellerId))
             return self::query()->where('hash', $hash)->whereHas('sellerOrder', function ($query) use ($sellerId) {
                 $query->where('seller_orders.seller_id', $sellerId);
             })->firstOrFail();
         return self::query()->where('hash', $hash)->firstOrFail();
+    }
+
+    public function getCurrentHolder()
+    {
+        return $this->transactions()->whereNull('until')->first()->holder;
     }
 }
