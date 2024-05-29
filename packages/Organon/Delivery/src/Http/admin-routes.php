@@ -9,6 +9,7 @@ use Organon\Delivery\Http\Controllers\Driver\SessionController as DriverSessionC
 use Organon\Delivery\Http\Controllers\WarehouseAdmin\AddPackageController;
 use Organon\Delivery\Http\Controllers\WarehouseAdmin\DashboardController;
 use Organon\Delivery\Http\Controllers\WarehouseAdmin\SessionController;
+use Organon\Delivery\Http\Controllers\WarehouseAdmin\ViewPackageController;
 
 Route::group([
     'prefix'        => 'admin',
@@ -64,6 +65,7 @@ Route::group([
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::get('/add-package', [AddPackageController::class, 'create'])->name('add-package.create');
         Route::post('/add-package', [AddPackageController::class, 'store'])->name('add-package.store');
+        Route::get('/package/{hash}', ViewPackageController::class)->name('view-package');
     });
 });
 

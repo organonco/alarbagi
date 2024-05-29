@@ -13,11 +13,18 @@
             Packages you currently have
         </div>
         <div class="content">
-            @foreach ($packages as $package)
-                <div>
-                    Package #{{ $package->hash }}
-                </div>
-            @endforeach
+            <dl class="max-w-md divide-y  text-white divide-gray-700">
+                @foreach ($packages as $package)
+                    <div class="flex flex-col my-5">
+                        <a href="{{ route('warehouse.view-package', $package->hash) }}">
+                            <dt class="mt-5 text-lg font-semibold">#{{ $package->hash }}</dt>
+                            <dd class="text-sm text-gray-400">
+                                {{ date('Y-m-d | h:i a', strtotime($package->pivot->from)) }}
+                            </dd>
+                        </a>
+                    </div>
+                @endforeach
+            </dl>
         </div>
     </div>
 </x-delivery::layout>

@@ -25,6 +25,6 @@ trait HoldsPackages
 
     public function packages()
     {
-        return $this->morphToMany(Package::class, 'holder', 'package_transactions')->whereNull('package_transactions.until');
+        return $this->morphToMany(Package::class, 'holder', 'package_transactions')->whereNull('package_transactions.until')->withPivot('from', 'until');
     }
 }

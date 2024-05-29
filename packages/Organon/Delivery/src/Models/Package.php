@@ -5,6 +5,7 @@ namespace Organon\Delivery\Models;
 use Illuminate\Database\Eloquent\Model;
 use Organon\Delivery\Contracts\Package as PackageContract;
 use Organon\Delivery\Helpers\QRGeneratorHelper;
+use Organon\Delivery\Interfaces\PackageHolder;
 use Organon\Marketplace\Models\SellerOrder;
 use Webkul\Sales\Models\OrderItem;
 
@@ -23,7 +24,7 @@ class Package extends Model implements PackageContract
 
     public function transactions()
     {
-        return $this->hasMany(PackageTransaction::class);
+        return $this->hasMany(PackageTransaction::class)->orderBy('from', "DESC");
     }
 
     public function packageItems()
@@ -50,8 +51,18 @@ class Package extends Model implements PackageContract
         return self::query()->where('hash', $hash)->firstOrFail();
     }
 
-    public function getCurrentHolder()
+    public function lastTransaction()
     {
-        return $this->transactions()->whereNull('until')->first()->holder;
+        $this->transactions()->whereNull('until');
+    }
+
+    public function getCurrentHolder(): ?PackageHolder
+    {
+        return $this->transactions()->whereNull('until')->first()?->holder;
+    }
+
+    public function isCurrentHolder(PackageHolder $packageHolder)
+    {
+        return !is_null($this->getCurrentHolder()) && $this->getCurrentHolder()->getType() == $packageHolder->getType() && $this->getCurrentHolder()->id == $packageHolder->id;
     }
 }

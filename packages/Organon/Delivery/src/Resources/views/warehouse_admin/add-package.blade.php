@@ -86,7 +86,7 @@
         <script type="module">
             const showSuccessNotification = (hash) => {
                 Toastify({
-                    text: "Package #" + hash + " was added",
+                    text: "Package #" + hash.replace("#", '') + " was added",
                     duration: 3000,
                     gravity: "top", // `top` or `bottom`
                     position: "center", // `left`, `center` or `right`
