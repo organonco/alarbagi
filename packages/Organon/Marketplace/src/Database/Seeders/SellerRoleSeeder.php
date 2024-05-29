@@ -41,7 +41,6 @@ class SellerRoleSeeder extends Seeder
                 "delivery",
                 "delivery.warehouses",
                 "delivery.warehouse_admins",
-                "delivery.drivers",
             ]),
         ]);
 

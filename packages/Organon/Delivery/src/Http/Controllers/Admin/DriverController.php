@@ -23,7 +23,7 @@ class DriverController extends Controller
     public function index()
     {
         if (request()->ajax())
-            return app(DriversDataGrid::class, ['sellerId' => request()->seller_id])->toJson();
+            return app(DriversDataGrid::class)->toJson();
         return view('delivery::admin.drivers.index');
     }
 
@@ -42,11 +42,10 @@ class DriverController extends Controller
             'password' => 'required',
         ]);
 
-        $deliveryBoy = Driver::create(
+        $driver = Driver::create(
             array_merge(
                 $request->all(),
                 [
-                    'seller_id' => $this->getAuthenticatedAdmin()->getSellerId(),
                     'password' => Hash::make($request->input('password'))
                 ]
             )
@@ -57,45 +56,30 @@ class DriverController extends Controller
 
     public function edit($id)
     {
-        if ($this->getAuthenticatedAdmin()->isSeller())
-            $deliveryBoy = Driver::where('seller_id', $this->getAuthenticatedAdmin()->getSellerId())->findOrFail($id);
-        else
-            $deliveryBoy = Driver::findOrFail($id);
-
-        return view('delivery::admin.drivers.edit', compact('deliveryBoy'));
+        $driver = Driver::findOrFail($id);
+        return view('delivery::admin.drivers.edit', compact('driver'));
     }
 
     public function update($id, Request $request)
     {
-        if ($this->getAuthenticatedAdmin()->isSeller())
-            $deliveryBoy = Driver::where('seller_id', $this->getAuthenticatedAdmin()->getSellerId())->findOrFail($id);
-        else
-            $deliveryBoy = Driver::findOrFail($id);
-
+        $driver = Driver::findOrFail($id);
         $request->validate([
             'name' => 'required|max:255',
-            'email' => 'required|max:255|email|unique:drivers,email,' . $deliveryBoy->id,
+            'email' => 'required|max:255|email|unique:drivers,email,' . $driver->id,
             'phone' => 'required|max:255|regex:/^\+?[0-9]*$/',
         ]);
-        $deliveryBoy->update($request->all());
-
+        $driver->update($request->all());
         return redirect(route('admin.delivery.drivers.index'));
     }
 
 
     public function updatePassword($id, Request $request)
     {
-        if ($this->getAuthenticatedAdmin()->isSeller())
-            $deliveryBoy = Driver::where('seller_id', $this->getAuthenticatedAdmin()->getSellerId())->findOrFail($id);
-        else
-            $deliveryBoy = Driver::findOrFail($id);
-
+        $driver = Driver::findOrFail($id);
         $request->validate([
             'password' => "required|confirmed"
         ]);
-
-        $deliveryBoy->update(['password' => Hash::make($request->input('password'))]);
-
+        $driver->update(['password' => Hash::make($request->input('password'))]);
         return redirect(route('admin.delivery.drivers.index'));
     }
 }

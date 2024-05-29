@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('password');
-            $table->foreignId('seller_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

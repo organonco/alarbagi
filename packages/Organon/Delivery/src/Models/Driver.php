@@ -20,21 +20,6 @@ class Driver extends Authenticatable implements DriverContract, PackageHolder
         'seller_id'
     ];
 
-    public function seller()
-    {
-        return $this->belongsTo(Seller::class);
-    }
-
-    public function isForSeller()
-    {
-        return !is_null('sellerId');
-    }
-
-    public function getSelectedWarehousesIdsAttribute()
-    {
-        return $this->warehouses()->pluck('warehouses.id')->toArray();
-    }
-
     public function getName(): string
     {
         return $this->name;
