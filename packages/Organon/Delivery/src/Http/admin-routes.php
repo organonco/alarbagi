@@ -4,8 +4,10 @@ use Organon\Delivery\Http\Controllers\Admin\DriverController;
 use Organon\Delivery\Http\Controllers\Admin\PackageController;
 use Organon\Delivery\Http\Controllers\Admin\WarehouseAdminController;
 use Organon\Delivery\Http\Controllers\Admin\WarehouseController;
+use Organon\Delivery\Http\Controllers\Driver\AddPackageController as DriverAddPackageController;
 use Organon\Delivery\Http\Controllers\Driver\DashboardController as DriverDashboardController;
 use Organon\Delivery\Http\Controllers\Driver\SessionController as DriverSessionController;
+use Organon\Delivery\Http\Controllers\Driver\ViewPackageController as DriverViewPackageController;
 use Organon\Delivery\Http\Controllers\WarehouseAdmin\AddPackageController;
 use Organon\Delivery\Http\Controllers\WarehouseAdmin\DashboardController;
 use Organon\Delivery\Http\Controllers\WarehouseAdmin\SessionController;
@@ -62,14 +64,13 @@ Route::group([
     Route::post('login', [SessionController::class, 'store'])->name('session.store');
 
     Route::group(['prefix' => '', 'middleware' => ['admin:warehouse_admin']], function () {
+        Route::post('logout', [SessionController::class, 'destroy'])->name('session.destroy');
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::get('/add-package', [AddPackageController::class, 'create'])->name('add-package.create');
         Route::post('/add-package', [AddPackageController::class, 'store'])->name('add-package.store');
         Route::get('/package/{hash}', ViewPackageController::class)->name('view-package');
     });
 });
-
-Route::post('admin/warehouse/add-package', [AddPackageController::class, 'store'])->name('warehouse.add-package.store')->middleware(['web', 'admin:warehouse_admin']);
 
 Route::group([
     'prefix'        => 'admin/driver',
@@ -80,6 +81,11 @@ Route::group([
     Route::post('login', [DriverSessionController::class, 'store'])->name('session.store');
 
     Route::group(['prefix' => '', 'middleware' => ['admin:driver']], function () {
+        Route::post('logout', [DriverSessionController::class, 'destroy'])->name('session.destroy');
+
         Route::get('/', DriverDashboardController::class)->name('dashboard');
+        Route::get('/add-package', [DriverAddPackageController::class, 'create'])->name('add-package.create');
+        Route::post('/add-package', [DriverAddPackageController::class, 'store'])->name('add-package.store');
+        Route::get('/package/{hash}', DriverViewPackageController::class)->name('view-package');
     });
 });

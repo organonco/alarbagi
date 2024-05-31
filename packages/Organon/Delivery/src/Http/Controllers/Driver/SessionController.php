@@ -29,4 +29,10 @@ class SessionController extends Controller
 
         return redirect(route('driver.dashboard'));
     }
+
+    public function destroy()
+    {
+        auth()->guard('driver')->logout();
+        return redirect(route('driver.session.create'));
+    }
 }

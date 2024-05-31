@@ -1,4 +1,4 @@
-<x-delivery::warehouse-layout>
+<x-delivery::driver-layout>
     <div class="card">
         <div class="header flex flex-row justify-between">
             <div>
@@ -111,7 +111,7 @@
 
 
             const submit = (hash) => {
-                axios.post("{{ route('warehouse.add-package.store') }}", {
+                axios.post("{{ route('driver.add-package.store') }}", {
                     'hash': hash
                 }).then(() => {
                     showSuccessNotification(hash)
@@ -184,4 +184,4 @@
             );
         </script>
     @endpush
-</x-delivery::warehouse-layout>
+</x-delivery::driver-layout>

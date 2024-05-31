@@ -1,4 +1,4 @@
-<x-delivery::warehouse-layout>
+<x-delivery::driver-layout>
     <div class="card">
         <div class="header flex flex-row justify-between">
             <div>
@@ -35,4 +35,4 @@
         </div>
 
 
-</x-delivery::warehouse-layout>
+</x-delivery::driver-layout>

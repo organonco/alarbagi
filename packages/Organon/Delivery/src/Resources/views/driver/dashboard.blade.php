@@ -1,46 +1,30 @@
-<x-delivery::layout>
+<x-delivery::driver-layout>
     <div class="card">
-        <div class="header">
-            Test
+        <div class="header flex flex-row justify-between">
+            <div>
+                Packages
+            </div>
+            <a class="plus-icon" href="{{ route('driver.add-package.create') }}">
+                +
+            </a>
         </div>
         <hr />
+        <div class="description">
+            Packages you currently have
+        </div>
         <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est
+            <dl class="max-w-md divide-y  text-white divide-gray-700">
+                @foreach ($packages as $package)
+                    <div class="flex flex-col my-5">
+                        <a href="{{ route('driver.view-package', $package->hash) }}">
+                            <dt class="mt-5 text-lg font-semibold">#{{ $package->hash }}</dt>
+                            <dd class="text-sm text-gray-400">
+                                {{ date('Y-m-d | h:i a', strtotime($package->pivot->from)) }}
+                            </dd>
+                        </a>
+                    </div>
+                @endforeach
+            </dl>
         </div>
     </div>
-
-
-    <div class="card">
-        <div class="header">
-            Test
-        </div>
-        <hr />
-        <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est
-        </div>
-    </div>
-
-
-    <div class="card">
-        <div class="header">
-            Test
-        </div>
-        <hr />
-        <div class="content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est
-        </div>
-    </div>
-
-</x-delivery::layout>
+</x-delivery::driver-layout>

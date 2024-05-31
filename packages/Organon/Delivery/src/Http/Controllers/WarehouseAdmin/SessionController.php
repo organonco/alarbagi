@@ -29,4 +29,10 @@ class SessionController extends Controller
 
         return redirect(route('warehouse.dashboard'));
     }
+
+    public function destroy()
+    {
+        auth()->guard('warehouse_admin')->logout();
+        return redirect(route('warehouse.session.create'));
+    }
 }
