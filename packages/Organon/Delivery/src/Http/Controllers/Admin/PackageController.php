@@ -15,7 +15,6 @@ class PackageController extends Controller
     public function view($hash)
     {
         $package = Package::findByHash($hash, $this->getAuthenticatedAdmin()->getSellerId());
-        return $package;
-        return $hash;
+        return view('marketplace::admin.package.view', compact('package'));
     }
 }
