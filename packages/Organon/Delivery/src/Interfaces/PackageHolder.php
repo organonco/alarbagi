@@ -8,6 +8,7 @@ interface PackageHolder
 {
     public function packageTransactions(): MorphMany;
     public function currentPackageTransactions(): MorphMany;
+    public function isForSeller(): bool;
     public function getName(): string;
     public function getType(): string;
     public function getPhone(): string;

@@ -26,7 +26,7 @@ class AddPackageController extends Controller
             'hash' => 'required',
         ]);
         $hash = ltrim($request->hash, '#');
-        $sellerId = $this->getAuthenticatedWarehouseAdmin()->getSeller()->id;
+        $sellerId = $this->getAuthenticatedWarehouseAdmin()->getSellerId();
         $package = Package::findByHash($hash, $sellerId);
         if (!$package->isCurrentHolder($this->getAuthenticatedWarehouseAdmin()->warehouse))
             $this->packageRepository->addTransaction($package, $this->getAuthenticatedWarehouseAdmin()->warehouse);

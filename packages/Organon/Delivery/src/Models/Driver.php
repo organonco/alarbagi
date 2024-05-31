@@ -34,4 +34,9 @@ class Driver extends Authenticatable implements DriverContract, PackageHolder
     {
         return 'driver';
     }
+
+    public function isForSeller(): bool
+    {
+        return false;
+    }
 }

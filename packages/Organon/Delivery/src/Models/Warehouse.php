@@ -32,7 +32,7 @@ class Warehouse extends Model implements WarehouseContract, PackageHolder
         return $this->belongsTo(WarehouseAdmin::class);
     }
 
-    public function isForSeller()
+    public function isForSeller(): bool
     {
         return !is_null($this->seller_id);
     }

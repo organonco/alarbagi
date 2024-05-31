@@ -46,4 +46,9 @@ class WarehouseAdmin extends Authenticatable implements WarehouseAdminContract
     {
         return $this->seller;
     }
+
+    public function getSellerId(): ?int
+    {
+        return $this->seller_id;
+    }
 }

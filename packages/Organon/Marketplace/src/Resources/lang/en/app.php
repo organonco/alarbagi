@@ -76,6 +76,10 @@ return [
                 'label' => 'Ready for pickup',
                 'class' => 'processing'
             ],
+            'READY_FOR_SHIPPING' => [
+                'label' => 'Ready for shipping',
+                'class' => 'closed'
+            ],
         ]
     ],
     "seller" => [

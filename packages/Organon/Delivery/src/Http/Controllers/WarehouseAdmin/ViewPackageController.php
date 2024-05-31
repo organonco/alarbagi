@@ -13,7 +13,7 @@ class ViewPackageController extends Controller
 
     public function __invoke(Request $request, $id)
     {
-        $sellerId = $this->getAuthenticatedWarehouseAdmin()->getSeller()->id;
+        $sellerId = $this->getAuthenticatedWarehouseAdmin()->getSellerId();
         $package = Package::findByHash($request->hash, $sellerId);
         if (!$package->isCurrentHolder($this->getAuthenticatedWarehouseAdmin()->warehouse))
             abort(404);

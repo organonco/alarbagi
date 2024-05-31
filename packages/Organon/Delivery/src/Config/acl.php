@@ -21,6 +21,11 @@ return [
         'name' => 'Drivers',
         'route' => '',
         'sort' => 1
+    ],
+    [
+        'key' => 'delivery.trips',
+        'name' => 'Trips',
+        'route' => '',
+        'sort' => 1
     ]
-
 ];
