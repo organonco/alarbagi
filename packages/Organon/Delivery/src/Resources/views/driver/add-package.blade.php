@@ -85,25 +85,17 @@
     @push('scripts')
         <script type="module">
             const showSuccessNotification = (hash) => {
-                Toastify({
-                    text: "Package #" + hash.replace("#", '') + " was added",
-                    duration: 3000,
-                    gravity: "top", // `top` or `bottom`
-                    position: "center", // `left`, `center` or `right`
-                    style: {
-                        background: "#00b09b",
-                    },
-                }).showToast();
+                showNotification("Package #" + hash.replace("#", '') + " was added", "#00b09b")
             }
 
-            const showErrorNotification = () => {
+            const showNotification = (message, color) => {
                 Toastify({
-                    text: "Something went wrong",
+                    text: message,
                     duration: 3000,
-                    gravity: "top", // `top` or `bottom`
-                    position: "center", // `left`, `center` or `right`
+                    gravity: "top",
+                    position: "center",
                     style: {
-                        background: "red",
+                        background: color,
                     },
                 }).showToast();
             }
@@ -111,14 +103,20 @@
 
 
             const submit = (hash) => {
+                if (!hash) {
+                    showNotification("Package # is required", "red")
+                    return;
+                }
                 axios.post("{{ route('driver.add-package.store') }}", {
                     'hash': hash
                 }).then(() => {
                     showSuccessNotification(hash)
                     modal.hide()
                 }).catch((error) => {
-                    console.log(error)
-                    showErrorNotification()
+                    if (error.response.status == 404)
+                        showNotification("Package Not Found", "red")
+                    else
+                        showNotification("Something went wrong", "red")
                 })
             }
 

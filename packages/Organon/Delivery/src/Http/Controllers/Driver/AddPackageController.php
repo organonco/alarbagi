@@ -27,6 +27,7 @@ class AddPackageController extends Controller
         ]);
         $hash = ltrim($request->hash, '#');
         $package = Package::findByHash($hash, null);
-        $this->packageRepository->addTransaction($package, $this->getAuthenticatedDriver());
+        if (!$package->isCurrentHolder($this->getAuthenticatedDriver()))
+            $this->packageRepository->addTransaction($package, $this->getAuthenticatedDriver());
     }
 }
