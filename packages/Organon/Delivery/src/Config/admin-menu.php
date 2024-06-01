@@ -28,7 +28,7 @@ return [
     ], [
         'key' => 'delivery.trips',
         'name' => 'Trips',
-        'route' => 'admin.delivery.drivers.index',
+        'route' => 'admin.delivery.trips.index',
         'sort' => 2,
         'icon' => 'icon-sales',
     ],

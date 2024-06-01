@@ -2,6 +2,7 @@
 
 use Organon\Delivery\Http\Controllers\Admin\DriverController;
 use Organon\Delivery\Http\Controllers\Admin\PackageController;
+use Organon\Delivery\Http\Controllers\Admin\TripController;
 use Organon\Delivery\Http\Controllers\Admin\WarehouseAdminController;
 use Organon\Delivery\Http\Controllers\Admin\WarehouseController;
 use Organon\Delivery\Http\Controllers\Driver\AddPackageController as DriverAddPackageController;
@@ -50,6 +51,12 @@ Route::group([
 
         Route::group(['prefix' => 'packages'], function () {
             Route::get('/{hash}', [PackageController::class, 'view'])->name('packages.view');
+        });
+
+        Route::group(['prefix' => 'trips', 'as' => 'trips.'], function () {
+            Route::get('', [TripController::class, 'index'])->name('index');
+            Route::get('create', [TripController::class, 'create'])->name('create');
+            Route::post('create', [TripController::class, 'store'])->name('store');
         });
     });
 });

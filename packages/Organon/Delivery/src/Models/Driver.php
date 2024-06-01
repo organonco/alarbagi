@@ -39,4 +39,8 @@ class Driver extends Authenticatable implements DriverContract, PackageHolder
     {
         return false;
     }
+    public function trips()
+    {
+        return $this->hasMany(Trip::class);
+    }
 }
