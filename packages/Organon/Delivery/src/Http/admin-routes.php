@@ -55,7 +55,8 @@ Route::group([
 
         Route::group(['prefix' => 'trips', 'as' => 'trips.'], function () {
             Route::get('', [TripController::class, 'index'])->name('index');
-            Route::get('create', [TripController::class, 'create'])->name('create');
+            Route::get('create-pickup', [TripController::class, 'createPickup'])->name('create.pickup');
+            Route::get('create-shipping', [TripController::class, 'createShipping'])->name('create.shipping');
             Route::post('create', [TripController::class, 'store'])->name('store');
         });
     });

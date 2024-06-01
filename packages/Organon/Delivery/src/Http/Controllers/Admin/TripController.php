@@ -4,6 +4,9 @@ namespace Organon\Delivery\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Organon\Delivery\Models\Driver;
+use Organon\Delivery\Models\Warehouse;
+use Organon\Marketplace\Models\SellerOrder;
 use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
 
 
@@ -17,13 +20,26 @@ class TripController extends Controller
 
     public function index(Request $request)
     {
-        return view('delivery::admin.trips.index');
+        $availableDrivers = Driver::query()->isAvailable()->get();
+        $pendingWarehouses = Warehouse::query()->isPending()->get();
+        $shippableOrders = SellerOrder::query()->isShippable()->get();
+        return view('delivery::admin.trips.index', compact('availableDrivers', 'pendingWarehouses', 'shippableOrders'));
     }
 
-    public function create(Request $request)
+    public function createPickup(Request $request)
     {
-        return view('delivery::admin.trips.create');
+        $drivers = Driver::pluck('name', 'id');
+        $sellerWarehouses = Warehouse::whereNotNull('seller_id')->pluck('name', 'id');
+        $adminWarehouses = Warehouse::whereNull('seller_id')->pluck('name', 'id');
+        return view('delivery::admin.trips.create-pickup', compact('drivers', 'sellerWarehouses', 'adminWarehouses'));
     }
+
+    public function createShipping(Request $request)
+    {
+        $drivers = Driver::pluck('name', 'id');
+        return view('delivery::admin.trips.create-shipping', compact('drivers'));
+    }
+
     public function store(Request $request)
     {
     }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Organon\Delivery\Contracts\Warehouse as WarehouseContract;
 use Organon\Delivery\Interfaces\PackageHolder;
 use Organon\Delivery\Traits\HoldsPackages;
+use Organon\Marketplace\Enums\SellerOrderStatusEnum;
 use Organon\Marketplace\Models\Seller;
 
 class Warehouse extends Model implements WarehouseContract, PackageHolder
@@ -54,5 +55,17 @@ class Warehouse extends Model implements WarehouseContract, PackageHolder
     public function getType(): string
     {
         return 'warehouse';
+    }
+
+    public function scopeIsPending($query)
+    {
+        return $this->query()->whereHas("packages", function ($query) {
+            return $query->isPending();
+        }, '>', 0);
+    }
+
+    public function getPendingPackagesCountAttribute()
+    {
+        return $this->packages()->isPending()->count();
     }
 }
