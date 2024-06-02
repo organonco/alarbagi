@@ -112,4 +112,14 @@ abstract class Address extends Model implements AddressContract
     {
         return $this->belongsTo(Customer::class);
     }
+
+    public function getFullAddressAttribute()
+    {
+        return  $this->address1 . ', ' .
+            ($this->address2 ? $this->address2 . ', ' : '') .
+            $this->city . ', ' .
+            $this->state . ',' .
+            $this->country . ',' .
+            $this->postcode;
+    }
 }

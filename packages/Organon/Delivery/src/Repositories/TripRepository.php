@@ -2,8 +2,9 @@
 
 namespace Organon\Delivery\Repositories;
 
-use Organon\Delivery\Contracts\Warehouse;
 use Organon\Delivery\Models\Trip;
+use Organon\Delivery\Models\Warehouse;
+use Organon\Marketplace\Enums\SellerOrderStatusEnum;
 use Organon\Marketplace\Models\SellerOrder;
 use Webkul\Core\Eloquent\Repository;
 
@@ -26,13 +27,13 @@ class TripRepository extends Repository
             'direction' => 0,
         ]);
         $trip->parts()->create([
-            'direction' => 0,
+            'direction' => 1,
             'part_id' => $toWarehouse,
             'part_type' => Warehouse::class
         ]);
         foreach ($fromWarehouses as $warehouse)
             $trip->parts()->create([
-                'direction' => 1,
+                'direction' => 0,
                 'part_id' => $warehouse,
                 'part_type' => Warehouse::class
             ]);
@@ -46,11 +47,13 @@ class TripRepository extends Repository
             'direction' => 1,
         ]);
 
-        foreach ($sellerOrders as $sellerOrder)
+        foreach ($sellerOrders as $sellerOrder) {
+            SellerOrder::query()->find($sellerOrder)->setStatus(SellerOrderStatusEnum::SHIPPING);
             $trip->parts()->create([
                 'direction' => 1,
                 'part_id' => $sellerOrder,
                 'part_type' => SellerOrder::class
             ]);
+        }
     }
 }

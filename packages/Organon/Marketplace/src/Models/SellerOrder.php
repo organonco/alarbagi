@@ -103,4 +103,9 @@ class SellerOrder extends Model implements SellerOrderContract
     {
         return $query->where('status', SellerOrderStatusEnum::READY_FOR_SHIPPING->value);
     }
+
+    public function getNameAttribute()
+    {
+        return $this->order->customer->name . ' - ' . $this->order->shippingAddress->full_address;
+    }
 }

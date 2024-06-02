@@ -48,6 +48,9 @@
                         <x-admin::form.control-group.label class="required">
                             {{ __('From Warehouses') }}
                         </x-admin::form.control-group.label>
+                        @if ($sellerWarehouses->count() == 0)
+                            No seller warehouses with packages ready for pickup
+                        @endif
                         @foreach ($sellerWarehouses as $index => $sellerWarehouses2)
                             <x-admin::form.control-group.label>
                                 {{ __($index) }}
@@ -69,7 +72,7 @@
                                 @endforeach
                             </div>
                         @endforeach
-                        <x-admin::form.control-group.error control-name="from_warehouses[]">
+                        <x-admin::form.control-group.error control-name="from_warehouses">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
 

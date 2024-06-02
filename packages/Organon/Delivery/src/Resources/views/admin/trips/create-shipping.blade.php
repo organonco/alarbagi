@@ -31,7 +31,7 @@
 
                         {{-- Select Seller Orders --}}
                         <x-admin::form.control-group.control type="select" name="driver_id"
-                            placeholder="{{ __('Driver') }}" label="{{ __('Driver') }}">
+                            placeholder="{{ __('Driver') }}" label="{{ __('Driver') }}" rules="required">
                             @foreach ($drivers as $id => $driver)
                                 <option value="{{ $id }}">
                                     {{ $driver }}
@@ -46,22 +46,27 @@
                     {{--  --}}
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label class="required">
-                            {{ __('From Warehouses') }}
+                            {{ __('Orders To Ship') }}
                         </x-admin::form.control-group.label>
+                        @if ($sellerOrders->count() == 0)
+                            No orders ready for shipping
+                        @endif
                         @foreach ($sellerOrders as $sellerOrder)
                             <div class="flex gap-[10px] flex-wrap">
-                                <label class="flex gap-[10px] w-max items-center p-[6px] cursor-pointer select-none">
+                                <label class="flex gap-[10px] w-max items-center p-[6px] cursor-pointer select-none"
+                                    for="{{ $sellerOrder->id }}">
                                     <x-admin::form.control-group.control type="checkbox" value="{{ $sellerOrder->id }}"
-                                        name="seller_orders[]" rules="required" class="hidden peer">
+                                        name="seller_orders[]" rules="required" class="hidden peer"
+                                        id="{{ $sellerOrder->id }}" for="{{ $sellerOrder->id }}">
                                     </x-admin::form.control-group.control>
                                     <div
                                         class="text-[14px] text-gray-600 dark:text-gray-300 font-semibold cursor-pointer">
-                                        {{ $sellerOrder->id }}
+                                        {{ $sellerOrder->name . ' - Package #' . $sellerOrder->package->hash }}
                                     </div>
                                 </label>
                             </div>
                         @endforeach
-                        <x-admin::form.control-group.error control-name="seller_orders[]">
+                        <x-admin::form.control-group.error control-name="seller_orders">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
                     {{--  --}}

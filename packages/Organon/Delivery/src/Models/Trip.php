@@ -19,11 +19,11 @@ class Trip extends Model implements TripContract
     }
     public function isPickup()
     {
-        return $this->direction;
+        return $this->direction == "0";
     }
     public function isDropOff()
     {
-        return !$this->direction;
+        return !$this->isPickup();
     }
     public static function getStatusEnum(): string
     {
@@ -35,10 +35,15 @@ class Trip extends Model implements TripContract
     }
     public function parts()
     {
-        return $this->morphMany(TripPart::class, 'part');
+        return $this->hasMany(TripPart::class);
     }
     public function scopeInProgress($query)
     {
         return $query->where('status', TripStatusEnum::IN_PROGRESS->value);
+    }
+
+    public function getType()
+    {
+        return $this->isPickup() ? "Pick Up" : "Shipping";
     }
 }

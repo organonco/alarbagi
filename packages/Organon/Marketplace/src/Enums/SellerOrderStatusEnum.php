@@ -11,5 +11,6 @@ enum SellerOrderStatusEnum: string
     case READY_FOR_PICKUP = 'ready-for-pickup';
     case PICKED_UP = 'picked-up';
     case READY_FOR_SHIPPING = 'ready-for-shipping';
+    case SHIPPING = 'shipping';
     case SHIPPED = 'shipped';
 }
