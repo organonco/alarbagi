@@ -68,4 +68,15 @@ class Warehouse extends Model implements WarehouseContract, PackageHolder
     {
         return $this->packages()->isPending()->count();
     }
+
+    public function getWarehouseDetailsHTML()
+    {
+        return $this->warehouseAdmin->name .
+            " - " .
+            $this->name .
+            "<br/>" .
+            $this->emirate . ' - ' . $this->address .
+            "<br/>" .
+            $this->warehouseAdmin->phone;
+    }
 }

@@ -2,10 +2,12 @@
 
 namespace Organon\Delivery\Repositories;
 
+use Organon\Delivery\Enums\TripStatusEnum;
 use Organon\Delivery\Models\Trip;
 use Organon\Delivery\Models\Warehouse;
 use Organon\Marketplace\Enums\SellerOrderStatusEnum;
 use Organon\Marketplace\Models\SellerOrder;
+use Organon\Marketplace\Notifications\Repositories\SellerOrderRepository;
 use Webkul\Core\Eloquent\Repository;
 
 class TripRepository extends Repository
@@ -55,5 +57,22 @@ class TripRepository extends Repository
                 'part_type' => SellerOrder::class
             ]);
         }
+    }
+
+
+    public function start(Trip $trip)
+    {
+        $trip->setStatus(TripStatusEnum::IN_PROGRESS);
+    }
+
+
+    public function finish(Trip $trip)
+    {
+        $repo = app(SellerOrderRepository::class);
+
+        $trip->setStatus(TripStatusEnum::DONE);
+        if (!$trip->isPickup())
+            foreach ($trip->parts as $part)
+                $repo->shipped($part->part);
     }
 }

@@ -20,7 +20,7 @@
             <dl class="max-w-md divide-y  text-white divide-gray-700">
                 @foreach ($trips as $trip)
                     <div class="flex flex-col my-5">
-                        <a>
+                        <a href="{{ route('driver.trip.view', $trip->id) }}">
                             <dt class="mt-5 text-lg font-semibold">{{ $trip->isPickup() ? 'Pick Up' : 'Shipping' }}</dt>
                             <dd class="text-sm text-gray-400">
                                 @if ($trip->isPickup())

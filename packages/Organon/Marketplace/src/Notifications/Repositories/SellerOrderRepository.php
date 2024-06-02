@@ -66,4 +66,17 @@ class SellerOrderRepository extends Repository
     {
         $sellerOrder->setStatus(SellerOrderStatusEnum::READY_FOR_PICKUP);
     }
+
+
+    public function shipped(SellerOrder $sellerOrder)
+    {
+        $sellerOrder->setStatus(SellerOrderStatusEnum::SHIPPED);
+        $count = 0;
+        $allCount = $sellerOrder->order->sellerOrders()->count();
+        foreach ($sellerOrder->order->sellerOrders as $sellerOrder)
+            if ($sellerOrder->status == SellerOrderStatusEnum::CANCELLED_BY_SELLER || $sellerOrder->status == SellerOrderStatusEnum::SHIPPED)
+                $count++;
+        if ($count == $allCount)
+            $sellerOrder->order->update(['status' => Order::STATUS_COMPLETED]);
+    }
 }

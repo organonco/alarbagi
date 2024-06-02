@@ -8,6 +8,7 @@ use Organon\Delivery\Http\Controllers\Admin\WarehouseController;
 use Organon\Delivery\Http\Controllers\Driver\AddPackageController as DriverAddPackageController;
 use Organon\Delivery\Http\Controllers\Driver\DashboardController as DriverDashboardController;
 use Organon\Delivery\Http\Controllers\Driver\SessionController as DriverSessionController;
+use Organon\Delivery\Http\Controllers\Driver\TripController as DriverTripController;
 use Organon\Delivery\Http\Controllers\Driver\ViewPackageController as DriverViewPackageController;
 use Organon\Delivery\Http\Controllers\WarehouseAdmin\AddPackageController;
 use Organon\Delivery\Http\Controllers\WarehouseAdmin\DashboardController;
@@ -95,5 +96,9 @@ Route::group([
         Route::get('/add-package', [DriverAddPackageController::class, 'create'])->name('add-package.create');
         Route::post('/add-package', [DriverAddPackageController::class, 'store'])->name('add-package.store');
         Route::get('/package/{hash}', DriverViewPackageController::class)->name('view-package');
+
+        Route::get('/trip/{id}', [DriverTripController::class, 'view'])->name('trip.view');
+        Route::post('/trip/{id}/start', [DriverTripController::class, 'start'])->name('trip.start');
+        Route::post('/trip/{id}/finish', [DriverTripController::class, 'finish'])->name('trip.finish');
     });
 });

@@ -64,7 +64,7 @@ return [
                 'label' => 'Picked Up',
                 'class' => 'closed'
             ],
-            'shipped' => [
+            'SHIPPED' => [
                 'label' => 'Shipped',
                 'class' => 'info'
             ],
