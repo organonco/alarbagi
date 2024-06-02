@@ -33,4 +33,12 @@ class Trip extends Model implements TripContract
     {
         return TripStatusEnum::PENDING;
     }
+    public function parts()
+    {
+        return $this->morphMany(TripPart::class, 'part');
+    }
+    public function scopeInProgress($query)
+    {
+        return $query->where('status', TripStatusEnum::IN_PROGRESS->value);
+    }
 }

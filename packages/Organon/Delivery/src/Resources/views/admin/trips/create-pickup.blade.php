@@ -31,7 +31,7 @@
                         </x-admin::form.control-group.label>
 
                         <x-admin::form.control-group.control type="select" name="driver_id"
-                            placeholder="{{ __('Driver') }}" label="{{ __('Driver') }}">
+                            placeholder="{{ __('Driver') }}" label="{{ __('Driver') }}" rules="required">
                             @foreach ($drivers as $id => $name)
                                 <option value="{{ $id }}">
                                     {{ $name }}
@@ -43,7 +43,37 @@
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
 
-                    {{-- Select Seller Warehouses To Pickup from --}}
+                    {{--  --}}
+                    <x-admin::form.control-group class="mb-[10px]">
+                        <x-admin::form.control-group.label class="required">
+                            {{ __('From Warehouses') }}
+                        </x-admin::form.control-group.label>
+                        @foreach ($sellerWarehouses as $index => $sellerWarehouses2)
+                            <x-admin::form.control-group.label>
+                                {{ __($index) }}
+                            </x-admin::form.control-group.label>
+                            <div class="flex gap-[10px] flex-wrap">
+                                @foreach ($sellerWarehouses2 as $warehouse)
+                                    <label class="flex gap-[10px] w-max items-center p-[6px] cursor-pointer select-none"
+                                        for="{{ $warehouse->name ?? $warehouse->admin_name }}">
+                                        <x-admin::form.control-group.control type="checkbox"
+                                            id="{{ $warehouse->name }}" for="{{ $warehouse->name }}"
+                                            value="{{ $warehouse->id }}" name="from_warehouses[]" rules="required"
+                                            class="hidden peer">
+                                        </x-admin::form.control-group.control>
+                                        <div
+                                            class="text-[14px] text-gray-600 dark:text-gray-300 font-semibold cursor-pointer">
+                                            {{ $warehouse->name }}
+                                        </div>
+                                    </label>
+                                @endforeach
+                            </div>
+                        @endforeach
+                        <x-admin::form.control-group.error control-name="from_warehouses[]">
+                        </x-admin::form.control-group.error>
+                    </x-admin::form.control-group>
+
+                    {{--  --}}
 
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label class="required">
@@ -51,7 +81,7 @@
                         </x-admin::form.control-group.label>
 
                         <x-admin::form.control-group.control type="select" name="to_warehouse"
-                            placeholder="{{ __('To Warehouse') }}" label="{{ __('To Warehouse') }}">
+                            placeholder="{{ __('To Warehouse') }}" label="{{ __('To Warehouse') }}" rules="required">
                             @foreach ($adminWarehouses as $id => $name)
                                 <option value="{{ $id }}">
                                     {{ $name }}
@@ -63,10 +93,10 @@
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
 
-
                 </div>
             </div>
         </div>
+
     </x-admin::form>
 
 </x-admin::layouts>

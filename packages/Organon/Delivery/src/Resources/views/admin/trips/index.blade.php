@@ -90,8 +90,5 @@
             </div>
         </div>
     </div>
-    {{-- Pending Drivers --}}
-    {{-- Pending Warehouses --}}
-    {{-- Pending Orders --}}
 
 </x-admin::layouts>
