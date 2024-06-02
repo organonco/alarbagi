@@ -61,7 +61,7 @@
         <div class="flex gap-[5px]">
             {!! view_render_event('sales.order.page_action.before', ['order' => $order]) !!}
 
-            @if ($order->canCancel() && bouncer()->hasPermission('sales.orders.cancel'))
+            {{-- @if ($order->canCancel() && bouncer()->hasPermission('sales.orders.cancel'))
                 <form method="POST" ref="cancelOrderForm"
                     action="{{ route('admin.sales.orders.cancel', $order->id) }}">
                     @csrf
@@ -80,7 +80,7 @@
                         @lang('admin::app.sales.orders.view.cancel')
                     </a>
                 </div>
-            @endif
+            @endif --}}
 
             @if ($order->canInvoice() && $order->payment->method !== 'paypal_standard')
                 @include('admin::sales.invoices.create')
