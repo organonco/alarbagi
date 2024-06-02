@@ -5,12 +5,12 @@
     "src": "node_modules/qr-scanner/qr-scanner-worker.min.js"
   },
   "resources/css/app.css": {
-    "file": "assets/app-55f8fec6.css",
+    "file": "assets/app-ffa20873.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
   "resources/css/style.css": {
-    "file": "assets/style-82c3865a.css",
+    "file": "assets/style-13f7c6ad.css",
     "isEntry": true,
     "src": "resources/css/style.css"
   },

@@ -13,6 +13,7 @@ class DashboardController extends Controller
     public function __invoke(Request $request)
     {
         $packages = $this->getAuthenticatedWarehouseAdmin()->getPackages();
-        return view('delivery::warehouse_admin.dashboard')->with(compact('packages'));
+        $trips = $this->getAuthenticatedWarehouseAdmin()->warehouse->trips()->get();
+        return view('delivery::warehouse_admin.dashboard')->with(compact('packages', 'trips'));
     }
 }

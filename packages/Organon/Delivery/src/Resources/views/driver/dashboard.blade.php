@@ -1,5 +1,5 @@
 <x-delivery::driver-layout>
-
+    <div class="text-green-300 text-yellow-300 text-blue-300"></div>
     <div class="card">
         <div class="header flex flex-row justify-between">
             <div>

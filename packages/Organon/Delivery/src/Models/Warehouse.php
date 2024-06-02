@@ -79,4 +79,9 @@ class Warehouse extends Model implements WarehouseContract, PackageHolder
             "<br/>" .
             $this->warehouseAdmin->phone;
     }
+
+    public function trips()
+    {
+        return $this->morphToMany(Trip::class, 'part', 'trip_parts');
+    }
 }
