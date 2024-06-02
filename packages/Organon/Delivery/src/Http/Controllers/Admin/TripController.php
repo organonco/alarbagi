@@ -41,12 +41,16 @@ class TripController extends Controller
     public function createShipping(Request $request)
     {
         $drivers = Driver::pluck('name', 'id');
-        return view('delivery::admin.trips.create-shipping', compact('drivers'));
+        $sellerOrders = SellerOrder::query()->isShippable()->get();
+        return view('delivery::admin.trips.create-shipping', compact('drivers', 'sellerOrders'));
     }
 
     public function store(Request $request)
     {
         if ($request->direction == "0")
             $this->tripRepository->createPickupTrip($request->from_warehouses, $request->to_warehouse, $request->driver_id);
+        elseif ($request->direction == "1")
+            $this->tripRepository->createShippingTrip($request->seller_orders, $request->driver_id);
+        return redirect(route('admin.delivery.trips.index'));
     }
 }

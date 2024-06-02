@@ -55,7 +55,7 @@
                             <div class="flex gap-[10px] flex-wrap">
                                 @foreach ($sellerWarehouses2 as $warehouse)
                                     <label class="flex gap-[10px] w-max items-center p-[6px] cursor-pointer select-none"
-                                        for="{{ $warehouse->name ?? $warehouse->admin_name }}">
+                                        for="{{ $warehouse->name }}">
                                         <x-admin::form.control-group.control type="checkbox"
                                             id="{{ $warehouse->name }}" for="{{ $warehouse->name }}"
                                             value="{{ $warehouse->id }}" name="from_warehouses[]" rules="required"

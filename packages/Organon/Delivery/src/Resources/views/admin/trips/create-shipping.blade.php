@@ -43,6 +43,28 @@
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
 
+                    {{--  --}}
+                    <x-admin::form.control-group class="mb-[10px]">
+                        <x-admin::form.control-group.label class="required">
+                            {{ __('From Warehouses') }}
+                        </x-admin::form.control-group.label>
+                        @foreach ($sellerOrders as $sellerOrder)
+                            <div class="flex gap-[10px] flex-wrap">
+                                <label class="flex gap-[10px] w-max items-center p-[6px] cursor-pointer select-none">
+                                    <x-admin::form.control-group.control type="checkbox" value="{{ $sellerOrder->id }}"
+                                        name="seller_orders[]" rules="required" class="hidden peer">
+                                    </x-admin::form.control-group.control>
+                                    <div
+                                        class="text-[14px] text-gray-600 dark:text-gray-300 font-semibold cursor-pointer">
+                                        {{ $sellerOrder->id }}
+                                    </div>
+                                </label>
+                            </div>
+                        @endforeach
+                        <x-admin::form.control-group.error control-name="seller_orders[]">
+                        </x-admin::form.control-group.error>
+                    </x-admin::form.control-group>
+                    {{--  --}}
                 </div>
             </div>
         </div>

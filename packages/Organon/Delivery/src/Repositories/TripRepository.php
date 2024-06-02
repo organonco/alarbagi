@@ -4,6 +4,7 @@ namespace Organon\Delivery\Repositories;
 
 use Organon\Delivery\Contracts\Warehouse;
 use Organon\Delivery\Models\Trip;
+use Organon\Marketplace\Models\SellerOrder;
 use Webkul\Core\Eloquent\Repository;
 
 class TripRepository extends Repository
@@ -34,6 +35,22 @@ class TripRepository extends Repository
                 'direction' => 1,
                 'part_id' => $warehouse,
                 'part_type' => Warehouse::class
+            ]);
+    }
+
+
+    public function createShippingTrip($sellerOrders, $driverId)
+    {
+        $trip = $this->create([
+            'driver_id' => $driverId,
+            'direction' => 1,
+        ]);
+
+        foreach ($sellerOrders as $sellerOrder)
+            $trip->parts()->create([
+                'direction' => 1,
+                'part_id' => $sellerOrder,
+                'part_type' => SellerOrder::class
             ]);
     }
 }
