@@ -101,6 +101,6 @@ class SellerOrder extends Model implements SellerOrderContract
 
     public function scopeIsShippable($query)
     {
-        return $query->where('status', SellerOrderStatusEnum::READY_FOR_PICKUP->value);
+        return $query->where('status', SellerOrderStatusEnum::READY_FOR_SHIPPING->value);
     }
 }
