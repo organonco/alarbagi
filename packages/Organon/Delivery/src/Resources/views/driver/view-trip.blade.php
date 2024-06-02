@@ -110,10 +110,12 @@
                     @foreach ($trip->parts as $part)
                         <div class="my-8">
                             Package #{{ $part->part->package->hash }}
-                            <br />
-                            <span class="underline">Warehouse:</span>
-                            <br />
-                            {!! $part->part->package->getCurrentHolder()->getWarehouseDetailsHTML() !!}
+                            @if ($part->part->package->getCurrentHolder()->getType() == 'warehouse')
+                                <br />
+                                <span class="underline">Warehouse:</span>
+                                <br />
+                                {!! $part->part->package->holders()->latest()->first()->getWarehouseDetailsHTML() !!}
+                            @endif
                             <br />
                             <span class="underline">Customer:</span>
                             <br />

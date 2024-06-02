@@ -28,10 +28,10 @@
                 </path>
             </svg>
         </button>
-        @if (true)
+        @if (!Route::is('driver.dashboard'))
             <a href="{{ route('driver.dashboard') }}"
-                class="inline-flex items-center p-2 mt-2 me-4 text-sm rounded-lg sm:hidden focus:outline-none focus:ring-2 text-gray-400 hover:bg-gray-700 focus:ring-gray-600">
-                <span>Back</span>
+                class="inline-flex items-center p-2 mt-2 me-5 text-sm rounded-lg sm:hidden focus:outline-none focus:ring-2 text-gray-400 hover:bg-gray-700 focus:ring-gray-600 underline">
+                <span>Back to Dashboard</span>
             </a>
         @endif
     </div>

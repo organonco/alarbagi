@@ -54,7 +54,7 @@ class Package extends Model implements PackageContract
 
     public function lastTransaction()
     {
-        $this->transactions()->whereNull('until');
+        return $this->transactions()->whereNull('until');
     }
 
     public function getCurrentHolder(): ?PackageHolder
