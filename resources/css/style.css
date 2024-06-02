@@ -21,3 +21,11 @@
 .plus-icon{
     @apply  border-2 rounded-3xl px-2
 }
+
+.card .nav-tabs a{
+    @apply py-2 px-4 rounded-full
+}
+
+.card .nav-tabs .selected{
+    @apply bg-slate-700 
+}
