@@ -42,4 +42,9 @@ class PackageTransaction extends Model implements PackageTransactionContract
             'type' => $holder->getType()
         ];
     }
+
+    public function scopeIsWarehouse($query)
+    {
+        return $query->where("holder_type", Warehouse::class);
+    }
 }

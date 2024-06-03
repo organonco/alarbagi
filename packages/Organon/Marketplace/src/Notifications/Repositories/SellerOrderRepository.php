@@ -50,6 +50,19 @@ class SellerOrderRepository extends Repository
         $sellerOrder->setStatus(SellerOrderStatusEnum::CANCELLED_BY_SELLER);
         $cancelledCount = 0;
         $allCount = $sellerOrder->order->sellerOrders()->count();
+
+
+
+        $count = 0;
+        $allCount = $sellerOrder->order->sellerOrders()->count();
+        foreach ($sellerOrder->order->sellerOrders as $sellerOrder)
+            if ($sellerOrder->status == SellerOrderStatusEnum::CANCELLED_BY_SELLER || $sellerOrder->status == SellerOrderStatusEnum::SHIPPED)
+                $count++;
+        if ($count == $allCount)
+            $sellerOrder->order->update(['status' => Order::STATUS_COMPLETED]);
+
+
+
         foreach ($sellerOrder->order->sellerOrders as $sellerOrder)
             if ($sellerOrder->status == SellerOrderStatusEnum::CANCELLED_BY_SELLER)
                 $cancelledCount++;
@@ -71,6 +84,8 @@ class SellerOrderRepository extends Repository
     public function shipped(SellerOrder $sellerOrder)
     {
         $sellerOrder->setStatus(SellerOrderStatusEnum::SHIPPED);
+        $sellerOrder->package->lastTransaction()->update(['until' => now()]);
+
         $count = 0;
         $allCount = $sellerOrder->order->sellerOrders()->count();
         foreach ($sellerOrder->order->sellerOrders as $sellerOrder)

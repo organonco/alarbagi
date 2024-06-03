@@ -168,6 +168,7 @@ class RolesTableSeeder extends Seeder
                 "delivery.warehouses",
                 "delivery.warehouse_admins",
                 "delivery.drivers",
+                "delivery.trips",
             ])
         ]);
     }

@@ -13,12 +13,18 @@
 
         <div class="content">
             <dl class="max-w-md divide-y   divide-gray-700">
-                @foreach ($trips as $trip)
+                @if ($trips->count() > 0)
+                    @foreach ($trips as $trip)
+                        <div class="flex flex-col my-4">
+                            <dt class="text-lg font-semibold mt-4">{{ $trip->driver->name }}</dt>
+                            <div class="description">{!! $trip->getStatusString() !!}</div>
+                        </div>
+                    @endforeach
+                @else
                     <div class="flex flex-col my-4">
-                        <dt class="text-lg font-semibold mt-4">{{ $trip->driver->name }}</dt>
-                        <div class="description">{!! $trip->getStatusString() !!}</div>
+                        <dt class="text-lg font-semibold mt-4">None</dt>
                     </div>
-                @endforeach
+                @endif
             </dl>
         </div>
     </div>
@@ -39,16 +45,20 @@
         </div>
         <div class="content">
             <dl class="max-w-md divide-y  text-white divide-gray-700">
-                @foreach ($packages as $package)
-                    <div class="flex flex-col my-5">
-                        <a href="{{ route('warehouse.view-package', $package->hash) }}">
-                            <dt class="mt-5 text-lg font-semibold">#{{ $package->hash }}</dt>
-                            <dd class="text-sm text-gray-400">
-                                {{ date('Y-m-d | h:i a', strtotime($package->pivot->from)) }}
-                            </dd>
-                        </a>
-                    </div>
-                @endforeach
+                @if ($packages->count() > 0)
+                    @foreach ($packages as $package)
+                        <div class="flex flex-col my-5">
+                            <a href="{{ route('warehouse.view-package', $package->hash) }}">
+                                <dt class="mt-5 text-lg font-semibold">#{{ $package->hash }}</dt>
+                                <dd class="text-sm text-gray-400">
+                                    {{ date('Y-m-d | h:i a', strtotime($package->pivot->from)) }}
+                                </dd>
+                            </a>
+                        </div>
+                    @endforeach
+                @else
+                    <dt class="mt-5 text-lg font-semibold">None</dt>
+                @endif
             </dl>
         </div>
     </div>

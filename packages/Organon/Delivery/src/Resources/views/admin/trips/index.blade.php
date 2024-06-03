@@ -82,7 +82,7 @@
                     @foreach ($shippableOrders as $group)
                         <div class="flex content-between">
                             <div class="">
-                                {{ $group[0]->name . ' (' . $group->count() . ' Orders)' }}
+                                {{ $group[0]->name . ' (' . $group->count() . ' Packages)' }}
                             </div>
                         </div>
                     @endforeach
