@@ -28,8 +28,7 @@ class Product extends AbstractReporting
         protected WishlistRepository $wishlistRepository,
         protected ProductReviewRepository $reviewRepository,
         protected OrderItemRepository $orderItemRepository,
-    )
-    {
+    ) {
         parent::__construct();
     }
 
@@ -193,16 +192,16 @@ class Product extends AbstractReporting
     {
         $products = $this->orderItemRepository
             ->with(['product', 'product.images'])
-            ->addSelect('*', DB::raw('SUM(base_total_invoiced - base_discount_refunded) as revenue'))
+            ->addSelect('*', DB::raw('SUM(base_total - base_discount_refunded) as revenue'))
             ->whereNull('parent_id')
             ->whereBetween('order_items.created_at', [$this->startDate, $this->endDate])
             ->groupBy('product_id')
             ->orderBy('revenue', 'DESC')
             ->limit($limit)
             ->get();
-        
 
-        $products->map(function($product) {
+
+        $products->map(function ($product) {
             $product->formatted_revenue = core()->formatBasePrice($product->revenue);
 
             $product->formatted_price = core()->formatBasePrice($product->price);

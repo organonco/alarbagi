@@ -167,7 +167,7 @@ class Sale extends AbstractReporting
     {
         return $this->orderRepository
             ->whereBetween('created_at', [$startDate, $endDate])
-            ->sum(DB::raw('base_grand_total_invoiced - base_grand_total_refunded'));
+            ->sum(DB::raw('base_grand_total - base_grand_total_refunded'));
     }
 
     /**
@@ -239,7 +239,7 @@ class Sale extends AbstractReporting
     {
         return $this->orderRepository
             ->whereBetween('created_at', [$startDate, $endDate])
-            ->avg(DB::raw('base_grand_total_invoiced - base_grand_total_refunded'));
+            ->avg(DB::raw('base_grand_total - base_grand_total_refunded'));
     }
 
     /**
