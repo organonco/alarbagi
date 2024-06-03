@@ -3,7 +3,7 @@ return [
     'acl' => [
         'marketplace' => 'Seller Orders',
         'sellers' => 'Sellers',
-        'invoices' => 'Invoices'
+        'invoices' => 'Seller Invoices'
     ],
     'register' => [
         'title' => [

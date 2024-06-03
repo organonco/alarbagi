@@ -20,7 +20,7 @@ return [
         'key'   => 'account',
         'name'  => 'Account',
         'route' => 'admin.account.profile.view',
-        'sort'  => 1,
+        'sort'  => 12,
     ], [
         'key'   => 'account.profile',
         'name'  => 'Profile',
@@ -30,7 +30,7 @@ return [
         'key'   => 'account.settings',
         'name'  => 'Settings',
         'route' => 'admin.account.settings.view',
-        'sort'  => 1,
+        'sort'  => 2,
     ]
 
 ];
