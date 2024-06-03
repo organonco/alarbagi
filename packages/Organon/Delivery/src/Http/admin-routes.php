@@ -16,7 +16,7 @@ use Organon\Delivery\Http\Controllers\WarehouseAdmin\SessionController;
 use Organon\Delivery\Http\Controllers\WarehouseAdmin\ViewPackageController;
 
 Route::group([
-    'prefix'        => 'admin',
+    'prefix'        => config('app.admin_url'),
     'as' => 'admin.delivery.',
     'middleware'    => ['web'],
 ], function () {
@@ -65,7 +65,7 @@ Route::group([
 
 
 Route::group([
-    'prefix'        => 'admin/warehouse',
+    'prefix'        => config('app.admin_url') . '/warehouse',
     'as' => 'warehouse.',
     'middleware'    => ['web'],
 ], function () {
@@ -82,7 +82,7 @@ Route::group([
 });
 
 Route::group([
-    'prefix'        => 'admin/driver',
+    'prefix'        => config('app.admin_url') . '/driver',
     'as' => 'driver.',
     'middleware'    => ['web'],
 ], function () {
