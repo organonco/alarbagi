@@ -25,7 +25,8 @@
                     @if ($trip->isPending())
                         Are you sure you want to start this trip
                     @elseif($trip->isInProgress())
-                        Are you sure you want to finish this trip
+                        Are you sure you want to finish this trip? This means that all the packages have been delivered
+                        to customers.
                     @endif
                 </div>
                 <div
@@ -103,13 +104,13 @@
             </div>
         @else
             <div class="content">
-                <div class="text-lg font-bold border-t-gray-600 border-t-2 pt-4">
+                <div class="text-2xl font-bold border-t-gray-600 border-t-2 pt-4">
                     Packages To Ship
                 </div>
                 <div class="text-base border-b-gray-600 border-b-2 pb-4">
                     @foreach ($trip->parts as $part)
                         <div class="my-8">
-                            Package #{{ $part->part->package->hash }}
+                            Package <span class="font-black text-xl">#{{ $part->part->package->hash }}</span>
                             <br />
                             <span class="underline">Warehouse:</span>
                             <br />
