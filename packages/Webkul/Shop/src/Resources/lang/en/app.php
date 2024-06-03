@@ -216,6 +216,8 @@ return [
                         'total-paid' => 'Total Paid',
                         'total-refunded' => 'Total Refunded',
                         'total-due' => 'Total Due',
+                        'qty' => "Quantity",
+                        "seller" => "Shop"
                     ],
 
                     'invoices' => [
@@ -600,7 +602,7 @@ return [
 
     'checkout' => [
         'success' => [
-            'info' => 'We will email you, your order details and tracking information',
+            'info' => 'We will email you with your order details',
             'order-id-info' => 'Your order id is #:order_id',
             'title' => 'Order successfully placed',
             'thanks' => 'Thank you for your order!',

@@ -1,5 +1,6 @@
 <v-create-customer-address>
-    <div class="inline-flex gap-x-[8px] mr-[4px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
+    <div
+        class="inline-flex gap-x-[8px] mr-[4px] items-center justify-between w-full max-w-max px-[4px] py-[6px] text-gray-600 dark:text-gray-300 font-semibold text-center cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]">
         <span class="icon-location text-[24px]"></span>
 
         @lang('admin::app.customers.addresses.create.create-address-btn')
@@ -79,25 +80,7 @@
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
 
-                                <!-- Vat Id -->
-                                <x-admin::form.control-group class="w-full mb-[10px]">
-                                    <x-admin::form.control-group.label>
-                                        @lang('admin::app.customers.addresses.create.vat-id')
-                                    </x-admin::form.control-group.label>
-
-                                    <x-admin::form.control-group.control
-                                        type="text"
-                                        name="vat_id"
-                                        :label="trans('admin::app.customers.addresses.create.vat-id')"
-                                        :placeholder="trans('admin::app.customers.addresses.create.vat-id')"
-                                    >
-                                    </x-admin::form.control-group.control>
-
-                                    <x-admin::form.control-group.error
-                                        control-name="vat_id"
-                                    >
-                                    </x-admin::form.control-group.error>
-                                </x-admin::form.control-group>
+                                
                             </div>
 
                             <div class="flex gap-[16px] max-sm:flex-wrap">
@@ -389,49 +372,55 @@
         app.component('v-create-customer-address', {
             template: '#v-create-customer-address-template',
 
-            data: function () {
+            data: function() {
                 return {
                     country: "",
 
                     state: "",
 
                     countryStates: @json(core()->groupedStatesByCountries()),
-                    
+
                     streetLineCount: 0,
                 }
             },
 
             methods: {
-                create(params, { resetForm, setErrors }) {
-                    this.$axios.post('{{ route("admin.customers.customers.addresses.store", $customer->id) }}', params,
-                        {
-                            headers: {
-                                'Content-Type': 'multipart/form-data'
-                            }
-                        })
-                    
+                create(params, {
+                    resetForm,
+                    setErrors
+                }) {
+                    this.$axios.post('{{ route('admin.customers.customers.addresses.store', $customer->id) }}',
+                            params, {
+                                headers: {
+                                    'Content-Type': 'multipart/form-data'
+                                }
+                            })
+
                         .then((response) => {
                             this.$refs.CustomerAddress.toggle();
 
-                            this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                            this.$emitter.emit('add-flash', {
+                                type: 'success',
+                                message: response.data.message
+                            });
 
                             window.location.reload();
 
                             resetForm();
                         })
                         .catch(error => {
-                            if (error.response.status ==422) {
+                            if (error.response.status == 422) {
                                 setErrors(error.response.data.errors);
                             }
                         });
                 },
 
-                haveStates: function () {
+                haveStates: function() {
                     /*
-                    * The double negation operator is used to convert the value to a boolean.
-                    * It ensures that the final result is a boolean value,
-                    * true if the array has a length greater than 0, and otherwise false.
-                    */
+                     * The double negation operator is used to convert the value to a boolean.
+                     * It ensures that the final result is a boolean value,
+                     * true if the array has a length greater than 0, and otherwise false.
+                     */
                     return !!this.countryStates[this.country]?.length;
                 },
             }
