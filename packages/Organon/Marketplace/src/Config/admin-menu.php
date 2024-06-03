@@ -2,11 +2,11 @@
 
 return [
     [
-        'key' => 'marketplace',
+        'key' => 'sales.seller-orders',
         'name' => 'Orders',
         'route' => 'marketplace.admin.orders.index',
         'sort' => 2,
-        'icon' => 'icon-sales',
+        'icon' => '',
     ],
     [
         'key' => 'account',

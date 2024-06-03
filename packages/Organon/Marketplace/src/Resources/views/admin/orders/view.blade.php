@@ -189,7 +189,7 @@
                                     <div class="">
                                         <p
                                             class="flex items-center gap-x-[4px] justify-end text-[16px] text-gray-800 dark:text-white font-semibold">
-                                            {{ core()->formatBasePrice($item->base_total + $item->base_tax_amount - $item->base_discount_amount) }}
+                                            {{ core()->formatBasePrice($item->base_total) }}
                                         </p>
                                     </div>
 
@@ -197,16 +197,6 @@
                                         <p class="text-gray-600 dark:text-gray-300">
                                             @lang('admin::app.sales.orders.view.price', ['price' => core()->formatBasePrice($item->base_price)])
                                         </p>
-
-                                        <p class="text-gray-600 dark:text-gray-300">
-                                            {{ (float) $item->tax_percent }}%
-                                            @lang('admin::app.sales.orders.view.tax', ['tax' => core()->formatBasePrice($item->base_tax_amount)])
-                                        </p>
-                                        @if ($order->base_discount_amount > 0)
-                                            <p class="text-gray-600 dark:text-gray-300">
-                                                @lang('admin::app.sales.orders.view.discount', ['discount' => core()->formatBasePrice($item->base_discount_amount)])
-                                            </p>
-                                        @endif
 
                                         <p class="text-gray-600 dark:text-gray-300">
                                             @lang('admin::app.sales.orders.view.sub-total', ['sub_total' => core()->formatBasePrice($item->base_total)])
@@ -219,13 +209,6 @@
 
                     <div class="flex w-full gap-[10px] justify-end mt-[16px] p-[16px]">
                         <div class="flex flex-col gap-y-[6px]">
-                            <p class="text-gray-600 dark:text-gray-300  font-semibold">
-                                @lang('admin::app.sales.orders.view.summary-sub-total')
-                            </p>
-
-                            <p class="text-gray-600 dark:text-gray-300">
-                                @lang('admin::app.sales.orders.view.summary-tax')
-                            </p>
 
                             <p class="text-[16px] text-gray-800 dark:text-white font-semibold">
                                 @lang('admin::app.sales.orders.view.summary-grand-total')
@@ -233,13 +216,6 @@
 
                         </div>
                         <div class="flex  flex-col gap-y-[6px]">
-                            <p class="text-gray-600 dark:text-gray-300  font-semibold">
-                                {{ core()->formatBasePrice($order->subtotal) }}
-                            </p>
-
-                            <p class="text-gray-600 dark:text-gray-300">
-                                {{ core()->formatBasePrice($order->tax_amount) }}
-                            </p>
 
 
                             <p class="text-[16px] text-gray-800 dark:text-white font-semibold">

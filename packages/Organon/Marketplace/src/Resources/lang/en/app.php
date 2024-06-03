@@ -1,7 +1,7 @@
 <?php
 return [
     'acl' => [
-        'marketplace' => 'Marketplace',
+        'marketplace' => 'Seller Orders',
         'sellers' => 'Sellers',
         'invoices' => 'Invoices'
     ],

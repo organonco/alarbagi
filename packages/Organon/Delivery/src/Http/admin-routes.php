@@ -31,7 +31,7 @@ Route::group([
         });
 
 
-        Route::group(['prefix' => 'warehouse_admins'], function () {
+        Route::group(['prefix' => 'warehouse-admins'], function () {
             Route::get('', [WarehouseAdminController::class, 'index'])->name('warehouse_admins.index');
             Route::get('create', [WarehouseAdminController::class, 'create'])->name('warehouse_admins.create');
             Route::post('create', [WarehouseAdminController::class, 'store'])->name('warehouse_admins.store');
