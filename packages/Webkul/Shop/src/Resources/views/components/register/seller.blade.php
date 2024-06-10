@@ -123,7 +123,7 @@
             </x-shop::form.control-group>
 
             <x-shop::form.control-group class="mb-4">
-                <x-shop::form.control-group.label class="required">
+                <x-shop::form.control-group.label>
                     @lang('shop::app.customers.signup-form.landline')
                 </x-shop::form.control-group.label>
 
@@ -132,7 +132,7 @@
                     name="landline"
                     class="!p-[20px_25px] rounded-lg"
                     :value="old('landline')"
-                    rules="required|phone"
+                    rules="phone"
                     :label="trans('shop::app.customers.signup-form.landline')"
                     placeholder="23456789"
                 >
