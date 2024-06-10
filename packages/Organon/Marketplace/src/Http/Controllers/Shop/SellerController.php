@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\File;
 use Organon\Marketplace\Enums\SellerStatusEnum;
 use Organon\Marketplace\Notifications\Repositories\SellerRepository;
 use Organon\Marketplace\src\Contracts\Seller;
@@ -30,8 +31,8 @@ class SellerController extends Controller
             'password' => ['required', 'confirmed', 'min:8'],
             'email' => ['required', 'email', 'unique:admins'],
             'phone' => ['required'],
-            'document' => ['required', 'image'],
-            'document_back' => ['required_if:is_personal,on', 'image'],
+            'document' => ['required', File::types(['jpeg', 'jpg', 'png', 'webp', 'pdf'])],
+            'document_back' => ['required_if:is_personal,on', File::types(['jpeg', 'jpg', 'png', 'webp', 'pdf'])],
             'additional_phone' => ['different:phone'],
             'additional_email' => ['different:email']
         ]);
@@ -55,7 +56,7 @@ class SellerController extends Controller
 
         $seller->setDocument('document');
 
-        if($sellerData['is_personal'])
+        if ($sellerData['is_personal'])
             $seller->setDocumentBack('document_back');
 
         $adminData = $request->only([
@@ -85,7 +86,7 @@ class SellerController extends Controller
     public function verifyEmail($token)
     {
         $seller = $this->sellerRepository->findOneByField('token', $token);
-        if(!isset($seller)) {
+        if (!isset($seller)) {
             session()->flash('warning', trans('shop::app.customers.signup-form.verify-failed'));
             return redirect()->route('admin.session.create');
         }
