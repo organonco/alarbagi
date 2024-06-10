@@ -36,7 +36,6 @@ class Seller extends Model implements SellerContract, HasMedia
         'name',
         'description',
         'address',
-        'slug',
         'payment_method',
         'deliver_by',
         'phone',

@@ -27,7 +27,6 @@ class SellerController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:255'],
-            'slug' => ['required', 'alpha_dash', "unique:sellers"],
             'password' => ['required', 'confirmed', 'min:8'],
             'email' => ['required', 'email', 'unique:admins'],
             'phone' => ['required'],

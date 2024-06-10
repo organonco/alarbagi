@@ -35,28 +35,6 @@
 
             <x-shop::form.control-group class="mb-4">
                 <x-shop::form.control-group.label class="required">
-                    @lang('marketplace::app.register.labels.slug')
-                </x-shop::form.control-group.label>
-
-                <x-shop::form.control-group.control
-                    type="text"
-                    name="slug"
-                    class="!p-[20px_25px] rounded-lg"
-                    :value="old('slug')"
-                    rules="required"
-                    :label="trans('marketplace::app.register.labels.slug')"
-                    :placeholder="trans('marketplace::app.register.labels.slug')"
-                >
-                </x-shop::form.control-group.control>
-
-                <x-shop::form.control-group.error
-                    control-name="slug"
-                >
-                </x-shop::form.control-group.error>
-            </x-shop::form.control-group>
-
-            <x-shop::form.control-group class="mb-4">
-                <x-shop::form.control-group.label class="required">
                     @lang('shop::app.customers.signup-form.email')
                 </x-shop::form.control-group.label>
 
