@@ -27,5 +27,21 @@
 
     @push('scripts')
         {!! Captcha::renderJS() !!}
+
+        <script>
+            function switchVisibility() {
+                let passwordField = document.getElementById("password");
+                let passwordField2 = document.getElementById("password_confirmation");
+
+                passwordField.type = passwordField.type === "password"
+                    ? "text"
+                    : "password";
+
+
+                passwordField2.type = passwordField2.type === "password"
+                    ? "text"
+                    : "password";
+            }
+        </script>
     @endpush
 </x-shop::layouts>
