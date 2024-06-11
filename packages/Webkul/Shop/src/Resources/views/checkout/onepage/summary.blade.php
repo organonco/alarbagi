@@ -1,6 +1,10 @@
 {!! view_render_event('bagisto.shop.checkout.cart.summary.before') !!}
 
-<v-cart-summary ref="vCartSummary" :cart="cart" :is-cart-loading="isCartLoading">
+<v-cart-summary
+    ref="vCartSummary"
+    :cart="cart"
+    :is-cart-loading="isCartLoading"
+>
 </v-cart-summary>
 
 {!! view_render_event('bagisto.shop.checkout.cart.summary.after') !!}
@@ -104,7 +108,7 @@
                         </p>
                     </div>
 
-                    {{-- @include('shop::checkout.onepage.coupon') --}}
+                    @include('shop::checkout.onepage.coupon')
 
                     <div class="flex text-right justify-between">
                         <p class="text-[18px] font-semibold">
@@ -130,7 +134,7 @@
                     >
                         <button
                             v-if="! isLoading"
-                            class="sn-button-primary"
+                            class="block w-max py-[11px] px-[43px] bg-navyBlue text-white text-base font-medium rounded-[18px] text-center cursor-pointer max-sm:text-[14px] max-sm:px-[25px] max-sm:mb-[40px]"
                             @click="placeOrder"
                         >
                             @lang('shop::app.checkout.onepage.summary.place-order')    
@@ -138,7 +142,7 @@
 
                         <button
                             v-else
-                            class="sn-button-primary"
+                            class="flex gap-[10px] items-center w-max py-[11px] px-[32px] bg-navyBlue text-white text-base font-medium rounded-[18px] text-center max-sm:text-[14px] max-sm:px-[25px] max-sm:mb-[40px]"
                         >
                             <!-- Spinner -->
                             <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -160,7 +164,7 @@
                                 </path>
                             </svg>
 
-                            {{-- @lang('shop::app.checkout.onepage.summary.processing') --}}
+                            @lang('shop::app.checkout.onepage.summary.processing')
                         </button>
                     </div>
                 </template>
@@ -171,7 +175,7 @@
     <script type="module">
         app.component('v-cart-summary', {
             template: '#v-cart-summary-template',
-
+            
             props: ['cart', 'isCartLoading'],
 
             data() {

@@ -1,7 +1,7 @@
 {!! view_render_event('bagisto.shop.checkout.payment.method.before') !!}
 
 <v-payment-method ref="vPaymentMethod">
-    <x-shop::shimmer.checkout.onepage.payment-method />
+    <x-shop::shimmer.checkout.onepage.payment-method/>
 </v-payment-method>
 
 {!! view_render_event('bagisto.shop.checkout.payment.method.after') !!}
@@ -45,7 +45,7 @@
         
                                     <label 
                                         :for="payment.method" 
-                                        class="absolute ltr:right-[20px] rtl:left-[20px] top-[20px] icon-radio-unselect text-[24px] text-navyBlue peer-checked:icon-radio-select cursor-pointer sn-color-light-main"
+                                        class="absolute ltr:right-[20px] rtl:left-[20px] top-[20px] icon-radio-unselect text-[24px] text-navyBlue peer-checked:icon-radio-select cursor-pointer"
                                     >
                                     </label>
 

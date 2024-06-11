@@ -44,11 +44,9 @@
         "pusher/pusher-php-server": "^7.0",
         "shetabit/visitor": "^4.1",
         "silviolleite/laravelpwa": "dev-master",
-        "simplesoftwareio/simple-qrcode": "~4",
         "spatie/laravel-medialibrary": "^10.0.0",
         "spatie/laravel-responsecache": "^7.4",
-        "spatie/laravel-sitemap": "^6.2",
-        "vinkla/hashids": "^11.0"
+        "spatie/laravel-sitemap": "^6.2"
     },
     "require-dev": {
         "bagisto/laravel-datafaker": "^2.0@alpha",
@@ -96,7 +94,6 @@
             "Webkul\\Theme\\": "packages/Webkul/Theme/src",
             "Webkul\\User\\": "packages/Webkul/User/src",
             "Organon\\Marketplace\\": "packages/Organon/Marketplace/src",
-            "Organon\\Delivery\\": "packages/Organon/Delivery/src",
             "LaravelPWA\\Console\\Commands\\": "vendor/silviolleite/laravelpwa/Console"
         }
     },

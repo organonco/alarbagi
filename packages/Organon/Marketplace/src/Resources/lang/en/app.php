@@ -1,9 +1,9 @@
 <?php
 return [
     'acl' => [
-        'marketplace' => 'Seller Orders',
+        'marketplace' => 'Marketplace',
         'sellers' => 'Sellers',
-        'invoices' => 'Seller Invoices'
+        'invoices'=> 'Invoices'
     ],
     'register' => [
         'title' => [
@@ -53,7 +53,7 @@ return [
                 'class' => 'pending'
             ],
             'APPROVED' => [
-                'label' => 'Processing',
+                'label' => 'Approved',
                 'class' => 'processing'
             ],
             'CANCELLED' => [
@@ -64,22 +64,14 @@ return [
                 'label' => 'Picked Up',
                 'class' => 'closed'
             ],
-            'SHIPPED' => [
+            'shipped' => [
                 'label' => 'Shipped',
                 'class' => 'info'
             ],
             'CANCELLED_BY_SELLER' => [
                 'label' => 'Cancelled By Seller',
                 'class' => 'info'
-            ],
-            'READY_FOR_PICKUP' => [
-                'label' => 'Ready for pickup',
-                'class' => 'processing'
-            ],
-            'READY_FOR_SHIPPING' => [
-                'label' => 'Ready for shipping',
-                'class' => 'closed'
-            ],
+            ]
         ]
     ],
     "seller" => [
@@ -118,13 +110,13 @@ return [
             ], 'DRAFT' => [
                 'label' => 'Draft',
                 'class' => 'info'
-            ], 'APPROVED' => [
+            ],'APPROVED' => [
                 'label' => 'Approved',
                 'class' => 'processing'
-            ], 'REJECTED' => [
+            ],'REJECTED' => [
                 'label' => 'Rejected',
                 'class' => 'cancelled'
-            ], 'ISSUED' => [
+            ],'ISSUED' => [
                 'label' => 'Issued',
                 'class' => 'processing'
             ],
@@ -146,10 +138,7 @@ return [
             ],
             'view' => [
                 'approve' => 'Approve',
-                'print' => 'Print Label',
                 'cancel' => 'Cancel',
-                'prepare' => "Set as ready for pickup",
-                'view-package' => "Track Package",
                 'cancel-msg' => 'Are you sure you want to cancel this order?',
                 'approve-msg' => 'Are you sure you want to approve this order?',
             ]

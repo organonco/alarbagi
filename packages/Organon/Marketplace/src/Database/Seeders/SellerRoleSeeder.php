@@ -37,10 +37,7 @@ class SellerRoleSeeder extends Seeder
                 "catalog.products.edit",
                 "catalog.products.delete",
                 "catalog.products.mass-update",
-                "catalog.products.mass-delete",
-                "delivery",
-                "delivery.warehouses",
-                "delivery.warehouse_admins",
+                "catalog.products.mass-delete"
             ]),
         ]);
 
@@ -101,12 +98,11 @@ class SellerRoleSeeder extends Seeder
                 "settings.currencies",
                 "settings.currencies.create",
                 "settings.currencies.edit",
-                "settings.curre10ange_rates.delete",
-                "delivery",
-                "delivery.warehouses",
-                "delivery.warehouse_admins",
-                "delivery.drivers",
-                "delivery.trips"
+                "settings.currencies.delete",
+                "settings.exchange_rates",
+                "settings.exchange_rates.create",
+                "settings.exchange_rates.edit",
+                "settings.exchange_rates.delete"
             ])
         ]);
     }

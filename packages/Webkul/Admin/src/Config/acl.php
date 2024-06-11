@@ -46,66 +46,65 @@ return [
         'route' => 'admin.sales.orders.cancel',
         'sort'  => 2,
     ],
+//
+//    [
+//        'key'   => 'sales.invoices',
+//        'name'  => 'admin::app.acl.invoices',
+//        'route' => 'admin.sales.invoices.index',
+//        'sort'  => 2,
+//    ], [
+//        'key'   => 'sales.invoices.view',
+//        'name'  => 'admin::app.acl.view',
+//        'route' => 'admin.sales.invoices.view',
+//        'sort'  => 1,
+//    ], [
+//        'key'   => 'sales.invoices.create',
+//        'name'  => 'admin::app.acl.create',
+//        'route' => 'admin.sales.invoices.create',
+//        'sort'  => 2,
+//    ],
 
-    //
-    //    [
-    //        'key'   => 'sales.invoices',
-    //        'name'  => 'admin::app.acl.invoices',
-    //        'route' => 'admin.sales.invoices.index',
-    //        'sort'  => 2,
-    //    ], [
-    //        'key'   => 'sales.invoices.view',
-    //        'name'  => 'admin::app.acl.view',
-    //        'route' => 'admin.sales.invoices.view',
-    //        'sort'  => 1,
-    //    ], [
-    //        'key'   => 'sales.invoices.create',
-    //        'name'  => 'admin::app.acl.create',
-    //        'route' => 'admin.sales.invoices.create',
-    //        'sort'  => 2,
-    //    ],
-
-    // [
-    //     'key'   => 'sales.shipments',
-    //     'name'  => 'admin::app.acl.shipments',
-    //     'route' => 'admin.sales.shipments.index',
-    //     'sort'  => 3,
-    // ], [
-    //     'key'   => 'sales.shipments.view',
-    //     'name'  => 'admin::app.acl.view',
-    //     'route' => 'admin.sales.shipments.view',
-    //     'sort'  => 1,
-    // ], [
-    //     'key'   => 'sales.shipments.create',
-    //     'name'  => 'admin::app.acl.create',
-    //     'route' => 'admin.sales.shipments.create',
-    //     'sort'  => 2,
-    // ], [
-    //     'key'   => 'sales.refunds',
-    //     'name'  => 'admin::app.acl.refunds',
-    //     'route' => 'admin.sales.refunds.index',
-    //     'sort'  => 4,
-    // ], [
-    //     'key'   => 'sales.refunds.view',
-    //     'name'  => 'admin::app.acl.view',
-    //     'route' => 'admin.sales.refunds.view',
-    //     'sort'  => 1,
-    // ], [
-    //     'key'   => 'sales.refunds.create',
-    //     'name'  => 'admin::app.acl.create',
-    //     'route' => 'admin.sales.refunds.create',
-    //     'sort'  => 2,
-    // ], [
-    //     'key'   => 'sales.transactions',
-    //     'name'  => 'admin::app.acl.transactions',
-    //     'route' => 'admin.sales.transactions.index',
-    //     'sort'  => 5,
-    // ],[
-    //     'key'   => 'sales.transactions.view',
-    //     'name'  => 'admin::app.acl.view',
-    //     'route' => 'admin.sales.transactions.view',
-    //     'sort'  => 1,
-    // ],
+    [
+        'key'   => 'sales.shipments',
+        'name'  => 'admin::app.acl.shipments',
+        'route' => 'admin.sales.shipments.index',
+        'sort'  => 3,
+    ], [
+        'key'   => 'sales.shipments.view',
+        'name'  => 'admin::app.acl.view',
+        'route' => 'admin.sales.shipments.view',
+        'sort'  => 1,
+    ], [
+        'key'   => 'sales.shipments.create',
+        'name'  => 'admin::app.acl.create',
+        'route' => 'admin.sales.shipments.create',
+        'sort'  => 2,
+    ], [
+        'key'   => 'sales.refunds',
+        'name'  => 'admin::app.acl.refunds',
+        'route' => 'admin.sales.refunds.index',
+        'sort'  => 4,
+    ], [
+        'key'   => 'sales.refunds.view',
+        'name'  => 'admin::app.acl.view',
+        'route' => 'admin.sales.refunds.view',
+        'sort'  => 1,
+    ], [
+        'key'   => 'sales.refunds.create',
+        'name'  => 'admin::app.acl.create',
+        'route' => 'admin.sales.refunds.create',
+        'sort'  => 2,
+    ], [
+        'key'   => 'sales.transactions',
+        'name'  => 'admin::app.acl.transactions',
+        'route' => 'admin.sales.transactions.index',
+        'sort'  => 5,
+    ],[
+        'key'   => 'sales.transactions.view',
+        'name'  => 'admin::app.acl.view',
+        'route' => 'admin.sales.transactions.view',
+        'sort'  => 1,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -814,6 +813,6 @@ return [
         'key'   => 'configuration',
         'name'  => 'admin::app.acl.configure',
         'route' => 'admin.configuration.index',
-        'sort'  => 10,
+        'sort'  => 9,
     ]
 ];

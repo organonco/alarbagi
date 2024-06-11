@@ -1,6 +1,6 @@
 {{-- Mini Cart Vue Component --}}
 <v-mini-cart>
-    {{--    <span class="icon-cart text-[24px] cursor-pointer"></span> --}}
+{{--    <span class="icon-cart text-[24px] cursor-pointer"></span>--}}
 </v-mini-cart>
 
 
@@ -23,7 +23,7 @@
         text-align: center;
         display: flex;
         align-items: center;
-        justify-content: center; border: 2px solid white">
+        justify-content: center;">
                     <span class="text-[24px] icon-cart"></span>
 
                     <span
@@ -195,12 +195,12 @@
             template: '#v-mini-cart-template',
 
             data() {
-                return {
+                return  {
                     cart: null,
                 }
             },
 
-            mounted() {
+           mounted() {
                 this.getCart();
 
                 /**
@@ -211,9 +211,9 @@
                 this.$emitter.on('update-mini-cart', (cart) => {
                     this.cart = cart;
                 });
-            },
+           },
 
-            methods: {
+           methods: {
                 getCart() {
                     this.$axios.get('{{ route('shop.api.checkout.cart.index') }}')
                         .then(response => {
@@ -227,17 +227,12 @@
 
                     qty[item.id] = quantity;
 
-                    this.$axios.put('{{ route('shop.api.checkout.cart.update') }}', {
-                            qty
-                        })
+                    this.$axios.put('{{ route('shop.api.checkout.cart.update') }}', { qty })
                         .then(response => {
                             if (response.data.message) {
                                 this.cart = response.data.data;
                             } else {
-                                this.$emitter.emit('add-flash', {
-                                    type: 'warning',
-                                    message: response.data.data.message
-                                });
+                                this.$emitter.emit('add-flash', { type: 'warning', message: response.data.data.message });
                             }
                         })
                         .catch(error => {});
@@ -251,10 +246,7 @@
                         .then(response => {
                             this.cart = response.data.data;
 
-                            this.$emitter.emit('add-flash', {
-                                type: 'success',
-                                message: response.data.message
-                            });
+                            this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
                         })
                         .catch(error => {});
                 },

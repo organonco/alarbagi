@@ -2,7 +2,7 @@
 
 <v-shipping-method ref="vShippingMethod">
     {{-- Shipping Method Shimmer Effect --}}
-    <x-shop::shimmer.checkout.onepage.shipping-method />
+    <x-shop::shimmer.checkout.onepage.shipping-method/>
 </v-shipping-method>
 
 {!! view_render_event('bagisto.shop.checkout.shipping.method.after') !!}
@@ -45,7 +45,7 @@
                                     >
 
                                     <label 
-                                        class="icon-radio-unselect absolute ltr:right-[20px] rtl:left-[20px] top-[20px] text-[24px] text-navyBlue peer-checked:icon-radio-select cursor-pointer sn-color-light-main"
+                                        class="icon-radio-unselect absolute ltr:right-[20px] rtl:left-[20px] top-[20px] text-[24px] text-navyBlue peer-checked:icon-radio-select cursor-pointer"
                                         :for="rate.method"
                                     >
                                     </label>
@@ -98,14 +98,14 @@
 
                     this.$parent.$refs.vPaymentMethod.isPaymentMethodLoading = true;
 
-                    this.$axios.post("{{ route('shop.checkout.onepage.shipping_methods.store') }}", {
+                    this.$axios.post("{{ route('shop.checkout.onepage.shipping_methods.store') }}", {    
                             shipping_method: selectedShippingMethod,
                         })
                         .then(response => {
                             this.$parent.getOrderSummary();
 
                             this.$parent.$refs.vPaymentMethod.payment_methods = response.data.payment_methods;
-
+                                
                             this.$parent.$refs.vPaymentMethod.isShowPaymentMethod = true;
 
                             this.$parent.$refs.vPaymentMethod.isPaymentMethodLoading = false;

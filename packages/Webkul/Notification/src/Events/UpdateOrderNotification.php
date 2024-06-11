@@ -66,16 +66,16 @@ class UpdateOrderNotification implements ShouldBroadcast, InternalNotificationIn
 
     public function getText(): string
     {
-        return "";
+        // TODO: Implement getText() method.
     }
 
     public function getRoute(): string
     {
-        return "";
+        // TODO: Implement getRoute() method.
     }
 
     public function getRouteParams(): string
     {
-        return "";
+        // TODO: Implement getRouteParams() method.
     }
 }

@@ -20,8 +20,6 @@ class RolesTableSeeder extends Seeder
             'permission_type' => 'custom',
             'permissions' => json_encode([
                 "dashboard",
-                "delivery",
-                "delivery.warehouses",
                 "sales",
                 "sales.sellers",
                 "sales.seller-invoices",
@@ -163,12 +161,7 @@ class RolesTableSeeder extends Seeder
                 "settings.taxes.tax-rates",
                 "settings.taxes.tax-rates.create",
                 "settings.taxes.tax-rates.edit",
-                "configuration",
-                "delivery",
-                "delivery.warehouses",
-                "delivery.warehouse_admins",
-                "delivery.drivers",
-                "delivery.trips",
+                "configuration"
             ])
         ]);
     }

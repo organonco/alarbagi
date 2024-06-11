@@ -5,12 +5,8 @@
  */
 
 import axios from 'axios';
-import QrScanner from 'qr-scanner';
-import {Modal} from 'flowbite';
-
 window.axios = axios;
-window.QrScanner = QrScanner
-window.Modal = Modal; 
+
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**

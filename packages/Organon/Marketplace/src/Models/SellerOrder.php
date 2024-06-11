@@ -3,7 +3,6 @@
 namespace Organon\Marketplace\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Organon\Delivery\Models\Package;
 use Organon\Marketplace\Contracts\SellerOrder as SellerOrderContract;
 use Organon\Marketplace\Enums\SellerOrderStatusEnum;
 use Organon\Marketplace\Traits\HasStatusTrait;
@@ -42,19 +41,9 @@ class SellerOrder extends Model implements SellerOrderContract
         return $this->belongsTo(SellerProxy::modelClass());
     }
 
-    public function package()
-    {
-        return $this->hasOne(Package::class);
-    }
-
-    public function hasPackage()
-    {
-        return !is_null($this->package);
-    }
-
     public function items()
     {
-        return $this->order->items()->whereHas('product', function ($query) {
+        return $this->order->items()->whereHas('product', function($query){
             return $query->where('seller_id', $this->seller_id);
         });
     }
@@ -81,31 +70,12 @@ class SellerOrder extends Model implements SellerOrderContract
 
     public function isApprovable()
     {
-        return $this->status == SellerOrderStatusEnum::PENDING || $this->status == SellerOrderStatusEnum::CANCELLED_BY_SELLER;
+        return $this->status != SellerOrderStatusEnum::APPROVED;
     }
 
     public function isCancellable()
     {
-        return $this->status == SellerOrderStatusEnum::PENDING || $this->status == SellerOrderStatusEnum::APPROVED;
+        return $this->status != SellerOrderStatusEnum::CANCELLED_BY_SELLER;
     }
 
-    public function isPreparable()
-    {
-        return $this->status == SellerOrderStatusEnum::APPROVED;
-    }
-
-    public function isPrintable()
-    {
-        return $this->status == SellerOrderStatusEnum::APPROVED || $this->status == SellerOrderStatusEnum::READY_FOR_PICKUP;
-    }
-
-    public function scopeIsShippable($query)
-    {
-        return $query->where('status', SellerOrderStatusEnum::READY_FOR_SHIPPING->value);
-    }
-
-    public function getNameAttribute()
-    {
-        return $this->order->customer->name . ' - ' . $this->order->shippingAddress->full_address;
-    }
 }

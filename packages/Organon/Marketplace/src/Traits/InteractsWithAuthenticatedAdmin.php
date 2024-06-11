@@ -2,15 +2,14 @@
 
 namespace Organon\Marketplace\Traits;
 
-use Organon\Delivery\Models\Driver;
-use Organon\Delivery\Models\WarehouseAdmin;
+
 use Organon\Marketplace\Models\Admin;
 use Organon\Marketplace\Models\Seller;
 
 trait InteractsWithAuthenticatedAdmin
 {
 
-    private function getAuthenticatedAdmin(): ?Admin
+    private function getAuthenticatedAdmin() : ?Admin
     {
         return auth('admin')->user();
     }
@@ -20,18 +19,8 @@ trait InteractsWithAuthenticatedAdmin
         return $this->getAuthenticatedAdmin()?->getSeller();
     }
 
-    private function isAuthenticatedAdminSeller(): bool
+    private function isAuthenticatedAdminSeller() : bool
     {
         return !is_null($this->getAuthenticatedSeller());
-    }
-
-    private function getAuthenticatedWarehouseAdmin(): ?WarehouseAdmin
-    {
-        return auth('warehouse_admin')->user();
-    }
-
-    private function getAuthenticatedDriver(): ?Driver
-    {
-        return auth('driver')->user();
     }
 }

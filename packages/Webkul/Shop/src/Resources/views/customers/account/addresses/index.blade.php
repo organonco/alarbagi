@@ -3,7 +3,7 @@
     <x-slot:title>
         @lang('shop::app.customers.account.addresses.add-address')
     </x-slot>
-
+    
     {{-- Breadcrumbs --}}
     @section('breadcrumbs')
         <x-shop::breadcrumbs name="addresses"></x-shop::breadcrumbs>
@@ -15,15 +15,17 @@
             </h2>
         </div>
 
-        <a href="{{ route('shop.customers.account.addresses.create') }}"
-            class="secondary-button flex gap-x-[10px] items-center py-[12px] px-[20px] border-[#E9E9E9] font-normal">
+        <a
+            href="{{ route('shop.customers.account.addresses.create') }}"
+            class="secondary-button flex gap-x-[10px] items-center py-[12px] px-[20px] border-[#E9E9E9] font-normal"
+        >
             <span class="icon-location text-[24px]"></span>
 
-            @lang('shop::app.customers.account.addresses.add-address')
+            @lang('shop::app.customers.account.addresses.add-address') 
         </a>
     </div>
 
-    @if (!$addresses->isEmpty())
+    @if (! $addresses->isEmpty())
         {{-- Address Information --}}
 
         {!! view_render_event('bagisto.shop.customers.account.addresses.list.before', ['addresses' => $addresses]) !!}
@@ -39,17 +41,17 @@
                         <div class="flex gap-[25px] items-center">
 
                             @if ($address->default_address)
-                                <div
-                                    class="block w-max m-0 ml-[0px] mx-auto p-[5px] rounded-[10px] bg-navyBlue text-[12px] text-white font-medium text-center">
-                                    @lang('shop::app.customers.account.addresses.default-address')
+                                <div 
+                                    class="block w-max m-0 ml-[0px] mx-auto p-[5px] rounded-[10px] bg-navyBlue text-[12px] text-white font-medium text-center"
+                                >
+                                    @lang('shop::app.customers.account.addresses.default-address') 
                                 </div>
                             @endif
 
                             {{-- Dropdown Actions --}}
                             <x-shop::dropdown position="bottom-right">
                                 <x-slot:toggle>
-                                    <button
-                                        class="icon-more px-[6px] py-[4px] rounded-[6px] text-[24px] text-[#6E6E6E] cursor-pointer transition-all hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black"></button>
+                                    <button class="icon-more px-[6px] py-[4px] rounded-[6px] text-[24px] text-[#6E6E6E] cursor-pointer transition-all hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black"></button>
                                 </x-slot:toggle>
 
                                 <x-slot:menu>
@@ -58,13 +60,19 @@
                                             <p class="w-full">
                                                 @lang('shop::app.customers.account.addresses.edit')
                                             </p>
-                                        </a>
+                                        </a>    
                                     </x-shop::dropdown.menu.item>
 
                                     <x-shop::dropdown.menu.item>
-                                        <x-shop::form :action="route('shop.customers.account.addresses.delete', $address->id)" method="DELETE" id="addressDelete">
-                                            <a onclick="event.preventDefault(); document.getElementById('addressDelete').submit();"
-                                                href="{{ route('shop.customers.account.addresses.delete', $address->id) }}">
+                                        <x-shop::form
+                                            :action="route('shop.customers.account.addresses.delete', $address->id)"
+                                            method="DELETE"
+                                            id="addressDelete"
+                                        >
+                                            <a 
+                                                onclick="event.preventDefault(); document.getElementById('addressDelete').submit();"
+                                                href="{{ route('shop.customers.account.addresses.delete', $address->id) }}"
+                                            >
                                                 <p class="w-full">
                                                     @lang('shop::app.customers.account.addresses.delete')
                                                 </p>
@@ -73,10 +81,10 @@
                                     </x-shop::dropdown.menu.item>
 
                                     <x-shop::dropdown.menu.item>
-                                        <x-shop::form :action="route(
-                                            'shop.customers.account.addresses.update.default',
-                                            $address->id,
-                                        )" method="PATCH">
+                                        <x-shop::form
+                                            :action="route('shop.customers.account.addresses.update.default', $address->id)"
+                                            method="PATCH"
+                                        >
                                             <button>
                                                 @lang('shop::app.customers.account.addresses.set-as-default')
                                             </button>
@@ -94,23 +102,29 @@
                             {{ $address->address2 }},
                         @endif
 
-                        {{ $address->city }},
-                        {{ $address->state }}, {{ $address->country }},
+                        {{ $address->city }}, 
+                        {{ $address->state }}, {{ $address->country }}, 
                         {{ $address->postcode }}
                     </p>
-                </div>
+                </div>    
             @endforeach
         </div>
 
         {!! view_render_event('bagisto.shop.customers.account.addresses.list.after', ['addresses' => $addresses]) !!}
+
     @else
         {{-- Address Empty Page --}}
         <div class="grid items-center justify-items-center place-content-center w-[100%] m-auto h-[476px] text-center">
-            <img class="" src="{{ bagisto_asset('images/no-address.png') }}" alt="" title="">
-
+            <img 
+                class="" 
+                src="{{ bagisto_asset('images/no-address.png') }}" 
+                alt="" 
+                title=""
+            >
+            
             <p class="text-[20px]">
                 @lang('shop::app.customers.account.addresses.empty-address')
             </p>
-        </div>
+        </div>    
     @endif
 </x-shop::layouts.account>

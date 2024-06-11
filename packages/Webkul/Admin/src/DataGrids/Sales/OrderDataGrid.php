@@ -35,6 +35,7 @@ class OrderDataGrid extends DataGrid
                 'orders.increment_id',
                 'orders.base_grand_total',
                 'orders.created_at',
+                'channel_name',
                 'orders.status',
                 'customer_email',
                 'orders.cart_id as image',
@@ -62,7 +63,7 @@ class OrderDataGrid extends DataGrid
             'searchable' => true,
             'filterable' => true,
             'sortable'   => true,
-            'closure' => fn ($row) => $row->increment_id . " ($row->number_of_sellers Sellers )"
+            'closure' => fn($row) => $row->increment_id . " ($row->number_of_sellers Sellers )"
         ]);
 
         $this->addColumn([
@@ -126,6 +127,15 @@ class OrderDataGrid extends DataGrid
             'closure'    => function ($row) {
                 return core()->getConfigData('sales.payment_methods.' . $row->method . '.title');
             },
+        ]);
+
+        $this->addColumn([
+            'index'      => 'channel_name',
+            'label'      => trans('admin::app.sales.orders.index.datagrid.channel-name'),
+            'type'       => 'string',
+            'searchable' => false,
+            'filterable' => true,
+            'sortable'   => false,
         ]);
 
         $this->addColumn([

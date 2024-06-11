@@ -27,7 +27,7 @@ return [
         'route'      => 'admin.sales.sellers.invoice.index',
         'sort'       => 1,
         'icon'       => '',
-    ], [
+    ],[
         'key'        => 'sales.orders',
         'name'       => 'admin::app.components.layouts.sidebar.orders',
         'route'      => 'admin.sales.orders.index',
@@ -39,33 +39,32 @@ return [
         'route'      => 'admin.sales.sellers.index',
         'sort'       => 3,
         'icon'       => '',
+    ], [
+        'key'        => 'sales.shipments',
+        'name'       => 'admin::app.components.layouts.sidebar.shipments',
+        'route'      => 'admin.sales.shipments.index',
+        'sort'       => 4,
+        'icon'       => '',
+    ], [
+        'key'        => 'sales.invoices',
+        'name'       => 'admin::app.components.layouts.sidebar.invoices',
+        'route'      => 'admin.sales.invoices.index',
+        'sort'       => 5,
+        'icon'       => '',
+    ], [
+        'key'        => 'sales.refunds',
+        'name'       => 'admin::app.components.layouts.sidebar.refunds',
+        'route'      => 'admin.sales.refunds.index',
+        'sort'       => 6,
+        'icon'       => '',
+    ], [
+        'key'        => 'sales.transactions',
+        'name'       => 'admin::app.components.layouts.sidebar.transactions',
+        'route'      => 'admin.sales.transactions.index',
+        'sort'       => 7,
+        'icon'       => '',
     ],
-    // [
-    //     'key'        => 'sales.shipments',
-    //     'name'       => 'admin::app.components.layouts.sidebar.shipments',
-    //     'route'      => 'admin.sales.shipments.index',
-    //     'sort'       => 4,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'sales.invoices',
-    //     'name'       => 'admin::app.components.layouts.sidebar.invoices',
-    //     'route'      => 'admin.sales.invoices.index',
-    //     'sort'       => 5,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'sales.refunds',
-    //     'name'       => 'admin::app.components.layouts.sidebar.refunds',
-    //     'route'      => 'admin.sales.refunds.index',
-    //     'sort'       => 6,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'sales.transactions',
-    //     'name'       => 'admin::app.components.layouts.sidebar.transactions',
-    //     'route'      => 'admin.sales.transactions.index',
-    //     'sort'       => 7,
-    //     'icon'       => '',
-    // ],
-
+    
     /**
      * Catalog.
      */
@@ -93,15 +92,13 @@ return [
         'route'      => 'admin.catalog.attributes.index',
         'sort'       => 3,
         'icon'       => '',
+    ], [
+        'key'        => 'catalog.families',
+        'name'       => 'admin::app.components.layouts.sidebar.attribute-families',
+        'route'      => 'admin.catalog.families.index',
+        'sort'       => 4,
+        'icon'       => '',
     ],
-
-    // [
-    //     'key'        => 'catalog.families',
-    //     'name'       => 'admin::app.components.layouts.sidebar.attribute-families',
-    //     'route'      => 'admin.catalog.families.index',
-    //     'sort'       => 4,
-    //     'icon'       => '',
-    // ],
 
     /**
      * Customers.
@@ -118,22 +115,20 @@ return [
         'route'      => 'admin.customers.customers.index',
         'sort'       => 1,
         'icon'       => '',
-    ],
-    //  [
-    //     'key'        => 'customers.groups',
-    //     'name'       => 'admin::app.components.layouts.sidebar.groups',
-    //     'route'      => 'admin.customers.groups.index',
-    //     'sort'       => 2,
-    //     'icon'       => '',
-    // ], 
-    [
+    ], [
+        'key'        => 'customers.groups',
+        'name'       => 'admin::app.components.layouts.sidebar.groups',
+        'route'      => 'admin.customers.groups.index',
+        'sort'       => 2,
+        'icon'       => '',
+    ], [
         'key'        => 'customers.reviews',
         'name'       => 'admin::app.components.layouts.sidebar.reviews',
         'route'      => 'admin.customers.customers.review.index',
         'sort'       => 3,
         'icon'       => '',
     ],
-
+    
     /**
      * CMS.
      */
@@ -144,7 +139,7 @@ return [
         'sort'       => 5,
         'icon'       => 'icon-cms',
     ],
-
+    
 
     /**
      * Marketing.
@@ -152,68 +147,66 @@ return [
     [
         'key'        => 'marketing',
         'name'       => 'admin::app.components.layouts.sidebar.marketing',
-        'route'      => 'admin.marketing.promotions.sitemaps.index',
+        'route'      => 'admin.marketing.promotions.catalog_rules.index',
         'sort'       => 6,
         'icon'       => 'icon-promotion',
         'icon-class' => 'promotion-icon',
-    ],
-    // [
-    //     'key'        => 'marketing.promotions',
-    //     'name'       => 'admin::app.components.layouts.sidebar.promotions',
-    //     'route'      => 'admin.marketing.promotions.catalog_rules.index',
-    //     'sort'       => 1,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'marketing.promotions.catalog-rules',
-    //     'name'       => 'admin::app.marketing.promotions.index.catalog-rule-title',
-    //     'route'      => 'admin.marketing.promotions.catalog_rules.index',
-    //     'sort'       => 1,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'marketing.promotions.cart-rules',
-    //     'name'       => 'admin::app.marketing.promotions.index.cart-rule-title',
-    //     'route'      => 'admin.marketing.promotions.cart_rules.index',
-    //     'sort'       => 2,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'marketing.communications',
-    //     'name'       => 'admin::app.components.layouts.sidebar.communications',
-    //     'route'      => 'admin.marketing.communications.email_templates.index',
-    //     'sort'       => 2,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'marketing.communications.email-templates',
-    //     'name'       => 'admin::app.components.layouts.sidebar.email-templates',
-    //     'route'      => 'admin.marketing.communications.email_templates.index',
-    //     'sort'       => 1,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'marketing.communications.events',
-    //     'name'       => 'admin::app.components.layouts.sidebar.events',
-    //     'route'      => 'admin.marketing.communications.events.index',
-    //     'sort'       => 2,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'marketing.communications.campaigns',
-    //     'name'       => 'admin::app.components.layouts.sidebar.campaigns',
-    //     'route'      => 'admin.marketing.communications.campaigns.index',
-    //     'sort'       => 2,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'marketing.communications.subscribers',
-    //     'name'       => 'admin::app.components.layouts.sidebar.newsletter-subscriptions',
-    //     'route'      => 'admin.marketing.communications.subscribers.index',
-    //     'sort'       => 3,
-    //     'icon'       => '',
-    // ], 
-    [
+    ], [
+        'key'        => 'marketing.promotions',
+        'name'       => 'admin::app.components.layouts.sidebar.promotions',
+        'route'      => 'admin.marketing.promotions.catalog_rules.index',
+        'sort'       => 1,
+        'icon'       => '',
+    ], [
+        'key'        => 'marketing.promotions.catalog-rules',
+        'name'       => 'admin::app.marketing.promotions.index.catalog-rule-title',
+        'route'      => 'admin.marketing.promotions.catalog_rules.index',
+        'sort'       => 1,
+        'icon'       => '',
+    ], [
+        'key'        => 'marketing.promotions.cart-rules',
+        'name'       => 'admin::app.marketing.promotions.index.cart-rule-title',
+        'route'      => 'admin.marketing.promotions.cart_rules.index',
+        'sort'       => 2,
+        'icon'       => '',
+    ], [
+        'key'        => 'marketing.communications',
+        'name'       => 'admin::app.components.layouts.sidebar.communications',
+        'route'      => 'admin.marketing.communications.email_templates.index',
+        'sort'       => 2,
+        'icon'       => '',
+    ], [
+        'key'        => 'marketing.communications.email-templates',
+        'name'       => 'admin::app.components.layouts.sidebar.email-templates',
+        'route'      => 'admin.marketing.communications.email_templates.index',
+        'sort'       => 1,
+        'icon'       => '',
+    ], [
+        'key'        => 'marketing.communications.events',
+        'name'       => 'admin::app.components.layouts.sidebar.events',
+        'route'      => 'admin.marketing.communications.events.index',
+        'sort'       => 2,
+        'icon'       => '',
+    ], [
+        'key'        => 'marketing.communications.campaigns',
+        'name'       => 'admin::app.components.layouts.sidebar.campaigns',
+        'route'      => 'admin.marketing.communications.campaigns.index',
+        'sort'       => 2,
+        'icon'       => '',
+    ], [
+        'key'        => 'marketing.communications.subscribers',
+        'name'       => 'admin::app.components.layouts.sidebar.newsletter-subscriptions',
+        'route'      => 'admin.marketing.communications.subscribers.index',
+        'sort'       => 3,
+        'icon'       => '',
+    ], [
         'key'        => 'marketing.sitemaps',
         'name'       => 'admin::app.components.layouts.sidebar.sitemaps',
         'route'      => 'admin.marketing.promotions.sitemaps.index',
         'sort'       => 3,
         'icon'       => '',
     ],
-
+    
     /**
      * Reporting.
      */
@@ -272,15 +265,13 @@ return [
         'route'      => 'admin.settings.locales.index',
         'sort'       => 3,
         'icon'       => '',
-    ],
-    // [
-    //     'key'        => 'settings.inventory_sources',
-    //     'name'       => 'admin::app.components.layouts.sidebar.inventory-sources',
-    //     'route'      => 'admin.settings.inventory_sources.index',
-    //     'sort'       => 4,
-    //     'icon'       => '',
-    // ], 
-    [
+    ], [
+        'key'        => 'settings.inventory_sources',
+        'name'       => 'admin::app.components.layouts.sidebar.inventory-sources',
+        'route'      => 'admin.settings.inventory_sources.index',
+        'sort'       => 4,
+        'icon'       => '',
+    ], [
         'key'        => 'settings.channels',
         'name'       => 'admin::app.components.layouts.sidebar.channels',
         'route'      => 'admin.settings.channels.index',
@@ -304,27 +295,25 @@ return [
         'route'      => 'admin.settings.themes.index',
         'sort'       => 8,
         'icon'       => '',
+    ], [
+        'key'        => 'settings.taxes',
+        'name'       => 'admin::app.components.layouts.sidebar.taxes',
+        'route'      => 'admin.settings.taxes.categories.index',
+        'sort'       => 9,
+        'icon'       => '',
+    ], [
+        'key'        => 'settings.taxes.tax-categories',
+        'name'       => 'admin::app.components.layouts.sidebar.tax-categories',
+        'route'      => 'admin.settings.taxes.categories.index',
+        'sort'       => 1,
+        'icon'       => '',
+    ], [
+        'key'        => 'settings.taxes.tax-rates',
+        'name'       => 'admin::app.components.layouts.sidebar.tax-rates',
+        'route'      => 'admin.settings.taxes.rates.index',
+        'sort'       => 2,
+        'icon'       => '',
     ],
-
-    // [
-    //     'key'        => 'settings.taxes',
-    //     'name'       => 'admin::app.components.layouts.sidebar.taxes',
-    //     'route'      => 'admin.settings.taxes.categories.index',
-    //     'sort'       => 9,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'settings.taxes.tax-categories',
-    //     'name'       => 'admin::app.components.layouts.sidebar.tax-categories',
-    //     'route'      => 'admin.settings.taxes.categories.index',
-    //     'sort'       => 1,
-    //     'icon'       => '',
-    // ], [
-    //     'key'        => 'settings.taxes.tax-rates',
-    //     'name'       => 'admin::app.components.layouts.sidebar.tax-rates',
-    //     'route'      => 'admin.settings.taxes.rates.index',
-    //     'sort'       => 2,
-    //     'icon'       => '',
-    // ],
 
     /**
      * Configuration.

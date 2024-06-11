@@ -35,6 +35,28 @@
 
             <x-shop::form.control-group class="mb-4">
                 <x-shop::form.control-group.label class="required">
+                    @lang('marketplace::app.register.labels.slug')
+                </x-shop::form.control-group.label>
+
+                <x-shop::form.control-group.control
+                    type="text"
+                    name="slug"
+                    class="!p-[20px_25px] rounded-lg"
+                    :value="old('slug')"
+                    rules="required"
+                    :label="trans('marketplace::app.register.labels.slug')"
+                    :placeholder="trans('marketplace::app.register.labels.slug')"
+                >
+                </x-shop::form.control-group.control>
+
+                <x-shop::form.control-group.error
+                    control-name="slug"
+                >
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+
+            <x-shop::form.control-group class="mb-4">
+                <x-shop::form.control-group.label class="required">
                     @lang('shop::app.customers.signup-form.email')
                 </x-shop::form.control-group.label>
 
@@ -123,7 +145,7 @@
             </x-shop::form.control-group>
 
             <x-shop::form.control-group class="mb-4">
-                <x-shop::form.control-group.label>
+                <x-shop::form.control-group.label class="required">
                     @lang('shop::app.customers.signup-form.landline')
                 </x-shop::form.control-group.label>
 
@@ -132,7 +154,7 @@
                     name="landline"
                     class="!p-[20px_25px] rounded-lg"
                     :value="old('landline')"
-                    rules="phone"
+                    rules="required|phone"
                     :label="trans('shop::app.customers.signup-form.landline')"
                     placeholder="23456789"
                 >
@@ -215,28 +237,6 @@
                 </x-shop::form.control-group.error>
             </x-shop::form.control-group>
 
-            <div class="flex justify-between">
-                <div class="select-none items-center flex gap-[6px]">
-                    <input
-                        type="checkbox"
-                        id="show-password"
-                        class="hidden peer"
-                        onchange="switchVisibility()"
-                    />
-                    <label
-                        class="icon-uncheck text-[24px] text-navyBlue peer-checked:icon-check-box peer-checked:text-navyBlue cursor-pointer"
-                        for="show-password"
-                    ></label>
-                    <label
-                        class="text-[16] text-[#6E6E6E] max-sm:text-[12px] pl-0 select-none cursor-pointer"
-                        for="show-password"
-                    >
-                        @lang('shop::app.customers.login-form.show-password')
-                    </label>
-                </div>
-            </div>
-
-            
             <x-shop::form.control-group class="mb-4">
                 <x-shop::form.control-group.label>
                     @lang('shop::app.customers.signup-form.individual-account')

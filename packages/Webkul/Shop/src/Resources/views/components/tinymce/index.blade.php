@@ -1,8 +1,15 @@
 <v-tinymce {{ $attributes }}></v-tinymce>
 
 @pushOnce('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.6.2/tinymce.min.js" crossorigin="anonymous"
-        referrerpolicy="no-referrer"></script>
+    {{--
+        TODO (@devansh-webkul): Only this portion is pending; it just needs to be integrated using the Vite bundler. Currently,
+        there is an issue with relative paths in the plugins. I intend to address this task at the end.
+    --}}
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.6.2/tinymce.min.js"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
 
     <script type="module">
         app.component('v-tinymce', {
@@ -14,6 +21,7 @@
 
             methods: {
                 init() {
+                    // TODO (@devansh-webkul): Need to refactor this full method.
                     let tinyMCEHelper = {
                         initTinyMCE: function(extraConfiguration) {
                             let self = this;
@@ -35,10 +43,8 @@
                                     self.filePickerCallback(config, cb, value, meta);
                                 },
 
-                                images_upload_handler: function(blobInfo, success, failure,
-                                    progress) {
-                                    self.uploadImageHandler(config, blobInfo, success, failure,
-                                        progress);
+                                images_upload_handler: function(blobInfo, success, failure, progress) {
+                                    self.uploadImageHandler(config, blobInfo, success, failure, progress);
                                 },
                             });
                         },

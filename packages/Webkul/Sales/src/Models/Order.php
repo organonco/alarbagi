@@ -348,9 +348,6 @@ class Order extends Model implements OrderContract
      */
     public function canCancel(): bool
     {
-
-        return $this->status == self::STATUS_PENDING;
-
         if (
             $this->payment->method == 'cashondelivery'
             && core()->getConfigData('sales.payment_methods.cashondelivery.generate_invoice')

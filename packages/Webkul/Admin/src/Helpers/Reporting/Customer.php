@@ -22,7 +22,8 @@ class Customer extends AbstractReporting
         protected CustomerRepository $customerRepository,
         protected OrderRepository $orderRepository,
         protected ProductReviewRepository $reviewRepository
-    ) {
+    )
+    {
         parent::__construct();
     }
 
@@ -134,7 +135,7 @@ class Customer extends AbstractReporting
                 'orders.customer_id as id',
                 'orders.customer_email as email',
                 DB::raw('CONCAT(' . $tablePrefix . 'orders.customer_first_name, " ", ' . $tablePrefix . 'orders.customer_last_name) as full_name'),
-                DB::raw('SUM(base_grand_total - base_grand_total_refunded) as total'),
+                DB::raw('SUM(base_grand_total_invoiced - base_grand_total_refunded) as total'),
                 DB::raw('COUNT(*) as orders')
             )
             ->whereBetween('created_at', [$this->startDate, $this->endDate])

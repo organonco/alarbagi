@@ -81,6 +81,26 @@
                                         </x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
 
+                                    <!-- Vat Id -->
+                                    <x-admin::form.control-group class="w-full mb-[10px]">
+                                        <x-admin::form.control-group.label>
+                                            @lang('admin::app.customers.addresses.edit.vat-id')
+                                        </x-admin::form.control-group.label>
+    
+                                        <x-admin::form.control-group.control
+                                            type="text"
+                                            name="vat_id"
+                                            v-model="addressData.vat_id"
+                                            :label="trans('admin::app.customers.addresses.edit.vat-id')"
+                                            :placeholder="trans('admin::app.customers.addresses.edit.vat-id')"
+                                        >
+                                        </x-admin::form.control-group.control>
+    
+                                        <x-admin::form.control-group.error
+                                            control-name="vat_id"
+                                        >
+                                        </x-admin::form.control-group.error>
+                                    </x-admin::form.control-group>
                                 </div>
 
                                 <div class="flex gap-[16px] max-sm:flex-wrap">
@@ -408,11 +428,8 @@
             },
 
             methods: {
-                update(params, {
-                    resetForm,
-                    setErrors
-                }) {
-                    if (!params.default_address) {
+                update(params, { resetForm, setErrors }) {
+                    if (! params.default_address) {
                         delete params.default_address;
                     }
 
@@ -420,30 +437,25 @@
 
                     formData.append('_method', 'put');
 
-                    this.$axios.post(
-                            `{{ route('admin.customers.customers.addresses.update', '') }}/${params?.address_id}`,
-                            formData, {
-                                headers: {
-                                    'Content-Type': 'multipart/form-data'
-                                }
-                            })
-                        .then((response) => {
-                            this.$refs.CustomerAddressEdit.toggle();
+                    this.$axios.post(`{{ route('admin.customers.customers.addresses.update', '') }}/${params?.address_id}`, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    })
+                    .then((response) => {
+                        this.$refs.CustomerAddressEdit.toggle();
+                        
+                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
 
-                            this.$emitter.emit('add-flash', {
-                                type: 'success',
-                                message: response.data.message
-                            });
+                        window.location.reload();
 
-                            window.location.reload();
-
-                            resetForm();
-                        })
-                        .catch(error => {
-                            if (error.response.status == 422) {
-                                setErrors(error.response.data.errors);
-                            }
-                        });
+                        resetForm();
+                    })
+                    .catch(error => {
+                        if (error.response.status == 422) {
+                            setErrors(error.response.data.errors);
+                        }
+                    });
                 },
 
                 haveStates() {
