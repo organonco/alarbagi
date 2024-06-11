@@ -51,21 +51,22 @@
         {!! view_render_event('bagisto.shop.layout.content.before') !!}
 
         {{-- Page Header Blade Component --}}
+        
         <x-admin::layouts.header />
 
         <div class="flex gap-[16px] group/container {{ request()->cookie('sidebar_collapsed') ?? 0 ? 'sidebar-collapsed' : '' }}"
             ref="appLayout">
+            
             {{-- Page Sidebar Blade Component --}}
             <x-admin::layouts.sidebar />
 
             <div
-                class="flex-1 max-w-full px-[16px] pt-[11px] pb-[22px] bg-white dark:bg-gray-950 ltr:pl-[286px] rtl:pr-[286px] max-lg:!px-[16px] transition-all duration-300 group-[.sidebar-collapsed]/container:ltr:pl-[85px] group-[.sidebar-collapsed]/container:rtl:pr-[85px]">
+                class="flex-1 max-w-full px-[16px] pt-[11px] pb-[22px] bg-white dark:bg-gray-950 ltr:pl-[286px] rtl:pr-[286px] max-lg:!px-[16px] transition-all duration-300 group-[.sidebar-collapsed]/container:ltr:pl-[85px] group-[.sidebar-collapsed]/container:rtl:pr-[85px]" style="padding-top: 100px">
                 {{-- Added dynamic tabs for third level menus  --}}
                 {{-- Todo @suraj-webkul need to optimize below statement. --}}
                 @if (!request()->routeIs('admin.configuration.index'))
                     <x-admin::layouts.tabs />
                 @endif
-
                 {{-- Page Content Blade Component --}}
                 {{ $slot }}
             </div>

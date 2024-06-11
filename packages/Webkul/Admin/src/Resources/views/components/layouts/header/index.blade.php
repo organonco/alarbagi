@@ -18,7 +18,7 @@
         @endif
     @endif
     <div
-        class="flex justify-between items-center px-[16px] py-[10px] bg-white dark:bg-gray-900  border-b-[1px] dark:border-gray-800 sticky top-0 z-[10001]">
+        class="flex justify-between items-center px-[16px] py-[10px] bg-white dark:bg-gray-900  border-b-[1px] dark:border-gray-800 top-0 z-[10001]" style="position: fixed; width:100%">
         <div class="flex gap-[6px] items-center">
             {{-- Hamburger Menu --}}
             <i class="hidden icon-menu text-[24px] p-[6px] max-lg:block cursor-pointer"
