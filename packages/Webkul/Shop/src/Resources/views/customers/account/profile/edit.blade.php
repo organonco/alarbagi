@@ -145,12 +145,10 @@
                 type="select"
                 name="gender"
                 :value="old('gender') ?? $customer->gender"
-                class="mb-3"
                 rules="required"
                 aria-label="Select Gender"
                 :label="trans('shop::app.customers.account.profile.gender')"
             >
-                <option value="Other">@lang('shop::app.customers.account.profile.other')</option>
                 <option value="Male">@lang('shop::app.customers.account.profile.male')</option>
                 <option value="Female">@lang('shop::app.customers.account.profile.female')</option>
             </x-shop::form.control-group.control>
@@ -252,30 +250,9 @@
 
         {!! view_render_event('bagisto.shop.customers.account.profile.edit_form_controls.new_password_confirmation.after') !!}
 
-        <div class="select-none items-center flex gap-[6px] mb-4">
-            <input
-                type="checkbox"
-                name="subscribed_to_news_letter"
-                id="is-subscribed"
-                class="hidden peer"
-            />
-
-            <label
-                class="icon-uncheck text-[24px] text-navyBlue peer-checked:icon-check-box peer-checked:text-navyBlue cursor-pointer"
-                for="is-subscribed"
-            ></label>
-
-            <label
-                class="text-[16] text-[#6E6E6E] max-sm:text-[12px] pl-0 select-none cursor-pointer"
-                for="is-subscribed"
-            >
-                @lang('shop::app.customers.account.profile.subscribe-to-newsletter')
-            </label>
-        </div>
-
         <button
             type="submit"
-            class="primary-button block m-0 w-max py-[11px] px-[43px] rounded-[18px] text-base text-center"
+            class="sn-button-primary block m-0 w-max py-[11px] px-[43px] rounded-[18px] text-base text-center"
         >
             @lang('shop::app.customers.account.profile.save')
         </button>

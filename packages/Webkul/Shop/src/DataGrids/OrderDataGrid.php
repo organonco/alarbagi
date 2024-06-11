@@ -41,7 +41,7 @@ class OrderDataGrid extends DataGrid
             'type'       => 'string',
             'searchable' => true,
             'sortable'   => true,
-            'filterable' => true,
+            'filterable' => false,
         ]);
 
         $this->addColumn([
@@ -107,7 +107,7 @@ class OrderDataGrid extends DataGrid
             ],
             'searchable' => true,
             'sortable'   => true,
-            'filterable' => true,
+            'filterable' => false,
             'closure'    => function ($row) {
                 if ($row->status == 'processing') {
                     return '<span class="badge badge-md badge-success">' . trans('shop::app.customers.account.orders.status.options.processing') . '</span>';

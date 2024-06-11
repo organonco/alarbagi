@@ -8,16 +8,10 @@
         <x-shop::drawer>
             <!-- Drawer Toggler -->
             <x-slot:toggle>
-                <span class="relative">
-                    <span class="icon-cart text-[24px] cursor-pointer"></span>
-
-                    <span
-                        class="absolute  px-[7px] top-[-15px] left-[18px] py-[5px] bg-[#060C3B] rounded-[44px] text-white text-[10px] font-semibold leading-[9px]"
-                        v-if="cart?.items_qty"
-                    >
-                        @{{ cart.items_qty }}
-                    </span>
-                </span>
+                <div style="display: flex; flex-direction: column; align-items: center">
+                    <span class="icon-cart inline-block text-[24px] cursor-pointer sn-color-white"></span>
+                    <span class="sn-color-white">@lang('shop::app.components.layouts.header.cart')</span>
+                </div>
             </x-slot:toggle>
 
             <!-- Drawer Header -->
@@ -183,12 +177,12 @@
             template: '#v-mini-cart-template',
 
             data() {
-                return  {
+                return {
                     cart: null,
                 }
             },
 
-           mounted() {
+            mounted() {
                 this.getCart();
 
                 /**
@@ -199,9 +193,9 @@
                 this.$emitter.on('update-mini-cart', (cart) => {
                     this.cart = cart;
                 });
-           },
+            },
 
-           methods: {
+            methods: {
                 getCart() {
                     this.$axios.get('{{ route('shop.api.checkout.cart.index') }}')
                         .then(response => {
@@ -215,12 +209,17 @@
 
                     qty[item.id] = quantity;
 
-                    this.$axios.put('{{ route('shop.api.checkout.cart.update') }}', { qty })
+                    this.$axios.put('{{ route('shop.api.checkout.cart.update') }}', {
+                            qty
+                        })
                         .then(response => {
                             if (response.data.message) {
                                 this.cart = response.data.data;
                             } else {
-                                this.$emitter.emit('add-flash', { type: 'warning', message: response.data.data.message });
+                                this.$emitter.emit('add-flash', {
+                                    type: 'warning',
+                                    message: response.data.data.message
+                                });
                             }
                         })
                         .catch(error => {});
@@ -234,7 +233,10 @@
                         .then(response => {
                             this.cart = response.data.data;
 
-                            this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                            this.$emitter.emit('add-flash', {
+                                type: 'success',
+                                message: response.data.message
+                            });
                         })
                         .catch(error => {});
                 },

@@ -28,7 +28,7 @@
         </div>
 
         <div class="flex flex-col justify-between">
-            <p class="text-[25px] font-mediums">Hello! {{ $customer->first_name }}</p>
+            <p class="text-[25px] font-mediums">أهلاً بك {{ $customer->first_name }}!</p>
 
             <p class="text-[#6E6E6E] ">{{ $customer->email }}</p>
         </div>
@@ -42,7 +42,7 @@
                 <div class="max-md:flex max-md:gap-x-[15px] max-md:justify-between max-md:items-center pb-[20px] max-md:bg-gray-200 max-md:px-[25px] max-md:py-[20px] max-md:rounded-tl-[6px] max-md:rounded-tr-[6px] accordian-toggle md:pointer-events-none select-none">
                     <p class="text-[20px] md:font-medium">@lang($menuItem['name'])</p>
 
-                    <span class="icon-arrow-right text-[24px] md:hidden"></span>
+                    <span class="icon-arrow-left text-[24px] md:hidden"></span>
                 </div>
 
                 {{-- Account Navigation Content --}}
@@ -62,7 +62,7 @@
                                     @lang($subMenuItem['name'])
                                 </p>
 
-                                <span class="icon-arrow-right text-[24px] max-md:hidden"></span>
+                                <span class="icon-arrow-left text-[24px] max-md:hidden"></span>
                             </div>
                         </a>
                     @endforeach
@@ -100,13 +100,13 @@
                     this.isOpen = ! this.isOpen;
 
                     if (this.isOpen) {
-                        this.$el.querySelector('.icon-arrow-right').classList.add('icon-arrow-down');
-                        this.$el.querySelector('.icon-arrow-down').classList.remove('icon-arrow-right');
+                        this.$el.querySelector('.icon-arrow-left').classList.add('icon-arrow-down');
+                        this.$el.querySelector('.icon-arrow-down').classList.remove('icon-arrow-left');
 
                         this.$el.querySelector('.accordian-content').style.display = "grid";
                     } else {
-                        this.$el.querySelector('.icon-arrow-down').classList.add('icon-arrow-right');
-                        this.$el.querySelector('.icon-arrow-right').classList.remove('icon-arrow-down');
+                        this.$el.querySelector('.icon-arrow-down').classList.add('icon-arrow-left');
+                        this.$el.querySelector('.icon-arrow-left').classList.remove('icon-arrow-down');
 
                         this.$el.querySelector('.accordian-content').style.display = "none";
                     }

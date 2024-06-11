@@ -351,7 +351,7 @@ return [
                 'account' => 'الحساب',
                 'compare' => 'مقارنة',
                 'cart' => 'العربة',
-                'dropdown-text' => 'إدارة عربة التسوق والطلبات والقائمة المفضلة',
+                'dropdown-text' => 'إدارة عربة التسوق والطلبات ',
                 'logout' => 'تسجيل الخروج',
                 'orders' => 'الطلبات',
                 'profile' => 'الملف الشخصي',
@@ -360,9 +360,9 @@ return [
                 'search-text' => 'ابحث عن المنتجات هنا',
                 'search' => 'بحث',
                 'title' => 'الحساب',
-                'welcome' => 'مرحبًا',
+                'welcome' => 'أهلاً بك ',
                 'welcome-guest' => 'مرحبًا بكم',
-                'wishlist' => 'قائمة المفضلة',
+                'wishlist' => 'المفضلة',
                 'sign-up-or-sign-in' => 'التسجيل أو تسجيل الدخول',
             ],
 
@@ -663,7 +663,7 @@ return [
 
             'mini-cart' => [
                 'continue-to-checkout' => 'متابعة للسداد',
-                'empty-cart' => 'سلة التسوق الخاصة بك فارغة',
+                'empty-cart' => 'عربة التسوق الخاصة بك فارغة',
                 'offer-on-orders' => '',
                 'remove' => 'إزالة',
                 'see-details' => 'رؤية التفاصيل',
@@ -809,7 +809,7 @@ return [
     ],
 
     'layouts' => [
-        'address' => 'العنوان',
+        'address' => 'العناوين',
         'downloadable-products' => 'المنتجات القابلة للتنزيل',
         'my-account' => 'حسابي',
         'orders' => 'الطلبات',

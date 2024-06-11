@@ -25,17 +25,5 @@ return [
         'route' => 'shop.customers.account.orders.index',
         'icon'  => 'icon-orders',
         'sort'  => 3,
-    ], [
-        'key'   => 'account.reviews',
-        'name'  => 'shop::app.layouts.reviews',
-        'route' => 'shop.customers.account.reviews.index',
-        'icon'  => 'icon-star',
-        'sort'  => 5,
-    ], [
-        'key'   => 'account.wishlist',
-        'name'  => 'shop::app.layouts.wishlist',
-        'route' => 'shop.customers.account.wishlist.index',
-        'icon'  => 'icon-heart',
-        'sort'  => 6,
-    ],
+    ]
 ];

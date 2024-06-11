@@ -49,18 +49,6 @@
         {{-- Mini cart --}}
         @include('shop::checkout.cart.mini-cart')
 
-
-        @auth('customer')
-            <a
-                    href="{{ route('shop.customers.account.wishlist.index') }}"
-            >
-                <div style="display: flex; flex-direction: column; align-items: center">
-                    <span class="icon-heart inline-block text-[24px] cursor-pointer sn-color-white"></span>
-                    <span class="sn-color-white">@lang('shop::app.components.layouts.header.wishlist')</span>
-                </div>
-            </a>
-        @endauth
-
         {{-- user profile --}}
         <x-shop::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
             <x-slot:toggle>
@@ -108,40 +96,30 @@
                 <x-slot:content class="!p-[0px]">
                     <div class="grid gap-[10px] p-[20px] pb-0">
                         <p class="text-[20px] font-dmserif">
-                            @lang('shop::app.components.layouts.header.welcome')’
-                            {{ auth()->guard('customer')->user()->first_name }}
+                            @lang('shop::app.components.layouts.header.welcome')
+                            {{ auth()->guard('customer')->user()->first_name }}!
                         </p>
 
                         <p class="text-[14px]">
-                            @lang('shop::app.components.layouts.header.dropdown-text')
                         </p>
                     </div>
 
                     <p class="w-full mt-[12px] py-2px border border-[#E9E9E9]"></p>
 
-                    <div class="grid gap-[4px] mt-[10px] pb-[10px]">
+                    <div class="grid gap-[4px] mt-[10px] pb-[10px] pl-24">
                         <a
-                                class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+                                class="px-5 py-2 text-[16px] cursor-pointer"
                                 href="{{ route('shop.customers.account.profile.index') }}"
                         >
                             @lang('shop::app.components.layouts.header.profile')
                         </a>
 
                         <a
-                                class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+                                class="px-5 py-2 text-[16px] cursor-pointer"
                                 href="{{ route('shop.customers.account.orders.index') }}"
                         >
                             @lang('shop::app.components.layouts.header.orders')
                         </a>
-
-                        @if (core()->getConfigData('general.content.shop.wishlist_option'))
-                            <a
-                                    class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
-                                    href="{{ route('shop.customers.account.wishlist.index') }}"
-                            >
-                                @lang('shop::app.components.layouts.header.wishlist')
-                            </a>
-                        @endif
 
                         {{--Customers logout--}}
                         @auth('customer')
@@ -153,7 +131,7 @@
                             </x-shop::form>
 
                             <a
-                                    class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+                                    class="px-5 py-2 text-[16px] cursor-pointer"
                                     href="{{ route('shop.customer.session.destroy') }}"
                                     onclick="event.preventDefault(); document.getElementById('customerLogout').submit();"
                             >

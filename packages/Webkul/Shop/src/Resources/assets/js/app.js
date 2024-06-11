@@ -14,7 +14,6 @@ import { createApp } from "vue/dist/vue.esm-bundler";
  */
 import { configure, defineRule, Field, Form, ErrorMessage } from "vee-validate";
 import {localize, setLocale} from "@vee-validate/i18n";
-import en from "@vee-validate/i18n/dist/locale/en.json";
 import ar from "@vee-validate/i18n/dist/locale/ar.json";
 
 import * as AllRules from '@vee-validate/rules';
@@ -23,9 +22,10 @@ import * as AllRules from '@vee-validate/rules';
  * Registration of all global validators.
  */
 Object.keys(AllRules).forEach(rule => {
-    defineRule(rule, AllRules[rule]);
+    if (typeof AllRules[rule] === 'function') {
+        defineRule(rule, AllRules[rule]);
+    }
 });
-
 /**
  * This regular expression allows phone numbers with the following conditions:
  * - The phone number can start with an optional "+" sign.
@@ -53,13 +53,6 @@ configure({
      * locales can be added in the same way.
      */
     generateMessage: localize({
-        en: {
-            ...en,
-            messages: {
-                ...en.messages,
-                phone: "This {field} must be a valid phone number",
-            },
-        },
         ar: {
             ...ar,
             messages: {

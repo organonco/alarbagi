@@ -11,7 +11,7 @@
                             {{ $breadcrumb->title }}
                         </a>
 
-                        <span class="icon-arrow-right text-[24px]"></span>
+                        <span class="icon-arrow-left text-[24px]"></span>
                     </li>
                 @else
                     <li 
