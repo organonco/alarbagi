@@ -10,16 +10,6 @@
     font-display: block;
 }
 
-@font-face {
-    font-family: "font awesome";
-    src: url("../fonts/FontAwesome.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-}
-
-
-
 @layer components {
     input {
         @apply outline-none;
@@ -106,8 +96,7 @@
     }
 
     .icon-cart:before {
-        font-family: "font awesome" !important;
-        content: "\f07A";
+        content: "\e90e";
     }
 
     .icon-check-box:before {
@@ -318,7 +307,7 @@
     .icon-users:before {
         content: "\e942";
     }
-
+      
 
     .journal-scroll::-webkit-scrollbar {
         width: 14px;
@@ -377,7 +366,7 @@
     .primary-button {
         @apply font-medium rounded-[12px] text-white bg-navyBlue border border-navyBlue px-[30px] py-[15px] max-w-max cursor-pointer transition-all hover:opacity-[0.9];
     }
-
+    
     .secondary-button {
         @apply font-medium rounded-[12px] bg-white text-navyBlue border border-navyBlue  px-[30px] py-[15px] max-w-max cursor-pointer transition-all hover:bg-[#050e3a0d];
     }
@@ -406,7 +395,7 @@
         0% {
             opacity: 0;
         }
-
+        
         100% {
             opacity: 1;
         }
@@ -454,7 +443,7 @@
     html {
         margin-top: 0px !important;
     }
-
+    
     .break-word-custom {
         word-break: break-word;
     }

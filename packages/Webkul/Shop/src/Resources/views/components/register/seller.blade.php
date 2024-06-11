@@ -2,6 +2,7 @@
     class="w-full max-w-[870px] mx-auto px-[90px] py-[60px] border border-[#E9E9E9] rounded-[12px] max-md:px-[30px] max-md:py-[30px] h-fit"
 >
     <h1 class="text-[40px] font-dmserif max-sm:text-[25px] sn-color-light-main">
+        
         @lang('marketplace::app.register.title.seller')
     </h1>
 

@@ -3,25 +3,15 @@
 }
 
 .sn-background-light-main {
-    background-color: #5c9eb4 !important;
-}
-
-.sn-background-dark-main {
-    background-color: #172436 !important;
-}
-
-.sn-color-dark-main {
-    color: #172436 !important;
+    background-color: #264653 !important;
 }
 
 .sn-color-danger {
     color: #612121 !important;
 }
 
-
-
 .sn-color-light-main {
-    color: #5c9eb4 !important;
+    color: #E76F51 !important;
 }
 
 
@@ -35,7 +25,7 @@
 
 .sn-button-primary{
     color: white;
-    background-color: #5c9eb4;
+    background-color: #E76F51;
     border-radius: 12px;
     border: none;
     padding: 15px 30px;
@@ -44,7 +34,7 @@
 
 .sn-button-primary-mini{
     color: white;
-    background-color: #5c9eb4;
+    background-color: #E76F51;
     border-radius: 12px;
     border: none;
     padding: 5px 15px;
@@ -52,10 +42,9 @@
 }
 
 .sn-button-secondary{
-    color: #5c9eb4;
+    color: #E76F51;
     background-color: white;
     border-radius: 12px;
-    border: 1px solid #5c9eb4;
     padding: 15px 30px;
     font-weight: bold;
 }
@@ -66,7 +55,7 @@
     border-radius: 12px;
     border: 1px solid red;
     padding: 15px 30px;
-    font-weight: bold;
+    font-weight: bold;sn
 }
 
 .sn-color-white{
@@ -74,11 +63,11 @@ color: white;
 }
 
 .hover\:border-primary:hover{
-    border-color: #5c9eb4;
+    border-color: #E76F51;
 }
 
 .sn-border-main{
-    border-color: #5c9eb4;
+    border-color: #E76F51;
 }
 
 .grid-cols-2-4{grid-template-columns:repeat(4,minmax(0,1fr)) !important;}

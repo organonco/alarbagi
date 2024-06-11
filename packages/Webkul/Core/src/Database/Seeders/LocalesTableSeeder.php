@@ -16,9 +16,10 @@ class LocalesTableSeeder extends Seeder
         DB::table('locales')->insert([
             [
                 'id'        => 1,
-                'code'      => 'en',
-                'name'      => 'English',
-                'logo_path' => 'locales/en.png',
+                'code'      => 'ar',
+                'name'      => 'Arabic',
+                'logo_path' => 'locales/ar.png',
+                'direction' => "rtl"
             ],
         ]);
     }

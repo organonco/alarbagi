@@ -43,7 +43,7 @@ class SellerInvoiceRepository extends Repository
         //Fees
         $percentage = config('invoice.percentage');
         if ($total > 0)
-            $invoiceItems[] = new SellerInvoiceItemDataObject(-1 * $total * $percentage / 100, SellerInvoiceItemTypeEnum::FEE, "Souq Naif Fees: ($total AED x $percentage%)", null);
+            $invoiceItems[] = new SellerInvoiceItemDataObject(-1 * $total * $percentage / 100, SellerInvoiceItemTypeEnum::FEE, "Alarbaji Fees: ($total AED x $percentage%)", null);
 
         $invoice = new SellerInvoiceDataObject(SellerInvoiceStatusEnum::DRAFT, $invoiceItems, $seller->id);
         return $invoice;

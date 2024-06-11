@@ -47,46 +47,6 @@ class CategoryTableSeeder extends Seeder
                 'category_id'      => '1',
                 'locale'           => 'en',
             ],
-            [
-                'name'             => 'Raíz',
-                'slug'             => 'root',
-                'description'      => 'Raíz',
-                'meta_title'       => '',
-                'meta_description' => '',
-                'meta_keywords'    => '',
-                'category_id'      => '1',
-                'locale'           => 'es',
-            ],
-            [
-                'name'             => 'Racine',
-                'slug'             => 'root',
-                'description'      => 'Racine',
-                'meta_title'       => '',
-                'meta_description' => '',
-                'meta_keywords'    => '',
-                'category_id'      => '1',
-                'locale'           => 'fr',
-            ],
-            [
-                'name'             => 'Hoofdcategorie',
-                'slug'             => 'root',
-                'description'      => 'Hoofdcategorie',
-                'meta_title'       => '',
-                'meta_description' => '',
-                'meta_keywords'    => '',
-                'category_id'      => '1',
-                'locale'           => 'nl',
-            ],
-            [
-                'name'             => 'Kök',
-                'slug'             => 'root',
-                'description'      => 'Kök',
-                'meta_title'       => '',
-                'meta_description' => '',
-                'meta_keywords'    => '',
-                'category_id'      => '1',
-                'locale'           => 'tr',
-            ]
         ]);
     }
 }

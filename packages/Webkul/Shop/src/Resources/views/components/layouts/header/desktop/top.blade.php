@@ -165,34 +165,7 @@
             @endauth
         </x-shop::dropdown>
     </div>
-    <x-shop::dropdown position="bottom-right">
-        <x-slot:toggle>
-            {{-- Dropdown Toggler --}}
-            <div class="flex items-center gap-[10px] cursor-pointer">
-                <img
-                        src="{{ ! empty(core()->getCurrentLocale()->logo_url)
-                            ? core()->getCurrentLocale()->logo_url
-                            : bagisto_asset('images/default-language.svg')
-                        }}"
-                        class="h-full"
-                        alt="Default locale"
-                        width="24"
-                        height="16"
-                />
-
-                <span>
-                    {{ core()->getCurrentChannel()->locales()->orderBy('name')->where('code', app()->getLocale())->value('name') }}
-                </span>
-
-                <span class="icon-arrow-down text-[24px]"></span>
-            </div>
-        </x-slot:toggle>
-
-        <!-- Dropdown Content -->
-        <x-slot:content class="!p-[0px]">
-            <v-locale-switcher></v-locale-switcher>
-        </x-slot:content>
-    </x-shop::dropdown>
+    
 </div>
 
 @pushonce('scripts')

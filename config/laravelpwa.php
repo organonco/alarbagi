@@ -1,16 +1,16 @@
 <?php
 
 return [
-    'name' => 'Souq Naif',
+    'name' => 'Alarbaji',
     'manifest' => [
-        'name' => env('APP_NAME', 'Souq Naif'),
-        'short_name' => 'Souq Naif',
+        'name' => env('APP_NAME', 'Alarbaji'),
+        'short_name' => 'Alarbaji',
         'start_url' => '/',
-        'background_color' => '#00b4ff',
-        'theme_color' => '#15235e',
+        'background_color' => '#264653',
+        'theme_color' => '#E76F51',
         'display' => 'standalone',
         'orientation'=> 'any',
-        'status_bar'=> '#00b4ff',
+        'status_bar'=> '#E76F51',
         'icons' => [
             '72x72' => [
                 'path' => '/images/icons/icon-72x72.png',

@@ -71,34 +71,7 @@
                             </x-slot:content>
                         </x-shop::dropdown>
 
-                        <x-shop::dropdown position="top-right">
-                            <x-slot:toggle>
-                                {{-- Dropdown Toggler --}}
-                                <div class="w-full flex gap-[10px] justify-between items-center cursor-pointer">
-                                    <img
-                                            src="{{ ! empty(core()->getCurrentLocale()->logo_url)
-                                                ? core()->getCurrentLocale()->logo_url
-                                                : bagisto_asset('images/default-language.svg')
-                                            }}"
-                                            class="h-full"
-                                            alt="Default locale"
-                                            width="24"
-                                            height="16"
-                                    />
-
-                                    <span>
-                                        {{ core()->getCurrentChannel()->locales()->orderBy('name')->where('code', app()->getLocale())->value('name') }}
-                                    </span>
-
-                                    <span class="icon-arrow-down text-[24px]"></span>
-                                </div>
-                            </x-slot:toggle>
-
-                            <!-- Dropdown Content -->
-                            <x-slot:content class="!p-[0px]">
-                                <v-locale-switcher></v-locale-switcher>
-                            </x-slot:content>
-                        </x-shop::dropdown>
+                        
                     </div>
                 </x-slot:content>
 
