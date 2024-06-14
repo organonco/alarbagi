@@ -1,6 +1,6 @@
 <x-admin::layouts>
     <x-slot:title>
-        Invoice Preview For {{$invoice->seller->name}}
+        فاتورة للتاجر {{$invoice->seller->name}}
     </x-slot:title>
 
     @push('styles')
@@ -32,7 +32,7 @@
         <div class="flex gap-[16px] justify-between items-center max-sm:flex-wrap">
             <div class="flex gap-[10px] items-center">
                 <p class="text-[20px] text-gray-800 dark:text-white font-bold leading-[24px]">
-                    Invoice Preview For {{$invoice->seller->name}}
+                    فاتورة للتاجر  {{$invoice->seller->name}}
                 </p>
                 <div>
                     <span
@@ -54,32 +54,32 @@
                 @if($is_owner)
                     @if($invoice->status == \Organon\Marketplace\Enums\SellerInvoiceStatusEnum::DRAFT)
                         <x-admin::form :action="route('admin.sales.sellers.invoice.destroy', $invoice->id)">
-                            <button class="secondary-button" style="color: red; border-color: red; margin-right: 10px"
+                            <button class="secondary-button" style="color: red; border-color: red; margin-left: 10px"
                                     type="submit">
-                                Delete
+                                حذف الفاتورة
                             </button>
                         </x-admin::form>
                         <x-admin::form :action="route('admin.sales.sellers.invoice.send', $invoice->id)">
                             <button class="primary-button" type="submit">
-                                Send To Seller
+                                إرسال إلى التاجر
                             </button>
                         </x-admin::form>
                     @elseif($invoice->status == \Organon\Marketplace\Enums\SellerInvoiceStatusEnum::PENDING)
                         <x-admin::form :action="route('admin.sales.sellers.invoice.unsend', $invoice->id)">
                             <button class="primary-button" type="submit">
-                                Undo Send To Seller
+                                إلغاء الإرسال إلى التاجر (استرداد)
                             </button>
                         </x-admin::form>
                     @elseif($invoice->status == \Organon\Marketplace\Enums\SellerInvoiceStatusEnum::APPROVED)
                         <x-admin::form :action="route('admin.sales.sellers.invoice.issue', $invoice->id)">
                             <button class="primary-button" type="submit">
-                                Issue
+                                إصدار الفاتورة
                             </button>
                         </x-admin::form>
                     @elseif($invoice->status == \Organon\Marketplace\Enums\SellerInvoiceStatusEnum::REJECTED)
                         <x-admin::form :action="route('admin.sales.sellers.invoice.unsend', $invoice->id)">
                             <button class="primary-button" type="submit">
-                                Edit
+                                تعديل
                             </button>
                         </x-admin::form>
                     @endif
@@ -90,14 +90,14 @@
                         <x-admin::form :action="route('admin.sales.sellers.invoice.reject', $invoice->id)">
                             <button class="primary-button" style="background-color: darkred; border: none"
                                     type="submit">
-                                Reject
+                                رفض الفاتورة
                             </button>
                         </x-admin::form>
                     @endif
                     @if($invoice->status == \Organon\Marketplace\Enums\SellerInvoiceStatusEnum::PENDING ||  $invoice->status == \Organon\Marketplace\Enums\SellerInvoiceStatusEnum::REJECTED)
                         <x-admin::form :action="route('admin.sales.sellers.invoice.approve', $invoice->id)">
-                            <button class="primary-button" style="margin-left: 20px;" type="submit">
-                                Accept
+                            <button class="primary-button" style="margin-right: 20px;" type="submit">
+                                قبول الفاتورة
                             </button>
                         </x-admin::form>
                     @endif
@@ -117,14 +117,14 @@
                 <div class="bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                     <div class="p-[16px]">
                         <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[30px]">
-                            Summary
+                            الملخص
                         </p>
 
                         <div class="info-box text-gray-800 dark:text-white">
                             <table class="info-table">
                                 <tr>
                                     <td style="width: 90%; height: 50px; font-weight: bolder">
-                                        Subtotal
+                                        المجموع الجزئي
                                     </td>
                                     <td style="width: 10%; font-weight: bolder">
                                         {{$invoice->subtotal}}
@@ -132,7 +132,7 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 90%; height: 50px; font-weight: bolder">
-                                        Extras
+                                        الإضافات
                                     </td>
                                     <td style="width: 10%; font-weight: bolder">
                                         {{$invoice->extras}}
@@ -140,15 +140,7 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 90%; height: 50px; font-weight: bolder">
-                                        Fees
-                                    </td>
-                                    <td style="width: 10%; font-weight: bolder">
-                                        {{$invoice->fees}}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 90%; height: 50px; font-weight: bolder">
-                                        Total
+                                        المجموع الكلي
                                     </td>
                                     <td style="width: 10%; font-weight: bolder">
                                         {{$invoice->total}}
@@ -166,7 +158,7 @@
                     <div class="bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                         <div class="p-[16px]">
                             <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[30px]">
-                                Add Item
+                                إضافة سطر
                             </p>
 
                             <x-admin::form :action="route('admin.sales.sellers.invoice.add_item', $invoice->id)">
@@ -174,7 +166,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="comment"
-                                        placeholder="For"
+                                        placeholder="البيان"
                                         label="For"
                                     >
                                     </x-admin::form.control-group.control>
@@ -186,7 +178,7 @@
                                     <x-admin::form.control-group.control
                                         type="number"
                                         name="amount"
-                                        placeholder="Amount"
+                                        placeholder="المبلغ"
                                         label="Amount"
                                     >
                                     </x-admin::form.control-group.control>
@@ -198,7 +190,7 @@
                                         class="primary-button py-[8px] w-full block px-[43px] mx-auto m-0 ml-[0px] rounded-[18px] text-[16px] text-center"
                                         type="submit"
                                     >
-                                        Add Item
+                                        إضافة السطر
                                     </button>
                                 </div>
                             </x-admin::form>
@@ -215,7 +207,7 @@
                 <div class="bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                     <div class="p-[16px]">
                         <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[30px]">
-                            Items
+                            الأسطر
                         </p>
                         <div class="info-box text-gray-800 dark:text-white">
                             <table class="info-table">

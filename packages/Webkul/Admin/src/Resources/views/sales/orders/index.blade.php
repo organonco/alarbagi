@@ -21,7 +21,7 @@
                 <div class="row grid grid-cols-[0.5fr_0.5fr_1fr] grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800">
                     <div
                         class="flex gap-[10px] items-center select-none"
-                        v-for="(columnGroup, index) in [['increment_id', 'created_at', 'status'], ['base_grand_total', 'method', 'channel_name'], ['full_name', 'customer_email', 'location', 'image']]"
+                        v-for="(columnGroup, index) in [['increment_id', 'status'], ['base_grand_total', 'method'], ['full_name', 'created_at']]"
                     >
                         <p class="text-gray-600 dark:text-gray-300">
                             <span class="[&>*]:after:content-['_/_']">
@@ -74,12 +74,6 @@
                                 </p>
 
                                 <p
-                                    class="text-gray-600 dark:text-gray-300"
-                                    v-text="record.created_at"
-                                >
-                                </p>
-
-                                <p
                                     v-if="record.is_closure"
                                     v-html="record.status"
                                 >
@@ -102,13 +96,7 @@
                             </p>
 
                             <p class="text-gray-600 dark:text-gray-300">
-                                @lang('admin::app.sales.orders.index.datagrid.pay-by', ['method' => ''])@{{ record.method }}
-                            </p>
-
-                            <p
-                                class="text-gray-600 dark:text-gray-300"
-                                v-text="record.channel_name"
-                            >
+                                @{{ record.method }}
                             </p>
                         </div>
                     </div>
@@ -123,16 +111,10 @@
                             </p>
 
                             <p
-                                class="text-gray-600 dark:text-gray-300"
-                                v-text="record.customer_email"
-                            >
-                            </p>
-
-                            <p
-                                class="text-gray-600 dark:text-gray-300"
-                                v-text="record.location"
-                            >
-                            </p>
+                                    class="text-gray-600 dark:text-gray-300"
+                                    v-text="record.created_at"
+                                >
+                                </p>
                         </div>
                     </div>
 
@@ -156,7 +138,7 @@
                         </div>
 
                         <a :href=`{{ route('admin.sales.orders.view', '') }}/${record.id}`>
-                            <span class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"></span>
+                            <span class="icon-sort-left text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"></span>
                         </a>
                     </div>
                 </div>

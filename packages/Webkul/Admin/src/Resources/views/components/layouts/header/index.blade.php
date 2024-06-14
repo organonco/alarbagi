@@ -45,18 +45,6 @@
                     @endif
                 </a>
 
-                {{-- Mega Search Bar Vue Component --}}
-                <v-mega-search>
-                    <div class="flex items-center relative w-[525px] max-w-[525px] ltr:ml-[10px] rtl:mr-[10px]">
-                        <i class="icon-search text-[22px] flex items-center absolute ltr:left-[12px] rtl:right-[12px] top-[6px]"></i>
-
-                        <input
-                                type="text"
-                                class="bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-lg block w-full px-[40px] py-[5px] leading-6 text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
-                                placeholder="@lang('admin::app.components.layouts.header.mega-search.title')"
-                        >
-                    </div>
-                </v-mega-search>
             </div>
 
             <div class="flex gap-[10px] items-center">

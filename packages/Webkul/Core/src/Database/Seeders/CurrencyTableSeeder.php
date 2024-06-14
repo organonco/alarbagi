@@ -16,9 +16,9 @@ class CurrencyTableSeeder extends Seeder
         DB::table('currencies')->insert([
             [
                 'id'     => 1,
-                'code'   => 'USD',
-                'name'   => 'US Dollar',
-                'symbol' => '$',
+                'code'   => 'SYP',
+                'name'   => 'ليرة سورية',
+                'symbol' => 'ل.س',
             ],
         ]);
     }

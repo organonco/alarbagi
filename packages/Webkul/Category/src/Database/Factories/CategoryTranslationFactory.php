@@ -25,7 +25,7 @@ class CategoryTranslationFactory extends Factory
             'name'        => $this->faker->word,
             'slug'        => $this->faker->unique()->slug,
             'description' => $this->faker->sentence(),
-            'locale'      => 'en',
+            'locale'      => 'ar',
             'locale_id'   => 1,
         ];
     }

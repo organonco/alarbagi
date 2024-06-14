@@ -891,9 +891,9 @@
         "name_plural": "Somali shillings"
     },
     "SYP": {
-        "symbol": "SY£",
+        "symbol": "ل.س",
         "name": "Syrian Pound",
-        "symbol_native": "ل.س.‏",
+        "symbol_native": "ل.س",
         "decimal_digits": 0,
         "rounding": 0,
         "code": "SYP",

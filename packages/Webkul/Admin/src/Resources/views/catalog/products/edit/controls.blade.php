@@ -35,8 +35,8 @@
                 ::rules="{{ $attribute->validations }}"
                 :label="$attribute->admin_name"
                 value="{{ old($attribute->code) ?: $product[$attribute->code] }}"
-                :class="'ltr:pl-[30px] rtl:pr-[30px] ' . ($attribute->code == 'price' ? 'py-2 bg-gray-50 text-[20px] font-bold' : '')"
-                style="padding-left: 60px"
+                :class="($attribute->code == 'price' ? 'py-2 bg-gray-50 text-[20px] font-bold' : '')"
+                style="padding-left: 60px; padding-right: 80px"
             >
             </x-admin::form.control-group.control>
         </div>

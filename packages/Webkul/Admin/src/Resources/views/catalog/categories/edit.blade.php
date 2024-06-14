@@ -43,41 +43,6 @@
             </div>
         </div>
 
-        <!-- Filter Row -->
-        <div class="flex  gap-[16px] justify-between items-center mt-[28px] max-md:flex-wrap">
-            <div class="flex gap-x-[4px] items-center">
-                {{-- Locale Switcher --}}
-                <x-admin::dropdown>
-                    {{-- Dropdown Toggler --}}
-                    <x-slot:toggle>
-                        <button
-                            type="button"
-                            class="transparent-button px-[4px] py-[6px] hover:bg-gray-200 dark:hover:bg-gray-800 focus:bg-gray-200 dark:focus:bg-gray-800 dark:text-white"
-                        >
-                            <span class="icon-language text-[24px] "></span>
-
-                            {{ $currentLocale->name }}
-
-                            <input type="hidden" name="locale" value="{{ $currentLocale->code }}"/>
-
-                            <span class="icon-sort-down text-[24px]"></span>
-                        </button>
-                    </x-slot:toggle>
-
-                    {{-- Dropdown Content --}}
-                    <x-slot:content class="!p-[0px]">
-                        @foreach (core()->getAllLocales() as $locale)
-                            <a
-                                href="?{{ Arr::query(['locale' => $locale->code]) }}"
-                                class="flex gap-[10px] px-5 py-2 text-[16px] cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950 dark:text-white {{ $locale->code == $currentLocale->code ? 'bg-gray-100 dark:bg-gray-950' : ''}}"
-                            >
-                                {{ $locale->name }}
-                            </a>
-                        @endforeach
-                    </x-slot:content>
-                </x-admin::dropdown>
-            </div>
-        </div>
 
         {{-- Full Pannel --}}
         <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
@@ -227,9 +192,9 @@
                 {!! view_render_event('bagisto.admin.catalog.categories.edit.card.seo.before', ['category' => $category]) !!}
 
                 {{-- SEO Deatils --}}
-                <div class="p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
+                <div class="p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow hidden">
                     <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[16px]">
-                        @lang('admin::app.catalog.categories.edit.seo-details')
+                        @lang('admin::app.catalog.categories.edit.seo-details') 
                     </p>
 
                     {{-- SEO Title & Description Blade Componnet --}}
@@ -412,25 +377,6 @@
                                 value="1"
                                 :label="trans('admin::app.catalog.categories.edit.visible-in-menu')"
                                 :checked="(boolean) $selectedValue"
-                            >
-                            </x-admin::form.control-group.control>
-                        </x-admin::form.control-group>
-
-
-                        <x-admin::form.control-group>
-                            <x-admin::form.control-group.label class="text-gray-800 dark:text-white font-medium">
-                                @lang('admin::app.catalog.categories.edit.trending')
-                            </x-admin::form.control-group.label>
-
-                            @php $trending = old('trending') ?: $category->trending @endphp
-
-                            <x-admin::form.control-group.control
-                                type="switch"
-                                name="trending"
-                                class="cursor-pointer"
-                                value="1"
-                                :label="trans('admin::app.catalog.categories.edit.trending')"
-                                :checked="(boolean)$trending"
                             >
                             </x-admin::form.control-group.control>
                         </x-admin::form.control-group>

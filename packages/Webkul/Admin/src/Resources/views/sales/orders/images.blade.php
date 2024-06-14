@@ -11,7 +11,7 @@
         @endphp
 
         <div class="relative">
-            <div class="w-full h-[60px] max-w-[60px] max-h-[60px] relativerounded-[4px]">
+            <div class="w-full h-[40px] max-w-[40px] max-h-[40px] relativerounded-[4px]">
                 @if ($imageCount > 0)
                     <img 
                         class="w-full h-full rounded-[4px]" 
@@ -19,7 +19,7 @@
                     >
                     <span class="absolute bottom-[1px] ltr:left-[1px] rtl:right-[1px] text-[12px] font-bold text-white bg-darkPink rounded-full px-[6px]">{{ $imageCount }}</span>
                 @else
-                    <div class="w-full h-[60px] max-w-[60px] max-h-[60px] relative border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion">
+                    <div class="w-full h-[40px] max-w-[40px] max-h-[40px] relative border border-dashed border-gray-300 dark:border-gray-800 rounded-[4px] dark:invert dark:mix-blend-exclusion">
                         <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
                         
                         <p class="absolute w-full bottom-[5px] text-[6px] text-gray-400 text-center font-semibold"> 

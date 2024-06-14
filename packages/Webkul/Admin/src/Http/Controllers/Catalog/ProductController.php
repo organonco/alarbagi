@@ -26,6 +26,7 @@ use Webkul\Product\Repositories\ProductDownloadableLinkRepository;
 use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
 use Webkul\Product\Repositories\ProductInventoryRepository;
 use Webkul\Product\Repositories\ProductRepository;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -185,7 +186,13 @@ class ProductController extends Controller
             abort(401, 'this action is unauthorized');
         }
 
-        $product = $this->productRepository->update(request()->all(), $id);
+        $uuid = Str::uuid();
+
+        $data = array_merge($request->all(), ['
+            sku' => $uuid, 'url_key' => $uuid
+        ]);
+
+        $product = $this->productRepository->update($data, $id);
 
         Event::dispatch('catalog.product.update.after', $product);
 

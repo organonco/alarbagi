@@ -39,7 +39,7 @@ class SellerInvoiceDataGrid extends DataGrid
     {
         $this->addColumn([
             'index' => 'seller_name',
-            'label' => 'Seller',
+            'label' => 'التاجر',
             'type' => 'text',
             'searchable' => true,
             'sortable' => true,
@@ -47,7 +47,7 @@ class SellerInvoiceDataGrid extends DataGrid
         ]);
         $this->addColumn([
             'index' => 'total',
-            'label' => 'Total',
+            'label' => 'المجموع',
             'type' => 'number',
             'searchable' => true,
             'sortable' => true,
@@ -55,7 +55,7 @@ class SellerInvoiceDataGrid extends DataGrid
         ]);
         $this->addColumn([
             'index' => 'status',
-            'label' => 'Status',
+            'label' => 'حالة الفاتورة',
             'type' => 'text',
             'searchable' => true,
             'sortable' => true,
@@ -64,7 +64,7 @@ class SellerInvoiceDataGrid extends DataGrid
         ]);
         $this->addColumn([
             'index' => 'created_at',
-            'label' => 'Created On',
+            'label' => 'تاريخ الإنشاء',
             'type' => 'text',
             'closure' => fn($row) => (new \DateTime($row->created_at))->format('d/m/Y'),
             'searchable' => true,

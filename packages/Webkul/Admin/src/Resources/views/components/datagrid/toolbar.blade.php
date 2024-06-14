@@ -88,7 +88,7 @@
                 <div class="ltr:pl-[10px] rtl:pr-[10px]">
                     <p class="text-[14px] font-light text-gray-800 dark:text-white">
                         <!-- Need to manage this translation. -->
-                        @{{ applied.massActions.indices.length }} of @{{ available.meta.total }} Selected
+                        @{{ applied.massActions.indices.length }} من @{{ available.meta.total }} محددة
                     </p>
                 </div>
             </div>
@@ -120,7 +120,7 @@
                 <div class="ltr:pl-[10px] rtl:pr-[10px]">
                     <p class="text-[14px] font-light text-gray-800 dark:text-white">
                         <!-- Need to manage this translation. -->
-                        @{{ available.meta.total }} Results
+                        @{{ available.meta.total }} سطر
                     </p>
                 </div>
             </div>
@@ -193,7 +193,7 @@
                     </x-slot:menu>
                 </x-admin::dropdown>
 
-                <p class="whitespace-nowrap text-gray-600 dark:text-gray-300 max-sm:hidden">per page</p>
+                <p class="whitespace-nowrap text-gray-600 dark:text-gray-300 max-sm:hidden">في الصفحة</p>
 
                 <input
                     type="text"
@@ -203,7 +203,7 @@
                 >
 
                 <div class="whitespace-nowrap text-gray-600 dark:text-gray-300">
-                    <span>of </span>
+                    <span>من </span>
 
                     <span v-text="available.meta.last_page"></span>
                 </div>
@@ -214,14 +214,14 @@
                         class="inline-flex w-full max-w-max cursor-pointer appearance-none items-center justify-between gap-x-[4px] rounded-[6px] border border-transparent p-[6px] text-center text-gray-600 dark:text-gray-300 transition-all marker:shadow hover:bg-gray-200 dark:hover:bg-gray-800 active:border-gray-300"
                         @click="changePage('previous')"
                     >
-                        <span class="icon-sort-left text-[24px]"></span>
+                        <span class="icon-sort-right text-[24px]"></span>
                     </div>
 
                     <div
                         class="inline-flex w-full max-w-max cursor-pointer appearance-none items-center justify-between gap-x-[4px] rounded-[6px] border border-transparent p-[6px] text-center text-gray-600 dark:text-gray-300 transition-all marker:shadow hover:bg-gray-200 dark:hover:bg-gray-800 active:border-gray-300"
                         @click="changePage('next')"
                     >
-                        <span class="icon-sort-right text-[24px]"></span>
+                        <span class="icon-sort-left text-[24px]"></span>
                     </div>
                 </div>
             </div>

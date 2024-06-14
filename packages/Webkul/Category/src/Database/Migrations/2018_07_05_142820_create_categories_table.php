@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('category_banner')->nullable();
             $table->boolean('status')->default(0);
-            $table->string('display_mode')->default('products_and_description')->nullable();
+            $table->string('display_mode')->default('products_only')->nullable();
             NestedSet::columns($table);
             $table->json('additional')->nullable();
             $table->timestamps();

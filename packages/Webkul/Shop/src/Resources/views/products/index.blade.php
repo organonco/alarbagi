@@ -1,11 +1,10 @@
-<x-shop::layouts
-    :has-feature="false">
+<x-shop::layouts :has-feature="false">
     <x-slot:title>
         {{ config('app.name') }}
     </x-slot:title>
 
     <v-category>
-        <x-shop::shimmer.categories.view/>
+        <x-shop::shimmer.categories.view />
     </v-category>
 
     @pushOnce('scripts')
@@ -144,8 +143,7 @@
                     this.getProducts()
                 },
 
-                watch: {
-                },
+                watch: {},
 
                 methods: {
 
@@ -156,15 +154,14 @@
                             filter: false,
                         };
 
-                        this.$axios.get("{{ route('shop.api.products.index', $filters) }}".replace(/&amp;/g, '&') , {
-                        })
+                        this.$axios.get("{{ route('shop.api.products.index', $filters) }}".replace(/&amp;/g, '&'), {})
                             .then(response => {
                                 this.isLoading = false;
                                 this.products = response.data.data;
                                 this.links = response.data.links;
                             }).catch(error => {
-                            console.log(error);
-                        });
+                                console.log(error);
+                            });
                     },
 
                     loadMoreProducts() {

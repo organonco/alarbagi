@@ -2,8 +2,8 @@
 return [
     'acl' => [
         'marketplace' => 'المتاجر',
-        'sellers' => 'البائعين',
-        'invoices'=> 'الفواتيرر'
+        'sellers' => 'التجار',
+        'invoices'=> 'فواتير التجار'
     ],
     'register' => [
         'title' => [
@@ -141,7 +141,7 @@ return [
                     'shop-name' => 'اسم المتجر',
                     'email' => 'البريد الالكتروني',
                     'status' => "الحالة",
-                    'slug' => 'Slug',
+                    'slug' => 'اختصار الرابط (slug)'
                 ]
             ],
             'view' => [

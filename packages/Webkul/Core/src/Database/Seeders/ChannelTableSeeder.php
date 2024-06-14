@@ -25,9 +25,9 @@ class ChannelTableSeeder extends Seeder
             [
                 'id'                => 1,
                 'channel_id'        => 1,
-                'locale'            => 'en',
+                'locale'            => 'ar',
                 'name'              => 'Default',
-                'home_seo'          => '{"meta_title": "Alarbaji", "meta_keywords": "Alarbaji", "meta_description": "Alarbaji"}',
+                'home_seo'          => '{"meta_title": "العربجي", "meta_keywords": "العربجي", "meta_description": "العربجي"}',
             ],
         ]);
 

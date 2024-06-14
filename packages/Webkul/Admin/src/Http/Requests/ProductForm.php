@@ -54,8 +54,6 @@ class ProductForm extends FormRequest
         $maxVideoFileSize = core()->getConfigData('catalog.products.attribute.file_attribute_upload_size') ?: '2048';
 
         $this->rules = array_merge($product->getTypeInstance()->getTypeValidationRules(), [
-            'sku'                => ['required', 'unique:products,sku,' . $this->id, new Slug],
-            'url_key'            => ['required', new ProductCategoryUniqueSlug('products', $this->id)],
             'images.files.*'     => ['nullable', 'mimes:bmp,jpeg,jpg,png,webp', 'dimensions:ratio=1/1'],
             'images.positions.*' => ['nullable', 'integer'],
             'videos.files.*'     => ['nullable', 'mimetypes:application/octet-stream,video/mp4,video/webm,video/quicktime', 'max:' . $maxVideoFileSize],

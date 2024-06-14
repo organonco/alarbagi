@@ -504,7 +504,7 @@
             </div>
 
 {{--            --}}{{-- Stock Thereshold --}}
-{{--            <div class="flex flex-col gap-[8px]  ">--}}
+{{--            <div class="flex flex-colg gap-[8px]  ">--}}
 {{--                <p class="text-[16px] text-gray-600 dark:text-gray-300 font-semibold">--}}
 {{--                    @lang('admin::app.dashboard.index.stock-threshold')--}}
 {{--                </p>--}}
@@ -824,11 +824,10 @@
                                     <!-- Add Variants Information -->
                                     <div class="flex flex-col items-center">
                                         <p class="text-[16px] text-gray-400 font-semibold">
-                                            @lang('admin::app.dashboard.index.add-product')
+                                            
                                         </p>
 
                                         <p class="text-gray-400">
-                                            @lang('admin::app.dashboard.index.product-info')
                                         </p>
                                     </div>
                                 </div>
@@ -839,11 +838,7 @@
                     <!-- Top Customers -->
                     <div class="flex items-center justify-between p-[16px]">
                         <p class="text-gray-600 dark:text-gray-300 text-[16px] font-semibold">
-                            @lang('admin::app.dashboard.index.customer-with-most-sales')
-                        </p>
-
-                        <p class="text-[12px] text-gray-400 font-semibold">
-                            @{{ "@lang('admin::app.dashboard.index.date-duration')".replace(':start', formatStart ?? 0).replace(':end', formatEnd ?? 0) }}
+                            
                         </p>
                     </div>
 
@@ -904,11 +899,10 @@
                                 <!-- Add Variants Information -->
                                 <div class="flex flex-col items-center">
                                     <p class="text-[16px] text-gray-400 font-semibold">
-                                        @lang('admin::app.dashboard.index.add-customer')
+                                        
                                     </p>
 
                                     <p class="text-gray-400">
-                                        @lang('admin::app.dashboard.index.customer-info')
                                     </p>
                                 </div>
                             </div>
