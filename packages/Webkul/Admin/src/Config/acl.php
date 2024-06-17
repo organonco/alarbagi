@@ -814,5 +814,13 @@ return [
         'name'  => 'admin::app.acl.configure',
         'route' => 'admin.configuration.index',
         'sort'  => 9,
+    ],
+
+
+    [
+        'key' => 'delivery',
+        'name' => 'Delivery',
+        'route' => 'admin.delivery.index',
+        'sort' => 2
     ]
 ];

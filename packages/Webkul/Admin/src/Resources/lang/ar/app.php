@@ -3256,6 +3256,8 @@ return [
                 'tax-rates'                => 'معدلات الضرائب',
                 'transactions'             => 'المعاملات',
                 'users'                    => 'المستخدمين',
+                'delivery' => "التوصيل",
+                'areas' => "المناطق"
             ],
         ],
 
@@ -3415,6 +3417,7 @@ return [
         'transactions'             => 'المعاملات',
         'users'                    => 'المستخدمين',
         'view'                     => 'عرض',
+        'delivery' => "التوصيل"
     ],
 
     'errors' => [

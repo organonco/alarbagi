@@ -24,16 +24,10 @@ class DeliveryController extends Controller
      */
     public function __construct()
     {
-        $this->_config = request('_config');
+
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
     public function index()
     {
-        return view($this->_config['view']);
     }
 }

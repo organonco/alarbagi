@@ -225,6 +225,7 @@ return [
         Webkul\User\Providers\UserServiceProvider::class,
         Webkul\User\Providers\UserServiceProvider::class,
         Organon\Marketplace\Providers\MarketplaceServiceProvider::class,
+        Organon\Delivery\Providers\DeliveryServiceProvider::class,
     ])->toArray(),
 
     /*

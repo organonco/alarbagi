@@ -161,7 +161,9 @@ class RolesTableSeeder extends Seeder
                 "settings.taxes.tax-rates",
                 "settings.taxes.tax-rates.create",
                 "settings.taxes.tax-rates.edit",
-                "configuration"
+                "configuration",
+                "delivery",
+                "delivery.areas"
             ])
         ]);
     }
