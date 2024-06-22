@@ -186,10 +186,10 @@ class ProductController extends Controller
             abort(401, 'this action is unauthorized');
         }
 
-        $uuid = Str::uuid();
+        $uuid = (string)Str::uuid();
 
-        $data = array_merge($request->all(), ['
-            sku' => $uuid, 'url_key' => $uuid
+        $data = array_merge($request->all(), [
+            'sku' => $uuid, 'url_key' => $uuid, 'manage_stock' => 0
         ]);
 
         $product = $this->productRepository->update($data, $id);

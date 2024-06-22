@@ -37,14 +37,15 @@
         </div>
 
         @php
-            $channels = core()->getAllChannels();
 
             $currentChannel = core()->getRequestedChannel();
 
             $currentLocale = core()->getRequestedLocale();
         @endphp
 
-        
+<input type="hidden" name="channel" value="{{ $currentChannel->code }}"/>
+<input type="hidden" name="locale" value="{{ $currentLocale->code }}"/>
+
 
         {!! view_render_event('bagisto.admin.catalog.product.edit.actions.after', ['product' => $product]) !!}
 
@@ -72,6 +73,7 @@
                                 </p>
 
                                 @foreach ($customAttributes as $attribute)
+                                    @if(!in_array($attribute->code, ['sku', 'url_key', 'manage_stock']))
                                     {!! view_render_event('bagisto.admin.catalog.product.edit.form.' . $group->name . '.controls.before', ['product' => $product]) !!}
 
                                     <x-admin::form.control-group>
@@ -88,6 +90,7 @@
                                     </x-admin::form.control-group>
 
                                     {!! view_render_event('bagisto.admin.catalog.product.edit.form.' . $group->name . '.controls.before', ['product' => $product]) !!}
+                                    @endif
                                 @endforeach
 
                             </div>
