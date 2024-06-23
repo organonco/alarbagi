@@ -3304,8 +3304,8 @@ return [
                 ],
 
                 'boolean-options' => [
-                    'false' => 'خاطئ',
-                    'true'  => 'صحيح',
+                    'false' => 'غير فعال',
+                    'true'  => 'فعال',
                 ],
 
                 'date-options' => [

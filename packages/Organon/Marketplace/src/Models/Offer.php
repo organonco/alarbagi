@@ -12,7 +12,7 @@ class Offer extends Model implements OfferContract
     use InteractsWithMedia;
 
     protected $fillable = [
-        'title', 'post'
+        'title', 'post', 'status'
     ];
     
     public function setImage($key)

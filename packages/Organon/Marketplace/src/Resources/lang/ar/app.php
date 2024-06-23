@@ -3,7 +3,7 @@ return [
     'acl' => [
         'marketplace' => 'المتاجر',
         'sellers' => 'التجار',
-        'invoices'=> 'فواتير التجار'
+        'invoices' => 'فواتير التجار'
     ],
     'register' => [
         'title' => [
@@ -105,13 +105,13 @@ return [
             ], 'DRAFT' => [
                 'label' => 'مسودة',
                 'class' => 'info'
-            ],'APPROVED' => [
+            ], 'APPROVED' => [
                 'label' => 'مقبول',
                 'class' => 'processing'
-            ],'REJECTED' => [
+            ], 'REJECTED' => [
                 'label' => 'مرفوض',
                 'class' => 'cancelled'
-            ],'ISSUED' => [
+            ], 'ISSUED' => [
                 'label' => 'مدفوع',
                 'class' => 'processing'
             ],
@@ -196,6 +196,16 @@ return [
                     'update-password' => 'تغيير كلمة المرور',
                     'update-payment-method' => 'تحديث طريقة الدفع',
                     'update-account-status' => 'تحديث حالة الحساب',
+                ]
+            ],
+        ],
+        'offers' => [
+            'index' => [
+                'title' => 'العروض الخاصة',
+                'datagrid' => [
+                    'title' => 'العنوان',
+                    'post' => 'النص',
+                    'status' => 'الحالة'
                 ]
             ]
         ]

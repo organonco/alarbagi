@@ -17,7 +17,7 @@
                 <div class="bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                     <div class="p-[16px]">
                         <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[30px]">
-                            Update Profile Info
+                            @lang('marketplace::app.admin.account.profile.actions.update')
                         </p>
 
                         <x-admin::form :action="route('admin.account.profile.update')" enctype="multipart/form-data">

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title', 2000)->nullable();
             $table->string('post', 5000)->nullable();
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }
