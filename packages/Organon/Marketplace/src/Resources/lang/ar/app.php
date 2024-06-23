@@ -42,7 +42,10 @@ return [
             'view' => [
                 'sold_by' => 'تباع من قبل: :name',
                 'available' => ':qty قطع متاحة',
-                'out_of_stock' => 'غير متاح'
+                'out_of_stock' => 'غير متاح',
+                'preperation_time_hours' => ":count ساعات",
+                'preperation_time_minutes' => ":count دقيقة",
+                'preperation_time_days' => ":count أيام"
             ]
         ]
     ],
@@ -182,7 +185,7 @@ return [
                     'new' => 'كلمة المرور الجديدة',
                     'confirmation' => 'إعادة كلمة المرور الجديدة',
                     'payment-method' => 'طريقة الدفع',
-                    "deliver_by" => "يتم التوصيل خلال (بالأيام)",
+                    "deliver-by" => "يتم التوصيل خلال (بالأيام)",
                     'active-status' => 'فعّال',
                 ],
                 'flash_messages' => [

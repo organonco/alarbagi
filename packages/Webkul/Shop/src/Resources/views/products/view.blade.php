@@ -296,7 +296,18 @@
                                 <a class="text-[18px] font-light max-sm:text-[12px] sn-color-secondary" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
                                     {{__('marketplace::app.catalog.products.view.sold_by', ['name' => $product->seller_name])}}
                                 </a>
-                                <br/>
+                                <div class="text-[18px] font-light max-sm:text-[12px] sn-color-secondary">
+                                    @php
+                                        $preperation_time = 36;
+                                    @endphp
+                                    @if($preperation_time < 1 && $preperation_time > 0)
+                                        {{trans_choice('marketplace::app.catalog.products.view.preperation_time_minutes', (int) (60*$preperation_time))}}
+                                    @elseif($preperation_time < 24)
+                                        {{trans_choice('marketplace::app.catalog.products.view.preperation_time_hours', ($preperation_time))}}
+                                    @elseif($preperation_time >= 24)
+                                    {{trans_choice('marketplace::app.catalog.products.view.preperation_time_days', (int)($preperation_time / 24))}}
+                                    @endif
+                                </div>
 
 
                                 @if($product->stock_quantity > 0)

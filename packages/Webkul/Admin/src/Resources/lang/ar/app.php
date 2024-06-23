@@ -527,7 +527,7 @@ return [
                     'category'               => 'الفئة',
                     'copy-of'                => ':value',
                     'copy-of-slug'           => ':value',
-                    'disable'                => 'تعطيل',
+                    'disable'                => 'غير فعال',
                     'delete'                 => 'حذف',
                     'image'                  => 'صورة',
                     'id'                     => 'المعرف',
@@ -3257,7 +3257,9 @@ return [
                 'transactions'             => 'المعاملات',
                 'users'                    => 'المستخدمين',
                 'delivery' => "التوصيل",
-                'areas' => "المناطق"
+                'areas' => "المناطق",
+                "account" => "الحساب",
+                "profile" => 'الملف الشخصي'
             ],
         ],
 

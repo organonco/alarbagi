@@ -91,6 +91,26 @@ class AttributeGroupTableSeeder extends Seeder
                 'attribute_id'        => 8,
                 'attribute_group_id'  => 6,
                 'position'            => 2,
+            ], [
+                'attribute_id'        => 29, // Preperation Time
+                'attribute_group_id'  => 6,
+                'position'            => 2,
+            ], [
+                'attribute_id'        => 30, // Is Deliverable
+                'attribute_group_id'  => 6,
+                'position'            => 3,
+            ], [
+                'attribute_id'        => 1, // SKU
+                'attribute_group_id'  => 1,
+                'position'            => 1,
+            ], [
+                'attribute_id'        => 3, // URL key
+                'attribute_group_id'  => 1,
+                'position'            => 1,
+            ], [
+                'attribute_id'        => 28, // Manage stock
+                'attribute_group_id'  => 1,
+                'position'            => 1,
             ],
         ]);
 
@@ -131,7 +151,7 @@ class AttributeGroupTableSeeder extends Seeder
         //         'attribute_group_id'  => 1,
         //         'position'            => 8,
         //     ],
-            
+
         //     /**
         //      * Description Group Attributes
         //      */
@@ -144,7 +164,7 @@ class AttributeGroupTableSeeder extends Seeder
         //         'attribute_group_id'  => 2,
         //         'position'            => 2,
         //     ],
-            
+
         //     /**
         //      * Meta Description Group Attributes
         //      */
@@ -169,7 +189,7 @@ class AttributeGroupTableSeeder extends Seeder
         //         'attribute_group_id'  => 4,
         //         'position'            => 5,
         //     ],
-            
+
         //     /**
         //      * Price Group Attributes
         //      */
@@ -186,7 +206,7 @@ class AttributeGroupTableSeeder extends Seeder
         //         'attribute_group_id'  => 3,
         //         'position'            => 3,
         //     ],
-            
+
         //     /**
         //      * Shipping Group Attributes
         //      */

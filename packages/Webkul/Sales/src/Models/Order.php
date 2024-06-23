@@ -428,4 +428,24 @@ class Order extends Model implements OrderContract
     {
         return OrderFactory::new();
     }
+
+    public function getIsDeliverableAttribute()
+    {
+        $value = true;
+        foreach($this->items as $item){
+            $value = $value && $item->product->getAttribute('is_deliverable');
+        };
+        return $value;
+    }
+
+    public function getPreperationTimeAttribute()
+    {
+        $value = 0;
+        foreach($this->items as $item){
+            $time = $item->product->getAttribute('preperation_time');
+            $value = $value > $time ? $time : $value;
+            
+        };
+        return $value;
+    }
 }

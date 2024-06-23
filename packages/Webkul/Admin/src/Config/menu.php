@@ -47,7 +47,7 @@ return [
      */
     [
         'key' => 'marketplace',
-        'name' => 'Orders',
+        'name' => 'admin::app.components.layouts.sidebar.orders',
         'route' => 'marketplace.admin.orders.index',
         'sort' => 3,
         'icon' => 'icon-sales',
@@ -171,7 +171,7 @@ return [
 
     [
         'key' => 'account',
-        'name' => 'Account',
+        'name' => 'admin::app.components.layouts.sidebar.account',
         'route' => 'admin.account.profile.view',
         'sort' => 10,
         'icon' => 'icon-sales',
@@ -179,14 +179,14 @@ return [
 
     [
         'key' => 'account.profile',
-        'name' => 'Profile',
+        'name' => 'admin::app.components.layouts.sidebar.profile',
         'route' => 'admin.account.profile.view',
         'sort' => 1,
         'icon' => 'icon-sales',
     ],
     [
         'key' => 'account.settings',
-        'name' => 'Settings',
+        'name' => 'admin::app.components.layouts.sidebar.account',
         'route' => 'admin.account.settings.view',
         'sort' => 2,
         'icon' => 'icon-sales',
