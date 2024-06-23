@@ -36,6 +36,12 @@ return [
         'name'  => 'Settings',
         'route' => 'admin.account.settings.view',
         'sort'  => 1,
+    ],
+    [
+        'key'   => 'offers',
+        'name'  => 'Offers',
+        'route' => 'admin.offers.index',
+        'sort'  => 1,
     ]
 
 ];

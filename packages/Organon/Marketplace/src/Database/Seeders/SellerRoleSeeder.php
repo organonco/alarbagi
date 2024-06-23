@@ -37,7 +37,8 @@ class SellerRoleSeeder extends Seeder
                 "catalog.products.edit",
                 "catalog.products.delete",
                 "catalog.products.mass-update",
-                "catalog.products.mass-delete"
+                "catalog.products.mass-delete",
+                "offers"
             ]),
         ]);
 

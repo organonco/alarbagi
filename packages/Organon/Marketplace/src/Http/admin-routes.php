@@ -1,5 +1,7 @@
 <?php
 
+use Organon\Marketplace\Http\Controllers\Admin\OfferController;
+
 Route::group([
     'prefix' => config('app.admin_url') . '/marketplace',
     'middleware' => ['web', 'admin'],
@@ -47,4 +49,12 @@ Route::group([
     Route::post('settings\payment-method', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'updateSettings'])->name('admin.account.settings.update-settings');
     Route::post('settings\account-status', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'updateAccountStatus'])->name('admin.account.settings.update-account-status');
 
+});
+
+
+Route::group([
+    'prefix' => config('app.admin_url') . '/offers',
+    'middleware' => ['web', 'admin']
+], function(){
+    Route::get('/', [OfferController::class, 'index'])->name('admin.offers.index');
 });

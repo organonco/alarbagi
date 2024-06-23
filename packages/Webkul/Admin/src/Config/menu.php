@@ -168,6 +168,13 @@ return [
         'icon'       => 'icon-cms',
     ],
 
+    [
+        'key' => 'offers',
+        'name' => 'admin::app.components.layouts.sidebar.offers',
+        'route' => 'admin.offers.index',
+        'sort' => 10,
+        'icon' => 'icon-sales',
+    ],
 
     [
         'key' => 'account',
