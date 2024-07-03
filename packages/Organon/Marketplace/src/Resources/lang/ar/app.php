@@ -1,5 +1,8 @@
 <?php
 return [
+    'general' => [
+        'save' => 'حفظ'
+    ],
     'acl' => [
         'marketplace' => 'المتاجر',
         'sellers' => 'التجار',
@@ -205,8 +208,31 @@ return [
                 'datagrid' => [
                     'title' => 'العنوان',
                     'post' => 'النص',
+                    'status' => 'الحالة',
+                    'image' => 'الصورة',
+                ],
+            ],
+            'create' => [
+                'title' => 'إنشاء عرض',
+                'attributes' => [
+                    'title' => 'العنوان',
+                    'post' => 'النص',
+                    'image' => 'الصورة',
                     'status' => 'الحالة'
                 ]
+            ],
+            'edit' => [
+                'title' => 'تعديل العرض',
+                'attributes' => [
+                    'title' => 'العنوان',
+                    'post' => 'النص',
+                    'image' => 'الصورة',
+                    'status' => 'الحالة'
+                ]
+            ],
+            'preview' => [
+                'title' => 'معاينة العرض',
+                'edit' => 'تعديل',
             ]
         ]
     ],

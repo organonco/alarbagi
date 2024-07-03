@@ -7,10 +7,15 @@
         <p class="py-[11px] text-[20px] text-gray-800 dark:text-white font-bold">
             @lang('marketplace::app.admin.offers.index.title')
         </p>
-{{-- 
+
         <div class="flex gap-x-[10px] items-center">
             <x-admin::datagrid.export src="{{ route('admin.offers.index') }}"></x-admin::datagrid.export>
-        </div> --}}
+            <a href="{{ route('admin.offers.create') }}">
+                <div class="primary-button">
+                    @lang('marketplace::app.admin.offers.create.title')
+                </div>
+            </a>    
+        </div>
     </div>
 
     <x-admin::datagrid :src="route('admin.offers.index')" :isMultiRow="true">

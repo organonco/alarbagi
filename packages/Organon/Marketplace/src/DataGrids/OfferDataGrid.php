@@ -8,13 +8,20 @@ use Webkul\DataGrid\DataGrid;
 class OfferDataGrid extends DataGrid
 {
 
+
+    public function __construct(private ?int $sellerId)
+    {
+    }
     public function prepareQueryBuilder()
     {
-
         $query = DB::table('offers')->orderBy('offers.created_at', 'DESC');
+        if (!is_null($this->sellerId))
+            $query->where('seller_id', $this->sellerId);
         $query->addSelect('title');
         $query->addSelect('post');
         $query->addSelect('status');
+        $query->addSelect('image_url');
+        $query->addSelect('id');
 
         return $query;
     }
@@ -43,11 +50,25 @@ class OfferDataGrid extends DataGrid
             'index' => 'status',
             'label' => trans('marketplace::app.admin.offers.index.datagrid.status'),
             'type' => 'boolean',
+            'closure'    => function ($value) {
+                return $value->status ? "فعال" : "غير فعال";
+            },
             'searchable' => false,
             'filterable' => true,
             'sortable' => false,
         ]);
 
+        $this->addColumn([
+            'index' => 'image_url',
+            'label' => trans('marketplace::app.admin.offers.index.datagrid.image'),
+            'type' => 'string',
+            'closure'    => function ($value) {
+                return "<img style='height: 80px; width: auto;' src='" . $value->image_url . "'/>";
+            },
+            'searchable' => false,
+            'filterable' => true,
+            'sortable' => false,
+        ]);
     }
 
     /**
@@ -57,13 +78,21 @@ class OfferDataGrid extends DataGrid
      */
     public function prepareActions()
     {
-        // $this->addAction([
-        //     'icon' => 'icon-view',
-        //     'title' => 'test',
-        //     'method' => 'GET',
-        //     'url' => function ($row) {
-        //         return route('admin.sales.sellers.view', $row->id);
-        //     },
-        // ]);
+        $this->addAction([
+            'icon' => 'icon-edit',
+            'title' => 'edit',
+            'method' => 'GET',
+            'url' => function ($row) {
+                return route('admin.offers.edit', ['id' => $row->id]);
+            },
+        ]);
+        $this->addAction([
+            'icon' => 'icon-view',
+            'title' => 'preview',
+            'method' => 'GET',
+            'url' => function ($row) {
+                return route('admin.offers.preview', ['id' => $row->id]);
+            },
+        ]);
     }
 }

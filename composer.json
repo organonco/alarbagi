@@ -35,6 +35,7 @@
         "laravel/sail": "^1.26",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.0",
+        "laravel/telescope": "5.x-dev",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^4.0",
         "maatwebsite/excel": "^3.1.46",

@@ -5,9 +5,7 @@ namespace Organon\Marketplace\Traits;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Organon\Marketplace\Enums\SellerStatusEnum;
-use Organon\Marketplace\Models\Seller;
 use Organon\Marketplace\Models\SellerProxy;
-use Webkul\Product\Database\Eloquent\Builder;
 
 trait RelatedToSellerTrait
 {
@@ -33,8 +31,8 @@ trait RelatedToSellerTrait
 
     protected static function bootRelatedToSellerTrait()
     {
-        static::addGlobalScope('seller_status', function(Builder $builder){
-            $builder->where('products.seller_status', SellerStatusEnum::ACTIVE->value);
+        static::addGlobalScope('seller_status', function($builder){
+            $builder->where('seller_status', SellerStatusEnum::ACTIVE->value);
         });
 
         static::creating(function ($item) {
@@ -66,5 +64,12 @@ trait RelatedToSellerTrait
     public static function getStatusFromValue($value)
     {
         return static::getStatusEnum()::from($value);
+    }
+
+    public function scopeForSeller($query, ?int $id)
+    {
+        if(is_null($id))
+            return $query;
+        return $query->where('seller_id', $id);
     }
 }

@@ -41,20 +41,24 @@ Route::group([
 Route::group([
     'prefix' => config('app.admin_url') . '/account',
     'middleware' => ['web', 'admin']
-], function(){
+], function () {
     Route::get('profile', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'profile'])->name('admin.account.profile.view');
     Route::post('profile', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'updateProfile'])->name('admin.account.profile.update');
     Route::get('settings', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'settings'])->name('admin.account.settings.view');
     Route::post('settings\password', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'updatePassword'])->name('admin.account.settings.update-password');
     Route::post('settings\payment-method', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'updateSettings'])->name('admin.account.settings.update-settings');
     Route::post('settings\account-status', [\Organon\Marketplace\Http\Controllers\Admin\SellerAccountController::class, 'updateAccountStatus'])->name('admin.account.settings.update-account-status');
-
 });
 
 
 Route::group([
     'prefix' => config('app.admin_url') . '/offers',
     'middleware' => ['web', 'admin']
-], function(){
+], function () {
     Route::get('/', [OfferController::class, 'index'])->name('admin.offers.index');
+    Route::post('/create', [OfferController::class, 'store'])->name('admin.offers.store');
+    Route::get('/create', [OfferController::class, 'create'])->name('admin.offers.create');
+    Route::get('/edit/{id}', [OfferController::class, 'edit'])->name('admin.offers.edit');
+    Route::post('/edit/{id}', [OfferController::class, 'update'])->name('admin.offers.update');
+    Route::get('/preview/{id}', [OfferController::class, 'preview'])->name('admin.offers.preview');
 });
