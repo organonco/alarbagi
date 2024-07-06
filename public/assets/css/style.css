@@ -1,9 +1,9 @@
 *{
-    font-family: 'Cairo', sans-serif !important;
+    font-family: 'Somar Sans Regular', sans-serif !important;
 }
 
 .sn-background-light-main {
-    background-color: #264653 !important;
+    background-color: #153939 !important;
 }
 
 .sn-color-danger {
@@ -11,7 +11,7 @@
 }
 
 .sn-color-light-main {
-    color: #E76F51 !important;
+    color: #F67541 !important;
 }
 
 
@@ -23,38 +23,12 @@
     color: #575757
 }
 
-.sn-button-primary{
-    color: white;
-    background-color: #E76F51;
-    border-radius: 12px;
-    border: none;
-    padding: 15px 30px;
-    font-weight: bold;
-}
-
-.sn-button-primary-mini{
-    color: white;
-    background-color: #E76F51;
-    border-radius: 12px;
-    border: none;
-    padding: 5px 15px;
-    font-weight: bold;
-}
-
-.sn-button-secondary{
-    color: #E76F51;
-    background-color: white;
-    border-radius: 12px;
-    padding: 15px 30px;
-    font-weight: bold;
-}
-
 .sn-button-danger{
     color: red;
     background-color: white;
     border-radius: 12px;
     border: 1px solid red;
-    padding: 15px 30px;
+    padding: 10px 40px;
     font-weight: bold;sn
 }
 
@@ -63,11 +37,11 @@ color: white;
 }
 
 .hover\:border-primary:hover{
-    border-color: #E76F51;
+    border-color: #F67541;
 }
 
 .sn-border-main{
-    border-color: #E76F51;
+    border-color: #F67541;
 }
 
 .grid-cols-2-4{grid-template-columns:repeat(4,minmax(0,1fr)) !important;}
@@ -101,9 +75,6 @@ color: white;
     }
     .gap-05-mobile{
         gap: 0rem;
-    }
-    .products-carousel{
-
     }
 }
 
@@ -168,4 +139,88 @@ color: white;
         font-size:30px;
         line-height:normal
     }
+}
+
+
+/** New Styles **/
+/** 
+Colors: 
+    Primary 
+        #153939
+        #F67541
+        #061919
+    Secondary
+        #F3F5F0
+        #FFFFFF
+        #C7DDD8
+**/
+
+
+.sn-button-primary{
+    color: #153939;
+    background-color: #F67541;
+    border-radius: 4px;
+    padding: 10px 40px;
+    font-size: 16px;
+    font-family: 'Somar Sans Medium', sans-serif !important;
+}
+
+.sn-button-primary-mini{
+    color: #153939;
+    background-color: #F67541;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-family: 'Somar Sans Medium', sans-serif !important;
+}
+
+
+.sn-button-primary-alt{
+    color: #F67541;
+    background-color: white;
+    border: 1px solid #F67541;
+    border-radius: 4px;
+    padding: 10px 40px;
+    font-family: 'Somar Sans Medium', sans-serif !important;
+}
+
+
+.sn-button-secondary-alt{
+    color: #153939;
+    background-color: white;
+    border: 1px solid #153939;
+    border-radius: 4px;
+    padding: 10px 40px;
+    font-family: 'Somar Sans Medium', sans-serif !important;
+}
+
+.sn-button-secondary{
+    color: #F67541;
+    background-color: #153939;
+    border-radius: 4px;
+    padding: 10px 40px;
+    font-family: 'Somar Sans Medium', sans-serif !important;
+}
+
+
+
+
+.sn-heading-1{
+    font-size: 40px;
+    font-family: 'Somar Sans Bold', sans-serif !important;
+}
+
+.sn-heading-2{
+    font-size: 28px;
+    font-family: 'Somar Sans Regular', sans-serif !important;
+}
+
+.sn-heading-3{
+    font-size: 18px;
+    font-family: 'Somar Sans Bold', sans-serif !important;
+}
+
+.sn-body{
+    font-size: 14px;
+    font-family: 'Somar Sans Regular', sans-serif !important;
 }
