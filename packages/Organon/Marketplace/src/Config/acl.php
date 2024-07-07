@@ -42,6 +42,12 @@ return [
         'name'  => 'Offers',
         'route' => 'admin.offers.index',
         'sort'  => 1,
+    ],
+    [ 
+        'key'   => 'settings.seller_categories',
+        'name'  => 'Seller Cateogries',
+        'route' => 'admin.offers.index',
+        'sort'  => 1,
     ]
 
 ];

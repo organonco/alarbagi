@@ -1,6 +1,7 @@
 <?php
 
 use Organon\Marketplace\Http\Controllers\Admin\OfferController;
+use Organon\Marketplace\Http\Controllers\Admin\SellerCategoryController;
 
 Route::group([
     'prefix' => config('app.admin_url') . '/marketplace',
@@ -62,3 +63,18 @@ Route::group([
     Route::post('/edit/{id}', [OfferController::class, 'update'])->name('admin.offers.update');
     Route::get('/preview/{id}', [OfferController::class, 'preview'])->name('admin.offers.preview');
 });
+
+
+
+Route::group([
+    'prefix' => config('app.admin_url') . '/seller_categories',
+    'middleware' => ['web', 'admin']
+], function () {
+    Route::get('/', [SellerCategoryController::class, 'index'])->name('admin.seller_categories.index');
+    Route::get('/create', [SellerCategoryController::class, 'create'])->name('admin.seller_categories.create');
+    Route::post('/create', [SellerCategoryController::class, 'store'])->name('admin.seller_categories.store');
+    Route::get('/edit/{id}', [SellerCategoryController::class, 'edit'])->name('admin.seller_categories.edit');
+    Route::post('/edit/{id}', [SellerCategoryController::class, 'update'])->name('admin.seller_categories.update');
+});
+
+

@@ -234,6 +234,25 @@ return [
                 'title' => 'معاينة العرض',
                 'edit' => 'تعديل',
             ]
+        ],
+        'seller_categories' => [
+            'index' => [
+                'title' => 'فئات التجار',
+                'datagrid' => [
+                    'name' => 'الاسم',
+                    'parent' => 'الأب',
+                ],
+            ], 'create' => [
+                'title' => 'إنشاء فئة تاجر',
+                'attributes' => [
+                    'name' => 'اسم الفئة',
+                    'parent' => 'الفئة الأب',
+                    'banner' => 'البنر الإعلاني',
+                ]
+            ],
+            'edit' => [
+                'title' => 'تعديل فئة التاجر'
+            ]
         ]
     ],
     'settings' => [

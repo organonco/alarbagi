@@ -3258,6 +3258,7 @@ return [
                 'users'                    => 'المستخدمين',
                 'delivery' => "التوصيل",
                 'areas' => "المناطق",
+                'seller_categories' => "فئات التجار",
                 "account" => "الحساب",
                 "profile" => 'الملف الشخصي',
                 "offers" => 'العروض الخاصة'

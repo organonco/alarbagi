@@ -142,7 +142,14 @@ return [
         'route'      => 'admin.settings.roles.index',
         'sort'       => 2,
         'icon'       => '',
+    ], [
+        'key' => 'settings.seller_categories',
+        'name' => 'admin::app.components.layouts.sidebar.seller_categories',
+        'route' => 'admin.seller_categories.index',
+        'sort' => 1,
+        'icon' => 'icon-customer-2',
     ],
+
 
     /**
      * Configuration.

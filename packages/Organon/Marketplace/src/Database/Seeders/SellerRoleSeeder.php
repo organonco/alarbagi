@@ -75,7 +75,8 @@ class SellerRoleSeeder extends Seeder
                 "customers.customers.mass-update",
                 "customers.customers.mass-delete",
                 "delivery",
-                "delivery.areas"
+                "delivery.areas",
+                "settings.seller_categories"
             ])
         ]);
     }
