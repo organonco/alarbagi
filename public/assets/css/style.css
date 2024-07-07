@@ -2,10 +2,6 @@
     font-family: 'Somar Sans Regular', sans-serif !important;
 }
 
-.sn-background-light-main {
-    background-color: #153939 !important;
-}
-
 .sn-color-danger {
     color: #612121 !important;
 }
@@ -168,7 +164,7 @@ Colors:
 }
 .sn-button-primary-alt{
     color: #F67541;
-    background-color: white;
+    background-color: transparent;
     border: 1px solid #F67541;
     border-radius: 4px;
     padding: 10px 40px;
@@ -184,7 +180,7 @@ Colors:
 }
 .sn-button-secondary-alt{
     color: #153939;
-    background-color: white;
+    background-color: transparent;
     border: 1px solid #153939;
     border-radius: 4px;
     padding: 10px 40px;
@@ -200,6 +196,14 @@ Colors:
     font-family: 'Somar Sans Medium', sans-serif !important;
 }
 
+.sn-button-login{
+    color: #F67541;
+    background-color: transparent;
+    border: 1px solid #153939;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-family: 'Somar Sans Medium', sans-serif !important;
+}
 
 /** TEXTS **/
 
@@ -222,3 +226,43 @@ Colors:
     font-size: 14px;
     font-family: 'Somar Sans Regular', sans-serif !important;
 }
+
+
+
+/** BACKGROUNDS **/
+.sn-background-white {
+    background-color: #FFFFFF !important;
+}
+
+.sn-background-grey {
+    background-color: #F3F5F0 !important;
+}
+
+.sn-background-light-green {
+    background-color: #C7DDD8 !important;
+}
+
+.sn-background-primary{
+    background-color: #153939;
+}
+
+/** BORDERS **/
+.sn-border-primary{
+    border: 1px solid #153939;
+    border-radius: 4px;
+}
+
+
+/** COLORS **/
+.sn-color-primary{
+    color: #153939
+}
+.sn-color-secondary{
+    color: #F67541
+}
+
+/** ICONS **/
+.sn-icon-cart{
+    background-image: url('../images/icons/cart.svg');
+}
+
