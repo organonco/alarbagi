@@ -1,13 +1,13 @@
 @if ($prices['final']['price'] < $prices['regular']['price'])
-    <p class="font-medium text-[#6E6E6E] line-through">
+    <p class=" line-through">
         {{ $prices['regular']['formatted_price'] }}
     </p>
 
-    <p class="font-semibold">
+    <p class="">
         {{ $prices['final']['formatted_price'] }}
     </p>
 @else
-    <p class="font-semibold">
+    <p class="">
         {{ $prices['regular']['formatted_price'] }}
     </p>
 @endif

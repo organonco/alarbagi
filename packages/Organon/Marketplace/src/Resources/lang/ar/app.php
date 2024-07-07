@@ -46,6 +46,11 @@ return [
                 'sold_by' => 'تباع من قبل: :name',
                 'available' => ':qty قطع متاحة',
                 'out_of_stock' => 'غير متاح',
+                'preperation_time' => "يتم التحضير خلال",
+                'deliverable' => [
+                    'true' => 'قابل للتوصيل',
+                    'false' => 'غير قابل للتوصيل',
+                ], 
                 'preperation_time_hours' => ":count ساعات",
                 'preperation_time_minutes' => ":count دقيقة",
                 'preperation_time_days' => ":count أيام"

@@ -84,64 +84,7 @@
             {!! view_render_event('bagisto.shop.products.view.description.after', ['product' => $product]) !!}
 
 
-            {{-- Additional Information Tab --}}
-            <x-shop::tabs.item
-                class="container mt-[60px] !p-0 max-1180:hidden"
-                :title="trans('shop::app.products.view.additional-information')"
-                :is-selected="false"
-            >
-                <div class="container mt-[60px] max-1180:px-[20px]">
-                    <div class="grid gap-[15px] grid-cols-[auto_1fr] max-w-max mt-[30px]">
-                        @foreach ($customAttributeValues as $customAttributeValue)
-                            <div class="grid">
-                                <p class="text-[16px] text-black">
-                                    {!! $customAttributeValue['label'] !!}
-                                </p>
-                            </div>
-
-                            @if (
-                                $customAttributeValue['type'] == 'file'
-                                && $customAttributeValue['value']
-                            )
-                                <a
-                                    href="{{ Storage::url($product[$customAttributeValue['code']]) }}"
-                                    download="{{ $customAttributeValue['label'] }}"
-                                >
-                                    <span class="icon-download text-[24px]"></span>
-                                </a>
-                            @elseif (
-                                $customAttributeValue['type'] == 'image'
-                                && $customAttributeValue['value']
-                            )
-                                <a
-                                    href="{{ Storage::url($product[$customAttributeValue['code']]) }}"
-                                    download="{{ $customAttributeValue['label'] }}"
-                                >
-                                    <img
-                                        class="h-[20px] w-[20px] min-h-[20px] min-w-[20px]"
-                                        src="{{ Storage::url($customAttributeValue['value']) }}"
-                                    />
-                                </a>
-                            @else
-                                <div class="grid">
-                                    <p class="text-[16px] text-[#7D7D7D]">
-                                        {!! $customAttributeValue['value'] ? $customAttributeValue['value'] : '-' !!}
-                                    </p>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-            </x-shop::tabs.item>
-
-            {{-- Reviews Tab --}}
-            <x-shop::tabs.item
-                class="container mt-[60px] !p-0 max-1180:hidden"
-                :title="trans('shop::app.products.view.review')"
-                :is-selected="false"
-            >
-                @include('shop::products.view.reviews')
-            </x-shop::tabs.item>
+            
         </x-shop::tabs>
     </div>
 
@@ -279,7 +222,7 @@
                                 {!! view_render_event('bagisto.shop.products.name.before', ['product' => $product]) !!}
 
                                 <div class="flex gap-[15px] justify-between">
-                                    <h1 class="text-[30px] font-medium max-sm:text-[20px] sn-color-light-main">
+                                    <h1 class="sn-heading-1 sn-color-primary">
                                         {{ $product->name }}
                                     </h1>
 
@@ -293,13 +236,15 @@
                                     @endif
                                 </div>
 
-                                <a class="text-[18px] font-light max-sm:text-[12px] sn-color-secondary" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
+                                <a class="text-[18px] font-light max-sm:text-[12px] sn-color-dark  sn-body" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
                                     {{__('marketplace::app.catalog.products.view.sold_by', ['name' => $product->seller_name])}}
                                 </a>
-                                <div class="text-[18px] font-light max-sm:text-[12px] sn-color-secondary">
+                                <div class="sn-color-dark  sn-body">
                                     @php
-                                        $preperation_time = 36;
+                                        $preperation_time = $product->preperation_time;
                                     @endphp
+
+                                    @lang("marketplace::app.catalog.products.view.preperation_time");
                                     @if($preperation_time < 1 && $preperation_time > 0)
                                         {{trans_choice('marketplace::app.catalog.products.view.preperation_time_minutes', (int) (60*$preperation_time))}}
                                     @elseif($preperation_time < 24)
@@ -308,10 +253,13 @@
                                     {{trans_choice('marketplace::app.catalog.products.view.preperation_time_days', (int)($preperation_time / 24))}}
                                     @endif
                                 </div>
+                                <div class="sn-color-dark  sn-body">
+                                    @lang('marketplace::app.catalog.products.view.deliverable.' . ($product->is_deliverable ? 'true' : 'false'))
+                                </div>
 
-
+                                
                                 @if($product->stock_quantity > 0)
-                                <a class="text-[18px] font-light max-sm:text-[12px] sn-color-light-main" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
+                                <a class="text-[18px] font-light max-sm:text-[12px] sn-color-secondary" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
                                     {{__('marketplace::app.catalog.products.view.available', ['qty' => $product->stock_quantity])}}
                                 </a>
                                 @elseif($product->stock_quantity == 0)
@@ -327,43 +275,21 @@
                                 <!-- Rating -->
                                 {!! view_render_event('bagisto.shop.products.rating.before', ['product' => $product]) !!}
 
-                                <div class="flex gap-[15px] items-center mt-[15px]">
-                                    <x-shop::products.star-rating
-                                        :value="$avgRatings"
-                                        :is-editable=false
-                                    >
-                                    </x-shop::products.star-rating>
-
-                                    <div class="flex gap-[15px] items-center">
-                                        <p class="text-[#6E6E6E] text-[14px]">
-                                            ({{ $product->approvedReviews->count() }} @lang('reviews'))
-                                        </p>
-                                    </div>
-                                </div>
-
+                              
                                 {!! view_render_event('bagisto.shop.products.rating.after', ['product' => $product]) !!}
 
                                 <!-- Pricing -->
                                 {!! view_render_event('bagisto.shop.products.price.before', ['product' => $product]) !!}
 
-                                <p class="flex gap-2.5 items-center mt-[25px] text-[24px] !font-medium max-sm:mt-[15px] max-sm:text-[18px] sn-color-light-main">
+                                <p class="sn-color-secondary sn-heading-2">
                                     {!! $product->getTypeInstance()->getPriceHtml() !!}
-
-                                    <span class="text-[18px] text-[#6E6E6E]">
-                                        @if (
-                                            (bool) core()->getConfigData('taxes.catalogue.pricing.tax_inclusive')
-                                            && $product->getTypeInstance()->getTaxCategory()
-                                        )
-                                            @lang('shop::app.products.view.tax-inclusive')
-                                        @endif
-                                    </span>
                                 </p>
 
                                 {!! view_render_event('bagisto.shop.products.price.after', ['product' => $product]) !!}
 
                                 {!! view_render_event('bagisto.shop.products.short_description.before', ['product' => $product]) !!}
 
-                                <p class="mt-[25px] text-[18px] text-[#6E6E6E] max-sm:text-[14px] max-sm:mt-[15px]">
+                                <p class="mt-[25px] sn-text-body sn-color-black">
                                     {!! $product->short_description !!}
                                 </p>
 
@@ -387,7 +313,7 @@
                                         <x-shop::quantity-changer
                                             name="quantity"
                                             value="1"
-                                            class="gap-x-[16px] py-[15px] px-[26px] rounded-[12px] sn-button-secondary"
+                                            class="gap-x-[16px] py-[15px] px-[26px] rounded-[12px] sn-button-primary-alt"
                                         >
                                         </x-shop::quantity-changer>
                                     @endif

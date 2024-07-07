@@ -208,12 +208,12 @@ Colors:
 /** TEXTS **/
 
 .sn-heading-1{
-    font-size: 40px;
+    font-size: 40px !important;
     font-family: 'Somar Sans Bold', sans-serif !important;
 }
 
 .sn-heading-2{
-    font-size: 28px;
+    font-size: 28px !important;
     font-family: 'Somar Sans Regular', sans-serif !important;
 }
 
@@ -259,6 +259,9 @@ Colors:
 }
 .sn-color-secondary{
     color: #F67541
+}
+.sn-color-black{
+    color: #061919
 }
 
 /** ICONS **/
