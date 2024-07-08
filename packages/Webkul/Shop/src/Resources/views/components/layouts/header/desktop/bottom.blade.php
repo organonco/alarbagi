@@ -21,7 +21,7 @@
         </div>
 
         <div
-            class="flex justify-between w-full py-3"
+            class="w-full py-3 grid-cols-5 grid"
             v-else
         >
             <div
@@ -30,84 +30,71 @@
                 <span>
                     <a
                         href="{{route('shop.customers.register.index-seller')}}"
-                        class="sn-button-primary-alt sn-button-mini"
+                        class="sn-button-primary-alt sn-button-mini sn-color-white"
                     >
                         {{trans('shop::app.components.layouts.header.all-categories')}}
                     </a>
                 </span>
             </div>
             
-            
-            <div
-                class="relative group border-b-[4px] border-transparent hover:border-b-[4px] hover:border-primary"
-                v-for="category in categories"
-            >
-                <span>
-                    <a
-                        :href="category.url"
-                        class="inline-block px-[20px] uppercase"
-                        v-text="category.name"
-                    >
-                    </a>
-                </span>
-
+            <div class="flex content-start col-span-3 gap-8">
                 <div
-                    class="w-max absolute top-[30px] max-h-[580px] max-w-[1260px] p-[35px] z-[1] overflow-auto overflow-x-auto bg-white shadow-[0_6px_6px_1px_rgba(0,0,0,.3)] border border-b-0 border-l-0 border-r-0 border-t-[1px] border-[#F3F3F3] pointer-events-none opacity-0 transition duration-300 ease-out translate-y-1 group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-0 group-hover:ease-in group-hover:duration-200 ltr:-left-[35px] rtl:-right-[35px]"
-                    v-if="category.children.length"
+                    class="relative group border-b-[4px] border-transparent hover:border-b-[4px] hover:border-primary sn-color-white"
+                    v-for="category in categories"
                 >
-                    <div class="flex aigns gap-x-[70px] justify-between">
-                        <div
-                            class="grid grid-cols-[1fr] gap-[20px] content-start w-full flex-auto min-w-max max-w-[150px]"
-                            v-for="pairCategoryChildren in pairCategoryChildren(category)"
+                    <span>
+                        <a
+                            :href="category.url"
+                            class="inline-block sn-color-white"
+                            v-text="category.name"
                         >
-                            <template v-for="secondLevelCategory in pairCategoryChildren">
-                                <p class="text-navyBlue font-medium">
-                                    <a
-                                        :href="secondLevelCategory.url"
-                                        v-text="secondLevelCategory.name"
-                                    >
-                                    </a>
-                                </p>
+                        </a>
+                    </span>
 
-                                <ul
-                                    class="grid grid-cols-[1fr] gap-[12px]"
-                                    v-if="secondLevelCategory.children.length"
-                                >
-                                    <li
-                                        class="text-[14px] font-medium text-[#6E6E6E]"
-                                        v-for="thirdLevelCategory in secondLevelCategory.children"
-                                    >
+                    <div
+                        class="w-max absolute top-[30px] max-h-[580px] max-w-[1260px] p-[35px] z-[1] overflow-auto overflow-x-auto bg-white shadow-[0_6px_6px_1px_rgba(0,0,0,.3)] border border-b-0 border-l-0 border-r-0 border-t-[1px] border-[#F3F3F3] pointer-events-none opacity-0 transition duration-300 ease-out translate-y-1 group-hover:pointer-events-auto group-hover:opacity-100 group-hover:translate-y-0 group-hover:ease-in group-hover:duration-200 ltr:-left-[35px] rtl:-right-[35px]"
+                        v-if="category.children.length"
+                    >
+                        <div class="flex aigns gap-x-[70px] justify-between">
+                            <div
+                                class="grid grid-cols-[1fr] gap-[20px] content-start w-full flex-auto min-w-max max-w-[150px]"
+                                v-for="pairCategoryChildren in pairCategoryChildren(category)"
+                            >
+                                <template v-for="secondLevelCategory in pairCategoryChildren">
+                                    <p class="text-navyBlue font-medium">
                                         <a
-                                            :href="thirdLevelCategory.url"
-                                            v-text="thirdLevelCategory.name"
+                                            :href="secondLevelCategory.url"
+                                            v-text="secondLevelCategory.name"
                                         >
                                         </a>
-                                    </li>
-                                </ul>
-                            </template>
+                                    </p>
+
+                                    <ul
+                                        class="grid grid-cols-[1fr] gap-[12px]"
+                                        v-if="secondLevelCategory.children.length"
+                                    >
+                                        <li
+                                            class="text-[14px] font-medium text-[#6E6E6E]"
+                                            v-for="thirdLevelCategory in secondLevelCategory.children"
+                                        >
+                                            <a
+                                                :href="thirdLevelCategory.url"
+                                                v-text="thirdLevelCategory.name"
+                                            >
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </template>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
-                <div
-                class=" group sn-color-light-main flex items-center "
-            >
-                <span>
-                    <a
-                        href="{{route('shop.customers.register.index-seller')}}"
-                        class="sn-button-primary-alt sn-button-mini"
-                    >
-                        {{trans('shop::app.components.layouts.header.all-categories')}}
-                    </a>
-                </span>
-            </div>
             </div>
 
-            <div>
+            <div class="flex flex-row items-end content-end justify-end">
                     <a
                         href="{{route('shop.customers.register.index-seller')}}"
-                        class="sn-color-white flex flex-row gap-6 items-center"
+                        class="sn-color-white flex flex-row gap-6"
                     >
                         {{trans('shop::app.components.layouts.header.download-app')}}
                         <img src="{{ asset('assets/images/icons/logo.png') }}" style="width: 40px">
