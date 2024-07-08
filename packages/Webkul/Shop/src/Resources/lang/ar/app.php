@@ -365,6 +365,7 @@ return [
                 'wishlist' => 'المفضلة',
                 'sign-up-or-sign-in' => 'التسجيل أو تسجيل الدخول',
                 'all-categories' => 'جميع الفئات',
+                'new-offers' => 'أحدث العروض',
                 'download-app' => 'قم بتنزيل التطبيق مجانا'
             ],
 

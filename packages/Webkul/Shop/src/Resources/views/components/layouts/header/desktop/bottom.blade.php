@@ -32,7 +32,7 @@
                         href="{{route('shop.customers.register.index-seller')}}"
                         class="sn-button-primary-alt sn-button-mini sn-color-white"
                     >
-                        {{trans('shop::app.components.layouts.header.all-categories')}}
+                        {{trans('shop::app.components.layouts.header.new-offers')}}
                     </a>
                 </span>
             </div>
