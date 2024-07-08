@@ -364,6 +364,8 @@ return [
                 'welcome-guest' => 'مرحبًا بكم',
                 'wishlist' => 'المفضلة',
                 'sign-up-or-sign-in' => 'التسجيل أو تسجيل الدخول',
+                'all-categories' => 'جميع الفئات',
+                'download-app' => 'قم بتنزيل التطبيق مجانا'
             ],
 
             'footer' => [
@@ -539,7 +541,7 @@ return [
             'additional-information' => 'معلومات إضافية',
             'buy-now' => 'اشتر الآن',
             'compare' => 'مقارنة',
-            'description' => 'الوصف',
+            'description' => 'سمات المنتج',
             'review' => 'المراجعات',
             'related-product-title' => 'منتجات ذات صلة',
             'tax-inclusive' => 'شامل للضرائب',

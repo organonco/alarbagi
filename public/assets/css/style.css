@@ -187,12 +187,10 @@ Colors:
     font-family: 'Somar Sans Medium', sans-serif !important;
 }
 
-.sn-button-primary-mini{
-    color: #153939;
-    background-color: #F67541;
-    border-radius: 4px;
-    padding: 10px 15px;
-    font-size: 16px;
+.sn-button-mini{
+    border-radius: 4px !important;
+    padding: 8px 50px !important;
+    font-size: 16px !important;
     font-family: 'Somar Sans Medium', sans-serif !important;
 }
 
@@ -263,9 +261,7 @@ Colors:
 .sn-color-black{
     color: #061919
 }
-
-/** ICONS **/
-.sn-icon-cart{
-    background-image: url('../images/icons/cart.svg');
+.sn-color-white{
+    color: #FFFFFF
 }
 

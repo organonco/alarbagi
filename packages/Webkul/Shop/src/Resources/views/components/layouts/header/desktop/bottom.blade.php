@@ -21,21 +21,23 @@
         </div>
 
         <div
-            class="flex items-center"
+            class="flex justify-between w-full py-3"
             v-else
         >
             <div
-                class="relative group border-b-[4px] border-transparent sn-color-light-main"
+                class=" group sn-color-light-main align-middle items-center"
             >
                 <span>
                     <a
                         href="{{route('shop.customers.register.index-seller')}}"
-                        class="inline-block px-[20px] uppercase"
+                        class="sn-button-primary-alt sn-button-mini"
                     >
-                        {{trans('marketplace::app.register.title.seller')}}
+                        {{trans('shop::app.components.layouts.header.all-categories')}}
                     </a>
                 </span>
             </div>
+            
+            
             <div
                 class="relative group border-b-[4px] border-transparent hover:border-b-[4px] hover:border-primary"
                 v-for="category in categories"
@@ -86,8 +88,33 @@
                         </div>
                     </div>
                 </div>
+
+
+                <div
+                class=" group sn-color-light-main flex items-center "
+            >
+                <span>
+                    <a
+                        href="{{route('shop.customers.register.index-seller')}}"
+                        class="sn-button-primary-alt sn-button-mini"
+                    >
+                        {{trans('shop::app.components.layouts.header.all-categories')}}
+                    </a>
+                </span>
+            </div>
             </div>
 
+            <div>
+                    <a
+                        href="{{route('shop.customers.register.index-seller')}}"
+                        class="sn-color-white flex flex-row gap-6 items-center"
+                    >
+                        {{trans('shop::app.components.layouts.header.download-app')}}
+                        <img src="{{ asset('assets/images/icons/logo.png') }}" style="width: 40px">
+                    </a>
+            </div>
+
+            
         </div>
     </script>
 
@@ -115,8 +142,8 @@
 
                             this.categories = response.data.data;
                         }).catch(error => {
-                        console.log(error);
-                    });
+                            console.log(error);
+                        });
                 },
 
                 pairCategoryChildren(category) {
