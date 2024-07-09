@@ -31,7 +31,7 @@ return [
     'login' => [
         'labels' => [
             'are_you_a_seller' => 'هل أنت بائع؟',
-            'sign_in_here' => 'تسجيل الدخول',
+            'sign_in_here' => 'تسجيل الدخول كبائع',
         ]
     ],
     'catalog' => [
