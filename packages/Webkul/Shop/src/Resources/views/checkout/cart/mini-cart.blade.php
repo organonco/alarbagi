@@ -17,7 +17,7 @@
             <!-- Drawer Header -->
             <x-slot:header>
                 <div class="flex justify-between items-center">
-                    <p class="text-[26px] font-medium">
+                    <p class="sn-color-primary sn-heading-2">
                         @lang('shop::app.checkout.cart.mini-cart.shopping-cart')
                     </p>
                 </div>
@@ -51,7 +51,7 @@
                             <div class="flex flex-wrap justify-between">
                                 
                                 <p
-                                    class="text-[16px] font-medium max-w-[80%]"
+                                    class="max-w-[80%] sn-heading-3 sn-color-primary"
                                     v-text="item.name"
                                 >
                                 </p>
@@ -98,13 +98,13 @@
                                 </div>
                             </div>
 
-                            <div class="flex gap-[20px] items-center flex-wrap">
+                            <div class="flex gap-[20px] items-center flex-wrap content-between justify-between">
 
                                 <!-- Cart Item Quantity Changer -->
                                 <x-shop::quantity-changer
                                     name="quantity"
                                     ::value="item?.quantity"
-                                    class="gap-x-[10px] max-w-[150px] max-h-[36px] py-[5px] px-[14px] rounded-[54px]"
+                                    class="gap-x-[16px] rounded-[12px] sn-button-primary-alt"
                                     @change="updateItem($event, item)"
                                 >
                                 </x-shop::quantity-changer>
@@ -112,7 +112,7 @@
                                 <!-- Cart Item Remove Button -->
                                 <button
                                     type="button"
-                                    class="text-[#0A49A7]"
+                                    class="sn-color-secondary"
                                     @click="removeItem(item.id)"
                                 >
                                     @lang('shop::app.checkout.cart.mini-cart.remove')
@@ -142,11 +142,11 @@
                 <div v-if="cart?.items?.length">
                     <div class="flex justify-between items-center mt-[60px] mb-[30px] px-[25px] pb-[8px] border-b-[1px] border-[#E9E9E9]">
                         <p class="text-[14px] font-medium text-[#6E6E6E]">
-                            @lang('shop::app.checkout.cart.mini-cart.subtotal')
+                            @lang('shop::app.checkout.cart.mini-cart.grand-total')
                         </p>
 
                         <p
-                            class="text-[30px] font-semibold"
+                            class="text-[30px] font-semibold sn-color-primary"
                             v-text="cart.formatted_grand_total"
                         >
                         </p>
@@ -156,7 +156,7 @@
                     <div class="px-[25px]">
                         <a
                             href="{{ route('shop.checkout.onepage.index') }}"
-                            class="block w-full mx-auto m-0 ml-[0px] py-[15px] px-[43px] bg-navyBlue rounded-[18px] text-white text-base font-medium text-center cursor-pointer max-sm:px-[20px]"
+                            class="block w-full mx-auto m-0 ml-[0px] text-center sn-button-secondary"
                         >
                             @lang('shop::app.checkout.cart.mini-cart.continue-to-checkout')
                         </a>

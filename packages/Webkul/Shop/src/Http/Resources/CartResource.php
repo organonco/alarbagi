@@ -19,6 +19,15 @@ class CartResource extends JsonResource
             return core()->currency($rate ?? 0);
         });
 
+        $preperation_time = $this->preperation_time;
+        if ($preperation_time < 1 && $preperation_time > 0)
+            $pt =  trans_choice('marketplace::app.catalog.products.view.preperation_time_minutes', (int) (60 * $preperation_time));
+        elseif ($preperation_time < 24)
+            $pt =  trans_choice('marketplace::app.catalog.products.view.preperation_time_hours', ($preperation_time));
+        elseif ($preperation_time >= 24)
+            $pt = trans_choice('marketplace::app.catalog.products.view.preperation_time_days', (int)($preperation_time / 24));
+
+
         return [
             'id'                             => $this->id,
             'items_count'                    => $this->items_count,
@@ -45,6 +54,7 @@ class CartResource extends JsonResource
             'shipping_address'               => $this->shipping_address,
             'haveStockableItems'             => $this->haveStockableItems(),
             'payment_method'                 => $this->payment ? core()->getConfigData('sales.payment_methods.' . $this->payment->method . '.title') : '',
+            'preperation_time' => $pt
         ];
     }
 }

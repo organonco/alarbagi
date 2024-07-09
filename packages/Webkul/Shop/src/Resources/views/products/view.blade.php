@@ -244,7 +244,7 @@
                                         $preperation_time = $product->preperation_time;
                                     @endphp
 
-                                    @lang("marketplace::app.catalog.products.view.preperation_time");
+                                    @lang("marketplace::app.catalog.products.view.preperation_time")
                                     @if($preperation_time < 1 && $preperation_time > 0)
                                         {{trans_choice('marketplace::app.catalog.products.view.preperation_time_minutes', (int) (60*$preperation_time))}}
                                     @elseif($preperation_time < 24)

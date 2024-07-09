@@ -671,7 +671,7 @@ return [
                 'remove' => 'إزالة',
                 'see-details' => 'رؤية التفاصيل',
                 'shopping-cart' => 'عربة التسوق',
-                'subtotal' => 'المجموع الفرعي',
+                'grand-total' => 'المجموع الكلي',
                 'view-cart' => 'عرض عربة التسوق',
             ],
 
@@ -680,6 +680,7 @@ return [
                 'delivery-charges' => 'رسوم التوصيل',
                 'discount-amount' => 'مبلغ الخصم',
                 'grand-total' => 'المجموع الكلي',
+                'preperation-time' => 'وقت التحضير',
                 'place-order' => 'تأكيد الطلب',
                 'proceed-to-checkout' => 'المتابعة للسداد',
                 'sub-total' => 'المجموع الفرعي',

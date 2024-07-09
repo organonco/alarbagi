@@ -30,12 +30,12 @@
 
     <div class="flex items-center gap-5 justify-end">
 
-        @auth('customer')
+        {{-- @auth('customer') --}}
             <a style="display: flex; gap: 15px; align-items: center" href="{{ route('shop.customers.account.wishlist.index') }}">
                 <span class="sn-color-primary text-[16px]">@lang('shop::app.components.layouts.header.wishlist')</span>
                 <img src="{{ asset('assets/images/icons/heart.png') }}" style="width: 30px">
             </a >
-        @endauth
+        {{-- @endauth --}}
 
         @include('shop::checkout.cart.mini-cart')
 

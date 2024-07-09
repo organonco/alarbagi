@@ -485,7 +485,12 @@ class Cart
 
         $quantities = 0;
 
+        $cart->preperation_time = 0;
+
         foreach ($cart->items as $item) {
+
+            $cart->preperation_time = max($cart->preperation_time, $item->product->preperation_time ? $item->product->preperation_time : 0);
+
             $cart->discount_amount += $item->discount_amount;
             $cart->base_discount_amount += $item->base_discount_amount;
 
