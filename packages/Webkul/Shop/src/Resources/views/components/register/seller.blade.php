@@ -18,7 +18,7 @@
                 </x-shop::form.control-group.label>
 
                 <x-shop::form.control-group.control
-                    type="textarea"
+                    type="text"
                     name="name"
                     class="!p-[20px_25px] rounded-lg"
                     :value="old('name')"
@@ -30,28 +30,6 @@
 
                 <x-shop::form.control-group.error
                     control-name="name"
-                >
-                </x-shop::form.control-group.error>
-            </x-shop::form.control-group>
-
-            <x-shop::form.control-group class="mb-4">
-                <x-shop::form.control-group.label class="required">
-                    @lang('marketplace::app.register.labels.slug')
-                </x-shop::form.control-group.label>
-
-                <x-shop::form.control-group.control
-                    type="text"
-                    name="slug"
-                    class="!p-[20px_25px] rounded-lg"
-                    :value="old('slug')"
-                    rules="required"
-                    :label="trans('marketplace::app.register.labels.slug')"
-                    :placeholder="trans('marketplace::app.register.labels.slug')"
-                >
-                </x-shop::form.control-group.control>
-
-                <x-shop::form.control-group.error
-                    control-name="slug"
                 >
                 </x-shop::form.control-group.error>
             </x-shop::form.control-group>
@@ -79,28 +57,6 @@
             </x-shop::form.control-group>
 
             <x-shop::form.control-group class="mb-4">
-                <x-shop::form.control-group.label>
-                    @lang('shop::app.customers.signup-form.additional-email')
-                </x-shop::form.control-group.label>
-
-                <x-shop::form.control-group.control
-                    type="email"
-                    name="additional_email"
-                    class="!p-[20px_25px] rounded-lg"
-                    :value="old('additional_email')"
-                    rules="email"
-                    :label="trans('shop::app.customers.signup-form.additional-email')"
-                    placeholder="email@example.com"
-                >
-                </x-shop::form.control-group.control>
-
-                <x-shop::form.control-group.error
-                    control-name="additional_email"
-                >
-                </x-shop::form.control-group.error>
-            </x-shop::form.control-group>
-
-            <x-shop::form.control-group class="mb-4">
                 <x-shop::form.control-group.label class="required">
                     @lang('shop::app.customers.signup-form.phone')
                 </x-shop::form.control-group.label>
@@ -118,29 +74,6 @@
 
                 <x-shop::form.control-group.error
                     control-name="phone"
-                >
-                </x-shop::form.control-group.error>
-            </x-shop::form.control-group>
-
-
-            <x-shop::form.control-group class="mb-4">
-                <x-shop::form.control-group.label>
-                    @lang('shop::app.customers.signup-form.additional-phone')
-                </x-shop::form.control-group.label>
-
-                <x-shop::form.control-group.control
-                    type="text"
-                    name="additional_phone"
-                    class="!p-[20px_25px] rounded-lg"
-                    :value="old('additional_phone')"
-                    rules="phone"
-                    :label="trans('shop::app.customers.signup-form.additional-phone')"
-                    placeholder="23456789"
-                >
-                </x-shop::form.control-group.control>
-
-                <x-shop::form.control-group.error
-                    control-name="additional_phone"
                 >
                 </x-shop::form.control-group.error>
             </x-shop::form.control-group>
@@ -172,7 +105,6 @@
                 <x-shop::form.control-group.label class="required">
                     @lang('shop::app.customers.signup-form.address')
                 </x-shop::form.control-group.label>
-
                 <x-shop::form.control-group.control
                     type="textarea"
                     name="address"
@@ -183,7 +115,6 @@
                     placeholder="9530 Moses Drive, Abbotthaven, LA 57274"
                 >
                 </x-shop::form.control-group.control>
-
                 <x-shop::form.control-group.error
                     control-name="address"
                 >
@@ -191,7 +122,7 @@
             </x-shop::form.control-group>
 
 
-            <x-shop::form.control-group class="mb-6">
+            <x-shop::form.control-group class="mb-4">
                 <x-shop::form.control-group.label class="required">
                     @lang('shop::app.customers.signup-form.password')
                 </x-shop::form.control-group.label>
@@ -215,120 +146,7 @@
                 </x-shop::form.control-group.error>
             </x-shop::form.control-group>
 
-
-            <x-shop::form.control-group class="mb-4">
-                <x-shop::form.control-group.label>
-                    @lang('shop::app.customers.signup-form.confirm-pass')
-                </x-shop::form.control-group.label>
-
-                <x-shop::form.control-group.control
-                    type="password"
-                    name="password_confirmation"
-                    class="!p-[20px_25px] rounded-lg"
-                    value=""
-                    rules="confirmed:@password"
-                    :label="trans('shop::app.customers.signup-form.password')"
-                    :placeholder="trans('shop::app.customers.signup-form.confirm-pass')"
-                >
-                </x-shop::form.control-group.control>
-
-                <x-shop::form.control-group.error
-                    control-name="password_confirmation"
-                >
-                </x-shop::form.control-group.error>
-            </x-shop::form.control-group>
-
-            <x-shop::form.control-group class="mb-4">
-                <x-shop::form.control-group.label>
-                    @lang('shop::app.customers.signup-form.individual-account')
-                </x-shop::form.control-group.label>
-
-                <x-shop::form.control-group.control
-                    type="switch"
-                    name="is_personal"
-                    class="!p-[20px_25px] rounded-lg"
-                    onClick="switchType()"
-                >
-                </x-shop::form.control-group.control>
-                <x-shop::form.control-group.error
-                    control-name="is_personal"
-                >
-                </x-shop::form.control-group.error>
-            </x-shop::form.control-group>
-
-
-            <x-shop::form.control-group class="mb-4">
-                <x-shop::form.control-group.label class="required">
-                    <div id="document_label" style="display: inline">
-                        @lang('shop::app.customers.signup-form.id')
-                    </div>
-                </x-shop::form.control-group.label>
-
-                <x-shop::form.control-group.control
-                    type="file"
-                    name="document"
-                    rules=""
-                    class="!p-[20px_25px] rounded-lg"
-                >
-                </x-shop::form.control-group.control>
-                <x-shop::form.control-group.error
-                    control-name="document"
-                >
-                </x-shop::form.control-group.error>
-            </x-shop::form.control-group>
-
-            <div id="document_back">
-                <x-shop::form.control-group class="mb-4">
-                    <x-shop::form.control-group.label class="required">
-                        <div style="display: inline">
-                            @lang('shop::app.customers.signup-form.id-back')
-                        </div>
-                    </x-shop::form.control-group.label>
-                    <x-shop::form.control-group.control
-                        type="file"
-                        name="document_back"
-                        rules=""
-                        class="!p-[20px_25px] rounded-lg"
-                    >
-                    </x-shop::form.control-group.control>
-                    <x-shop::form.control-group.error
-                        control-name="document_back"
-                    >
-                    </x-shop::form.control-group.error>
-                </x-shop::form.control-group>
-            </div>
-
-            @if (core()->getConfigData('customer.captcha.credentials.status'))
-                <div class="flex mb-[20px]">
-                    {!! Captcha::render() !!}
-                </div>
-            @endif
-
-            @if (core()->getConfigData('customer.settings.newsletter.subscription'))
-                <div class="flex gap-[6px] items-center select-none">
-                    <input
-                        type="checkbox"
-                        name="is_subscribed"
-                        id="is-subscribed"
-                        class="hidden peer"
-                        onchange="switchVisibility()"
-                    />
-
-                    <label
-                        class="icon-uncheck text-[24px] text-navyBlue peer-checked:icon-check-box peer-checked:text-navyBlue cursor-pointer"
-                        for="is-subscribed"
-                    ></label>
-
-                    <label
-                        class="pl-0 text-[16] text-[#6E6E6E] max-sm:text-[12px] select-none cursor-pointer"
-                        for="is-subscribed"
-                    >
-                        @lang('shop::app.customers.signup-form.subscribe-to-newsletter')
-                    </label>
-                </div>
-            @endif
-
-
+            
             <div class="flex gap-[36px] flex-wrap items-center mt-[30px]">
                 <button
                     class="block w-full max-w-[1260px] sn-button-primary"
@@ -353,26 +171,3 @@
     </p>
 </div>
 
-
-
-@push('scripts')
-
-    <script>
-
-
-        function switchType() {
-            const switchElement = document.getElementById('is_personal');
-            const labelElement = document.getElementById('document_label');
-            const documentBackDiv = document.getElementById('document_back');
-
-            if (switchElement.checked) {
-                labelElement.innerHTML = "@lang('shop::app.customers.signup-form.id')"
-                documentBackDiv.style.display = 'block'
-            } else {
-                labelElement.innerHTML = "@lang('shop::app.customers.signup-form.license')"
-                documentBackDiv.style.display = 'none'
-            }
-        }
-
-    </script>
-@endpush

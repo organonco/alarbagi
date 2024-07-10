@@ -17,8 +17,10 @@ return new class extends Migration
             $table->string('slug');
             $table->string('description', 1000)->nullable();
             $table->string('address', 1000)->nullable();
-            $table->string('payment_method', 4000)->nullable();
             $table->string('status');
+            $table->string('phone');
+            $table->string('landline');
+            $table->string('token')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

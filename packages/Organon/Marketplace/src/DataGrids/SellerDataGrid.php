@@ -20,13 +20,12 @@ class SellerDataGrid extends DataGrid
         $query->addSelect('sellers.name as shop_name');
         $query->addSelect('admins.email as email');
         $query->addSelect('sellers.status as status');
-        $query->addSelect('sellers.slug as slug');
+        $query->addSelect('sellers.phone as phone');
+        
 
         $this->addFilter('shop_name', 'sellers.name');
         $this->addFilter('status', 'sellers.status');
-        $this->addFilter('slug', 'sellers.slug');
         $this->addFilter('email', 'admins.email');
-        $this->addFilter('expiry_date', 'sellers.expiry_date');
 
         return $query;
     }
@@ -65,17 +64,20 @@ class SellerDataGrid extends DataGrid
             'closure' => fn($row) => '<p class="label-' . trans('marketplace::app.seller.statuses.' . Seller::getStatusFromValue($row->status)->name . '.class') . '">' . trans('marketplace::app.seller.statuses.' . Seller::getStatusFromValue($row->status)->name . '.label') . '</p>',
         ]);
 
+      
         $this->addColumn([
-            'index' => 'slug',
-            'label' => trans('marketplace::app.admin.sellers.index.datagrid.slug'),
+            'index' => 'email',
+            'label' => trans('marketplace::app.admin.sellers.index.datagrid.email'),
             'type' => 'string',
             'searchable' => true,
             'filterable' => false,
             'sortable' => false,
         ]);
+
+
         $this->addColumn([
-            'index' => 'email',
-            'label' => trans('marketplace::app.admin.sellers.index.datagrid.email'),
+            'index' => 'phone',
+            'label' => trans('marketplace::app.admin.sellers.index.datagrid.phone'),
             'type' => 'string',
             'searchable' => true,
             'filterable' => false,

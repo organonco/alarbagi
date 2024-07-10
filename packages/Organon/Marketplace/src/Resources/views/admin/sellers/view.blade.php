@@ -27,8 +27,6 @@
             <div class="flex gap-[10px] items-center">
                 <p class="text-[20px] text-gray-800 dark:text-white font-bold leading-[24px]">
                     {{$seller->name}}
-                    ({{$seller->is_personal ? trans('marketplace::app.seller.is_personal.true') : trans('marketplace::app.seller.is_personal.false')}}
-                    )
                 </p>
 
                 <div>
@@ -96,11 +94,11 @@
                 <div class="bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                     <div class="p-[16px]">
                         <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[30px]">
-                            Shop Info
+                            معلومات التاجر
                         </p>
                         <div class="info-box text-gray-800 dark:text-white">
                             <table class="info-table">
-                                @foreach(['name','description','address','slug','payment_method','deliver_by'] as $key)
+                                @foreach(['name','address', 'phone', 'landline'] as $key)
                                     <tr class="info-table">
                                         <td>
                                             @lang('marketplace::app.admin.account.profile.labels.' . $key)
@@ -118,71 +116,6 @@
                                         {{$seller->admin['email']}}
                                     </td>
                                 </tr>
-                                @foreach(['additional_email','phone','additional_phone','landline'] as $key)
-                                    <tr class="info-table">
-                                        <td>
-                                            @lang('marketplace::app.admin.account.profile.labels.' . $key)
-                                        </td>
-                                        <td class="border-left text-center">
-                                            {{$seller[$key]}}
-                                        </td>
-                                    </tr>
-                                @endforeach
-
-                                <tr class="info-table">
-                                    <td>
-                                        @if($seller->is_personal)
-                                            @lang('marketplace::app.admin.account.profile.labels.id_card')
-                                        @else
-                                            @lang('marketplace::app.admin.account.profile.labels.license')
-                                        @endif
-                                    </td>
-                                    <td class="border-left text-center" style="display: flex; justify-content: center">
-                                        @if($seller['document_url'])
-                                            <a href="{{$seller['document_url']}}" target="_blank">
-                                                <button class="primary-button">View Document</button>
-                                            </a>
-                                        @else
-                                            Document not available
-                                        @endif
-                                    </td>
-                                </tr>
-
-                                <tr class="info-table">
-                                    <td>
-                                        @lang('marketplace::app.admin.account.profile.labels.id_card_back')
-                                    </td>
-                                    <td class="border-left text-center" style="display: flex; justify-content: center">
-                                        @if($seller['document_back_url'])
-                                            <a href="{{$seller['document_back_url']}}" target="_blank">
-                                                <button class="primary-button">View Document</button>
-                                            </a>
-                                        @else
-                                            Document not available
-                                        @endif
-                                    </td>
-                                </tr>
-
-                                <tr class="info-table">
-                                    <td>
-                                        @lang('marketplace::app.admin.account.profile.labels.expiry_date')
-                                    </td>
-                                    <td class="border-left text-center">
-                                        @if(!isset($seller['expiry_date']))
-                                        @elseif($seller->is_expired)
-                                        @else
-                                        @endif
-                                        <form style="display: flex; justify-content: center; align-items: center" action="{{route('admin.sales.sellers.expiry', $seller->id)}}" method="post">
-                                            @csrf
-                                            <input name="expiry_date" type="date" value="{{$seller->expiry_date}}" style="{{$seller->isExpired? "color: red" : ""}}"/>
-                                            <Button class="primary-button" style="margin-left: 50px" type="submit">
-                                                Update
-                                            </Button>
-                                        </form>
-                                    </td>
-                                </tr>
-
-
                             </table>
                         </div>
                     </div>
@@ -195,7 +128,7 @@
                 <div class="bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
                     <div class="p-[16px]">
                         <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[30px]">
-                            Orders
+                            الطلبات
                         </p>
                         <x-admin::datagrid :src="route('marketplace.admin.orders.index', ['seller_id' => $seller->id])"
                                            :isMultiRow="true">

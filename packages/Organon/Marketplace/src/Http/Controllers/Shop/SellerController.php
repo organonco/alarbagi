@@ -26,42 +26,29 @@ class SellerController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:255'],
-            'slug' => ['required', 'alpha_dash', "unique:sellers"],
-            'password' => ['required', 'confirmed', 'min:8'],
+            'password' => ['required', 'min:8'],
             'email' => ['required', 'email', 'unique:admins'],
             'phone' => ['required'],
-            'document' => ['required', 'image'],
-            'document_back' => ['required_if:is_personal,on', 'image'],
-            'additional_phone' => ['different:phone'],
-            'additional_email' => ['different:email']
         ]);
 
         $sellerData = $request->only([
             'name',
-            'slug',
             'phone',
-            'additional_phone',
-            'additional_email',
             'landline',
-            'address'
+            'address',
+            'description'
         ]);
 
         $sellerData['token'] = md5(uniqid(rand(), true));
-
-        $sellerData['is_personal'] = $request->input('is_personal') == 'on';
+        $sellerData['slug'] = (string)Str::uuid();
 
         /** @var Seller $seller */
         $seller = $this->sellerRepository->create($sellerData);
 
-        $seller->setDocument('document');
-
-        if($sellerData['is_personal'])
-            $seller->setDocumentBack('document_back');
-
         $adminData = $request->only([
             'name',
             'email',
-            'password'
+            'password',
         ]);
 
         $adminData['role_id'] = 2;
