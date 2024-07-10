@@ -1,13 +1,14 @@
 <x-admin::layouts>
     <x-slot:title>
-        @lang('delivery::app.area.titles.create')
+        @lang('delivery::app.area.titles.edit') 
     </x-slot:title>
 
     <x-admin::form :action="route('admin.delivery.area.update', $area->id)" enctype="multipart/form-data">
 
         <div class="flex  gap-[16px] justify-between items-center max-sm:flex-wrap">
             <p class="py-[11px] text-[20px] text-gray-800 dark:text-white font-bold">
-                @lang('delivery::app.area.titles.create')
+                @lang('delivery::app.area.titles.edit') - 
+                @lang('delivery::app.area.titles.no-company-assigned')
             </p>
             <button type="submit" class="primary-button">
                 @lang('delivery::app.area.titles.save')
