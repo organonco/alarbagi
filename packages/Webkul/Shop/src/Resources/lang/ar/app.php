@@ -93,7 +93,7 @@ return [
             'phone' => "رقم الهاتف",
             'additional-phone' => "رقم هاتف إضافي",
             'landline' => "رقم الهاتف الأرضي",
-            'address' => "العنوان",
+            'address' => "العنوان بالتفصيل",
         ],
 
         'account' => [

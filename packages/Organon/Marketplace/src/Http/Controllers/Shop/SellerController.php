@@ -26,9 +26,12 @@ class SellerController extends Controller
     {
         $request->validate([
             'name' => ['required', 'max:255'],
-            'password' => ['required', 'min:8'],
-            'email' => ['required', 'email', 'unique:admins'],
             'phone' => ['required'],
+            'landline' => ['required'],
+            'address' => ['required'],
+            'area_id' => ['required', 'exists:areas,id'],
+            'email' => ['required', 'email', 'unique:admins'],
+            'password' => ['required', 'min:8'],
         ]);
 
         $sellerData = $request->only([
@@ -36,7 +39,7 @@ class SellerController extends Controller
             'phone',
             'landline',
             'address',
-            'description'
+            'area_id',
         ]);
 
         $sellerData['token'] = md5(uniqid(rand(), true));

@@ -5,6 +5,7 @@ namespace Organon\Marketplace\Models;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Organon\Delivery\Contracts\Area;
 use Organon\Marketplace\Contracts\Seller as SellerContract;
 use Organon\Marketplace\Database\Factories\SellerFactory;
 use Organon\Marketplace\Enums\SellerInvoiceStatusEnum;
@@ -19,8 +20,6 @@ class Seller extends Model implements SellerContract, HasMedia
 {
     const LOGO_MEDIA_COLLECTION = "logo";
     const COVER_MEDIA_COLLECTION = "cover";
-    const DOCUMENT_MEDIA_COLLECTION = 'document';
-    const DOCUMENT_BACK_MEDIA_COLLECTION = 'document-back';
 
 
 
@@ -33,17 +32,11 @@ class Seller extends Model implements SellerContract, HasMedia
 
     protected $fillable = [
         'name',
-        'description',
         'address',
         'slug',
-        'payment_method',
-        'deliver_by',
         'phone',
-        'additional_phone',
         'landline',
-        'additional_email',
-        'is_personal',
-        'expiry_date',
+        'area_id',
         'token'
     ];
 
@@ -72,28 +65,6 @@ class Seller extends Model implements SellerContract, HasMedia
     {
         $this->clearMediaCollection(self::COVER_MEDIA_COLLECTION);
         $this->addMediaFromRequest($key)->toMediaCollection(self::COVER_MEDIA_COLLECTION);
-    }
-
-    public function setDocument($key)
-    {
-        $this->clearMediaCollection(self::DOCUMENT_MEDIA_COLLECTION);
-        $this->addMediaFromRequest($key)->toMediaCollection(self::DOCUMENT_MEDIA_COLLECTION);
-    }
-
-    public function getDocumentUrlAttribute()
-    {
-        return $this->getFirstMediaUrl(self::DOCUMENT_MEDIA_COLLECTION);
-    }
-
-    public function setDocumentBack($key)
-    {
-        $this->clearMediaCollection(self::DOCUMENT_BACK_MEDIA_COLLECTION);
-        $this->addMediaFromRequest($key)->toMediaCollection(self::DOCUMENT_BACK_MEDIA_COLLECTION);
-    }
-
-    public function getDocumentBackUrlAttribute()
-    {
-        return $this->getFirstMediaUrl(self::DOCUMENT_BACK_MEDIA_COLLECTION);
     }
 
     public function getLogoUrlAttribute()
@@ -169,9 +140,8 @@ class Seller extends Model implements SellerContract, HasMedia
         $this->products()->withoutGlobalScope('seller_status')->update(['seller_status' => $status->value]);
     }
 
-    public function getIsExpiredAttribute()
+    public function area()
     {
-        return $this->expiry_date && (new \DateTime() > new \DateTime($this->expiry_date));
-
+        return $this->belongsTo(Area::class);
     }
 }
