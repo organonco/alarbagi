@@ -111,7 +111,8 @@
                     <div class="flex justify-between items-center p-[16px]">
                         {{-- Back to Sign In Page--}}
                         <a
-                            class="text-[12px] text-blue-600 font-semibold leading-[24px] cursor-pointer"
+                            class="text-[12px] font-semibold leading-[24px] cursor-pointer"
+                            style="margin-left: 100px"
                             href="{{ route('admin.session.create') }}"
                         >
                             @lang('admin::app.users.reset-password.back-link-title')
@@ -119,7 +120,7 @@
 
                         {{-- Form Submit Button --}}
                         <button
-                            class="px-[14px] py-[6px] bg-blue-600 border border-blue-700 rounded-[6px] text-gray-50 font-semibold cursor-pointer">
+                        class="sn-button-primary">
                             @lang('admin::app.users.reset-password.submit-btn')
                         </button>
                     </div>

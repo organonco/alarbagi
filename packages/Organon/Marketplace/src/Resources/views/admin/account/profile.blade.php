@@ -36,42 +36,8 @@
                                         control-name="name"></x-shop::form.control-group.error>
                             </x-admin::form.control-group>
 
-
                             <x-admin::form.control-group>
-                                <x-admin::form.control-group.label
-                                        class="required">@lang('marketplace::app.admin.account.profile.labels.slug')</x-admin::form.control-group.label>
-                                <x-admin::form.control-group.control
-                                        type="text"
-                                        name="slug"
-                                        value="{{$seller->slug}}"
-                                        placeholder="{{trans('marketplace::app.admin.account.profile.labels.slug')}}"
-                                        label="{{trans('marketplace::app.admin.account.profile.labels.slug')}}"
-                                >
-                                </x-admin::form.control-group.control>
-                                <x-shop::form.control-group.error
-                                        control-name="slug"></x-shop::form.control-group.error>
-                            </x-admin::form.control-group>
-
-
-                            <x-admin::form.control-group>
-                                <x-admin::form.control-group.label
-                                >@lang('marketplace::app.admin.account.profile.labels.description')</x-admin::form.control-group.label>
-                                <x-admin::form.control-group.control
-                                        type="textarea"
-                                        name="description"
-                                        rows="5"
-                                        maxlength="1000"
-                                        value="{{$seller->description}}"
-                                        placeholder="{{trans('marketplace::app.admin.account.profile.labels.description')}}"
-                                        label="{{trans('marketplace::app.admin.account.profile.labels.description')}}"
-                                >
-                                </x-admin::form.control-group.control>
-                                <x-shop::form.control-group.error
-                                        control-name="description"></x-shop::form.control-group.error>
-                            </x-admin::form.control-group>
-
-                            <x-admin::form.control-group>
-                                <x-admin::form.control-group.label
+                                <x-admin::form.control-group.label class="required"
                                 >@lang('marketplace::app.admin.account.profile.labels.address')</x-admin::form.control-group.label>
                                 <x-admin::form.control-group.control
                                         type="textarea"
@@ -85,6 +51,36 @@
                                 </x-admin::form.control-group.control>
                                 <x-shop::form.control-group.error
                                         control-name="address"></x-shop::form.control-group.error>
+                            </x-admin::form.control-group>
+
+                            <x-admin::form.control-group>
+                                <x-admin::form.control-group.label class="required"
+                                >@lang('marketplace::app.admin.account.profile.labels.phone')</x-admin::form.control-group.label>
+                                <x-admin::form.control-group.control
+                                        type="text"
+                                        name="phone"
+                                        value="{{$seller->phone}}"
+                                        placeholder="{{trans('marketplace::app.admin.account.profile.labels.phone')}}"
+                                        label="{{trans('marketplace::app.admin.account.profile.labels.phone')}}"
+                                >
+                                </x-admin::form.control-group.control>
+                                <x-shop::form.control-group.error
+                                        control-name="phone"></x-shop::form.control-group.error>
+                            </x-admin::form.control-group>
+
+                            <x-admin::form.control-group>
+                                <x-admin::form.control-group.label class="required"
+                                >@lang('marketplace::app.admin.account.profile.labels.landline')</x-admin::form.control-group.label>
+                                <x-admin::form.control-group.control
+                                        type="text"
+                                        name="landline"
+                                        value="{{$seller->landline}}"
+                                        placeholder="{{trans('marketplace::app.admin.account.profile.labels.landline')}}"
+                                        label="{{trans('marketplace::app.admin.account.profile.labels.landline')}}"
+                                >
+                                </x-admin::form.control-group.control>
+                                <x-shop::form.control-group.error
+                                        control-name="landline"></x-shop::form.control-group.error>
                             </x-admin::form.control-group>
 
 

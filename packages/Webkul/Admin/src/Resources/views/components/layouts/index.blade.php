@@ -32,7 +32,8 @@
 
         @stack('styles')
 
-        <link rel="stylesheet" href="{{asset('assets/css/style.css') . '?' . time()}}}">
+        <link rel="stylesheet" href="{{asset('assets/css/style.css') . '?' . time()}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-style.css') . '?' . time()}}"/>
         
         <style>
             {!! core()->getConfigData('general.content.custom_scripts.custom_css') !!}

@@ -21,6 +21,7 @@
         rel="stylesheet"
     />
     <link rel="stylesheet" href="{{asset('assets/css/style.css') . '?' . time()}}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-style.css') . '?' . time()}}"/>
 
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap"

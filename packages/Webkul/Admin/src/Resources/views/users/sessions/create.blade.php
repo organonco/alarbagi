@@ -17,7 +17,7 @@
                 {{-- Login Form --}}
                 <x-admin::form :action="route('admin.session.store')">
                     <div class="p-[16px]  ">
-                        <p class="text-[20px] text-gray-800 dark:text-white font-bold">
+                        <p class="text-[20px] text-gray-800 dark:text-white font-bold sn-heading-3">
                             @lang('admin::app.users.sessions.title')
                         </p>
                     </div>
@@ -81,9 +81,9 @@
                         </div>
                     </div>
                     <div class="flex justify-between items-center p-[16px]">
-                        {{-- Forgot Password Link --}}
                         <a
-                            class="text-[12px] text-blue-600 font-semibold leading-[24px] cursor-pointer"
+                            class="text-[12px] font-semibold leading-[24px] cursor-pointer"
+                            style="margin-left: 100px"
                             href="{{ route('admin.forget_password.create') }}"
                         >
                             @lang('admin::app.users.sessions.forget-password-link')
