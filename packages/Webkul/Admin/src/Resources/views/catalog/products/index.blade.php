@@ -277,19 +277,19 @@
 
                                         <x-admin::form.control-group class="mb-[10px]">
                                             <x-admin::form.control-group.label class="required">
-                                                @lang('admin::app.catalog.products.index.create.sku')
+                                                @lang('admin::app.catalog.products.index.create.name')
                                             </x-admin::form.control-group.label>
 
                                             <x-admin::form.control-group.control
                                                     type="text"
-                                                    name="sku"
-                                                    ::rules="{ required: true, regex: /^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/ }"
-                                                    :label="trans('admin::app.catalog.products.index.create.sku')"
+                                                    name="name"
+                                                    ::rules="{ required: true }"
+                                                    :label="trans('admin::app.catalog.products.index.create.name')"
                                             >
                                             </x-admin::form.control-group.control>
 
                                             <x-admin::form.control-group.error
-                                                    control-name="sku"></x-admin::form.control-group.error>
+                                                    control-name="name"></x-admin::form.control-group.error>
                                         </x-admin::form.control-group>
 
                                         {!! view_render_event('bagisto.admin.catalog.products.create_form.general.controls.before') !!}

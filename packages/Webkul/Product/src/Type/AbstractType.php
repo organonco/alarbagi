@@ -135,7 +135,14 @@ abstract class AbstractType
      */
     public function create(array $data)
     {
-        return $this->productRepository->getModel()->create($data);
+        $product = $this->productRepository->getModel()->create($data);
+        $this->update([
+            "channel" => "default",
+            "locale" => "ar",
+            'url_key' => $data['sku'],
+            'name' => $data['name']
+        ], $product->id, 'url_key', true);
+        return $product;
     }
 
     /**

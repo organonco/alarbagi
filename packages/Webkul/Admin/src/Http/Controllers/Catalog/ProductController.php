@@ -95,9 +95,9 @@ class ProductController extends Controller
     public function store()
     {
         $this->validate(request(), [
+            'name' => 'required',
             'type'                => 'required',
             'attribute_family_id' => 'required',
-            'sku'                 => ['required', 'unique:products,sku', new Slug],
             'super_attributes'    => 'array|min:1',
             'super_attributes.*'  => 'array|min:1',
         ]);
@@ -119,9 +119,9 @@ class ProductController extends Controller
         Event::dispatch('catalog.product.create.before');
 
         $data = request()->only([
+            'name',
             'type',
             'attribute_family_id',
-            'sku',
             'super_attributes',
             'family',
         ]);
@@ -131,6 +131,12 @@ class ProductController extends Controller
         if ($admin->isSeller()) {
             $data['seller_id'] = $admin->getSellerId();
         }
+
+        $uuid = (string)Str::uuid();
+
+        $data = array_merge($data, [
+            'sku' => $uuid, 'url_key' => $uuid, 'manage_stock' => 0
+        ]);
 
         $product = $this->productRepository->create($data);
 
@@ -186,13 +192,9 @@ class ProductController extends Controller
             abort(401, 'this action is unauthorized');
         }
 
-        $uuid = (string)Str::uuid();
+        
 
-        $data = array_merge($request->all(), [
-            'sku' => $uuid, 'url_key' => $uuid, 'manage_stock' => 0
-        ]);
-
-        $product = $this->productRepository->update($data, $id);
+        $product = $this->productRepository->update($request->all(), $id);
 
         Event::dispatch('catalog.product.update.after', $product);
 
