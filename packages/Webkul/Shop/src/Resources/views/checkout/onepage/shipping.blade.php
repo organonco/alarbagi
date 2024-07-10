@@ -19,7 +19,7 @@
                 <x-shop::accordion>
                     <x-slot:header>
                         <div class="flex justify-between items-center">
-                            <h2 class="text-[26px] font-medium max-sm:text-[20px]">
+                            <h2 class="sn-color-primary sn-heading-2">
                                 @lang('shop::app.checkout.onepage.shipping.shipping-method')
                             </h2>
                         </div>
@@ -45,7 +45,7 @@
                                     >
 
                                     <label 
-                                        class="icon-radio-unselect absolute ltr:right-[20px] rtl:left-[20px] top-[20px] text-[24px] text-navyBlue peer-checked:icon-radio-select cursor-pointer"
+                                        class="icon-radio-unselect absolute ltr:right-[20px] rtl:left-[20px] top-[20px] text-[24px] sn-color-secondary peer-checked:icon-radio-select cursor-pointer"
                                         :for="rate.method"
                                     >
                                     </label>
@@ -54,9 +54,9 @@
                                         class="block p-[20px] border border-[#E9E9E9] rounded-[12px] cursor-pointer"
                                         :for="rate.method"
                                     >
-                                        <span class="icon-flate-rate text-[60px] text-navyBlue"></span>
+                                        <span class="icon-flate-rate text-[60px] sn-color-primary"></span>
 
-                                        <p class="text-[25px] mt-[5px] font-semibold max-sm:text-[20px]">
+                                        <p class="sn-heading-3 sn-color-primary">
                                             @{{ rate.base_formatted_price }}
                                         </p>
                                         

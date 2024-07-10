@@ -3,8 +3,8 @@
         <x-shop::accordion class="!border-b-[0px]">
             <x-slot:header >
                 <div class="flex justify-between items-center">
-                    <h2 class="text-[26px] font-medium max-sm:text-[20px]">
-                        @lang('shop::app.checkout.onepage.addresses.billing.billing-address')
+                    <h2 class="sn-color-primary sn-heading-2">
+                        @lang('shop::app.checkout.onepage.addresses.shipping.shipping-address')
                     </h2>
                 </div>
             </x-slot:header>
@@ -33,7 +33,7 @@
                             />
 
                             <label 
-                                class="icon-radio-unselect absolute ltr:right-[20px] rtl:left-[20px] top-[20px] text-[24px] text-navyBlue peer-checked:icon-radio-select cursor-pointer"
+                                class="icon-radio-unselect absolute ltr:right-[20px] rtl:left-[20px] top-[20px] text-[24px] sn-color-secondary peer-checked:icon-radio-select cursor-pointer"
                                 :for="'billing_address_id_' + address.id"
                             >
                             </label>
@@ -88,35 +88,11 @@
                     >
                     </v-error-message>
 
-                    <div class="flex gap-x-[15px] mt-[20px] text-[14px] text-[#6E6E6E] select-none">
-                        <input
-                            type="checkbox"
-                            id="isUsedForShipping"
-                            name="is_use_for_shipping"
-                            class="hidden peer"
-                            v-model="forms.billing.isUsedForShipping"
-                        />
-                
-                        <label 
-                            class="icon-uncheck text-[24px] text-navyBlue peer-checked:icon-check-box peer-checked:text-navyBlue cursor-pointer"
-                            for="isUsedForShipping"
-                        >
-                        </label>
-                        
-                        <label 
-                            for="isUsedForShipping"
-                            class="cursor-pointer"
-                        >
-                            @lang('shop::app.checkout.onepage.addresses.billing.same-billing-address')
-                        </label>
-                    </div>
-
-
                     <template v-if="meta.valid">
                         <div v-if="! forms.billing.isNew && ! forms.shipping.isNew && forms.billing.isUsedForShipping">
                             <div class="flex justify-end mt-4 mb-4">
                                 <button
-                                    class="block py-[11px] px-[43px] bg-navyBlue rounded-[18px] text-white text-base w-max font-medium text-center cursor-pointer"
+                                    class="block text-center sn-button-primary cursor-pointer"
                                     @click="store"
                                 >
                                     @lang('shop::app.checkout.onepage.addresses.billing.confirm')
@@ -130,7 +106,7 @@
                             <div class="flex justify-end mt-4 mb-4">
                                 <button
                                     type="submit"
-                                    class="blockpy-[11px] px-[43px] bg-navyBlue rounded-[18px] text-white text-base w-max font-medium text-center cursor-pointer"
+                                    class="block text-center sn-button-primary cursor-pointer"
                                 >
                                     @lang('shop::app.checkout.onepage.addresses.billing.confirm')
                                 </button>
@@ -146,8 +122,8 @@
         <x-shop::accordion>
             <x-slot:header>
                 <div class="flex justify-between items-center">
-                    <h2 class="text-[26px] font-medium max-sm:text-[20px]">
-                        @lang('shop::app.checkout.onepage.addresses.billing.billing-address')
+                    <h2 class="sn-color-primary sn-heading-2">
+                        @lang('shop::app.checkout.onepage.addresses.billing.shipping-address')
                     </h2>
                 </div>
             </x-slot:header>
