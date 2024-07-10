@@ -55,6 +55,7 @@ class SellerRoleSeeder extends Seeder
                 "sales.orders",
                 "sales.orders.view",
                 "sales.orders.cancel",
+                "sales.seller-categories",
                 "catalog",
                 "catalog.products",
                 "catalog.products.edit",
@@ -76,7 +77,7 @@ class SellerRoleSeeder extends Seeder
                 "customers.customers.mass-delete",
                 "delivery",
                 "delivery.areas",
-                "settings.seller_categories"
+                'delivery.shipping-companies'
             ])
         ]);
     }

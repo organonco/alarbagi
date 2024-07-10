@@ -44,7 +44,7 @@ return [
         'sort'  => 1,
     ],
     [ 
-        'key'   => 'settings.seller_categories',
+        'key'   => 'sales.seller-categories',
         'name'  => 'Seller Cateogries',
         'route' => 'admin.seller_categories.index',
         'sort'  => 1,

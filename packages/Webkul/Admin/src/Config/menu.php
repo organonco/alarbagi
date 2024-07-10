@@ -40,6 +40,13 @@ return [
         'sort'       => 3,
         'icon'       => '',
     ], 
+    [
+        'key' => 'sales.seller-categories',
+        'name' => 'admin::app.components.layouts.sidebar.seller_categories',
+        'route' => 'admin.seller_categories.index',
+        'sort' => 4,
+        'icon' => '',
+    ],
     
 
      /**
@@ -115,6 +122,13 @@ return [
         'sort' => 1,
         'icon' => 'icon-customer-2',
     ],
+    [
+        'key' => 'delivery.shipping-companies',
+        'name' => 'admin::app.components.layouts.sidebar.shipping-companies',
+        'route' => 'admin.delivery.shipping-company.index',
+        'sort' => 2,
+        'icon' => 'icon-customer-2',
+    ],
 
    
     
@@ -142,13 +156,7 @@ return [
         'route'      => 'admin.settings.roles.index',
         'sort'       => 2,
         'icon'       => '',
-    ], [
-        'key' => 'settings.seller_categories',
-        'name' => 'admin::app.components.layouts.sidebar.seller_categories',
-        'route' => 'admin.seller_categories.index',
-        'sort' => 1,
-        'icon' => 'icon-customer-2',
-    ],
+    ], 
 
 
     /**

@@ -17,4 +17,9 @@ class Area extends Model implements AreaContract
     {
         return $query->where('is_active', true);
     }
+
+    public function shippingCompany()
+    {
+        return $this->hasOne(ShippingCompany::class);
+    }
 }

@@ -34,6 +34,7 @@ class RolesTableSeeder extends Seeder
                 "sales.refunds.create",
                 "sales.transactions",
                 "sales.transactions.view",
+                "sales.seller-categories",
                 "catalog",
                 "catalog.products",
                 "catalog.products.create",
@@ -163,7 +164,8 @@ class RolesTableSeeder extends Seeder
                 "settings.taxes.tax-rates.edit",
                 "configuration",
                 "delivery",
-                "delivery.areas"
+                "delivery.areas",
+                'delivery.shipping-companies'
             ])
         ]);
     }

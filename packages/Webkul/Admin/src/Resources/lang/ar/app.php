@@ -3262,7 +3262,8 @@ return [
                 'seller_categories' => "فئات التجار",
                 "account" => "الحساب",
                 "profile" => 'الملف الشخصي',
-                "offers" => 'العروض الخاصة'
+                "offers" => 'العروض الخاصة',
+                "shipping-companies" => 'شركات التوصيل'
             ],
         ],
 
