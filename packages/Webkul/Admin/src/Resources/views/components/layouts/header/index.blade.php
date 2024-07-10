@@ -102,12 +102,6 @@
 
                     {{-- Admin Dropdown --}}
                     <x-slot:content class="!p-[0px]">
-                        <div class="grid gap-[10px] px-[20px] py-[10px] border border-b-gray-300 dark:border-gray-800">
-                            {{-- Version --}}
-                            <p class="text-gray-400">
-                                @lang('admin::app.components.layouts.header.app-version', ['version' => 'v' . core()->version()])
-                            </p>
-                        </div>
 
                         <div class="grid gap-[4px] pb-[10px]">
                             @if(!bouncer()->hasPermission('marketplace'))
