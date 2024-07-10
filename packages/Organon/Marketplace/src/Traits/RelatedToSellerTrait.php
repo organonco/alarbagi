@@ -32,7 +32,7 @@ trait RelatedToSellerTrait
     protected static function bootRelatedToSellerTrait()
     {
         static::addGlobalScope('seller_status', function($builder){
-            $builder->where('seller_status', SellerStatusEnum::ACTIVE->value);
+            $builder->where('products.seller_status', SellerStatusEnum::ACTIVE->value);
         });
 
         static::creating(function ($item) {

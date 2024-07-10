@@ -80,7 +80,7 @@ return [
                 'class' => 'info'
             ],
             'CANCELLED_BY_SELLER' => [
-                'label' => 'ملغى من قبل المشتري',
+                'label' => 'ملغى من قبل البائع',
                 'class' => 'info'
             ]
         ]
