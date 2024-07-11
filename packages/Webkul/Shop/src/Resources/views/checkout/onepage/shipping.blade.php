@@ -54,14 +54,15 @@
                                         class="block p-[20px] border border-[#E9E9E9] rounded-[12px] cursor-pointer"
                                         :for="rate.method"
                                     >
-                                        <span class="icon-flate-rate text-[60px] sn-color-primary"></span>
+
+                                        <span :class="'text-[60px] sn-color-primary ' + rate.method_icon"></span>
 
                                         <p class="sn-heading-3 sn-color-primary">
-                                            @{{ rate.base_formatted_price }}
+                                            @{{ rate.method_title }}
                                         </p>
                                         
                                         <p class="text-[12px] mt-[10px] font-medium">
-                                            <span class="font-medium">@{{ rate.method_title }}</span> - @{{ rate.method_description }}
+                                            @{{ rate.method_description }}
                                         </p>
                                     </label>
                                 </div>

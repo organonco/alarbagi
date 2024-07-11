@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('carrier_title');
             $table->string('method');
             $table->string('method_title');
+            $table->string('method_icon');
             $table->string('method_description')->nullable();
             $table->double('price')->default(0)->nullable();
             $table->double('base_price')->default(0)->nullable();

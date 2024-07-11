@@ -92,4 +92,8 @@ abstract class AbstractShipping
     {
         return core()->getConfigData('sales.carriers.' . $this->getCode() . '.' . $field);
     }
+
+    public function getIcon(){
+        return "icon-flate-rate";
+    }
 }

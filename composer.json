@@ -94,9 +94,10 @@
             "Webkul\\Tax\\": "packages/Webkul/Tax/src",
             "Webkul\\Theme\\": "packages/Webkul/Theme/src",
             "Webkul\\User\\": "packages/Webkul/User/src",
+            "LaravelPWA\\Console\\Commands\\": "vendor/silviolleite/laravelpwa/Console",
             "Organon\\Marketplace\\": "packages/Organon/Marketplace/src",
             "Organon\\Delivery\\": "packages/Organon/Delivery/src",
-            "LaravelPWA\\Console\\Commands\\": "vendor/silviolleite/laravelpwa/Console"
+            "Organon\\Pickup\\": "packages/Organon/Pickup/src"
         }
     },
     "autoload-dev": {

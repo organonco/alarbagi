@@ -759,7 +759,7 @@ return [
             ],
 
             'shipping' => [
-                'shipping-method' => 'طريقة الشحن',
+                'shipping-method' => 'التوصيل',
             ],
 
             'summary' => [
