@@ -579,7 +579,7 @@ class Core
         $formatter = new \NumberFormatter('en', \NumberFormatter::CURRENCY);
 
         $formatter->setAttribute(\NumberFormatter::FRACTION_DIGITS, $currency->decimal ?? 2);
-        $formatter->setPattern("#,##0.00\u{A0}¤");
+        $formatter->setPattern("#,##0\u{A0}¤");
         if (! $currency) {
             return $formatter->formatCurrency($price, $currencyCode);
         }
