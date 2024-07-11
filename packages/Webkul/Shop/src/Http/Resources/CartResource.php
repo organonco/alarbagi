@@ -20,7 +20,9 @@ class CartResource extends JsonResource
         });
 
         $preperation_time = $this->preperation_time;
-        if ($preperation_time < 1 && $preperation_time > 0)
+        if($preperation_time == 0)
+            $pt = trans('marketplace::app.catalog.products.view.preperation_time_none');
+        elseif ($preperation_time < 1 && $preperation_time > 0)
             $pt =  trans_choice('marketplace::app.catalog.products.view.preperation_time_minutes', (int) (60 * $preperation_time));
         elseif ($preperation_time < 24)
             $pt =  trans_choice('marketplace::app.catalog.products.view.preperation_time_hours', ($preperation_time));

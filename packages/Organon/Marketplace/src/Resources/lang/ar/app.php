@@ -52,6 +52,7 @@ return [
                     'true' => 'قابل للتوصيل',
                     'false' => 'غير قابل للتوصيل',
                 ], 
+                'preperation_time_none' => "فوري",
                 'preperation_time_hours' => ":count ساعات",
                 'preperation_time_minutes' => ":count دقيقة",
                 'preperation_time_days' => ":count أيام"
