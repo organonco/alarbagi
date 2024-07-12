@@ -28,7 +28,7 @@ class SessionController extends Controller
      */
     public function create(LoginRequest $loginRequest)
     {
-        if (! auth()->guard('customer')->attempt($loginRequest->only(['email', 'password']))) {
+        if (! auth()->guard('customer')->attempt($loginRequest->only(['email', 'password']), true)) {
             session()->flash('error', trans('shop::app.customers.login-form.invalid-credentials'));
 
             return redirect()->back();
