@@ -87,7 +87,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix' => 'api'
     Route::group(['middleware' => ['customer'], 'prefix' => 'customer'], function () {
         Route::controller(AddressController::class)->prefix('addresses')->group(function () {
             Route::get('', 'index')->name('api.shop.customers.account.addresses.index');
-
+            Route::get('areas', 'getAreas')->name('api.shop.customers.account.addresses.areas.index');
             Route::post('', 'store')->name('api.shop.customers.account.addresses.store');
         });
 

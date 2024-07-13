@@ -42,9 +42,7 @@
 
                     addresses: [],
 
-                    countries: [],
-
-                    states: [],
+                    areas: [],
 
                     isAddressLoading: true,
 
@@ -56,10 +54,7 @@
             
             created() {
                 this.getCustomerAddresses();
-
-                this.getCountryStates();
-
-                this.getCountries();
+                this.getAreas();
             },
 
             methods: {
@@ -103,18 +98,10 @@
                     }
                 },
 
-                getCountries() {
-                    this.$axios.get("{{ route('shop.api.core.countries') }}")
+                getAreas() {
+                    this.$axios.get("{{ route('api.shop.customers.account.addresses.areas.index') }}")
                         .then(response => {
-                            this.countries = response.data.data;
-                        })
-                        .catch(function (error) {});
-                },
-
-                getCountryStates() {
-                    this.$axios.get("{{ route('shop.api.core.states') }}")
-                        .then(response => {
-                            this.states = response.data.data;
+                            this.areas = response.data;
                         })
                         .catch(function (error) {});
                 },
@@ -130,9 +117,11 @@
                 handleShippingAddressForm() {
                     if (this.forms.shipping.isNew && ! this.forms.shipping.address.isSaved) {
                         this.forms.shipping.isNew = false;
-
                         this.isTempAddress = true;
-                        
+                        this.areas.forEach(element => {
+                            if(element['id'] == this.forms.shipping.address.area_id)
+                                this.forms.shipping.address.area = element['name']
+                        });
                         this.addresses.push({
                             ...this.forms.shipping.address,
                             isSaved: false,

@@ -28,29 +28,10 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_name' => [new AlphaNumericSpace],
-            'first_name'   => ['required', new AlphaNumericSpace],
-            'last_name'    => ['required', new AlphaNumericSpace],
-            'address1'     => ['required', 'array'],
-            'address1.*'   => ['required', new Address],
-            'country'      => [new AlphaNumericSpace],
-            'state'        => [new AlphaNumericSpace],
-            'city'         => ['required', 'string'],
-            'postcode'     => ['required', 'numeric'],
-            'phone'        => ['required', new PhoneNumber],
-            'vat_id'       => [new VatIdRule()],
-        ];
-    }
-
-    /**
-     * Attributes.
-     *
-     * @return array
-     */
-    public function attributes()
-    {
-        return [
-            'address1.*' => 'address',
+            'name' => ['required'],
+            'phone'   => ['required', new PhoneNumber],
+            'area_id'    => ['nullable', 'exists:areas,id'],
+            'address_details'     => ['nullable', 'max:1000'],
         ];
     }
 }

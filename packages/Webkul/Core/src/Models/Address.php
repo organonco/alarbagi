@@ -5,6 +5,7 @@ namespace Webkul\Core\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Organon\Delivery\Models\Area;
 use Webkul\Core\Contracts\Address as AddressContract;
 use Webkul\Customer\Models\Customer;
 
@@ -66,42 +67,11 @@ abstract class Address extends Model implements AddressContract
         'customer_id',
         'cart_id',
         'order_id',
-        'first_name',
-        'last_name',
-        'gender',
-        'company_name',
-        'address1',
-        'address2',
-        'postcode',
-        'city',
-        'state',
-        'country',
-        'email',
+        'name',
+        'area_id',
+        'address_details',
         'phone',
-        'default_address',
-        'vat_id',
-        'additional',
     ];
-
-    /**
-     * Castable.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'additional'      => 'array',
-        'default_address' => 'boolean',
-    ];
-
-    /**
-     * Get all the attributes for the attribute groups.
-     *
-     * @return string
-     */
-    public function getNameAttribute(): string
-    {
-        return $this->first_name . ' ' . $this->last_name;
-    }
 
     /**
      * Get the customer record associated with the address.
@@ -111,5 +81,10 @@ abstract class Address extends Model implements AddressContract
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
     }
 }
