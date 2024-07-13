@@ -47,7 +47,7 @@ return [
                 'sold_by' => 'تباع من قبل: :name',
                 'available' => ':qty قطع متاحة',
                 'out_of_stock' => 'غير متاح',
-                'preperation_time' => "يتم التحضير خلال",
+                'preperation_time' => "وقت التحضير",
                 'deliverable' => [
                     'true' => 'قابل للتوصيل',
                     'false' => 'غير قابل للتوصيل',
