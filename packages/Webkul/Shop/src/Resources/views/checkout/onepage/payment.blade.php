@@ -45,7 +45,7 @@
         
                                     <label 
                                         :for="payment.method" 
-                                        class="absolute ltr:right-[20px] rtl:left-[20px] top-[20px] icon-radio-unselect text-[24px] text-navyBlue peer-checked:icon-radio-select cursor-pointer"
+                                        class="absolute ltr:right-[20px] rtl:left-[20px] top-[20px] icon-radio-unselect text-[24px] sn-color-secondary peer-checked:icon-radio-select cursor-pointer"
                                     >
                                     </label>
 

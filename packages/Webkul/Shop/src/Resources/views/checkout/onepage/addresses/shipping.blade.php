@@ -40,7 +40,7 @@
                                 />
                                 
                                 <label 
-                                    class="icon-radio-unselect absolute ltr:right-[20px] rtl:left-[20px] top-[20px] text-[24px] text-navyBlue peer-checked:icon-radio-select cursor-pointer"
+                                    class="icon-radio-unselect absolute ltr:right-[20px] rtl:left-[20px] top-[20px] text-[24px] sn-color-secondary peer-checked:icon-radio-select cursor-pointer"
                                     :for="'shipping_address_id_' + address.id"
                                 >
                                 </label>
@@ -100,7 +100,7 @@
                             <div v-if="! forms.shipping.isNew">
                                 <div class="flex justify-end mt-4 mb-4">
                                     <button
-                                        class="block py-[11px] px-[43px] bg-navyBlue text-white text-base w-max font-medium rounded-[18px] text-center cursor-pointer"
+                                        class="block w-max sn-button-primary-alt"
                                         @click="store"
                                     >
                                         @lang('shop::app.checkout.onepage.addresses.shipping.confirm')
@@ -114,7 +114,7 @@
                                 <div class="flex justify-end mt-4 mb-4">
                                     <button
                                         type="submit"
-                                        class="block w-max py-[11px] px-[43px] bg-navyBlue text-white text-base font-medium rounded-[18px] text-center cursor-pointer"
+                                        class="block w-max sn-button-primary-alt"
                                     >
                                         @lang('shop::app.checkout.onepage.addresses.shipping.confirm')
                                     </button>
@@ -483,7 +483,7 @@
                         >
                             <button
                                 type="submit"
-                                class="block w-max px-[43px] py-[11px] bg-navyBlue rounded-[18px] text-white text-base font-medium text-center cursor-pointer"
+                                class="block w-max sn-button-primary-alt"
                             >
                                 @lang('shop::app.checkout.onepage.addresses.shipping.confirm')
                             </button>
