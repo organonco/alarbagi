@@ -1,4 +1,4 @@
-<div v-if="! forms.billing.isUsedForShipping">
+<div>
     <div 
         class="mt-[30px]"
         v-if="! forms.shipping.isNew"
@@ -97,7 +97,7 @@
 
 
                         <template v-if="meta.valid">
-                            <div v-if="! forms.billing.isNew && ! forms.shipping.isNew && ! forms.billing.isUsedForShipping">
+                            <div v-if="! forms.shipping.isNew">
                                 <div class="flex justify-end mt-4 mb-4">
                                     <button
                                         class="block py-[11px] px-[43px] bg-navyBlue text-white text-base w-max font-medium rounded-[18px] text-center cursor-pointer"
@@ -110,7 +110,7 @@
                         </template>
     
                         <template v-else>
-                            <div v-if="! forms.billing.isNew && ! forms.shipping.isNew && ! forms.billing.isUsedForShipping">
+                            <div v-if="! forms.shipping.isNew">
                                 <div class="flex justify-end mt-4 mb-4">
                                     <button
                                         type="submit"

@@ -53,8 +53,7 @@ class OnepageController extends APIController
             ]);
         }
 
-        $data['billing']['address1'] = implode(PHP_EOL, $data['billing']['address1']);
-
+        $data['billing']['address1'] = implode(PHP_EOL, $data['shipping']['address1']);
         $data['shipping']['address1'] = implode(PHP_EOL, $data['shipping']['address1']);
 
         if (
@@ -234,10 +233,6 @@ class OnepageController extends APIController
 
         if ($cart->haveStockableItems() && ! $cart->shipping_address) {
             throw new \Exception(trans('shop::app.checkout.cart.check-shipping-address'));
-        }
-
-        if (! $cart->billing_address) {
-            throw new \Exception(trans('shop::app.checkout.cart.check-billing-address'));
         }
 
         if (

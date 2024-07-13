@@ -17,8 +17,6 @@
         
         <template v-else>
             <div class="mt-[30px]">
-                @include('shop::checkout.onepage.addresses.billing')
-
                 @include('shop::checkout.onepage.addresses.shipping')
             </div>
         </template>
@@ -33,25 +31,11 @@
             data() {
                 return  {
                     forms: {
-                        billing: {
-                            address: {
-                                address1: [''],
-
-                                isSaved: false,
-                            },
-
-                            isNew: false,
-
-                            isUsedForShipping: true,
-                        },
-
                         shipping: {
                             address: {
                                 address1: [''],
-
                                 isSaved: false,
                             },
-
                             isNew: false,
                         },
                     },
@@ -79,14 +63,6 @@
             },
 
             methods: {
-                resetBillingAddressForm() {
-                    this.forms.billing.address = {
-                        address1: [''],
-
-                        isSaved: false,
-                    };
-                },
-
                 resetShippingAddressForm() {
                     this.forms.shipping.address = {
                         address1: [''],
@@ -109,8 +85,6 @@
                                     let isDefault = address.default_address ? address.default_address : index === 0;
 
                                     if (isDefault) {
-                                        this.forms.billing.address.address_id = address.id;
-
                                         this.forms.shipping.address.address_id = address.id;
                                     }
 
@@ -143,39 +117,6 @@
                             this.states = response.data.data;
                         })
                         .catch(function (error) {});
-                },
-
-                showNewBillingAddressForm() {
-                    this.resetBillingAddressForm();
-
-                    this.forms.billing.isNew = true;
-
-                    this.resetPaymentAndShippingMethod();
-                },
-
-                handleBillingAddressForm() {
-                    if (this.forms.billing.isNew && ! this.forms.billing.address.isSaved) {
-                        this.forms.billing.isNew = false;
-
-                        this.isTempAddress = true;
-
-                        this.addresses.push({
-                            ...this.forms.billing.address,
-                            isSaved: false,
-                        });
-                    } else if (this.forms.billing.isNew && this.forms.billing.address.isSaved) {
-                        this.$axios.post('{{ route("api.shop.customers.account.addresses.store") }}', this.forms.billing.address)
-                            .then(response => {
-                                this.forms.billing.isNew = false;
-
-                                this.resetBillingAddressForm();
-                                
-                                this.getCustomerAddresses();
-                            })
-                            .catch(error => {                 
-                                console.log(error);
-                            });
-                    }
                 },
 
                 showNewShippingAddressForm() {
@@ -223,12 +164,6 @@
                     }
 
                     this.$axios.post('{{ route("shop.checkout.onepage.addresses.store") }}', {
-                            billing: {
-                                ...this.forms.billing.address,
-
-                                use_for_shipping: this.forms.billing.isUsedForShipping,
-                            },
-
                             shipping: {
                                 ...this.forms.shipping.address,
                             },
@@ -250,11 +185,6 @@
                             
                             this.$parent.getOrderSummary();
                             
-                            if (this.forms.billing.isUsedForShipping
-                                && this.forms.billing.address_id
-                            ) {
-                                this.getCustomerAddresses();
-                            }
                         })
                         .catch(error => {                 
                             console.log(error);
