@@ -53,9 +53,6 @@ class OnepageController extends APIController
             ]);
         }
 
-        $data['billing']['address1'] = implode(PHP_EOL, $data['shipping']['address1']);
-        $data['shipping']['address1'] = implode(PHP_EOL, $data['shipping']['address1']);
-
         if (
             Cart::hasError()
             || ! Cart::saveCustomerAddress($data)
