@@ -9,5 +9,6 @@ return [
         'default_rate' => '10',
         'type'         => 'per_unit',
         'class'        => 'Organon\Pickup\Carriers\Pickup',
+        'icon' => 'icon-product'
     ],
 ];

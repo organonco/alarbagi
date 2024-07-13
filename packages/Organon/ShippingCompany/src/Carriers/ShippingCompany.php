@@ -16,11 +16,6 @@ class ShippingCompany extends AbstractShipping
      */
     protected $code  = 'shippingcompany';
 
-    public function getIcon()
-    {
-        return "icon-flate-rate";
-    }
-
     /** 
      * @return bool 
      */

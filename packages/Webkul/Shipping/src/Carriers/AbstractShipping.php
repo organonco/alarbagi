@@ -94,6 +94,6 @@ abstract class AbstractShipping
     }
 
     public function getIcon(){
-        return "icon-flate-rate";
+        return $this->getConfigData('icon');
     }
 }

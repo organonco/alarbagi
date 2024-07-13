@@ -15,13 +15,6 @@ class Pickup extends AbstractShipping
      */
     protected $code  = 'pickup';
 
-
-    public function getIcon()
-    {
-        return "icon-product";
-    }
-
-
     public function isAvailable()
     {
         //Always Available to pickup
