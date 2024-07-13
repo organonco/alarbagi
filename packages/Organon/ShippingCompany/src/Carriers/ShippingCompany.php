@@ -1,61 +1,68 @@
 <?php
 
-namespace Organon\Pickup\Carriers;
+namespace Organon\ShippingCompany\Carriers;
 
-use Webkul\Checkout\Facades\Cart;
+use Config;
 use Webkul\Shipping\Carriers\AbstractShipping;
 use Webkul\Checkout\Models\CartShippingRate;
+use Webkul\Shipping\Facades\Shipping;
 
-class Pickup extends AbstractShipping
+class ShippingCompany extends AbstractShipping
 {
     /**
      * Shipping method code
      *
      * @var string
      */
-    protected $code  = 'pickup';
-
+    protected $code  = 'shippingcompany';
 
     public function getIcon()
     {
-        return "icon-product";
+        return "icon-flate-rate";
     }
 
-
-    public function isAvailable()
+    /** 
+     * @return bool 
+     */
+    public function isAvailable() : bool
     {
-        //Always Available to pickup
         return true;
     }
 
-    public function getCartShippingRateObject() : CartShippingRate
+    /**
+     * @param int $price
+     * @return CartShippingRate
+     */
+    public function getCartShippingRateObject(int $price) : CartShippingRate
     {
         $object = new CartShippingRate;
 
-        $object->carrier = 'pickup';
+        $object->carrier = 'shippingcompany';
         $object->carrier_title = $this->getConfigData('title');
-        $object->method = 'pickup_pickup';
+        $object->method = 'shippingcompany_shippingcompany';
         $object->method_title = $this->getConfigData('title');
         $object->method_description = $this->getConfigData('description');
         $object->method_icon = $this->getIcon();
 
-        //Always Free to pickup
-        $object->price = 0;
-        $object->base_price = 0;
+        $object->price = $price;
+        $object->base_price = $price;
         
         return $object;
     }
 
 
+
     /**
-     * Returns rate for shipping method
-     *
      * @return CartShippingRate|false
      */
     public function calculate()
     {
         if (! $this->isAvailable())
             return false;
-        return $this->getCartShippingRateObject();
+
+        // Math Here Bla Bla Bla
+        $price = 123;
+        return $this->getCartShippingRateObject($price);
     }
+
 }

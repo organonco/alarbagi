@@ -97,7 +97,8 @@
             "LaravelPWA\\Console\\Commands\\": "vendor/silviolleite/laravelpwa/Console",
             "Organon\\Marketplace\\": "packages/Organon/Marketplace/src",
             "Organon\\Delivery\\": "packages/Organon/Delivery/src",
-            "Organon\\Pickup\\": "packages/Organon/Pickup/src"
+            "Organon\\Pickup\\": "packages/Organon/Pickup/src",
+            "Organon\\ShippingCompany\\": "packages/Organon/ShippingCompany/src"
         }
     },
     "autoload-dev": {
