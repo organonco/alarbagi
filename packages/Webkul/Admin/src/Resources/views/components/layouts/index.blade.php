@@ -29,12 +29,12 @@
 
     @stack('styles')
 
-        <link rel="stylesheet" href="{{asset('assets/css/style.css') . '?' . time()}}">
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-style.css') . '?' . time()}}"/>
-        
-        <style>
-            {!! core()->getConfigData('general.content.custom_scripts.custom_css') !!}
-        </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') . '?' . time() }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-style.css') . '?' . time() }}" />
+
+    <style>
+        {!! core()->getConfigData('general.content.custom_scripts.custom_css') !!}
+    </style>
 
     {!! view_render_event('bagisto.shop.layout.head') !!}
 </head>
@@ -52,22 +52,40 @@
         {!! view_render_event('bagisto.shop.layout.content.before') !!}
 
         {{-- Page Header Blade Component --}}
-
         <x-admin::layouts.header />
 
         <div class="flex gap-[16px] group/container {{ request()->cookie('sidebar_collapsed') ?? 0 ? 'sidebar-collapsed' : '' }}"
             ref="appLayout">
-
             {{-- Page Sidebar Blade Component --}}
             <x-admin::layouts.sidebar />
 
-            <div class="flex-1 max-w-full px-[16px] pt-[11px] pb-[22px] bg-white dark:bg-gray-950 ltr:pl-[286px] rtl:pr-[286px] max-lg:!px-[16px] transition-all duration-300 group-[.sidebar-collapsed]/container:ltr:pl-[85px] group-[.sidebar-collapsed]/container:rtl:pr-[85px]"
-                style="padding-top: 100px">
+            <div
+                class="flex-1 max-w-full px-[16px] pt-[11px] pb-[22px] bg-white dark:bg-gray-950 ltr:pl-[286px] rtl:pr-[286px] max-lg:!px-[16px] transition-all duration-300 group-[.sidebar-collapsed]/container:ltr:pl-[85px] group-[.sidebar-collapsed]/container:rtl:pr-[85px]">
+                @php
+                    $admin = auth()->guard('admin')->user();
+                @endphp
+
+                @if ($admin->isSeller())
+                    @if ($admin->seller->status == \Organon\Marketplace\Enums\SellerStatusEnum::DEACTIVATED)
+                        <div style="background-color: darkorange; text-align: center; margin-bottom: 20px; padding: 5px">
+                            @lang('marketplace::app.settings.messages.account-deactivated-msg')
+                        </div>
+                    @elseif($admin->seller->status == \Organon\Marketplace\Enums\SellerStatusEnum::PAUSED)
+                        <div style="background-color: dodgerblue; text-align: center; margin-bottom: 20px; padding: 5px">
+                            @lang('marketplace::app.settings.messages.account-paused-msg')
+                        </div>
+                    @elseif($admin->seller->status == \Organon\Marketplace\Enums\SellerStatusEnum::PENDING)
+                        <div style="background-color: darkorange; text-align: center; margin-bottom: 20px; padding: 5px">
+                            @lang('marketplace::app.settings.messages.account-pending-msg')
+                        </div>
+                    @endif
+                @endif
                 {{-- Added dynamic tabs for third level menus  --}}
                 {{-- Todo @suraj-webkul need to optimize below statement. --}}
                 @if (!request()->routeIs('admin.configuration.index'))
                     <x-admin::layouts.tabs />
                 @endif
+
                 {{-- Page Content Blade Component --}}
                 {{ $slot }}
             </div>

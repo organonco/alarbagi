@@ -1,24 +1,10 @@
-@php
-    $admin = auth()->guard('admin')->user();
-@endphp
 <header>
-    @if ($admin->isSeller())
-        @if ($admin->seller->status == \Organon\Marketplace\Enums\SellerStatusEnum::DEACTIVATED)
-            <div style="background-color: darkorange; text-align: center">
-                @lang('marketplace::app.settings.messages.account-deactivated-msg')
-            </div>
-        @elseif($admin->seller->status == \Organon\Marketplace\Enums\SellerStatusEnum::PAUSED)
-            <div style="background-color: dodgerblue; text-align: center">
-                @lang('marketplace::app.settings.messages.account-paused-msg')
-            </div>
-        @elseif($admin->seller->status == \Organon\Marketplace\Enums\SellerStatusEnum::PENDING)
-            <div style="background-color: darkorange; text-align: center">
-                @lang('marketplace::app.settings.messages.account-pending-msg')
-            </div>
-        @endif
-    @endif
+    @php
+        $admin = auth()->guard('admin')->user();
+    @endphp
+
     <div
-        class="flex justify-between items-center px-[16px] py-[10px] bg-white dark:bg-gray-900  border-b-[1px] dark:border-gray-800 top-0 z-[10001]" style="position: fixed; width:100%">
+        class="flex justify-between items-center px-[16px] py-[10px] bg-white dark:bg-gray-900  border-b-[1px] dark:border-gray-800 sticky top-0 z-[10001]">
         <div class="flex gap-[6px] items-center">
             {{-- Hamburger Menu --}}
             <i class="hidden icon-menu text-[24px] p-[6px] max-lg:block cursor-pointer"
@@ -41,17 +27,6 @@
                 @endif
             </a>
 
-            {{-- Mega Search Bar Vue Component --}}
-            <v-mega-search>
-                <div class="flex items-center relative w-[525px] max-w-[525px] ltr:ml-[10px] rtl:mr-[10px]">
-                    <i
-                        class="icon-search text-[22px] flex items-center absolute ltr:left-[12px] rtl:right-[12px] top-[6px]"></i>
-
-                    <input type="text"
-                        class="bg-white dark:bg-gray-900 border dark:border-gray-800 rounded-lg block w-full px-[40px] py-[5px] leading-6 text-gray-600 dark:text-gray-300 transition-all hover:border-gray-400"
-                        placeholder="@lang('admin::app.components.layouts.header.mega-search.title')">
-                </div>
-            </v-mega-search>
         </div>
 
         <div class="flex gap-[10px] items-center">
@@ -100,12 +75,6 @@
 
                 {{-- Admin Dropdown --}}
                 <x-slot:content class="!p-[0px]">
-                    <div class="grid gap-[10px] px-[20px] py-[10px] border border-b-gray-300 dark:border-gray-800">
-                        {{-- Version --}}
-                        <p class="text-gray-400">
-                            @lang('admin::app.components.layouts.header.app-version', ['version' => 'v' . core()->version()])
-                        </p>
-                    </div>
 
                     <div class="grid gap-[4px] pb-[10px]">
                         @if (!bouncer()->hasPermission('marketplace'))
@@ -139,8 +108,7 @@
                 <img src="{{ Storage::url(core()->getConfigData('general.design.admin_logo.logo_image', core()->getCurrentChannelCode())) }}"
                     alt="{{ config('app.name') }}" style="height: 40px; width: 110px;" />
             @else
-                <img src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
-                    style="height: 40px; width: 110px;">
+                <img src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}">
             @endif
         </div>
     </x-slot:header>
@@ -509,8 +477,7 @@
 
                             self.isLoading = false;
                         })
-                        .catch(function (error) {
-                        })
+                        .catch(function(error) {})
                 },
 
                 handleFocusOut(e) {
@@ -621,11 +588,11 @@
             methods: {
                 getNotification() {
                     this.$axios.get('{{ route('admin.notification.get_notification') }}', {
-                        params: {
-                            limit: 5,
-                            read: 0
-                        }
-                    })
+                            params: {
+                                limit: 5,
+                                read: 0
+                            }
+                        })
                         .then((response) => {
                             this.notifications = response.data.search_results.data;
 
@@ -641,10 +608,12 @@
 
                             this.totalUnRead = response.data.total_unread;
 
-                            this.$emitter.emit('add-flash', {type: 'success', message: response.data.success_message});
+                            this.$emitter.emit('add-flash', {
+                                type: 'success',
+                                message: response.data.success_message
+                            });
                         })
-                        .catch((error) => {
-                        });
+                        .catch((error) => {});
                 },
             },
         });
@@ -682,7 +651,8 @@
 
                     expiryDate.setMonth(expiryDate.getMonth() + 1);
 
-                    document.cookie = 'dark_mode=' + this.isDarkMode + '; path=/; expires=' + expiryDate.toGMTString();
+                    document.cookie = 'dark_mode=' + this.isDarkMode + '; path=/; expires=' + expiryDate
+                        .toGMTString();
 
                     document.documentElement.classList.toggle('dark', this.isDarkMode === 1);
 
