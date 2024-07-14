@@ -159,6 +159,8 @@ return [
                     'status'          => 'الحالة',
                     'success'         => 'ناجح',
                     'view'            => 'عرض',
+                    'shipping-method' => 'التوصيل',
+                    'area' => 'المنطقة'
                 ],
             ],
 

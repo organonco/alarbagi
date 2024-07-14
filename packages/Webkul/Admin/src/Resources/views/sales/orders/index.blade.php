@@ -21,7 +21,7 @@
                 <div class="row grid grid-cols-[0.5fr_0.5fr_1fr] grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800">
                     <div
                         class="flex gap-[10px] items-center select-none"
-                        v-for="(columnGroup, index) in [['increment_id', 'status'], ['base_grand_total', 'method'], ['full_name', 'created_at']]"
+                        v-for="(columnGroup, index) in [['increment_id', 'status'], ['method', 'shipping_method', 'area'], ['base_grand_total', 'full_name', 'created_at']]"
                     >
                         <p class="text-gray-600 dark:text-gray-300">
                             <span class="[&>*]:after:content-['_/_']">
@@ -63,7 +63,7 @@
                     class="row grid grid-cols-4 px-[16px] py-[10px] border-b-[1px] dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-950"
                     v-for="record in records"
                 >
-                    {{-- Order Id, Created, Status Section --}}
+
                     <div class="">
                         <div class="flex gap-[10px]">
                             <div class="flex flex-col gap-[6px]">
@@ -88,22 +88,30 @@
                         </div>
                     </div>
 
-                    {{-- Total Amount, Pay Via, Channel --}}
                     <div class="">
                         <div class="flex flex-col gap-[6px]">
+                            
+                            <p class="text-gray-600 dark:text-gray-300">
+                                @{{ record.method }}
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                @{{ record.shipping_title }}
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                @{{ record.area }}
+                            </p>
+                            
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="flex flex-col gap-[6px]">
+
                             <p class="text-[16px] text-gray-800 dark:text-white font-semibold">
                                 @{{ $admin.formatPrice(record.base_grand_total) }}
                             </p>
 
-                            <p class="text-gray-600 dark:text-gray-300">
-                                @{{ record.method }}
-                            </p>
-                        </div>
-                    </div>
 
-                    {{-- Custoemr, Email, Location Section --}}
-                    <div class="">
-                        <div class="flex flex-col gap-[6px]">
                             <p
                                 class="text-[16px] text-gray-800 dark:text-white"
                                 v-text="record.full_name"
