@@ -129,6 +129,14 @@ class Cart extends Model implements CartContract
         return false;
     }
 
+    public function hasDeliverableItems() : bool
+    {
+        foreach ($this->items as $item)
+            if ($item->product->is_deliverable)
+                return true;
+        return false;
+    }
+
     /**
      * Checks if cart has downloadable items
      *

@@ -15,10 +15,6 @@
     border: none !important;
 }
 
-.sn-color-secondary{
-    color: #575757
-}
-
 .sn-button-danger{
     color: red;
     background-color: white;
@@ -26,10 +22,6 @@
     border: 1px solid red;
     padding: 10px 40px;
     font-weight: bold;sn
-}
-
-.sn-color-white{
-color: white;
 }
 
 .hover\:border-primary:hover{
@@ -264,6 +256,10 @@ Colors:
 }
 .sn-color-white{
     color: #FFFFFF
+}
+
+.sn-color-disabled{
+    color: #b7b7b7
 }
 
 .sn-font-regular{

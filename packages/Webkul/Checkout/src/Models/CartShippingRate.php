@@ -17,7 +17,8 @@ class CartShippingRate extends Model implements CartShippingRateContract
         'base_price',
         'discount_amount',
         'base_discount_amount',
-        'method_icon'
+        'method_icon',
+        'is_available'
     ];
 
     /**

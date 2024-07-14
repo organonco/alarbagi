@@ -3,6 +3,7 @@
 namespace Organon\ShippingCompany\Carriers;
 
 use Config;
+use Webkul\Checkout\Facades\Cart;
 use Webkul\Shipping\Carriers\AbstractShipping;
 use Webkul\Checkout\Models\CartShippingRate;
 use Webkul\Shipping\Facades\Shipping;
@@ -16,19 +17,11 @@ class ShippingCompany extends AbstractShipping
      */
     protected $code  = 'shippingcompany';
 
-    /** 
-     * @return bool 
-     */
-    public function isAvailable() : bool
-    {
-        return true;
-    }
-
     /**
      * @param int $price
      * @return CartShippingRate
      */
-    public function getCartShippingRateObject(int $price) : CartShippingRate
+    private function getCartShippingRateObject(): CartShippingRate
     {
         $object = new CartShippingRate;
 
@@ -36,28 +29,66 @@ class ShippingCompany extends AbstractShipping
         $object->carrier_title = $this->getConfigData('title');
         $object->method = 'shippingcompany_shippingcompany';
         $object->method_title = $this->getConfigData('title');
-        $object->method_description = $this->getConfigData('description');
         $object->method_icon = $this->getIcon();
 
-        $object->price = $price;
-        $object->base_price = $price;
-        
         return $object;
     }
 
+    private function generateUnavailableObject(string $key)
+    {
+        return [
+            'isAvailable' => false,
+            'reason' => trans('shipping-company::app.messages.' . $key)
+        ];
+    }
 
+    private function checkAvailability()
+    {
+        $cart = Cart::getCart();
+        $shippingAddress = $cart->shipping_address;
+
+        //delivery-not-available-to-this-area
+
+        if(!$cart->hasDeliverableItems())
+            return $this->generateUnavailableObject('no-deliverable-items');
+        if(is_null($shippingAddress->area_id) || is_null($shippingAddress->address_details))
+            return $this->generateUnavailableObject('address-or-area-not-found');
+        if(!$shippingAddress->area->is_shippable)
+            return $this->generateUnavailableObject('delivery-not-available-to-this-area');
+
+        $cart->shipping_address->area;
+
+        return [
+            'isAvailable' => true
+        ];
+    }
+
+
+
+    private function getShippingPrice() : int
+    {
+        return 123;
+    }
 
     /**
      * @return CartShippingRate|false
      */
     public function calculate()
     {
-        if (! $this->isAvailable())
-            return false;
+        $object = $this->getCartShippingRateObject();
+        $availability = $this->checkAvailability();
 
-        // Math Here Bla Bla Bla
-        $price = 123;
-        return $this->getCartShippingRateObject($price);
+        $object->is_available = $availability['isAvailable'];
+
+        if ($object->is_available) {
+            $price = $this->getShippingPrice();
+            $object->price = $price;
+            $object->base_price = $price;
+            $object->method_description = $this->getConfigData('description');
+        } else {
+            $object->method_description = $availability['reason'];
+        }
+
+        return $object;
     }
-
 }

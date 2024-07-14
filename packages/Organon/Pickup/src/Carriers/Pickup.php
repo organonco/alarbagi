@@ -35,6 +35,8 @@ class Pickup extends AbstractShipping
         //Always Free to pickup
         $object->price = 0;
         $object->base_price = 0;
+
+        $object->is_available = $this->isAvailable();
         
         return $object;
     }

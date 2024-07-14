@@ -366,6 +366,9 @@ class Cart
             return false;
         }
 
+        $data['shipping']['area_id'] = $data['shipping']['area_id']?? null;
+        $data['shipping']['address_details'] = $data['shipping']['address_details']?? null;
+
         $billingAddress = array_merge($this->collectAddress($data['shipping']), [
             'cart_id'          => $cart->id,
             'use_for_shipping' => true,
@@ -695,7 +698,7 @@ class Cart
         $cartAddress = new CartAddress();
 
         foreach ($cartAddress->getFillable() as $attribute) {
-            if (!isset($addressAttributes[$attribute])) {
+            if (!array_key_exists($attribute, $addressAttributes)) {
                 continue;
             }
 
