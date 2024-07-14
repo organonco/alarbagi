@@ -73,6 +73,10 @@ abstract class Address extends Model implements AddressContract
         'phone',
     ];
 
+    public $appends = [
+        'area_name'
+    ];
+
     /**
      * Get the customer record associated with the address.
      *
@@ -86,5 +90,10 @@ abstract class Address extends Model implements AddressContract
     public function area()
     {
         return $this->belongsTo(Area::class);
+    }
+
+    public function getAreaNameAttribute() : string | null
+    {
+        return $this->area?->name;
     }
 }

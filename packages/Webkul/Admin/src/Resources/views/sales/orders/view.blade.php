@@ -346,15 +346,12 @@
                         {{-- Shipping Address --}}
                         @if ($order->shipping_address)
                             <span class="block w-full border-b-[1px] dark:border-gray-800"></span>
-
                             <div class="flex items-center justify-between">
                                 <p class="text-gray-600 dark:text-gray-300 text-[16px] py-[16px] font-semibold">
                                     @lang('admin::app.sales.orders.view.shipping-address')
                                 </p>
                             </div>
-
-                            @include ('admin::sales.address', ['address' => $order->shipping_address])
-
+                            @include ('admin::sales.address', ['address' => $order->shipping_address, 'method' => $order->shipping_title])
                             {!! view_render_event('sales.order.shipping_address.after', ['order' => $order]) !!}
                         @endif
                     </x-slot:content>
