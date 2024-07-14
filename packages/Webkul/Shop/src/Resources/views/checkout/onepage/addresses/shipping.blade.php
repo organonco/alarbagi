@@ -136,7 +136,7 @@
                             </x-shop::form.control-group.label>
 
                             <x-shop::form.control-group.control type="text" name="shipping[phone]" :label="trans('shop::app.checkout.onepage.addresses.shipping.phone')"
-                            rules="required" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.phone')" v-model="forms.shipping.address.phone">
+                            rules="required|phone" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.phone')" v-model="forms.shipping.address.phone">
                             </x-shop::form.control-group.control>
 
                             <x-shop::form.control-group.error control-name="shipping[phone]">

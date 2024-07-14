@@ -34,20 +34,19 @@
             @foreach ($addresses as $address)
                 <div class="p-[20px] border border-[#e5e5e5] rounded-[12px] max-sm:flex-wrap">
                     <div class="flex justify-between items-center">
+                        <div>
                         <p class="text-[16px] font-medium">
-                            {{ $address->company_name }}
+                            {{ $address->name }} - {{ $address->phone }}
                         </p>
-
-                        <div class="flex gap-[25px] items-center">
-
-                            @if ($address->default_address)
-                                <div 
-                                    class="block w-max m-0 ml-[0px] mx-auto p-[5px] rounded-[10px] bg-navyBlue text-[12px] text-white font-medium text-center"
-                                >
-                                    @lang('shop::app.customers.account.addresses.default-address') 
-                                </div>
+                        <p class="mt-[16px] text-[#6E6E6E] text-[14px]">
+                            @if(isset($address->area) && isset($address->address_details))
+                                {{$address->area->name}} - {{$address->address_details}}
+                            @else
+                                {{$address->area?->name}} {{$address->address_details}}
                             @endif
-
+                        </p>
+                    </div>
+                        <div class="flex gap-[25px] items-center">
                             {{-- Dropdown Actions --}}
                             <x-shop::dropdown position="bottom-right">
                                 <x-slot:toggle>
@@ -79,33 +78,10 @@
                                             </a>
                                         </x-shop::form>
                                     </x-shop::dropdown.menu.item>
-
-                                    <x-shop::dropdown.menu.item>
-                                        <x-shop::form
-                                            :action="route('shop.customers.account.addresses.update.default', $address->id)"
-                                            method="PATCH"
-                                        >
-                                            <button>
-                                                @lang('shop::app.customers.account.addresses.set-as-default')
-                                            </button>
-                                        </x-shop::form>
-                                    </x-shop::dropdown.menu.item>
                                 </x-slot:menu>
                             </x-shop::dropdown>
                         </div>
                     </div>
-
-                    <p class="text-[#6E6E6E] mt-[25px]">
-                        {{ $address->address1 }},
-
-                        @if ($address->address2)
-                            {{ $address->address2 }},
-                        @endif
-
-                        {{ $address->city }}, 
-                        {{ $address->state }}, {{ $address->country }}, 
-                        {{ $address->postcode }}
-                    </p>
                 </div>    
             @endforeach
         </div>

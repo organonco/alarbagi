@@ -3,6 +3,7 @@
 namespace Webkul\Shop\Http\Controllers\Customer\Account;
 
 use Illuminate\Support\Facades\Event;
+use Organon\Delivery\Models\Area;
 use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Customer\Repositories\CustomerAddressRepository;
 use Webkul\Shop\Http\Requests\Customer\AddressRequest;
@@ -34,7 +35,7 @@ class AddressController extends Controller
      */
     public function create()
     {
-        return view('shop::customers.account.addresses.create');
+        return view('shop::customers.account.addresses.create', ['areas' => Area::query()->isActive()->get()]);
     }
 
     /**
@@ -49,21 +50,12 @@ class AddressController extends Controller
         Event::dispatch('customer.addresses.create.before');
 
         $data = array_merge(request()->only([
-            'company_name',
-            'first_name',
-            'last_name',
-            'vat_id',
-            'address1',
-            'country',
-            'state',
-            'city',
-            'postcode',
+            'name',
+            'area_id',
+            'address_details',
             'phone',
-            'default_address',
         ]), [
             'customer_id' => $customer->id,
-            'address1'    => implode(PHP_EOL, array_filter($request->input('address1'))),
-            'address2'    => implode(PHP_EOL, array_filter($request->input('address2', []))),
         ]);
 
         $customerAddress = $this->customerAddressRepository->create($data);
@@ -91,7 +83,7 @@ class AddressController extends Controller
             abort(404);
         }
 
-        return view('shop::customers.account.addresses.edit')->with('address', $address);
+        return view('shop::customers.account.addresses.edit', ['areas' => Area::query()->isActive()->get(), 'address' => $address]);
     }
 
     /**
@@ -112,20 +104,11 @@ class AddressController extends Controller
 
         Event::dispatch('customer.addresses.update.before', $id);
 
-        $data = array_merge(request()->only([
-            'company_name',
-            'first_name',
-            'last_name',
-            'vat_id',
-            'address1',
-            'country',
-            'state',
-            'city',
-            'postcode',
-            'phone'
-        ]), [
-            'address1' => implode(PHP_EOL, array_filter($request->input('address1'))),
-            'address2' => implode(PHP_EOL, array_filter($request->input('address2', []))),
+        $data = request()->only([
+            'name',
+            'area_id',
+            'address_details',
+            'phone',
         ]);
 
         $customerAddress = $this->customerAddressRepository->update($data, $id);
