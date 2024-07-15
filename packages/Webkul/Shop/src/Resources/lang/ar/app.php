@@ -217,6 +217,7 @@ return [
                         'total-paid' => 'الإجمالي المدفوع',
                         'total-refunded' => 'الإجمالي المسترد',
                         'total-due' => 'الإجمالي المستحق',
+                        'qty_ordered' => 'الكمية'
                     ],
 
                     'invoices' => [

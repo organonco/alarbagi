@@ -47,7 +47,7 @@
                     </label>
 
                     <span>
-                        {{ core()->formatDate($order->created_at, 'd M Y') }}
+                        {{ core()->formatDate($order->created_at, 'd/m/Y') }}
                     </span>
                 </div>
 
@@ -55,12 +55,13 @@
                     <table class="w-full text-sm text-left ">
                         <thead class="bg-[#F5F5F5] border-b-[1px] border-[#E9E9E9] text-[14px] text-black">
                             <tr>
-                                <th scope="col" class="px-6 py-[16px] font-medium">
-                                    @lang('shop::app.customers.account.orders.view.information.sku')
-                                </th>
 
                                 <th scope="col" class="px-6 py-[16px] font-medium">
                                     @lang('shop::app.customers.account.orders.view.information.product-name')
+                                </th>
+
+                                <th scope="col" class="px-6 py-[16px] font-medium">
+                                    @lang('shop::app.customers.account.orders.view.information.qty_ordered')
                                 </th>
 
                                 <th scope="col" class="px-6 py-[16px] font-medium">
@@ -68,88 +69,33 @@
                                 </th>
 
                                 <th scope="col" class="px-6 py-[16px] font-medium">
-                                    @lang('shop::app.customers.account.orders.view.information.item-status')
-                                </th>
-
-                                <th scope="col" class="px-6 py-[16px] font-medium">
                                     @lang('shop::app.customers.account.orders.view.information.subtotal')
                                 </th>
 
-                                <th scope="col" class="px-6 py-[16px] font-medium">
-                                    @lang('shop::app.customers.account.orders.view.information.tax-percent')
-                                </th>
-
-                                <th scope="col" class="px-6 py-[16px] font-medium">
-                                    @lang('shop::app.customers.account.orders.view.information.tax-amount')
-                                </th>
-
-                                <th scope="col" class="px-6 py-[16px] font-medium">
-                                    @lang('shop::app.customers.account.orders.view.information.grand-total')
-                                </th>
                             </tr>
                         </thead>
 
                         <tbody>
                             @foreach ($order->items as $item)
                                 <tr class="bg-white border-b">
-                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.sku')">
-                                        {{ $item->getTypeInstance()->getOrderedItem($item)->sku }}
-                                    </td>
 
-                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.product-name')">
+                                    <td class="px-6 py-[16px] text-black font-medium">
                                         {{ $item->name }}
-
-                                        @if (isset($item->additional['attributes']))
-                                            <div>
-                                                @foreach ($item->additional['attributes'] as $attribute)
-                                                    <b>{{ $attribute['attribute_name'] }} :
-                                                    </b>{{ $attribute['option_label'] }}<br>
-                                                @endforeach
-                                            </div>
-                                        @endif
                                     </td>
 
-                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.price')">
-                                        {{ core()->formatPrice($item->price, $order->order_currency_code) }}
+                                    <td class="px-6 py-[16px] text-black font-medium">
+                                        {{ $item->qty_ordered }}
                                     </td>
 
-                                    <td class="px-6 py-[16px] text-black font-medium" data-value= "@lang('shop::app.customers.account.orders.view.information.item-status')">
-                                        <span>
-                                            {{ __('shop::app.customers.account.orders.view.information.item-ordered', ['qty_ordered' => $item->qty_ordered]) }}
-                                        </span>
 
-                                        <span>
-                                            {{ $item->qty_invoiced ? __('shop::app.customers.account.orders.view.information.item-invoice', ['qty_invoiced' => $item->qty_invoiced]) : '' }}
-                                        </span>
-
-                                        <span>
-                                            {{ $item->qty_shipped ? __('shop::app.customers.account.orders.view.information.item-shipped', ['qty_shipped' => $item->qty_shipped]) : '' }}
-                                        </span>
-
-                                        <span>
-                                            {{ $item->qty_refunded ? __('shop::app.customers.account.orders.view.information.item-refunded', ['qty_refunded' => $item->qty_refunded]) : '' }}
-                                        </span>
-
-                                        <span>
-                                            {{ $item->qty_canceled ? __('shop::app.customers.account.orders.view.information.item-canceled', ['qty_canceled' => $item->qty_canceled]) : '' }}
-                                        </span>
+                                    <td class="px-6 py-[16px] text-black font-medium">
+                                        {{ core()->formatPrice($item->product->price) }}
                                     </td>
 
-                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.subtotal')">
-                                        {{ core()->formatPrice($item->total, $order->order_currency_code) }}
+                                    <td class="px-6 py-[16px] text-black font-medium">
+                                        {{ core()->formatPrice($item->total) }}
                                     </td>
 
-                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.tax-percent')">
-                                        {{ number_format($item->tax_percent, 2) }}%
-                                    </td>
-
-                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.tax-amount')">
-                                        {{ core()->formatPrice($item->tax_amount, $order->order_currency_code) }}
-                                    </td>
-
-                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.grand-total')">
-                                        {{ core()->formatPrice($item->total + $item->tax_amount - $item->discount_amount, $order->order_currency_code) }}
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -210,19 +156,6 @@
                                     </div>
                                 @endif
 
-                                <div class="flex gap-x-[20px] justify-between w-full">
-                                    <p class="text-[14px]">
-                                        @lang('shop::app.customers.account.orders.view.information.tax')
-                                    </p>
-
-                                    <div class="flex gap-x-[20px]">
-                                        <p class="text-[14px]">-</p>
-
-                                        <p class="text-[14px]">
-                                            {{ core()->formatPrice($order->tax_amount, $order->order_currency_code) }}
-                                        </p>
-                                    </div>
-                                </div>
 
                                 <div class="flex gap-x-[20px] justify-between w-full">
                                     <p class="text-[14px]">
@@ -238,50 +171,6 @@
                                     </div>
                                 </div>
 
-                                <div class="flex gap-x-[20px] justify-between w-full">
-                                    <p class="text-[14px]">
-                                        @lang('shop::app.customers.account.orders.view.information.total-paid')
-                                    </p>
-
-                                    <div class="flex gap-x-[20px]">
-                                        <p class="text-[14px]">-</p>
-
-                                        <p class="text-[14px]">
-                                            {{ core()->formatPrice($order->grand_total_invoiced, $order->order_currency_code) }}
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div class="flex gap-x-[20px] justify-between w-full">
-                                    <p class="text-[14px]">
-                                        @lang('shop::app.customers.account.orders.view.information.total-refunded')
-                                    </p>
-
-                                    <div class="flex gap-x-[20px]">
-                                        <p class="text-[14px]">-</p>
-
-                                        <p class="text-[14px]">
-                                            {{ core()->formatPrice($order->grand_total_refunded, $order->order_currency_code) }}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="flex gap-x-[20px] justify-between w-full">
-                                    <p class="text-[14px]">
-                                        @lang('shop::app.customers.account.orders.view.information.total-due')
-                                    </p>
-
-                                    <div class="flex gap-x-[20px]">
-                                        <p class="text-[14px]">-</p>
-
-                                        <p class="text-[14px]">
-                                            @if ($order->status !== 'canceled')
-                                                {{ core()->formatPrice($order->total_due, $order->order_currency_code) }}
-                                            @else
-                                                {{ core()->formatPrice(0.0, $order->order_currency_code) }}
-                                            @endif
-                                        </p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
