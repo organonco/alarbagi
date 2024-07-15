@@ -16,7 +16,7 @@
 
         <a
             href="{{ route('shop.customers.account.profile.edit') }}"
-            class="sn-button-secondary"
+            class="sn-button-primary"
         >
             @lang('shop::app.customers.account.profile.edit')
         </a>
@@ -80,7 +80,7 @@
         <x-shop::modal>
             <x-slot:toggle>
                 <div
-                    class="sn-button-danger"
+                    class="sn-button-primary-alt text-center"
                 >
                     @lang('shop::app.customers.account.profile.delete-profile')
                 </div>
@@ -103,7 +103,6 @@
                                 name="password"
                                 class="py-[20px] px-[25px]"
                                 rules="required"
-                                placeholder="Enter your password"
                             />
 
                             <x-shop::form.control-group.error
@@ -117,7 +116,7 @@
                     <div class="p-[30px] bg-white mt-[20px]">
                         <button
                             type="submit"
-                            class="sn-button-primary"
+                            class="sn-button-primary-alt"
                         >
                             @lang('shop::app.customers.account.profile.delete')
                         </button>

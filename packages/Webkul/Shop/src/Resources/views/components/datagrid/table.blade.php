@@ -134,10 +134,6 @@
 
                                 <!-- Information Panel -->
                                 <div class="flex justify-between items-center p-[25px]">
-                                    <p class="text-[12px] font-medium">
-                                        Showing @{{ $parent.available.meta.from }} to @{{ $parent.available.meta.to }} of @{{ $parent.available.meta.total }} entries
-                                    </p>
-
                                     <!-- Pagination -->
                                     <div class="flex items-center gap-[4px]">
                                         <div
@@ -163,7 +159,7 @@
                                                     class="flex items-center justify-center w-[35px] h-[37px] border border-[#E9E9E9] rounded-l-lg leading-normal font-medium hover:bg-gray-100"
                                                     aria-label="Previous Page"
                                                 >
-                                                    <span class="icon-arrow-left text-[24px]"></span>
+                                                    <span class="icon-arrow-right text-[24px]"></span>
                                                 </a>
                                             </li>
 
@@ -183,7 +179,7 @@
                                                     class="flex items-center justify-center w-[35px] h-[37px] border border-[#E9E9E9] rounded-r-lg leading-normal font-medium hover:bg-gray-100"
                                                     aria-label="Next Page"
                                                 >
-                                                    <span class="icon-arrow-right text-[24px]"></span>
+                                                    <span class="icon-arrow-left text-[24px]"></span>
                                                 </a>
                                             </li>
                                         </ul>

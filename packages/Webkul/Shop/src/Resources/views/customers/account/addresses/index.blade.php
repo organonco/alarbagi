@@ -17,7 +17,7 @@
 
         <a
             href="{{ route('shop.customers.account.addresses.create') }}"
-            class="secondary-button flex gap-x-[10px] items-center py-[12px] px-[20px] border-[#E9E9E9] font-normal"
+            class="sn-button-primary flex gap-x-[10px] items-center py-[12px] px-[20px] border-[#E9E9E9] font-normal"
         >
             <span class="icon-location text-[24px]"></span>
 
@@ -35,10 +35,10 @@
                 <div class="p-[20px] border border-[#e5e5e5] rounded-[12px] max-sm:flex-wrap">
                     <div class="flex justify-between items-center">
                         <div>
-                        <p class="text-[16px] font-medium">
+                        <p class="sn-text-primary sn-heading-3">
                             {{ $address->name }} - {{ $address->phone }}
                         </p>
-                        <p class="mt-[16px] text-[#6E6E6E] text-[14px]">
+                        <p class="mt-[8px] text-[#6E6E6E] sn-body-2">
                             @if(isset($address->area) && isset($address->address_details))
                                 {{$address->area->name}} - {{$address->address_details}}
                             @else
