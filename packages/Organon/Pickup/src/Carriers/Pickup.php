@@ -26,7 +26,7 @@ class Pickup extends AbstractShipping
         $object = new CartShippingRate;
 
         $object->carrier = 'pickup';
-        $object->carrier_title = $this->getConfigData('title');
+        $object->carrier_title = '';
         $object->method = 'pickup_pickup';
         $object->method_title = $this->getConfigData('title');
         $object->method_description = $this->getConfigData('description');

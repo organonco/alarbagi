@@ -21,7 +21,7 @@
                 <div class="row grid grid-cols-4 grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800">
                     <div
                             class="flex gap-[10px] items-center select-none"
-                            v-for="(columnGroup, index) in [['increment_id', 'orders.created_at', 'seller_orders.status'], ['number_of_products', 'subtotal', 'method'], ['customer_name', 'customer_email', 'customer_address']]"
+                            v-for="(columnGroup, index) in [['increment_id', 'orders.created_at', 'seller_orders.status'], ['number_of_products', 'subtotal', 'method'], ['customer_name', 'shipping_title', 'area']]"
                     >
                         <p class="text-gray-600 dark:text-gray-300">
                             <span class="[&>*]:after:content-['_/_']">
@@ -92,8 +92,8 @@
                     <div class="">
                         <div class="flex flex-col gap-[6px]">
                             <p class="text-gray-600 dark:text-gray-300" v-text="record.customer_name"></p>
-                            <p class="text-gray-600 dark:text-gray-300" v-text="record.customer_email"></p>
-                            <p class="text-gray-600 dark:text-gray-300" v-text="record.customer_address"></p>
+                            <p class="text-gray-600 dark:text-gray-300" v-text="record.shipping_title"></p>
+                            <p class="text-gray-600 dark:text-gray-300" v-text="record.area"></p>
                         </div>
                     </div>
 

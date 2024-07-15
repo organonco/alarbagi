@@ -38,8 +38,9 @@ class OrderDataGrid extends DataGrid
                 'customer_email',
                 'orders.cart_id as image',
                 DB::raw('CONCAT(' . DB::getTablePrefix() . 'orders.customer_first_name, " ", ' . DB::getTablePrefix() . 'orders.customer_last_name) as full_name'),
-                'areas.name as area',
-                'orders.shipping_title'
+                DB::raw('(CASE WHEN orders.shipping_method = "pickup_pickup" THEN "" ELSE areas.name END) AS area'),
+                'orders.shipping_title',
+                'order_address_shipping.name as address_name',
             );
 
         $this->addFilter('full_name', DB::raw('CONCAT(' . DB::getTablePrefix() . 'orders.customer_first_name, " ", ' . DB::getTablePrefix() . 'orders.customer_last_name)'));
@@ -78,7 +79,7 @@ class OrderDataGrid extends DataGrid
             'index'      => 'area',
             'label'      => trans('admin::app.sales.orders.index.datagrid.area'),
             'type'       => 'string',
-            'searchable' => true,
+            'searchable' => false,
             'filterable' => false,
             'sortable'   => false,
         ]);

@@ -139,6 +139,8 @@ return [
                     'number_of_products' => "عدد المنتجات",
                     'customer_email' => "بريد المشتري الالكتروني",
                     'customer_address' => "عنوان المشتري",
+                    'shipping_title' => 'التوصيل',
+                    'area' => 'المنطقة'
                 ]
             ],
             'view' => [
@@ -179,6 +181,7 @@ return [
                     "email" => "البريد الالكتروني",
                     "landline" => "الرقم الأرضي",
                     'phone' => 'رقم الهاتف',
+                    'area_name' => 'المنطقة'
                 ],
                 'actions' => [
                     'update' => "تحديث معلومات الملف الشخصي"

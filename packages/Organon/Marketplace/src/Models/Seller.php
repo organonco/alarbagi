@@ -5,7 +5,7 @@ namespace Organon\Marketplace\Models;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Organon\Delivery\Contracts\Area;
+use Organon\Delivery\Models\Area;
 use Organon\Marketplace\Contracts\Seller as SellerContract;
 use Organon\Marketplace\Database\Factories\SellerFactory;
 use Organon\Marketplace\Enums\SellerInvoiceStatusEnum;
@@ -143,5 +143,10 @@ class Seller extends Model implements SellerContract, HasMedia
     public function area()
     {
         return $this->belongsTo(Area::class);
+    }
+
+    public function getAreaNameAttribute()
+    {
+        return $this->area->name;
     }
 }

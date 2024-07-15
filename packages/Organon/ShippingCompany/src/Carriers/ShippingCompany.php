@@ -26,7 +26,7 @@ class ShippingCompany extends AbstractShipping
         $object = new CartShippingRate;
 
         $object->carrier = 'shippingcompany';
-        $object->carrier_title = $this->getConfigData('title');
+        $object->carrier_title = '';
         $object->method = 'shippingcompany_shippingcompany';
         $object->method_title = $this->getConfigData('title');
         $object->method_icon = $this->getIcon();

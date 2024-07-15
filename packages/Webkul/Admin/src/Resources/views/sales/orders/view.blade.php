@@ -351,7 +351,7 @@
                                     @lang('admin::app.sales.orders.view.shipping-address')
                                 </p>
                             </div>
-                            @include ('admin::sales.address', ['address' => $order->shipping_address, 'method' => $order->shipping_title])
+                            @include ('admin::sales.address', ['address' => $order->shipping_address, 'method' => $order->shipping_title,  'isPickup' => $order->shipping_method == 'pickup_pickup'])
                             {!! view_render_event('sales.order.shipping_address.after', ['order' => $order]) !!}
                         @endif
                     </x-slot:content>

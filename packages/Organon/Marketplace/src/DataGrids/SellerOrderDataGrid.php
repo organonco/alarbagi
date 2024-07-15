@@ -32,8 +32,9 @@ class SellerOrderDataGrid extends DataGrid
         $query->join('addresses as order_address_shipping', function ($leftJoin) {
             $leftJoin->on('order_address_shipping.order_id', '=', 'orders.id')
                 ->where('order_address_shipping.address_type', OrderAddress::ADDRESS_TYPE_SHIPPING);
+        })->leftJoin('areas', function($join){
+            $join->on('order_address_shipping.area_id', '=', 'areas.id');
         });
-
 
         $query->addSelect('orders.increment_id as increment_id');
         $query->addSelect('orders.id');
@@ -48,9 +49,11 @@ class SellerOrderDataGrid extends DataGrid
 
         $query->addSelect('order_payment.method');
 
-        $query->addSelect(DB::raw('CONCAT(' . DB::getTablePrefix() . 'order_address_shipping.city, ", ", ' . DB::getTablePrefix() . 'order_address_shipping.state,", ", ' . DB::getTablePrefix() . 'order_address_shipping.country) as customer_address'));
-
+        
+        $query->addSelect('areas.name as area');
+        $query->addSelect('orders.shipping_title');
         $query->addSelect('orders.id as order_id');
+
         return $query;
     }
 
@@ -133,8 +136,8 @@ class SellerOrderDataGrid extends DataGrid
         ]);
 
         $this->addColumn([
-            'index'      => 'customer_address',
-            'label'      => trans('marketplace::app.admin.orders.index.datagrid.customer_address'),
+            'index'      => 'area',
+            'label'      => trans('marketplace::app.admin.orders.index.datagrid.area'),
             'type'       => 'string',
             'searchable' => false,
             'filterable' => false,
@@ -150,6 +153,14 @@ class SellerOrderDataGrid extends DataGrid
             'sortable'   => false,
         ]);
 
+        $this->addColumn([
+            'index' => 'shipping_title', 
+            'label'      => trans('marketplace::app.admin.orders.index.datagrid.shipping_title'),
+            'type'       => 'string',
+            'searchable' => false,
+            'filterable' => false,
+            'sortable'   => false,
+        ]);
     }
 
     /**

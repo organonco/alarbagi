@@ -1,6 +1,6 @@
 <x-admin::layouts>
     <x-slot:title>
-        Sellers
+        التجار
     </x-slot:title>
 
     @push('styles')
@@ -98,7 +98,7 @@
                         </p>
                         <div class="info-box text-gray-800 dark:text-white">
                             <table class="info-table">
-                                @foreach(['name','address', 'phone', 'landline'] as $key)
+                                @foreach(['name','area_name', 'address', 'phone', 'landline'] as $key)
                                     <tr class="info-table">
                                         <td>
                                             @lang('marketplace::app.admin.account.profile.labels.' . $key)
@@ -138,7 +138,7 @@
                                         class="row grid grid-cols-4 grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800">
                                         <div
                                             class="flex gap-[10px] items-center select-none"
-                                            v-for="(columnGroup, index) in [['increment_id', 'seller_orders.status'], ['subtotal', 'method'], ['customer_name', 'orders.created_at']]"
+                                            v-for="(columnGroup, index) in [['increment_id', 'seller_orders.status'], ['method', 'shipping_title', 'area'], ['subtotal', 'customer_name', 'orders.created_at']]"
                                         >
                                             <p class="text-gray-600 dark:text-gray-300">
                             <span class="[&>*]:after:content-['_/_']">
@@ -198,16 +198,22 @@
                                         <div class="">
                                             <div class="flex flex-col gap-[6px]">
                                                 <p class="text-gray-600 dark:text-gray-300">
-                                                    @{{ $admin.formatPrice(record.subtotal) }}
+                                                    @{{record.method }}
                                                 </p>
                                                 <p class="text-gray-600 dark:text-gray-300">
-                                                    @{{record.method }}
+                                                    @{{record.shipping_title }}
+                                                </p>
+                                                <p class="text-gray-600 dark:text-gray-300">
+                                                    @{{record.area }}
                                                 </p>
                                             </div>
                                         </div>
 
                                         <div class="">
                                             <div class="flex flex-col gap-[6px]">
+                                                <p class="text-gray-600 dark:text-gray-300">
+                                                    @{{ $admin.formatPrice(record.subtotal) }}
+                                                </p>
                                                 <p class="text-gray-600 dark:text-gray-300"
                                                    v-text="record.customer_name"></p>
                                                    <p class="text-gray-600 dark:text-gray-300"
