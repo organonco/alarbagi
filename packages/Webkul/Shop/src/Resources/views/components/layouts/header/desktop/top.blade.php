@@ -1,5 +1,5 @@
 <div
-    class="w-full py-[11px] px-16 border border-t-0 border-b-[1px] border-l-0 border-r-0 sn-background-grey grid-cols-3 grid">
+    class="w-full py-[11px] px-4 border border-t-0 border-b-[1px] border-l-0 border-r-0 sn-background-grey grid-cols-3 grid">
 
     {{-- Search Bar Container --}}
     <div class="flex items-center ">
@@ -28,27 +28,25 @@
     </div>
 
 
-    <div class="flex items-center gap-5 justify-end">
+    <div class="flex items-center gap-4 justify-end">
 
-        {{-- @auth('customer') --}}
-            <a style="display: flex; gap: 15px; align-items: center" href="{{ route('shop.customers.account.wishlist.index') }}">
-                <span class="sn-color-primary text-[16px]">@lang('shop::app.components.layouts.header.wishlist')</span>
-                <img src="{{ asset('assets/images/icons/heart.png') }}" style="width: 30px">
-            </a >
-        {{-- @endauth --}}
+        <a class="flex gap-2 items-center" href="{{ route('shop.customers.account.wishlist.index') }}">
+            <span class="sn-color-primary text-[16px]">@lang('shop::app.components.layouts.header.wishlist')</span>
+            <img src="{{ asset('assets/images/icons/heart.png') }}" style="width: 30px">
+        </a >
 
         @include('shop::checkout.cart.mini-cart')
 
         @guest('customer')
-            <a class="sn-button-login flex flex-row gap-3 " href="{{ route('shop.customer.session.create') }}">
+            <a class="sn-button-login flex flex-row gap-2 items-center text-center" href="{{ route('shop.customer.session.create') }}">
                 @lang('shop::app.components.layouts.header.sign-in')
-                <img src="{{ asset('assets/images/icons/user.png') }}" style="width: 20px">
+                <img src="{{ asset('assets/images/icons/user.png') }}" style="width: 20px; height: 20px">
             </a>
         @endguest
         @auth('customer')
-            <a class="sn-button-login flex flex-row gap-3 " href="{{ route('shop.customers.account.profile.index') }}">
+            <a class="sn-button-login flex flex-row gap-2 items-center text-center" href="{{ route('shop.customers.account.profile.index') }}">
                 @lang('shop::app.components.layouts.header.profile')
-                <img src="{{ asset('assets/images/icons/user.png') }}" style="width: 20px">
+                <img src="{{ asset('assets/images/icons/user.png') }}" style="width: 20px; height: 20px">
             </a>
         @endauth
     </div>

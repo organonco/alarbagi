@@ -11,18 +11,9 @@
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-desktop-category-template">
+    
         <div
-            class="flex gap-[20px] items-center"
-            v-if="isLoading"
-        >
-            <span class="shimmer w-[80px] h-[24px] rounded-[4px]"></span>
-            <span class="shimmer w-[80px] h-[24px] rounded-[4px]"></span>
-            <span class="shimmer w-[80px] h-[24px] rounded-[4px]"></span>
-        </div>
-
-        <div
-            class="w-full py-3 grid-cols-5 grid"
-            v-else
+            class="w-full py-3 max-xl:grid-cols-4 grid-cols-5 grid"
         >
             <div
                 class=" group sn-color-light-main align-middle items-center"
@@ -37,7 +28,7 @@
                 </span>
             </div>
             
-            <div class="flex content-start col-span-3 gap-8">
+            <div class="flex content-start col-span-3 gap-8 max-xl:col-span-2">
                 <div
                     class="relative group border-b-[4px] border-transparent hover:border-b-[4px] hover:border-primary sn-color-white"
                     v-for="category in categories"

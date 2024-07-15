@@ -91,18 +91,4 @@
             @break
         @endswitch
     @endforeach
-
-
-    <div style="display: flex; justify-content: space-evenly; align-items: center">
-        <button class="sn-button-primary" style="margin: 30px">الزر الرئيسي </button>
-        <button class="sn-button-primary-alt" style="margin: 30px">BUTTON 2</button>
-        <button class="sn-button-secondary" style="margin: 30px">الزر الرئيسي</button>
-        <button class="sn-button-secondary-alt" style="margin: 30px">BUTTON 2</button>
-    </div>
-    <div style="display: flex; justify-content: space-evenly; align-items: center">
-        <div class="sn-heading-1" style="direction: ltr; text-align: right">1 Heading</div>
-        <div class="sn-heading-2" style="direction: ltr; text-align: right">2 Heading</div>
-        <div class="sn-heading-3" style="direction: ltr; text-align: right">3 Heading</div>
-        <div class="sn-body" style="direction: ltr; text-align: right">Body Text Styles</div>
-    </div>
 </x-shop::layouts>

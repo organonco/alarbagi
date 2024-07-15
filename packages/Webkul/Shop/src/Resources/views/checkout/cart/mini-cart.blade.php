@@ -8,7 +8,7 @@
         <x-shop::drawer>
             <!-- Drawer Toggler -->
             <x-slot:toggle>
-                <div style="display: flex; gap: 15px; align-items: center; border-right: 2px solid #153939; padding-right: 20px">
+                <div style="display: flex; gap: 8px; align-items: center; border-right: 2px solid #153939; padding-right: 10px" class="cursor-pointer">
                     <span class="sn-color-primary text-[16px]">@lang('shop::app.components.layouts.header.cart')</span>
                     <img src="{{asset('assets/images/icons/cart.png')}}" style="width: 30px">
                 </div>
