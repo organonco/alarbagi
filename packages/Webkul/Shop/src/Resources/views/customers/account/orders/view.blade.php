@@ -17,25 +17,19 @@
         </div>
 
         @if ($order->canCancel())
-            <form
-                method="POST"
-                ref="cancelOrderForm"
-                action="{{ route('shop.customers.account.orders.cancel', $order->id) }}"
-            >
+            <form method="POST" ref="cancelOrderForm"
+                action="{{ route('shop.customers.account.orders.cancel', $order->id) }}">
                 @csrf
             </form>
 
-            <a
-                class="sn-button-secondary"
-                href="javascript:void(0);"
+            <a class="sn-button-secondary" href="javascript:void(0);"
                 @click="$emitter.emit('open-confirm-modal', {
                     message: '@lang('shop::app.customers.account.orders.view.cancel-confirm-msg')',
 
                     agree: () => {
                         this.$refs['cancelOrderForm'].submit()
                     }
-                })"
-            >
+                })">
                 @lang('shop::app.customers.account.orders.view.cancel-btn-title')
             </a>
         @endif
@@ -46,11 +40,7 @@
     {{-- Order view tabs --}}
     <div>
         <x-shop::tabs class="mt-5">
-            <x-shop::tabs.item
-                class="!px-0"
-                :title="trans('shop::app.customers.account.orders.view.information.info')"
-                :is-selected="true"
-            >
+            <x-shop::tabs.item class="!px-0" :title="trans('shop::app.customers.account.orders.view.information.info')" :is-selected="true">
                 <div class="text-[15px] font-medium">
                     <label>
                         @lang('shop::app.customers.account.orders.view.information.placed-on')
@@ -65,59 +55,35 @@
                     <table class="w-full text-sm text-left ">
                         <thead class="bg-[#F5F5F5] border-b-[1px] border-[#E9E9E9] text-[14px] text-black">
                             <tr>
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
+                                <th scope="col" class="px-6 py-[16px] font-medium">
                                     @lang('shop::app.customers.account.orders.view.information.sku')
                                 </th>
 
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
+                                <th scope="col" class="px-6 py-[16px] font-medium">
                                     @lang('shop::app.customers.account.orders.view.information.product-name')
                                 </th>
 
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
+                                <th scope="col" class="px-6 py-[16px] font-medium">
                                     @lang('shop::app.customers.account.orders.view.information.price')
                                 </th>
 
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
+                                <th scope="col" class="px-6 py-[16px] font-medium">
                                     @lang('shop::app.customers.account.orders.view.information.item-status')
                                 </th>
 
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
+                                <th scope="col" class="px-6 py-[16px] font-medium">
                                     @lang('shop::app.customers.account.orders.view.information.subtotal')
                                 </th>
 
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
+                                <th scope="col" class="px-6 py-[16px] font-medium">
                                     @lang('shop::app.customers.account.orders.view.information.tax-percent')
                                 </th>
 
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
+                                <th scope="col" class="px-6 py-[16px] font-medium">
                                     @lang('shop::app.customers.account.orders.view.information.tax-amount')
                                 </th>
 
-                                <th
-                                    scope="col"
-                                    class="px-6 py-[16px] font-medium"
-                                >
+                                <th scope="col" class="px-6 py-[16px] font-medium">
                                     @lang('shop::app.customers.account.orders.view.information.grand-total')
                                 </th>
                             </tr>
@@ -126,41 +92,30 @@
                         <tbody>
                             @foreach ($order->items as $item)
                                 <tr class="bg-white border-b">
-                                    <td
-                                        class="px-6 py-[16px] text-black font-medium"
-                                        data-value="@lang('shop::app.customers.account.orders.view.information.sku')"
-                                    >
+                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.sku')">
                                         {{ $item->getTypeInstance()->getOrderedItem($item)->sku }}
                                     </td>
 
-                                    <td
-                                        class="px-6 py-[16px] text-black font-medium"
-                                        data-value="@lang('shop::app.customers.account.orders.view.information.product-name')"
-                                    >
+                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.product-name')">
                                         {{ $item->name }}
 
                                         @if (isset($item->additional['attributes']))
                                             <div>
                                                 @foreach ($item->additional['attributes'] as $attribute)
-                                                    <b>{{ $attribute['attribute_name'] }} : </b>{{ $attribute['option_label'] }}<br>
+                                                    <b>{{ $attribute['attribute_name'] }} :
+                                                    </b>{{ $attribute['option_label'] }}<br>
                                                 @endforeach
                                             </div>
                                         @endif
                                     </td>
 
-                                    <td
-                                        class="px-6 py-[16px] text-black font-medium"
-                                        data-value="@lang('shop::app.customers.account.orders.view.information.price')"
-                                    >
+                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.price')">
                                         {{ core()->formatPrice($item->price, $order->order_currency_code) }}
                                     </td>
 
-                                    <td
-                                        class="px-6 py-[16px] text-black font-medium"
-                                        data-value= "@lang('shop::app.customers.account.orders.view.information.item-status')"
-                                    >
-                                        <span >
-                                           {{__('shop::app.customers.account.orders.view.information.item-ordered', ['qty_ordered' => $item->qty_ordered])}}
+                                    <td class="px-6 py-[16px] text-black font-medium" data-value= "@lang('shop::app.customers.account.orders.view.information.item-status')">
+                                        <span>
+                                            {{ __('shop::app.customers.account.orders.view.information.item-ordered', ['qty_ordered' => $item->qty_ordered]) }}
                                         </span>
 
                                         <span>
@@ -180,31 +135,19 @@
                                         </span>
                                     </td>
 
-                                    <td
-                                        class="px-6 py-[16px] text-black font-medium"
-                                        data-value="@lang('shop::app.customers.account.orders.view.information.subtotal')"
-                                    >
+                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.subtotal')">
                                         {{ core()->formatPrice($item->total, $order->order_currency_code) }}
                                     </td>
 
-                                    <td
-                                        class="px-6 py-[16px] text-black font-medium"
-                                        data-value="@lang('shop::app.customers.account.orders.view.information.tax-percent')"
-                                    >
+                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.tax-percent')">
                                         {{ number_format($item->tax_percent, 2) }}%
                                     </td>
 
-                                    <td
-                                        class="px-6 py-[16px] text-black font-medium"
-                                        data-value="@lang('shop::app.customers.account.orders.view.information.tax-amount')"
-                                    >
+                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.tax-amount')">
                                         {{ core()->formatPrice($item->tax_amount, $order->order_currency_code) }}
                                     </td>
 
-                                    <td
-                                        class="px-6 py-[16px] text-black font-medium"
-                                        data-value="@lang('shop::app.customers.account.orders.view.information.grand-total')"
-                                    >
+                                    <td class="px-6 py-[16px] text-black font-medium" data-value="@lang('shop::app.customers.account.orders.view.information.grand-total')">
                                         {{ core()->formatPrice($item->total + $item->tax_amount - $item->discount_amount, $order->order_currency_code) }}
                                     </td>
                                 </tr>
@@ -331,10 +274,10 @@
                                         <p class="text-[14px]">-</p>
 
                                         <p class="text-[14px]">
-                                            @if($order->status !== 'canceled')
+                                            @if ($order->status !== 'canceled')
                                                 {{ core()->formatPrice($order->total_due, $order->order_currency_code) }}
                                             @else
-                                                {{ core()->formatPrice(0.00, $order->order_currency_code) }}
+                                                {{ core()->formatPrice(0.0, $order->order_currency_code) }}
                                             @endif
                                         </p>
                                     </div>
@@ -346,7 +289,7 @@
             </x-shop::tabs.item>
 
             @if ($order->invoices->count())
-                <x-shop::tabs.item  :title="trans('shop::app.customers.account.orders.view.invoices.invoices')">
+                <x-shop::tabs.item :title="trans('shop::app.customers.account.orders.view.invoices.invoices')">
 
                     @foreach ($order->invoices as $invoice)
                         <div class="flex justify-between items-center">
@@ -355,9 +298,10 @@
                                     @lang('shop::app.customers.account.orders.view.invoices.individual-invoice', ['invoice_id' => $invoice->increment_id ?? $invoice->id])
                                 </p>
                             </div>
-                            <div class="secondary-button flex gap-x-[10px] items-center py-[12px] px-[20px] border-[#E9E9E9] font-normal">
+                            <div
+                                class="secondary-button flex gap-x-[10px] items-center py-[12px] px-[20px] border-[#E9E9E9] font-normal">
                                 <a href="{{ route('shop.customers.account.orders.print-invoice', $invoice->id) }}">
-                                        @lang('shop::app.customers.account.orders.view.invoices.print')
+                                    @lang('shop::app.customers.account.orders.view.invoices.print')
                                 </a>
                             </div>
                         </div>
@@ -366,52 +310,31 @@
                             <table class="w-full text-sm text-left">
                                 <thead class="bg-[#F5F5F5] border-b-[1px] border-[#E9E9E9] text-[14px] text-black">
                                     <tr>
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.invoices.sku')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.invoices.product-name')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.invoices.price')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.invoices.qty')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.invoices.subtotal')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.invoices.tax-amount')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.invoices.grand-total')
                                         </th>
                                     </tr>
@@ -420,52 +343,38 @@
                                 <tbody>
                                     @foreach ($invoice->items as $item)
                                         <tr class="bg-white border-b">
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.sku')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.sku')">
                                                 {{ $item->getTypeInstance()->getOrderedItem($item)->sku }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.product-name')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.product-name')">
                                                 {{ $item->name }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.price')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.price')">
                                                 {{ core()->formatPrice($item->price, $order->order_currency_code) }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.qty')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.qty')">
                                                 {{ $item->qty }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.subtotal')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.subtotal')">
                                                 {{ core()->formatPrice($item->total, $order->order_currency_code) }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.tax-amount')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.tax-amount')">
                                                 {{ core()->formatPrice($item->tax_amount, $order->order_currency_code) }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.grand-total')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.invoices.grand-total')">
                                                 {{ core()->formatPrice($item->total + $item->tax_amount, $order->order_currency_code) }}
                                             </td>
                                         </tr>
@@ -555,11 +464,11 @@
                         </div>
                     @endforeach
 
-                </x-shop::tabs.item >
+                </x-shop::tabs.item>
             @endif
 
             @if ($order->shipments->count())
-                <x-shop::tabs.item title="{{__('shop::app.customers.account.orders.view.shipments.shipments') }}">
+                <x-shop::tabs.item title="{{ __('shop::app.customers.account.orders.view.shipments.shipments') }}">
 
                     @foreach ($order->shipments as $shipment)
                         <div>
@@ -568,7 +477,7 @@
                             </label>
 
                             <span>
-                                {{  $shipment->track_number }}
+                                {{ $shipment->track_number }}
                             </span>
                         </div>
 
@@ -582,24 +491,15 @@
                             <table class="w-full text-sm text-left">
                                 <thead class="text-[14px] text-black bg-[#F5F5F5] border-b-[1px] border-[#E9E9E9]  ">
                                     <tr>
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.shipments.sku')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.shipments.product-name')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.shipments.qty')
                                         </th>
                                     </tr>
@@ -608,24 +508,18 @@
                                 <tbody>
                                     @foreach ($shipment->items as $item)
                                         <tr class="bg-white border-b">
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.shipments.sku')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.shipments.sku')">
                                                 {{ $item->sku }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.shipments.product-name')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.shipments.product-name')">
                                                 {{ $item->name }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.shipments.qty')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.shipments.qty')">
                                                 {{ $item->qty }}
                                             </td>
                                         </tr>
@@ -638,9 +532,7 @@
             @endif
 
             @if ($order->refunds->count())
-                <x-shop::tabs.item
-                    title="@lang('shop::app.customers.account.orders.view.refunds.refunds') }}"
-                >
+                <x-shop::tabs.item title="@lang('shop::app.customers.account.orders.view.refunds.refunds') }}">
                     @foreach ($order->refunds as $refund)
                         <div class="text-[15px] font-medium">
                             <span>
@@ -652,52 +544,31 @@
                             <table class="w-full text-sm text-left">
                                 <thead class="text-[14px] text-black bg-[#F5F5F5] border-b-[1px] border-[#E9E9E9]  ">
                                     <tr>
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.refunds.sku')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.refunds.product-name')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.refunds.price')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.refunds.qty')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.refunds.subtotal')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.refunds.tax-amount')
                                         </th>
 
-                                        <th
-                                            scope="col"
-                                            class="px-6 py-[16px] font-medium"
-                                        >
+                                        <th scope="col" class="px-6 py-[16px] font-medium">
                                             @lang('shop::app.customers.account.orders.view.refunds.grand-total')
                                         </th>
                                     </tr>
@@ -706,58 +577,44 @@
                                 <tbody>
                                     @foreach ($refund->items as $item)
                                         <tr class="bg-white border-b">
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.sku')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.sku')">
                                                 {{ $item->child ? $item->child->sku : $item->sku }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.product-name')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.product-name')">
                                                 {{ $item->name }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.price')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.price')">
                                                 {{ core()->formatPrice($item->price, $order->order_currency_code) }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.qty')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.qty')">
                                                 {{ $item->qty }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.subtotal')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.subtotal')">
                                                 {{ core()->formatPrice($item->total, $order->order_currency_code) }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.tax-amount')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.tax-amount')">
                                                 {{ core()->formatPrice($item->tax_amount, $order->order_currency_code) }}
                                             </td>
 
-                                            <td
-                                                class="px-6 py-[16px] text-black font-medium"
-                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.grand-total')"
-                                            >
+                                            <td class="px-6 py-[16px] text-black font-medium"
+                                                data-value="@lang('shop::app.customers.account.orders.view.refunds.grand-total')">
                                                 {{ core()->formatPrice($item->total + $item->tax_amount, $order->order_currency_code) }}
                                             </td>
                                         </tr>
                                     @endforeach
 
-                                    @if (! $refund->items->count())
+                                    @if (!$refund->items->count())
                                         <tr>
                                             <td>@lang('shop::app.customers.account.orders.view.refunds.no-result-found')</td>
                                         </tr>
@@ -877,61 +734,45 @@
                         </div>
                     @endforeach
 
-                </x-shop::tabs.item >
+                </x-shop::tabs.item>
             @endif
         </x-shop::tabs>
 
-        <div class="flex flex-wrap gap-x-[64px] gap-y-[30px] justify-between mt-[42px] pt-[26px] border-t-[1px] border-[#E9E9E9]">
-            {{-- Biiling Address --}}
-            @if ($order->billing_address)
-                <div class="grid gap-[15px] max-w-[200px] max-868:w-full max-868:max-w-full max-md:max-w-[200px] max-sm:max-w-full">
-                    <p class="text-[16px] text-[#6E6E6E]">
-                        @lang('shop::app.customers.account.orders.view.billing-address')
-                    </p>
+        <div
+            class="flex flex-wrap gap-x-[64px] gap-y-[30px] justify-between mt-[42px] pt-[26px] border-t-[1px] border-[#E9E9E9]">
 
-                    <div class="grid gap-[10px]">
-                        <p class="text-[14px]">
-                            @include ('admin::sales.address', ['address' => $order->billing_address])
-                        </p>
-
-                        {!! view_render_event('bagisto.shop.customers.account.orders.view.billing_address.after', ['order' => $order]) !!}
-                    </div>
-                </div>
-            @endif
-
-            {{-- Shipping Address --}}
-            @if ($order->shipping_address)
-                <div class="grid gap-[15px] max-w-[200px] max-868:w-full max-868:max-w-full max-md:max-w-[200px] max-sm:max-w-full">
-                    <p class="text-[16px] text-[#6E6E6E]">
-                        @lang('shop::app.customers.account.orders.view.shipping-address')
-                    </p>
-
-                    <div class="grid gap-[10px]">
-                        <p class="text-[14px]">
-                            @include ('admin::sales.address', ['address' => $order->shipping_address])
-
-                            {!! view_render_event('bagisto.shop.customers.account.orders.view.shipping_address.after', ['order' => $order]) !!}
-                        </p>
-                    </div>
-                </div>
-
-                {{-- Shipping Method --}}
-                <div class="grid gap-[15px] max-w-[200px] place-content-baseline max-868:w-full max-868:max-w-full max-md:max-w-[200px] max-sm:max-w-full">
-                    <p class="text-[16px] text-[#6E6E6E]">
-                        @lang('shop::app.customers.account.orders.view.shipping-method')
-                    </p>
-
-                    <p class="text-[14px]">
-                        {{ $order->shipping_title }}
+            <div
+                class="grid gap-[15px] max-w-[400px] max-868:w-full max-868:max-w-full max-md:max-w-[400px] max-sm:max-w-full">
+                <p class="text-[16px] text-[#6E6E6E]">
+                    @lang('shop::app.customers.account.orders.view.shipping-address')
+                </p>
+                <div class="">
+                    <p class="">
+                        @include ('admin::sales.address', [
+                            'address' => $order->shipping_address,
+                            'method' => '',
+                            'isPickup' => $order->shipping_method == 'pickup_pickup',
+                        ])
                     </p>
                 </div>
+            </div>
 
-                {!! view_render_event('bagisto.shop.customers.account.orders.view.shipping_method.after', ['order' => $order]) !!}
+            {{-- Shipping Method --}}
+            <div
+                class="grid gap-[15px] max-w-[200px] place-content-baseline max-868:w-full max-868:max-w-full max-md:max-w-[200px] max-sm:max-w-full">
+                <p class="text-[16px] text-[#6E6E6E]">
+                    @lang('shop::app.customers.account.orders.view.shipping-method')
+                </p>
 
-            @endif
+                <p class="text-[14px]">
+                    {{ $order->shipping_title }}
+                </p>
+            </div>
+
 
             {{-- Billing Method --}}
-            <div class="grid gap-[15px] place-content-baseline max-w-[200px] max-868:w-full max-868:max-w-full max-md:max-w-[200px] max-sm:max-w-full">
+            <div
+                class="grid gap-[15px] place-content-baseline max-w-[200px] max-868:w-full max-868:max-w-full max-md:max-w-[200px] max-sm:max-w-full">
                 <p class="text-[16px] text-[#6E6E6E]">
                     @lang('shop::app.customers.account.orders.view.payment-method')
                 </p>
@@ -940,7 +781,7 @@
                     {{ core()->getConfigData('sales.payment_methods.' . $order->payment->method . '.title') }}
                 </p>
 
-                @if (! empty($additionalDetails))
+                @if (!empty($additionalDetails))
                     <div class="instructions">
                         <label>{{ $additionalDetails['title'] }}</label>
                     </div>

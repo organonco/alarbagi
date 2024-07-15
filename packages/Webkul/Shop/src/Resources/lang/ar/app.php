@@ -190,8 +190,8 @@ return [
                     'cancel-error' => 'لا يمكن إلغاء طلبك.',
                     'payment-method' => 'طريقة الدفع',
                     'page-title' => 'الطلب #:order_id',
-                    'shipping-address' => 'عنوان الشحن',
-                    'shipping-method' => 'طريقة الشحن',
+                    'shipping-address' => 'تفاصيل الاستلام',
+                    'shipping-method' => 'التوصيل',
                     'total' => 'الإجمالي',
                     'title' => 'عرض',
 
