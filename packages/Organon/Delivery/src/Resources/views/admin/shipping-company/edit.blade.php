@@ -34,7 +34,7 @@
                         <x-admin::form.control-group.label class="required">
                             @lang('delivery::app.shipping-company.attributes.username')
                         </x-admin::form.control-group.label>
-                        <x-admin::form.control-group.control type="text" name="username" value="{{$shippingCompany->name}}">
+                        <x-admin::form.control-group.control type="text" name="username" value="{{$shippingCompany->username}}">
                         </x-admin::form.control-group.control>
                         <x-admin::form.control-group.error control-name="username">
                         </x-admin::form.control-group.error>

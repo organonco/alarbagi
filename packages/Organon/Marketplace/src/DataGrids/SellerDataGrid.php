@@ -15,12 +15,14 @@ class SellerDataGrid extends DataGrid
 
         $query = DB::table('sellers')->orderBy('sellers.created_at', 'DESC');
         $query->join('admins', 'admins.seller_id', '=', 'sellers.id');
+        $query->join('areas', 'sellers.area_id', '=', 'areas.id');
 
         $query->addSelect('sellers.id');
         $query->addSelect('sellers.name as shop_name');
         $query->addSelect('admins.email as email');
         $query->addSelect('sellers.status as status');
         $query->addSelect('sellers.phone as phone');
+        $query->addSelect('areas.name as area');
         
 
         $this->addFilter('shop_name', 'sellers.name');
@@ -35,6 +37,15 @@ class SellerDataGrid extends DataGrid
         $this->addColumn([
             'index' => 'shop_name',
             'label' => trans('marketplace::app.admin.sellers.index.datagrid.shop-name'),
+            'type' => 'string',
+            'searchable' => true,
+            'filterable' => false,
+            'sortable' => false,
+        ]);
+
+        $this->addColumn([
+            'index' => 'area',
+            'label' => trans('marketplace::app.admin.sellers.index.datagrid.area'),
             'type' => 'string',
             'searchable' => true,
             'filterable' => false,
