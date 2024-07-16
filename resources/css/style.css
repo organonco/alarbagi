@@ -46,3 +46,19 @@
     @apply text-white focus:ring-4  font-medium rounded-lg px-10 py-2 me-2 mb-2 focus:outline-none;
     border: 1px solid white;
 }
+
+.data{
+
+}
+
+.data li{
+
+}
+
+.data li .info{
+    @apply font-normal text-lg mt-1 text-gray-400
+}
+
+.data li hr{
+    @apply border w-full my-4
+}

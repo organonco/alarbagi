@@ -3,6 +3,7 @@
         <div class="header">
             رسوم التوصيل الحالية
         </div>
+        <hr/>
         <div class="content">
             <div>
                 توصيل منتج واحد: {{$per_order_price + ($per_product_price)}} ل.س
@@ -22,6 +23,7 @@
         <div class="header">
             الاعدادات
         </div>
+        <hr/>
         <div class="description">
             تعديل رسوم التوصيل
         </div>

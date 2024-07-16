@@ -1,6 +1,7 @@
 <?php
 
 use Organon\Delivery\Http\Controllers\Shipping\DashboardController;
+use Organon\Delivery\Http\Controllers\Shipping\DriverController;
 use Organon\Delivery\Http\Controllers\Shipping\SessionController;
 use Organon\Delivery\Http\Controllers\Shipping\SettingsController;
 
@@ -40,5 +41,12 @@ Route::group([
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
         Route::post('/settings', [SettingsController::class, 'store'])->name('settings.store');
+        Route::get('/driver', [DriverController::class, 'index'])->name('driver.index');
+        Route::get('/driver/create', [DriverController::class, 'create'])->name('driver.create');
+        Route::post('/driver/create', [DriverController::class, 'store'])->name('driver.store');
+        Route::get('/driver/{id}', [DriverController::class, 'edit'])->name('driver.edit');
+        Route::post('/driver/{id}', [DriverController::class, 'update'])->name('driver.update');
     });
+
+
 });

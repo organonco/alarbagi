@@ -27,4 +27,9 @@ class ShippingCompany extends Authenticatable implements ShippingCompanyContract
     {
         return $this->belongsTo(Area::class);
     }
+
+    public function drivers()
+    {
+        return $this->hasMany(Driver::class);
+    }
 }
