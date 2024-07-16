@@ -67,7 +67,7 @@
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-mobile-category-template">
-        <div>
+        <div class="px-3">
             {{-- <div class="flex justify-between items-center border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
 
                 <a

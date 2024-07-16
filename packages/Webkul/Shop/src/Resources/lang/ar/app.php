@@ -154,7 +154,7 @@ return [
                 'street-address' => 'عنوان الشارع',
                 'save' => 'حفظ',
                 'security-warning' => 'تم العثور على نشاط مشبوه',
-                'title' => 'العنوان',
+                'title' => 'العناوين ',
                 'vat-id' => 'معرف VAT',
             ],
 

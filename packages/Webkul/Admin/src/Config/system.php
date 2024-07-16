@@ -53,7 +53,7 @@ return [
                 'name'          => 'compare_option',
                 'title'         => 'admin::app.configuration.index.general.content.settings.compare-options',
                 'type'          => 'boolean',
-                'default'       => '1',
+                'default'       => '0',
                 'locale_based'  => true,
                 'channel_based' => true,
             ], [

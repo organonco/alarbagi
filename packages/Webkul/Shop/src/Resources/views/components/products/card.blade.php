@@ -52,13 +52,6 @@
                             </span>
                         @endif
 
-                        @if (core()->getConfigData('general.content.shop.compare_option'))
-                            <span
-                                class="icon-compare flex justify-center items-center w-[30px] h-[30px] absolute top-[60px] right-[20px] bg-white rounded-md cursor-pointer text-[25px]"
-                                @click="addToCompare(product.id)"
-                            >
-                            </span>
-                        @endif
 
                         <button
                             class="absolute bottom-[15px] left-[50%] -translate-x-[50%] translate-y-[54px] group-hover:translate-y-0 transition-all duration-300 sn-button-secondary phone-hidden"
