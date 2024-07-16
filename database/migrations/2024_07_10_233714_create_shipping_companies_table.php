@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->foreignId('area_id')->constrained();
+            $table->string('remember_token');
             $table->timestamps();
         });
     }

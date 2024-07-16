@@ -16,6 +16,11 @@ return [
             'driver'   => 'session',
             'provider' => 'admins',
         ],
+
+        'shipping' => [
+            'driver'   => 'session',
+            'provider' => 'shipping',
+        ],
     ],
 
     'providers' => [
@@ -27,6 +32,11 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model'  => \Organon\Marketplace\Models\Admin::class,
+        ],
+
+        'shipping' => [
+            'driver' => 'eloquent',
+            'model'  => \Organon\Delivery\Models\ShippingCompany::class,
         ],
     ],
 

@@ -1,5 +1,8 @@
 <?php
 
+use Organon\Delivery\Http\Controllers\Shipping\DashboardController;
+use Organon\Delivery\Http\Controllers\Shipping\SessionController;
+
 Route::group([
     'prefix'        => config('app.admin_url') . '/delivery',
     'middleware'    => ['web', 'admin']
@@ -19,5 +22,19 @@ Route::group([
         Route::post('create', 'Organon\Delivery\Http\Controllers\Admin\ShippingCompanyController@store')->name('admin.delivery.shipping-company.store');
         Route::get('/{id}', 'Organon\Delivery\Http\Controllers\Admin\ShippingCompanyController@edit')->name('admin.delivery.shipping-company.edit');
         Route::post('/{id}', 'Organon\Delivery\Http\Controllers\Admin\ShippingCompanyController@update')->name('admin.delivery.shipping-company.update');
+    });
+});
+
+
+Route::group([
+    'prefix'        => config('app.admin_url') . '/shipping',
+    'as' => 'shipping.',
+    'middleware'    => ['web'],
+], function () {
+    Route::get('login', [SessionController::class, 'create'])->name('session.create');
+    Route::post('login', [SessionController::class, 'store'])->name('session.store');
+
+    Route::group(['prefix' => '', 'middleware' => ['admin:shipping']], function () {
+        Route::get('/', DashboardController::class)->name('dashboard');
     });
 });

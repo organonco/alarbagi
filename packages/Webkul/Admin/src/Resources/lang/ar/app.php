@@ -8,6 +8,7 @@ return [
             'password'             => 'كلمة المرور',
             'submit-btn'           => 'تسجيل الدخول',
             'title'                => 'تسجيل الدخول',
+            'username' => "اسم المستخدم"
         ],
 
         'forget-password' => [
