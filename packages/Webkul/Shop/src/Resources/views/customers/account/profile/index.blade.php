@@ -14,10 +14,7 @@
             @lang('shop::app.customers.account.profile.title')
         </h2>
 
-        <a
-            href="{{ route('shop.customers.account.profile.edit') }}"
-            class="sn-button-primary"
-        >
+        <a href="{{ route('shop.customers.account.profile.edit') }}" class="sn-button-primary">
             @lang('shop::app.customers.account.profile.edit')
         </a>
     </div>
@@ -50,7 +47,7 @@
             </p>
 
             <p class="text-[14px] text-[#6E6E6E] font-medium">
-                {{ $customer->gender ?? '-'}}
+                {{ $customer->gender ?? '-' }}
             </p>
         </div>
 
@@ -74,14 +71,19 @@
             </p>
         </div>
 
+        <form method="POST" action={{route('shop.customer.session.destroy')}}>
+            @csrf
+            @method('delete')
+            <button class="sn-button-primary-alt text-center" type="submit">
+                @lang('shop::app.customers.account.profile.logout')
+            </button>
+        </form>
         {!! view_render_event('bagisto.shop.customers.account.profile.delete.before') !!}
 
-        {{-- Profile Delete modal --}}
-        <x-shop::modal>
+
+        {{-- <x-shop::modal>
             <x-slot:toggle>
-                <div
-                    class="sn-button-primary-alt text-center"
-                >
+                <div class="sn-button-primary-alt text-center">
                     @lang('shop::app.customers.account.profile.delete-profile')
                 </div>
             </x-slot:toggle>
@@ -93,37 +95,25 @@
             </x-slot:header>
 
             <x-slot:content>
-                <x-shop::form
-                    action="{{ route('shop.customers.account.profile.destroy') }}"
-                >
+                <x-shop::form action="{{ route('shop.customers.account.profile.destroy') }}">
                     <x-shop::form.control-group>
                         <div class="p-[30px] bg-white">
-                            <x-shop::form.control-group.control
-                                type="password"
-                                name="password"
-                                class="py-[20px] px-[25px]"
-                                rules="required"
-                            />
+                            <x-shop::form.control-group.control type="password" name="password"
+                                class="py-[20px] px-[25px]" rules="required" />
 
-                            <x-shop::form.control-group.error
-                                class=" text-left"
-                                control-name="password"
-                            >
+                            <x-shop::form.control-group.error class=" text-left" control-name="password">
                             </x-shop::form.control-group.error>
                         </div>
                     </x-shop::form.control-group>
 
                     <div class="p-[30px] bg-white mt-[20px]">
-                        <button
-                            type="submit"
-                            class="sn-button-primary-alt"
-                        >
+                        <button type="submit" class="sn-button-primary-alt">
                             @lang('shop::app.customers.account.profile.delete')
                         </button>
                     </div>
                 </x-shop::form>
             </x-slot:content>
-        </x-shop::modal>
+        </x-shop::modal> --}}
 
         {!! view_render_event('bagisto.shop.customers.account.profile.delete.after') !!}
 
