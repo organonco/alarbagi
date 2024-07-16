@@ -2,6 +2,7 @@
 
 use Organon\Delivery\Http\Controllers\Shipping\DashboardController;
 use Organon\Delivery\Http\Controllers\Shipping\SessionController;
+use Organon\Delivery\Http\Controllers\Shipping\SettingsController;
 
 Route::group([
     'prefix'        => config('app.admin_url') . '/delivery',
@@ -33,8 +34,11 @@ Route::group([
 ], function () {
     Route::get('login', [SessionController::class, 'create'])->name('session.create');
     Route::post('login', [SessionController::class, 'store'])->name('session.store');
-
+    Route::post('logout', [SessionController::class, 'destroy'])->name('session.destroy');
+    
     Route::group(['prefix' => '', 'middleware' => ['admin:shipping']], function () {
         Route::get('/', DashboardController::class)->name('dashboard');
+        Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+        Route::post('/settings', [SettingsController::class, 'store'])->name('settings.store');
     });
 });

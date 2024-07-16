@@ -13,7 +13,9 @@ class ShippingCompany extends Authenticatable implements ShippingCompanyContract
         'info',
         'username',
         'password',
-        'area_id'
+        'area_id',
+        'per_order_price',
+        'per_product_price'
     ];
 
     public function scopeIsActive($query)

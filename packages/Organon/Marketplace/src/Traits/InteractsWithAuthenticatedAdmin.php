@@ -2,7 +2,7 @@
 
 namespace Organon\Marketplace\Traits;
 
-
+use Organon\Delivery\Models\ShippingCompany;
 use Organon\Marketplace\Models\Admin;
 use Organon\Marketplace\Models\Seller;
 
@@ -23,4 +23,10 @@ trait InteractsWithAuthenticatedAdmin
     {
         return !is_null($this->getAuthenticatedSeller());
     }
+
+    private function getAuthenticatedShippingCompany() : ?ShippingCompany
+    {
+        return auth('shipping')->user();
+    }
+    
 }

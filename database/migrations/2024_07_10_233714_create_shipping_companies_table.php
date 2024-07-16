@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('password');
             $table->foreignId('area_id')->constrained();
+            $table->integer('per_order_price')->default(0);
+            $table->integer('per_product_price')->default(0);
             $table->string('remember_token');
             $table->timestamps();
         });
