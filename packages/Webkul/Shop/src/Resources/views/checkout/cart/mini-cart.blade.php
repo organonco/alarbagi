@@ -142,12 +142,12 @@
                 <div v-if="cart?.items?.length">
                     <div class="flex justify-between items-center mt-[60px] mb-[30px] px-[25px] pb-[8px] border-b-[1px] border-[#E9E9E9]">
                         <p class="text-[14px] font-medium text-[#6E6E6E]">
-                            @lang('shop::app.checkout.cart.mini-cart.grand-total')
+                            @lang('shop::app.checkout.cart.mini-cart.total')
                         </p>
 
                         <p
                             class="text-[30px] font-semibold sn-color-primary"
-                            v-text="cart.formatted_grand_total"
+                            v-text="cart.formatted_sub_total"
                         >
                         </p>
                     </div>

@@ -47,8 +47,6 @@ class ShippingCompany extends AbstractShipping
         $cart = Cart::getCart();
         $shippingAddress = $cart->shipping_address;
 
-        //delivery-not-available-to-this-area
-
         if(!$cart->hasDeliverableItems())
             return $this->generateUnavailableObject('no-deliverable-items');
         if(is_null($shippingAddress->area_id) || is_null($shippingAddress->address_details))
@@ -67,7 +65,13 @@ class ShippingCompany extends AbstractShipping
 
     private function getShippingPrice() : int
     {
-        return 123;
+        $cart = Cart::getCart();
+        $company = $cart->shipping_address->area->shippingCompany;
+        $price = $company['per_order_price'];
+        foreach($cart->items as $item){
+            $price += $item->quantity * $company['per_product_price'];
+        }
+        return $price;
     }
 
     /**

@@ -673,6 +673,7 @@ return [
                 'see-details' => 'رؤية التفاصيل',
                 'shopping-cart' => 'عربة التسوق',
                 'grand-total' => 'المجموع الكلي',
+                'total' => 'المجموع',
                 'view-cart' => 'عرض عربة التسوق',
             ],
 
