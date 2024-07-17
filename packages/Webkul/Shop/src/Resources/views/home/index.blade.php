@@ -57,7 +57,7 @@
     {{-- END TOP BANNER --}}
 
     {{-- AREAS --}}
-    <div class="sn-background-light-green flex justify-center gap-4 px-24 py-36 flex-wrap">
+    <div class="sn-background-grey flex justify-center gap-4 px-24 py-36 flex-wrap">
 
         @foreach($areas as $area)
             <div class="w-72 py-8">
