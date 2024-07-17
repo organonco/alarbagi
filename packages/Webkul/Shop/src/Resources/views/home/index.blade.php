@@ -67,24 +67,7 @@
                 </div>
             </div>
         @endforeach
-
-        @foreach($areas as $area)
-            <div class="w-72 py-8">
-                <img src="{{$area->image_url}}" class="w-72 h-72 rounded-lg"> 
-                <div class="sn-color-primary sn-heading-3 pt-6 text-center">
-                    {{$area->name}}
-                </div>
-            </div>
-        @endforeach
-
-        @foreach($areas as $area)
-            <div class="w-72 py-8">
-                <img src="{{$area->image_url}}" class="w-72 h-72 rounded-lg"> 
-                <div class="sn-color-primary sn-heading-3 pt-6 text-center">
-                    {{$area->name}}
-                </div>
-            </div>
-        @endforeach
+        
     </div>
     {{-- END AREAS --}}
 </x-shop::layouts>
