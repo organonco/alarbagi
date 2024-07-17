@@ -71,14 +71,14 @@
             {!! view_render_event('bagisto.shop.layout.content.after') !!}
 
             {{-- Page Features Blade Component --}}
-            @if ($hasFeature)
+            {{-- @if ($hasFeature)
                 <x-shop::layouts.features />
-            @endif
+            @endif --}}
 
             {{-- Page Footer Blade Component --}}
-            @if ($hasFooter)
+            {{-- @if ($hasFooter)
                 <x-shop::layouts.footer />
-            @endif
+            @endif --}}
         </div>
 
         {!! view_render_event('bagisto.shop.layout.body.after') !!}
