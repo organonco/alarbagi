@@ -149,4 +149,9 @@ class Seller extends Model implements SellerContract, HasMedia
     {
         return $this->area->name;
     }
+
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', SellerStatusEnum::ACTIVE->value);
+    }
 }
