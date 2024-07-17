@@ -58,16 +58,17 @@
 
     {{-- AREAS --}}
     <div class="sn-background-grey flex justify-center gap-4 px-24 py-36 flex-wrap">
-
         @foreach($areas as $area)
+        <a href="{{route('area.view', $area->id)}}">
             <div class="w-72 py-8">
                 <img src="{{$area->image_url}}" class="w-72 h-72 rounded-lg"> 
-                <div class="sn-color-primary sn-heading-2 pt-6 text-center">
+                <div class="sn-color-primary sn-heading-2 pt-4 text-center">
                     {{$area->name}}
                 </div>
             </div>
+        </a>
         @endforeach
-        
     </div>
     {{-- END AREAS --}}
+
 </x-shop::layouts>

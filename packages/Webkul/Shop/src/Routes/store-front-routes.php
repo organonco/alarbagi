@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Organon\Delivery\Http\Controllers\Shop\AreaController;
 use Webkul\Shop\Http\Controllers\CMS\PagePresenterController;
 use Webkul\Shop\Http\Controllers\CompareController;
 use Webkul\Shop\Http\Controllers\HomeController;
@@ -68,4 +69,6 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
 
         Route::get('products', 'index')->name('shop.products.index');
     });
+
+    Route::get('area/{id}', [AreaController::class, 'view'])->name('area.view');
 });
