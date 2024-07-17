@@ -62,7 +62,7 @@
         @foreach($areas as $area)
             <div class="w-72 py-8">
                 <img src="{{$area->image_url}}" class="w-72 h-72 rounded-lg"> 
-                <div class="sn-color-primary sn-heading-3 pt-6 text-center">
+                <div class="sn-color-primary sn-heading-2 pt-6 text-center">
                     {{$area->name}}
                 </div>
             </div>
