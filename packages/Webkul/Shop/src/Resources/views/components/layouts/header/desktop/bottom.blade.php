@@ -1,5 +1,5 @@
 <div
-    class="w-full flex justify-between px-[60px] py-[10px] border border-t-0 border-b-[1px] border-l-0 border-r-0 max-1180:px-[30px] sn-background-primary">
+    class="w-full flex justify-between px-[60px] py-[10px] border border-t-0 border-b-[0px] border-l-0 border-r-0 max-1180:px-[30px] sn-background-primary">
     <v-desktop-category>
         <div class="flex gap-[20px] items-center">
             <span class="shimmer w-[80px] h-[24px] rounded-[4px]"></span>
