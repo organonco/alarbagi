@@ -1149,8 +1149,8 @@ return [
 
                 'datagrid' => [
                     'id'             => 'رقم الزبون',
-                    'order'          => ':order طلب(ات)',
-                    'address'        => ':address  عنوان(ات)',
+                    'order'          => ':order طلبات',
+                    'address'        => ':address  عناوين',
                     'name'           => 'اسم الزبون',
                     'email'          => 'البريد الإلكتروني',
                     'group'          => 'المجموعة',

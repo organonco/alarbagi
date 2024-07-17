@@ -47,6 +47,24 @@
                         <x-admin::form.control-group.error control-name="is_active">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
+                    <x-admin::form.control-group class="mb-[10px]">
+                        <x-admin::form.control-group.label>
+                            @lang('marketplace::app.admin.seller_categories.create.attributes.image')
+                        </x-admin::form.control-group.label>
+                        <x-admin::media.images  type="image" name="image" >
+                        </x-admin::media.images >
+                        <x-admin::form.control-group.error control-name="image">
+                        </x-admin::form.control-group.error>
+                    </x-admin::form.control-group>
+                    <x-admin::form.control-group class="mb-[10px]">
+                        <x-admin::form.control-group.label>
+                            @lang('marketplace::app.admin.seller_categories.create.attributes.banner')
+                        </x-admin::form.control-group.label>
+                        <x-admin::media.images  type="image" name="banner" >
+                        </x-admin::media.images >
+                        <x-admin::form.control-group.error control-name="banner">
+                        </x-admin::form.control-group.error>
+                    </x-admin::form.control-group>
                 </div>
             </div>
         </div>

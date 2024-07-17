@@ -14,10 +14,12 @@ trait HasBanner
         $this->clearMediaCollection(self::BANNER_MEDIA_COLLECTION);
     }
 
-    public function addBanner($key)
+    public function addBanner($data)
     {
-        $this->clearBanner();
-        $this->addMediaFromRequest($key)->toMediaCollection(self::BANNER_MEDIA_COLLECTION);
+        if (isset($data['banner'])) {
+            $this->clearBanner();
+            $this->addMediaFromRequest('banner')->toMediaCollection(self::BANNER_MEDIA_COLLECTION);
+        }
     }
 
     public function getBannerUrl()
@@ -28,5 +30,14 @@ trait HasBanner
     public function getBannerUrlAttribute()
     {
         return $this->getBannerUrl();
+    }
+
+    public function updateBanner($data)
+    {
+        if (isset($data['banner'])) {
+            if (!isset($data['banner']['image']))
+                $this->addBanner($data);
+        } else
+            $this->clearBanner();
     }
 }

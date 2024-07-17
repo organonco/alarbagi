@@ -45,6 +45,15 @@
 
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label>
+                            @lang('marketplace::app.admin.seller_categories.create.attributes.image')
+                        </x-admin::form.control-group.label>
+                        <x-admin::media.images  type="image" name="image"  :uploaded-images="$model->image_url ? [['id' => 'image', 'url' => $model->image_url]] : []" accepted-types="image/*">
+                        </x-admin::media.images >
+                        <x-admin::form.control-group.error control-name="image">
+                        </x-admin::form.control-group.error>
+                    </x-admin::form.control-group>
+                    <x-admin::form.control-group class="mb-[10px]">
+                        <x-admin::form.control-group.label>
                             @lang('marketplace::app.admin.seller_categories.create.attributes.banner')
                         </x-admin::form.control-group.label>
                         <x-admin::media.images  type="image" name="banner"  :uploaded-images="$model->banner_url ? [['id' => 'image', 'url' => $model->banner_url]] : []" accepted-types="image/*">

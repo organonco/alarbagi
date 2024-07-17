@@ -52,9 +52,10 @@ class AreaController extends Controller
         $data = request()->all();
         $data['is_active'] = (bool)request()->input('is_active');
         
-
-        Area::create($data);
-
+        /** @var Area */
+        $area = Area::create($data);
+        $area->addBanner($data);
+        $area->addImage($data);
         return redirect()->route('admin.delivery.area.index');
     }
 
@@ -66,7 +67,7 @@ class AreaController extends Controller
 
     public function update($id)
     {
-       
+       /** @var Area */
         $area = Area::findOrFail($id);
 
         request()->validate([
@@ -79,7 +80,8 @@ class AreaController extends Controller
         $data['is_active'] = (bool)request()->input('is_active');
 
         $area->update($data);
-
+        $area->updateBanner($data);
+        $area->updateImage($data);
         return redirect()->route('admin.delivery.area.index');
     }
 }

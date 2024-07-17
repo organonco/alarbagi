@@ -21,18 +21,16 @@ class SellerCategoryRepository extends Repository
     {
         /** @var SellerCategory */
         $model = SellerCategory::create($data);
-        if(isset($data['banner']))
-            $model->addBanner('banner');
+        $model->addBanner($data);
+        $model->addImage($data);
         return $model;
     }
 
     public function updateSellerCategory(SellerCategory $model, array $data)
     {
         $model->update($data);
-        if(isset($data['banner'])){
-            if(!isset($data['banner']['image']))
-                $model->addBanner('banner');
-        }else
-            $model->clearBanner();
+        $model->updateBanner($data);
+        $model->updateImage($data);
+        return $model;
     }
 }

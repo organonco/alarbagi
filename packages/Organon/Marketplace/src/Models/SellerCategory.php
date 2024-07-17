@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Organon\Marketplace\Contracts\SellerCategory as SellerCategoryContract;
 use Organon\Marketplace\Traits\HasBanner;
+use Organon\Marketplace\Traits\HasImage;
 use Spatie\MediaLibrary\HasMedia;
 
 class SellerCategory extends Model implements SellerCategoryContract, HasMedia
 {
-    use HasBanner;
+    use HasBanner, HasImage;
 
     protected $fillable = ['name', 'parent_id'];
     

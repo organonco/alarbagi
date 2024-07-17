@@ -4,9 +4,14 @@ namespace Organon\Delivery\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Organon\Delivery\Contracts\Area as AreaContract;
+use Organon\Marketplace\Traits\HasBanner;
+use Organon\Marketplace\Traits\HasImage;
+use Spatie\MediaLibrary\HasMedia;
 
-class Area extends Model implements AreaContract
+class Area extends Model implements AreaContract, HasMedia
 {
+    use HasBanner, HasImage;
+
     protected $fillable = [
         'name',
         'is_active',
