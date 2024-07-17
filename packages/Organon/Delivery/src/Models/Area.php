@@ -22,6 +22,10 @@ class Area extends Model implements AreaContract, HasMedia
         'is_shippable'
     ];
 
+    public $hidden = [
+        'created_at', 'updated_at', 'is_active'
+    ];
+
     public function scopeIsActive($query)
     {
         return $query->where('is_active', true);

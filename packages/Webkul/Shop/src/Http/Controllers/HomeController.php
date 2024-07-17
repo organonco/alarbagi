@@ -2,6 +2,7 @@
 
 namespace Webkul\Shop\Http\Controllers;
 
+use Organon\Delivery\Models\Area;
 use Webkul\Category\Repositories\CategoryRepository;
 use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 
@@ -35,7 +36,8 @@ class HomeController extends Controller
         ]);
 
         $categories = $this->categoryRepository->where('parent_id', '1')->get();
-        return view('shop::home.index', compact('customizations'))->with(['categories' => $categories]);
+        $areas = Area::query()->isActive()->get();
+        return view('shop::home.index', compact('customizations'))->with(['categories' => $categories, 'areas' => $areas]);
     }
 
     /**
