@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Organon\Delivery\Models\Area;
+use Organon\Marketplace\Models\SellerCategory;
 
 class AreaController extends Controller
 {
@@ -16,6 +17,7 @@ class AreaController extends Controller
     public function view(Request $request, $areaId)
     {
         $area = Area::query()->isActive()->findOrFail($areaId);
-        return view('shop::areas.view')->with(['area' => $area]);
+        $categories = SellerCategory::query()->main()->get();
+        return view('shop::areas.view')->with(compact('area', 'categories'));
     }
 }

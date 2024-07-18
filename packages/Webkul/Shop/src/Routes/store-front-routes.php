@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Organon\Delivery\Http\Controllers\Shop\AreaController;
+use Organon\Delivery\Http\Controllers\Shop\SellerCategoryController;
 use Webkul\Shop\Http\Controllers\CMS\PagePresenterController;
 use Webkul\Shop\Http\Controllers\CompareController;
 use Webkul\Shop\Http\Controllers\HomeController;
@@ -71,4 +72,5 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
     });
 
     Route::get('area/{id}', [AreaController::class, 'view'])->name('area.view');
+    Route::get('category/{areaId}/{sellerCategoryId}', [SellerCategoryController::class, 'view'])->name('seller-category.view');
 });

@@ -15,14 +15,14 @@ class SellerCategory extends Model implements SellerCategoryContract, HasMedia
 
     protected $fillable = ['name', 'parent_id'];
     
-    public function hasParent() : bool
+    public function isParent() : bool
     {
         return is_null($this->parent_id);
     }
 
     public function parent() 
     {
-        return $this->belongsTo(self::class);
+        return $this->belongsTo(self::class, 'parent_id');
     }
 
     public function getParent() : ?self
@@ -32,11 +32,21 @@ class SellerCategory extends Model implements SellerCategoryContract, HasMedia
 
     public function children()
     {
-        return $this->hasMany(self::class);
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     public function getChildren() : Collection
     {
         return $this->children;
+    }
+
+    public function scopeMain($query)
+    {
+        return $query->whereNull('parent_id');
+    }
+
+    public function scopeChild($query, $id)
+    {
+        return $query->where('parent_id', $id);
     }
 }

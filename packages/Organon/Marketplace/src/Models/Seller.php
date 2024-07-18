@@ -37,6 +37,7 @@ class Seller extends Model implements SellerContract, HasMedia
         'phone',
         'landline',
         'area_id',
+        'seller_category_id',
         'token'
     ];
 
@@ -153,5 +154,20 @@ class Seller extends Model implements SellerContract, HasMedia
     public function scopeIsActive($query)
     {
         return $query->where('status', SellerStatusEnum::ACTIVE->value);
+    }
+
+    public function sellerCategory()
+    {
+        return $this->belongsTo(SellerCategory::class);
+    }
+
+    public function scopeSellerCategory($query, $id)
+    {
+        return $query->where('seller_category_id', $id);
+    }
+
+    public function scopeArea($query, $id)
+    {
+        return $query->where('area_id', $id);
     }
 }

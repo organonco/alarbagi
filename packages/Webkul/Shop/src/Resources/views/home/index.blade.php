@@ -62,7 +62,7 @@
     {{-- END TOP BANNER --}}
 
     {{-- AREAS --}}
-    <div class="sn-background-grey flex justify-center gap-4 px-24 py-36 flex-wrap max-lg:py-12 max-lg:px-12 max-lg:gap-8">
+    <div class="sn-background-grey flex justify-center gap-4 px-24 py-36 flex-wrap max-lg:py-12 max-lg:px-12 max-lg:gap-8 ">
         @foreach ($areas as $area)
             <a
                 href="{{ route('area.view', $area->id) }}" class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2">
