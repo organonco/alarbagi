@@ -22,7 +22,9 @@ return [
             'shop_bio' => 'وصف المتجر',
             'address' => 'عنوان المتجر',
             'slug' => 'اختصار الرابط (slug)',
-            'area_id' => 'المنطقة'
+            'area_id' => 'المنطقة',
+            'parent_category_select' => 'التصنيف الأساسي',
+            'seller_category_id' => 'التصنيف الفرعي'
         ],
         'flash_messages' => [
             'pending_approval' => 'حسابك الآن قيد التدقيق من قبل مدراء الموقع',

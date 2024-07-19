@@ -44,6 +44,34 @@
 
                         <x-shop::form.control-group class="mb-4">
                             <x-shop::form.control-group.label class="required">
+                                @lang('marketplace::app.register.labels.parent_category_select')
+                            </x-shop::form.control-group.label>
+                            <x-shop::form.control-group.control type="select" name="parent_category_select"
+                                onchange="selectedCategory()" id="parent_category_select" class="rounded-lg "
+                                style="padding: 20px 40px" :value="old('parent_category_select')" rules="required" :label="trans('marketplace::app.register.labels.parent_category_select')">
+                                @foreach ($sellerCategories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </x-shop::form.control-group.control>
+                            <x-shop::form.control-group.error control-name="parent_category_select">
+                            </x-shop::form.control-group.error>
+                        </x-shop::form.control-group>
+
+                        <x-shop::form.control-group class="mb-4">
+                            <x-shop::form.control-group.label class="required">
+                                @lang('marketplace::app.register.labels.seller_category_id')
+                            </x-shop::form.control-group.label>
+                            <select name="seller_category_id" id="child_category_select"
+                                class="rounded-lg custom-select block w-full py-2 px-8 shadow bg-white border border-[#E9E9E9] text-[16px] transition-all hover:border-gray-400 focus:border-gray-400'"
+                                style="padding: 20px 40px">
+                            </select>
+
+                            <x-shop::form.control-group.error control-name="seller_category_id">
+                            </x-shop::form.control-group.error>
+                        </x-shop::form.control-group>
+
+                        <x-shop::form.control-group class="mb-4">
+                            <x-shop::form.control-group.label class="required">
                                 @lang('shop::app.customers.signup-form.email')
                             </x-shop::form.control-group.label>
 
@@ -89,10 +117,8 @@
                                 @lang('marketplace::app.register.labels.area_id')
                             </x-shop::form.control-group.label>
 
-                            <x-shop::form.control-group.control type="select" name="area_id"
-                                class="rounded-lg" style="padding: 20px 40px" :value="old('area_id')" rules="required"
-                                :label="trans('marketplace::app.register.labels.area_id')"
-                                >
+                            <x-shop::form.control-group.control type="select" name="area_id" class="rounded-lg"
+                                style="padding: 20px 40px" :value="old('area_id')" rules="required" :label="trans('marketplace::app.register.labels.area_id')">
                                 @foreach ($areas as $id => $name)
                                     <option value="{{ $id }}">{{ $name }}</option>
                                 @endforeach
@@ -155,6 +181,32 @@
     </div>
 
     @push('scripts')
-        {!! Captcha::renderJS() !!}
+        <script>
+            let categories = {!! json_encode($sellerCategories->toArray(), JSON_HEX_TAG) !!}
+
+            function selectedCategory() {
+
+                var parent_category_select = document.getElementById('parent_category_select')
+                var child_category_select = document.getElementById('child_category_select')
+
+                for (var count = child_category_select.options.length; count > 0; count--)
+                    child_category_select.options.remove(count - 1);
+
+                for (var i = 0; i < categories.length; i++) {
+                    if (categories[i].id != parent_category_select.value)
+                        continue
+                    for (var j = 0; j < categories[i].children.length; j++) {
+                        var option = document.createElement("option")
+                        option.text = categories[i].children[j].name;
+                        option.value = categories[i].children[j].id;
+                        child_category_select.options.add(option, j);
+                    }
+                }
+
+
+
+
+            }
+        </script>
     @endpush
 </x-shop::layouts>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Cookie;
 use Organon\Delivery\Models\Area;
+use Organon\Marketplace\Models\SellerCategory;
 use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Customer\Repositories\CustomerGroupRepository;
@@ -48,7 +49,9 @@ class RegistrationController extends Controller
      */
     public function indexSeller()
     {
-        return view('shop::customers.sign-up-seller', ['areas' => Area::isActive()->pluck('name', 'id')]);
+        $areas = Area::query()->isActive()->pluck('name', 'id');
+        $sellerCategories = SellerCategory::query()->main()->with('children')->get();
+        return view('shop::customers.sign-up-seller', compact('areas', 'sellerCategories'));
     }
 
     /**

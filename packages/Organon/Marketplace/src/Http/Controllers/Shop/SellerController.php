@@ -30,6 +30,7 @@ class SellerController extends Controller
             'landline' => ['required'],
             'address' => ['required'],
             'area_id' => ['required', 'exists:areas,id'],
+            'seller_category_id' => ['required', 'exists:seller_categories,id'],
             'email' => ['required', 'email', 'unique:admins'],
             'password' => ['required', 'min:8'],
         ]);
@@ -40,6 +41,7 @@ class SellerController extends Controller
             'landline',
             'address',
             'area_id',
+            'seller_category_id'
         ]);
 
         $sellerData['token'] = md5(uniqid(rand(), true));
