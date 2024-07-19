@@ -1,5 +1,5 @@
 <div
-    class="w-full py-[11px] px-4 border border-t-0 border-b-[1px] border-l-0 border-r-0 sn-background-grey grid-cols-3 grid">
+    class="w-full py-[11px] px-12 border border-t-0 border-b-[1px] border-l-0 border-r-0 sn-background-grey grid-cols-3 grid max-xl:px-4">
 
     {{-- Search Bar Container --}}
     <div class="flex items-center ">
