@@ -20,12 +20,6 @@
             </div>
         @endif
 
-{{--        <div class="panel-side grid grid-cols-[1fr] max-w-[400px] min-w-[342px] max-h-[1320px] overflow-y-auto overflow-x-hidden journal-scroll pr-[26px] max-xl:min-w-[270px] mt-[30px]">--}}
-{{--            --}}
-{{--        </div>--}}
-
-
-
         <v-category>
             <x-shop::shimmer.categories.view/>
         </v-category>
@@ -40,9 +34,7 @@
 
                     @if(($seller->logo_url))
                     <div style="display: flex; justify-content: center">
-                        <div class="profile-img-wrapper">
-                            <img src="{{$seller->logo_url}}" class="profile-img"/>
-                        </div>
+                        <img src="{{$seller->logo_url}}" class="rounded-full w-72 h-72"/>
                     </div>
                     @endif
                     <h2 class="text-[26px] font-bold mt-[30px] text-center mb-[30px] sn-color-light-main">
@@ -59,17 +51,12 @@
 
 
                     <div class="flex gap-[40px] items-start md:mt-[40px] max-lg:gap-[20px]">
-                        <!-- Product Listing Filters -->
-{{--                                                                    @include('shop::categories.filters')--}}
 
 
 
                         <!-- Product Listing Container -->
                         <div class="flex-1">
-
-{{--                            <div class="hidden">--}}
-                                @include('shop::categories.toolbar')
-{{--                            </div>--}}
+                            @include('shop::categories.toolbar')
 
                             <!-- Product List Card Container -->
                             <div
@@ -278,21 +265,4 @@
                 });
             </script>
         @endPushOnce
-
-        @push('styles')
-            <style>
-                .profile-img-wrapper {
-                    overflow: hidden;
-                    display: inline-block;
-                    border: 1px solid #EFEFEF;
-                    border-radius: 50%;
-                }
-
-                .profile-img {
-                    width: 200px;
-                    height: auto;
-                    margin: 40px;
-                }
-            </style>
-    @endpush
 </x-shop::layouts>

@@ -37,7 +37,6 @@ class SellerAccountController extends Controller
         $seller = $this->getAuthenticatedSeller();
         $request->validate([
             'name' => ['required', 'max:255'],
-            'slug' => ['required', 'alpha_dash', "unique:sellers,slug,$seller->id"],
             'description' => ['max:1000'],
             'address' => ['max: 1000'],
             'logo' => ['image'],

@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+use Organon\Delivery\Models\Area;
 use Organon\Marketplace\Models\Seller;
 use Organon\Marketplace\Models\SellerCategory;
 
@@ -18,13 +19,15 @@ class SellerCategoryController extends Controller
     {
         /** @var SellerCategory */
         $sellerCategory = SellerCategory::query()->findOrFail($categoryId);
+        $area = Area::query()->isActive()->findOrFail($areaId);
+
         if($sellerCategory->isParent()){
             $children = $sellerCategory->children()->get();
-            return view('shop::sellerCategories.view')->with(compact('sellerCategory', 'children', 'areaId'));
+            return view('shop::sellerCategories.view')->with(compact('sellerCategory', 'children', 'area'));
         }
         else{
-            $sellers = Seller::query()->isActive()->area($areaId)->sellerCategory($categoryId);
-            return view('shop::sellerCategories.viewChild')->with(compact('sellerCategory', 'sellers'));
+            $sellers = Seller::query()->isActive()->area($area->id)->sellerCategory($categoryId)->get();
+            return view('shop::sellerCategories.viewChild')->with(compact('sellerCategory', 'sellers', 'area'));
         }
     }
 }
