@@ -70,7 +70,7 @@ class Seller extends Model implements SellerContract, HasMedia
 
     public function getLogoUrlAttribute()
     {
-        return $this->getFirstMediaUrl(self::LOGO_MEDIA_COLLECTION);
+        return $this->getFirstMediaUrl(self::LOGO_MEDIA_COLLECTION) == "" ? asset('assets/images/icons/placeholder.png') : $this->getFirstMediaUrl(self::LOGO_MEDIA_COLLECTION);
     }
 
     public function getCoverUrlAttribute()

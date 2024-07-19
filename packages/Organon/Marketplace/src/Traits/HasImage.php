@@ -24,7 +24,7 @@ trait HasImage
 
     public function getImageUrl()
     {
-        return $this->getFirstMediaUrl(self::IMAGE_MEDIA_COLLECTION);
+        return $this->getFirstMediaUrl(self::IMAGE_MEDIA_COLLECTION) == "" ? asset('assets/images/icons/placeholder.png') : $this->getFirstMediaUrl(self::IMAGE_MEDIA_COLLECTION);
     }
 
     public function getImageUrlAttribute()
