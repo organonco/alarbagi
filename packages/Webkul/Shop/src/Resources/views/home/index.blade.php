@@ -78,10 +78,11 @@
 
 
     {{-- FOOTER --}}
-    <div class="sn-background-primary px-28 py-16 grid-cols-8 grid">
-        <div class="col-span-6">
+    <div class="sn-background-primary px-28 py-16 grid-cols-5 grid max-lg:flex max-lg:flex-col max-lg:gap-12">
+        <div class="col-span-3">
             
         </div>
+
         <div class="flex flex-col gap-2">
             <div class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2">
                 الصفحات الثانوية
