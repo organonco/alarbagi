@@ -113,17 +113,27 @@
                         <input id="tab2-2" name="tabs-two" type="radio">
                         <div>
                             <div class="flex gap-[40px] items-start md:mt-[40px] max-lg:gap-[20px]">
+                                @if($sellers->count() > 0)
                                 <div class="flex gap-6 px-4 py-18 flex-wrap justify-center max-lg:px-6">
-                                    @foreach($sellers as $seller)
-                                        <a href="{{ route('shop.marketplace.show', ['slug' => $seller->slug]) }}"
-                                            class="items-center flex gap-8 sn-background-light-green px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full">
-                                            <img src="{{ $seller->logo_url }}" class="w-20 h-20 rounded-full">
-                                            <div class="sn-color-primary text-center font-black text-2xl w-full max-lg:text-right max-lg:text-xl">
-                                                {{ $seller->name }}
-                                            </div>
-                                        </a>
-                                    @endforeach
+                                        @foreach($sellers as $seller)
+                                            <a href="{{ route('shop.marketplace.show', ['slug' => $seller->slug]) }}"
+                                                class="items-center flex gap-8 sn-background-light-green px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full">
+                                                <img src="{{ $seller->logo_url }}" class="w-20 h-20 rounded-full">
+                                                <div class="sn-color-primary text-center font-black text-2xl w-full max-lg:text-right max-lg:text-xl">
+                                                    {{ $seller->name }}
+                                                </div>
+                                            </a>
+                                        @endforeach
+                                    @else
+                                    <div class="grid items-center justify-items-center place-content-center w-[100%] m-auto h-[476px] text-center">
+                                        <img src="{{ bagisto_asset('images/thank-you.png') }}"/>
+                                
+                                        <p class="text-[20px]">
+                                            @lang('shop::app.categories.view.empty-sellers')
+                                        </p>
+                                    </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>

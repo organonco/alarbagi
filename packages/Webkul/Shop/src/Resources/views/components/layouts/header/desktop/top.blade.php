@@ -12,7 +12,7 @@
                 <div class="relative w-full">
                     <input type="text" name="query" value="{{ request('query') }}"
                         class="w-full block px-[44px] py-[13px] sn-background-grey sn-border-primary sn-body"
-                        placeholder="@lang('shop::app.components.layouts.header.search-text')" required>
+                        placeholder="@lang('shop::app.components.layouts.header.search-text')" required pattern=".*\S+.*">
                     <div
                         class="icon-search flex items-center  absolute left-[12px] top-[12px] text-[22px] pointer-events-none">
                     </div>
