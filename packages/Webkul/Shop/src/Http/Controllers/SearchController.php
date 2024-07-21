@@ -29,6 +29,10 @@ class SearchController extends Controller
     public function index()
     {
         $results = [];
+        
+        request()->validate([
+            'query' => 'required',
+        ]);
 
         request()->query->add([
             'name'  => request('term'),
