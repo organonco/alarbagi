@@ -1,6 +1,6 @@
 {
   "src/Resources/assets/css/app.css": {
-    "file": "assets/app-932461c6.css",
+    "file": "assets/app-2ab08119.css",
     "isEntry": true,
     "src": "src/Resources/assets/css/app.css"
   },
@@ -69,7 +69,7 @@
     "src": "src/Resources/assets/images/small-product-placeholder.webp"
   },
   "src/Resources/assets/images/thank-you.png": {
-    "file": "assets/thank-you-fd98c97f.png",
+    "file": "assets/thank-you-5d8339a5.png",
     "src": "src/Resources/assets/images/thank-you.png"
   },
   "src/Resources/assets/images/user-placeholder.png": {
