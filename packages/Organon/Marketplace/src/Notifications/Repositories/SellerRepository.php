@@ -34,4 +34,24 @@ class SellerRepository extends Repository
     {
         return Seller::bySlug($slug);
     }
+
+    public function getAll()
+    {
+        $searchTerm = request()->input('query');
+        $query = $this->query();
+        $query = $query->isActive();
+        $query = $query->where(function($query) use ($searchTerm){
+            $query = $query->where('name', 'LIKE', "%$searchTerm%");
+            $query = $query->orWhereHas('area', function($query) use ($searchTerm){
+                return $query->where('name', 'LIKE', "%$searchTerm%");
+            });
+            $query = $query->orWhereHas('sellerCategory', function($query) use ($searchTerm){
+                $query = $query->where('name', 'LIKE', "%$searchTerm%");
+                $query = $query->orWhereHas('parent', function($query) use ($searchTerm){
+                    return $query->where('name', 'LIKE', "%$searchTerm%");
+                });
+            });
+        });
+        return $query->get();
+    }
 }

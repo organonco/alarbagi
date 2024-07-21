@@ -2,6 +2,7 @@
 
 namespace Webkul\Shop\Http\Controllers;
 
+use Organon\Marketplace\Notifications\Repositories\SellerRepository;
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Product\Repositories\SearchRepository;
 
@@ -14,7 +15,8 @@ class SearchController extends Controller
      */
     public function __construct(
         protected ProductRepository $productRepository,
-        protected SearchRepository $searchRepository
+        protected SearchRepository $searchRepository,
+        protected SellerRepository $sellerRepository
     )
     {
     }
@@ -35,8 +37,9 @@ class SearchController extends Controller
         ]);
 
         $results = $this->productRepository->getAll();
+        $resultsSellers = $this->sellerRepository->getAll();
 
-        return view('shop::search.index')->with('results', $results->count() ? $results : null);
+        return view('shop::search.index')->with('results', $results->count() ? $results : null)->with('sellers', $resultsSellers);
     }
 
     /**
