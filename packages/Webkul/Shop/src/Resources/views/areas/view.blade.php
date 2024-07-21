@@ -22,16 +22,38 @@
         </div>
 
         <div class="flex gap-6 px-24 py-36 flex-wrap justify-center max-lg:px-6">
-            @foreach ($categories as $category)
-                <a href="{{ route('seller-category.view', ['areaId' => $area->id, 'sellerCategoryId' => $category->id]) }}"
-                    class="items-center flex gap-8 sn-background-light-green px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full">
-                    <img src="{{ $category->image_url }}" class="w-20 h-20 rounded-full">
-                    <div
-                        class="sn-color-primary text-center font-black text-2xl w-full max-lg:text-right max-lg:text-xl">
-                        {{ $category->name }}
+            @foreach ($categories as $index => $category)
+                <div
+                    class=" items-start flex  flex-col gap-8 sn-background-light-green px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full max-h-fit h-fit">
+                    <div class="items-center flex  gap-8 cursor-pointer w-full" onclick="handleToggle({{ $index }})">
+                        <img src="{{ $category->image_url }}" class="w-20 h-20 rounded-full">
+                        <div
+                            class="sn-color-primary text-right font-black text-2xl w-full max-lg:text-right max-lg:text-xl">
+                            {{ $category->name }}
+                        </div>
                     </div>
-                </a>
+                    <div class="hidden w-full " id="hidden_part_{{ $index }}">
+                        <div class="flex flex-col gap-4 w-full">
+                            @foreach ($category->children as $child)
+                                <div class="sn-heading-3 text-center w-full sn-color-primary">
+                                    {{$child->name}}
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             @endforeach
         </div>
     </div>
+    @push('scripts')
+        <script>
+            function handleToggle(index) {
+                let subCategoriesElement = document.getElementById("hidden_part_" + index)
+                if (subCategoriesElement.classList.contains("hidden"))
+                    subCategoriesElement.classList.remove('hidden')
+                else
+                    subCategoriesElement.classList.add('hidden')
+            }
+        </script>
+    @endpush
 </x-shop::layouts>
