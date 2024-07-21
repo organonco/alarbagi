@@ -243,6 +243,9 @@ Colors:
     border-radius: 4px;
 }
 
+.sn-border-secondary{
+    border-color: #F67541;
+}
 
 /** COLORS **/
 .sn-color-primary{

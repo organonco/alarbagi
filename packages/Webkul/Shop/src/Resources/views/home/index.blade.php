@@ -62,10 +62,11 @@
     {{-- END TOP BANNER --}}
 
     {{-- AREAS --}}
-    <div class="sn-background-grey flex justify-center gap-4 px-24 py-36 flex-wrap max-lg:py-12 max-lg:px-12 max-lg:gap-8 ">
+    <div
+        class="sn-background-grey flex justify-center gap-4 px-24 py-36 flex-wrap max-lg:py-12 max-lg:px-12 max-lg:gap-8">
         @foreach ($areas as $area)
-            <a
-                href="{{ route('area.view', $area->id) }}" class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2">
+            <a href="{{ route('area.view', $area->id) }}"
+                class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2">
                 <img src="{{ $area->image_url }}" class="w-72 h-72 rounded-lg">
                 <div class="sn-color-primary sn-heading-2 text-center">
                     {{ $area->name }}
@@ -74,5 +75,36 @@
         @endforeach
     </div>
     {{-- END AREAS --}}
+
+
+    {{-- FOOTER --}}
+    <div class="sn-background-primary px-28 py-16 grid-cols-8 grid">
+        <div class="col-span-6">
+            
+        </div>
+        <div class="flex flex-col gap-2">
+            <div class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2">
+                الصفحات الثانوية
+            </div>
+            @foreach ($pages as $page)
+                <a href="{{route('shop.cms.page', $page->translations[0]->url_key)}}" class="sn-heading-3 sn-color-white">
+                    {{ $page->translations[0]->page_title }}
+                </a>
+            @endforeach
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <div class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2">
+                تواصل معنا
+            </div>
+            <a href="mailto:admin@alarbaji.com" class="sn-heading-3 sn-color-white">
+                admin@alarbaji.com
+            </a>
+            <a href="tel:+96332132132" class="sn-heading-3 sn-color-white text-right" dir="ltr">
+                +963321342142
+            </a>
+        </div>
+    </div>
+    {{-- END FOOTER --}}
 
 </x-shop::layouts>
