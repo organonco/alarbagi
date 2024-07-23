@@ -8,7 +8,7 @@
     <x-slot:title>
         {{ $area->name }}
     </x-slot>
-    <div class="sn-background-light-grey">
+    <div class="sn-background-light-green">
         <div class="w-full">
             <img class="w-full" src="{{ $area->banner_url }}" />
         </div>
@@ -21,27 +21,41 @@
             {{ $area->name }}
         </div>
 
-        <div class="flex gap-6 px-24 py-36 flex-wrap justify-center max-lg:px-6">
+        <div class="flex gap-6 px-20 py-36 flex-wrap justify-center max-lg:px-6">
             @foreach ($categories as $index => $category)
-                <div
-                    class=" items-start flex  flex-col gap-8 sn-background-light-green px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full max-h-fit h-fit">
-                    <div class="items-center flex  gap-8 cursor-pointer w-full" onclick="handleToggle({{ $index }})">
-                        <img src="{{ $category->image_url }}" class="w-20 h-20 rounded-full">
-                        <div
-                            class="sn-color-primary text-right font-black text-2xl w-full max-lg:text-right max-lg:text-xl">
-                            {{ $category->name }}
+                @if ($category->isParent())
+                    <div
+                        class=" items-start flex  flex-col gap-8 sn-background-light-green-2 px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full max-h-fit h-fit">
+                        <div class="items-center flex  gap-8 cursor-pointer w-full"
+                            onclick="handleToggle({{ $index }})">
+                            <img src="{{ $category->image_url }}" class="w-20 h-20 rounded-full">
+                            <div
+                                class="sn-color-primary text-right font-black text-2xl w-full max-lg:text-right max-lg:text-xl">
+                                {{ $category->name }}
+                            </div>
+                        </div>
+                        <div class="hidden w-full " id="hidden_part_{{ $index }}">
+                            <div class="flex flex-col gap-4 w-full">
+                                @foreach ($category->children as $child)
+                                    <a href="{{ route('seller-category.view', ['areaId' => $area->id, 'sellerCategoryId' => $child->id]) }}" class="sn-heading-3 text-right w-full sn-color-primary mr-24">
+                                        - {{ $child->name }}
+                                    </a>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
-                    <div class="hidden w-full " id="hidden_part_{{ $index }}">
-                        <div class="flex flex-col gap-4 w-full">
-                            @foreach ($category->children as $child)
-                                <div class="sn-heading-3 text-center w-full sn-color-primary">
-                                    {{$child->name}}
-                                </div>
-                            @endforeach
+                @else
+                    <a href="{{ route('seller-category.view', ['areaId' => $area->id, 'sellerCategoryId' => $category->id]) }}"
+                        class=" items-start flex  flex-col gap-8 sn-background-light-green-2 px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full max-h-fit h-fit">
+                        <div class="items-center flex  gap-8 cursor-pointer w-full">
+                            <img src="{{ $category->image_url }}" class="w-20 h-20 rounded-full">
+                            <div
+                                class="sn-color-primary text-right font-black text-2xl w-full max-lg:text-right max-lg:text-xl">
+                                {{ $category->name }}
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </a>
+                @endif
             @endforeach
         </div>
     </div>

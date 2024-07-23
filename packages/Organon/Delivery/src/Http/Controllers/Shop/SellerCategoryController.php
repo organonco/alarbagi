@@ -21,13 +21,7 @@ class SellerCategoryController extends Controller
         $sellerCategory = SellerCategory::query()->findOrFail($categoryId);
         $area = Area::query()->isActive()->findOrFail($areaId);
 
-        if($sellerCategory->isParent()){
-            $children = $sellerCategory->children()->get();
-            return view('shop::sellerCategories.view')->with(compact('sellerCategory', 'children', 'area'));
-        }
-        else{
-            $sellers = Seller::query()->isActive()->area($area->id)->sellerCategory($categoryId)->get();
-            return view('shop::sellerCategories.viewChild')->with(compact('sellerCategory', 'sellers', 'area'));
-        }
+        $sellers = Seller::query()->isActive()->area($area->id)->sellerCategory($categoryId)->get();
+        return view('shop::sellerCategories.view')->with(compact('sellerCategory', 'sellers', 'area'));
     }
 }

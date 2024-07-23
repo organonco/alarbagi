@@ -8,7 +8,7 @@
     <x-slot:title>
         {{ $area->name . ' - ' . $sellerCategory->name }}
     </x-slot>
-    <div class="sn-background-light-grey">
+    <div class="sn-background-light-green h-full">
         <div class="w-full">
             <img class="w-full" src="{{ $sellerCategory->banner_url }}" />
         </div>
@@ -22,16 +22,25 @@
         </div>
 
         <div class="flex gap-6 px-24 py-36 flex-wrap justify-center max-lg:px-6">
-            @foreach ($children as $category)
-                <a href="{{ route('seller-category.view', ['areaId' => $area->id, 'sellerCategoryId' => $category->id]) }}"
-                    class="items-center flex gap-8 sn-background-light-green px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full">
-                    <img src="{{ $category->image_url }}" class="w-20 h-20 rounded-full">
-                    <div
-                        class="sn-color-primary text-center font-black text-2xl w-full max-lg:text-right max-lg:text-xl">
-                        {{ $category->name }}
-                    </div>
-                </a>
-            @endforeach
+            @if ($sellers->count() > 0)
+                @foreach ($sellers as $seller)
+                    <a href="{{ route('shop.marketplace.show', ['slug' => $seller->slug]) }}"
+                        class="items-center flex gap-8 sn-background-light-green-2 px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full">
+                        <img src="{{ $seller->logo_url }}" class="w-20 h-20 rounded-full">
+                        <div
+                            class="sn-color-primary text-center font-black text-2xl w-full max-lg:text-right max-lg:text-xl">
+                            {{ $seller->name }}
+                        </div>
+                    </a>
+                @endforeach
+            @else
+                <div
+                    class="grid items-center justify-items-center place-content-center w-[100%] m-auto h-[276px] text-center">
+                    <p class="sn-heading-2 sn-color-primary">
+                        @lang('shop::app.categories.view.empty-category')
+                    </p>
+                </div>
+            @endif
         </div>
     </div>
 

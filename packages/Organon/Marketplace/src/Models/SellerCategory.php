@@ -14,18 +14,18 @@ class SellerCategory extends Model implements SellerCategoryContract, HasMedia
     use HasBanner, HasImage;
 
     protected $fillable = ['name', 'parent_id'];
-    
-    public function isParent() : bool
+
+    public function isParent(): bool
     {
-        return is_null($this->parent_id);
+        return $this->children()->count() > 0;
     }
 
-    public function parent() 
+    public function parent()
     {
         return $this->belongsTo(self::class, 'parent_id');
     }
 
-    public function getParent() : ?self
+    public function getParent(): ?self
     {
         return $this->parent;
     }
@@ -35,7 +35,7 @@ class SellerCategory extends Model implements SellerCategoryContract, HasMedia
         return $this->hasMany(self::class, 'parent_id');
     }
 
-    public function getChildren() : Collection
+    public function getChildren(): Collection
     {
         return $this->children;
     }
@@ -48,5 +48,16 @@ class SellerCategory extends Model implements SellerCategoryContract, HasMedia
     public function scopeChild($query, $id)
     {
         return $query->where('parent_id', $id);
+    }
+
+    public function getImageUrl()
+    {
+        if ($this->getFirstMediaUrl(self::IMAGE_MEDIA_COLLECTION) == "")
+            if ($this->parent->getFirstMediaUrl(self::IMAGE_MEDIA_COLLECTION) == "")
+                return asset('assets/images/icons/placeholder.png');
+            else
+                return $this->parent->getFirstMediaUrl(self::IMAGE_MEDIA_COLLECTION);
+        else
+            return $this->getFirstMediaUrl(self::IMAGE_MEDIA_COLLECTION);
     }
 }
