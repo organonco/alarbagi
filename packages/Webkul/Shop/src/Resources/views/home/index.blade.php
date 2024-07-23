@@ -79,16 +79,16 @@
 
     {{-- FOOTER --}}
     <div class="sn-background-primary px-28 py-16 grid-cols-5 grid max-lg:flex max-lg:flex-col max-lg:gap-12">
-        <div class="col-span-3">
-            
+        <div class="col-span-3 max-lg:pr-0 pr-8">
+            <img src="{{ asset('assets/images/logo-orange.png') }}" class="w-[30rem]">
         </div>
-
         <div class="flex flex-col gap-2">
             <div class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2">
                 الصفحات الثانوية
             </div>
             @foreach ($pages as $page)
-                <a href="{{route('shop.cms.page', $page->translations[0]->url_key)}}" class="sn-heading-3 sn-color-white">
+                <a href="{{ route('shop.cms.page', $page->translations[0]->url_key) }}"
+                    class="sn-heading-3 sn-color-white">
                     {{ $page->translations[0]->page_title }}
                 </a>
             @endforeach
