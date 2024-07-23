@@ -20,7 +20,7 @@
             >
                 <span>
                     <a
-                        href="{{route('shop.customers.register.index-seller')}}"
+                        href="{{route('offer.index')}}"
                         class="sn-button-primary-alt sn-button-mini sn-color-white"
                     >
                         {{trans('shop::app.components.layouts.header.new-offers')}}

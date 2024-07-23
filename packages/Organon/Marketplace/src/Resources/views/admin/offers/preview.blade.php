@@ -14,7 +14,7 @@
 
 
         <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
-            <x-offer :title="$model->title" :post="$model->post" :image="$model->image_url"></x-offer>
+            <x-shop::offer :title="$model->title" :post="$model->post" :image="$model->image_url" :seller="$model->seller"></x-shop::offer>
         </div>
 
 

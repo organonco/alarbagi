@@ -1,31 +1,25 @@
-<x-shop::layouts
-        :has-feature="false">
+<x-shop::layouts :has-feature="false">
     <x-slot:title>
-        {{ $seller->name}}
-        </x-slot>
+        {{ $seller->name }}
+    </x-slot>
 
 
-        {{-- Hero Image --}}
-        @if ($seller->banner_path)
-            <div class="container mt-[30px] px-[60px] max-lg:px-[30px]">
-                <div>
-                    <img
-                            class="rounded-[12px]"
-                            src="{{ $seller->banner_url }}"
-                            alt="{{ $seller->name }}"
-                            width="1320"
-                            height="300"
-                    >
-                </div>
+    {{-- Hero Image --}}
+    @if ($seller->banner_path)
+        <div class="container mt-[30px] px-[60px] max-lg:px-[30px]">
+            <div>
+                <img class="rounded-[12px]" src="{{ $seller->banner_url }}" alt="{{ $seller->name }}" width="1320"
+                    height="300">
             </div>
-        @endif
+        </div>
+    @endif
 
-        <v-category>
-            <x-shop::shimmer.categories.view/>
-        </v-category>
+    <v-category>
+        <x-shop::shimmer.categories.view />
+    </v-category>
 
-        @pushOnce('scripts')
-            <script
+    @pushOnce('scripts')
+        <script
                     type="text/x-template"
                     id="v-category-template"
             >
@@ -37,12 +31,20 @@
                         <img src="{{$seller->logo_url}}" class="rounded-full w-72 h-72"/>
                     </div>
                     @endif
-                    <h2 class="text-[26px] font-bold mt-[30px] text-center mb-[30px] sn-color-light-main">
+                    <h2 class="mt-[30px] text-center mb-[30px] sn-color-primary sn-heading-1">
                         {{$seller->name}}
                     </h2>
 
+                    <div class="text-center sn-heading-2 sn-color-primary mb-[30px]">
+                            <a href="{{ route('seller-category.view', ['areaId' => $seller->area->id, 'sellerCategoryId' => $seller->sellerCategory->id]) }}" >
+                                {{$seller->sellerCategory->name}}
+                            </a>
+                    </div>
+
                     <div class="text-center mb-[30px]">
-                        {{$seller->address}}
+                        <a href="{{route('area.view', $seller->area->id)}}" >
+                            {{$seller->area->name}}
+                        </a> - {{$seller->address}}
                     </div>
 
                     <div class="text-center mt-[30px] sn-color-secondary">
@@ -55,7 +57,7 @@
 
 
                         <!-- Product Listing Container -->
-                        <div class="flex-1">
+                        <div class="flex-1" v-if="products.length">
                             @include('shop::categories.toolbar')
 
                             <!-- Product List Card Container -->
@@ -146,123 +148,123 @@
                 </div>
             </script>
 
-            <script type="module">
-                app.component('v-category', {
-                    template: '#v-category-template',
+        <script type="module">
+            app.component('v-category', {
+                template: '#v-category-template',
 
-                    data() {
-                        return {
-                            isMobile: window.innerWidth <= 767,
+                data() {
+                    return {
+                        isMobile: window.innerWidth <= 767,
 
-                            isLoading: true,
+                        isLoading: true,
 
-                            isDrawerActive: {
-                                toolbar: false,
+                        isDrawerActive: {
+                            toolbar: false,
 
-                                filter: false,
-                            },
+                            filter: false,
+                        },
 
-                            filters: {
-                                toolbar: {},
+                        filters: {
+                            toolbar: {},
 
-                                filter: {},
-                            },
+                            filter: {},
+                        },
 
-                            products: [],
+                        products: [],
 
-                            links: {},
-                        }
+                        links: {},
+                    }
+                },
+
+                computed: {
+                    queryParams() {
+                        let queryParams = Object.assign({}, this.filters.filter, this.filters.toolbar);
+
+                        return this.removeJsonEmptyValues(queryParams);
                     },
 
-                    computed: {
-                        queryParams() {
-                            let queryParams = Object.assign({}, this.filters.filter, this.filters.toolbar);
+                    queryString() {
+                        return this.jsonToQueryString(this.queryParams);
+                    },
+                },
 
-                            return this.removeJsonEmptyValues(queryParams);
-                        },
-
-                        queryString() {
-                            return this.jsonToQueryString(this.queryParams);
-                        },
+                watch: {
+                    queryParams() {
+                        this.getProducts();
                     },
 
-                    watch: {
-                        queryParams() {
-                            this.getProducts();
-                        },
+                    queryString() {
+                        window.history.pushState({}, '', '?' + this.queryString);
+                    },
+                },
 
-                        queryString() {
-                            window.history.pushState({}, '', '?' + this.queryString);
-                        },
+                methods: {
+                    setFilters(type, filters) {
+                        this.filters[type] = filters;
                     },
 
-                    methods: {
-                        setFilters(type, filters) {
-                            this.filters[type] = filters;
-                        },
+                    clearFilters(type, filters) {
+                        this.filters[type] = {};
+                    },
 
-                        clearFilters(type, filters) {
-                            this.filters[type] = {};
-                        },
+                    getProducts() {
+                        this.isDrawerActive = {
+                            toolbar: false,
 
-                        getProducts() {
-                            this.isDrawerActive = {
-                                toolbar: false,
+                            filter: false,
+                        };
 
-                                filter: false,
-                            };
-
-                            this.$axios.get("{{ route('shop.api.products.index', ['seller_id' => $seller->id]) }}", {
+                        this.$axios.get("{{ route('shop.api.products.index', ['seller_id' => $seller->id]) }}", {
                                 params: this.queryParams
                             })
-                                .then(response => {
-                                    this.isLoading = false;
+                            .then(response => {
+                                this.isLoading = false;
 
-                                    this.products = response.data.data;
+                                this.products = response.data.data;
 
-                                    this.links = response.data.links;
-                                }).catch(error => {
+                                this.links = response.data.links;
+                            }).catch(error => {
                                 console.log(error);
                             });
-                        },
+                    },
 
-                        loadMoreProducts() {
-                            if (this.links.next) {
-                                this.$axios.get(this.links.next).then(response => {
-                                    this.products = [...this.products, ...response.data.data];
+                    loadMoreProducts() {
+                        if (this.links.next) {
+                            this.$axios.get(this.links.next).then(response => {
+                                this.products = [...this.products, ...response.data.data];
 
-                                    this.links = response.data.links;
-                                }).catch(error => {
-                                    console.log(error);
-                                });
-                            }
-                        },
-
-                        removeJsonEmptyValues(params) {
-                            Object.keys(params).forEach(function (key) {
-                                if ((!params[key] && params[key] !== undefined)) {
-                                    delete params[key];
-                                }
-
-                                if (Array.isArray(params[key])) {
-                                    params[key] = params[key].join(',');
-                                }
+                                this.links = response.data.links;
+                            }).catch(error => {
+                                console.log(error);
                             });
-
-                            return params;
-                        },
-
-                        jsonToQueryString(params) {
-                            let parameters = new URLSearchParams();
-
-                            for (const key in params) {
-                                parameters.append(key, params[key]);
-                            }
-
-                            return parameters.toString();
                         }
                     },
-                });
-            </script>
-        @endPushOnce
+
+                    removeJsonEmptyValues(params) {
+                        Object.keys(params).forEach(function(key) {
+                            if ((!params[key] && params[key] !== undefined)) {
+                                delete params[key];
+                            }
+
+                            if (Array.isArray(params[key])) {
+                                params[key] = params[key].join(',');
+                            }
+                        });
+
+                        return params;
+                    },
+
+                    jsonToQueryString(params) {
+                        let parameters = new URLSearchParams();
+
+                        for (const key in params) {
+                            parameters.append(key, params[key]);
+                        }
+
+                        return parameters.toString();
+                    }
+                },
+            });
+        </script>
+    @endPushOnce
 </x-shop::layouts>

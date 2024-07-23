@@ -11,10 +11,11 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 class Offer extends Model implements OfferContract, HasMedia
 {
     const IMAGE_MEDIA_COLLECTION = "image";
+
     use InteractsWithMedia, RelatedToSellerTrait;
 
     protected $fillable = [
-        'title', 'post', 'status', 'image_url', 'seller_id'
+        'title', 'post', 'status', 'image_url', 'seller_id', 'seller_status'
     ];
     
 
@@ -53,5 +54,9 @@ class Offer extends Model implements OfferContract, HasMedia
         return !is_null($this->getSellerId());
     }
 
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', true);
+    }
     
 }

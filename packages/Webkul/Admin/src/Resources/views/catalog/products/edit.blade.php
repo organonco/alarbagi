@@ -105,7 +105,7 @@
 
                     @else
                         {{-- Categories View Blade File --}}
-                        @include('admin::catalog.products.edit.categories')
+                        {{-- @include('admin::catalog.products.edit.categories') --}}
                     @endif
                 </div>
 
