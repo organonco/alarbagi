@@ -18,7 +18,7 @@ return [
     [
         'key'        => 'sales',
         'name'       => 'admin::app.components.layouts.sidebar.sales',
-        'route'      => 'admin.sales.sellers.invoice.index',
+        'route'      => 'admin.sales.orders.index',
         'sort'       => 2,
         'icon'       => 'icon-sales',
     ], [
