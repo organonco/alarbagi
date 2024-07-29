@@ -22,12 +22,6 @@ return [
         'sort'       => 2,
         'icon'       => 'icon-sales',
     ], [
-        'key'        => 'sales.seller-invoices',
-        'name'       => 'marketplace::app.acl.invoices',
-        'route'      => 'admin.sales.sellers.invoice.index',
-        'sort'       => 1,
-        'icon'       => '',
-    ],[
         'key'        => 'sales.orders',
         'name'       => 'admin::app.components.layouts.sidebar.orders',
         'route'      => 'admin.sales.orders.index',
