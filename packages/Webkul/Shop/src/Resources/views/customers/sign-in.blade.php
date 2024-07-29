@@ -27,7 +27,10 @@
             </h1>
 
             <p class="sn-color-primary sn-heading-3">
-                @lang('shop::app.customers.login-form.form-login-text')
+                @lang('shop::app.customers.login-form.form-login-text.first')
+                <a href="{{ route('admin.session.create') }}" class="sn-color-secondary sn-heading-3">
+                    @lang('shop::app.customers.login-form.form-login-text.last')
+                </a>
             </p>
 
             {!! view_render_event('bagisto.shop.customers.login.before') !!}
@@ -144,17 +147,6 @@
                     href="{{ route('shop.customers.register.index') }}"
                 >
                     @lang('shop::app.customers.login-form.create-your-account')
-                </a>
-            </p>
-
-            <p class=" text-[#6E6E6E] font-medium">
-                @lang('marketplace::app.login.labels.are_you_a_seller')
-
-                <a
-                        class="text-navyBlue"
-                        href="{{ route('admin.session.create') }}"
-                >
-                    @lang('marketplace::app.login.labels.sign_in_here')
                 </a>
             </p>
 

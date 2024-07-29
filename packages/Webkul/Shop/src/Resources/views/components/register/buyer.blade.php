@@ -6,7 +6,10 @@
     </h1>
 
     <p class="sn-color-primary sn-heading-3">
-        @lang('marketplace::app.register.desc.customer')
+        @lang('marketplace::app.register.desc.customer.first')
+        <a href="{{ route('shop.customers.register.index-seller') }}" class="sn-color-secondary sn-heading-3">
+            @lang('marketplace::app.register.desc.customer.last')
+        </a>
     </p>
 
     <div class="mt-[60px] rounded max-sm:mt-[30px]">
