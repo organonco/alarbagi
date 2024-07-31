@@ -4,6 +4,11 @@
     "isEntry": true,
     "src": "resources/css/app.css"
   },
+  "resources/css/style.css": {
+    "file": "assets/style-f54afd37.css",
+    "isEntry": true,
+    "src": "resources/css/style.css"
+  },
   "resources/js/app.js": {
     "file": "assets/app-33584bf2.js",
     "isEntry": true,
