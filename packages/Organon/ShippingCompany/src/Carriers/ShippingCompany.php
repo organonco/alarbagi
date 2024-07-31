@@ -47,28 +47,35 @@ class ShippingCompany extends AbstractShipping
         $cart = Cart::getCart();
         $shippingAddress = $cart->shipping_address;
 
-        if(!$cart->hasDeliverableItems())
+        if (!$cart->hasDeliverableItems())
             return $this->generateUnavailableObject('no-deliverable-items');
-        if(is_null($shippingAddress->area_id) || is_null($shippingAddress->address_details))
+        if (is_null($shippingAddress->area_id) || is_null($shippingAddress->address_details))
             return $this->generateUnavailableObject('address-or-area-not-found');
-        if(!$shippingAddress->area->is_shippable)
-            return $this->generateUnavailableObject('delivery-not-available-to-this-area');
-
-        $cart->shipping_address->area;
+        if (!$shippingAddress->area->is_shippable)
+            return $this->generateUnavailableObject('delivery-not-available-to-this-area');;
 
         return [
-            'isAvailable' => true
+            'isAvailable' => true,
+            'sameArea' => $this->sameArea($cart->shipping_address->area_id, $cart)
         ];
     }
 
 
+    private function sameArea(int $areaId, $cart)
+    {
+        foreach ($cart->items as $item)
+            if ($item->product->getSellerAreaId() != $areaId)
+                return false;
+        return true;
+    }
 
-    private function getShippingPrice() : int
+
+    private function getShippingPrice(): int
     {
         $cart = Cart::getCart();
         $company = $cart->shipping_address->area->shippingCompany;
         $price = $company['per_order_price'];
-        foreach($cart->items as $item){
+        foreach ($cart->items as $item) {
             $price += $item->quantity * $company['per_product_price'];
         }
         return $price;
@@ -84,11 +91,16 @@ class ShippingCompany extends AbstractShipping
 
         $object->is_available = $availability['isAvailable'];
 
-        if ($object->is_available) {
-            $price = $this->getShippingPrice();
+        if ($object->is_available && $availability['sameArea']) {
+                $price = $this->getShippingPrice();
+                $object->price = $price;
+                $object->base_price = $price;
+                $object->method_description = $this->getConfigData('description');
+        } elseif($object->is_available) {
+            $price = 0;
             $object->price = $price;
             $object->base_price = $price;
-            $object->method_description = $this->getConfigData('description');
+            $object->method_description = trans('shipping-company::app.messages.price-defined-later');
         } else {
             $object->method_description = $availability['reason'];
         }

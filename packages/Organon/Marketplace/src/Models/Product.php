@@ -63,4 +63,12 @@ class Product extends \Webkul\Product\Models\Product
     {
         return $this->seller?->slug;
     }
+
+    /**
+     * @return int
+     */
+    public function getSellerAreaId()
+    {
+        return $this->seller->area_id;
+    }
 }

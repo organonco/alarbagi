@@ -42,6 +42,7 @@ class CartResource extends JsonResource
             'base_discount_amount'           => $this->base_discount_amount,
             'base_grand_total'               => core()->currency($this->base_grand_total),
             'selected_shipping_rate'         => core()->currency($this->selected_shipping_rate->base_price ?? 0),
+            'raw_selected_shipping_rate'         => $this->selected_shipping_rate->base_price ?? 0,
             'coupon_code'                    => $this->coupon_code,
             'selected_shipping_rate_method'  => $this->selected_shipping_rate->method_title ?? '',
             'formatted_grand_total'          => core()->formatPrice($this->grand_total),
