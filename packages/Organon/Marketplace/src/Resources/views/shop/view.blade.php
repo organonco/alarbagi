@@ -54,10 +54,8 @@
 
                     <div class="flex gap-[40px] items-start md:mt-[40px] max-lg:gap-[20px]">
 
-
-
                         <!-- Product Listing Container -->
-                        <div class="flex-1" v-if="products.length">
+                        <div class="flex-1" >
                             @include('shop::categories.toolbar')
 
                             <!-- Product List Card Container -->
