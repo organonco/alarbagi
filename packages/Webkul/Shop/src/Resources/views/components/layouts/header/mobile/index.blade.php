@@ -15,39 +15,102 @@
 
                 <x-slot:content>
                     {{-- Account Profile Hero Section --}}
+                    <div class="flex flex-col justify-between h-full">
+                        <div>
+
+
+                            <div
+                                class="grid grid-cols-[auto_1fr] gap-[15px] items-center p-[10px] border-b border-[#E9E9E9]  mt-12">
+                                <div class="">
+                                    <img src="{{ auth()->user()?->image_url ?? bagisto_asset('images/user-placeholder.png') }}"
+                                        class="w-[60px] h-[60px] rounded-full">
+                                </div>
+                                @guest('customer')
+                                    <a href="{{ route('shop.customer.session.create') }}"
+                                        class="flex text-center sn-color-secondary sn-heading-3 ">
+                                        @lang('shop::app.components.layouts.header.sign-in')
+                                    </a>
+                                @endguest
+                                @auth('customer')
+                                    <div class="flex flex-col gap-[4px] justify-between">
+                                        <p class="text-[16px] font-mediums">أهلاً بك {{ auth()->user()?->first_name }}!</p>
+                                        <a href="{{ route('shop.customers.account.profile.index') }}"
+                                            class="text-[#6E6E6E] ">اعدادات الحساب</a>
+                                    </div>
+                                @endauth
+                            </div>
+
+
+                            <div class="grid grid-cols-[auto_1fr] gap-[15px] items-center p-[10px] border-b">
+                                <div class="">
+                                    <img src="{{ asset('assets/images/icons/cart-with-background.png') }}"
+                                        class="w-[60px] h-[60px] rounded-full">
+                                </div>
+                                <a href="{{ route('shop.checkout.cart.index') }}"
+                                    class="flex text-center sn-color-secondary sn-heading-3 ">
+                                    عربة التسوق
+                                </a>
+                            </div>
+
+							<div class="grid grid-cols-[auto_1fr] gap-[15px] items-center p-[10px] border-b">
+                                <div class="">
+                                    <img src="{{ asset('assets/images/icons/heart-with-background.png') }}"
+                                        class="w-[60px] h-[60px] rounded-full">
+                                </div>
+                                <a href="{{ route('shop.checkout.cart.index') }}"
+                                    class="flex text-center sn-color-secondary sn-heading-3 ">
+                                    المفضلة
+                                </a>
+                            </div>
+
+
+                        </div>
+
+                        <div>
+                            <div class="flex justify-center w-full p-12">
+                                <img src="{{ asset('assets/images/logo.png') }}" alt="logo" />
+                            </div>
+                        </div>
+                    </div>
+                    {{-- 					
+					<div class="flex justify-center w-full p-12">
+						<img src="{{asset('assets/images/logo.png')}}" alt="logo"/>
+					</div>
+
                     <div
                         class="grid grid-cols-[auto_1fr] gap-[15px] items-center mb-[15px] p-[10px] border border-[#E9E9E9] rounded-[12px] mt-4">
                         <div class="">
                             <img src="{{ auth()->user()?->image_url ?? bagisto_asset('images/user-placeholder.png') }}"
                                 class="w-[60px] h-[60px] rounded-full">
                         </div>
-
                         @guest('customer')
                             <a href="{{ route('shop.customer.session.create') }}"
-                                class="flex text-center sn-color-secondary sn-heading-3">
-                                @lang('shop::app.components.layouts.header.sign-up-or-sign-in')
+                                class="flex text-center sn-color-secondary sn-heading-3 justify-center">
+                                @lang('shop::app.components.layouts.header.sign-in')
                             </a>
                         @endguest
                         @auth('customer')
                             <div class="flex flex-col gap-[4px] justify-between">
                                 <p class="text-[16px] font-mediums">أهلاً بك {{ auth()->user()?->first_name }}!</p>
-                                <a href="{{route('shop.customers.account.profile.index')}}" class="text-[#6E6E6E] ">اعدادات الحساب</a>
+                                <a href="{{ route('shop.customers.account.profile.index') }}"
+                                    class="text-[#6E6E6E] ">اعدادات الحساب</a>
                             </div>
                         @endauth
                     </div>
-                    <v-mobile-category></v-mobile-category>
+                    <v-mobile-category></v-mobile-category> --}}
                 </x-slot:content>
 
                 <x-slot:footer></x-slot:footer>
             </x-shop::drawer>
-
-
         </div>
 
         <a href="{{ route('shop.home.index') }}">
             <img src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}" alt="Logo"
-                width="120" height="29">
+                width="160" height="29">
         </a>
+
+        <div class="flex items-center gap-x-[5px]">
+        </div>
     </div>
 
     {{-- Serach Catalog Form --}}

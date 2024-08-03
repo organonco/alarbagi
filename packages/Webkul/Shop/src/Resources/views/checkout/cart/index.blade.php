@@ -211,15 +211,15 @@
                             {!! view_render_event('bagisto.shop.checkout.cart.controls.before') !!}
 
                             <!-- Cart Item Actions -->
-                            <div class="flex flex-wrap gap-[30px] justify-end">
+                            <div class="flex flex-nowrap gap-[30px] justify-end">
                                 <button
-                                class="sn-button-primary-alt flex flex-wrap content-center"
+                                class="sn-button-primary-alt flex flex-wrap content-center text-center"
                                 @click="update()"
                             >
                                 @lang('shop::app.checkout.cart.index.update-cart')
                             </button>
                                 <a
-                                    class="sn-button-primary flex flex-wrap content-center"
+                                    class="sn-button-primary flex flex-wrap content-center text-center"
                                     href="{{ route('shop.home.index') }}"
                                 >
                                     @lang('shop::app.checkout.cart.index.continue-shopping')

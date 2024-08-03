@@ -2,8 +2,10 @@
 
 use Organon\Delivery\Http\Controllers\Shipping\DashboardController;
 use Organon\Delivery\Http\Controllers\Shipping\DriverController;
+use Organon\Delivery\Http\Controllers\Shipping\OrderController;
 use Organon\Delivery\Http\Controllers\Shipping\SessionController;
 use Organon\Delivery\Http\Controllers\Shipping\SettingsController;
+use Organon\Delivery\Http\Controllers\Shipping\ShowOrderController;
 
 Route::group([
     'prefix'        => config('app.admin_url') . '/delivery',
@@ -38,14 +40,18 @@ Route::group([
     Route::post('logout', [SessionController::class, 'destroy'])->name('session.destroy');
     
     Route::group(['prefix' => '', 'middleware' => ['admin:shipping']], function () {
-        Route::get('/', DashboardController::class)->name('dashboard');
-        Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+		Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
         Route::post('/settings', [SettingsController::class, 'store'])->name('settings.store');
         Route::get('/driver', [DriverController::class, 'index'])->name('driver.index');
         Route::get('/driver/create', [DriverController::class, 'create'])->name('driver.create');
         Route::post('/driver/create', [DriverController::class, 'store'])->name('driver.store');
         Route::get('/driver/{id}', [DriverController::class, 'edit'])->name('driver.edit');
         Route::post('/driver/{id}', [DriverController::class, 'update'])->name('driver.update');
+
+
+        Route::get('/', [OrderController::class, 'index'])->name('dashboard');
+		Route::get('/order/{id}', [OrderController::class, 'show'])->name('orders.show');
+		Route::put('/order/{id}/update-shipping', [OrderController::class, 'updateShippingPrice'])->name('orders.update-shipping');
     });
 
 

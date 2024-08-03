@@ -21,7 +21,7 @@
             {{ $area->name }}
         </div>
 
-        <div class="flex gap-6 px-20 py-36 flex-wrap justify-center max-lg:px-6">
+        <div class="flex gap-6 px-20 py-36 max-lg:py-14 flex-wrap justify-center max-lg:px-6">
             @foreach ($categories as $index => $category)
                 @if ($category->isParent())
                     <div

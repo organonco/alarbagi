@@ -33,7 +33,7 @@
                     class="fixed inset-0 z-10 transform transition overflow-y-auto" v-show="isOpen"
                 >
                     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                        <div class="w-full max-w-[475px] z-[999] absolute left-[50%] top-[50%] p-[20px] rounded-[12px] bg-white overflow-hidden max-md:w-[90%] -translate-x-[50%] -translate-y-[50%]">
+                        <div class=" max-w-[475px] z-[999] absolute left-[50%] top-[50%] p-[20px] rounded-[12px] bg-white overflow-hidden max-md:w-[90%] -translate-x-[50%] -translate-y-[50%]">
                             <div class="flex gap-[10px]">
                                 <div>
                                     <span class="flex p-[10px] border border-[rgba(6,12,59,0.20)] rounded-full">
@@ -50,12 +50,12 @@
                                         @{{ message }}
                                     </div>
                                     
-                                    <div class="flex gap-[10px] justify-end">
-                                        <button type="button" class="secondary-button" @click="disagree">
+                                    <div class="flex gap-[10px] justify-between">
+                                        <button type="button" class="sn-button-primary-alt" style="padding: 10px 20px !important" @click="disagree">
                                             @{{ options.btnDisagree }}
                                         </button>
 
-                                        <button type="button" class="primary-button" @click="agree">
+                                        <button type="button" class="sn-button-primary" @click="agree">
                                             @{{ options.btnAgree }} 
                                         </button>
                                     </div>

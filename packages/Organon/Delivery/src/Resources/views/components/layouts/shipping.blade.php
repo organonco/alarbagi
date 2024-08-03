@@ -33,13 +33,13 @@
         @if (!Route::is('shipping.dashboard'))
             <a href="{{ route('shipping.dashboard') }}"
                 class="inline-flex items-center p-2 mt-2 me-5 text-sm rounded-lg sm:hidden focus:outline-none focus:ring-2 text-gray-400 hover:bg-gray-700 focus:ring-gray-600 underline">
-                <span>Back to Dashboard</span>
+                <span>العودة للطلبات</span>
             </a>
         @endif
     </div>
 
     <aside id="default-sidebar"
-        class="fixed top-0 right-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
+        class="fixed top-0 max-md:left-0 sm:right-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-800 flex flex-col content-between justify-between">
             <ul class="space-y-2 font-medium">
@@ -47,7 +47,17 @@
                     <a href="{{ route('shipping.dashboard') }}"
                         class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group justify-between px-4">
                         <span class="ms-3 sn-heading-3">الطلبات</span>
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                        <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+							<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z"/>
+						  </svg>						  
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('shipping.driver.index') }}"
+                        class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group justify-between px-4">
+                        <span class="ms-3 sn-heading-3">السائقين</span>
+                        <svg class="w-6 h-6 text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                             viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,11 +65,12 @@
                         </svg>
                     </a>
                 </li>
-                <li>
+
+				<li>
                     <a href="{{ route('shipping.settings') }}"
                         class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group justify-between px-4">
                         <span class="ms-3 sn-heading-3">الاعدادات</span>
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                        <svg class="w-6 h-6 text-white" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                             viewBox="0 0 24 24">
                             <path
@@ -68,18 +79,7 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="{{ route('shipping.driver.index') }}"
-                        class="flex items-center p-2 rounded-lg text-white hover:bg-gray-700 group justify-between px-4">
-                        <span class="ms-3 sn-heading-3">السائقين</span>
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
-                        </svg>
-                    </a>
-                </li>
+
             </ul>
 
             <form method="POST" action="{{ route('shipping.session.destroy') }}" id="logout-form">

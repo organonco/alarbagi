@@ -36,7 +36,7 @@ class ShippingCompany extends Authenticatable implements ShippingCompanyContract
 	public function isWorking()
 	{
 		return 
-			$this->isActive && 
+			$this->is_active && 
 			$this->per_order_price > 0 && 
 			$this->per_product_price > 0;
 	}

@@ -4,11 +4,13 @@ module.exports = {
     "./packages/Organon/Delivery/**/*.blade.php",
     "./packages/Organon/Delivery/**/*.js",
     "./packages/Organon/Delivery/**/*.vue",
-    "./node_modules/flowbite/**/*.js"
+    "./node_modules/flowbite/**/*.js",
 ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+	require('flowbite/plugin')
+  ],
 }
 

@@ -38,12 +38,18 @@
     @apply  rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500
 }
 
+
+.card .input select{
+    @apply  rounded-lg  block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500
+}
+
+
 .card .input label{
     @apply  ps-2
 }
 
 .button-primary{
-    @apply text-white focus:ring-4  font-medium rounded-lg px-10 py-2 me-2 mb-2 focus:outline-none;
+    @apply text-white focus:ring-4  font-medium rounded-lg px-10 py-2 focus:outline-none;
     border: 1px solid white;
 }
 
@@ -61,4 +67,16 @@
 
 .data li hr{
     @apply border w-full my-4
+}
+
+
+.order-card{
+	@apply border-2 border-white rounded-lg p-4 w-96 max-lg:w-72
+}
+
+.invoice-table{
+	@apply border-gray-500 border-2
+}
+.invoice-table td{
+	@apply border-gray-500 border-2 px-8 py-2 text-center
 }
