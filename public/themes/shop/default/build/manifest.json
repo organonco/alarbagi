@@ -1,6 +1,6 @@
 {
   "src/Resources/assets/css/app.css": {
-    "file": "assets/app-837a5745.css",
+    "file": "assets/app-4784f710.css",
     "isEntry": true,
     "src": "src/Resources/assets/css/app.css"
   },
@@ -73,7 +73,7 @@
     "src": "src/Resources/assets/images/thank-you.png"
   },
   "src/Resources/assets/images/user-placeholder.png": {
-    "file": "assets/user-placeholder-4670a452.png",
+    "file": "assets/user-placeholder-74c69663.png",
     "src": "src/Resources/assets/images/user-placeholder.png"
   },
   "src/Resources/assets/images/wishlist.png": {
