@@ -3265,7 +3265,7 @@ return [
                 'tax-rates'                => 'معدلات الضرائب',
                 'transactions'             => 'المعاملات',
                 'users'                    => 'المستخدمين',
-                'delivery' => "التوصيل",
+                'delivery' => "المناطق والتوصيل",
                 'areas' => "المناطق",
                 'seller_categories' => "فئات التجار",
                 "account" => "الحساب",
