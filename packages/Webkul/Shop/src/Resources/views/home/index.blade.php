@@ -20,9 +20,10 @@
     </x-slot>
 
     {{-- TOP BANNER --}}
-    <div
+
+	<img class="w-full" src="{{asset('assets/images/banner.webp')}}"/>
+    {{-- <div
         class="bg-[#FF6B30] h-[30rem] flex justify-between max-lg:flex-col-reverse max-lg:pb-8 max-lg:items-center max-lg:h-[45rem] max-lg:justify-center">
-        {{--  --}}
         <div class="max-lg:mr-0 mr-60 h-full flex justify-center flex-col gap-12 max-lg:h-[20rem]">
             <div
                 class="sn-color-primary text-6xl font-extrabold max-lg: text-center max-lg:text-5xl max-lg:px-20 !leading-[1.3]">
@@ -58,7 +59,7 @@
         <div class="h-full ml-44 p-3 max-lg:ml-0 max-lg:h-[20rem]">
             <img class="h-full max-lg:h-[20rem]" src="{{ asset('assets/images/header.png') }}">
         </div>
-    </div>
+    </div> --}}
     {{-- END TOP BANNER --}}
 
     {{-- AREAS --}}
