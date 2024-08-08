@@ -101,9 +101,13 @@
             <a href="mailto:admin@alarbaji.com" class="sn-heading-3 sn-color-white max-lg:text-center">
                 admin@alarbaji.com
             </a>
+			<a href="https://www.alarbagi.com" class="sn-heading-3 sn-color-white text-right max-lg:text-center" dir="ltr">
+				www.alarbagi.com
+			</a>
             <a href="tel:+96332132132" class="sn-heading-3 sn-color-white text-right max-lg:text-center" dir="ltr">
                 +963321342142
             </a>
+
         </div>
     </div>
     {{-- END FOOTER --}}
