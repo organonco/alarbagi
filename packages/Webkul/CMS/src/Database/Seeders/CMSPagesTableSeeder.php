@@ -35,10 +35,10 @@ class CMSPagesTableSeeder extends Seeder
                 'cms_page_id'      => 1,
                 'url_key'          => 'about-us',
                 'html_content' => '',
-                'page_title'       => 'عنا',
-                'meta_title'       => 'عنا',
+                'page_title'       => 'من نحن',
+                'meta_title'       => 'من نحن',
                 'meta_description' => '',
-                'meta_keywords'    => 'عنا',
+                'meta_keywords'    => 'من نحن',
             ], [
                 'locale'           => 'ar',
                 'cms_page_id'      => 2,

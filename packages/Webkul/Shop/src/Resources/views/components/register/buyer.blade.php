@@ -1,6 +1,10 @@
 <div
         class="w-full max-w-[870px] mx-auto px-[90px] py-[60px] border border-[#E9E9E9] rounded-[12px] max-md:px-[30px] max-md:py-[30px] h-fit" style="height: fit-content"
 >
+
+<img src="{{ asset('assets/images/logo.png') }}" class="mx-auto mb-12 lg:w-[40%] w-[70%]" />
+				
+
     <h1 class="sn-color-primary sn-heading-1">
         @lang('marketplace::app.register.title.customer')
     </h1>
