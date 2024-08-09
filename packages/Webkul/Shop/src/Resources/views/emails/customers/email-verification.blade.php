@@ -16,7 +16,7 @@
     <div style="display: flex;margin-bottom: 95px">
         <a
                 href="{{ route($customer['seller'] ? 'shop.marketplace.verify-email' : 'shop.customers.verify' , $customer['token'])}}"
-                style="padding: 16px 45px;justify-content: center;align-items: center;gap: 10px;border-radius: 2px;background: #060C3B;color: #FFFFFF;text-decoration: none;text-transform: uppercase;font-weight: 700;"
+                style="color: #153939;background-color: #F67541;border-radius: 4px;padding: 10px 40px !important;font-size: 16px;font-family: 'Somar Sans Medium', sans-serif !important;"
         >
             @lang('shop::app.emails.customers.verification.verify-email')
         </a>
