@@ -66,7 +66,7 @@
             {!! view_render_event('bagisto.shop.layout.content.before') !!}
 
             {{-- Page Content Blade Component --}}
-			<div class="max-lg:mb-12">
+			<div class="max-lg:mb-24">
             	{{ $slot }}
 			</div>
 
