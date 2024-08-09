@@ -66,7 +66,9 @@
             {!! view_render_event('bagisto.shop.layout.content.before') !!}
 
             {{-- Page Content Blade Component --}}
-            {{ $slot }}
+			<div class="max-lg:mb-12">
+            	{{ $slot }}
+			</div>
 
             {!! view_render_event('bagisto.shop.layout.content.after') !!}
 
@@ -79,6 +81,42 @@
             {{-- @if ($hasFooter)
                 <x-shop::layouts.footer />
             @endif --}}
+
+			<div class="max-lg:grid hidden fixed bottom-0 w-full grid-cols-5 sn-background-secondary py-4 px-4">
+				<a class="flex flex-col items-center border-l sn-border-color-primary" href="{{route("shop.customers.account.wishlist.index")}}">
+					<img class="w-8 h-8" src="{{ asset('assets/images/icons/bar/heart.png') }}"/>
+					<div class="sn-color-primary text-center mt-2  {{Route::currentRouteName() == "shop.customers.account.wishlist.index" ? "sn-heading-3 underline" : ""}}">
+						المفضلة
+					</div>
+				</a>
+				<a class="flex flex-col items-center border-l sn-border-color-primary" href="{{route("offer.index")}}">
+					<img class="w-8 h-8" src="{{ asset('assets/images/icons/bar/offers.png') }}"/>
+					<div class="sn-color-primary text-center mt-2 {{Route::currentRouteName() == "offer.index" ? "sn-heading-3 underline" : ""}}">
+						العروض
+					</div>
+				</a>
+
+				<a class="flex flex-col items-center border-l sn-border-color-primary" href="{{route("shop.home.index")}}">
+					<img class="w-8 h-8" src="{{ asset('assets/images/icons/bar/main.png') }}"/>
+					<div class="sn-color-primary text-center mt-2 {{Route::currentRouteName() == "shop.home.index" ? "sn-heading-3 underline" : ""}}">
+						الرئيسية
+					</div>
+				</a>
+
+				<a class="flex flex-col items-center border-l sn-border-color-primary" href="{{route("shop.checkout.cart.index")}}">
+					<img class="w-8 h-8" src="{{ asset('assets/images/icons/bar/cart.png') }}"/>
+					<div class="sn-color-primary text-center mt-2 {{Route::currentRouteName() == "shop.checkout.cart.index" ? "sn-heading-3 underline" : ""}}">
+						العربة
+					</div>
+				</a>
+
+				<a class="flex flex-col items-center " href="{{route("shop.customers.account.profile.index")}}">
+					<img class="w-8 h-8" src="{{ asset('assets/images/icons/bar/user.png') }}"/>
+					<div class="sn-color-primary text-center mt-2 {{Route::currentRouteName() == "shop.customers.account.profile.index" ? "sn-heading-3 underline" : ""}}">
+						الحساب
+					</div>
+				</a>
+			</div>
         </div>
 
         {!! view_render_event('bagisto.shop.layout.body.after') !!}

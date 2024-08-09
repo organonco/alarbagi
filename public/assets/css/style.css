@@ -241,10 +241,18 @@ Colors:
     background-color: #153939;
 }
 
+.sn-background-secondary{
+    background-color: #F67541;
+}
+
 /** BORDERS **/
 .sn-border-primary{
     border: 1px solid #153939;
     border-radius: 4px;
+}
+
+.sn-border-color-primary{
+	border-color: #153939;
 }
 
 .sn-border-secondary{
