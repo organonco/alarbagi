@@ -24,14 +24,13 @@
         <div class="flex gap-6 px-24 py-36 flex-wrap justify-center max-lg:px-6">
             @if ($sellers->count() > 0)
                 @foreach ($sellers as $seller)
-
-				<a href="{{ route('shop.marketplace.show', ['slug' => $seller->slug]) }}"
-					class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2 max-lg:w-24">
-					<img src="{{  $seller->logo_url }}" class="w-72 h-72 rounded-lg max-lg:h-24">
-					<div class="sn-color-primary text-center lg:!text-3xl max-lg:!text-xl max-lg:!font-normal">
-						{{$seller->name }}
-					</div>
-				</a>
+                    <a href="{{ route('shop.marketplace.show', ['slug' => $seller->slug]) }}"
+                        class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2 max-lg:w-24">
+                        <img src="{{ $seller->logo_url }}" class="w-72 h-72 rounded-lg max-lg:h-24">
+                        <div class="sn-color-primary text-center lg:!text-3xl max-lg:!text-xl max-lg:!font-normal">
+                            {{ $seller->name }}
+                        </div>
+                    </a>
                 @endforeach
             @else
                 <div
