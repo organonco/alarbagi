@@ -47,8 +47,7 @@ defineRule("phone", (value) => {
 });
 
 defineRule("strong_password", (value) => {
-	var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.{8,})");
-	console.log('validating')
+	var strongRegex = new RegExp("^(?=.*[A-z])(?=.*[0-9])(?=.{8,})");
 	return strongRegex.test(value);
 });
 

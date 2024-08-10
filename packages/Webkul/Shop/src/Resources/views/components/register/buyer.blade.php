@@ -98,7 +98,7 @@
                         name="password"
                         class="!p-[20px_25px] rounded-lg"
                         :value="old('password')"
-                        rules="required|min:6"
+                        rules="required|min:6|strong_password"
                         ref="password"
                         :label="trans('shop::app.customers.signup-form.password')"
                         :placeholder="trans('shop::app.customers.signup-form.password')"
