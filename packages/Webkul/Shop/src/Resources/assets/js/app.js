@@ -46,6 +46,12 @@ defineRule("phone", (value) => {
     return true;
 });
 
+defineRule("strong_password", (value) => {
+	var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.{8,})");
+	console.log('validating')
+	return strongRegex.test(value);
+});
+
 
 configure({
     /**
@@ -58,6 +64,7 @@ configure({
             messages: {
                 ...ar.messages,
                 phone: "{field} يجب أن يكون رقم هاتف صحيح",
+				strong_password: "يجب أن تحتوي كلمة المرور على أحرف وأرقام"
             },
         },
     }),

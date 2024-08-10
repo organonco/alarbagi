@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Password;
 use Organon\Marketplace\Enums\SellerStatusEnum;
 use Organon\Marketplace\Notifications\Repositories\SellerRepository;
 use Organon\Marketplace\src\Contracts\Seller;
@@ -32,7 +33,7 @@ class SellerController extends Controller
             'area_id' => ['required', 'exists:areas,id'],
             'seller_category_id' => ['required', 'exists:seller_categories,id'],
             'email' => ['required', 'email', 'unique:admins'],
-            'password' => ['required', 'min:8'],
+            'password' => ['required', 'min:8', Password::min(8)->letters()->numbers()],
         ]);
 
         $sellerData = $request->only([
