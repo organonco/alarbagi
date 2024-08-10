@@ -56,7 +56,9 @@
 
                         <!-- Product Listing Container -->
                         <div class="flex-1" >
-                            @include('shop::categories.toolbar')
+							<div class="hidden">
+                            	@include('shop::categories.toolbar')
+							</div>
 
                             <!-- Product List Card Container -->
                             <div
