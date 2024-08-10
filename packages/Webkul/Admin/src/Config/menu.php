@@ -70,13 +70,15 @@ return [
         'route'      => 'admin.catalog.products.index',
         'sort'       => 1,
         'icon'       => '',
-    ], [
-        'key'        => 'catalog.categories',
-        'name'       => 'admin::app.components.layouts.sidebar.categories',
-        'route'      => 'admin.catalog.categories.index',
-        'sort'       => 2,
-        'icon'       => '',
-    ], [
+    ], 
+	// [
+    //     'key'        => 'catalog.categories',
+    //     'name'       => 'admin::app.components.layouts.sidebar.categories',
+    //     'route'      => 'admin.catalog.categories.index',
+    //     'sort'       => 2,
+    //     'icon'       => '',
+    // ], 
+	[
         'key'        => 'catalog.attributes',
         'name'       => 'admin::app.components.layouts.sidebar.attributes',
         'route'      => 'admin.catalog.attributes.index',

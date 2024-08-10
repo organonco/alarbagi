@@ -17,7 +17,7 @@ class AreaController extends Controller
     public function view(Request $request, $areaId)
     {
         $area = Area::query()->isActive()->findOrFail($areaId);
-        $categories = SellerCategory::query()->main()->get();
+        $categories = SellerCategory::query()->main()->get()->sortBy('sort');
         return view('shop::areas.view')->with(compact('area', 'categories'));
     }
 }

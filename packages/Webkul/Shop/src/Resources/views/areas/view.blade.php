@@ -36,7 +36,7 @@
                         </div>
                         <div class="hidden w-full " id="hidden_part_{{ $index }}">
                             <div class="flex flex-col gap-4 w-full">
-                                @foreach ($category->children as $child)
+                                @foreach ($category->getChildren() as $child)
                                     <a href="{{ route('seller-category.view', ['areaId' => $area->id, 'sellerCategoryId' => $child->id]) }}"
                                         class="sn-body-1 text-right sn-color-secondary">
                                         <span class="dot ml-3"></span> {{ $child->name }}

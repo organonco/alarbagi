@@ -48,6 +48,7 @@ class SellerCategoryController extends Controller
         $request->validate([
             'name' => 'required|max:500',
             'parent_id' => 'required',
+			'sort' => 'required|numeric',
         ]);
         $data = $request->all();
         $data['parent_id'] = $data['parent_id'] == 0 ? null : $data['parent_id'];
@@ -68,6 +69,7 @@ class SellerCategoryController extends Controller
         $request->validate([
             'name' => 'required|max:500',
             'parent_id' => ['required', Rule::notIn([$id])],
+			'sort' => 'required|numeric',
         ]);
         
         $data = $request->all();

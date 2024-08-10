@@ -13,7 +13,7 @@ class SellerCategory extends Model implements SellerCategoryContract, HasMedia
 {
     use HasBanner, HasImage;
 
-    protected $fillable = ['name', 'parent_id'];
+    protected $fillable = ['name', 'parent_id', 'sort'];
 
     public function isParent(): bool
     {
@@ -37,7 +37,7 @@ class SellerCategory extends Model implements SellerCategoryContract, HasMedia
 
     public function getChildren(): Collection
     {
-        return $this->children;
+        return $this->children->sortBy("sort");
     }
 
     public function scopeMain($query)

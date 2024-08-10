@@ -29,6 +29,16 @@
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
 
+					<x-admin::form.control-group class="mb-[10px]">
+                        <x-admin::form.control-group.label class="required">
+                            @lang('marketplace::app.admin.seller_categories.create.attributes.sort')
+                        </x-admin::form.control-group.label>
+                        <x-admin::form.control-group.control type="number" name="sort" value="{{$model->sort}}">
+                        </x-admin::form.control-group.control>
+                        <x-admin::form.control-group.error control-name="sort">
+                        </x-admin::form.control-group.error>
+                    </x-admin::form.control-group>
+
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label class="required">
                             @lang('marketplace::app.admin.seller_categories.create.attributes.parent')
