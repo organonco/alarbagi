@@ -115,15 +115,15 @@
                             <div class="flex gap-[40px] items-start md:mt-[40px] max-lg:gap-[20px]">
                                 @if($sellers->count() > 0)
                                 <div class="flex gap-6 px-4 py-18 flex-wrap justify-center max-lg:px-6">
-                                    @foreach($sellers as $seller)
-                                        <a href="{{ route('shop.marketplace.show', ['slug' => $seller->slug]) }}"
-                                            class="items-center flex gap-8 sn-background-light-green px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full">
-                                            <img src="{{ $seller->logo_url }}" class="w-20 h-20 rounded-full">
-                                            <div class="sn-color-primary text-center font-black text-2xl w-full max-lg:text-right max-lg:text-xl">
-                                                {{ $seller->name }}
-                                            </div>
-                                        </a>
-                                    @endforeach
+									@foreach ($sellers as $seller)
+									<a href="{{ route('shop.marketplace.show', ['slug' => $seller->slug]) }}"
+										class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2 max-lg:w-24">
+										<img src="{{ $seller->logo_url }}" class="w-72 h-72 rounded-lg max-lg:h-24">
+										<div class="sn-color-primary text-center lg:!text-3xl max-lg:!text-xl max-lg:!font-normal">
+											{{ $seller->name }}
+										</div>
+									</a>
+								@endforeach
                                 </div>
                                 @else
                                 <div class="grid items-center justify-items-center place-content-center w-[100%] m-auto h-[476px] text-center">
