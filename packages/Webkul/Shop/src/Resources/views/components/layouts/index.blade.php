@@ -82,38 +82,40 @@
                 <x-shop::layouts.footer />
             @endif --}}
 
-			<div class="max-lg:grid hidden fixed bottom-0 w-full grid-cols-5 sn-background-secondary py-4 shadow-md">
-
-				<a class="flex flex-col items-center px-1 border-l sn-border-color-primary" href="{{route("shop.customers.account.wishlist.index")}}">
-					<img class="w-8 h-8" src="{{ asset('assets/images/icons/bar/heart.png') }}"/>
-					<div class="sn-color-primary text-center mt-2  {{Route::currentRouteName() == "shop.customers.account.wishlist.index" ? "sn-heading-3 underline" : ""}}">
-						المفضلة
-					</div>
-				</a>
-				<a class="flex flex-col items-center px-1 border-l sn-border-color-primary" href="{{route("offer.index")}}">
-					<img class="w-8 h-8" src="{{ asset('assets/images/icons/bar/offers.png') }}"/>
-					<div class="sn-color-primary text-center mt-2 {{Route::currentRouteName() == "offer.index" ? "sn-heading-3 underline" : ""}}">
-						العروض
-					</div>
-				</a>
+			<div class="max-lg:grid hidden fixed bottom-0 w-full grid-cols-5 sn-background-primary py-4 shadow-md">
 
 				<a class="flex flex-col items-center px-1 border-l sn-border-color-primary" href="{{route("shop.home.index")}}">
-					<img class="w-8 h-8" src="{{ asset('assets/images/icons/bar/main.png') }}"/>
-					<div class="sn-color-primary text-center mt-2 {{Route::currentRouteName() == "shop.home.index" ? "sn-heading-3 underline" : ""}}">
+					<img class="w-8 h-8" src="{{ Route::currentRouteName() == "shop.home.index" ? asset('assets/images/icons/bar/selected/main.png') : asset('assets/images/icons/bar/main.png') }}"/>
+					<div class="text-center mt-2 {{Route::currentRouteName() == "shop.home.index" ? "sn-color-secondary" : "text-white"}}">
 						الرئيسية
 					</div>
 				</a>
 
+				<a class="flex flex-col items-center px-1 border-l sn-border-color-primary" href="{{route("offer.index")}}">
+					<img class="w-8 h-8" src="{{ Route::currentRouteName() == "offer.index" ? asset('assets/images/icons/bar/selected/offers.png') : asset('assets/images/icons/bar/offers.png') }}"/>
+					<div class="text-center mt-2 {{Route::currentRouteName() == "offer.index" ? "sn-color-secondary" : "text-white"}}">
+						العروض
+					</div>
+				</a>
+
+
 				<a class="flex flex-col items-center px-1 border-l sn-border-color-primary" href="{{route("shop.checkout.cart.index")}}">
-					<img class="w-8 h-8" src="{{ asset('assets/images/icons/bar/cart.png') }}"/>
-					<div class="sn-color-primary text-center mt-2 {{Route::currentRouteName() == "shop.checkout.cart.index" ? "sn-heading-3 underline" : ""}}">
-						العربة
+					<img class="w-8 h-8" src="{{ Route::currentRouteName() == "shop.checkout.cart.index" ? asset('assets/images/icons/bar/selected/cart.png') : asset('assets/images/icons/bar/cart.png') }}"/>
+					<div class="text-center mt-2 {{Route::currentRouteName() == "shop.checkout.cart.index" ? "sn-color-secondary" : "text-white"}}">
+						السلة
+					</div>
+				</a>
+
+				<a class="flex flex-col items-center px-1 border-l sn-border-color-primary" href="{{route("shop.customers.account.wishlist.index")}}">
+					<img class="w-8 h-8" src="{{ Route::currentRouteName() == "shop.customers.account.wishlist.index" ? asset('assets/images/icons/bar/selected/heart.png') : asset('assets/images/icons/bar/heart.png') }}"/>
+					<div class="text-center mt-2  {{Route::currentRouteName() == "shop.customers.account.wishlist.index" ? "sn-color-secondary" : "text-white"}}">
+						المفضلة
 					</div>
 				</a>
 
 				<a class="flex flex-col items-center px-1 " href="{{route("shop.customers.account.profile.index")}}">
-					<img class="w-8 h-8" src="{{ asset('assets/images/icons/bar/user.png') }}"/>
-					<div class="sn-color-primary text-center mt-2 {{Route::currentRouteName() == "shop.customers.account.profile.index" ? "sn-heading-3 underline" : ""}}">
+					<img class="w-8 h-8" src="{{ Route::currentRouteName() == "shop.customers.account.profile.index" ? asset('assets/images/icons/bar/selected/user.png') : asset('assets/images/icons/bar/user.png') }}"/>
+					<div class="text-center mt-2 {{Route::currentRouteName() == "shop.customers.account.profile.index" ? "sn-color-secondary" : "text-white"}}">
 						الحساب
 					</div>
 				</a>
