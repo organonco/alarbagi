@@ -64,12 +64,12 @@
 
     {{-- AREAS --}}
     <div
-        class="sn-background-grey flex justify-center gap-4 px-24 py-36 flex-wrap max-lg:py-12 max-lg:px-12 max-lg:gap-8">
+        class="sn-background-grey flex justify-center gap-4 px-24 py-36 flex-wrap max-lg:py-12 max-lg:px-6 max-lg:gap-8">
         @foreach ($areas as $area)
             <a href="{{ route('area.view', $area->id) }}"
-                class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2 max-lg:w-32">
-                <img src="{{ $area->image_url }}" class="w-72 h-72 rounded-lg max-lg:h-32">
-                <div class="sn-color-primary text-center lg:!text-3xl max-lg:!text-2xl max-lg:!font-normal">
+                class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2 max-lg:w-24">
+                <img src="{{ $area->image_url }}" class="w-72 h-72 rounded-lg max-lg:h-24">
+                <div class="sn-color-primary text-center lg:!text-3xl max-lg:!text-xl max-lg:!font-normal">
                     {{ $area->name }}
                 </div>
             </a>
