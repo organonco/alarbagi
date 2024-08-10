@@ -67,9 +67,9 @@ class SellerController extends Controller
 
         $admin = $this->adminRepository->create($adminData);
 
-        session()->flash('success', trans('marketplace::app.register.flash_messages.pending-verification'));
+        // session()->flash('success', trans('marketplace::app.register.flash_messages.pending-verification'));
 
-        Mail::queue(new EmailVerificationNotification(['email' => $admin->email, 'token' => $seller->token, 'name' => $seller->name, 'seller' => true]));
+        // Mail::queue(new EmailVerificationNotification(['email' => $admin->email, 'token' => $seller->token, 'name' => $seller->name, 'seller' => true]));
 
         return redirect()->route('admin.session.create');
     }

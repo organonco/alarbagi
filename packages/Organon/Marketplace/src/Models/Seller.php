@@ -53,7 +53,7 @@ class Seller extends Model implements SellerContract, HasMedia
 
     protected static function getDefaultStatus()
     {
-        return SellerStatusEnum::UNVERIFIED;
+        return SellerStatusEnum::PENDING;
     }
 
     public function setLogo($key)
