@@ -57,7 +57,7 @@
                                     <img src="{{ asset('assets/images/icons/heart-with-background.png') }}"
                                         class="w-[60px] h-[60px] rounded-full">
                                 </div>
-                                <a href="{{ route('shop.checkout.cart.index') }}"
+                                <a href="{{ route('shop.customers.account.wishlist.index') }}"
                                     class="flex text-center sn-color-secondary sn-heading-3 ">
                                     المفضلة
                                 </a>
