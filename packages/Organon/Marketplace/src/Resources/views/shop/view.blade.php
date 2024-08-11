@@ -24,14 +24,12 @@
                     id="v-category-template"
             >
                 <div class="container px-[60px] max-lg:px-[30px] max-sm:px-[15px] py-[60px]">
-
-
                     @if(($seller->logo_url))
                     <div style="display: flex; justify-content: center">
                         <img src="{{$seller->logo_url}}" class="rounded-full w-72 h-72 max-lg:w-40 max-lg:h-40"/>
                     </div>
                     @endif
-                    <h2 class="mt-[30px] text-center mb-[30px] sn-color-primary sn-heading-1 max-lg:mb-[0px]">
+                    <h2 class="mt-[10px] text-center mb-[10px] sn-color-primary sn-heading-1 max-lg:mb-[0px]">
                         {{$seller->name}}
                     </h2>
 
@@ -41,8 +39,15 @@
                             </a>
                     </div>
 
+					<div class="text-center ">
+                            أوقات الدوام: {{$seller->opening_time}}
+                    </div>
+					<div class="text-center ">
+						أيام الدوام: {{$seller->opening_days}}
+				</div>
+
                     <div class="text-center mb-[30px]">
-                        <a href="{{route('area.view', $seller->area->id)}}" >
+                        العنوان: <a href="{{route('area.view', $seller->area->id)}}" >
                             {{$seller->area->name}}
                         </a> - {{$seller->address}}
                     </div>
