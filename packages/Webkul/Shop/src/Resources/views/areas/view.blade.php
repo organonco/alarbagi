@@ -14,7 +14,7 @@
         </div>
 
         <div class="w-full flex justify-center pt-10">
-            <img src="{{ $area->image_url }}" class="w-72 h-72 rounded-full">
+            <img src="{{ $area->image_url }}" class="w-72 h-72 rounded-full max-lg:w-40 max-lg:h-40">
         </div>
 
         <div class="sn-heading-1 text-center sn-color-primary pt-4">

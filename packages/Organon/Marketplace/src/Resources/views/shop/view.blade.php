@@ -28,10 +28,10 @@
 
                     @if(($seller->logo_url))
                     <div style="display: flex; justify-content: center">
-                        <img src="{{$seller->logo_url}}" class="rounded-full w-72 h-72"/>
+                        <img src="{{$seller->logo_url}}" class="rounded-full w-72 h-72 max-lg:w-40 max-lg:h-40"/>
                     </div>
                     @endif
-                    <h2 class="mt-[30px] text-center mb-[30px] sn-color-primary sn-heading-1">
+                    <h2 class="mt-[30px] text-center mb-[30px] sn-color-primary sn-heading-1 max-lg:mb-[0px]">
                         {{$seller->name}}
                     </h2>
 

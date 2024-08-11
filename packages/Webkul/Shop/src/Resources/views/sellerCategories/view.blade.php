@@ -14,14 +14,16 @@
         </div>
 
         <div class="w-full flex justify-center pt-10">
-            <img src="{{ $sellerCategory->image_url }}" class="w-72 h-72 rounded-full">
+            <img src="{{ $sellerCategory->image_url }}" class="w-72 h-72 rounded-full max-lg:w-40 max-lg:h-40">
         </div>
 
         <div class="sn-heading-1 text-center sn-color-primary pt-4">
-            {{ $area->name . ' - ' . $sellerCategory->name }}
+            {{ $area->name }}
         </div>
-
-        <div class="flex gap-6 px-24 py-36 flex-wrap justify-center max-lg:px-6">
+		<div class="sn-heading-2 text-center sn-color-primary pt-1">
+            {{ $sellerCategory->name  }}
+        </div>
+        <div class="flex gap-6 px-24 py-36 flex-wrap justify-center max-lg:px-6 max-lg:pt-14 max-lg:pb-40">
             @if ($sellers->count() > 0)
                 @foreach ($sellers as $seller)
                     <a href="{{ route('shop.marketplace.show', ['slug' => $seller->slug]) }}"
