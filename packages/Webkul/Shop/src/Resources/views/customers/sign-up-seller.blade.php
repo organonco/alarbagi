@@ -35,13 +35,23 @@
                             <x-shop::form.control-group.label class="required">
                                 @lang('marketplace::app.register.labels.shop_name')
                             </x-shop::form.control-group.label>
-
                             <x-shop::form.control-group.control type="text" name="name"
                                 class="!p-[20px_25px] rounded-lg" :value="old('name')" rules="required" :label="trans('marketplace::app.register.labels.shop_name')"
                                 :placeholder="trans('marketplace::app.register.labels.shop_name')">
                             </x-shop::form.control-group.control>
-
                             <x-shop::form.control-group.error control-name="name">
+                            </x-shop::form.control-group.error>
+                        </x-shop::form.control-group>
+
+						<x-shop::form.control-group class="mb-4">
+                            <x-shop::form.control-group.label class="required">
+                                @lang('marketplace::app.register.labels.owner_name')
+                            </x-shop::form.control-group.label>
+                            <x-shop::form.control-group.control type="text" name="owner_name"
+                                class="!p-[20px_25px] rounded-lg" :value="old('owner_name')" rules="required" :label="trans('marketplace::app.register.labels.owner_name')"
+                                :placeholder="trans('marketplace::app.register.labels.owner_name')">
+                            </x-shop::form.control-group.control>
+                            <x-shop::form.control-group.error control-name="owner_name">
                             </x-shop::form.control-group.error>
                         </x-shop::form.control-group>
 
@@ -70,6 +80,30 @@
                             </select>
 
                             <x-shop::form.control-group.error control-name="seller_category_id">
+                            </x-shop::form.control-group.error>
+                        </x-shop::form.control-group>
+
+						<x-shop::form.control-group class="mb-4">
+                            <x-shop::form.control-group.label class="required">
+                                @lang('marketplace::app.register.labels.opening_days')
+                            </x-shop::form.control-group.label>
+                            <x-shop::form.control-group.control type="text" name="opening_days"
+                                class="!p-[20px_25px] rounded-lg" :value="old('opening_days')" rules="required" :label="trans('marketplace::app.register.labels.opening_days')"
+                                placeholder="الأحد - الخميس">
+                            </x-shop::form.control-group.control>
+                            <x-shop::form.control-group.error control-name="opening_days">
+                            </x-shop::form.control-group.error>
+                        </x-shop::form.control-group>
+						
+						<x-shop::form.control-group class="mb-4">
+                            <x-shop::form.control-group.label class="required">
+                                @lang('marketplace::app.register.labels.opening_time')
+                            </x-shop::form.control-group.label>
+                            <x-shop::form.control-group.control type="text" name="opening_time"
+                                class="!p-[20px_25px] rounded-lg" :value="old('opening_time')" rules="required" :label="trans('marketplace::app.register.labels.opening_time')"
+                                placeholder="9 صباحاً حتى 5 عصراً">
+                            </x-shop::form.control-group.control>
+                            <x-shop::form.control-group.error control-name="opening_time">
                             </x-shop::form.control-group.error>
                         </x-shop::form.control-group>
 

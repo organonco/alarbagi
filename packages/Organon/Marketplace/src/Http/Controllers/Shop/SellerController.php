@@ -42,7 +42,10 @@ class SellerController extends Controller
             'landline',
             'address',
             'area_id',
-            'seller_category_id'
+            'seller_category_id',
+			'opening_time',
+			'opening_days', 
+			'owner_name'
         ]);
 
         $sellerData['token'] = md5(uniqid(rand(), true));

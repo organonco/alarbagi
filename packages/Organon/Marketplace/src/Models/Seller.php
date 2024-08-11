@@ -38,7 +38,10 @@ class Seller extends Model implements SellerContract, HasMedia
         'landline',
         'area_id',
         'seller_category_id',
-        'token'
+        'token',
+		'owner_name',
+		'opening_time',
+		'opening_days'
     ];
 
     public function admin()

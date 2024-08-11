@@ -24,7 +24,10 @@ return [
             'slug' => 'اختصار الرابط (slug)',
             'area_id' => 'المنطقة',
             'parent_category_select' => 'التصنيف الأساسي',
-            'seller_category_id' => 'التصنيف الفرعي'
+            'seller_category_id' => 'التصنيف الفرعي',
+			'opening_time' => 'وقت الدوام',
+			'opening_days' => 'أيام الدوام',
+			'owner_name' => 'اسم صاحب العلاقة'
         ],
         'flash_messages' => [
             'pending_approval' => 'حسابك الآن قيد التدقيق من قبل مدراء الموقع',
