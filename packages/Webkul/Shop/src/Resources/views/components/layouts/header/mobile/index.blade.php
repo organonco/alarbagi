@@ -1,9 +1,4 @@
-{{--
-    This code needs to be refactored to reduce the amount of PHP in the Blade
-    template as much as possible.
---}}
-
-<div class="gap-[15px] flex-wrap px-[15px] pt-[25px] hidden max-lg:flex pb-[15px] sn-background-light-main">
+<div class="gap-[10px] flex-wrap p-[10px] hidden max-lg:flex sn-background-light-main">
     <div class="w-full flex justify-between items-center">
         {{-- Left Navigation --}}
 
@@ -17,8 +12,6 @@
                     {{-- Account Profile Hero Section --}}
                     <div class="flex flex-col justify-between h-full">
                         <div>
-
-
                             <div
                                 class="grid grid-cols-[auto_1fr] gap-[15px] items-center p-[10px] border-b border-[#E9E9E9]  mt-12">
                                 <div class="">
@@ -39,8 +32,6 @@
                                     </div>
                                 @endauth
                             </div>
-
-
                             <div class="grid grid-cols-[auto_1fr] gap-[15px] items-center p-[10px] border-b">
                                 <div class="">
                                     <img src="{{ asset('assets/images/icons/cart-with-background.png') }}"
@@ -108,7 +99,6 @@
             <img src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}" alt="Logo"
                 width="160" height="29">
         </a>
-
         <div class="flex items-center gap-x-[5px]">
         </div>
     </div>
