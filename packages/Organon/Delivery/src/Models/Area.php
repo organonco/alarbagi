@@ -11,40 +11,54 @@ use Spatie\MediaLibrary\HasMedia;
 
 class Area extends Model implements AreaContract, HasMedia
 {
-    use HasBanner, HasImage;
+	use HasBanner, HasImage;
 
-    protected $fillable = [
-        'name',
-        'is_active',
-        'info'
-    ];
 
-    public $appends = [
-        'is_shippable'
-    ];
+	protected static function boot()
+	{
+		parent::boot();
 
-    public $hidden = [
-        'created_at', 'updated_at', 'is_active'
-    ];
+		static::addGlobalScope('order', function ($builder) {
+			$builder->orderBy('sort', 'asc');
+		});
+	}
 
-    public function scopeIsActive($query)
-    {
-        return $query->where('is_active', true);
-    }
 
-    public function shippingCompany()
-    {
-        return $this->hasOne(ShippingCompany::class);
-    }
 
-    public function getIsShippableAttribute()
-    {
-        return !is_null($this->shippingCompany) && $this->shippingCompany->isWorking();
-    }
+	protected $fillable = [
+		'name',
+		'is_active',
+		'info',
+		'sort'
+	];
 
-    public function sellers()
-    {
-        return $this->hasMany(Seller::class);
-    }
-    
+	public $appends = [
+		'is_shippable'
+	];
+
+	public $hidden = [
+		'created_at',
+		'updated_at',
+		'is_active'
+	];
+
+	public function scopeIsActive($query)
+	{
+		return $query->where('is_active', true);
+	}
+
+	public function shippingCompany()
+	{
+		return $this->hasOne(ShippingCompany::class);
+	}
+
+	public function getIsShippableAttribute()
+	{
+		return !is_null($this->shippingCompany) && $this->shippingCompany->isWorking();
+	}
+
+	public function sellers()
+	{
+		return $this->hasMany(Seller::class);
+	}
 }

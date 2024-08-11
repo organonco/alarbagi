@@ -29,6 +29,17 @@
                         <x-admin::form.control-group.error control-name="name">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
+
+                    <x-admin::form.control-group class="mb-[10px]">
+                        <x-admin::form.control-group.label class="required">
+                            @lang('delivery::app.area.attributes.sort')
+                        </x-admin::form.control-group.label>
+                        <x-admin::form.control-group.control type="number" name="sort" value="1">
+                        </x-admin::form.control-group.control>
+                        <x-admin::form.control-group.error control-name="sort">
+                        </x-admin::form.control-group.error>
+                    </x-admin::form.control-group>
+
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label class="required">
                             @lang('delivery::app.area.attributes.info')
@@ -38,6 +49,7 @@
                         <x-admin::form.control-group.error control-name="info">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
+
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label class="required">
                             @lang('delivery::app.area.attributes.is_active')
@@ -47,21 +59,23 @@
                         <x-admin::form.control-group.error control-name="is_active">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
+
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label>
                             @lang('marketplace::app.admin.seller_categories.create.attributes.image')
                         </x-admin::form.control-group.label>
-                        <x-admin::media.images  type="image" name="image" >
-                        </x-admin::media.images >
+                        <x-admin::media.images type="image" name="image">
+                        </x-admin::media.images>
                         <x-admin::form.control-group.error control-name="image">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
+
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label>
                             @lang('marketplace::app.admin.seller_categories.create.attributes.banner')
                         </x-admin::form.control-group.label>
-                        <x-admin::media.images  type="image" name="banner" >
-                        </x-admin::media.images >
+                        <x-admin::media.images type="image" name="banner">
+                        </x-admin::media.images>
                         <x-admin::form.control-group.error control-name="banner">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
