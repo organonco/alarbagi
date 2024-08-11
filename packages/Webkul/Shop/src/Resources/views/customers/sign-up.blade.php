@@ -19,7 +19,7 @@
 
             <div class="flex">
 
-                <x-shop::register.buyer></x-shop::register.buyer>
+                <x-shop::register.buyer :areas="$areas"></x-shop::register.buyer>
 
             </div>
 

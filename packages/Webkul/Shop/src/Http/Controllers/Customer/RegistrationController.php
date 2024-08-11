@@ -38,7 +38,8 @@ class RegistrationController extends Controller
      */
     public function index()
     {
-        return view('shop::customers.sign-up');
+		$areas = Area::query()->isActive()->pluck('name', 'id');
+        return view('shop::customers.sign-up', compact('areas'));
     }
 
 
@@ -67,6 +68,8 @@ class RegistrationController extends Controller
             'email',
             'password_confirmation',
             'is_subscribed',
+			'gender',
+			'phone'
         ]), [
             'password'                  => bcrypt(request()->input('password')),
             'api_token'                 => Str::random(80),
@@ -74,11 +77,23 @@ class RegistrationController extends Controller
             'customer_group_id'         => $this->customerGroupRepository->findOneWhere(['code' => 'general'])->id,
             'token'                     => md5(uniqid(rand(), true)),
             'subscribed_to_news_letter' => request()->input('is_subscribed') ?? 0,
+			'date_of_birth' => request()->input('birth_y') . '-' . request()->input('birth_m') . '-' . request()->input('birth_d')
         ]);
+
+		
+		$address_data = array_merge(request()->only([
+			'address_details',
+			'phone'
+		]), [
+			'name' => request()->input('first_name') . ' ' . request()->input('last_name'),
+			'area_id' => request()->input('area_id')  == "" ? null : request()->input('area_id')
+		]);
 
         Event::dispatch('customer.registration.before');
 
         $customer = $this->customerRepository->create($data);
+		
+		$customer->addresses()->create($address_data);
 
         if (isset($data['is_subscribed'])) {
             $subscription = $this->subscriptionRepository->findOneWhere(['email' => $data['email']]);

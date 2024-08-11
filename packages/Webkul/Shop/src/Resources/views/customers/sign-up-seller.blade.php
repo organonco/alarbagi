@@ -18,8 +18,8 @@
             <div
                 class="w-full max-w-[870px] mx-auto px-[90px] py-[60px] border border-[#E9E9E9] rounded-[12px] max-md:px-[30px] max-md:py-[30px] h-fit">
 
-				<img src="{{ asset('assets/images/logo.png') }}" class="mx-auto mb-12 lg:w-[40%] w-[70%]" />
-				
+                <img src="{{ asset('assets/images/logo.png') }}" class="mx-auto mb-12 lg:w-[40%] w-[70%]" />
+
                 <h1 class="sn-color-primary sn-heading-1">
 
                     @lang('marketplace::app.register.title.seller')
@@ -150,14 +150,42 @@
                             </x-shop::form.control-group.label>
 
                             <x-shop::form.control-group.control type="password" name="password"
-                                class="!p-[20px_25px] rounded-lg" :value="old('password')" rules="required|min:8|strong_password"
-                                ref="password" :label="trans('shop::app.customers.signup-form.password')" :placeholder="trans('shop::app.customers.signup-form.password')" autocomplete="new-password">
+                                class="!p-[20px_25px] rounded-lg" :value="old('password')"
+                                rules="required|min:8|strong_password" ref="password" :label="trans('shop::app.customers.signup-form.password')"
+                                :placeholder="trans('shop::app.customers.signup-form.password')" autocomplete="new-password">
                             </x-shop::form.control-group.control>
 
                             <x-shop::form.control-group.error control-name="password">
                             </x-shop::form.control-group.error>
                         </x-shop::form.control-group>
 
+                        <x-shop::form.control-group class="mb-4">
+                            <label class="relative inline-flex items-start cursor-pointer">
+                                <v-field type="checkbox" name="terms" class="hidden" v-slot="{ field }"
+                                    rules="required" value="0" label="قبول شروط العربجي">
+                                    <input type="checkbox" name="terms" id="terms" class="sr-only peer"
+                                        v-bind="field" />
+                                </v-field>
+                                <label
+                                    class="rounded-full h-[20px] bg-gray-200 cursor-pointer peer-focus:ring-blue-300 after:bg-white after:border-gray-300 peer-checked:bg-[#F67541] peer peer-checked:after:border-white peer-checked:after:ltr:translate-x-full peer-checked:after:rtl:-translate-x-full after:content-[''] after:absolute after:top-[2px] after:ltr:left-[2px] after:rtl:right-[2px] peer-focus:outline-none after:border after:rounded-full after:h-[16px] after:w-[16px] after:transition-all w-14"
+                                    for="terms">
+                                </label>
+                                <div class="flex flex-col">
+                                    <label class="mx-2 sn-color-primary">
+                                        أنا أوافق على
+                                        <a class="sn-color-secondary"
+                                            href="{{ route('shop.cms.page', 'terms-of-use') }}" target="_blank">شروط
+                                            استخدام </a>
+                                        <a class="sn-color-secondary"
+                                            href="{{ route('shop.cms.page', 'privacy-policy') }}"
+                                            target="_blank">وسياسة خصوصية</a>
+                                        منصة العربجي
+                                    </label>
+                                    <x-shop::form.control-group.error control-name="terms">
+                                    </x-shop::form.control-group.error>
+                                </div>
+                            </label>
+                        </x-shop::form.control-group>
 
                         <div class="flex gap-[36px] flex-wrap items-center mt-[30px]">
                             <button class="block w-full max-w-[1260px] sn-button-primary" type="submit">

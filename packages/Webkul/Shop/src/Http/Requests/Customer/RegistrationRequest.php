@@ -4,6 +4,7 @@ namespace Webkul\Shop\Http\Requests\Customer;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Password;
+use Webkul\Core\Rules\PhoneNumber;
 use Webkul\Customer\Facades\Captcha;
 
 class RegistrationRequest extends FormRequest
@@ -30,6 +31,13 @@ class RegistrationRequest extends FormRequest
 			'last_name'  => 'string|required',
 			'email'      => 'email|required|unique:customers,email',
 			'password'   => ['confirmed', 'required', Password::min(8)->numbers()->letters()],
+			'birth_d' => ['required', 'numeric', 'min:1', 'max:31'],
+			'birth_m' => ['required', 'numeric', 'min:1', 'max:12'],
+			'birth_y' => ['required', 'numeric', 'min:1900'],
+			'phone' => ['required', new PhoneNumber, 'unique:customers,phone'],
+			'gender' => ['required', "in:ذكر,أنثى"],
+			'area_id' => ['nullable', 'exists:areas,id'],
+			'address_details' => ['required'],
 		];	
         return Captcha::getValidations($rules);
     }
