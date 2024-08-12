@@ -23,7 +23,7 @@
                     @lang('shop::app.customers.signup-form.first-name')
                 </x-shop::form.control-group.label>
                 <x-shop::form.control-group.control type="text" name="first_name" class="!p-[20px_25px] rounded-lg"
-                    :value="old('last_name')" rules="required" :label="trans('shop::app.customers.signup-form.first-name')" :placeholder="trans('shop::app.customers.signup-form.first-name')">
+                    :value="old('first_name')" rules="required" :label="trans('shop::app.customers.signup-form.first-name')" :placeholder="trans('shop::app.customers.signup-form.first-name')">
                 </x-shop::form.control-group.control>
                 <x-shop::form.control-group.error control-name="first_name">
                 </x-shop::form.control-group.error>
