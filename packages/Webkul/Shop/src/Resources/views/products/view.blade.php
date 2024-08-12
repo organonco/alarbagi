@@ -163,7 +163,7 @@
                                 {!! view_render_event('bagisto.shop.products.name.before', ['product' => $product]) !!}
 
                                 <div class="flex gap-[15px] justify-between">
-                                    <h1 class="sn-heading-1 sn-color-primary">
+                                    <h1 class=" sn-color-primary max-lg:!text-2xl font-bold text-4xl">
                                         {{ $product->name }}
                                     </h1>
 
