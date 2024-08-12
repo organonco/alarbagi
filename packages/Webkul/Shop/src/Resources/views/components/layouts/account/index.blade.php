@@ -4,7 +4,7 @@
         {{ $title ?? '' }}
     </x-slot>
 
-    
+
 
     {{-- Page Content --}}
     <div class="container px-[60px] max-lg:px-[30px] max-sm:px-[15px] mb-4">
@@ -17,5 +17,6 @@
                 {{ $slot }}
             </div>
 
+        </div>
     </div>
 </x-shop::layouts>
