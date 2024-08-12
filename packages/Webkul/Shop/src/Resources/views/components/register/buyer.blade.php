@@ -47,7 +47,7 @@
                 <x-shop::form.control-group.control type="select" name="gender" :value="old('gender')" rules="required"
                     aria-label="الجنس" class="rounded-lg " style="padding: 20px 40px" :label="trans('shop::app.customers.account.profile.gender')">
                     <option value="ذكر">@lang('shop::app.customers.account.profile.male')</option>
-                    <option value="انثى">@lang('shop::app.customers.account.profile.female')</option>
+                    <option value="أنثى">@lang('shop::app.customers.account.profile.female')</option>
                 </x-shop::form.control-group.control>
                 <x-shop::form.control-group.error control-name="gender">
                 </x-shop::form.control-group.error>
