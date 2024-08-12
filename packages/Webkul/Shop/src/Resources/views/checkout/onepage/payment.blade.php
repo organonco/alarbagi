@@ -28,7 +28,7 @@
                         <x-slot:content>
                             <div class="flex flex-wrap gap-[29px] mt-[30px]">
                                 <div 
-                                    class="relative max-sm:max-w-full max-sm:flex-auto cursor-pointer"
+                                    class="relative max-sm:max-w-full max-sm:flex-auto select-none max-lg:w-full w-fit"
                                     v-for="(payment, index) in payment_methods"
                                 >
 
@@ -51,7 +51,7 @@
 
                                     <label 
                                         :for="payment.method" 
-                                        class="w-[190px] p-[20px] block border border-[#E9E9E9] rounded-[12px] max-sm:w-full cursor-pointer"
+                                        class="block py-[20px] pl-[60px] pr-[30px] border border-[#E9E9E9] rounded-[12px] cursor-pointer"
                                     >
 
 										<div class="flex gap-4">
