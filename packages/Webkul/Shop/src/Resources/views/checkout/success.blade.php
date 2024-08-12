@@ -31,20 +31,13 @@
 			<p class="text-[26px] font-medium">
 				@lang('shop::app.checkout.success.thanks')
 			</p>
-			
-			<p class="text-[20px] text-[#6E6E6E]">
-				@lang('shop::app.checkout.success.info')
-			</p>
-
-			{{ view_render_event('bagisto.shop.checkout.continue-shopping.before', ['order' => $order]) }}
 
 			<a href="{{ route('shop.home.index') }}">
-				<div class="block w-max mx-auto m-auto py-[11px] px-[43px] bg-navyBlue rounded-[18px] text-white text-basefont-medium text-center cursor-pointer">
+				<div class="block w-max mx-auto m-auto sn-button-primary">
              		@lang('shop::app.checkout.cart.index.continue-shopping')
 				</div> 
 			</a>
 			
-			{{ view_render_event('bagisto.shop.checkout.continue-shopping.after', ['order' => $order]) }}
 			
 		</div>
 	</div>
