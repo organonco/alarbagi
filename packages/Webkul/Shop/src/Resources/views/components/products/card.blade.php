@@ -8,7 +8,7 @@
             class='grid gap-2 content-start w-fit relative' style="border: 1px solid #dddddd;"
             v-if="mode != 'list'"
         >
-            <div class="relative overflow-hidden group max-w-[291px] max-h-[300px] rounded-[4px]">
+            <div class="relative overflow-hidden group max-w-[400px] max-h-[300px] rounded-[4px]">
                 <a
                     :href="`{{ route('shop.product_or_category.index', '') }}/${product.url_key}`"
                     :aria-label="product.name + ' '"

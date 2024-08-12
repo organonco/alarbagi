@@ -58,7 +58,7 @@
                             <!-- Product Card Shimmer Effect -->
                             <template v-if="isLoading">
                                 <div
-                                    class="grid grid-cols-6 gap-8 max-1060:grid-cols-2 max-sm:justify-items-center max-sm:gap-[16px]">
+                                    class="grid grid-cols-5 gap-8 max-1060:grid-cols-2 max-sm:justify-items-center max-sm:gap-[16px]">
                                     <x-shop::shimmer.products.cards.grid
                                         count="12"></x-shop::shimmer.products.cards.grid>
                                 </div>
@@ -68,7 +68,7 @@
                             <template v-else>
                                 <template v-if="products.length">
                                     <div
-                                        class="grid grid-cols-6 gap-8 max-1060:grid-cols-2 max-sm:justify-items-center max-sm:gap-[16px]">
+                                        class="grid grid-cols-5 gap-8 max-1060:grid-cols-2 max-sm:justify-items-center max-sm:gap-[16px]">
                                         <x-shop::products.card
                                             ::mode="'grid'"
                                             v-for="product in products"
