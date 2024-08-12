@@ -67,9 +67,9 @@
         class="sn-background-grey flex justify-center gap-4 px-24 py-36 flex-wrap max-lg:py-12 max-lg:px-6 max-lg:gap-8">
         @foreach ($areas as $area)
             <a href="{{ route('area.view', $area->id) }}"
-                class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2 max-lg:w-24">
-                <img src="{{ $area->image_url }}" class="w-72 h-72 rounded-lg max-lg:h-24">
-                <div class="sn-color-primary text-center lg:!text-3xl max-lg:!text-xl max-lg:!font-normal">
+                class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2 max-lg:w-20">
+                <img src="{{ $area->image_url }}" class="w-72 h-72 rounded-lg max-lg:h-20">
+                <div class="sn-color-primary text-center lg:!text-3xl max-lg:!text-sm max-lg:!font-bold">
                     {{ $area->name }}
                 </div>
             </a>
@@ -80,11 +80,11 @@
 
     {{-- FOOTER --}}
     <div
-        class="sn-background-primary px-28 max-lg:px-20 py-16 grid-cols-5 grid max-lg:flex max-lg:flex-col max-lg:gap-12">
+        class="sn-background-primary px-28 max-lg:px-10 py-16 grid-cols-5 grid max-lg:flex max-lg:flex-col max-lg:gap-4 max-lg:py-10">
         <div class="col-span-3 max-lg:pr-0 flex pr-10">
             <div class="flex flex-col items-center">
                 <img src="{{ asset('assets/images/logo-orange.png') }}" class="w-[24rem]">
-                <div class="sn-heading-2 text-white mt-8 text-center">
+                <div class="sn-heading-2 text-white mt-8 text-center max-lg:text-2xl">
                     المحل محلك وانت بمحلك
                 </div>
             </div>
