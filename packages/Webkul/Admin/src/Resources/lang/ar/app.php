@@ -113,7 +113,7 @@ return [
             'start-date'                  => 'تاريخ البدء',
             'store-stats'                 => 'إحصائيات المتجر',
             'to'                          => 'إلى',
-            'title'                       => 'لوحة التحكم',
+            'title'                       => 'الإحصائيات',
             'top-performing-categories'   => 'أفضل الفئات الأدائية',
             'top-selling-products'        => 'أعلى المنتجات مبيعًا',
             'total-customers'             => 'إجمالي الزبائن',
@@ -3238,7 +3238,7 @@ return [
                 'campaigns'                => 'الحملات',
                 'cms'                      => 'الصفحات الثانوية',
                 'discount'                 => 'الخصم',
-                'dashboard'                => 'لوحة التحكم',
+                'dashboard'                => 'الإحصائيات',
                 'email-templates'          => 'قوالب البريد الإلكتروني',
                 'events'                   => 'الأحداث',
                 'exchange-rates'           => 'أسعار الصرف',
@@ -3398,7 +3398,7 @@ return [
         'catalog-rules'            => 'قواعد المنتجات',
         'communications'           => 'الاتصالات',
         'campaigns'                => 'الحملات',
-        'dashboard'                => 'لوحة التحكم',
+        'dashboard'                => 'الإحصائيات',
         'delete'                   => 'حذف',
         'exchange-rates'           => 'أسعار الصرف',
         'edit'                     => 'تعديل',
@@ -3435,7 +3435,7 @@ return [
     ],
 
     'errors' => [
-        'dashboard' => 'لوحة التحكم',
+        'dashboard' => 'الإحصائيات',
         'go-back'   => 'العودة',
         'support'   => 'إذا استمرت المشكلة، تواصل معنا على <a href=":link" class=":class">:email</a> للحصول على المساعدة.',
 
