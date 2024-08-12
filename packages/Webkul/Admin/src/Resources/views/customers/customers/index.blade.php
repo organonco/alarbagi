@@ -13,23 +13,6 @@
             <!-- Export Modal -->
             <x-admin::datagrid.export src="{{ route('admin.customers.customers.index') }}"></x-admin::datagrid.export>
 
-            <div class="flex gap-x-[10px] items-center">
-                {{-- Customer Create Vue Component --}}
-
-                {!! view_render_event('admin.customers.customers.create.before') !!}
-
-                <v-create-customer-form>
-                    <button
-                        type="button"
-                        class="primary-button"
-                    >
-                        @lang('admin::app.customers.customers.index.create.create-btn')
-                    </button>
-                </v-create-customer-form>
-
-                {!! view_render_event('admin.customers.customers.create.after') !!}
-
-            </div>
         </div>
     </div>
 
