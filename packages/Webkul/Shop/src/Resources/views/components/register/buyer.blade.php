@@ -65,7 +65,7 @@
                     </x-shop::form.control-group.control>
                     <x-shop::form.control-group.control type="number" name="birth_m"
                         class="col-span-1 !p-[20px_10px] text-center rounded-lg [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                        :value="old('birth_n')" rules="required|between:1,12" :label="trans('shop::app.customers.account.profile.birth_m')"
+                        :value="old('birth_m')" rules="required|between:1,12" :label="trans('shop::app.customers.account.profile.birth_m')"
                         placeholder="{{ trans('shop::app.customers.account.profile.birth_m') }}">
                     </x-shop::form.control-group.control>
                     <x-shop::form.control-group.control type="number" name="birth_y"
@@ -125,7 +125,7 @@
                     @lang('shop::app.customers.signup-form.address')
                 </x-shop::form.control-group.label>
                 <x-shop::form.control-group.control type="textarea" name="address_details"
-                    class="!p-[20px_25px] rounded-lg" rules="required" :value="old('address')" :label="trans('shop::app.customers.signup-form.address')"
+                    class="!p-[20px_25px] rounded-lg" rules="required" :value="old('address_details')" :label="trans('shop::app.customers.signup-form.address')"
                     placeholder="">
                 </x-shop::form.control-group.control>
                 <x-shop::form.control-group.error control-name="address_details">
