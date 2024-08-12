@@ -15,7 +15,7 @@
     </x-slot>
 
     {{-- Page Content --}}
-    <div class="container mt-[30px] px-[60px] max-lg:px-[30px]">
+    <div class="container my-[30px] px-[60px] max-lg:px-[30px]">
         {!! Blade::render($page->html_content) !!}
     </div>
 </x-shop::layouts>
