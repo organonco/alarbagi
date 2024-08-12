@@ -4,6 +4,10 @@
         @lang('shop::app.customers.account.profile.title')
     </x-slot>
 
+	@php
+        $pages = Webkul\CMS\Models\CmsPage::whereHas('translations')->get();
+    @endphp
+
     {{-- Breadcrumbs --}}
     @section('breadcrumbs')
         <x-shop::breadcrumbs name="profile"></x-shop::breadcrumbs>
@@ -78,42 +82,41 @@
                 @lang('shop::app.customers.account.profile.logout')
             </button>
         </form>
-        {!! view_render_event('bagisto.shop.customers.account.profile.delete.before') !!}
-
-
-        {{-- <x-shop::modal>
-            <x-slot:toggle>
-                <div class="sn-button-primary-alt text-center">
-                    @lang('shop::app.customers.account.profile.delete-profile')
+        <div class="flex-col gap-2 max-lg:items-center hidden max-lg:flex">
+                <div
+                    class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2 max-lg:text-center">
+                    {{-- الصفحات الثانوية --}}
                 </div>
-            </x-slot:toggle>
+                @foreach ($pages as $page)
+                    <a href="{{ route('shop.cms.page', $page->translations[0]->url_key) }}"
+                        class="sn-heading-3 sn-color-primary max-lg:text-center">
+                        {{ $page->translations[0]->page_title }}
+                    </a>
+                @endforeach
+            </div>
 
-            <x-slot:header>
-                <h2 class="text-[25px] font-medium max-sm:text-[22px]">
-                    @lang('shop::app.customers.account.profile.enter-password')
-                </h2>
-            </x-slot:header>
+            <div class="flex flex-col gap-2 max-lg:items-center hidden max-lg:flex">
 
-            <x-slot:content>
-                <x-shop::form action="{{ route('shop.customers.account.profile.destroy') }}">
-                    <x-shop::form.control-group>
-                        <div class="p-[30px] bg-white">
-                            <x-shop::form.control-group.control type="password" name="password"
-                                class="py-[20px] px-[25px]" rules="required" />
+				<a href="tel:+963943175715" class="sn-heading-3 sn-color-primary text-right max-lg:text-center mb-8"
+                    dir="ltr">
+                    +963943175715
+                </a>
 
-                            <x-shop::form.control-group.error class=" text-left" control-name="password">
-                            </x-shop::form.control-group.error>
-                        </div>
-                    </x-shop::form.control-group>
+                <div
+                    class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2 max-lg:text-center max-lg:items-center">
+                    تواصل معنا
+                </div>
+                <a href="mailto:support@alarbagi.com" class="sn-heading-3 sn-color-primary max-lg:text-center">
+                    support@alarbagi.com
+                </a>
+                <a href="https://www.alarbagi.com" class="sn-heading-3 sn-color-primary text-right max-lg:text-center"
+                    dir="ltr">
+                    www.alarbagi.com
+                </a>
+                
 
-                    <div class="p-[30px] bg-white mt-[20px]">
-                        <button type="submit" class="sn-button-primary-alt">
-                            @lang('shop::app.customers.account.profile.delete')
-                        </button>
-                    </div>
-                </x-shop::form>
-            </x-slot:content>
-        </x-shop::modal> --}}
+            </div>
+        </div>
 
         {!! view_render_event('bagisto.shop.customers.account.profile.delete.after') !!}
 

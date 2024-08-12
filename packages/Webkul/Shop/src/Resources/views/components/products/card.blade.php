@@ -1,7 +1,4 @@
-<v-product-card
-    {{ $attributes }}
-    :product="product"
->
+<v-product-card {{ $attributes }} :product="product">
 </v-product-card>
 
 @pushOnce('scripts')
@@ -76,7 +73,7 @@
   -webkit-box-orient: vertical;"></p>
 
                     <div
-                        class="flex gap-2.5 gap-05-mobile font-semibold text-lg sn-color-light-main flex-wrap"
+                        class="flex gap-2.5 gap-05-mobile font-semibold text-lg sn-color-primary flex-wrap"
                         v-html="product.price_html"
                     >
                     </div>
@@ -202,17 +199,19 @@
                 addToWishlist() {
                     if (this.isCustomer) {
                         this.$axios.post(`{{ route('shop.api.customers.account.wishlist.store') }}`, {
-                            product_id: this.product.id
-                        })
+                                product_id: this.product.id
+                            })
                             .then(response => {
                                 this.product.is_wishlist = !this.product.is_wishlist;
 
-                                this.$emitter.emit('add-flash', {type: 'success', message: response.data.data.message});
+                                this.$emitter.emit('add-flash', {
+                                    type: 'success',
+                                    message: response.data.data.message
+                                });
                             })
-                            .catch(error => {
-                            });
+                            .catch(error => {});
                     } else {
-                        window.location.href = "{{ route('shop.customer.session.index')}}";
+                        window.location.href = "{{ route('shop.customer.session.index') }}";
                     }
                 },
 
@@ -221,11 +220,14 @@
                      * This will handle for customers.
                      */
                     if (this.isCustomer) {
-                        this.$axios.post('{{ route("shop.api.compare.store") }}', {
-                            'product_id': productId
-                        })
+                        this.$axios.post('{{ route('shop.api.compare.store') }}', {
+                                'product_id': productId
+                            })
                             .then(response => {
-                                this.$emitter.emit('add-flash', {type: 'success', message: response.data.data.message});
+                                this.$emitter.emit('add-flash', {
+                                    type: 'success',
+                                    message: response.data.data.message
+                                });
                             })
                             .catch(error => {
                                 if ([400, 422].includes(error.response.status)) {
@@ -237,7 +239,10 @@
                                     return;
                                 }
 
-                                this.$emitter.emit('add-flash', {type: 'error', message: error.response.data.message});
+                                this.$emitter.emit('add-flash', {
+                                    type: 'error',
+                                    message: error.response.data.message
+                                });
                             });
 
                         return;
@@ -286,10 +291,10 @@
                 },
 
                 addToCart() {
-                    this.$axios.post('{{ route("shop.api.checkout.cart.store") }}', {
-                        'quantity': 1,
-                        'product_id': this.product.id,
-                    })
+                    this.$axios.post('{{ route('shop.api.checkout.cart.store') }}', {
+                            'quantity': 1,
+                            'product_id': this.product.id,
+                        })
                         .then(response => {
                             if (response.data.data.redirect_uri) {
                                 window.location.href = response.data.data.redirect_uri;
@@ -298,13 +303,22 @@
                             if (response.data.message) {
                                 this.$emitter.emit('update-mini-cart', response.data.data);
 
-                                this.$emitter.emit('add-flash', {type: 'success', message: response.data.message});
+                                this.$emitter.emit('add-flash', {
+                                    type: 'success',
+                                    message: response.data.message
+                                });
                             } else {
-                                this.$emitter.emit('add-flash', {type: 'warning', message: response.data.data.message});
+                                this.$emitter.emit('add-flash', {
+                                    type: 'warning',
+                                    message: response.data.data.message
+                                });
                             }
                         })
                         .catch(error => {
-                            this.$emitter.emit('add-flash', {type: 'error', message: response.data.message});
+                            this.$emitter.emit('add-flash', {
+                                type: 'error',
+                                message: response.data.message
+                            });
                         });
                 },
             },
