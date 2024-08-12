@@ -28,7 +28,7 @@
 				@endif
 			</p>
 
-			<p class="text-[26px] font-medium">
+			<p class="text-[26px] font-medium max-lg:text-[18px]">
 				@lang('shop::app.checkout.success.thanks')
 			</p>
 

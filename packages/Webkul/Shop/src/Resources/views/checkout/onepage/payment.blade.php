@@ -54,22 +54,25 @@
                                         class="w-[190px] p-[20px] block border border-[#E9E9E9] rounded-[12px] max-sm:w-full cursor-pointer"
                                     >
 
-                                        <img
-                                            class="max-w-[55px] max-h-[45px]"
-                                            :src="paymentImages[payment.method] || '{{ bagisto_asset('images/paypal.png') }}'"
-                                            width="55"
-                                            height="55"
-                                            :alt="payment.method_title"
-                                            :title="payment.method_title"
-                                        >
-                                        
-                                        <p class="text-[14px] font-semibold mt-[5px]">
-                                            @{{ payment.method_title }}
-                                        </p>
-                                        
-                                        <p class="text-[12px] font-medium mt-[10px]">
-                                            @{{ payment.description }}
-                                        </p>
+										<div class="flex gap-4">
+											<img
+												class="max-w-[55px] max-h-[45px]"
+												:src="paymentImages[payment.method] || '{{ bagisto_asset('images/paypal.png') }}'"
+												width="55"
+												height="55"
+												:alt="payment.method_title"
+												:title="payment.method_title"
+											>
+											<div>
+												<p class="text-[14px] font-semibold mt-[5px]">
+													@{{ payment.method_title }}
+												</p>
+												
+												<p class="text-[12px] font-medium mt-[10px]">
+													@{{ payment.description }}
+												</p>
+											</div>
+										</div>
                                     </label>
 
                                     {!! view_render_event('bagisto.shop.checkout.payment-method.after') !!}

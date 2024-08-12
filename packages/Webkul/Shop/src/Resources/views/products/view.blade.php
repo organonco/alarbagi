@@ -107,65 +107,6 @@
             </x-slot:content>
         </x-shop::accordion>
 
-        {{-- Additional Information Accordion --}}
-        <x-shop::accordion :is-active="false">
-            <x-slot:header>
-                <div class="flex justify-between mb-[20px] mt-[20px]">
-                    <p class="text-[16px] font-medium 1180:hidden">
-                        @lang('shop::app.products.view.additional-information')
-                    </p>
-                </div>
-            </x-slot:header>
-
-            <x-slot:content>
-                <div class="container mt-[20px] mb-[20px] max-1180:px-[20px]">
-                    <p class="text-[#6E6E6E] text-[18px] max-1180:text-[14px]">
-                        @foreach ($customAttributeValues as $customAttributeValue)
-                            <div class="grid">
-                                <p class="text-[16px] text-black">
-                                    {{ $customAttributeValue['label'] }}
-                                </p>
-                            </div>
-
-                            @if (
-                                $customAttributeValue['type'] == 'file'
-                                || $customAttributeValue['type'] == 'image'
-                            )
-                                <a
-                                    href="{{ Storage::url($product[$customAttributeValue['code']]) }}"
-                                    download="{{ $customAttributeValue['label'] }}"
-                                >
-                                    <p class="text-[16px] text-blue-500 underline">
-                                        {{ $customAttributeValue['label'] }}
-                                    </p>
-                                </a>
-                            @else
-                                <div class="grid">
-                                    <p class="text-[16px] text-[#6E6E6E]">
-                                        {{ $customAttributeValue['value'] ?? '-' }}
-                                    </p>
-                                </div>
-                            @endif
-                        @endforeach
-                    </p>
-                </div>
-            </x-slot:content>
-        </x-shop::accordion>
-
-        {{-- Reviews Accordion --}}
-        <x-shop::accordion :is-active="false">
-            <x-slot:header>
-                <div class="flex justify-between mb-[20px] mt-[20px]">
-                    <p class="text-[16px] font-medium 1180:hidden">
-                        @lang('shop::app.products.view.review')
-                    </p>
-                </div>
-            </x-slot:header>
-
-            <x-slot:content>
-                @include('shop::products.view.reviews')
-            </x-slot:content>
-        </x-shop::accordion>
     </div>
 
     {{-- Featured Products --}}
@@ -313,7 +254,7 @@
                                         <x-shop::quantity-changer
                                             name="quantity"
                                             value="1"
-                                            class="gap-x-[16px] py-[15px] px-[26px] rounded-[12px] sn-button-primary-alt"
+                                            class="gap-x-[16px] max-lg:!px-[10px] sn-button-primary-alt "
                                         >
                                         </x-shop::quantity-changer>
                                     @endif
@@ -325,7 +266,7 @@
 
                                     <button
                                         type="submit"
-                                        class="sn-button-primary"
+                                        class="max-lg:!px-[20px] sn-button-primary w-full"
                                         {{ ! $product->isSaleable(1) ? 'disabled' : '' }}
                                     >
                                         @lang('shop::app.products.view.add-to-cart')

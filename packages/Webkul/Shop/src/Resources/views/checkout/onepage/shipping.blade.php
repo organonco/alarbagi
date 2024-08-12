@@ -28,7 +28,7 @@
                     <x-slot:content>
                         <div class="flex flex-wrap gap-[30px] mt-[30px]">
                             <div
-                                class="relative max-w-[218px] max-sm:max-w-full max-sm:flex-auto select-none"
+                                class="relative max-sm:max-w-full max-sm:flex-auto select-none max-lg:w-full"
                                 v-for="shippingMethod in shippingMethods"
                             >
                                 <div v-for="rate in shippingMethod.rates">
@@ -36,24 +36,32 @@
                                         <input type="radio" name="shipping_method" :id="rate.method" :value="rate.method" class="hidden peer" @change="store(rate.method)"/>
                                         <label class="icon-radio-unselect absolute ltr:right-[20px] rtl:left-[20px] top-[20px] text-[24px] sn-color-secondary peer-checked:icon-radio-select cursor-pointer" :for="rate.method"></label>
                                         <label class="block p-[20px] border border-[#E9E9E9] rounded-[12px] cursor-pointer" :for="rate.method">
-                                            <span :class="'text-[60px] sn-color-primary ' + rate.method_icon"></span>
-                                            <p class="sn-heading-3 sn-color-primary"> @{{ rate.method_title }} </p>
-                                            <p class="text-[12px] mt-[10px] font-medium"> @{{ rate.method_description }} </p>
+											<div class="flex gap-4">
+                                            	<span :class="'text-[60px] sn-color-primary ' + rate.method_icon"></span>
+												<div>
+													<p class="sn-heading-3 sn-color-primary"> @{{ rate.method_title }} </p>
+													<p class="text-[12px] mt-[10px] font-medium"> @{{ rate.method_description }} </p>
+												</div>
+											</div>
                                         </label>
                                     </template>
                                 </div>
                             </div>
                             <div
-                                    class="relative max-w-[218px] max-sm:max-w-full max-sm:flex-auto select-none"
+                                    class="relative max-sm:max-w-full max-sm:flex-auto select-none max-lg:w-full"
                                     v-for="shippingMethod in shippingMethods"
                                 >
                                 <div v-for="rate in shippingMethod.rates">
                                     <template  v-if="!rate.is_available">
                                         <label class="icon-radio-unselect absolute ltr:right-[20px] rtl:left-[20px] top-[20px] text-[24px] sn-color-disabled peer-checked:icon-radio-select cursor-pointer" :for="rate.method"></label>
                                         <label class="block p-[20px] border border-[#E9E9E9] rounded-[12px] cursor-not-allowed" :for="rate.method">
-                                            <span :class="'text-[60px] sn-color-disabled ' + rate.method_icon"></span>
-                                            <p class="sn-heading-3 sn-color-disabled"> @{{ rate.method_title }} </p>
-                                            <p class="text-[12px] mt-[10px] font-medium sn-color-disabled"> @{{ rate.method_description }} </p>
+											<div class="flex gap-4">
+                                            	<span :class="'text-[60px] sn-color-disabled ' + rate.method_icon"></span>
+												<div>
+													<p class="sn-heading-3 sn-color-disabled"> @{{ rate.method_title }} </p>
+													<p class="text-[12px] mt-[10px] font-medium sn-color-disabled"> @{{ rate.method_description }} </p>
+												</div>
+											</div>
                                         </label>
                                     </template>
                                 </div>
