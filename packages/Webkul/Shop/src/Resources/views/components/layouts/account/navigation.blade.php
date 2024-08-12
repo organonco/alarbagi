@@ -55,9 +55,6 @@
                         @endphp
                     @endif
 
-                    @php
-                        $pages = Webkul\CMS\Models\CmsPage::whereHas('translations')->get();
-                    @endphp
 
                     @foreach ($menuItem['children'] as $subMenuItem)
                         <a href="{{ $subMenuItem['url'] }}">
@@ -73,14 +70,7 @@
                             </div>
                         </a>
                     @endforeach
-					@foreach ($pages as $page)
-                        <a href="{{ route('shop.cms.page', $page->translations[0]->url_key) }}">
-                            <div
-                                class="flex justify-between px-[25px] py-[20px] border-t-[1px] border-[#E9E9E9] hover:bg-[#f3f4f682] cursor-pointer {{ request()->routeIs(route('shop.cms.page', $page->translations[0]->url_key)) ? 'bg-gray-100' : '' }}">
-                                {{ $page->translations[0]->page_title }}
-                            </div>
-                        </a>
-                    @endforeach
+					
                 </div>
             </v-account-navigation>
         </div>

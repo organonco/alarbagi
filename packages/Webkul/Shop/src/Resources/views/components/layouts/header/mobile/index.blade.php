@@ -1,15 +1,14 @@
 <div class="gap-[10px] flex-wrap p-[10px] hidden max-lg:flex sn-background-light-main">
-    <div class="w-full flex justify-between items-center">
+    <div class="w-full flex justify-center items-center">
         {{-- Left Navigation --}}
 
-        <div class="flex items-center gap-x-[5px]">
+        {{-- <div class="flex items-center gap-x-[5px]">
             <x-shop::drawer position="left" width="80%">
                 <x-slot:toggle>
                     <span class="icon-hamburger text-[24px] cursor-pointer sn-color-primary"></span>
                 </x-slot:toggle>
 
                 <x-slot:content>
-                    {{-- Account Profile Hero Section --}}
                     <div class="flex flex-col justify-between h-full">
                         <div>
                             <div
@@ -63,37 +62,10 @@
                             </div>
                         </div>
                     </div>
-                    {{-- 					
-					<div class="flex justify-center w-full p-12">
-						<img src="{{asset('assets/images/logo.png')}}" alt="logo"/>
-					</div>
-
-                    <div
-                        class="grid grid-cols-[auto_1fr] gap-[15px] items-center mb-[15px] p-[10px] border border-[#E9E9E9] rounded-[12px] mt-4">
-                        <div class="">
-                            <img src="{{ auth()->user()?->image_url ?? bagisto_asset('images/user-placeholder.png') }}"
-                                class="w-[60px] h-[60px] rounded-full">
-                        </div>
-                        @guest('customer')
-                            <a href="{{ route('shop.customer.session.create') }}"
-                                class="flex text-center sn-color-secondary sn-heading-3 justify-center">
-                                @lang('shop::app.components.layouts.header.sign-in')
-                            </a>
-                        @endguest
-                        @auth('customer')
-                            <div class="flex flex-col gap-[4px] justify-between">
-                                <p class="text-[16px] font-mediums">أهلاً بك {{ auth()->user()?->first_name }}!</p>
-                                <a href="{{ route('shop.customers.account.profile.index') }}"
-                                    class="text-[#6E6E6E] ">اعدادات الحساب</a>
-                            </div>
-                        @endauth
-                    </div>
-                    <v-mobile-category></v-mobile-category> --}}
                 </x-slot:content>
-
                 <x-slot:footer></x-slot:footer>
             </x-shop::drawer>
-        </div>
+        </div> --}}
 
         <a href="{{ route('shop.home.index') }}">
             <img src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}" alt="Logo"

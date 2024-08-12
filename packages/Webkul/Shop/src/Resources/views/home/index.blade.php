@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-col gap-2 max-lg:items-center">
+        <div class="flex flex-col gap-2 max-lg:items-center max-lg:hidden">
             <div
                 class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2 max-lg:text-center">
                 {{-- الصفحات الثانوية --}}
@@ -102,7 +102,7 @@
             @endforeach
         </div>
 
-        <div class="flex flex-col gap-2 max-lg:items-center">
+        <div class="flex flex-col gap-2 max-lg:items-center max-lg:hidden">
             <div
                 class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2 max-lg:text-center max-lg:items-center">
                 تواصل معنا
