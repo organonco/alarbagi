@@ -4,7 +4,7 @@
         @lang('shop::app.customers.account.profile.title')
     </x-slot>
 
-	@php
+    @php
         $pages = Webkul\CMS\Models\CmsPage::whereHas('translations')->get();
     @endphp
 
@@ -75,7 +75,7 @@
             </p>
         </div>
 
-        <form method="POST" action={{route('shop.customer.session.destroy')}}>
+        <form method="POST" action={{ route('shop.customer.session.destroy') }}>
             @csrf
             @method('delete')
             <button class="sn-button-primary-alt text-center" type="submit">
@@ -83,39 +83,38 @@
             </button>
         </form>
         <div class="flex-col gap-2 max-lg:items-center hidden max-lg:flex">
-                <div
-                    class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2 max-lg:text-center">
-                    {{-- الصفحات الثانوية --}}
-                </div>
-                @foreach ($pages as $page)
-                    <a href="{{ route('shop.cms.page', $page->translations[0]->url_key) }}"
-                        class="sn-heading-3 sn-color-primary max-lg:text-center">
-                        {{ $page->translations[0]->page_title }}
-                    </a>
-                @endforeach
+            <div
+                class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2 max-lg:text-center">
+                {{-- الصفحات الثانوية --}}
             </div>
-
-            <div class="flex flex-col gap-2 max-lg:items-center hidden max-lg:flex">
-
-				<a href="tel:+963943175715" class="sn-heading-3 sn-color-primary text-right max-lg:text-center mb-8"
-                    dir="ltr">
-                    +963943175715
+            @foreach ($pages as $page)
+                <a href="{{ route('shop.cms.page', $page->translations[0]->url_key) }}"
+                    class="sn-heading-3 sn-color-primary max-lg:text-center">
+                    {{ $page->translations[0]->page_title }}
                 </a>
+            @endforeach
+        </div>
 
-                <div
-                    class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2 max-lg:text-center max-lg:items-center">
-                    تواصل معنا
-                </div>
-                <a href="mailto:support@alarbagi.com" class="sn-heading-3 sn-color-primary max-lg:text-center">
-                    support@alarbagi.com
-                </a>
-                <a href="https://www.alarbagi.com" class="sn-heading-3 sn-color-primary text-right max-lg:text-center"
-                    dir="ltr">
-                    www.alarbagi.com
-                </a>
-                
+        <div class="flex flex-col gap-2 max-lg:items-center hidden max-lg:flex">
 
+            <a href="tel:+963943175715" class="sn-heading-3 sn-color-primary text-right max-lg:text-center mb-8"
+                dir="ltr">
+                +963943175715
+            </a>
+
+            <div
+                class="sn-heading-3 border-b-2 sn-border-secondary text-center pb-2 w-fit sn-color-secondary mb-2 max-lg:text-center max-lg:items-center">
+                تواصل معنا
             </div>
+            <a href="mailto:support@alarbagi.com" class="sn-heading-3 sn-color-primary max-lg:text-center">
+                support@alarbagi.com
+            </a>
+            <a href="https://www.alarbagi.com" class="sn-heading-3 sn-color-primary text-right max-lg:text-center"
+                dir="ltr">
+                www.alarbagi.com
+            </a>
+
+
         </div>
 
         {!! view_render_event('bagisto.shop.customers.account.profile.delete.after') !!}
