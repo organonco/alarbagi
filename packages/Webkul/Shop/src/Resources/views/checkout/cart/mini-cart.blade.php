@@ -128,7 +128,7 @@
                     v-else
                 >
                     <div class="grid gap-y-[20px] b-0 place-items-center">
-                        <img src="{{ bagisto_asset('images/thank-you.png') }}">
+                        <img src="{{ bagisto_asset('images/thank-you.png') }}" class="max-w-xs">
 
                         <p class="text-[20px]">
                             @lang('shop::app.checkout.cart.mini-cart.empty-cart')
