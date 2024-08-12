@@ -85,7 +85,6 @@ class OrderRepository extends Repository
             $order->addresses()->create($data['billing_address']);
 
             foreach ($data['items'] as $item) {
-                Event::dispatch('checkout.order.orderitem.save.before', $item);
 
                 $orderItem = $this->orderItemRepository->create(array_merge($item, ['order_id' => $order->id]));
 
@@ -99,7 +98,6 @@ class OrderRepository extends Repository
 
                 $this->downloadableLinkPurchasedRepository->saveLinks($orderItem, 'available');
 
-                Event::dispatch('checkout.order.orderitem.save.after', $orderItem);
             }
 
             $suborders = collect($data['items'])
@@ -123,20 +121,13 @@ class OrderRepository extends Repository
             $this->sellerOrderRepository->createMany($order, $suborders);
 
         } catch (\Exception $e) {
-            /* rolling back first */
             DB::rollBack();
-            /* storing log for errors */
             Log::error(
                 'OrderRepository:createOrderIfNotThenRetry: ' . $e->getMessage(),
                 ['data' => $data]
             );
-
-            /* recalling */
-//            $this->createOrderIfNotThenRetry($data);
         } finally {
-            /* commit in each case */
             DB::commit();
-            Event::dispatch('checkout.order.save.after', $order);
         }
         return $order;
     }
