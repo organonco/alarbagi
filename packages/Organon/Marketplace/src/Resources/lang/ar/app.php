@@ -94,6 +94,10 @@ return [
     ],
     "seller" => [
         'statuses' => [
+			'UNVERIFIED' => [
+                'label' => 'بانتظار تأكيد الايميل',
+                'class' => 'pending'
+            ],
             'PENDING' => [
                 'label' => 'قيد التدقيق',
                 'class' => 'pending'
