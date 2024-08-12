@@ -42,7 +42,7 @@ class Order extends \Webkul\Sales\Models\Order
 
 	public function scopeForShippingCompany($query, $shippingCompany)
 	{
-		return $query->whereHas('addresses', function ($query) use ($shippingCompany) {
+		return $query->where('shipping_method', 'shippingcompany_shippingcompany')->whereHas('addresses', function ($query) use ($shippingCompany) {
 			return $query->where('address_type', OrderAddress::ADDRESS_TYPE_SHIPPING)->where('area_id', $shippingCompany->area_id);
 		});
 	}

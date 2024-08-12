@@ -30,7 +30,7 @@
             </div>
             <div id="default-tab-content">
                 <div class="hidden" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                    <div class="flex mt-8 gap-4 max-lg:flex-col items-center">
+                    <div class="flex mt-8 gap-4 max-lg:flex-col items-center flex-wrap">
                         @foreach ($pendingOrders as $order)
                             <a href="{{route('shipping.orders.show', $order->id)}}" class="order-card">
                                 <div class="sn-heading-3 text-center">

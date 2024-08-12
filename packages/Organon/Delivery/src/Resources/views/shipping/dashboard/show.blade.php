@@ -190,9 +190,8 @@
     @pushonce('scripts')
         <script>
 			document.getElementById("send").onclick = () => {
-				
-				let href = "https://wa.me/" + document.getElementById("select").value + "?text=I'm%20interested%20in%20your%20car%20for%20sale"
-				console.log(href)
+				let url = "https://wa.me/" + document.getElementById("select").value + "?text=مرحباً%20"
+				window.open(url, '_blank').focus();
 			}
 		</script>
     @endpushonce
