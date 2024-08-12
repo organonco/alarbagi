@@ -45,7 +45,6 @@ class AreaController extends Controller
 	public function store()
 	{
 		request()->validate([
-			'info' => 'required',
 			'name' => 'required',
 			'is_active' => 'sometimes|in:1',
 			'sort' => 'required|numeric'
@@ -73,7 +72,6 @@ class AreaController extends Controller
 		$area = Area::findOrFail($id);
 
 		request()->validate([
-			'info' => 'required',
 			'name' => 'required',
 			'is_active' => 'sometimes|in:1',
 			'sort' => 'required|numeric'

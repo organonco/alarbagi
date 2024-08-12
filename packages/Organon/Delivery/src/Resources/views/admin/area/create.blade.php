@@ -41,7 +41,7 @@
                     </x-admin::form.control-group>
 
                     <x-admin::form.control-group class="mb-[10px]">
-                        <x-admin::form.control-group.label class="required">
+                        <x-admin::form.control-group.label>
                             @lang('delivery::app.area.attributes.info')
                         </x-admin::form.control-group.label>
                         <x-admin::form.control-group.control type="textarea" name="info">
