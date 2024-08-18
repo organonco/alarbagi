@@ -51,10 +51,10 @@ class ProductForm extends FormRequest
     {
         $product = $this->productRepository->withoutGlobalScope('seller_status')->find($this->id);
 
-        $maxVideoFileSize = core()->getConfigData('catalog.products.attribute.file_attribute_upload_size') ?: '2048';
+        $maxVideoFileSize = core()->getConfigData('catalog.products.attribute.file_attribute_upload_size') ?: '102400';
 
         $this->rules = array_merge($product->getTypeInstance()->getTypeValidationRules(), [
-            'images.files.*'     => ['nullable', 'mimes:bmp,jpeg,jpg,png,webp', 'dimensions:ratio=1/1'],
+            'images.files.*'     => ['nullable', 'mimes:bmp,jpeg,jpg,png,webp'],
             'images.positions.*' => ['nullable', 'integer'],
             'videos.files.*'     => ['nullable', 'mimetypes:application/octet-stream,video/mp4,video/webm,video/quicktime', 'max:' . $maxVideoFileSize],
             'videos.positions.*' => ['nullable', 'integer'],
