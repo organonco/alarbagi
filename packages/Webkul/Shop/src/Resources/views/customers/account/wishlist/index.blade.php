@@ -27,7 +27,7 @@
 
                 <!-- Wishlist Information -->
                 <template v-else>
-                    <div class="flex justify-between items-center overflow-auto journal-scroll">
+                    <div class="flex justify-between items-center">
                         <h2 class="text-[26px] font-medium">
                             @lang('shop::app.customers.account.wishlist.page-title')
                         </h2>

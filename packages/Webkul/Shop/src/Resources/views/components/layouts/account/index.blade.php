@@ -11,7 +11,9 @@
         <x-shop::layouts.account.breadcrumb />
 
         <div class="flex gap-[40px] items-start mt-[30px] max-lg:gap-[20px] max-md:grid">
+			@if(Route::currentRouteName()  != 'shop.customers.account.wishlist.index')
             <x-shop::layouts.account.navigation />
+			@endif
 
             <div class="flex-auto overflow-hidden mb-8">
                 {{ $slot }}
