@@ -169,7 +169,7 @@ return [
 			'orders' => [
 				'order-id' => 'رقم الطلب',
 				'order' => 'الطلب',
-				'order-date' => 'تاريخ الطلب',
+				'order-date' => 'التاريخ',
 				'title' => 'الطلبات',
 				'total' => 'الإجمالي',
 
