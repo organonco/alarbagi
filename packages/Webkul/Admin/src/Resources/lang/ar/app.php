@@ -624,7 +624,7 @@ return [
 
 					'cross-sells' => [
 						'empty-info' => 'أضف منتجات البيع المتقاطع أثناء التنقل.',
-						'info'       => 'بجوار السلة، ستجد هذه المنتجات "شراء فوري" الموجودة كمنتجات تقاط المبيعات لتكميل العناصر التي تمت إضافتها بالفعل إلى السلة الخاصة بك.',
+						'info'       => 'بجوار العربة، ستجد هذه المنتجات "شراء فوري" الموجودة كمنتجات تقاط المبيعات لتكميل العناصر التي تمت إضافتها بالفعل إلى العربة الخاصة بك.',
 						'title'      => 'منتجات التقاط المبيعات',
 					],
 
@@ -1600,12 +1600,12 @@ return [
 		'promotions' => [
 			'index' => [
 				'catalog-rule-title' => 'قوانين المنتجات',
-				'cart-rule-title'    => 'قواعد السلة',
+				'cart-rule-title'    => 'قواعد العربة',
 			],
 
 			'cart-rules' => [
 				'index' => [
-					'title'      => 'قواعد السلة',
+					'title'      => 'قواعد العربة',
 					'create-btn' => 'إنشاء قاعدة عربة',
 
 					'datagrid' => [
@@ -1629,7 +1629,7 @@ return [
 				'create' => [
 					'back-btn'                                  => 'رجوع',
 					'title'                                     => 'إنشاء قاعدة عربة',
-					'save-btn'                                  => 'حفظ قاعدة السلة',
+					'save-btn'                                  => 'حفظ قاعدة العربة',
 					'general'                                   => 'عام',
 					'name'                                      => 'الاسم',
 					'description'                               => 'الوصف',
@@ -1654,7 +1654,7 @@ return [
 					'action-type'                               => 'نوع الإجراء',
 					'percentage-product-price'                  => 'نسبة من سعر المنتج',
 					'fixed-amount'                              => 'مبلغ ثابت',
-					'fixed-amount-whole-cart'                   => 'مبلغ ثابت للسلة بأكملها',
+					'fixed-amount-whole-cart'                   => 'مبلغ ثابت للعربة بأكملها',
 					'buy-x-get-y-free'                          => 'اشتري X واحصل على Y مجانًا',
 					'discount-amount'                           => 'مبلغ الخصم',
 					'maximum-quantity-allowed-to-be-discounted' => 'الحد الأقصى للكمية المسموح بها للخصم',
@@ -1677,7 +1677,7 @@ return [
 					'contain'                                   => 'تحتوي على',
 					'contains'                                  => 'تحتوي على',
 					'does-not-contain'                          => 'لا تحتوي على',
-					'cart-attribute'                            => 'خاصية السلة',
+					'cart-attribute'                            => 'خاصية العربة',
 					'subtotal'                                  => 'المجموع الفرعي',
 					'payment-method'                            => 'طريقة الدفع',
 					'total-items-qty'                           => 'إجمالي كمية العناصر',
@@ -1685,9 +1685,9 @@ return [
 					'shipping-postcode'                         => 'رمز البريد للشحن',
 					'shipping-state'                            => 'ولاية الشحن',
 					'shipping-country'                          => 'بلد الشحن',
-					'cart-item-attribute'                       => 'خاصية عنصر السلة',
-					'price-in-cart'                             => 'السعر في السلة',
-					'qty-in-cart'                               => 'الكمية في السلة',
+					'cart-item-attribute'                       => 'خاصية عنصر العربة',
+					'price-in-cart'                             => 'السعر في العربة',
+					'qty-in-cart'                               => 'الكمية في العربة',
 					'total-weight'                              => 'الوزن الإجمالي',
 					'additional'                                => 'إضافي',
 					'product-attribute'                         => 'خاصية المنتج',
@@ -1697,14 +1697,14 @@ return [
 					'attribute-family'                          => 'عائلة السمة',
 					'attribute-name-children-only'              => 'اسم السمة (الأطفال فقط)',
 					'attribute-name-parent-only'                => 'اسم السمة (الوالدين فقط)',
-					'create-success'                            => 'تم إنشاء قاعدة السلة بنجاح',
+					'create-success'                            => 'تم إنشاء قاعدة العربة بنجاح',
 					'choose-condition-to-add'                   => 'اختر الشرط للإضافة',
 				],
 
 				'edit' => [
 					'back-btn'                                  => 'رجوع',
-					'title'                                     => 'تعديل قاعدة السلة',
-					'save-btn'                                  => 'حفظ قاعدة السلة',
+					'title'                                     => 'تعديل قاعدة العربة',
+					'save-btn'                                  => 'حفظ قاعدة العربة',
 					'general'                                   => 'عام',
 					'name'                                      => 'الاسم',
 					'description'                               => 'الوصف',
@@ -1729,7 +1729,7 @@ return [
 					'action-type'                               => 'نوع الإجراء',
 					'percentage-product-price'                  => 'نسبة من سعر المنتج',
 					'fixed-amount'                              => 'مبلغ ثابت',
-					'fixed-amount-whole-cart'                   => 'مبلغ ثابت للسلة بأكملها',
+					'fixed-amount-whole-cart'                   => 'مبلغ ثابت للعربة بأكملها',
 					'buy-x-get-y-free'                          => 'اشتري X واحصل على Y مجانًا',
 					'discount-amount'                           => 'مبلغ الخصم',
 					'maximum-quantity-allowed-to-be-discounted' => 'الحد الأقصى للكمية المسموح بها للخصم',
@@ -1752,7 +1752,7 @@ return [
 					'contain'                                   => 'تحتوي على',
 					'contains'                                  => 'تحتوي على',
 					'does-not-contain'                          => 'لا تحتوي على',
-					'cart-attribute'                            => 'خاصية السلة',
+					'cart-attribute'                            => 'خاصية العربة',
 					'subtotal'                                  => 'المجموع الفرعي',
 					'payment-method'                            => 'طريقة الدفع',
 					'total-items-qty'                           => 'إجمالي كمية العناصر',
@@ -1760,9 +1760,9 @@ return [
 					'shipping-postcode'                         => 'رمز البريد للشحن',
 					'shipping-state'                            => 'ولاية الشحن',
 					'shipping-country'                          => 'بلد الشحن',
-					'cart-item-attribute'                       => 'خاصية عنصر السلة',
-					'price-in-cart'                             => 'السعر في السلة',
-					'qty-in-cart'                               => 'الكمية في السلة',
+					'cart-item-attribute'                       => 'خاصية عنصر العربة',
+					'price-in-cart'                             => 'السعر في العربة',
+					'qty-in-cart'                               => 'الكمية في العربة',
 					'total-weight'                              => 'الوزن الإجمالي',
 					'additional'                                => 'إضافي',
 					'product-attribute'                         => 'خاصية المنتج',
@@ -1772,7 +1772,7 @@ return [
 					'attribute-family'                          => 'عائلة السمة',
 					'attribute-name-children-only'              => 'اسم السمة (الأطفال فقط)',
 					'attribute-name-parent-only'                => 'اسم السمة (الوالدين فقط)',
-					'update-success'                            => 'تم تحديث قاعدة السلة بنجاح',
+					'update-success'                            => 'تم تحديث قاعدة العربة بنجاح',
 					'choose-condition-to-add'                   => 'اختر الشرط للإضافة',
 					'coupon-qty'                                => 'كمية القسيمة',
 					'coupon-length'                             => 'طول القسيمة',
@@ -1786,8 +1786,8 @@ return [
 					'customer-group'                            => 'مجموعة الزبائن',
 				],
 
-				'delete-success' => 'تم حذف قاعدة السلة بنجاح',
-				'delete-failed'  => 'فشل حذف قاعدة السلة',
+				'delete-success' => 'تم حذف قاعدة العربة بنجاح',
+				'delete-failed'  => 'فشل حذف قاعدة العربة',
 			],
 
 			'catalog-rules' => [
@@ -1900,8 +1900,8 @@ return [
 			],
 
 			'cart-rules-coupons' => [
-				'cart-rule-not-defined-error' => 'لا يمكن حذف قاعدة السلة',
-				'delete-success'              => 'تم حذف قاعدة السلة بنجاح',
+				'cart-rule-not-defined-error' => 'لا يمكن حذف قاعدة العربة',
+				'delete-success'              => 'تم حذف قاعدة العربة بنجاح',
 				'mass-delete-success'         => 'تم حذف العناصر المحددة بنجاح',
 				'success'                     => 'تم إنشاء :name بنجاح',
 
@@ -2625,14 +2625,14 @@ return [
 	'reporting' => [
 		'sales' => [
 			'index' => [
-				'abandoned-carts'               => 'السلة المهجورة',
+				'abandoned-carts'               => 'العربة المهجورة',
 				'abandoned-products'            => 'المنتجات المهجورة',
 				'abandoned-rate'                => 'معدل الهجرة',
 				'abandoned-revenue'             => 'الإيرادات المهجورة',
 				'average-order-value-over-time' => 'القيمة المتوسطة للطلب مع مرور الوقت',
 				'average-sales'                 => 'القيمة المتوسطة للطلب',
-				'added-to-cart'                 => 'تمت الإضافة إلى السلة',
-				'added-to-cart-info'            => 'فقط :progress الزائرين قاموا بإضافة منتجات إلى السلة',
+				'added-to-cart'                 => 'تمت الإضافة إلى العربة',
+				'added-to-cart-info'            => 'فقط :progress الزائرين قاموا بإضافة منتجات إلى العربة',
 				'count'                         => 'العدد',
 				'end-date'                      => 'تاريخ الانتهاء',
 				'id'                            => 'المعرف',
@@ -2812,7 +2812,7 @@ return [
 				],
 
 				'products' => [
-					'info'   => 'تعيين الخروج كضيف، صفحة عرض المنتج، صفحة عرض السلة، الواجهة الأمامية للمتجر، مراجعة، ومشاركة اجتماعية للسمة.',
+					'info'   => 'تعيين الخروج كضيف، صفحة عرض المنتج، صفحة عرض العربة، الواجهة الأمامية للمتجر، مراجعة، ومشاركة اجتماعية للسمة.',
 					'title'  => 'المنتجات',
 
 					'guest-checkout' => [
@@ -2831,8 +2831,8 @@ return [
 
 					'cart-view-page' => [
 						'allow-no-of-cross-sells-products' => 'العدد المسموح به من منتجات الترويج المتقاطع',
-						'title'                            => 'تكوين صفحة السلة',
-						'title-info'                       => 'يتضمن تكوين صفحة السلة ترتيب العناصر والتفاصيل والخيارات على صفحة السلة، مما يعزز تفاعل المستخدم وسير العملية.',
+						'title'                            => 'تكوين صفحة العربة',
+						'title-info'                       => 'يتضمن تكوين صفحة العربة ترتيب العناصر والتفاصيل والخيارات على صفحة العربة، مما يعزز تفاعل المستخدم وسير العملية.',
 					],
 
 					'storefront' => [
@@ -3167,7 +3167,7 @@ return [
 						'interval-between-reminders' => 'الفاصل الزمني بين التذكيرات',
 						'maximum-limit-of-reminders' => 'الحد الأقصى لعدد التذكيرات',
 						'title'                      => 'تذكير الفاتورة',
-						'title-info'                 => 'الإشعارات أو التواصل التلقائي المرسلة إلى الزبائن لتذكيرهم بالدفعات القادمة أو المتأخرة للفواتير.',
+						'title-info'                 => 'الإشعارات أو التواصل التلقائي المرعربة إلى الزبائن لتذكيرهم بالدفعات القادمة أو المتأخرة للفواتير.',
 					],
 				],
 			],
@@ -3395,7 +3395,7 @@ return [
 		'configure'                => 'تكوين',
 		'currencies'               => 'العملات',
 		'create'                   => 'إضافة',
-		'cart-rules'               => 'قواعد السلة',
+		'cart-rules'               => 'قواعد العربة',
 		'catalog-rules'            => 'قواعد المنتجات',
 		'communications'           => 'الاتصالات',
 		'campaigns'                => 'الحملات',

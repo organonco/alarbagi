@@ -38,7 +38,7 @@
                                 </div>
                                 <a href="{{ route('shop.checkout.cart.index') }}"
                                     class="flex text-center sn-color-secondary sn-heading-3 ">
-                                    السلة
+                                    العربة
                                 </a>
                             </div>
 
