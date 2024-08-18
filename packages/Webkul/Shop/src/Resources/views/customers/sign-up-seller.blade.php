@@ -43,7 +43,7 @@
                             </x-shop::form.control-group.error>
                         </x-shop::form.control-group>
 
-						<x-shop::form.control-group class="mb-4">
+                        <x-shop::form.control-group class="mb-4">
                             <x-shop::form.control-group.label class="required">
                                 @lang('marketplace::app.register.labels.owner_name')
                             </x-shop::form.control-group.label>
@@ -83,7 +83,7 @@
                             </x-shop::form.control-group.error>
                         </x-shop::form.control-group>
 
-						<x-shop::form.control-group class="mb-4">
+                        <x-shop::form.control-group class="mb-4">
                             <x-shop::form.control-group.label class="required">
                                 @lang('marketplace::app.register.labels.opening_days')
                             </x-shop::form.control-group.label>
@@ -94,8 +94,8 @@
                             <x-shop::form.control-group.error control-name="opening_days">
                             </x-shop::form.control-group.error>
                         </x-shop::form.control-group>
-						
-						<x-shop::form.control-group class="mb-4">
+
+                        <x-shop::form.control-group class="mb-4">
                             <x-shop::form.control-group.label class="required">
                                 @lang('marketplace::app.register.labels.opening_time')
                             </x-shop::form.control-group.label>
@@ -171,7 +171,7 @@
                             </x-shop::form.control-group.label>
                             <x-shop::form.control-group.control type="textarea" name="address"
                                 class="!p-[20px_25px] rounded-lg" rules="required" :value="old('address')" :label="trans('shop::app.customers.signup-form.address')"
-                                placeholder="">
+                                placeholder="المنطقة - الشارع أو الحارة - البناء - جانب أو مقابل (مدرسة، جامع، مشفى…)">
                             </x-shop::form.control-group.control>
                             <x-shop::form.control-group.error control-name="address">
                             </x-shop::form.control-group.error>
