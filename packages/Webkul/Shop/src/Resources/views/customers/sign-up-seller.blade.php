@@ -30,7 +30,7 @@
                 </p>
 
                 <div class="mt-[60px] rounded max-sm:mt-[30px]">
-                    <x-shop::form :action="route('shop.marketplace.register')" enctype="multipart/form-data">
+                    <x-shop::form :action="route('shop.marketplace.register')" enctype="multipart/form-data" id="registerForm">
                         <x-shop::form.control-group class="mb-4">
                             <x-shop::form.control-group.label class="required">
                                 @lang('marketplace::app.register.labels.shop_name')
@@ -170,7 +170,8 @@
                                 @lang('shop::app.customers.signup-form.address')
                             </x-shop::form.control-group.label>
                             <x-shop::form.control-group.control type="textarea" name="address"
-                                class="!p-[20px_25px] rounded-lg" rules="required" :value="old('address')" :label="trans('shop::app.customers.signup-form.address')"
+                                class="!p-[20px_25px] rounded-lg" rules="required" :value="old('address')"
+                                :label="trans('shop::app.customers.signup-form.address')"
                                 placeholder="المنطقة - الشارع أو الحارة - البناء - جانب أو مقابل (مدرسة، جامع، مشفى…)">
                             </x-shop::form.control-group.control>
                             <x-shop::form.control-group.error control-name="address">
@@ -222,12 +223,10 @@
                         </x-shop::form.control-group>
 
                         <div class="flex gap-[36px] flex-wrap items-center mt-[30px]">
-                            <button class="block w-full max-w-[1260px] sn-button-primary" type="submit">
+                            <button class="block w-full max-w-[1260px] sn-button-primary" type="submit" id="registerButton">
                                 @lang('shop::app.customers.signup-form.button-title')
                             </button>
                         </div>
-
-
                     </x-shop::form>
                 </div>
 
@@ -246,6 +245,13 @@
     </div>
 
     @push('scripts')
+        <script type="module">
+            window.onload = function(){
+                document.getElementById('registerForm').onsubmit = function() {
+					document.getElementById('registerButton').disabled = true
+				};
+			}
+        </script>
         <script>
             let categories = {!! json_encode($sellerCategories->toArray(), JSON_HEX_TAG) !!}
 
@@ -267,10 +273,6 @@
                         child_category_select.options.add(option, j);
                     }
                 }
-
-
-
-
             }
         </script>
     @endpush

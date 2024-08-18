@@ -16,7 +16,7 @@
     </p>
 
     <div class="mt-[60px] rounded max-sm:mt-[30px]">
-        <x-shop::form :action="route('shop.customers.register.store')">
+        <x-shop::form :action="route('shop.customers.register.store')" id="registerForm">
 
             <x-shop::form.control-group class="mb-4">
                 <x-shop::form.control-group.label class="required">
@@ -186,7 +186,7 @@
 
 
             <div class="flex gap-[36px] flex-wrap items-center mt-[30px]">
-                <button class="block w-full max-w-[1260px] sn-button-primary" type="submit">
+                <button class="block w-full max-w-[1260px] sn-button-primary" type="submit" id="registerButton">
                     @lang('shop::app.customers.signup-form.button-title')
                 </button>
             </div>
