@@ -76,18 +76,21 @@
     </div>
 
     {{-- Serach Catalog Form --}}
-    <form action="{{ route('shop.search.index') }}" class="flex items-center w-full">
-        <label for="organic-search" class="sr-only">Search</label>
+    @if (!\Illuminate\Support\Str::startsWith(Route::currentRouteName(), 'shop.customers'))
+        <form action="{{ route('shop.search.index') }}" class="flex items-center w-full">
+            <label for="organic-search" class="sr-only">Search</label>
 
-        <div class="relative w-full">
-            <div class="icon-search flex items-center absolute left-[12px] top-[12px] text-[25px] pointer-events-none">
+            <div class="relative w-full">
+                <div
+                    class="icon-search flex items-center absolute left-[12px] top-[12px] text-[25px] pointer-events-none">
+                </div>
+
+                <input type="text"
+                    class="block w-full px-11 py-3.5 border border-['#E3E3E3'] rounded-xl text-gray-900 text-xs font-medium"
+                    name="query" value="{{ request('query') }}" placeholder="@lang('shop::app.components.layouts.header.search-text')" required>
             </div>
-
-            <input type="text"
-                class="block w-full px-11 py-3.5 border border-['#E3E3E3'] rounded-xl text-gray-900 text-xs font-medium"
-                name="query" value="{{ request('query') }}" placeholder="@lang('shop::app.components.layouts.header.search-text')" required>
-        </div>
-    </form>
+        </form>
+    @endif
 </div>
 
 @pushOnce('scripts')
