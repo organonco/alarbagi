@@ -38,7 +38,7 @@
                             <div class="flex flex-col gap-4 w-full">
                                 @foreach ($category->getChildren() as $child)
                                     <a href="{{ route('seller-category.view', ['areaId' => $area->id, 'sellerCategoryId' => $child->id]) }}"
-                                        class="sn-body-1 text-right sn-color-secondary">
+                                        class="sn-body-1 text-right sn-color-primary">
                                         <span class="dot ml-3"></span> {{ $child->name }}
                                     </a>
                                     <hr />
