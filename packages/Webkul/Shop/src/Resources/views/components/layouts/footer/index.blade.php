@@ -34,7 +34,7 @@
                 admin@alarbaji.com
             </a>
             <a href="https://www.alarbagi.com" class="sn-heading-3 sn-color-white text-right max-lg:text-center"
-                dir="ltr">
+                dir="ltr" target="_blank">
                 www.alarbagi.com
             </a>
             <a href="tel:+96332132132" class="sn-heading-3 sn-color-white text-right max-lg:text-center" dir="ltr">
