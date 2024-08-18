@@ -78,9 +78,9 @@
             @endif --}}
 
             {{-- Page Footer Blade Component --}}
-            {{-- @if ($hasFooter)
+            @if ($hasFooter)
                 <x-shop::layouts.footer />
-            @endif --}}
+            @endif
 
 			<div class="max-lg:grid hidden fixed bottom-0 w-full grid-cols-5 sn-background-primary py-4 shadow-md">
 

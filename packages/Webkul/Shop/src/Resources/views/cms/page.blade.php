@@ -8,7 +8,7 @@
 @endPush
 
 {{-- Page Layout --}}
-<x-shop::layouts>
+<x-shop::layouts :has-footer="false">
     {{-- Page Title --}}
     <x-slot:title>
         {{ $page->meta_title }}

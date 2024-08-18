@@ -1,15 +1,11 @@
 {{-- SEO Meta Content --}}
 @push('meta')
-    <meta name="description" content="@lang('shop::app.checkout.cart.index.cart')"/>
+    <meta name="description" content="@lang('shop::app.checkout.cart.index.cart')" />
 
-    <meta name="keywords" content="@lang('shop::app.checkout.cart.index.cart')"/>
+    <meta name="keywords" content="@lang('shop::app.checkout.cart.index.cart')" />
 @endPush
 
-<x-shop::layouts
-    :has-header="true"
-    :has-feature="false"
-    :has-footer="true"
->
+<x-shop::layouts :has-header="true" :has-feature="false" :has-footer="false">
     {{-- Page Title --}}
     <x-slot:title>
         @lang('shop::app.checkout.cart.index.cart')
@@ -259,7 +255,7 @@
                 template: '#v-cart-template',
 
                 data() {
-                    return  {
+                    return {
                         cart: [],
 
                         allSelected: false,
@@ -291,7 +287,10 @@
                                 this.isLoading = false;
 
                                 if (response.data.message) {
-                                    this.$emitter.emit('add-flash', { type: 'info', message: response.data.message });
+                                    this.$emitter.emit('add-flash', {
+                                        type: 'info',
+                                        message: response.data.message
+                                    });
                                 }
                             })
                             .catch(error => {});
@@ -308,11 +307,16 @@
                     },
 
                     update() {
-                        this.$axios.put('{{ route('shop.api.checkout.cart.update') }}', { qty: this.applied.quantity })
+                        this.$axios.put('{{ route('shop.api.checkout.cart.update') }}', {
+                                qty: this.applied.quantity
+                            })
                             .then(response => {
                                 this.cart = response.data.data;
 
-                                this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                                this.$emitter.emit('add-flash', {
+                                    type: 'success',
+                                    message: response.data.message
+                                });
                             })
                             .catch(error => {});
                     },
@@ -331,7 +335,10 @@
                                     .then(response => {
                                         this.cart = response.data.data;
 
-                                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'success',
+                                            message: response.data.message
+                                        });
 
                                     })
                                     .catch(error => {});
@@ -342,7 +349,8 @@
                     removeSelectedItems() {
                         this.$emitter.emit('open-confirm-modal', {
                             agree: () => {
-                                const selectedItemsIds = this.cart.items.flatMap(item => item.selected ? item.id : []);
+                                const selectedItemsIds = this.cart.items.flatMap(item => item.selected ?
+                                    item.id : []);
 
                                 this.$axios.post('{{ route('shop.api.checkout.cart.destroy_selected') }}', {
                                         '_method': 'DELETE',
@@ -351,9 +359,12 @@
                                     .then(response => {
                                         this.cart = response.data.data;
 
-                                        this.$emitter.emit('update-mini-cart', response.data.data );
+                                        this.$emitter.emit('update-mini-cart', response.data.data);
 
-                                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'success',
+                                            message: response.data.message
+                                        });
 
                                     })
                                     .catch(error => {});
@@ -364,7 +375,8 @@
                     moveToWishlistSelectedItems() {
                         this.$emitter.emit('open-confirm-modal', {
                             agree: () => {
-                                const selectedItemsIds = this.cart.items.flatMap(item => item.selected ? item.id : []);
+                                const selectedItemsIds = this.cart.items.flatMap(item => item.selected ?
+                                    item.id : []);
 
                                 this.$axios.post('{{ route('shop.api.checkout.cart.move_to_wishlist') }}', {
                                         'ids': selectedItemsIds,
@@ -372,9 +384,12 @@
                                     .then(response => {
                                         this.cart = response.data.data;
 
-                                        this.$emitter.emit('update-mini-cart', response.data.data );
+                                        this.$emitter.emit('update-mini-cart', response.data.data);
 
-                                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'success',
+                                            message: response.data.message
+                                        });
 
                                     })
                                     .catch(error => {});

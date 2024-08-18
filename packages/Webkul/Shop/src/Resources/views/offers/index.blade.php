@@ -3,7 +3,7 @@
     <meta name="title" content="العروض الخاصة" />
 @endPush
 
-<x-shop::layouts>
+<x-shop::layouts :has-footer="false">
     <x-slot:title>
         العروض الخاصة
     </x-slot>

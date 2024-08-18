@@ -5,7 +5,7 @@
     <meta name="keywords" content="@lang('shop::app.customers.login-form.page-title')" />
 @endPush
 
-<x-shop::layouts :has-header="false" :has-feature="false" :has-footer="true">
+<x-shop::layouts :has-header="false" :has-feature="false" :has-footer="false">
     {{-- Page Title --}}
     <x-slot:title>
         @lang('shop::app.customers.login-form.page-title')

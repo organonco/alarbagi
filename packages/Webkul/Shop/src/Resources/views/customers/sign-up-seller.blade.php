@@ -5,7 +5,7 @@
     <meta name="keywords" content="@lang('shop::app.customers.signup-form.page-title')" />
 @endPush
 
-<x-shop::layouts :has-header="false" :has-feature="false" :has-footer="true">
+<x-shop::layouts :has-header="false" :has-feature="false" :has-footer="false">
     {{-- Page Title --}}
     <x-slot:title>
         @lang('marketplace::app.register.title.seller')
@@ -223,7 +223,8 @@
                         </x-shop::form.control-group>
 
                         <div class="flex gap-[36px] flex-wrap items-center mt-[30px]">
-                            <button class="block w-full max-w-[1260px] sn-button-primary" type="submit" id="registerButton">
+                            <button class="block w-full max-w-[1260px] sn-button-primary" type="submit"
+                                id="registerButton">
                                 @lang('shop::app.customers.signup-form.button-title')
                             </button>
                         </div>
@@ -246,11 +247,11 @@
 
     @push('scripts')
         <script type="module">
-            window.onload = function(){
+            window.onload = function() {
                 document.getElementById('registerForm').onsubmit = function() {
-					document.getElementById('registerButton').disabled = true
-				};
-			}
+                    document.getElementById('registerButton').disabled = true
+                };
+            }
         </script>
         <script>
             let categories = {!! json_encode($sellerCategories->toArray(), JSON_HEX_TAG) !!}

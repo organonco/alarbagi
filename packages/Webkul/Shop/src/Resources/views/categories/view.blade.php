@@ -1,8 +1,9 @@
 {{-- SEO Meta Content --}}
 @push('meta')
-    <meta name="description" content="{{ trim($category->meta_description) != "" ? $category->meta_description : \Illuminate\Support\Str::limit(strip_tags($category->description), 120, '') }}"/>
+    <meta name="description"
+        content="{{ trim($category->meta_description) != '' ? $category->meta_description : \Illuminate\Support\Str::limit(strip_tags($category->description), 120, '') }}" />
 
-    <meta name="keywords" content="{{ $category->meta_keywords }}"/>
+    <meta name="keywords" content="{{ $category->meta_keywords }}" />
 
     @if (core()->getConfigData('catalog.rich_snippets.categories.enable'))
         <script type="application/ld+json">
@@ -11,23 +12,18 @@
     @endif
 @endPush
 
-<x-shop::layouts>
+<x-shop::layouts :has-footer="false">
     {{-- Page Title --}}
     <x-slot:title>
-        {{ trim($category->meta_title) != "" ? $category->meta_title : $category->name }}
+        {{ trim($category->meta_title) != '' ? $category->meta_title : $category->name }}
     </x-slot>
 
     {{-- Hero Image --}}
     @if ($category->banner_path)
         <div class="container mt-[30px] px-[60px] max-lg:px-[30px]">
             <div>
-                <img
-                    class="rounded-[12px]"
-                    src="{{ $category->banner_url }}"
-                    alt="{{ $category->name }}"
-                    width="1320"
-                    height="300"
-                >
+                <img class="rounded-[12px]" src="{{ $category->banner_url }}" alt="{{ $category->name }}" width="1320"
+                    height="300">
             </div>
         </div>
     @endif
@@ -44,7 +40,7 @@
         {{-- Category Vue Component --}}
         <v-category>
             {{-- Category Shimmer Effect --}}
-            <x-shop::shimmer.categories.view/>
+            <x-shop::shimmer.categories.view />
         </v-category>
     @endif
 
@@ -218,8 +214,8 @@
                         };
 
                         this.$axios.get("{{ route('shop.api.products.index', ['category_id' => $category->id]) }}", {
-                            params: this.queryParams
-                        })
+                                params: this.queryParams
+                            })
                             .then(response => {
                                 this.isLoading = false;
 
@@ -244,8 +240,8 @@
                     },
 
                     removeJsonEmptyValues(params) {
-                        Object.keys(params).forEach(function (key) {
-                            if ((! params[key] && params[key] !== undefined)) {
+                        Object.keys(params).forEach(function(key) {
+                            if ((!params[key] && params[key] !== undefined)) {
                                 delete params[key];
                             }
 

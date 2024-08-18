@@ -5,7 +5,7 @@
     <meta name="keywords" content="@lang('shop::app.search.title', ['query' => request()->query('query')])" />
 @endPush
 
-<x-shop::layouts>
+<x-shop::layouts :has-footer="false">
     {{-- Page Title --}}
     <x-slot:title>
         @lang('shop::app.search.title', ['query' => request()->query('query')])

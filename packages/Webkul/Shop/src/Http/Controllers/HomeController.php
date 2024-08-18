@@ -4,7 +4,6 @@ namespace Webkul\Shop\Http\Controllers;
 
 use Organon\Delivery\Models\Area;
 use Webkul\Category\Repositories\CategoryRepository;
-use Webkul\CMS\Models\CmsPage;
 use Webkul\Shop\Repositories\ThemeCustomizationRepository;
 
 class HomeController extends Controller
@@ -38,8 +37,7 @@ class HomeController extends Controller
 
         $categories = $this->categoryRepository->where('parent_id', '1')->get();
         $areas = Area::query()->isActive()->get();
-        $pages = CmsPage::whereHas('translations')->get();
-        return view('shop::home.index', compact('customizations'))->with(['categories' => $categories, 'areas' => $areas, 'pages' => $pages]);
+        return view('shop::home.index', compact('customizations'))->with(['categories' => $categories, 'areas' => $areas]);
     }
 
     /**

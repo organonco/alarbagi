@@ -11,9 +11,10 @@
 
 {{-- SEO Meta Content --}}
 @push('meta')
-    <meta name="description" content="{{ trim($product->meta_description) != "" ? $product->meta_description : \Illuminate\Support\Str::limit(strip_tags($product->description), 120, '') }}"/>
+    <meta name="description"
+        content="{{ trim($product->meta_description) != '' ? $product->meta_description : \Illuminate\Support\Str::limit(strip_tags($product->description), 120, '') }}" />
 
-    <meta name="keywords" content="{{ $product->meta_keywords }}"/>
+    <meta name="keywords" content="{{ $product->meta_keywords }}" />
 
     @if (core()->getConfigData('catalog.rich_snippets.products.enable'))
         <script type="application/ld+json">
@@ -45,10 +46,10 @@
 @endPush
 
 {{-- Page Layout --}}
-<x-shop::layouts>
+<x-shop::layouts :has-footer="false">
     {{-- Page Title --}}
     <x-slot:title>
-        {{ trim($product->meta_title) != "" ? $product->meta_title : $product->name }}
+        {{ trim($product->meta_title) != '' ? $product->meta_title : $product->name }}
     </x-slot>
 
     {!! view_render_event('bagisto.shop.products.view.before', ['product' => $product]) !!}
@@ -60,7 +61,7 @@
 
     {{-- Product Information Vue Component --}}
     <v-product :product-id="{{ $product->id }}">
-        <x-shop::shimmer.products.view/>
+        <x-shop::shimmer.products.view />
     </v-product>
 
     {{-- Information Section --}}
@@ -69,11 +70,7 @@
             {{-- Description Tab --}}
             {!! view_render_event('bagisto.shop.products.view.description.before', ['product' => $product]) !!}
 
-            <x-shop::tabs.item
-                class="container mt-[60px] !p-0 max-1180:hidden"
-                :title="trans('shop::app.products.view.description')"
-                :is-selected="true"
-            >
+            <x-shop::tabs.item class="container mt-[60px] !p-0 max-1180:hidden" :title="trans('shop::app.products.view.description')" :is-selected="true">
                 <div class="container mt-[60px] max-1180:px-[20px]">
                     <p class="text-[#6E6E6E] text-[18px] max-1180:text-[14px]">
                         {!! $product->description !!}
@@ -84,7 +81,7 @@
             {!! view_render_event('bagisto.shop.products.view.description.after', ['product' => $product]) !!}
 
 
-            
+
         </x-shop::tabs>
     </div>
 
@@ -110,17 +107,11 @@
     </div>
 
     {{-- Featured Products --}}
-    <x-shop::products.carousel
-        :title="trans('shop::app.products.view.related-product-title')"
-        :src="route('shop.api.products.related.index', ['id' => $product->id])"
-    >
+    <x-shop::products.carousel :title="trans('shop::app.products.view.related-product-title')" :src="route('shop.api.products.related.index', ['id' => $product->id])">
     </x-shop::products.carousel>
 
     {{-- Upsell Products --}}
-    <x-shop::products.carousel
-        :title="trans('shop::app.products.view.up-sell-title')"
-        :src="route('shop.api.products.up-sell.index', ['id' => $product->id])"
-    >
+    <x-shop::products.carousel :title="trans('shop::app.products.view.up-sell-title')" :src="route('shop.api.products.up-sell.index', ['id' => $product->id])">
     </x-shop::products.carousel>
 
     {!! view_render_event('bagisto.shop.products.view.after', ['product' => $product]) !!}
@@ -307,7 +298,9 @@
 
                 data() {
                     return {
-                        isWishlist: Boolean("{{ (boolean) auth()->guard()->user()?->wishlist_items->where('channel_id', core()->getCurrentChannel()->id)->where('product_id', $product->id)->count() }}"),
+                        isWishlist: Boolean(
+                            "{{ (bool) auth()->guard()->user()?->wishlist_items->where('channel_id', core()->getCurrentChannel()->id)->where('product_id', $product->id)->count() }}"
+                            ),
 
                         isCustomer: '{{ auth()->guard('customer')->check() }}',
 
@@ -319,7 +312,7 @@
                     addToCart(params) {
                         let formData = new FormData(this.$refs.formData);
 
-                        this.$axios.post('{{ route("shop.api.checkout.cart.store") }}', formData, {
+                        this.$axios.post('{{ route('shop.api.checkout.cart.store') }}', formData, {
                                 headers: {
                                     'Content-Type': 'multipart/form-data'
                                 }
@@ -328,13 +321,19 @@
                                 if (response.data.message) {
                                     this.$emitter.emit('update-mini-cart', response.data.data);
 
-                                    this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                                    this.$emitter.emit('add-flash', {
+                                        type: 'success',
+                                        message: response.data.message
+                                    });
 
                                     if (response.data.redirect) {
-                                        window.location.href= response.data.redirect;
+                                        window.location.href = response.data.redirect;
                                     }
                                 } else {
-                                    this.$emitter.emit('add-flash', { type: 'warning', message: response.data.data.message });
+                                    this.$emitter.emit('add-flash', {
+                                        type: 'warning',
+                                        message: response.data.data.message
+                                    });
                                 }
                             })
                             .catch(error => {});
@@ -346,13 +345,16 @@
                                     product_id: "{{ $product->id }}"
                                 })
                                 .then(response => {
-                                    this.isWishlist = ! this.isWishlist;
+                                    this.isWishlist = !this.isWishlist;
 
-                                    this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                                    this.$emitter.emit('add-flash', {
+                                        type: 'success',
+                                        message: response.data.data.message
+                                    });
                                 })
                                 .catch(error => {});
                         } else {
-                            window.location.href = "{{ route('shop.customer.session.index')}}";
+                            window.location.href = "{{ route('shop.customer.session.index') }}";
                         }
                     },
 
@@ -361,20 +363,29 @@
                          * This will handle for customers.
                          */
                         if (this.isCustomer) {
-                            this.$axios.post('{{ route("shop.api.compare.store") }}', {
+                            this.$axios.post('{{ route('shop.api.compare.store') }}', {
                                     'product_id': productId
                                 })
                                 .then(response => {
-                                    this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                                    this.$emitter.emit('add-flash', {
+                                        type: 'success',
+                                        message: response.data.data.message
+                                    });
                                 })
                                 .catch(error => {
                                     if ([400, 422].includes(error.response.status)) {
-                                        this.$emitter.emit('add-flash', { type: 'warning', message: error.response.data.data.message });
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'warning',
+                                            message: error.response.data.data.message
+                                        });
 
                                         return;
                                     }
 
-                                    this.$emitter.emit('add-flash', { type: 'error', message: error.response.data.message});
+                                    this.$emitter.emit('add-flash', {
+                                        type: 'error',
+                                        message: error.response.data.message
+                                    });
                                 });
 
                             return;
@@ -386,19 +397,28 @@
                         let existingItems = this.getStorageValue(this.getCompareItemsStorageKey()) ?? [];
 
                         if (existingItems.length) {
-                            if (! existingItems.includes(productId)) {
+                            if (!existingItems.includes(productId)) {
                                 existingItems.push(productId);
 
                                 this.setStorageValue(this.getCompareItemsStorageKey(), existingItems);
 
-                                this.$emitter.emit('add-flash', { type: 'success', message: "@lang('shop::app.products.view.add-to-compare')" });
+                                this.$emitter.emit('add-flash', {
+                                    type: 'success',
+                                    message: "@lang('shop::app.products.view.add-to-compare')"
+                                });
                             } else {
-                                this.$emitter.emit('add-flash', { type: 'warning', message: "@lang('shop::app.products.view.already-in-compare')" });
+                                this.$emitter.emit('add-flash', {
+                                    type: 'warning',
+                                    message: "@lang('shop::app.products.view.already-in-compare')"
+                                });
                             }
                         } else {
                             this.setStorageValue(this.getCompareItemsStorageKey(), [productId]);
 
-                            this.$emitter.emit('add-flash', { type: 'success', message: "@lang('shop::app.products.view.add-to-compare')" });
+                            this.$emitter.emit('add-flash', {
+                                type: 'success',
+                                message: "@lang('shop::app.products.view.add-to-compare')"
+                            });
                         }
                     },
 

@@ -1,11 +1,11 @@
 {{-- SEO Meta Content --}}
 @push('meta')
-    <meta name="description" content="@lang('shop::app.compare.title')"/>
+    <meta name="description" content="@lang('shop::app.compare.title')" />
 
-    <meta name="keywords" content="@lang('shop::app.compare.title')"/>
+    <meta name="keywords" content="@lang('shop::app.compare.title')" />
 @endPush
 
-<x-shop::layouts>
+<x-shop::layouts :has-footer="false">
     {{-- Page Title --}}
     <x-slot:title>
         @lang('shop::app.compare.title')
@@ -13,18 +13,16 @@
 
     {{-- Breadcrumb --}}
     <div class="flex justify-center mt-[20px] max-lg:hidden">
-		<div class="flex gap-x-[10px] items-center">
+        <div class="flex gap-x-[10px] items-center">
             <x-shop::breadcrumbs name="compare"></x-shop::breadcrumbs>
-		</div>
-	</div>
+        </div>
+    </div>
 
     {{-- Compare Component --}}
     <div class="container px-[60px] max-lg:px-[30px] max-sm:px-[15px] mt-[30px]">
         <v-compare>
             <!---- Shimmer Effect -->
-            <x-shop::shimmer.compare
-                :attributeCount="count($comparableAttributes)"
-            >
+            <x-shop::shimmer.compare :attributeCount="count($comparableAttributes)">
             </x-shop::shimmer.compare>
         </v-compare>
     </div>
@@ -138,9 +136,12 @@
                 template: '#v-compare-template',
 
                 data() {
-                    return  {
+                    return {
                         comparableAttributes: [
-                            ...[{'code': 'product', 'name': 'Product'}],
+                            ...[{
+                                'code': 'product',
+                                'name': 'Product'
+                            }],
                             ...@json($comparableAttributes)
                         ],
 
@@ -159,11 +160,11 @@
                 methods: {
                     getItems() {
                         let productIds = [];
-                        
-                        if (! this.isCustomer) {
+
+                        if (!this.isCustomer) {
                             productIds = this.getStorageValue('compare_items');
                         }
-                        
+
                         this.$axios.get("{{ route('shop.api.compare.index') }}", {
                                 params: {
                                     product_ids: productIds,
@@ -180,7 +181,7 @@
                     remove(productId) {
                         this.$emitter.emit('open-confirm-modal', {
                             agree: () => {
-                                if (! this.isCustomer) {
+                                if (!this.isCustomer) {
                                     const index = this.items.findIndex((item) => item.id === productId);
 
                                     this.items.splice(index, 1);
@@ -200,11 +201,17 @@
                                     .then(response => {
                                         this.items = response.data.data;
 
-                                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'success',
+                                            message: response.data.message
+                                        });
 
                                     })
                                     .catch(error => {
-                                        this.$emitter.emit('add-flash', { type: 'error', message: response.data.message });
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'error',
+                                            message: response.data.message
+                                        });
                                     });
                             }
                         });
@@ -213,23 +220,29 @@
                     removeAll() {
                         this.$emitter.emit('open-confirm-modal', {
                             agree: () => {
-                                if (! this.isCustomer) {
+                                if (!this.isCustomer) {
                                     localStorage.removeItem('compare_items');
 
                                     this.items = [];
 
-                                    this.$emitter.emit('add-flash', { type: 'success', message:  "@lang('shop::app.compare.remove-all-success')" });
+                                    this.$emitter.emit('add-flash', {
+                                        type: 'success',
+                                        message: "@lang('shop::app.compare.remove-all-success')"
+                                    });
 
                                     return;
                                 }
-                                
+
                                 this.$axios.post("{{ route('shop.api.compare.destroy_all') }}", {
                                         '_method': 'DELETE',
                                     })
                                     .then(response => {
                                         this.items = [];
 
-                                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'success',
+                                            message: response.data.data.message
+                                        });
                                     })
                                     .catch(error => {});
                             }
@@ -239,7 +252,7 @@
                     getStorageValue() {
                         let value = localStorage.getItem('compare_items');
 
-                        if (! value) {
+                        if (!value) {
                             return [];
                         }
 

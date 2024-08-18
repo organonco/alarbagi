@@ -4,7 +4,7 @@
     <meta name="description" content="{{ $sellerCategory->info }}" />
 @endPush
 
-<x-shop::layouts>
+<x-shop::layouts :has-footer="false">
     <x-slot:title>
         {{ $area->name . ' - ' . $sellerCategory->name }}
     </x-slot>

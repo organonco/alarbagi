@@ -4,7 +4,7 @@
     <meta name="description" content="{{ $area->info }}" />
 @endPush
 
-<x-shop::layouts>
+<x-shop::layouts :has-footer="true">
     <x-slot:title>
         {{ $area->name }}
     </x-slot>
