@@ -17,6 +17,7 @@
     "@vee-validate/i18n": "^4.9.1",
     "@vee-validate/rules": "^4.9.1",
     "mitt": "^3.0.0",
+    "pulltorefreshjs": "^0.1.22",
     "vee-validate": "^4.9.1",
     "vue-flatpickr": "^2.3.0"
   }

@@ -14,6 +14,7 @@ import { createApp } from "vue/dist/vue.esm-bundler";
  */
 import { configure, defineRule, Field, Form, ErrorMessage } from "vee-validate";
 import {localize, setLocale} from "@vee-validate/i18n";
+
 import ar from "@vee-validate/i18n/dist/locale/ar.json";
 
 import * as AllRules from '@vee-validate/rules';
@@ -142,3 +143,16 @@ app.component("VErrorMessage", ErrorMessage);
 window.addEventListener("load", function (event) {
     app.mount("#app");
 });
+
+
+import PullToRefresh from 'pulltorefreshjs';
+
+const ptr = PullToRefresh.init({
+	mainElement: '#app',
+	onRefresh() {
+	  window.location.reload();
+	},
+	instructionsPullToRefresh: "اسحب للتحديث",
+	instructionsReleaseToRefresh: "أفلت للتحديث",
+	instructionsRefreshing: "يتم تحديث المعلومات"
+  });
