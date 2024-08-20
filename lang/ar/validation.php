@@ -158,7 +158,7 @@ return [
         'name'                  => 'الأسم',
         'username'              => 'اسم المستخدم',
         'email'                 => 'البريد الألكتروني',
-        'first_name'            => 'الأسم الأول',
+        'first_name'            => 'الاسم',
         'last_name'             => 'الأسم الأخير',
         'password'              => 'كلمة المرور',
         'password_confirmation' => 'تكرار كلمة المرور',

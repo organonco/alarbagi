@@ -28,7 +28,6 @@ class RegistrationRequest extends FormRequest
     {
 		$rules = [
 			'first_name' => 'string|required',
-			'last_name'  => 'string|required',
 			'email'      => 'email|required|unique:customers,email',
 			'password'   => ['confirmed', 'required', Password::min(8)->numbers()->letters()],
 			'birth_d' => ['required', 'numeric', 'min:1', 'max:31'],

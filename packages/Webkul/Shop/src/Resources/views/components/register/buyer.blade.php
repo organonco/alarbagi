@@ -31,17 +31,6 @@
 
             <x-shop::form.control-group class="mb-4">
                 <x-shop::form.control-group.label class="required">
-                    @lang('shop::app.customers.signup-form.last-name')
-                </x-shop::form.control-group.label>
-                <x-shop::form.control-group.control type="text" name="last_name" class="!p-[20px_25px] rounded-lg"
-                    :value="old('last_name')" rules="required" :label="trans('shop::app.customers.signup-form.last-name')" :placeholder="trans('shop::app.customers.signup-form.last-name')">
-                </x-shop::form.control-group.control>
-                <x-shop::form.control-group.error control-name="last_name">
-                </x-shop::form.control-group.error>
-            </x-shop::form.control-group>
-
-            <x-shop::form.control-group class="mb-4">
-                <x-shop::form.control-group.label class="required">
                     @lang('shop::app.customers.account.profile.gender')
                 </x-shop::form.control-group.label>
                 <x-shop::form.control-group.control type="select" name="gender" :value="old('gender')" rules="required"

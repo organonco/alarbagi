@@ -64,7 +64,6 @@ class RegistrationController extends Controller
     {
         $data = array_merge(request()->only([
             'first_name',
-            'last_name',
             'email',
             'password_confirmation',
             'is_subscribed',
@@ -77,7 +76,8 @@ class RegistrationController extends Controller
             'customer_group_id'         => $this->customerGroupRepository->findOneWhere(['code' => 'general'])->id,
             'token'                     => md5(uniqid(rand(), true)),
             'subscribed_to_news_letter' => request()->input('is_subscribed') ?? 0,
-			'date_of_birth' => request()->input('birth_y') . '-' . request()->input('birth_m') . '-' . request()->input('birth_d')
+			'date_of_birth' => request()->input('birth_y') . '-' . request()->input('birth_m') . '-' . request()->input('birth_d'),
+			'last_name' => ""
         ]);
 
 		
@@ -85,7 +85,7 @@ class RegistrationController extends Controller
 			'address_details',
 			'phone'
 		]), [
-			'name' => request()->input('first_name') . ' ' . request()->input('last_name'),
+			'name' => request()->input('first_name'),
 			'area_id' => request()->input('area_id')  == "" ? null : request()->input('area_id')
 		]);
 

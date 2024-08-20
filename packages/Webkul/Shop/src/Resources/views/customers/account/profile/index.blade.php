@@ -37,16 +37,6 @@
 
         <div class="grid grid-cols-[2fr_3fr] w-full px-[30px] py-[12px] border-b-[1px] border-[#E9E9E9]">
             <p class="text-[14px] font-medium">
-                @lang('shop::app.customers.account.profile.last-name')
-            </p>
-
-            <p class="text-[14px] font-medium text-[#6E6E6E]">
-                {{ $customer->last_name }}
-            </p>
-        </div>
-
-        <div class="grid grid-cols-[2fr_3fr] w-full px-[30px] py-[12px] border-b-[1px] border-[#E9E9E9]">
-            <p class="text-[14px] font-medium">
                 @lang('shop::app.customers.account.profile.gender')
             </p>
 

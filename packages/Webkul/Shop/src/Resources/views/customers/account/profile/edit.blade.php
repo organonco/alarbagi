@@ -69,29 +69,6 @@
 
         <x-shop::form.control-group class="mb-4">
             <x-shop::form.control-group.label class="required">
-                @lang('shop::app.customers.account.profile.last-name')
-            </x-shop::form.control-group.label>
-
-            <x-shop::form.control-group.control
-                type="text"
-                name="last_name"
-                :value="old('last_name') ?? $customer->last_name"
-                rules="required"
-                :label="trans('shop::app.customers.account.profile.last-name')"
-                :placeholder="trans('shop::app.customers.account.profile.last-name')"
-            >
-            </x-shop::form.control-group.control>
-
-            <x-shop::form.control-group.error
-                control-name="last_name"
-            >
-            </x-shop::form.control-group.error>
-        </x-shop::form.control-group>
-
-        {!! view_render_event('bagisto.shop.customers.account.profile.edit_form_controls.last_name.after') !!}
-
-        <x-shop::form.control-group class="mb-4">
-            <x-shop::form.control-group.label class="required">
                 @lang('shop::app.customers.account.profile.email')
             </x-shop::form.control-group.label>
 
