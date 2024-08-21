@@ -1,16 +1,12 @@
 {!! view_render_event('bagisto.shop.checkout.cart.summary.before') !!}
 
-<v-cart-summary
-	ref="vCartSummary"
-	:cart="cart"
-	:is-cart-loading="isCartLoading"
->
+<v-cart-summary ref="vCartSummary" :cart="cart" :is-cart-loading="isCartLoading">
 </v-cart-summary>
 
 {!! view_render_event('bagisto.shop.checkout.cart.summary.after') !!}
 
 @pushOnce('scripts')
-	<script type="text/x-template" id="v-cart-summary-template">
+    <script type="text/x-template" id="v-cart-summary-template">
 		<template v-if="isCartLoading">
 			<!-- onepage Summary Shimmer Effect -->
 			<x-shop::shimmer.checkout.onepage.cart-summary/>
@@ -108,9 +104,18 @@
 					</div>
 
 					<div
-						class="flex justify-end"
+						class="flex flex-col justify-start"
 						v-else
 					>
+					
+						<div class="">
+							<textarea 
+								placeholder="أضف ملاحظة مع الطلب!" 
+								v-model="note"
+								class="w-full pt-4 pb-4 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
+							/>
+						</div>
+
 						<button
 							v-if="! isLoading"
 							class="block sn-button-primary"
@@ -121,7 +126,7 @@
 
 						<button
 							v-else
-							class="flex gap-[10px] items-center w-max sn-button-primary"
+							class="flex gap-[10px] items-center sn-button-primary w-full justify-center"
 						>
 							<!-- Spinner -->
 							<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -151,37 +156,41 @@
 		</template>
 	</script>
 
-	<script type="module">
-		app.component('v-cart-summary', {
-			template: '#v-cart-summary-template',
-			
-			props: ['cart', 'isCartLoading'],
+    <script type="module">
+        app.component('v-cart-summary', {
+            template: '#v-cart-summary-template',
 
-			data() {
-				return {
-					canPlaceOrder: false,
+            props: ['cart', 'isCartLoading'],
 
-					selectedPaymentMethod: null,
+            data() {
+                return {
+                    canPlaceOrder: false,
 
-					isLoading: false,
-				}
-			},
+                    selectedPaymentMethod: null,
 
-			methods: {
-				placeOrder() {
-					this.isLoading = true;
+                    isLoading: false,
 
-					this.$axios.post('{{ route('shop.checkout.onepage.orders.store') }}')
-						.then(response => {
-							if (response.data.data.redirect) {
-								window.location.href = response.data.data.redirect_url;
-							} else {
-								window.location.href = '{{ route('shop.checkout.onepage.success') }}';
-							}
-						})
-						.catch(error => console.log(error));
-				},
-			},
-		});
-	</script>
+                    note: "",
+                }
+            },
+
+            methods: {
+                placeOrder() {
+                    this.isLoading = true;
+
+                    this.$axios.post('{{ route('shop.checkout.onepage.orders.store') }}', {
+                            note: this.note
+                        })
+                        .then(response => {
+                            if (response.data.data.redirect) {
+                                window.location.href = response.data.data.redirect_url;
+                            } else {
+                                window.location.href = '{{ route('shop.checkout.onepage.success') }}';
+                            }
+                        })
+                        .catch(error => console.log(error));
+                },
+            },
+        });
+    </script>
 @endPushOnce

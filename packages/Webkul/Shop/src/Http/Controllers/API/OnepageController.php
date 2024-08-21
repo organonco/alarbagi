@@ -164,7 +164,7 @@ class OnepageController extends APIController
             ]);
         }
 
-        $order = $this->orderRepository->create(Cart::prepareDataForOrder());
+        $order = $this->orderRepository->create(Cart::prepareDataForOrder(), request()->input('note'));
 
         Cart::deActivateCart();
 

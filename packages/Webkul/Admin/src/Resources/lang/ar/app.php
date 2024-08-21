@@ -237,7 +237,8 @@ return [
 				'details' => 'تفاصيل العنوان',
 				'name' => 'اسم المستلم',
 				'shipping-company' => 'شركة التوصيل',
-				'customer-name' => 'اسم الزبون'
+				'customer-name' => 'اسم الزبون',
+				'note' => 'الملاحظة مع الطلب'
 			],
 		],
 

@@ -138,8 +138,9 @@ class OrderRepository extends Repository
      * @param array $data
      * @return \Webkul\Sales\Contracts\Order
      */
-    public function create(array $data)
+    public function create(array $data, $note = "")
     {
+		$data['note'] = $note;
         return $this->createOrderIfNotThenRetry($data);
     }
 
