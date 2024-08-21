@@ -3,7 +3,7 @@
 @endphp
 
 <div
-        class="sn-background-primary px-28 max-lg:px-10 py-16 grid-cols-5 grid max-lg:flex max-lg:flex-col max-lg:gap-4 max-lg:pt-20 max-lg:pb-40">
+        class="sn-background-primary px-28 max-lg:px-10 py-16 grid-cols-5 grid max-lg:flex max-lg:flex-col max-lg:gap-4 max-lg:pt-20 max-lg:pb-40 mt-4">
         <div class="col-span-3 max-lg:pr-0 flex pr-10">
             <div class="flex flex-col items-center">
                 <img src="{{ asset('assets/images/logo-orange.png') }}" class="w-[24rem]">

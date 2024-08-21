@@ -40,6 +40,9 @@ class SellerAccountController extends Controller
             'description' => ['max:1000'],
             'address' => ['max: 1000'],
             'logo' => ['image'],
+			'opening_days' => ['required', 'max:255'],
+			'opening_time' => ['required', 'max:255'],
+			'owner_name' => ['required', 'max:255'],
         ]);
         $seller->update($request->all());
         if($request->hasFile('logo'))

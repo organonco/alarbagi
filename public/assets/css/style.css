@@ -232,6 +232,13 @@ Colors:
     font-family: 'Somar Sans Bold', sans-serif !important;
 }
 
+
+.sn-heading-4{
+    font-size: 18px;
+    font-family: 'Somar Sans Regular', sans-serif !important;
+}
+
+
 .sn-body{
     font-size: 14px;
     font-family: 'Somar Sans Regular', sans-serif !important;

@@ -83,6 +83,51 @@
                                         control-name="landline"></x-shop::form.control-group.error>
                             </x-admin::form.control-group>
 
+							<x-admin::form.control-group>
+                                <x-admin::form.control-group.label class="required"
+                                >@lang('marketplace::app.admin.account.profile.labels.opening_days')</x-admin::form.control-group.label>
+                                <x-admin::form.control-group.control
+                                        type="text"
+                                        name="opening_days"
+                                        value="{{$seller->opening_days}}"
+                                        placeholder="{{trans('marketplace::app.admin.account.profile.labels.opening_days')}}"
+                                        label="{{trans('marketplace::app.admin.account.profile.labels.opening_days')}}"
+                                >
+                                </x-admin::form.control-group.control>
+                                <x-shop::form.control-group.error
+                                        control-name="opening_days"></x-shop::form.control-group.error>
+                            </x-admin::form.control-group>
+
+							<x-admin::form.control-group>
+                                <x-admin::form.control-group.label class="required"
+                                >@lang('marketplace::app.admin.account.profile.labels.opening_time')</x-admin::form.control-group.label>
+                                <x-admin::form.control-group.control
+                                        type="text"
+                                        name="opening_time"
+                                        value="{{$seller->opening_time}}"
+                                        placeholder="{{trans('marketplace::app.admin.account.profile.labels.opening_time')}}"
+                                        label="{{trans('marketplace::app.admin.account.profile.labels.opening_time')}}"
+                                >
+                                </x-admin::form.control-group.control>
+                                <x-shop::form.control-group.error
+                                        control-name="opening_time"></x-shop::form.control-group.error>
+                            </x-admin::form.control-group>
+
+							<x-admin::form.control-group>
+                                <x-admin::form.control-group.label class="required"
+                                >@lang('marketplace::app.admin.account.profile.labels.owner_name')</x-admin::form.control-group.label>
+                                <x-admin::form.control-group.control
+                                        type="text"
+                                        name="owner_name"
+                                        value="{{$seller->owner_name}}"
+                                        placeholder="{{trans('marketplace::app.admin.account.profile.labels.owner_name')}}"
+                                        label="{{trans('marketplace::app.admin.account.profile.labels.owner_name')}}"
+                                >
+                                </x-admin::form.control-group.control>
+                                <x-shop::form.control-group.error
+                                        control-name="owner_name"></x-shop::form.control-group.error>
+                            </x-admin::form.control-group>
+
 
                             <x-admin::form.control-group>
                                 <x-admin::form.control-group.label>@lang('marketplace::app.admin.account.profile.labels.logo')</x-admin::form.control-group.label>
