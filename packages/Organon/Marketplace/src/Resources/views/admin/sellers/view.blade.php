@@ -98,7 +98,7 @@
                         </p>
                         <div class="info-box text-gray-800 dark:text-white">
                             <table class="info-table">
-                                @foreach(['name','area_name', 'address', 'phone', 'landline'] as $key)
+                                @foreach(['name','area_name', 'address', 'phone', 'landline', 'opening_days', 'opening_time', 'owner_name'] as $key)
                                     <tr class="info-table">
                                         <td>
                                             @lang('marketplace::app.admin.account.profile.labels.' . $key)
