@@ -169,7 +169,7 @@
                                                 </p>
 
                                                 <span
-                                                    class="sn-color-secondary  cursor-pointer sn-body"
+                                                    class="sn-color-secondary  cursor-pointer sn-body max-lg:hidden"
                                                     @click="removeItem(item.id)"
                                                 >
                                                     @lang('shop::app.checkout.cart.index.remove')
@@ -179,7 +179,7 @@
                                             <x-shop::quantity-changer
                                                 name="quantity"
                                                 ::value="item?.quantity"
-                                                class="gap-x-[16px] rounded-[12px] sn-button-primary-alt"
+                                                class="gap-x-[16px] rounded-[12px] sn-button-primary-alt-narrow"
                                                 @change="setItemQuantity(item.id, $event)"
                                             >
                                             </x-shop::quantity-changer>
@@ -195,7 +195,7 @@
 
                                         <!-- Cart Item Remove Button -->
                                         <span
-                                            class="sn-color-secondary  cursor-pointer sn-body"
+                                            class="sn-color-secondary-narrow  cursor-pointer sn-body"
                                             @click="removeItem(item.id)"
                                         >
                                             @lang('shop::app.checkout.cart.index.remove')
@@ -209,13 +209,13 @@
                             <!-- Cart Item Actions -->
                             <div class="flex flex-nowrap gap-[30px] justify-end">
                                 <button
-                                class="sn-button-primary-alt flex flex-wrap content-center text-center"
+                                class="sn-button-primary-alt-narrow flex flex-wrap content-center text-center"
                                 @click="update()"
                             >
                                 @lang('shop::app.checkout.cart.index.update-cart')
                             </button>
                                 <a
-                                    class="sn-button-primary flex flex-wrap content-center text-center"
+                                    class="sn-button-primary-narrow flex flex-wrap content-center text-center"
                                     href="{{ route('shop.home.index') }}"
                                 >
                                     @lang('shop::app.checkout.cart.index.continue-shopping')

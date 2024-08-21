@@ -154,12 +154,32 @@ Colors:
     font-size: 16px;
     font-family: 'Somar Sans Medium', sans-serif !important;
 }
+
+.sn-button-primary-narrow{
+    color: #153939;
+    background-color: #F67541;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Somar Sans Medium', sans-serif !important;
+}
+
+
 .sn-button-primary-alt{
     color: #F67541;
     background-color: transparent;
     border: 1px solid #F67541;
     border-radius: 4px;
     padding: 10px 40px;
+    font-family: 'Somar Sans Medium', sans-serif !important;
+}
+
+.sn-button-primary-alt-narrow{
+    color: #F67541;
+    background-color: transparent;
+    border: 1px solid #F67541;
+    border-radius: 4px;
+    padding: 10px 20px;
     font-family: 'Somar Sans Medium', sans-serif !important;
 }
 
