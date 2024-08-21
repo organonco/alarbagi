@@ -66,7 +66,7 @@ class OfferDataGrid extends DataGrid
                 return "<img style='height: 80px; width: auto;' src='" . $value->image_url . "'/>";
             },
             'searchable' => false,
-            'filterable' => true,
+            'filterable' => false,
             'sortable' => false,
         ]);
     }

@@ -82,7 +82,7 @@ return [
                 'label' => 'مستلم من قبل المنصة',
                 'class' => 'closed'
             ],
-            'shipped' => [
+            'SHIPPED' => [
                 'label' => 'مستلم من قبل المشتري',
                 'class' => 'info'
             ],

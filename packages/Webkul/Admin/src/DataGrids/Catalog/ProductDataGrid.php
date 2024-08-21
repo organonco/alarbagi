@@ -125,8 +125,8 @@ class ProductDataGrid extends DataGrid
         $this->addFilter('name', 'product_flat.name');
         $this->addFilter('type', 'product_flat.type');
         $this->addFilter('status', 'product_flat.status');
-        $this->addFilter('attribute_family', 'af.name');
-        $this->addFilter('sku', 'product_flat.sku');
+        // $this->addFilter('attribute_family', 'af.name');
+        // $this->addFilter('sku', 'product_flat.sku');
 
         return $queryBuilder;
     }
@@ -161,31 +161,6 @@ class ProductDataGrid extends DataGrid
         ]);;
 
         $this->addColumn([
-            'index' => 'sku',
-            'label' => trans('admin::app.catalog.products.index.datagrid.sku'),
-            'type' => 'string',
-            'searchable' => true,
-            'filterable' => true,
-            'sortable' => true,
-        ]);
-
-        $this->addColumn([
-            'index' => 'attribute_family',
-            'label' => trans('admin::app.catalog.products.index.datagrid.attribute-family'),
-            'type' => 'dropdown',
-            'options' => [
-                'type' => 'basic',
-
-                'params' => [
-                    'options' => $this->attributeFamilyRepository->all(['name as label', 'name as value'])->toArray(),
-                ],
-            ],
-            'searchable' => false,
-            'filterable' => false,
-            'sortable' => false,
-        ]);
-
-        $this->addColumn([
             'index' => 'base_image',
             'label' => trans('admin::app.catalog.products.index.datagrid.image'),
             'type' => 'string',
@@ -212,14 +187,6 @@ class ProductDataGrid extends DataGrid
             'sortable' => true,
         ]);
 
-        $this->addColumn([
-            'index' => 'product_id',
-            'label' => trans('admin::app.catalog.products.index.datagrid.id'),
-            'type' => 'integer',
-            'searchable' => false,
-            'filterable' => true,
-            'sortable' => true,
-        ]);
 
         $this->addColumn([
             'index' => 'status',
@@ -233,11 +200,11 @@ class ProductDataGrid extends DataGrid
                 'params' => [
                     'options' => [
                         [
-                            'label' => 'active',
+                            'label' => 'نشط',
                             'value' => 1
                         ],
                         [
-                            'label' => 'not active',
+                            'label' => 'غير نشط',
                             'value' => 0
                         ]
                     ]
