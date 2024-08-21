@@ -71,7 +71,7 @@
         {!! view_render_event('bagisto.shop.layout.content.before') !!}
 
         {{-- Page Content Blade Component --}}
-        <div class="{{$hasFooter? "" : "pb-20" }}">
+        <div class="{{$hasFooter? "" : "pb-24" }}">
             {{ $slot }}
         </div>
 
@@ -87,7 +87,7 @@
             <x-shop::layouts.footer />
         @endif
 
-        <div class="max-lg:grid hidden fixed bottom-0 w-full grid-cols-5 sn-background-primary py-3" style="box-shadow: 0px -1px 10px #0f2929">
+        <div class="max-lg:grid hidden fixed bottom-0 w-full grid-cols-5 sn-background-primary pt-3 pb-2" style="box-shadow: 0px -1px 10px #0f2929">
 
             <a class="flex flex-col items-center px-1 border-l sn-border-color-primary"
                 href="{{ route('shop.home.index') }}">
