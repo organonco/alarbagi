@@ -16,30 +16,24 @@ return [
      * Sales.
      */
     [
-        'key'        => 'sales',
-        'name'       => 'admin::app.components.layouts.sidebar.sales',
-        'route'      => 'admin.sales.orders.index',
-        'sort'       => 2,
-        'icon'       => 'icon-sales',
-    ], [
-        'key'        => 'sales.orders',
+        'key'        => 'orders',
         'name'       => 'admin::app.components.layouts.sidebar.orders',
         'route'      => 'admin.sales.orders.index',
         'sort'       => 2,
-        'icon'       => '',
+        'icon'       => 'icon-order-back',
     ], [
-        'key'        => 'sales.sellers',
+        'key'        => 'sellers',
         'name'       => 'marketplace::app.acl.sellers',
         'route'      => 'admin.sales.sellers.index',
         'sort'       => 3,
-        'icon'       => '',
+        'icon'       => 'icon-store',
     ], 
     [
-        'key' => 'sales.seller-categories',
+        'key' => 'seller-categories',
         'name' => 'admin::app.components.layouts.sidebar.seller_categories',
         'route' => 'admin.seller_categories.index',
         'sort' => 4,
-        'icon' => '',
+        'icon' => 'icon-sales',
     ],
     
 
@@ -51,25 +45,16 @@ return [
         'name' => 'admin::app.components.layouts.sidebar.orders',
         'route' => 'marketplace.admin.orders.index',
         'sort' => 3,
-        'icon' => 'icon-sales',
+        'icon' => 'icon-order-back',
     ],
 
 
-    /**
-     * Catalog.
-     */
-    [
-        'key'        => 'catalog',
-        'name'       => 'admin::app.components.layouts.sidebar.catalog',
-        'route'      => 'admin.catalog.products.index',
-        'sort'       => 4,
-        'icon'       => 'icon-product',
-    ], [
-        'key'        => 'catalog.products',
+  	[
+        'key'        => 'products',
         'name'       => 'admin::app.components.layouts.sidebar.products',
         'route'      => 'admin.catalog.products.index',
-        'sort'       => 1,
-        'icon'       => '',
+        'sort'       => 5,
+        'icon'       => 'icon-product-1',
     ], 
 	// [
     //     'key'        => 'catalog.categories',
@@ -79,17 +64,17 @@ return [
     //     'icon'       => '',
     // ], 
 	[
-        'key'        => 'catalog.attributes',
+        'key'        => 'attributes',
         'name'       => 'admin::app.components.layouts.sidebar.attributes',
         'route'      => 'admin.catalog.attributes.index',
         'sort'       => 3,
-        'icon'       => '',
+        'icon'       => 'icon-sales',
     ], [
-        'key'        => 'catalog.families',
+        'key'        => 'families',
         'name'       => 'admin::app.components.layouts.sidebar.attribute-families',
         'route'      => 'admin.catalog.families.index',
         'sort'       => 4,
-        'icon'       => '',
+        'icon'       => 'icon-sales',
     ],
 
     /**
@@ -99,31 +84,23 @@ return [
         'key'        => 'customers',
         'name'       => 'admin::app.components.layouts.sidebar.customers',
         'route'      => 'admin.customers.customers.index',
-        'sort'       => 5,
+        'sort'       => 6,
         'icon'       => 'icon-customer-2',
     ], 
 
     [
-        'key' => 'delivery',
-        'name' => 'admin::app.components.layouts.sidebar.delivery',
-        'route' => 'admin.delivery.area.index',
-        'sort' => 6,
-        'icon' => 'icon-customer-2',
-    ],
-
-    [
-        'key' => 'delivery.areas',
+        'key' => 'areas',
         'name' => 'admin::app.components.layouts.sidebar.areas',
         'route' => 'admin.delivery.area.index',
-        'sort' => 1,
-        'icon' => 'icon-customer-2',
+        'sort' => 7,
+        'icon' => 'icon-location',
     ],
     [
-        'key' => 'delivery.shipping-companies',
+        'key' => 'shipping-companies',
         'name' => 'admin::app.components.layouts.sidebar.shipping-companies',
         'route' => 'admin.delivery.shipping-company.index',
-        'sort' => 2,
-        'icon' => 'icon-customer-2',
+        'sort' => 8,
+        'icon' => 'icon-ship',
     ],
 
    
@@ -184,7 +161,7 @@ return [
         'name' => 'admin::app.components.layouts.sidebar.offers',
         'route' => 'admin.offers.index',
         'sort' => 10,
-        'icon' => 'icon-sales',
+        'icon' => 'icon-promotion',
     ],
 
     [
@@ -192,7 +169,7 @@ return [
         'name' => 'admin::app.components.layouts.sidebar.account',
         'route' => 'admin.account.profile.view',
         'sort' => 10,
-        'icon' => 'icon-sales',
+        'icon' => 'icon-customer-2',
     ],
 
     [
