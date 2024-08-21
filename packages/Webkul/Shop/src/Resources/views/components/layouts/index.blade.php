@@ -71,7 +71,7 @@
         {!! view_render_event('bagisto.shop.layout.content.before') !!}
 
         {{-- Page Content Blade Component --}}
-        <div class="max-lg:mb-28">
+        <div class="{{$hasFooter? "" : "pb-20" }}">
             {{ $slot }}
         </div>
 
