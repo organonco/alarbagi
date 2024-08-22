@@ -163,7 +163,7 @@
                             المجموع
                         </td>
                     </tr>
-                    @foreach ($order->items as $item)
+                    @foreach ($order->approvedItems as $item)
                         <tr>
                             <td>{{ $item->product->name }}</td>
                             <td>{{ $item->qty_ordered }}</td>

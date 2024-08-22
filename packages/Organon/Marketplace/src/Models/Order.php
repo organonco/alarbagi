@@ -113,6 +113,11 @@ class Order extends \Webkul\Sales\Models\Order
 				$refunded += $this->shipping_amount - $newShipping;
 		}
 
-		$this->update(['grand_total_invoiced' => $invoiced, 'grand_total_refunded' => $refunded, 'grand_total' => $this->base_grand_total - $refunded]);
+		$this->update(['grand_total_invoiced' => $invoiced, 'grand_total_refunded' => $refunded, 'grand_total' => $this->base_grand_total - $refunded, 'sub_total' => $invoiced + $pending]);
+	}
+
+	public function approvedItems()
+	{
+		return $this->items()->where('status', 1);
 	}
 }

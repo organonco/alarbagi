@@ -23,13 +23,13 @@
         <div class="sn-heading-2 text-center sn-color-primary pt-1">
             {{ $sellerCategory->name }}
         </div>
-        <div class="flex gap-6 px-24 py-36 flex-wrap justify-center max-lg:px-6 max-lg:pt-14 max-lg:pb-40">
+        <div class="flex gap-6 px-24 py-36 flex-wrap justify-center max-lg:px-1 max-lg:pt-14 max-lg:pb-40 max-lg:gap-3">
             @if ($sellers->count() > 0)
                 @foreach ($sellers as $seller)
                     <a href="{{ route('shop.marketplace.show', ['slug' => $seller->slug]) }}"
-                        class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2 max-lg:w-20">
-                        <img src="{{ $seller->logo_url }}" class="w-72 h-72 rounded-lg max-lg:h-20">
-                        <div class="sn-color-primary text-center lg:!text-3xl max-lg:!text-sm max-lg:!font-bold">
+            			class='flex flex-col gap-2 content-start w-fit relative border border-gray-10 rounded-lg bg-white'>
+                        <img src="{{ $seller->logo_url }}" class="w-72 h-72 rounded-t-lg max-lg:h-44 max-lg:w-44 bg-[#f6f6f6]">
+                        <div class="sn-color-secondary text-center lg:!text-3xl max-lg:!text-lg pb-2 pr-4">
                             {{ $seller->name }}
                         </div>
                     </a>
