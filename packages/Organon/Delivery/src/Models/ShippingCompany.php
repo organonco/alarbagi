@@ -41,9 +41,14 @@ class ShippingCompany extends Authenticatable implements ShippingCompanyContract
 			$this->per_product_price > 0;
 	}
 
-	public function calculate(int $numberOfSellers)
+	public function calculate($items)
 	{
-		if($numberOfSellers == 0)
+		$sellers = collect([]);
+		foreach ($items as $item)
+			if ($item->product->is_deliverable)
+				$sellers->push($item->product->seller_id);
+		$numberOfSellers = $sellers->unique()->count();
+		if ($numberOfSellers == 0)
 			return 0;
 		return $this['per_order_price'] + ($this['per_product_price'] * $numberOfSellers);
 	}

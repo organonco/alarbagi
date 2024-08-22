@@ -72,12 +72,8 @@ class ShippingCompany extends AbstractShipping
 	private function getShippingPrice(): int
 	{
 		$cart = Cart::getCart();
-		$sellers = collect([]);
-		foreach ($cart->items as $item)
-			$sellers->push($item->product->seller_id);
-
 		$company = $cart->shipping_address->area->shippingCompany;
-		return $company->calculate($sellers->unique()->count());
+		return $company->calculate($cart->items);
 	}
 
 	/**

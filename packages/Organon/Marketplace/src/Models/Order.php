@@ -106,9 +106,10 @@ class Order extends \Webkul\Sales\Models\Order
 				$pending += $item->total;
 		
 		if($this->shipping_method == "shippingcompany_shippingcompany"){
-			$newShipping = $this->shipping_address->area->shippingCompany->calculate(
-				$this->sellerOrders()->whereIn('status', [SellerOrderStatusEnum::APPROVED->value, SellerOrderStatusEnum::PENDING->value])->count()
-			);
+			$items = collect([]);
+			foreach($this->sellerOrders()->whereIn('status', [SellerOrderStatusEnum::APPROVED->value, SellerOrderStatusEnum::PENDING->value]) as $sellerOrder)
+				$items->push($sellerOrder->items);
+			$newShipping = $this->shipping_address->area->shippingCompany->calculate($items);
 			if($this->shipping_amount > $newShipping)
 				$refunded += $this->shipping_amount - $newShipping;
 		}
