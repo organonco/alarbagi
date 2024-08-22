@@ -6,7 +6,6 @@ use Config;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Shipping\Carriers\AbstractShipping;
 use Webkul\Checkout\Models\CartShippingRate;
-use Webkul\Shipping\Facades\Shipping;
 
 class ShippingCompany extends AbstractShipping
 {
@@ -73,12 +72,12 @@ class ShippingCompany extends AbstractShipping
 	private function getShippingPrice(): int
 	{
 		$cart = Cart::getCart();
-		$companies = collect([]);
+		$sellers = collect([]);
 		foreach ($cart->items as $item)
-			$companies->push($item->product->seller_id);
+			$sellers->push($item->product->seller_id);
 
 		$company = $cart->shipping_address->area->shippingCompany;
-		return $company['per_order_price'] + ($company['per_product_price'] * $companies->unique()->count());
+		return $company->calculate($sellers->unique()->count());
 	}
 
 	/**

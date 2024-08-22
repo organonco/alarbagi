@@ -105,6 +105,14 @@ class Order extends \Webkul\Sales\Models\Order
 			elseif ($item->status == 0)
 				$pending += $item->total;
 		
+		if($this->shipping_method == "shippingcompany_shippingcompany"){
+			$newShipping = $this->shipping_address->area->shippingCompany->calculate(
+				$this->sellerOrders()->whereIn('status', [SellerOrderStatusEnum::APPROVED->value, SellerOrderStatusEnum::PENDING->value])->count()
+			);
+			if($this->shipping_amount > $newShipping)
+				$refunded += $this->shipping_amount - $newShipping;
+		}
+
 		$this->update(['grand_total_invoiced' => $invoiced, 'grand_total_refunded' => $refunded, 'grand_total' => $this->base_grand_total - $refunded]);
 	}
 }
