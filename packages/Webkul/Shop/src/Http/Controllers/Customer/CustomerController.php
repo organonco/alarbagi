@@ -9,6 +9,7 @@ use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Product\Repositories\ProductReviewRepository;
 use Webkul\Core\Repositories\SubscribersListRepository;
+use Webkul\Customer\Models\Customer;
 use Webkul\Shop\Http\Requests\Customer\ProfileRequest;
 
 class CustomerController extends Controller
@@ -33,8 +34,11 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = $this->customerRepository->find(auth()->guard('customer')->user()->id);
-
+		/** @var Customer */
+		$customer = auth()->guard('customer')->user();
+		if($customer)
+			$customer->accountNotifications()->update(['read_at' => now()]);
+		
         return view('shop::customers.account.profile.index', compact('customer'));
     }
 

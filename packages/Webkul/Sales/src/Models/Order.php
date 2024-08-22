@@ -56,6 +56,22 @@ class Order extends Model implements OrderContract
      */
     public const STATUS_FRAUD = 'fraud';
 
+
+	
+	/*
+		new statuses
+
+		Ready for shipping
+		Shipping
+		Shipped
+
+	*/
+
+	public const STATUS_READY = 'ready-for-shipping';
+	public const STATUS_SHIPPING = 'shipping';
+	public const STATUS_SHIPPED = 'shipped';
+
+
     /**
      * The attributes that aren't mass assignable.
      *

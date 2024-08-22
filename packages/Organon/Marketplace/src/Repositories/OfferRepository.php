@@ -2,8 +2,11 @@
 
 namespace Organon\Marketplace\Repositories;
 
+use App\Notifications\OfferCreated;
+use Illuminate\Support\Facades\Notification;
 use Organon\Marketplace\Models\Offer;
 use Webkul\Core\Eloquent\Repository;
+use Webkul\Customer\Models\Customer;
 
 class OfferRepository extends Repository
 {
@@ -24,6 +27,8 @@ class OfferRepository extends Repository
         $model = $this->create($data);
         if(isset($data['image']))
             $model->setImage('image');
+
+		Notification::send(Customer::all(), new OfferCreated());
     }
 
     public function updateOffer(Offer $model, array $data)

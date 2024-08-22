@@ -4,6 +4,7 @@ namespace Organon\Marketplace\Notifications\Repositories;
 
 use Organon\Marketplace\Contracts\SellerOrder;
 use Organon\Marketplace\Enums\SellerOrderStatusEnum;
+use Organon\Marketplace\Models\Order;
 use Webkul\Core\Eloquent\Repository;
 
 class SellerOrderRepository extends Repository
@@ -37,6 +38,7 @@ class SellerOrderRepository extends Repository
     public function approve(SellerOrder $sellerOrder)
     {
         $sellerOrder->setStatus(SellerOrderStatusEnum::APPROVED);
+		$sellerOrder->order->refreshStatus();
     }
 
     /**
@@ -46,6 +48,7 @@ class SellerOrderRepository extends Repository
     public function cancel(SellerOrder $sellerOrder)
     {
         $sellerOrder->setStatus(SellerOrderStatusEnum::CANCELLED_BY_SELLER);
+		$sellerOrder->order->refreshStatus();
     }
 
 }

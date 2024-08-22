@@ -2,6 +2,7 @@
 
 namespace Organon\Marketplace\Models;
 
+use App\Notifications\OrderUpdated;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Organon\Delivery\Models\Area;
 use Organon\Marketplace\Enums\SellerOrderStatusEnum;
@@ -59,5 +60,21 @@ class Order extends \Webkul\Sales\Models\Order
 			'date' => date_format($this->created_at, "d/m/Y"),
 			'time' => date_format($this->created_at, "H:i")
 		];
+	}
+
+	public function updateStatus(string $newStatus, bool $notify = false)
+	{
+		$this->status = $newStatus;
+		$this->save();
+		$this->customer->notify(new OrderUpdated($this->id));
+	}
+
+	public function refreshStatus()
+	{
+		if ($this->status != self::STATUS_PROCESSING) {
+			$processedSellerOrders = $this->sellerOrders()->whereIn('status', [SellerOrderStatusEnum::APPROVED->value, SellerOrderStatusEnum::CANCELLED_BY_SELLER->value]);
+			if ($processedSellerOrders->count() == $this->sellerOrders()->count())
+				$this->updateStatus(self::STATUS_PROCESSING);
+		}
 	}
 }

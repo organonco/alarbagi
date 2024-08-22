@@ -2,6 +2,9 @@
 
 namespace Webkul\Customer\Models;
 
+use App\Notifications\NotificationDotPlacements;
+use App\Notifications\OfferCreated;
+use App\Notifications\OrderUpdated;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -292,4 +295,26 @@ class Customer extends Authenticatable implements CustomerContract
     {
         return $this->hasOne(SubscribersListProxy::modelClass(), 'customer_id');
     }
+
+
+	public function accountNotifications()
+	{
+		return $this->unreadNotifications()->where('type', OrderUpdated::class);
+	}
+
+	public function offersNotifications()
+	{
+		return  $this->unreadNotifications()->where('type', OfferCreated::class);
+	}
+
+	public function hasAccountNotifications()
+	{
+		return $this->accountNotifications()->count() > 0;
+	}
+
+	public function hasOffersNotifications()
+	{
+		return $this->offersNotifications()->count() > 0;
+	}
+
 }

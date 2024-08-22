@@ -7,6 +7,9 @@ use Organon\Marketplace\Contracts\Notification as NotificationContract;
 
 class Notification extends \Webkul\Notification\Models\Notification implements NotificationContract
 {
+
+	protected $table = 'admin_notifications';
+	
     protected $fillable = [
         'text',
         'admin_id',
