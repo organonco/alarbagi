@@ -52,7 +52,7 @@ Route::group([
         Route::get('/', [OrderController::class, 'index'])->name('dashboard');
 		Route::get('/order/{id}', [OrderController::class, 'show'])->name('orders.show');
 		Route::put('/order/{id}/update-shipping', [OrderController::class, 'updateShippingPrice'])->name('orders.update-shipping');
+		Route::put('/order/{id}/mark-as-shipping', [OrderController::class, 'markAsShipping'])->name('orders.mark-as-shipping');
+		Route::put('/order/{id}/mark-as-complete', [OrderController::class, 'markAsComplete'])->name('orders.mark-as-complete');
     });
-
-
 });

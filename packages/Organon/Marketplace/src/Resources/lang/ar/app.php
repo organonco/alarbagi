@@ -90,6 +90,10 @@ return [
 				'label' => 'مقبول جزئياً',
 				'class' => 'processing'
 			],
+			'shipping' => [
+				'label' => 'يتم التوصيل',
+				'class' => 'processing'
+			],
 		]
 	],
 	"seller-order" => [

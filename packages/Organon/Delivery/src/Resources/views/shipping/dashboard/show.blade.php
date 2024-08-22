@@ -19,29 +19,44 @@
             </div>
         </div>
     @else
-        <div class="card">
-            <div class="header">
-                إبلاغ سائق
-            </div>
-            <hr />
-            <div class="description">
-            </div>
-            <div class="content">
-				<div class="input flex gap-4 items-center content-center justify-center">
-                    <select id="select">
-                        @foreach ($drivers as $driver)
-                            <option value="{{ $driver->phone }}">{{ $driver->name }}</option>
-                        @endforeach
-                    </select>
-                    <button id="send" class="button-primary sn-heading-3">إبلاغ</button>
-                </div>
-            </div>
-        </div>
+        @if ($order->status == 'approved' || $order->status == 'partially-approved')
+            <form method="POST" action="{{ route('shipping.orders.mark-as-shipping', $order->id) }}">
+                @csrf
+                @method('PUT')
+                <button class="button-primary sn-heading-3"> تغيير حالة الطلب لـ "يتم التوصيل"</button>
+            </form>
+			<div class="card">
+				<div class="header">
+					إبلاغ سائق
+				</div>
+				<hr />
+				<div class="description">
+				</div>
+				<div class="content">
+					<div class="input flex gap-4 items-center content-center justify-center">
+						<select id="select">
+							@foreach ($drivers as $driver)
+								<option value="{{ $driver->phone }}">{{ $driver->name }}</option>
+							@endforeach
+						</select>
+						<button id="send" class="button-primary sn-heading-3">إبلاغ</button>
+					</div>
+				</div>
+			</div>
+        @endif
+
+        @if ($order->status == 'shipping')
+            <form method="POST" action="{{ route('shipping.orders.mark-as-complete', $order->id) }}">
+                @csrf
+                @method('PUT')
+                <button class="button-primary sn-heading-3"> تغيير حالة الطلب لـ "مكتمل" (تم التوصيل)</button>
+            </form>
+        @endif
     @endif
 
     <div class="card">
         <div class="header">
-            معلومات الاستلام
+            معلومات الطلب - @lang('marketplace::app.order.statuses.' . $order->status . '.label')
         </div>
         <div class="description">
             {{ $order->shipping_details['time'] }} - {{ $order->shipping_details['date'] }}
@@ -189,10 +204,10 @@
 
     @pushonce('scripts')
         <script>
-			document.getElementById("send").onclick = () => {
-				let url = "https://wa.me/" + document.getElementById("select").value + "?text=مرحباً%20"
-				window.open(url, '_blank').focus();
-			}
-		</script>
+            document.getElementById("send").onclick = () => {
+                let url = "https://wa.me/" + document.getElementById("select").value + "?text=مرحباً%20"
+                window.open(url, '_blank').focus();
+            }
+        </script>
     @endpushonce
 </x-delivery::layouts.shipping>

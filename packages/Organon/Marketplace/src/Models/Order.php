@@ -62,12 +62,13 @@ class Order extends \Webkul\Sales\Models\Order
 		];
 	}
 
-	public function updateStatus(string $newStatus, bool $notify = false)
+	public function updateStatus(string $newStatus, bool $notify = true)
 	{
 		if ($this->status == $newStatus)
 			return;
 		$this->update(['status' => $newStatus]);
-		$this->customer->notify(new OrderUpdated($this->id));
+		if($notify)
+			$this->customer->notify(new OrderUpdated($this->id));
 	}
 
 	public function refreshStatus()
