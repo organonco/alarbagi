@@ -56,6 +56,10 @@
                             <tr>
 
                                 <th scope="col" class="px-6 py-[16px] font-medium">
+                                    الحالة
+                                </th>
+
+                                <th scope="col" class="px-6 py-[16px] font-medium">
                                     @lang('shop::app.customers.account.orders.view.information.product-name')
                                 </th>
 
@@ -77,6 +81,15 @@
                         <tbody>
                             @foreach ($order->items as $item)
                                 <tr class="bg-white border-b">
+                                    <td class="px-6 py-[16px] text-black font-medium">
+                                        @if ($item->status == -1)
+                                            مرفوض
+                                        @elseif($item->status == 1)
+                                            مقبول
+                                        @else
+                                            بانتظار الموافقة
+                                        @endif
+                                    </td>
 
                                     <td class="px-6 py-[16px] text-black font-medium">
                                         {{ $item->name }}
@@ -134,7 +147,7 @@
                                         </div>
                                     </div>
                                 @endif
-								<hr/>
+                                <hr />
 
                                 @if ($order->base_discount_amount > 0)
                                     <div class="flex gap-x-[20px] justify-between w-full">
@@ -171,7 +184,7 @@
                                 </div>
 
 
-								<div class="flex gap-x-[20px] justify-between w-full">
+                                <div class="flex gap-x-[20px] justify-between w-full">
                                     <p class="text-[14px]">
                                         اجمالي المرفوضات
                                     </p>
@@ -187,7 +200,7 @@
 
 
 
-								<div class="flex gap-x-[20px] justify-between w-full">
+                                <div class="flex gap-x-[20px] justify-between w-full">
                                     <p class="text-[14px]">
                                         الاجمالي المستحق
                                     </p>
