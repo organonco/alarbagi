@@ -73,11 +73,6 @@ class Order extends \Webkul\Sales\Models\Order
 
 	public function refreshStatus()
 	{
-		// one approved or rejected, remaining still pending -> processing
-		// all approved -> approved
-		// all rejected -> cancelled
-		// mixed between approved and rejected -> partially approved
-
 		$allCount = $this->sellerOrders()->count();
 		$approvedCount = $this->sellerOrders()->where('status', SellerOrderStatusEnum::APPROVED)->count();
 		$rejectedCount = $this->sellerOrders()->where('status', SellerOrderStatusEnum::CANCELLED_BY_SELLER)->count();
@@ -87,8 +82,13 @@ class Order extends \Webkul\Sales\Models\Order
 			$this->updateStatus(Order::STATUS_APPROVED);
 		elseif ($allCount == $rejectedCount)
 			$this->updateStatus(Order::STATUS_REJECTED);
-		elseif ($pendingCount == 0)
-			$this->updateStatus(Order::STATUS_PARTIALLY_APPROVED);
+		elseif ($pendingCount == 0){
+			foreach($this->sellerOrders()->where('status', SellerOrderStatusEnum::APPROVED->value)->get() as $sellerOrder)
+				foreach($sellerOrder->items as $item)
+					if($item->product->is_deliverable)
+						return $this->updateStatus(Order::STATUS_PARTIALLY_APPROVED);
+			$this->updateStatus(Order::STATUS_COMPLETED);
+		}
 	}
 
 	public function refreshTotals()
