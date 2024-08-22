@@ -65,7 +65,7 @@
         <div class="content">
             <div class="data">
                 <ul>
-                    @foreach ($order->sellerOrders()->where('status', 'approved')->get() as $sellerOrder)
+                    @foreach ($order->sellerOrders()->where('status', 'approved')->get()->where('is_deliverable', true) as $sellerOrder)
                         <li>
                             <div class="overflow-auto">
                                 <table class="invoice-table lg:w-full">
@@ -102,7 +102,7 @@
                                     @endforeach
                                     <tr>
                                         <td class="sn-heading-3" colspan="3">المجموع الفرعي </td>
-                                        <td class="sn-heading-3">{{ (int) $order->sub_total }} ل.س</td>
+                                        <td class="sn-heading-3">{{ (int) $sellerOrder->subtotal }} ل.س</td>
                                     </tr>
                                 </table>
                             </div>
@@ -163,7 +163,7 @@
                             المجموع
                         </td>
                     </tr>
-                    @foreach ($order->approvedItems as $item)
+                    @foreach ($order->approvedItems->where('is_deliverable', true) as $item)
                         <tr>
                             <td>{{ $item->product->name }}</td>
                             <td>{{ $item->qty_ordered }}</td>
@@ -174,7 +174,7 @@
 
                     <tr>
                         <td class="sn-heading-3" colspan="3">المجموع الفرعي</td>
-                        <td class="sn-heading-3">{{ (int) $order->sub_total }} ل.س</td>
+                        <td class="sn-heading-3">{{ (int) $order->deliverable_total }} ل.س</td>
                     </tr>
 
                     <tr>
@@ -191,7 +191,7 @@
 
                     <tr>
                         <td class="sn-heading-3" colspan="3">المجموع الكلي</td>
-                        <td class="sn-heading-3">{{ (int) $order->grand_total }} ل.س</td>
+                        <td class="sn-heading-3">{{ (int) $order->deliverable_total + $order->shipping_amount }} ل.س</td>
                     </tr>
 
 

@@ -31,6 +31,10 @@ class OrderItem extends Model implements OrderItemContract
 
     protected $typeInstance;
 
+	protected $appends = [
+		'is_deliverable'
+	];
+
     /**
      * Retrieve type instance
      *
@@ -236,4 +240,9 @@ class OrderItem extends Model implements OrderItemContract
     {
         return OrderItemFactory::new();
     }
+
+	public function getIsDeliverableAttribute()
+	{
+		return $this->product->is_deliverable;
+	}
 }

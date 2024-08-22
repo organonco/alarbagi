@@ -121,4 +121,9 @@ class Order extends \Webkul\Sales\Models\Order
 	{
 		return $this->items()->where('status', 1);
 	}
+
+	public function getDeliverableTotalAttribute()
+	{
+		return $this->sellerOrders()->where('status', SellerOrderStatusEnum::APPROVED)->get()->where('is_deliverable', true)->pluck('subtotal')->sum();
+	}
 }

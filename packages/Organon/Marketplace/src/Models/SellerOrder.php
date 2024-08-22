@@ -21,6 +21,10 @@ class SellerOrder extends Model implements SellerOrderContract
         'number_of_products'
     ];
 
+	protected $appends = [
+		'is_deliverable',
+	];
+
     public static function getStatusEnum(): string
     {
         return SellerOrderStatusEnum::class;
@@ -77,5 +81,13 @@ class SellerOrder extends Model implements SellerOrderContract
     {
         return $this->status == SellerOrderStatusEnum::PENDING;
     }
+
+	public function getIsDeliverableAttribute()
+	{
+		foreach($this->items as $item)
+			if($item->product->is_deliverable)
+				return true;
+		return false;
+	}
 
 }
