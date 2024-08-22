@@ -67,7 +67,9 @@ class Order extends Model implements OrderContract
 
 	*/
 
-	public const STATUS_READY = 'ready-for-shipping';
+	public const STATUS_REJECTED = 'rejected';
+	public const STATUS_APPROVED = 'approved';
+	public const STATUS_PARTIALLY_APPROVED = 'partially-approved';
 	public const STATUS_SHIPPING = 'shipping';
 	public const STATUS_SHIPPED = 'shipped';
 

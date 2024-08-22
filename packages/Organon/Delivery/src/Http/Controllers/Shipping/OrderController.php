@@ -16,7 +16,7 @@ class OrderController extends Controller
 	{
 		$shippingCompany = $this->getAuthenticatedShippingCompany();
 		$orders = Order::query()->forShippingCompany($shippingCompany)->get();
-		$pendingOrders = $orders->where('status', 'pending');
+		$pendingOrders = $orders->where('status', Order::STATUS_PROCESSING);
 		return view('delivery::shipping.dashboard.index', compact('pendingOrders'));
 	}
 

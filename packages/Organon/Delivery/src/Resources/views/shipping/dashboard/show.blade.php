@@ -50,7 +50,7 @@
         <div class="content">
             <div class="data">
                 <ul>
-                    @foreach ($order->sellerOrders as $sellerOrder)
+                    @foreach ($order->sellerOrders()->where('status', 'approved')->get() as $sellerOrder)
                         <li>
                             <div class="overflow-auto">
                                 <table class="invoice-table lg:w-full">

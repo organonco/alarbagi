@@ -77,10 +77,8 @@ class SellerOrderDataGrid extends DataGrid
                     'options' => [
                         ['label' => trans('marketplace::app.seller-order.statuses.PENDING.label'), 'value' => 'pending'],
 						['label' => trans('marketplace::app.seller-order.statuses.APPROVED.label'), 'value' => 'approved'],
-						['label' => trans('marketplace::app.seller-order.statuses.CANCELLED.label'), 'value' => 'cancelled'],
-						['label' => trans('marketplace::app.seller-order.statuses.PICKED_UP.label'), 'value' => 'picked-up'],
-						['label' => trans('marketplace::app.seller-order.statuses.SHIPPED.label'), 'value' => 'shipped'],
 						['label' => trans('marketplace::app.seller-order.statuses.CANCELLED_BY_SELLER.label'), 'value' => 'cancelled_by_seller'],
+						['label' => trans('marketplace::app.seller-order.statuses.CANCELLED.label'), 'value' => 'cancelled'],
                     ],
                 ],
             ],

@@ -64,6 +64,34 @@ return [
 			]
 		]
 	],
+	"order" => [
+		'statuses' => [
+			'completed' => [
+				'label' => 'مكتمل',
+				'class' => 'closed'
+			],
+			'pending' => [
+				'label' => 'بانتظار الموافقة',
+				'class' => 'pending'
+			],
+			'canceled' => [
+				'label' => 'ملغى',
+				'class' => 'closed'
+			],
+			'approved' => [
+				'label' => 'مقبول بالكامل',
+				'class' => 'processing'
+			],
+			'rejected' => [
+				'label' => 'مرفوض بالكامل',
+				'class' => 'info'
+			],
+			'partially-approved' => [
+				'label' => 'مقبول جزئياً',
+				'class' => 'processing'
+			],
+		]
+	],
 	"seller-order" => [
 		'statuses' => [
 			'PENDING' => [
@@ -87,7 +115,7 @@ return [
 				'class' => 'info'
 			],
 			'CANCELLED_BY_SELLER' => [
-				'label' => 'ملغى من قبل البائع',
+				'label' => 'مرفوض',
 				'class' => 'info'
 			]
 		]
@@ -158,8 +186,8 @@ return [
 			],
 			'view' => [
 				'approve' => 'قبول',
-				'cancel' => 'الغاء',
-				'cancel-msg' => 'هل أنت متأكد بأنك تريد الغاء هذا الطلب؟',
+				'cancel' => 'رفض',
+				'cancel-msg' => 'هل أنت متأكد بأنك تريد رفض هذا الطلب؟',
 				'approve-msg' => 'هل أنت متأكد بأنك تريد قبول هذا الطلب؟',
 			]
 		],

@@ -64,17 +64,29 @@ class Order extends \Webkul\Sales\Models\Order
 
 	public function updateStatus(string $newStatus, bool $notify = false)
 	{
-		$this->status = $newStatus;
-		$this->save();
+		if ($this->status == $newStatus)
+			return;
+		$this->update(['status' => $newStatus]);
 		$this->customer->notify(new OrderUpdated($this->id));
 	}
 
 	public function refreshStatus()
 	{
-		if ($this->status != self::STATUS_PROCESSING) {
-			$processedSellerOrders = $this->sellerOrders()->whereIn('status', [SellerOrderStatusEnum::APPROVED->value, SellerOrderStatusEnum::CANCELLED_BY_SELLER->value]);
-			if ($processedSellerOrders->count() == $this->sellerOrders()->count())
-				$this->updateStatus(self::STATUS_PROCESSING);
-		}
+		// one approved or rejected, remaining still pending -> processing
+		// all approved -> approved
+		// all rejected -> cancelled
+		// mixed between approved and rejected -> partially approved
+
+		$allCount = $this->sellerOrders()->count();
+		$approvedCount = $this->sellerOrders()->where('status', SellerOrderStatusEnum::APPROVED)->count();
+		$rejectedCount = $this->sellerOrders()->where('status', SellerOrderStatusEnum::CANCELLED_BY_SELLER)->count();
+		$pendingCount = $this->sellerOrders()->where('status', SellerOrderStatusEnum::PENDING)->count();
+
+		if($allCount == $approvedCount)
+			$this->updateStatus(Order::STATUS_APPROVED);
+		elseif($allCount == $rejectedCount)
+			$this->updateStatus(Order::STATUS_REJECTED);
+		elseif($pendingCount == 0)
+			$this->updateStatus(Order::STATUS_PARTIALLY_APPROVED);
 	}
 }
