@@ -365,41 +365,10 @@ class Order extends Model implements OrderContract
      */
     public function canCancel(): bool
     {
-        if (
-            $this->payment->method == 'cashondelivery'
-            && core()->getConfigData('sales.payment_methods.cashondelivery.generate_invoice')
-        ) {
-            return false;
-        }
-
-        if (
-            $this->payment->method == 'moneytransfer'
-            && core()->getConfigData('sales.payment_methods.moneytransfer.generate_invoice')
-        ) {
-            return false;
-        }
-
-        if ($this->status === self::STATUS_FRAUD) {
-            return false;
-        }
-
-        $pendingInvoice = $this->invoices->where('state', 'pending')
-            ->first();
-
-        if ($pendingInvoice) {
-            return true;
-        }
-
-        foreach ($this->items as $item) {
-            if (
-                $item->canCancel()
-                && $item->order->status !== self::STATUS_CLOSED
-            ) {
-                return true;
-            }
-        }
-
-        return false;
+        foreach([self::STATUS_APPROVED, self::STATUS_PARTIALLY_APPROVED, self::STATUS_PENDING] as $status)
+			if($status == $this->status)
+				return true;
+		return false;
     }
 
     /**

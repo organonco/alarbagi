@@ -12,7 +12,7 @@
     <div class="flex justify-between items-center">
         <div class="">
             <h2 class="text-[26px] font-medium">
-                @lang('shop::app.customers.account.orders.view.page-title', ['order_id' => $order->increment_id])
+                @lang('shop::app.customers.account.orders.view.page-title', ['order_id' => $order->increment_id]) - @lang('marketplace::app.order.statuses.' . $order->status . '.label')
             </h2>
         </div>
 
@@ -25,7 +25,6 @@
             <a class="sn-button-secondary" href="javascript:void(0);"
                 @click="$emitter.emit('open-confirm-modal', {
                     message: '@lang('shop::app.customers.account.orders.view.cancel-confirm-msg')',
-
                     agree: () => {
                         this.$refs['cancelOrderForm'].submit()
                     }
@@ -135,6 +134,7 @@
                                         </div>
                                     </div>
                                 @endif
+								<hr/>
 
                                 @if ($order->base_discount_amount > 0)
                                     <div class="flex gap-x-[20px] justify-between w-full">
@@ -160,6 +160,36 @@
                                 <div class="flex gap-x-[20px] justify-between w-full">
                                     <p class="text-[14px]">
                                         @lang('shop::app.customers.account.orders.view.information.grand-total')
+                                    </p>
+
+                                    <div class="flex gap-x-[20px]">
+                                        <p class="text-[14px]">-</p>
+                                        <p class="text-[14px]">
+                                            {{ core()->formatPrice($order->base_grand_total, $order->order_currency_code) }}
+                                        </p>
+                                    </div>
+                                </div>
+
+
+								<div class="flex gap-x-[20px] justify-between w-full">
+                                    <p class="text-[14px]">
+                                        اجمالي المرفوضات
+                                    </p>
+
+                                    <div class="flex gap-x-[20px]">
+                                        <p class="text-[14px]">-</p>
+
+                                        <p class="text-[14px]">
+                                            {{ core()->formatPrice($order->grand_total_refunded, $order->order_currency_code) }}
+                                        </p>
+                                    </div>
+                                </div>
+
+
+
+								<div class="flex gap-x-[20px] justify-between w-full">
+                                    <p class="text-[14px]">
+                                        الاجمالي المستحق
                                     </p>
 
                                     <div class="flex gap-x-[20px]">
