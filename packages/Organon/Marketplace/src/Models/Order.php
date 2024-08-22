@@ -67,7 +67,7 @@ class Order extends \Webkul\Sales\Models\Order
 		if ($this->status == $newStatus)
 			return;
 		$this->update(['status' => $newStatus]);
-		if($notify)
+		if ($notify)
 			$this->customer->notify(new OrderUpdated($this->id));
 	}
 
@@ -83,11 +83,28 @@ class Order extends \Webkul\Sales\Models\Order
 		$rejectedCount = $this->sellerOrders()->where('status', SellerOrderStatusEnum::CANCELLED_BY_SELLER)->count();
 		$pendingCount = $this->sellerOrders()->where('status', SellerOrderStatusEnum::PENDING)->count();
 
-		if($allCount == $approvedCount)
+		if ($allCount == $approvedCount)
 			$this->updateStatus(Order::STATUS_APPROVED);
-		elseif($allCount == $rejectedCount)
+		elseif ($allCount == $rejectedCount)
 			$this->updateStatus(Order::STATUS_REJECTED);
-		elseif($pendingCount == 0)
+		elseif ($pendingCount == 0)
 			$this->updateStatus(Order::STATUS_PARTIALLY_APPROVED);
+	}
+
+	public function refreshTotals()
+	{
+		$invoiced = 0;
+		$refunded = 0;
+		$pending = 0;
+
+		foreach ($this->items as $item)
+			if ($item->status == 1)
+				$invoiced += $item->total;
+			elseif ($item->status == -1)
+				$refunded += $item->total;
+			elseif ($item->status == 0)
+				$pending += $item->total;
+		
+		$this->update(['grand_total_invoiced' => $invoiced, 'grand_total_refunded' => $refunded, 'grand_total' => $this->base_grand_total - $refunded]);
 	}
 }
