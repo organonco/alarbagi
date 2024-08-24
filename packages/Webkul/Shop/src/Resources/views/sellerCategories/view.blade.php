@@ -8,7 +8,7 @@
     <x-slot:title>
         {{ $area->name . ' - ' . $sellerCategory->name }}
     </x-slot>
-    <div class="sn-background-light-green h-full">
+    <div class="sn-background-light-green min-h-screen">
         <div class="w-full">
             <img class="w-full" src="{{ $sellerCategory->banner_url }}" />
         </div>
@@ -23,13 +23,13 @@
         <div class="sn-heading-2 text-center sn-color-primary pt-1">
             {{ $sellerCategory->name }}
         </div>
-        <div class="flex gap-6 px-24 py-36 flex-wrap justify-center max-lg:px-1 max-lg:pt-14 max-lg:pb-40 max-lg:gap-3">
+        <div class="flex justify-center gap-4 px-24 py-36 flex-wrap max-lg:py-12 max-lg:px-1 max-lg:gap-2 justify-evenly">
             @if ($sellers->count() > 0)
                 @foreach ($sellers as $seller)
                     <a href="{{ route('shop.marketplace.show', ['slug' => $seller->slug]) }}"
-            			class='flex flex-col gap-2 content-start w-fit relative border border-gray-10 rounded-lg bg-white'>
-                        <img src="{{ $seller->logo_url }}" class="w-72 h-72 rounded-t-lg max-lg:h-44 max-lg:w-44 bg-[#f6f6f6]">
-                        <div class="sn-color-secondary text-center lg:!text-3xl max-lg:!text-lg pb-2 pr-4">
+            			class='w-72 pb-8 max-lg:pb-1 flex gap-4 flex-col max-lg:gap-2 max-lg:w-24 rounded-lg bg-white'>
+                        <img src="{{ $seller->logo_url }}" class="w-72 h-72 rounded-t-lg max-lg:h-24 max-lg:w-24 bg-[#f6f6f6]">
+                        <div class="sn-color-secondary text-center lg:!text-3xl max-lg:!text-sm max-lg:!font-bold">
                             {{ $seller->name }}
                         </div>
                     </a>

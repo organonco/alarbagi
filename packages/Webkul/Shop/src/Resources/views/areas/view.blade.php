@@ -21,11 +21,11 @@
             {{ $area->name }}
         </div>
 
-        <div class="flex gap-6 px-20 py-10 max-lg:py-14 flex-wrap justify-center max-lg:px-6">
+        <div class="flex gap-6 max-lg:gap-3 px-20 py-10 max-lg:py-14 flex-wrap justify-center max-lg:px-6">
             @foreach ($categories as $index => $category)
                 @if ($category->isParent())
                     <div
-                        class=" items-start flex  flex-col gap-8 sn-background-light-green-2 px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full max-h-fit h-fit">
+                        class=" items-start flex  flex-col gap-8 sn-background-light-green-2 px-4 py-4 max-lg:px-2 max-lg:py-2 rounded-lg min-w-[450px] max-lg:min-w-full max-h-fit h-fit">
                         <div class="items-center flex  gap-8 cursor-pointer w-full"
                             onclick="handleToggle({{ $index }})">
                             <img src="{{ $category->image_url }}" class="w-20 h-20 rounded-full">
@@ -48,7 +48,7 @@
                     </div>
                 @else
                     <a href="{{ route('seller-category.view', ['areaId' => $area->id, 'sellerCategoryId' => $category->id]) }}"
-                        class=" items-start flex  flex-col gap-8 sn-background-light-green-2 px-4 py-4 rounded-lg min-w-[450px] max-lg:min-w-full max-h-fit h-fit">
+                        class=" items-start flex  flex-col gap-8 sn-background-light-green-2 px-4 py-4 max-lg:px-2 max-lg:py-2 rounded-lg min-w-[450px] max-lg:min-w-full max-h-fit h-fit">
                         <div class="items-center flex  gap-8 cursor-pointer w-full">
                             <img src="{{ $category->image_url }}" class="w-20 h-20 rounded-full">
                             <div
