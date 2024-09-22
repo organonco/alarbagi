@@ -21,7 +21,7 @@
 
     {{-- TOP BANNER --}}
 
-	<img class="w-full" src="{{asset('assets/images/banner.webp')}}"/>
+	<img class="w-full" src="{{asset('assets/images/banner.png')}}"/>
     {{-- <div
         class="bg-[#FF6B30] h-[30rem] flex justify-between max-lg:flex-col-reverse max-lg:pb-8 max-lg:items-center max-lg:h-[45rem] max-lg:justify-center">
         <div class="max-lg:mr-0 mr-60 h-full flex justify-center flex-col gap-12 max-lg:h-[20rem]">
