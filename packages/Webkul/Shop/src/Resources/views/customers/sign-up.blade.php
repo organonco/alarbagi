@@ -25,7 +25,8 @@
         <script type="module">
             window.onload = function() {
                 document.getElementById('registerForm').onsubmit = function() {
-                    document.getElementById('registerButton').disabled = true
+                    if(document.getElementsByClassName("validation-error").length == 0)
+                        document.getElementById('registerButton').disabled = true
                 };
             }
         </script>

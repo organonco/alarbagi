@@ -105,7 +105,7 @@
                     @endforeach
                     <option value="">أخرى</option>
                 </x-shop::form.control-group.control>
-                <x-shop::form.control-group.error control-name="name">
+                <x-shop::form.control-group.error control-name="area_id">
                 </x-shop::form.control-group.error>
             </x-shop::form.control-group>
 
