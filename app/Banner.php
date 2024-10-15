@@ -1,13 +1,30 @@
 <?php
 
-namespace Organon\Marketplace\Traits;
+namespace App;
 
+use Illuminate\Database\Eloquent\Model;
+use Organon\Delivery\Contracts\Area;
+use Organon\Marketplace\Contracts\SellerCategory;
+use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-trait HasBanner
+class Banner extends Model implements HasMedia
 {
     use InteractsWithMedia;
     const BANNER_MEDIA_COLLECTION = 'banner';
+
+    public $fillable = ['is_mobile', 'area_id', 'seller_category_id'];
+
+
+    public function sellerCategory()
+    {
+        return $this->belognsTo(SellerCategory::class);
+    }
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
 
     public function clearBanner()
     {

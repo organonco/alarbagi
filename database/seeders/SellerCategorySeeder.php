@@ -44,7 +44,7 @@ class SellerCategorySeeder extends Seeder
                 'name' => $name,
                 'parent_id' => null,
             ]);
-            $sellerCategory->addMediaFromDisk('images/categories/' . $name . '.png')->preservingOriginal()->toMediaCollection('image', 'public');
+            // $sellerCategory->addMediaFromDisk('images/categories/' . $name . '.png')->preservingOriginal()->toMediaCollection('image', 'public');
             foreach ($subCategories as $subCategory)
                 SellerCategory::create([
                     'name' => $subCategory,

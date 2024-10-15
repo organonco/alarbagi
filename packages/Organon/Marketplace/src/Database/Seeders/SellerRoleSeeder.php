@@ -8,21 +8,21 @@ use Illuminate\Support\Facades\DB;
 
 class SellerRoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
-    {
-        Model::unguard();
+	/**
+	 * Run the database seeds.
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		Model::unguard();
 
-        DB::table('roles')->insert([
-            'id' => 2,
-            'name' => 'Seller',
-            'description' => 'Seller Role',
-            'permission_type' => 'custom',
-            "permissions" => json_encode([
+		DB::table('roles')->insert([
+			'id' => 2,
+			'name' => 'Seller',
+			'description' => 'Seller Role',
+			'permission_type' => 'custom',
+			"permissions" => json_encode(
 				[
 					"marketplace",
 					"marketplace.orders",
@@ -40,16 +40,16 @@ class SellerRoleSeeder extends Seeder
 					"catalog.products.mass-delete",
 					"offers"
 				]
-            ]),
-        ]);
+			),
+		]);
 
-        DB::table('roles')->insert([
-            'id' => 3,
-            'name' => "Manager",
-            'description' => "Manager Role",
-            'permission_type' => 'custom',
-            'permissions' => json_encode([
-                [
+		DB::table('roles')->insert([
+			'id' => 3,
+			'name' => "Manager",
+			'description' => "Manager Role",
+			'permission_type' => 'custom',
+			'permissions' => json_encode(
+				[
 					"dashboard",
 					"sales",
 					"sellers",
@@ -84,9 +84,15 @@ class SellerRoleSeeder extends Seeder
 					"delivery.areas",
 					"delivery.shipping-companies",
 					"areas",
-					"shipping-companies"
+					"shipping-companies",
+					"cms",
+					"cms.create",
+					"cms.edit",
+					"cms.delete",
+					"cms.mass-delete",
+					"banners",
 				]
-            ])
-        ]);
-    }
+			)
+		]);
+	}
 }

@@ -3273,7 +3273,8 @@ return [
 				"account" => "الحساب",
 				"profile" => 'الملف الشخصي',
 				"offers" => 'العروض الخاصة',
-				"shipping-companies" => 'شركات التوصيل'
+				"shipping-companies" => 'شركات التوصيل',
+				"banners" => 'البنرات الإعلانية',
 			],
 		],
 

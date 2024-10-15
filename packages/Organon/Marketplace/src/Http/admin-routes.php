@@ -1,5 +1,6 @@
 <?php
 
+use Organon\Marketplace\Http\Controllers\Admin\BannerController;
 use Organon\Marketplace\Http\Controllers\Admin\OfferController;
 use Organon\Marketplace\Http\Controllers\Admin\SellerCategoryController;
 
@@ -76,5 +77,35 @@ Route::group([
     Route::get('/edit/{id}', [SellerCategoryController::class, 'edit'])->name('admin.seller_categories.edit');
     Route::post('/edit/{id}', [SellerCategoryController::class, 'update'])->name('admin.seller_categories.update');
 });
+
+Route::group([
+    'prefix' => config('app.admin_url') . '/banners',
+    'middleware' => ['web', 'admin']
+], function () {
+    Route::get('/', [BannerController::class, 'index'])->name('admin.banners.index');
+
+    Route::get('/create/main', [BannerController::class, 'createMain'])->name('admin.banners.create.main');
+    Route::get('/create/area', [BannerController::class, 'createArea'])->name('admin.banners.create.area');
+    Route::get('/create/category', [BannerController::class, 'createCategory'])->name('admin.banners.create.category');
+
+    Route::post('/create/main', [BannerController::class, 'storeMain'])->name('admin.banners.store.main');
+    Route::post('/create/area', [BannerController::class, 'storeArea'])->name('admin.banners.store.area');
+    Route::post('/create/category', [BannerController::class, 'storeCategory'])->name('admin.banners.store.category');
+
+    Route::get('/edit/main/{id}', [BannerController::class, 'editMain'])->name('admin.banners.edit.main');
+    Route::get('/edit/area/{id}', [BannerController::class, 'editArea'])->name('admin.banners.edit.area');
+    Route::get('/edit/category/{id}', [BannerController::class, 'editCategory'])->name('admin.banners.edit.category');
+
+    Route::post('/edit/main/{id}', [BannerController::class, 'updateMain'])->name('admin.banners.update.main');
+    Route::post('/edit/area/{id}', [BannerController::class, 'updateArea'])->name('admin.banners.update.area');
+    Route::post('/edit/category/{id}', [BannerController::class, 'updateCategory'])->name('admin.banners.update.category');
+
+    Route::delete('/{id}', [BannerController::class, 'destroy'])->name('admin.banners.delete');
+
+    Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('admin.banners.edit');
+    Route::post('/edit/{id}', [BannerController::class, 'update'])->name('admin.banners.update');
+});
+
+
 
 

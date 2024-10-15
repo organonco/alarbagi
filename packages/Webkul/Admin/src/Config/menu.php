@@ -21,13 +21,15 @@ return [
         'route'      => 'admin.sales.orders.index',
         'sort'       => 2,
         'icon'       => 'icon-order-back',
-    ], [
+    ],
+    [
         'key'        => 'sellers',
         'name'       => 'marketplace::app.acl.sellers',
         'route'      => 'admin.sales.sellers.index',
         'sort'       => 3,
         'icon'       => 'icon-store',
-    ], 
+    ],
+
     [
         'key' => 'seller-categories',
         'name' => 'admin::app.components.layouts.sidebar.seller_categories',
@@ -35,9 +37,17 @@ return [
         'sort' => 4,
         'icon' => 'icon-sales',
     ],
-    
 
-     /**
+    [
+        'key' => 'banners',
+        'name' => 'admin::app.components.layouts.sidebar.banners',
+        'route' => 'admin.banners.index',
+        'sort' => 4,
+        'icon' => 'icon-store',
+    ],
+
+
+    /**
      * 
      */
     [
@@ -49,27 +59,28 @@ return [
     ],
 
 
-  	[
+    [
         'key'        => 'products',
         'name'       => 'admin::app.components.layouts.sidebar.products',
         'route'      => 'admin.catalog.products.index',
         'sort'       => 5,
         'icon'       => 'icon-product-1',
-    ], 
-	// [
+    ],
+    // [
     //     'key'        => 'catalog.categories',
     //     'name'       => 'admin::app.components.layouts.sidebar.categories',
     //     'route'      => 'admin.catalog.categories.index',
     //     'sort'       => 2,
     //     'icon'       => '',
     // ], 
-	[
+    [
         'key'        => 'attributes',
         'name'       => 'admin::app.components.layouts.sidebar.attributes',
         'route'      => 'admin.catalog.attributes.index',
         'sort'       => 3,
         'icon'       => 'icon-sales',
-    ], [
+    ],
+    [
         'key'        => 'families',
         'name'       => 'admin::app.components.layouts.sidebar.attribute-families',
         'route'      => 'admin.catalog.families.index',
@@ -86,7 +97,7 @@ return [
         'route'      => 'admin.customers.customers.index',
         'sort'       => 6,
         'icon'       => 'icon-customer-2',
-    ], 
+    ],
 
     [
         'key' => 'areas',
@@ -103,9 +114,9 @@ return [
         'icon' => 'icon-ship',
     ],
 
-   
-    
-    
+
+
+
 
     /**
      * Settings.
@@ -117,19 +128,21 @@ return [
         'sort'       => 7,
         'icon'       => 'icon-settings',
         'icon-class' => 'settings-icon',
-    ],  [
+    ],
+    [
         'key'        => 'settings.users',
         'name'       => 'admin::app.components.layouts.sidebar.users',
         'route'      => 'admin.settings.users.index',
         'sort'       => 1,
         'icon'       => '',
-    ], [
+    ],
+    [
         'key'        => 'settings.roles',
         'name'       => 'admin::app.components.layouts.sidebar.roles',
         'route'      => 'admin.settings.roles.index',
         'sort'       => 2,
         'icon'       => '',
-    ], 
+    ],
 
 
     /**
@@ -145,7 +158,7 @@ return [
 
 
 
-     /**
+    /**
      * CMS.
      */
     [

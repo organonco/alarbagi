@@ -9,6 +9,7 @@
         {{ $area->name }}
     </x-slot>
     <div class="sn-background-light-green">
+        
         <div class="w-full">
             <img class="w-full" src="{{ $area->banner_url }}" />
         </div>

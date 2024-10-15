@@ -5,13 +5,12 @@ namespace Organon\Marketplace\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Organon\Marketplace\Contracts\SellerCategory as SellerCategoryContract;
-use Organon\Marketplace\Traits\HasBanner;
 use Organon\Marketplace\Traits\HasImage;
 use Spatie\MediaLibrary\HasMedia;
 
 class SellerCategory extends Model implements SellerCategoryContract, HasMedia
 {
-    use HasBanner, HasImage;
+    use HasImage;
 
     protected $fillable = ['name', 'parent_id', 'sort'];
 
@@ -53,7 +52,7 @@ class SellerCategory extends Model implements SellerCategoryContract, HasMedia
     public function getImageUrl()
     {
         if ($this->getFirstMediaUrl(self::IMAGE_MEDIA_COLLECTION) == "")
-            if ($this->parent->getFirstMediaUrl(self::IMAGE_MEDIA_COLLECTION) == "")
+            if ($this->parent?->getFirstMediaUrl(self::IMAGE_MEDIA_COLLECTION) == "")
                 return asset('assets/images/icons/placeholder.png');
             else
                 return $this->parent->getFirstMediaUrl(self::IMAGE_MEDIA_COLLECTION);

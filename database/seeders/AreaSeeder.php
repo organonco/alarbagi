@@ -35,7 +35,7 @@ class AreaSeeder extends Seeder
                 'info' => '',
                 'is_active' => true
             ]);
-            $area->addMediaFromDisk('images/areas/' . $name . '.png')->preservingOriginal()->toMediaCollection('image', 'public');
+            // $area->addMediaFromDisk('images/areas/' . $name . '.png')->preservingOriginal()->toMediaCollection('image', 'public');
         }
     }
 }
