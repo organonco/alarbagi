@@ -9,8 +9,12 @@
         {{ $area->name . ' - ' . $sellerCategory->name }}
     </x-slot>
     <div class="sn-background-light-green min-h-screen">
-        <div class="w-full">
-            <img class="w-full" src="{{ $sellerCategory->banner_url }}" />
+        
+        <div class="desktop-only">
+            <x-shop::carousel :options='$desktopBanners'></x-shop::carousel>
+        </div>
+        <div class="mobile-only">
+            <x-shop::carousel-mobile :options='$mobileBanners'></x-shop::carousel-mobile>
         </div>
 
         <div class="w-full flex justify-center pt-10">

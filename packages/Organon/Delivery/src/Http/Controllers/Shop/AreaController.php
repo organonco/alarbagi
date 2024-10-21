@@ -2,6 +2,7 @@
 
 namespace Organon\Delivery\Http\Controllers\Shop;
 
+use App\Banner;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -18,6 +19,10 @@ class AreaController extends Controller
     {
         $area = Area::query()->isActive()->findOrFail($areaId);
         $categories = SellerCategory::query()->main()->get()->sortBy('sort');
-        return view('shop::areas.view')->with(compact('area', 'categories'));
+
+        $mobileBanners = Banner::transform(Banner::forArea($area->id)->mobile()->get());
+        $desktopBanners = Banner::transform(Banner::forArea($area->id)->desktop()->get());
+
+        return view('shop::areas.view')->with(compact('area', 'categories', 'mobileBanners', 'desktopBanners'));
     }
 }

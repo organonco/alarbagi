@@ -18,10 +18,14 @@
     <x-slot:title>
         {{ $channel->home_seo['meta_title'] ?? '' }}
     </x-slot>
+ 
+    <div class="desktop-only">
+        <x-shop::carousel :options='$desktopBanners'></x-shop::carousel>
+    </div>
+    <div class="mobile-only">
+        <x-shop::carousel-mobile :options='$mobileBanners'></x-shop::carousel-mobile>
+    </div>
 
-    {{-- TOP BANNER --}}
-
-	<img class="w-full" src="{{asset('assets/images/banner.png')}}"/>
     {{-- <div
         class="bg-[#FF6B30] h-[30rem] flex justify-between max-lg:flex-col-reverse max-lg:pb-8 max-lg:items-center max-lg:h-[45rem] max-lg:justify-center">
         <div class="max-lg:mr-0 mr-60 h-full flex justify-center flex-col gap-12 max-lg:h-[20rem]">
@@ -64,7 +68,7 @@
 
     {{-- AREAS --}}
     <div
-        class="sn-background-grey flex justify-center gap-4 px-24 py-36 flex-wrap max-lg:py-12 max-lg:px-1 max-lg:gap-2 justify-evenly">
+        class="sn-background-grey flex gap-4 px-24 py-36 flex-wrap max-lg:py-12 max-lg:px-1 max-lg:gap-2 justify-evenly">
         @foreach ($areas as $area)
             <a href="{{ route('area.view', $area->id) }}"
                 class="w-72 py-8 max-lg:py-1 flex gap-4 flex-col max-lg:gap-2 max-lg:w-24">

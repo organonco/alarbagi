@@ -57,4 +57,42 @@ class Banner extends Model implements HasMedia
         } else
             $this->clearBanner();
     }
+
+    public function scopeMain($query)
+    {
+        return $query->whereNull('area_id')->whereNull('seller_category_id');
+    }
+
+    public function scopeDesktop($query)
+    {
+        return $query->where('is_mobile', false);
+    }
+
+    public function scopeMobile($query)
+    {
+        return $query->where('is_mobile', true);
+    }
+
+
+    public static function transform($collection)
+    {
+        return [
+            'images' => $collection->map(function (Banner $banner) {
+                return [
+                    'id' => $banner->id,
+                    'image' => $banner->getBannerUrl(),
+                ];
+            })->toArray()
+        ];
+    }
+
+    public function scopeForArea($query, $areaId)
+    {
+        return $query->where('area_id', $areaId);
+    }
+
+    public function scopeForSellerCategory($query, $areaId, $sellerCategoryId)
+    {
+        return $query->where('area_id', $areaId)->where('seller_category_id', $sellerCategoryId);
+    }
 }

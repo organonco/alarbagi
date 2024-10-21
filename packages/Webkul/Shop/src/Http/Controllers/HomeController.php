@@ -2,6 +2,7 @@
 
 namespace Webkul\Shop\Http\Controllers;
 
+use App\Banner;
 use Organon\Delivery\Models\Area;
 use Webkul\Category\Repositories\CategoryRepository;
 use Webkul\Shop\Repositories\ThemeCustomizationRepository;
@@ -17,9 +18,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(protected ThemeCustomizationRepository $themeCustomizationRepository, protected CategoryRepository $categoryRepository)
-    {
-    }
+    public function __construct(protected ThemeCustomizationRepository $themeCustomizationRepository, protected CategoryRepository $categoryRepository) {}
 
     /**
      * Loads the home page for the storefront.
@@ -37,7 +36,11 @@ class HomeController extends Controller
 
         $categories = $this->categoryRepository->where('parent_id', '1')->get();
         $areas = Area::query()->isActive()->get();
-        return view('shop::home.index', compact('customizations'))->with(['categories' => $categories, 'areas' => $areas]);
+
+        $desktopBanners = Banner::transform(Banner::main()->desktop()->get());
+        $mobileBanners = Banner::transform(Banner::main()->mobile()->get());
+
+        return view('shop::home.index', compact('customizations'))->with(['categories' => $categories, 'areas' => $areas, 'desktopBanners' => $desktopBanners, 'mobileBanners' => $mobileBanners]);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Organon\Delivery\Http\Controllers\Shop;
 
+use App\Banner;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -22,6 +23,10 @@ class SellerCategoryController extends Controller
         $area = Area::query()->isActive()->findOrFail($areaId);
 
         $sellers = Seller::query()->isActive()->area($area->id)->sellerCategory($categoryId)->get();
-        return view('shop::sellerCategories.view')->with(compact('sellerCategory', 'sellers', 'area'));
+        
+        $mobileBanners = Banner::transform(Banner::forSellerCategory($area->id, $sellerCategory->id)->mobile()->get());
+        $desktopBanners = Banner::transform(Banner::forSellerCategory($area->id, $sellerCategory->id)->desktop()->get());
+
+        return view('shop::sellerCategories.view')->with(compact('sellerCategory', 'sellers', 'area', 'mobileBanners', 'desktopBanners'));
     }
 }

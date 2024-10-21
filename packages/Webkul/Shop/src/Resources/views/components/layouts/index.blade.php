@@ -48,8 +48,18 @@
 
     <style>
         {!! core()->getConfigData('general.content.custom_scripts.custom_css') !!}
-    </style>
 
+        @media only screen and (min-width:1024px){
+            .mobile-only{   
+                display: none;
+            }
+        }
+        @media only screen and (max-width:1024px){
+            .desktop-only{
+                display: none;
+            }
+        }
+    </style>
     {!! view_render_event('bagisto.shop.layout.head') !!}
 </head>
 
