@@ -138,11 +138,10 @@
 
                             this.get();
 
+                            setInterval( this.get , 120000)
                             return;
                         }
                     }
-
-                    this.get();
                 },
 
                 /**
