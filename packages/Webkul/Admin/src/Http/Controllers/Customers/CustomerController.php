@@ -273,6 +273,13 @@ class CustomerController extends Controller
         ]);
     }
 
+    public function changeStatus($id)
+    {
+        $customer = $this->customerRepository->find($id);
+        $this->customerRepository->update(['status' => !$customer->status], $id);
+        return redirect(route('admin.customers.customers.index'));
+    }
+
     /**
      * To mass delete the customer.
      *

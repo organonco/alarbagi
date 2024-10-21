@@ -212,14 +212,6 @@ class CustomerDataGrid extends DataGrid
      */
     public function prepareMassActions()
     {
-        if (bouncer()->hasPermission('customers.customers.mass-delete')) {
-            $this->addMassAction([
-                'title'  => trans('admin::app.customers.customers.index.datagrid.delete'),
-                'method' => 'POST',
-                'url'    => route('admin.customers.customers.mass_delete'),
-            ]);
-        }
-
         if (bouncer()->hasPermission('customers.customers.mass-update')) {
             $this->addMassAction([
                 'title'   => trans('admin::app.customers.customers.index.datagrid.update-status'),
