@@ -55,7 +55,6 @@ class AreaController extends Controller
 
 		/** @var Area */
 		$area = Area::create($data);
-		$area->addBanner($data);
 		$area->addImage($data);
 		return redirect()->route('admin.delivery.area.index');
 	}
@@ -81,7 +80,6 @@ class AreaController extends Controller
 		$data['is_active'] = (bool)request()->input('is_active');
 
 		$area->update($data);
-		$area->updateBanner($data);
 		$area->updateImage($data);
 		return redirect()->route('admin.delivery.area.index');
 	}

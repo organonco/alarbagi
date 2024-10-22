@@ -21,7 +21,8 @@ abstract class AbstractShipping
     protected $method;
 
     abstract public function calculate();
-
+    abstract public function isVisible();
+    
     /**
      * Checks if shipping method is available.
      *

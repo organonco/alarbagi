@@ -61,6 +61,16 @@
                     </x-admin::form.control-group>
 
                     <x-admin::form.control-group class="mb-[10px]">
+                        <x-admin::form.control-group.label class="required">
+                            @lang('delivery::app.area.attributes.is_external')
+                        </x-admin::form.control-group.label>
+                        <x-admin::form.control-group.control type="switch" name="is_external" value="1">
+                        </x-admin::form.control-group.control>
+                        <x-admin::form.control-group.error control-name="is_external">
+                        </x-admin::form.control-group.error>
+                    </x-admin::form.control-group>
+
+                    <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label>
                             @lang('marketplace::app.admin.seller_categories.create.attributes.image')
                         </x-admin::form.control-group.label>

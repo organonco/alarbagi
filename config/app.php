@@ -228,7 +228,8 @@ return [
         Organon\Marketplace\Providers\MarketplaceServiceProvider::class,
         Organon\Delivery\Providers\DeliveryServiceProvider::class,
         Organon\Pickup\Providers\PickupServiceProvider::class,
-        Organon\ShippingCompany\Providers\ShippingCompanyServiceProvider::class
+        Organon\ShippingCompany\Providers\ShippingCompanyServiceProvider::class,
+        Organon\Wadili\Providers\WadiliServiceProvider::class
     ])->toArray(),
 
     /*

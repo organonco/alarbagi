@@ -98,7 +98,8 @@
             "Organon\\Marketplace\\": "packages/Organon/Marketplace/src",
             "Organon\\Delivery\\": "packages/Organon/Delivery/src",
             "Organon\\Pickup\\": "packages/Organon/Pickup/src",
-            "Organon\\ShippingCompany\\": "packages/Organon/ShippingCompany/src"
+            "Organon\\ShippingCompany\\": "packages/Organon/ShippingCompany/src",
+            "Organon\\Wadili\\": "packages/Organon/Wadili/src"
         }
     },
     "autoload-dev": {

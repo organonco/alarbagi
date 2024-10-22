@@ -85,6 +85,7 @@ class ShippingCompany extends AbstractShipping
 		$availability = $this->checkAvailability();
 
 		$object->is_available = $availability['isAvailable'];
+		$object->is_visible = $this->isVisible();
 
 		if ($object->is_available && $availability['sameArea']) {
 			$price = $this->getShippingPrice();
@@ -101,5 +102,12 @@ class ShippingCompany extends AbstractShipping
 		}
 
 		return $object;
+	}
+
+	public function isVisible()
+	{
+		$cart = Cart::getCart();
+		$shippingAddress = $cart->shipping_address;
+		return !$shippingAddress->area->is_external;
 	}
 }

@@ -1,43 +1,43 @@
 <?php
 
-namespace Organon\Pickup\Carriers;
+namespace Organon\Wadili\Carriers;
 
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Shipping\Carriers\AbstractShipping;
 use Webkul\Checkout\Models\CartShippingRate;
 
-class Pickup extends AbstractShipping
+class Wadili extends AbstractShipping
 {
     /**
      * Shipping method code
      *
      * @var string
      */
-    protected $code  = 'pickup';
+    protected $code  = 'wadili';
 
     public function isAvailable()
     {
-        //Always Available to pickup
         return true;
     }
 
     public function isVisible()
-    {
-        return true;
-    }
+	{
+		$cart = Cart::getCart();
+		$shippingAddress = $cart->shipping_address;
+		return $shippingAddress->area->is_external;
+	}
 
     public function getCartShippingRateObject() : CartShippingRate
     {
         $object = new CartShippingRate;
 
-        $object->carrier = 'pickup';
+        $object->carrier = 'wadili';
         $object->carrier_title = '';
-        $object->method = 'pickup_pickup';
+        $object->method = 'wadili_wadili';
         $object->method_title = $this->getConfigData('title');
         $object->method_description = $this->getConfigData('description');
         $object->method_icon = $this->getIcon();
 
-        //Always Free to pickup
         $object->price = 0;
         $object->base_price = 0;
 

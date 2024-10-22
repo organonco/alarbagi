@@ -25,7 +25,8 @@ class Area extends Model implements AreaContract, HasMedia
 		'name',
 		'is_active',
 		'info',
-		'sort'
+		'sort',
+		'is_external'
 	];
 
 	public $appends = [

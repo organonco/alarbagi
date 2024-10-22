@@ -15,6 +15,7 @@ class AreaDataGrid extends DataGrid
         $query->addSelect('name');
         $query->addSelect('info');
         $query->addSelect('is_active');
+        $query->addSelect('is_external');
         return $query;
     }
 
@@ -46,6 +47,16 @@ class AreaDataGrid extends DataGrid
             'filterable' => false,
             'sortable' => true,
             'closure' => fn($row) => trans('delivery::app.area.is_active')[$row->is_active],
+        ]);
+
+        $this->addColumn([
+            'index' => 'is_external',
+            'label' => trans('delivery::app.area.attributes.is_external'),
+            'type' => 'string',
+            'searchable' => true,
+            'filterable' => false,
+            'sortable' => true,
+            'closure' => fn($row) => trans('delivery::app.area.is_active')[$row->is_external],
         ]);
 
     }

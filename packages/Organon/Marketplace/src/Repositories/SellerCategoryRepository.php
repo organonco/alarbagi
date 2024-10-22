@@ -21,7 +21,6 @@ class SellerCategoryRepository extends Repository
     {
         /** @var SellerCategory */
         $model = SellerCategory::create($data);
-        $model->addBanner($data);
         $model->addImage($data);
         return $model;
     }
@@ -29,7 +28,6 @@ class SellerCategoryRepository extends Repository
     public function updateSellerCategory(SellerCategory $model, array $data)
     {
         $model->update($data);
-        $model->updateBanner($data);
         $model->updateImage($data);
         return $model;
     }
