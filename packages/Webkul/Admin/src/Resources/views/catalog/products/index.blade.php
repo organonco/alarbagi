@@ -170,7 +170,7 @@
                         <div>
                             <a :href=`{{ route('admin.catalog.products.edit', '') }}/${record.product_id}`>
                                 <span
-                                    class="icon-sort-left text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
+                                    class="icon-sort-left text-[30px] ltr:ml-[4px] rtl:mr-[4px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
                             </a>
                             <a :href=`{{ route('shop.product_or_category.index', '') }}/${record.url_key}`
                                 target="_blank">
