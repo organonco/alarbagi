@@ -30,6 +30,18 @@
         </div>
 
         <div class="flex gap-[10px] items-center">
+
+
+            <x-admin::form method="DELETE" action="{{ route('admin.session.destroy') }}" id="adminLogout">
+            </x-admin::form>
+
+            <a class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
+                href="{{ route('admin.session.destroy') }}"
+                onclick="event.preventDefault(); document.getElementById('adminLogout').submit();">
+                @lang('admin::app.components.layouts.header.logout')
+            </a>
+
+            
             {{-- Dark mode Switcher --}}
             <v-dark>
                 <div class="flex">
@@ -37,14 +49,6 @@
                         class="{{ request()->cookie('dark_mode') ? 'icon-light' : 'icon-dark' }} p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950"></span>
                 </div>
             </v-dark>
-
-            <a href="{{ route('shop.home.index') }}" target="_blank" class="flex">
-                <span
-                    class="icon-store p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950 "
-                    title="@lang('admin::app.components.layouts.header.visit-shop')">
-                </span>
-            </a>
-
 
             {{-- Notification Component --}}
             <v-notifications {{ $attributes }}>
@@ -55,6 +59,8 @@
                     </span>
                 </span>
             </v-notifications>
+
+
 
             {{-- Admin profile --}}
             <x-admin::dropdown
@@ -84,14 +90,7 @@
                             </a>
                         @endif
                         {{-- Admin logout --}}
-                        <x-admin::form method="DELETE" action="{{ route('admin.session.destroy') }}" id="adminLogout">
-                        </x-admin::form>
 
-                        <a class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
-                            href="{{ route('admin.session.destroy') }}"
-                            onclick="event.preventDefault(); document.getElementById('adminLogout').submit();">
-                            @lang('admin::app.components.layouts.header.logout')
-                        </a>
                     </div>
                 </x-slot:content>
             </x-admin::dropdown>
