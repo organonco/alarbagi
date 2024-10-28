@@ -146,6 +146,23 @@
                 </x-shop::form.control-group.error>
             </x-shop::form.control-group>
 
+            <div class="flex justify-between mb-4">
+                <div class="select-none items-center flex gap-[6px]">
+                    <input type="checkbox" id="show-password" class="hidden peer"
+                        onchange="switchVisibility()" />
+                    <label
+                        class="icon-uncheck text-[24px] text-navyBlue peer-checked:icon-check-box peer-checked:text-navyBlue cursor-pointer"
+                        for="show-password"></label>
+
+                    <label
+                        class="text-[16] text-[#6E6E6E] max-sm:text-[12px] pl-0 select-none cursor-pointer"
+                        for="show-password">
+                        @lang('shop::app.customers.login-form.show-password')
+                    </label>
+                </div>
+            </div>
+
+
             <x-shop::form.control-group class="mb-4">
                 <label class="relative inline-flex items-start cursor-pointer">
                     <v-field type="checkbox" name="terms" class="hidden" v-slot="{ field }" rules="required"
@@ -186,9 +203,19 @@
 
     <p class="my-[20px] text-[#6E6E6E] font-medium">
         @lang('shop::app.customers.signup-form.account-exists')
-
         <a class="text-navyBlue" href="{{ route('shop.customer.session.index') }}">
             @lang('shop::app.customers.signup-form.sign-in-button')
         </a>
     </p>
+
+    @push('scripts')
+        <script>
+            function switchVisibility() {
+                let passwordField = document.getElementById("password");
+                let passwordConfirmationField = document.getElementById("password_confirmation");
+                passwordField.type = passwordField.type === "password" ? "text" : "password";
+                passwordConfirmationField.type = passwordConfirmationField.type === "password" ? "text" : "password";
+            }
+        </script>
+        @endpush
 </div>

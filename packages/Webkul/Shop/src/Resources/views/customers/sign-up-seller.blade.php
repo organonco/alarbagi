@@ -141,8 +141,8 @@
                             </x-shop::form.control-group.label>
 
                             <x-shop::form.control-group.control type="text" name="landline"
-                                class="!p-[20px_25px] rounded-lg" :value="old('landline')" rules="phone"
-                                :label="trans('shop::app.customers.signup-form.landline')" placeholder="23456789">
+                                class="!p-[20px_25px] rounded-lg" :value="old('landline')" rules="phone" :label="trans('shop::app.customers.signup-form.landline')"
+                                placeholder="23456789">
                             </x-shop::form.control-group.control>
 
                             <x-shop::form.control-group.error control-name="landline">
@@ -170,8 +170,7 @@
                                 @lang('shop::app.customers.signup-form.address')
                             </x-shop::form.control-group.label>
                             <x-shop::form.control-group.control type="textarea" name="address"
-                                class="!p-[20px_25px] rounded-lg" rules="required" :value="old('address')"
-                                :label="trans('shop::app.customers.signup-form.address')"
+                                class="!p-[20px_25px] rounded-lg" rules="required" :value="old('address')" :label="trans('shop::app.customers.signup-form.address')"
                                 placeholder="المنطقة - الشارع أو الحارة - البناء - جانب أو مقابل (مدرسة، جامع، مشفى…)">
                             </x-shop::form.control-group.control>
                             <x-shop::form.control-group.error control-name="address">
@@ -194,6 +193,36 @@
                             </x-shop::form.control-group.error>
                         </x-shop::form.control-group>
 
+
+                        <x-shop::form.control-group class="mb-4">
+                            <x-shop::form.control-group.label class="required">
+                                @lang('shop::app.customers.signup-form.confirm-pass')
+                            </x-shop::form.control-group.label>
+
+                            <x-shop::form.control-group.control type="password" name="password_confirmation"
+                                class="!p-[20px_25px] rounded-lg" value="" rules="confirmed:@password"
+                                :label="trans('shop::app.customers.signup-form.password')" :placeholder="trans('shop::app.customers.signup-form.confirm-pass')">
+                            </x-shop::form.control-group.control>
+                            <x-shop::form.control-group.error control-name="password_confirmation">
+                            </x-shop::form.control-group.error>
+                        </x-shop::form.control-group>
+
+                        <div class="flex justify-between mb-4">
+                            <div class="select-none items-center flex gap-[6px]">
+                                <input type="checkbox" id="show-password" class="hidden peer"
+                                    onchange="switchVisibility()" />
+                                <label
+                                    class="icon-uncheck text-[24px] text-navyBlue peer-checked:icon-check-box peer-checked:text-navyBlue cursor-pointer"
+                                    for="show-password"></label>
+
+                                <label
+                                    class="text-[16] text-[#6E6E6E] max-sm:text-[12px] pl-0 select-none cursor-pointer"
+                                    for="show-password">
+                                    @lang('shop::app.customers.login-form.show-password')
+                                </label>
+                            </div>
+                        </div>
+
                         <x-shop::form.control-group class="mb-4">
                             <label class="relative inline-flex items-start cursor-pointer">
                                 <v-field type="checkbox" name="terms" class="hidden" v-slot="{ field }"
@@ -209,7 +238,8 @@
                                     <label class="mx-2 sn-color-primary">
                                         أنا أوافق على
                                         <a class="sn-color-secondary"
-                                            href="{{ route('shop.cms.page', 'terms-of-use-seller') }}" target="_blank">شروط
+                                            href="{{ route('shop.cms.page', 'terms-of-use-seller') }}"
+                                            target="_blank">شروط
                                             استخدام </a>
                                         <a class="sn-color-secondary"
                                             href="{{ route('shop.cms.page', 'privacy-policy-seller') }}"
@@ -254,6 +284,14 @@
             }
         </script>
         <script>
+            function switchVisibility() {
+                let passwordField = document.getElementById("password");
+                let passwordConfirmationField = document.getElementById("password_confirmation");
+                passwordField.type = passwordField.type === "password" ? "text" : "password";
+                passwordConfirmationField.type = passwordConfirmationField.type === "password" ? "text" : "password";
+            }
+
+
             let categories = {!! json_encode($sellerCategories->toArray(), JSON_HEX_TAG) !!}
 
             function selectedCategory() {
