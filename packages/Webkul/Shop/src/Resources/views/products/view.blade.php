@@ -64,48 +64,6 @@
         <x-shop::shimmer.products.view />
     </v-product>
 
-    {{-- Information Section --}}
-    <div class="1180:mt-[80px]">
-        <x-shop::tabs position="center">
-            {{-- Description Tab --}}
-            {!! view_render_event('bagisto.shop.products.view.description.before', ['product' => $product]) !!}
-
-            <x-shop::tabs.item class="container mt-[60px] !p-0 max-1180:hidden" :title="trans('shop::app.products.view.description')" :is-selected="true">
-                <div class="container mt-[60px] max-1180:px-[20px]">
-                    <p class="text-[#6E6E6E] text-[18px] max-1180:text-[14px]">
-                        {!! $product->description !!}
-                    </p>
-                </div>
-            </x-shop::tabs.item>
-
-            {!! view_render_event('bagisto.shop.products.view.description.after', ['product' => $product]) !!}
-
-
-
-        </x-shop::tabs>
-    </div>
-
-    {{-- Information Section --}}
-    <div class="container mt-[40px] max-1180:px-[20px] 1180:hidden">
-        {{-- Description Accordion --}}
-        <x-shop::accordion :is-active="true">
-            <x-slot:header>
-                <div class="flex justify-between mb-[20px] mt-[20px]">
-                    <p class="text-[16px] font-medium 1180:hidden">
-                        @lang('shop::app.products.view.description')
-                    </p>
-                </div>
-            </x-slot:header>
-
-            <x-slot:content>
-                <p class="text-[#6E6E6E] text-[18px] max-1180:text-[14px] mb-[20px]">
-                    {!! $product->description !!}
-                </p>
-            </x-slot:content>
-        </x-shop::accordion>
-
-    </div>
-
     {{-- Featured Products --}}
     <x-shop::products.carousel :title="trans('shop::app.products.view.related-product-title')" :src="route('shop.api.products.related.index', ['id' => $product->id])">
     </x-shop::products.carousel>
