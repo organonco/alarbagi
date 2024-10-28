@@ -138,7 +138,7 @@
 
                             this.get();
 
-                            setInterval( this.get , 120000)
+                            setInterval( this.get , 45000)
                             return;
                         }
                     }
