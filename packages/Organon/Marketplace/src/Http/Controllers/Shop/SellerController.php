@@ -28,7 +28,7 @@ class SellerController extends Controller
         $request->validate([
             'name' => ['required', 'max:255'],
             'phone' => ['required'],
-            'landline' => ['required'],
+            'landline' => ['nullable', 'min:7'],
             'address' => ['required'],
             'area_id' => ['required', 'exists:areas,id'],
             'seller_category_id' => ['required', 'exists:seller_categories,id'],

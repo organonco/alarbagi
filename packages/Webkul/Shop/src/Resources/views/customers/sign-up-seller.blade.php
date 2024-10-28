@@ -136,12 +136,12 @@
                         </x-shop::form.control-group>
 
                         <x-shop::form.control-group class="mb-4">
-                            <x-shop::form.control-group.label class="required">
+                            <x-shop::form.control-group.label>
                                 @lang('shop::app.customers.signup-form.landline')
                             </x-shop::form.control-group.label>
 
                             <x-shop::form.control-group.control type="text" name="landline"
-                                class="!p-[20px_25px] rounded-lg" :value="old('landline')" rules="required|phone"
+                                class="!p-[20px_25px] rounded-lg" :value="old('landline')" rules="phone"
                                 :label="trans('shop::app.customers.signup-form.landline')" placeholder="23456789">
                             </x-shop::form.control-group.control>
 
@@ -209,10 +209,10 @@
                                     <label class="mx-2 sn-color-primary">
                                         أنا أوافق على
                                         <a class="sn-color-secondary"
-                                            href="{{ route('shop.cms.page', 'terms-of-use') }}" target="_blank">شروط
+                                            href="{{ route('shop.cms.page', 'terms-of-use-seller') }}" target="_blank">شروط
                                             استخدام </a>
                                         <a class="sn-color-secondary"
-                                            href="{{ route('shop.cms.page', 'privacy-policy') }}"
+                                            href="{{ route('shop.cms.page', 'privacy-policy-seller') }}"
                                             target="_blank">وسياسة خصوصية</a>
                                         منصة العربجي
                                     </label>
