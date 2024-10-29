@@ -34,6 +34,7 @@ class SellerController extends Controller
             'seller_category_id' => ['required', 'exists:seller_categories,id'],
             'email' => ['required', 'email', 'unique:admins'],
             'password' => ['required', 'min:8', Password::min(8)->letters()->numbers()],
+            'ref' => ['nullable'],
         ]);
 
         $sellerData = $request->only([
@@ -45,8 +46,12 @@ class SellerController extends Controller
             'seller_category_id',
 			'opening_time',
 			'opening_days', 
-			'owner_name'
+			'owner_name',
+            'ref'
         ]);
+
+        if($this->sellerRepository->where('ref', $sellerData['ref'])->count() > 0)
+            $sellerData['ref'] = null;
 
         $sellerData['token'] = md5(uniqid(rand(), true));
         $sellerData['slug'] = (string)Str::uuid();
@@ -94,5 +99,11 @@ class SellerController extends Controller
     public function show($slug)
     {
         return view('marketplace::shop.view')->with(['seller' => $this->sellerRepository->findBySlug($slug)]);
+    }
+
+    public function showByRef($ref)
+    {
+        $seller = $this->sellerRepository->where('ref', $ref)->firstOrFail();
+        return redirect()->route('shop.marketplace.show', $seller->slug);
     }
 }

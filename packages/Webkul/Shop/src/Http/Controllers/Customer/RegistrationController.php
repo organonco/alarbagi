@@ -52,7 +52,8 @@ class RegistrationController extends Controller
     {
         $areas = Area::query()->isActive()->pluck('name', 'id');
         $sellerCategories = SellerCategory::query()->main()->with('children')->get();
-        return view('shop::customers.sign-up-seller', compact('areas', 'sellerCategories'));
+        $ref = request()->input('ref');
+        return view('shop::customers.sign-up-seller', compact('areas', 'sellerCategories', 'ref'));
     }
 
     /**

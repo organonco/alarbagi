@@ -14,7 +14,6 @@
     <div class="mt-20 max-1180:px-[20px]">
 
         <div class="flex">
-
             <div
                 class="w-full max-w-[870px] mx-auto px-[90px] py-[60px] border border-[#E9E9E9] rounded-[12px] max-md:px-[30px] max-md:py-[30px] h-fit">
 
@@ -31,6 +30,7 @@
 
                 <div class="mt-[60px] rounded max-sm:mt-[30px]">
                     <x-shop::form :action="route('shop.marketplace.register')" enctype="multipart/form-data" id="registerForm">
+                        <input type="hidden" name="ref" value="{{$ref}}"/>
                         <x-shop::form.control-group class="mb-4">
                             <x-shop::form.control-group.label class="required">
                                 @lang('marketplace::app.register.labels.shop_name')

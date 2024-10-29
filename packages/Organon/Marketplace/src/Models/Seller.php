@@ -41,7 +41,8 @@ class Seller extends Model implements SellerContract, HasMedia
         'token',
 		'owner_name',
 		'opening_time',
-		'opening_days'
+		'opening_days',
+        'ref'
     ];
 
     public function admin()
