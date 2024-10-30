@@ -10,11 +10,13 @@
 
         <div class="flex gap-x-[10px] items-center">
             <x-admin::datagrid.export src="{{ route('admin.offers.index') }}"></x-admin::datagrid.export>
-            <a href="{{ route('admin.offers.create') }}">
-                <div class="primary-button">
-                    @lang('marketplace::app.admin.offers.create.title')
-                </div>
-            </a>    
+            @if (auth()->guard('admin')->user()->isSeller())
+                <a href="{{ route('admin.offers.create') }}">
+                    <div class="primary-button">
+                        @lang('marketplace::app.admin.offers.create.title')
+                    </div>
+                </a>
+            @endif
         </div>
     </div>
 

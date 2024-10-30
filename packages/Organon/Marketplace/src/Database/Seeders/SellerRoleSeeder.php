@@ -91,6 +91,7 @@ class SellerRoleSeeder extends Seeder
 					"cms.delete",
 					"cms.mass-delete",
 					"banners",
+					"offers"
 				]
 			)
 		]);
