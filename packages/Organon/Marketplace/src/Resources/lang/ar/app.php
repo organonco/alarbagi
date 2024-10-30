@@ -203,7 +203,8 @@ return [
 					'email' => 'البريد الالكتروني',
 					'status' => "الحالة",
 					'phone' => 'رقم الهاتف',
-					'area' => 'المنطقة'
+					'area' => 'المنطقة',
+					'seller_category' => 'التصنيف',
 				]
 			],
 			'view' => [
@@ -228,6 +229,7 @@ return [
 					"landline" => "الرقم الأرضي",
 					'phone' => 'رقم الهاتف',
 					'area_name' => 'المنطقة',
+					'seller_category_name' => 'التصنيف',
 					'opening_days' => 'أيام الدوام',
 					'opening_time' => 'أوقات الدوام',
 					'owner_name' => 'اسم صاحب العلاقة',
