@@ -108,7 +108,7 @@
                             @include('shop::products.view.gallery')
 
                             <!-- Details -->
-                            <div class="max-w-[590px] relative max-1180:w-full max-1180:max-w-full max-1180:px-[20px]">
+                            <div class="max-w-[590px] relative max-1180:w-full max-1180:max-w-full max-1180:px-[20px] pb-16">
                                 {!! view_render_event('bagisto.shop.products.name.before', ['product' => $product]) !!}
 
                                 <div class="flex gap-[15px] justify-between">
