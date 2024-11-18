@@ -20,7 +20,7 @@ class CartItemResource extends JsonResource
             'type'            => $this->type,
             'name'            => $this->name,
             'price'           => $this->price,
-            'formatted_price' => core()->formatPrice($this->price),
+            'formatted_price' => $this->price == 0 ? trans('marketplace::app.catalog.products.view.no_price') : core()->formatPrice($this->price),
             'total'           => $this->total,
             'formatted_total' => core()->formatPrice($this->total),
             'options'         => array_values($this->resource->additional['attributes'] ?? []),

@@ -840,6 +840,8 @@ abstract class AbstractType
      */
     public function getPriceHtml()
     {
+        if($this->product->price == '0')
+            return trans('marketplace::app.catalog.products.view.no_price');
         return view('shop::products.prices.index', [
             'product' => $this->product,
             'prices'  => $this->getProductPrices(),

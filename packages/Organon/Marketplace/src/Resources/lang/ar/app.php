@@ -53,6 +53,7 @@ return [
 				'available' => ':qty قطع متاحة',
 				'out_of_stock' => 'غير متاح',
 				'preperation_time' => "وقت التحضير",
+				'no_price' => "يتم تحديد السعر بعد الطلب",
 				'deliverable' => [
 					'true' => 'قابل للتوصيل',
 					'false' => 'غير قابل للتوصيل',
