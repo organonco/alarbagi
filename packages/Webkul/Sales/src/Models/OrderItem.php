@@ -19,7 +19,7 @@ class OrderItem extends Model implements OrderItemContract
 
     protected $guarded = [
         'id',
-        'child',
+        'child', 
         'children',
         'created_at',
         'updated_at',

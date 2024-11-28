@@ -2,6 +2,7 @@
 
 namespace Webkul\Product\Models;
 
+use App\Variant;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -239,15 +240,15 @@ class Product extends Model implements ProductContract
         return $this->hasMany(ProductOrderedInventoryProxy::modelClass(), 'product_id');
     }
 
-    /**
-     * Get the product variants that owns the product.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function variants(): HasMany
-    {
-        return $this->hasMany(static::class, 'parent_id');
-    }
+    // /**
+    //  * Get the product variants that owns the product.
+    //  *
+    //  * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    //  */
+    // public function variants(): HasMany
+    // {
+    //     return $this->hasMany(static::class, 'parent_id');
+    // }
 
     /**
      * Get the grouped products that owns the product.
@@ -592,5 +593,24 @@ class Product extends Model implements ProductContract
     protected static function newFactory(): Factory
     {
         return ProductFactory::new();
+    }
+
+    public function syncVariants($ids, $labels, $prices)
+    {
+        foreach($this->variants()->pluck('id') as $id)
+            if(!in_array($id, $ids))
+                Variant::where('id', $id)->delete();
+        foreach($labels as $index => $label)
+            if($label == "")
+                continue;
+            elseif($ids[$index])
+                Variant::where('product_id', $this->id)->find($ids[$index])->update(['label' => $label, 'price' => $prices[$index]]);
+            else
+                $this->variants()->create(['label' => $label, 'price' => $prices[$index]]);
+    }
+
+    public function variants()
+    {
+        return $this->hasMany(Variant::class);
     }
 }

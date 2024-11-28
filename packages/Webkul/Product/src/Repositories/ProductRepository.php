@@ -64,6 +64,8 @@ class ProductRepository extends Repository
 
         $product = $product->getTypeInstance()->update($data, $id, $attribute, $ignoreEmpty);
 
+        $product->syncVariants($data['varient_ids'], $data['varient_label'], $data['varient_price']);
+
         $product->refresh();
 
         if (isset($data['channels'])) {
