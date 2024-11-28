@@ -1,13 +1,13 @@
 @props(['options'])
 
 <v-carousel>
-    <div class="shimmer w-full aspect-[2.743/1]">
+    <div class="shimmer w-full aspect-[4/1]">
     </div>
 </v-carousel>
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-carousel-template">
-        <div class="w-full relative m-auto">
+        <div class="w-full relative m-auto aspect-[4/1]">
             <a
                 v-for="(image, index) in images"
                 class="fade"

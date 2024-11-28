@@ -1,13 +1,13 @@
 @props(['options'])
 
 <v-carousel-mobile>
-    <div class="shimmer w-full aspect-[2.743/1]">
+    <div class="shimmer w-full aspect-[4/1]">
     </div>
 </v-carousel-mobile>
 
 @pushOnce('scripts')
     <script type="text/x-template" id="v-carousel-mobile-template">
-        <div class="w-full relative m-auto">
+        <div class="w-full relative m-auto aspect-[4/1]">
             <a
                 v-for="(image, index) in images"
                 class="fade"
@@ -24,14 +24,14 @@
             </a>
 
             <span
-                class="icon-arrow-left text-[24px] font-bold text-white w-auto -mt-[22px] p-[12px] absolute top-1/2 left-[10px] bg-[rgba(0,0,0,0.8)] transition-all opacity-30 rounded-full hover:opacity-100 cursor-pointer"
+                style="position: absolute; top: 0; left: 0; width: 50%; height: 100%"
                 v-if="images?.length >= 2"
                 @click="navigate(currentIndex -= 1)"
             >
             </span>
 
             <span
-                class="icon-arrow-right text-[24px] font-bold text-white w-auto -mt-[22px] p-[12px] absolute top-1/2 right-[10px] bg-[rgba(0,0,0,0.8)] transition-all opacity-30 rounded-full hover:opacity-100 cursor-pointer"
+                style="position: absolute; top: 0; left: 50%; width: 50%; height: 100%"
                 v-if="images?.length >= 2"
                 @click="navigate(currentIndex += 1)"
             >
