@@ -613,4 +613,9 @@ class Product extends Model implements ProductContract
     {
         return $this->hasMany(Variant::class);
     }
+
+    public function getHasVariantsAttribute()
+    {
+        return $this->variants()->count() > 0;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace Webkul\Product\Type;
 
+use App\Variant;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -195,7 +196,7 @@ abstract class AbstractType
                 $attribute->type === 'price'
                 && empty($data[$attribute->code])
             ) {
-                $data[$attribute->code] = null;
+                $data[$attribute->code] = 0;
             }
 
             if (
@@ -818,16 +819,16 @@ abstract class AbstractType
      *
      * @return array
      */
-    public function getProductPrices()
+    public function getProductPrices($price = null)
     {
         return [
             'regular' => [
-                'price'           => core()->convertPrice($regularPrice = $this->evaluatePrice($this->product->price)),
+                'price'           => core()->convertPrice($regularPrice = $this->evaluatePrice($price ? $price : $this->product->price)),
                 'formatted_price' => core()->currency($regularPrice),
             ],
 
             'final'   => [
-                'price'           => core()->convertPrice($minimalPrice = $this->evaluatePrice($this->getMinimalPrice())),
+                'price'           => core()->convertPrice($minimalPrice = $this->evaluatePrice($price ? $price : $this->getMinimalPrice())),
                 'formatted_price' => core()->currency($minimalPrice),
             ],
         ];
@@ -838,13 +839,13 @@ abstract class AbstractType
      *
      * @return string
      */
-    public function getPriceHtml()
+    public function getPriceHtml($price = null)
     {
-        if($this->product->price == '0')
+        if($price === 0 || ($this->product->price == 0 && is_null($price)))
             return trans('marketplace::app.catalog.products.view.no_price');
         return view('shop::products.prices.index', [
             'product' => $this->product,
-            'prices'  => $this->getProductPrices(),
+            'prices'  => $this->getProductPrices($price),
         ])->render();
     }
 
@@ -919,21 +920,24 @@ abstract class AbstractType
 
         $price = $this->getFinalPrice();
 
+        $variant = $this->product->variants()->where('id', $data['variant'])->first();
+
         $products = [
             [
                 'product_id'        => $this->product->id,
                 'sku'               => $this->product->sku,
                 'quantity'          => $data['quantity'],
-                'name'              => $this->product->name,
-                'price'             => $convertedPrice = core()->convertPrice($price),
-                'base_price'        => $price,
+                'name'              => $variant ? $this->product->name . ' - ' . $variant->label : $this->product->name,
+                'price'             => $variant ? $convertedPrice = core()->convertPrice($variant->price) : $convertedPrice = core()->convertPrice($price),
+                'base_price'        => $variant ? $variant->price : $price,
                 'total'             => $convertedPrice * $data['quantity'],
-                'base_total'        => $price * $data['quantity'],
+                'base_total'        => ($variant ? $variant->price : $price) * $data['quantity'],
                 'weight'            => $this->product->weight ?? 0,
                 'total_weight'      => ($this->product->weight ?? 0) * $data['quantity'],
                 'base_total_weight' => ($this->product->weight ?? 0) * $data['quantity'],
                 'type'              => $this->product->type,
                 'additional'        => $this->getAdditionalOptions($data),
+                'variant_id'        => $data['variant']
             ],
         ];
 
@@ -977,7 +981,9 @@ abstract class AbstractType
     {
         if ($this->product->id != $options2['product_id']) {
             return false;
-        } else {
+        } elseif($this->product->has_variants) {
+            return $options1['variant'] == $options2['variant'];
+        }else {
             if (
                 isset($options1['parent_id'])
                 && isset($options2['parent_id'])
@@ -1048,19 +1054,19 @@ abstract class AbstractType
             return $result;
         }
 
-        $price = round($this->getFinalPrice($item->quantity), 4);
+        // $price = round($this->getFinalPrice($item->quantity), 4);
 
-        if ($price == $item->base_price) {
-            return $result;
-        }
+        // if ($price == $item->base_price) {
+        //     return $result;
+        // }
 
-        $item->base_price = $price;
-        $item->price = core()->convertPrice($price);
+        // $item->base_price = $price;
+        // $item->price = core()->convertPrice($price);
 
-        $item->base_total = $price * $item->quantity;
-        $item->total = core()->convertPrice($price * $item->quantity);
+        // $item->base_total = $price * $item->quantity;
+        // $item->total = core()->convertPrice($price * $item->quantity);
 
-        $item->save();
+        // $item->save();
 
         return $result;
     }

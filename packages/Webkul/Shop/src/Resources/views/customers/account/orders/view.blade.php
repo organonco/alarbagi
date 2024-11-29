@@ -101,7 +101,7 @@
 
 
                                     <td class="px-6 py-[16px] text-black font-medium">
-                                        {{ core()->formatPrice($item->product->price) }}
+                                        {{ core()->formatPrice($item->price) }}
                                     </td>
 
                                     <td class="px-6 py-[16px] text-black font-medium">

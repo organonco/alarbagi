@@ -568,7 +568,6 @@ class Cart
                 session()->flash('info', __('shop::app.checkout.cart.inactive'));
             } else {
                 $price = !is_null($item->custom_price) ? $item->custom_price : $item->base_price;
-
                 /**
                  * Handles exchange rate for cart item price.
                  */

@@ -2,6 +2,7 @@
 
 namespace Webkul\Shop\Http\Resources;
 
+use App\Variant;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CartItemResource extends JsonResource
@@ -13,7 +14,7 @@ class CartItemResource extends JsonResource
      * @return array
      */
     public function toArray($request)
-    {
+    {   
         return [
             'id'              => $this->id,
             'quantity'        => $this->quantity,

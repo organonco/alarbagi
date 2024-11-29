@@ -101,6 +101,7 @@
                         name="quantity"
                         :value="qty"
                     >
+                    <input type="hidden" name="variant" :value="selectedVariantId"/>
 
                     <div class="container px-[60px] max-1180:px-[0px]">
                         <div class="flex gap-[40px] mt-[48px] max-1180:flex-wrap max-lg:mt-0 max-sm:gap-y-[25px]">
@@ -173,9 +174,17 @@
                                 <!-- Pricing -->
                                 {!! view_render_event('bagisto.shop.products.price.before', ['product' => $product]) !!}
 
+                                @if($product->has_variants)
+                                    @foreach($product->variants as $variant)
+                                        <p class="sn-color-secondary sn-heading-2" v-if="selectedVariantId == {{$variant->id}}">
+                                            {!! $product->getTypeInstance()->getPriceHtml($variant->price) !!}
+                                        </p>
+                                    @endforeach
+                                @else
                                 <p class="sn-color-secondary sn-heading-2">
                                     {!! $product->getTypeInstance()->getPriceHtml() !!}
                                 </p>
+                                @endif
 
                                 {!! view_render_event('bagisto.shop.products.price.after', ['product' => $product]) !!}
 
@@ -184,6 +193,14 @@
                                 <p class="mt-[25px] sn-text-body sn-color-black">
                                     {!! $product->short_description !!}
                                 </p>
+
+                                <div class="flex gap-[15px] max-w-[470px] mt-[30px] flex-wrap">
+                                    @foreach($product->variants as $variant)
+                                    <div :class="'border-[#F67541] border py-2 rounded-lg px-4 cursor-pointer' + (selectedVariantId == {{$variant->id}} ? ' bg-[#F67541] text-white' : '')" @click="selectedVariantId = {{$variant->id}};">
+                                        {{$variant->label}}
+                                    </div> 
+                                    @endforeach
+                                </div>
 
                                 {!! view_render_event('bagisto.shop.products.short_description.after', ['product' => $product]) !!}
 
@@ -263,6 +280,8 @@
                         isCustomer: '{{ auth()->guard('customer')->check() }}',
 
                         is_buy_now: 0,
+
+                        selectedVariantId: "{{$product->has_variants ? $product->variants[0]->id : null}}",
                     }
                 },
 
