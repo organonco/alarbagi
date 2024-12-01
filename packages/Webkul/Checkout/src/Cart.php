@@ -205,6 +205,11 @@ class Cart
             return ['info' => __('shop::app.checkout.cart.item.inactive-add')];
         }
 
+        if($product->has_variants && !isset($data['variant']))
+        {
+            throw new \Exception(__('shop::app.checkout.cart.item.select-variant'));
+        }
+
         $cartProducts = $product->getTypeInstance()->prepareForCart($data);
 
         if (is_string($cartProducts)) {

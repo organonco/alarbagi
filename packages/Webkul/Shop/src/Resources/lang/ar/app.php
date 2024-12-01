@@ -637,7 +637,9 @@ return [
 			'suspended-account-message' => 'تم تعليق حسابك.',
 			'select-hourly-duration' => 'حدد مدة الفترة بساعة واحدة.',
 			'success-remove' => 'تمت إزالة العنصر بنجاح من العربة.',
-
+			'item' => [
+				'select-variant' => 'الرجاء اختيار نوع المنتج أولاً'
+			],
 			'index' => [
 				'cart' => 'العربة',
 				'continue-shopping' => 'متابعة التسوق',

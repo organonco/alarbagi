@@ -622,7 +622,9 @@ return [
             'suspended-account-message' => 'Your account has been suspended.',
             'select-hourly-duration' => 'Select a slot duration of one hour.',
             'success-remove' => 'Item is successfully removed from the cart.',
-
+            'item' => [
+                'select-variant' => 'Select Variant First'
+            ],
             'index' => [
                 'cart' => 'Cart',
                 'continue-shopping' => 'Continue Shopping',

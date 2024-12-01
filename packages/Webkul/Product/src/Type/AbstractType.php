@@ -920,7 +920,7 @@ abstract class AbstractType
 
         $price = $this->getFinalPrice();
 
-        $variant = $this->product->variants()->where('id', $data['variant'])->first();
+        $variant = isset($data['variant']) ? $this->product->variants()->where('id', $data['variant'])->first() : false;
 
         $products = [
             [
@@ -937,7 +937,7 @@ abstract class AbstractType
                 'base_total_weight' => ($this->product->weight ?? 0) * $data['quantity'],
                 'type'              => $this->product->type,
                 'additional'        => $this->getAdditionalOptions($data),
-                'variant_id'        => $data['variant']
+                'variant_id'        => $data['variant'] ?? null
             ],
         ];
 
