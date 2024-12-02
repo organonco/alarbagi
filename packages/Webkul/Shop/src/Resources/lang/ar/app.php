@@ -678,7 +678,7 @@ return [
 			],
 
 			'mini-cart' => [
-				'continue-to-checkout' => 'متابعة للسداد',
+				'continue-to-checkout' => 'متابعة الطلب',
 				'empty-cart' => 'العربة الخاصة بك فارغة',
 				'offer-on-orders' => '',
 				'remove' => 'إزالة',
@@ -696,7 +696,7 @@ return [
 				'grand-total' => 'المجموع الكلي',
 				'preperation-time' => 'وقت التحضير',
 				'place-order' => 'تأكيد الطلب',
-				'proceed-to-checkout' => 'المتابعة للسداد',
+				'proceed-to-checkout' => 'متابعة الطلب',
 				'sub-total' => 'المجموع الفرعي',
 				'tax' => 'الضريبة',
 			],
