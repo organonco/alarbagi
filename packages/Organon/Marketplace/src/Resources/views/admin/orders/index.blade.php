@@ -21,7 +21,7 @@
                 <div class="row grid grid-cols-4 grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800">
                     <div
                             class="flex gap-[10px] items-center select-none"
-                            v-for="(columnGroup, index) in [['increment_id', 'orders.created_at', 'seller_orders.status'], ['number_of_products', 'subtotal', 'method'], ['customer_name', 'shipping_title', 'area']]"
+                            v-for="(columnGroup, index) in [['increment_id', 'orders.created_at', 'seller_orders.status'], ['number_of_products', 'subtotal'], ['customer_name', 'shipping_title', 'area']]"
                     >
                         <p class="text-gray-600 dark:text-gray-300">
                             <span class="[&>*]:after:content-['_/_']">
@@ -81,10 +81,6 @@
                             <p class="text-gray-600 dark:text-gray-300" v-text="record.number_of_products"></p>
                             <p class="text-gray-600 dark:text-gray-300">
                                 @{{ $admin.formatPrice(record.subtotal) }}
-                            </p>
-                            <p class="text-gray-600 dark:text-gray-300">
-                                @lang('admin::app.sales.orders.index.datagrid.pay-by', ['method' => ''])@{{
-                                record.method }}
                             </p>
                         </div>
                     </div>
