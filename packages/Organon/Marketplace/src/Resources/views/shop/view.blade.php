@@ -39,58 +39,82 @@
 									{{$seller->sellerCategory->name}}
 								</a>
 							</div>
-                            <div style="background-color: #C7DDD8; padding: 20px; margin: 0 0 10px 0">
-                                <div class="flex gap-2 justify-start pt-4">
-                                    <svg class="w-6 h-6 sn-color-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
-                                    </svg>
-                                    <div class="flex sn-color-primary">
-                                        <p class="sn-heading-3 px-4">أوقات الدوام</p>
-                                        <p class="sn-heading-4">{{$seller->opening_time}}</p>
-                                    </div>
-                                </div>
-                                <div class="flex gap-2 justify-start">
-                                    <svg class="w-6 h-6 sn-color-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16M8 14h8m-4-7V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/>
-                                    </svg>
-                                    <div class="flex sn-color-primary">
-                                        <p class="sn-heading-3 px-4"> أيام الدوام</p>
-                                        <p class="sn-heading-4">{{$seller->opening_days}}</p>
-                                    </div>
-                                </div>
-                                @if($seller->landline)
-                                <div class="flex gap-2 justify-start">
-                                    <svg class="w-6 h-6 sn-color-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M7.978 4a2.553 2.553 0 0 0-1.926.877C4.233 6.7 3.699 8.751 4.153 10.814c.44 1.995 1.778 3.893 3.456 5.572 1.68 1.679 3.577 3.018 5.57 3.459 2.062.456 4.115-.073 5.94-1.885a2.556 2.556 0 0 0 .001-3.861l-1.21-1.21a2.689 2.689 0 0 0-3.802 0l-.617.618a.806.806 0 0 1-1.14 0l-1.854-1.855a.807.807 0 0 1 0-1.14l.618-.62a2.692 2.692 0 0 0 0-3.803l-1.21-1.211A2.555 2.555 0 0 0 7.978 4Z"/>
-                                    </svg>								  
-                                    <div class="flex sn-color-primary">
-                                        <p class="sn-heading-3 px-4"> رقم الأرضي </p>
-                                        <a href="tel:{{$seller->landline}}" class="sn-heading-4">{{$seller->landline}}</a>
-                                    </div>
-                                </div>
-                                @endif
+                            <div style="background-color: #C7DDD8; padding: 10px 20px; margin: 0 -20px 10px -20px">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <svg class="w-6 h-6 sn-color-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </td>
+                                        <td class="px-2">
+                                            <p class="text-sm font-bold" style="white-space: nowrap;">أوقات الدوام</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm">{{$seller->opening_time}}</p>
+                                        </td>
+                                    </tr>
 
-                                <div class="flex gap-2 justify-start">
-                                    <svg class="w-6 h-6 sn-color-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd" d="M5 4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4Zm12 12V5H7v11h10Zm-5 1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H12Z" clip-rule="evenodd"/>
-                                    </svg>															
-                                    <div class="flex sn-color-primary">
-                                        <p class="sn-heading-3 px-4"> رقم الموبايل </p>
-                                        <a href="tel:{{$seller->phone}}" class="sn-heading-4">{{$seller->phone}}</a>
-                                    </div>
-                                </div>
+                                    <tr>
+                                        <td>
+                                            <svg class="w-6 h-6 sn-color-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10h16M8 14h8m-4-7V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/>
+                                            </svg>
+                                        </td>
+                                        <td class="px-2">
+                                            <p class="text-sm font-bold" style="white-space: nowrap;"> أيام الدوام</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm">{{$seller->opening_days}}</p>
+                                        </td>
+                                    </tr>
+                                    @if($seller->landline)
+                                    <tr>
+                                        <td>
+                                            <svg class="w-6 h-6 sn-color-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M7.978 4a2.553 2.553 0 0 0-1.926.877C4.233 6.7 3.699 8.751 4.153 10.814c.44 1.995 1.778 3.893 3.456 5.572 1.68 1.679 3.577 3.018 5.57 3.459 2.062.456 4.115-.073 5.94-1.885a2.556 2.556 0 0 0 .001-3.861l-1.21-1.21a2.689 2.689 0 0 0-3.802 0l-.617.618a.806.806 0 0 1-1.14 0l-1.854-1.855a.807.807 0 0 1 0-1.14l.618-.62a2.692 2.692 0 0 0 0-3.803l-1.21-1.211A2.555 2.555 0 0 0 7.978 4Z"/>
+                                            </svg>		
+                                        </td>
+                                        <td class="px-2">
+                                            <p class="text-sm font-bold" style="white-space: nowrap;">رقم الأرضي</p>
+                                        </td>
+                                        <td>
+                                            <a href="tel:{{$seller->landline}}" class="text-sm">{{$seller->landline}}</a>
+                                        </td>
+                                    </tr>
+                                    @endif
 
-                                <div class="flex gap-2 justify-start pb-4">
-                                    <svg class="w-6 h-6 sn-color-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd" d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z" clip-rule="evenodd"/>
-                                    </svg>
-                                    <div class="flex sn-color-primary">
-                                        <p class="sn-heading-3 px-4"> العنوان </p>
-                                        <p class="sn-heading-4"><a href="{{route('area.view', $seller->area->id)}}" >
-                                            {{$seller->area->name}}
-                                        </a> - {{$seller->address}}</p>
-                                    </div>
-                                </div>
+                                    <tr>
+                                        <td>
+                                            <svg class="w-6 h-6 sn-color-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                <path fill-rule="evenodd" d="M5 4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4Zm12 12V5H7v11h10Zm-5 1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H12Z" clip-rule="evenodd"/>
+                                            </svg>			
+                                        </td>
+                                        <td class="px-2">
+                                            <p class="text-sm font-bold" style="white-space: nowrap;">رقم الموبايل</p>
+                                        </td>
+                                        <td>
+                                            <a href="tel:{{$seller->phone}}" class="text-sm">{{$seller->phone}}</a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <svg class="w-6 h-6 sn-color-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                                <path fill-rule="evenodd" d="M11.906 1.994a8.002 8.002 0 0 1 8.09 8.421 7.996 7.996 0 0 1-1.297 3.957.996.996 0 0 1-.133.204l-.108.129c-.178.243-.37.477-.573.699l-5.112 6.224a1 1 0 0 1-1.545 0L5.982 15.26l-.002-.002a18.146 18.146 0 0 1-.309-.38l-.133-.163a.999.999 0 0 1-.13-.202 7.995 7.995 0 0 1 6.498-12.518ZM15 9.997a3 3 0 1 1-5.999 0 3 3 0 0 1 5.999 0Z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </td>
+                                        <td class="px-2">
+                                            <p class="text-sm font-bold" style="white-space: nowrap;">العنوان</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm"><a href="{{route('area.view', $seller->area->id)}}" >
+                                                {{$seller->area->name}}
+                                            </a> - {{$seller->address}}</p>
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
                             </div>
 							<hr class="hidden max-lg:flex "/>
 						</div>

@@ -1,16 +1,16 @@
 @props(['title', 'post', 'image', 'seller'])
 <a href="{{ route('shop.marketplace.show', $seller->slug) }}"
     class="flex flex-col max-w-[360px] sn-background-light-green p-4 rounded-lg">
-    <div class="sn-heading-2 sn-color-primary !pb-[21px] sn-background-secondary w-fit p-4 mb-4 rounded-lg" style="color: white" >
+    <div class="text-2xl font-medium first-line:sn-color-primary sn-background-secondary w-fit px-4 py-2 mb-4 rounded-lg" style="color: white" >
         {{ $seller['name'] }}
     </div>
     @if ($title != '')
-        <div class="sn-heading-3 text-right sn-color-primary pb-1">
+        <div class="text-base font-bold text-right sn-color-primary pb-1">
             {{ $title }}
         </div>
     @endif
     @if ($post != '')
-        <div class="sn-body-1 pb-1" style="word-break: break-word">
+        <div class="text-xs pb-3" style="word-break: break-word">
             {{ $post }}
         </div>
     @endif
