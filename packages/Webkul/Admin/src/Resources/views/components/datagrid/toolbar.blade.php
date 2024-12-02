@@ -120,7 +120,7 @@
                 <div class="ltr:pl-[10px] rtl:pr-[10px]">
                     <p class="text-[14px] font-light text-gray-800 dark:text-white">
                         <!-- Need to manage this translation. -->
-                        @{{ available.meta.total }} سطر
+                        @{{ available.meta.total }}
                     </p>
                 </div>
             </div>
