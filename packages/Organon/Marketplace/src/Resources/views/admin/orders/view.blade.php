@@ -217,6 +217,10 @@
                                     @lang('admin::app.sales.orders.view.order-status')
                                 </p>
 
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    رقم هاتف الزبون
+                                </p>
+
                             </div>
 
                             <div class="flex flex-col gap-y-[6px] pb-[16px]">
@@ -229,6 +233,9 @@
                                 </p>
                                 <p class="text-gray-600 dark:text-gray-300">
                                     {{ $order->status->value }}
+                                </p>
+                                <p class="text-gray-600 dark:text-gray-300">
+                                    {{ $order->order->customer->phone }}
                                 </p>
 
                             </div>
