@@ -139,10 +139,16 @@ class Seller extends Model implements SellerContract, HasMedia
         return $this->hasMany(Product::class);
     }
 
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
     public function setStatus($status)
     {
         $this->setStatusSuper($status);
         $this->products()->withoutGlobalScope('seller_status')->update(['seller_status' => $status->value]);
+        $this->offers()->withoutGlobalScope('seller_status')->update(['seller_status' => $status->value]);
     }
 
     public function area()
