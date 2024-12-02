@@ -49,7 +49,7 @@ return [
 				]
 			],
 			'view' => [
-				'sold_by' => 'تباع من قبل: :name',
+				'sold_by' => 'تباع من قبل',
 				'available' => ':qty قطع متاحة',
 				'out_of_stock' => 'غير متاح',
 				'preperation_time' => "وقت التحضير",

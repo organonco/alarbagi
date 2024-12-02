@@ -128,7 +128,7 @@
                                 </div>
 
                                 <a class="text-[18px] font-light max-sm:text-[12px] sn-color-dark  sn-body" href="{{route('shop.marketplace.show', $product->seller_slug)}}">
-                                    {{__('marketplace::app.catalog.products.view.sold_by', ['name' => $product->seller_name])}}
+                                    {{__('marketplace::app.catalog.products.view.sold_by')}} <span class="font-bold sn-color-secondary"> {{$product->seller_name}} </span>
                                 </a>
                                 <div class="sn-color-dark  sn-body">
                                     @php
