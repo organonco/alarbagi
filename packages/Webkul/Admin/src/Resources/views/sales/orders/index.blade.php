@@ -55,7 +55,7 @@
 
         <template #body="{ columns, records, setCurrentSelectionMode, applied, isLoading }">
             <template v-if="! isLoading">
-                <div class="row grid grid-cols-4 px-[16px] py-[10px] border-b-[1px] dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-950"
+                <a :href=`{{ route('admin.sales.orders.view', '') }}/${record.id}` class="row grid grid-cols-4 px-[16px] py-[10px] border-b-[1px] dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-950"
                     v-for="record in records">
 
                     <div class="">
@@ -109,13 +109,8 @@
                             </p>
 
                         </div>
-
-                        <a :href=`{{ route('admin.sales.orders.view', '') }}/${record.id}`>
-                            <span
-                                class="icon-sort-right text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"></span>
-                        </a>
                     </div>
-                </div>
+                </a>
             </template>
 
             {{-- Datagrid Body Shimmer --}}

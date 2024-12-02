@@ -45,26 +45,6 @@
                     <div class="flex gap-[10px] items-center select-none"
                         v-for="(columnGroup, index) in [['name', 'seller_name'], ['status', 'price', ], ['base_image']]">
 
-                        @if ($hasPermission)
-                            <label class="flex gap-[4px] items-center w-max cursor-pointer select-none"
-                                for="mass_action_select_all_records" v-if="! index">
-                                <input type="checkbox" name="mass_action_select_all_records"
-                                    id="mass_action_select_all_records" class="hidden peer"
-                                    :checked="['all', 'partial'].includes(applied.massActions.meta.mode)"
-                                    @change="selectAllRecords">
-
-                                <span class="icon-uncheckbox cursor-pointer rounded-[6px] text-[24px]"
-                                    :class="[
-                                        applied.massActions.meta.mode === 'all' ?
-                                        'peer-checked:icon-checked peer-checked:text-blue-600' : (
-                                            applied.massActions.meta.mode === 'partial' ?
-                                            'peer-checked:icon-checkbox-partial peer-checked:text-blue-600' : ''
-                                        ),
-                                    ]">
-                                </span>
-                            </label>
-                        @endif
-
                         <p class="text-gray-600 dark:text-gray-300">
                             <span class="[&>*]:after:content-['_/_']">
                                 <template v-for="column in columnGroup">
@@ -103,16 +83,17 @@
                     v-for="record in records">
                     {{-- Name, SKU, Attribute Family Columns --}}
                     <div class="flex gap-[10px]">
-                        @if ($hasPermission)
-                            <input type="checkbox" :name="`mass_action_select_record_${record.product_id}`"
-                                :id="`mass_action_select_record_${record.product_id}`" :value="record.product_id"
-                                class="hidden peer" v-model="applied.massActions.indices"
-                                @change="setCurrentSelectionMode">
-
-                            <label
-                                class="icon-uncheckbox rounded-[6px] text-[24px] cursor-pointer peer-checked:icon-checked peer-checked:text-blue-600"
-                                :for="`mass_action_select_record_${record.product_id}`"></label>
-                        @endif
+                        <div>
+                            <a :href=`{{ route('shop.product_or_category.index', '') }}/${record.url_key}`
+                                target="_blank">
+                                <span
+                                    class="icon-view text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
+                            </a>
+                            <a :href=`{{ route('admin.catalog.products.edit', '') }}/${record.product_id}`>
+                                <span
+                                    class="icon-sort-right text-[30px] ltr:ml-[4px] rtl:mr-[4px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
+                            </a>
+                        </div>
 
                         <div class="flex flex-col gap-[6px]">
                             <p class="text-[16px] text-gray-800 dark:text-white font-semibold" v-text="record.name">
@@ -142,6 +123,7 @@
 
                     {{-- Status, Category, Type Columns --}}
                     <div class="flex gap-x-[16px] justify-between items-center">
+
                         <div class="flex flex-col gap-[6px]">
                             <div class="relative">
                                 <template v-if="record.base_image">
@@ -166,17 +148,6 @@
                                     </div>
                                 </template>
                             </div>
-                        </div>
-                        <div>
-                            <a :href=`{{ route('admin.catalog.products.edit', '') }}/${record.product_id}`>
-                                <span
-                                    class="icon-sort-left text-[30px] ltr:ml-[4px] rtl:mr-[4px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
-                            </a>
-                            <a :href=`{{ route('shop.product_or_category.index', '') }}/${record.url_key}`
-                                target="_blank">
-                                <span
-                                    class="icon-view text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800 "></span>
-                            </a>
                         </div>
                     </div>
                 </div>

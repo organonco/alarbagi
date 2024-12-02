@@ -59,7 +59,7 @@
 
         <template #body="{ columns, records, setCurrentSelectionMode, applied, isLoading }">
             <template v-if="! isLoading">
-                <div
+                <a :href=`{{ route('marketplace.admin.orders.view', '') }}/${record.id}`
                         class="row grid grid-cols-4 px-[16px] py-[10px] border-b-[1px] dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-950"
                         v-for="record in records"
                 >
@@ -96,14 +96,7 @@
                             <p class="text-gray-600 dark:text-gray-300" v-text="record.area"></p>
                         </div>
                     </div>
-
-
-                    <div class="flex justify-end items-center">
-                        <a :href=`{{ route('marketplace.admin.orders.view', '') }}/${record.id}`>
-                            <span class="icon-sort-left text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-800 hover:rounded-[6px]"></span>
-                        </a>
-                    </div>
-                </div>
+                </a>
             </template>
 
             {{-- Datagrid Body Shimmer --}}
