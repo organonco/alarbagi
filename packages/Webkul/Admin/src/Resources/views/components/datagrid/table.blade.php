@@ -42,7 +42,13 @@
                                 </label>
                             </p>
 
-                            <!-- Columns -->
+
+                            <p
+                                class=""
+                                v-if="$parent.available.actions.length"
+                            >
+                                @lang('admin::app.components.datagrid.table.actions')
+                            </p>
                             <p
                                 v-for="column in $parent.available.columns"
                                 class="flex gap-[5px] items-center"
@@ -57,14 +63,7 @@
                                     v-if="column.index == $parent.applied.sort.column"
                                 ></i>
                             </p>
-
-                            <!-- Actions -->
-                            <p
-                                class="col-start-[none]"
-                                v-if="$parent.available.actions.length"
-                            >
-                                @lang('admin::app.components.datagrid.table.actions')
-                            </p>
+                            
                         </div>
                     </template>
                 </slot>
@@ -81,6 +80,7 @@
                                 v-for="record in $parent.available.records"
                                 :style="`grid-template-columns: repeat(${gridsCount}, 1fr)`"
                             >
+                                
                                 <!-- Mass Actions -->
                                 <p v-if="$parent.available.massActions.length">
                                     <label :for="`mass_action_select_record_${record[$parent.available.meta.primary_column]}`">
@@ -97,6 +97,19 @@
                                         <span class="icon-uncheckbox peer-checked:icon-checked peer-checked:text-blue-600 cursor-pointer rounded-[6px] text-[24px] peer-checked:text-blue-600">
                                         </span>
                                     </label>
+                                </p>
+                                <p
+                                    v-if="$parent.available.actions.length"
+                                    class=""
+                                >
+                                    <span
+                                        class="cursor-pointer rounded-[6px] p-[6px] text-[24px] transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
+                                        :class="action.icon"
+                                        v-text="!action.icon ? action.title : ''"
+                                        v-for="action in record.actions"
+                                        @click="$parent.performAction(action)"
+                                    >
+                                    </span>
                                 </p>
 
                                 <!-- Columns -->
@@ -115,19 +128,7 @@
                                 </p>
 
                                 <!-- Actions -->
-                                <p
-                                    v-if="$parent.available.actions.length"
-                                    class="col-start-[none]"
-                                >
-                                    <span
-                                        class="cursor-pointer rounded-[6px] p-[6px] text-[24px] transition-all hover:bg-gray-200 dark:hover:bg-gray-800 max-sm:place-self-center"
-                                        :class="action.icon"
-                                        v-text="!action.icon ? action.title : ''"
-                                        v-for="action in record.actions"
-                                        @click="$parent.performAction(action)"
-                                    >
-                                    </span>
-                                </p>
+                                
                             </div>
                         </template>
 
