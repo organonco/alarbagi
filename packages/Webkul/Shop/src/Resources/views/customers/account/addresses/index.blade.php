@@ -30,7 +30,7 @@
 
         {!! view_render_event('bagisto.shop.customers.account.addresses.list.before', ['addresses' => $addresses]) !!}
 
-        <div class="grid grid-cols-2 gap-[20px] mt-[60px] max-1060:grid-cols-[1fr]">
+        <div class="grid grid-cols-2 gap-[20px] mt-[60px] max-1060:grid-cols-[1fr]" style="margin-bottom: 100px">
             @foreach ($addresses as $address)
                 <div class="p-[20px] border border-[#e5e5e5] rounded-[12px] max-sm:flex-wrap">
                     <div class="flex justify-between items-center">
@@ -48,7 +48,7 @@
                     </div>
                         <div class="flex gap-[25px] items-center">
                             {{-- Dropdown Actions --}}
-                            <x-shop::dropdown position="bottom-right">
+                            <x-shop::dropdown position="bottom-left">
                                 <x-slot:toggle>
                                     <button class="icon-more px-[6px] py-[4px] rounded-[6px] text-[24px] text-[#6E6E6E] cursor-pointer transition-all hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black"></button>
                                 </x-slot:toggle>
@@ -69,7 +69,7 @@
                                             id="addressDelete"
                                         >
                                             <a 
-                                                onclick="event.preventDefault(); document.getElementById('addressDelete').submit();"
+                                                onclick="event.preventDefault(); this.parentNode.submit();"
                                                 href="{{ route('shop.customers.account.addresses.delete', $address->id) }}"
                                             >
                                                 <p class="w-full">
