@@ -134,6 +134,14 @@ app.component("VForm", Form);
 app.component("VField", Field);
 app.component("VErrorMessage", ErrorMessage);
 
+import {Loader} from 'google-maps';
+
+const options = {libraries: ['places'], language: "ar"};
+const loader = new Loader('AIzaSyA2mtyhq14pKHoTX0JMCqyTd1oxVrnr3fE', options);
+
+window.loader = loader;
+
+
 /**
  * Load event, the purpose of using the event is to mount the application
  * after all of our `Vue` components which is present in blade file have

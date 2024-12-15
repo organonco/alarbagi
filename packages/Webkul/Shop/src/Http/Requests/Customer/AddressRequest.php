@@ -32,6 +32,8 @@ class AddressRequest extends FormRequest
             'phone'   => ['required', new PhoneNumber],
             'area_id'    => ['nullable', 'exists:areas,id'],
             'address_details'     => ['nullable', 'max:1000'],
+            'lng' => ['nullable'],
+            'lng' => ['nullable']
         ];
     }
 }

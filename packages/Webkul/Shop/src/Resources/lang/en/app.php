@@ -729,6 +729,7 @@ return [
                     'save-address' => 'Save this address',
                     'shipping-address' => 'Shipping Address',
                     'telephone' => 'Telephone',
+                    'location' => 'Location on Map'
                 ],
             ],
 

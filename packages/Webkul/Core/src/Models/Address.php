@@ -71,6 +71,8 @@ abstract class Address extends Model implements AddressContract
         'area_id',
         'address_details',
         'phone',
+        'lat',
+        'lng'
     ];
 
     public $appends = [

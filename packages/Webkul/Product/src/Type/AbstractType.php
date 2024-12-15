@@ -1079,7 +1079,7 @@ abstract class AbstractType
      */
     public function isCartItemInactive(\Webkul\Checkout\Contracts\CartItem $item): bool
     {
-        if (! $item->product->status) {
+        if (! $item?->product?->status) {
             return true;
         }
 

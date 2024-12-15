@@ -54,6 +54,8 @@ class AddressController extends Controller
             'area_id',
             'address_details',
             'phone',
+            'lng',
+            'lat'
         ]), [
             'customer_id' => $customer->id,
         ]);
@@ -109,6 +111,8 @@ class AddressController extends Controller
             'area_id',
             'address_details',
             'phone',
+            'lng',
+            'lat'
         ]);
 
         $customerAddress = $this->customerAddressRepository->update($data, $id);

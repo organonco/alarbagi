@@ -1,15 +1,11 @@
 {{-- SEO Meta Content --}}
 @push('meta')
-    <meta name="description" content="@lang('shop::app.checkout.onepage.index.checkout')"/>
+    <meta name="description" content="@lang('shop::app.checkout.onepage.index.checkout')" />
 
-    <meta name="keywords" content="@lang('shop::app.checkout.onepage.index.checkout')"/>
+    <meta name="keywords" content="@lang('shop::app.checkout.onepage.index.checkout')" />
 @endPush
 
-<x-shop::layouts
-    :has-header="false"
-    :has-feature="false"
-    :has-footer="false"
->
+<x-shop::layouts :has-header="false" :has-feature="false" :has-footer="false">
     {{-- Page Title --}}
     <x-slot:title>
         @lang('shop::app.checkout.onepage.index.checkout')
@@ -17,19 +13,12 @@
 
     {{-- Page Header --}}
     <div class="lex flex-wrap">
-        <div class="w-full flex justify-between px-[60px] py-[17px] border border-t-0 border-b-[1px] border-l-0 border-r-0 max-lg:px-[30px] max-sm:px-[15px]">
+        <div
+            class="w-full flex justify-between px-[60px] py-[17px] border border-t-0 border-b-[1px] border-l-0 border-r-0 max-lg:px-[30px] max-sm:px-[15px]">
             <div class="flex items-center gap-x-[54px] max-[1180px]:gap-x-[35px]">
-                <a
-                    href="{{ route('shop.home.index') }}"
-                    class="flex min-h-[30px]"
-                    aria-label="Bagisto "
-                >
-                    <img
-                        src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
-                        alt="Logo"
-                        width="131"
-                        height="29"
-                    >
+                <a href="{{ route('shop.home.index') }}" class="flex min-h-[30px]" aria-label="Bagisto ">
+                    <img src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
+                        alt="Logo" width="131" height="29">
                 </a>
             </div>
         </div>
@@ -41,7 +30,7 @@
 
         <v-checkout>
             {{-- Shimmer Effect --}}
-            <x-shop::shimmer.checkout.onepage/>
+            <x-shop::shimmer.checkout.onepage />
         </v-checkout>
     </div>
 
@@ -103,4 +92,13 @@
             });
         </script>
     @endPushOnce
+
+    @push('styles')
+        <style>
+            #map {
+                height: 500px;
+            }
+        </style>
+    @endpush
+
 </x-shop::layouts>

@@ -44,6 +44,17 @@
 
         <x-shop::form.control-group>
             <x-shop::form.control-group.label>
+                @lang('shop::app.checkout.onepage.addresses.shipping.location')
+            </x-shop::form.control-group.label>
+            <x-shop::form.control-group.control type="text" name="pac-input" placeholder="بحث" class="mb-2">
+            </x-shop::form.control-group.control>
+            <div id="map"></div>
+            <input type="hidden" name="lng" id="lngInput" value="{{$address->lng}}" />
+            <input type="hidden" name="lat" id="latInput" value="{{$address->lat}}" />
+        </x-shop::form.control-group>
+
+        <x-shop::form.control-group>
+            <x-shop::form.control-group.label>
                 @lang('shop::app.checkout.onepage.addresses.shipping.area_id')
             </x-shop::form.control-group.label>
             <x-shop::form.control-group.control type="select" name="area_id" class="py-2 mb-2" :label="trans('shop::app.checkout.onepage.addresses.shipping.area_id')"
@@ -79,5 +90,66 @@
     </x-shop::form>
 
     {!! view_render_event('bagisto.shop.customers.account.address.edit.after', ['address' => $address]) !!}
+
+    @push('styles')
+        <style>
+            #map {
+                height: 500px;
+            }
+        </style>
+    @endpush
+
+    @pushOnce('scripts')
+        <script>
+            window.addEventListener("load", function(event) {
+                let initialLat = Number(document.getElementById("latInput").value)
+                let initialLng = Number(document.getElementById("lngInput").value)
+                window.loader.load().then((google) => {
+                    const map = new google.maps.Map(document.getElementById('map'), {
+                        center: {
+                            lat: initialLat == 0 ? 33.51370659236307 : initialLat,
+                            lng: initialLng == 0 ? 36.27639307403564 : initialLng,
+                        },
+                        zoom: 15,
+                    });
+                    google.maps.event.addListener(map, 'dragend', function() {
+                        const center = map.getCenter();
+                        
+                        document.getElementById("latInput").value = center.lat()
+                        document.getElementById("lngInput").value = center.lng()
+                    });
+
+                    const input = document.getElementById('pac-input');
+                    const autocomplete = new google.maps.places.Autocomplete(input);
+
+                    autocomplete.addListener('place_changed', () => {
+                        const place = autocomplete.getPlace();
+                        const location = place.geometry.location;
+                        map.setCenter(location);
+                        marker.setPosition(map.getCenter());
+                    });
+
+                    const marker = new google.maps.Marker({
+                        center: {
+                            lat: 33.5102,
+                            lng: 36.2815
+                        },
+                        map: map,
+                        draggable: false
+                    });
+
+                    marker.setPosition(map.getCenter());
+
+                    google.maps.event.addListener(map, 'drag', () => {
+                        marker.setPosition(map.getCenter());
+                    });
+
+                    google.maps.event.addListener(map, 'zoom_changed', () => {
+                        marker.setPosition(map.getCenter());
+                    });
+                })
+            });
+        </script>
+    @endpushOnce
 
 </x-shop::layouts.account>
