@@ -115,6 +115,9 @@
                 },
 
                 handleShippingAddressForm() {
+                    this.forms.shipping.address.lat = document.getElementById("latInput").value
+                    this.forms.shipping.address.lng = document.getElementById("lngInput").value
+                    
                     if (this.forms.shipping.isNew && ! this.forms.shipping.address.isSaved) {
                         this.forms.shipping.isNew = false;
                         this.isTempAddress = true;

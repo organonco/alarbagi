@@ -76,6 +76,8 @@ class CustomerAddressForm extends FormRequest
             "{$addressType}.phone"   => ['required', new PhoneNumber],
             "{$addressType}.area_id"    => ['nullable', 'exists:areas,id'],
             "{$addressType}.address_details"     => ['nullable', 'max:1000'],
+            "{$addressType}.lat"     => ['nullable'],
+            "{$addressType}.lng"     => ['nullable'],
         ]);
     }
 

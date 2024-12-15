@@ -24,7 +24,7 @@ class Wadili extends AbstractShipping
 	{
 		$cart = Cart::getCart();
 		$shippingAddress = $cart->shipping_address;
-		return $shippingAddress->area->is_external;
+		return $shippingAddress->area? $shippingAddress->area->is_external : false;
 	}
 
     public function getCartShippingRateObject() : CartShippingRate
