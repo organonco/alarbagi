@@ -25,7 +25,7 @@
                 @lang('shop::app.checkout.onepage.addresses.shipping.name')
             </x-shop::form.control-group.label>
             <x-shop::form.control-group.control type="text" name="name" :label="trans('shop::app.checkout.onepage.addresses.shipping.name')" rules="required"
-                :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.name')" value="{{$address->name}}">
+                :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.name')" value="{{ $address->name }}">
             </x-shop::form.control-group.control>
             <x-shop::form.control-group.error control-name="name">
             </x-shop::form.control-group.error>
@@ -36,29 +36,22 @@
                 @lang('shop::app.checkout.onepage.addresses.shipping.phone')
             </x-shop::form.control-group.label>
             <x-shop::form.control-group.control type="text" name="phone" :label="trans('shop::app.checkout.onepage.addresses.shipping.phone')" rules="required|phone"
-                :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.phone')" value="{{$address->phone}}">
+                :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.phone')" value="{{ $address->phone }}">
             </x-shop::form.control-group.control>
             <x-shop::form.control-group.error control-name="phone">
             </x-shop::form.control-group.error>
         </x-shop::form.control-group>
 
-        <x-shop::form.control-group>
-            <x-shop::form.control-group.label>
-                @lang('shop::app.checkout.onepage.addresses.shipping.location')
-            </x-shop::form.control-group.label>
-            <x-shop::form.control-group.control type="text" name="pac-input" placeholder="بحث" class="mb-2">
-            </x-shop::form.control-group.control>
-            <div id="map"></div>
-            <input type="hidden" name="lng" id="lngInput" value="{{$address->lng}}" />
-            <input type="hidden" name="lat" id="latInput" value="{{$address->lat}}" />
-        </x-shop::form.control-group>
+        <h3 class="text-[26px] font-medium !mt-12">
+            @lang('shop::app.customers.account.addresses.address-details')
+        </h3>
 
         <x-shop::form.control-group>
             <x-shop::form.control-group.label>
                 @lang('shop::app.checkout.onepage.addresses.shipping.area_id')
             </x-shop::form.control-group.label>
             <x-shop::form.control-group.control type="select" name="area_id" class="py-2 mb-2" :label="trans('shop::app.checkout.onepage.addresses.shipping.area_id')"
-                :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.area_id')" value="{{$address->area_id}}">
+                :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.area_id')" value="{{ $address->area_id }}">
                 @foreach ($areas as $area)
                     <option value="{{ $area->id }}">
                         {{ $area->name . ($area->is_shippable ? '' : ' - التوصيل غير متاح') }}</option>
@@ -68,15 +61,64 @@
             </x-shop::form.control-group.error>
         </x-shop::form.control-group>
 
-        <x-shop::form.control-group class="!mb-4">
+        <div class="flex gap-2 w-full">
+
+            <x-shop::form.control-group class="w-full">
+                <x-shop::form.control-group.label>
+                    @lang('shop::app.checkout.onepage.addresses.shipping.street')
+                </x-shop::form.control-group.label>
+                <x-shop::form.control-group.control value="{{ $address->street }}" class="w-full" type="text"
+                    name="street" :label="trans('shop::app.checkout.onepage.addresses.shipping.street')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.street')">
+                </x-shop::form.control-group.control>
+                <x-shop::form.control-group.error class="mb-2" control-name="street">
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+
+
+            <x-shop::form.control-group class="w-full">
+                <x-shop::form.control-group.label>
+                    @lang('shop::app.checkout.onepage.addresses.shipping.building')
+                </x-shop::form.control-group.label>
+                <x-shop::form.control-group.control value="{{ $address->building }}" class="w-full" type="text"
+                    name="building" :label="trans('shop::app.checkout.onepage.addresses.shipping.building')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.building')">
+                </x-shop::form.control-group.control>
+                <x-shop::form.control-group.error class="mb-2" control-name="building">
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+
+            <x-shop::form.control-group class="w-full">
+                <x-shop::form.control-group.label>
+                    @lang('shop::app.checkout.onepage.addresses.shipping.floor')
+                </x-shop::form.control-group.label>
+                <x-shop::form.control-group.control value="{{ $address->floor }}" class="w-full" type="text"
+                    name="floor" :label="trans('shop::app.checkout.onepage.addresses.shipping.floor')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.floor')">
+                </x-shop::form.control-group.control>
+                <x-shop::form.control-group.error class="mb-2" control-name="floor">
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+        </div>
+
+
+        <x-shop::form.control-group>
             <x-shop::form.control-group.label>
                 @lang('shop::app.checkout.onepage.addresses.shipping.address_details')
             </x-shop::form.control-group.label>
             <x-shop::form.control-group.control type="textarea" name="address_details" :label="trans('shop::app.checkout.onepage.addresses.shipping.address_details')"
-                :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.address_details')" value="{{$address->address_details}}">
+                :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.address_details')" value="{{ $address->address_details }}">
             </x-shop::form.control-group.control>
             <x-shop::form.control-group.error class="mb-2" control-name="address_details">
             </x-shop::form.control-group.error>
+        </x-shop::form.control-group>
+
+        <x-shop::form.control-group class="!mb-4">
+            <x-shop::form.control-group.label>
+                @lang('shop::app.checkout.onepage.addresses.shipping.location')
+            </x-shop::form.control-group.label>
+            <x-shop::form.control-group.control type="text" name="pac-input" placeholder="بحث" class="mb-2">
+            </x-shop::form.control-group.control>
+            <div id="map"></div>
+            <input type="hidden" name="lng" id="lngInput" value="{{ $address->lng }}" />
+            <input type="hidden" name="lat" id="latInput" value="{{ $address->lat }}" />
         </x-shop::form.control-group>
 
         <button type="submit" class="sn-button-primary">
@@ -114,7 +156,7 @@
                     });
                     google.maps.event.addListener(map, 'dragend', function() {
                         const center = map.getCenter();
-                        
+
                         document.getElementById("latInput").value = center.lat()
                         document.getElementById("lngInput").value = center.lng()
                     });

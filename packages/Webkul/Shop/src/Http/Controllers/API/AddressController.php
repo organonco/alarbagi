@@ -44,7 +44,10 @@ class AddressController extends APIController
             'area_id',
             'default_address',
             'lat',
-            'lng'
+            'lng',
+            'street',
+            'building',
+            'floor'
         ]), [
             'customer_id'     => $customer->id,
         ]);

@@ -33,7 +33,10 @@ class AddressRequest extends FormRequest
             'area_id'    => ['nullable', 'exists:areas,id'],
             'address_details'     => ['nullable', 'max:1000'],
             'lng' => ['nullable'],
-            'lng' => ['nullable']
+            'lng' => ['nullable'],
+            'street' => ['nullable'],
+            'building' => ['nullable'],
+            'floor' => ['nullable'],
         ];
     }
 }

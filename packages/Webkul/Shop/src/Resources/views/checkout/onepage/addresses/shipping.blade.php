@@ -143,6 +143,12 @@
                             </x-shop::form.control-group.error>
                         </x-shop::form.control-group>
 
+
+                        <h3 class="text-[26px] font-medium !mt-12">
+                            @lang('shop::app.customers.account.addresses.address-details')
+                        </h3>
+
+
                         <x-shop::form.control-group>
                             <x-shop::form.control-group.label>
                                 @lang('shop::app.checkout.onepage.addresses.shipping.area_id')
@@ -158,6 +164,43 @@
                             <x-shop::form.control-group.error control-name="shipping[area_id]">
                             </x-shop::form.control-group.error>
                         </x-shop::form.control-group>
+
+                        <div class="flex gap-2 w-full">
+
+                            <x-shop::form.control-group class="w-full">
+                                <x-shop::form.control-group.label>
+                                    @lang('shop::app.checkout.onepage.addresses.shipping.street')
+                                </x-shop::form.control-group.label>
+                                <x-shop::form.control-group.control class="w-full" type="text" name="street"
+                                    :label="trans('shop::app.checkout.onepage.addresses.shipping.street')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.street')" v-model="forms.shipping.address.street">
+                                </x-shop::form.control-group.control>
+                                <x-shop::form.control-group.error class="mb-2" control-name="street">
+                                </x-shop::form.control-group.error>
+                            </x-shop::form.control-group>
+
+
+                            <x-shop::form.control-group class="w-full">
+                                <x-shop::form.control-group.label>
+                                    @lang('shop::app.checkout.onepage.addresses.shipping.building')
+                                </x-shop::form.control-group.label>
+                                <x-shop::form.control-group.control class="w-full" type="text" name="building"
+                                    :label="trans('shop::app.checkout.onepage.addresses.shipping.building')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.building')" v-model="forms.shipping.address.building">
+                                </x-shop::form.control-group.control>
+                                <x-shop::form.control-group.error class="mb-2" control-name="building">
+                                </x-shop::form.control-group.error>
+                            </x-shop::form.control-group>
+
+                            <x-shop::form.control-group class="w-full">
+                                <x-shop::form.control-group.label>
+                                    @lang('shop::app.checkout.onepage.addresses.shipping.floor')
+                                </x-shop::form.control-group.label>
+                                <x-shop::form.control-group.control class="w-full" type="text" name="floor"
+                                    :label="trans('shop::app.checkout.onepage.addresses.shipping.floor')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.floor')" v-model="forms.shipping.address.floor">
+                                </x-shop::form.control-group.control>
+                                <x-shop::form.control-group.error class="mb-2" control-name="floor">
+                                </x-shop::form.control-group.error>
+                            </x-shop::form.control-group>
+                        </div>
 
                         <x-shop::form.control-group class="!mb-4">
                             <x-shop::form.control-group.label>

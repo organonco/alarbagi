@@ -72,7 +72,10 @@ abstract class Address extends Model implements AddressContract
         'address_details',
         'phone',
         'lat',
-        'lng'
+        'lng',
+        'street',
+        'building',
+        'floor'
     ];
 
     public $appends = [

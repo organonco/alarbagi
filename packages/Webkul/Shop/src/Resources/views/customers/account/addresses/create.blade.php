@@ -44,16 +44,9 @@
             </x-shop::form.control-group.error>
         </x-shop::form.control-group>
 
-        <x-shop::form.control-group>
-            <x-shop::form.control-group.label>
-                @lang('shop::app.checkout.onepage.addresses.shipping.location')
-            </x-shop::form.control-group.label>
-            <x-shop::form.control-group.control type="text" name="pac-input" placeholder="بحث" class="mb-2">
-            </x-shop::form.control-group.control>
-            <div id="map"></div>
-            <input type="hidden" name="lng" id="lngInput" />
-            <input type="hidden" name="lat" id="latInput" />
-        </x-shop::form.control-group>
+        <h3 class="text-[26px] font-medium !mt-12">
+            @lang('shop::app.customers.account.addresses.address-details')
+        </h3>
 
         <x-shop::form.control-group>
             <x-shop::form.control-group.label>
@@ -70,7 +63,42 @@
             </x-shop::form.control-group.error>
         </x-shop::form.control-group>
 
-        <x-shop::form.control-group class="!mb-4">
+        <div class="flex gap-2 w-full">
+
+            <x-shop::form.control-group class="w-full">
+                <x-shop::form.control-group.label>
+                    @lang('shop::app.checkout.onepage.addresses.shipping.street')
+                </x-shop::form.control-group.label>
+                <x-shop::form.control-group.control class="w-full" type="text" name="street" :label="trans('shop::app.checkout.onepage.addresses.shipping.street')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.street')">
+                </x-shop::form.control-group.control>
+                <x-shop::form.control-group.error class="mb-2" control-name="street">
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+
+
+            <x-shop::form.control-group class="w-full">
+                <x-shop::form.control-group.label>
+                    @lang('shop::app.checkout.onepage.addresses.shipping.building')
+                </x-shop::form.control-group.label>
+                <x-shop::form.control-group.control class="w-full" type="text" name="building" :label="trans('shop::app.checkout.onepage.addresses.shipping.building')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.building')">
+                </x-shop::form.control-group.control>
+                <x-shop::form.control-group.error class="mb-2" control-name="building">
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+
+            <x-shop::form.control-group class="w-full">
+                <x-shop::form.control-group.label>
+                    @lang('shop::app.checkout.onepage.addresses.shipping.floor')
+                </x-shop::form.control-group.label>
+                <x-shop::form.control-group.control class="w-full" type="text" name="floor" :label="trans('shop::app.checkout.onepage.addresses.shipping.floor')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.floor')">
+                </x-shop::form.control-group.control>
+                <x-shop::form.control-group.error class="mb-2" control-name="floor">
+                </x-shop::form.control-group.error>
+            </x-shop::form.control-group>
+        </div>
+
+
+        <x-shop::form.control-group>
             <x-shop::form.control-group.label>
                 @lang('shop::app.checkout.onepage.addresses.shipping.address_details')
             </x-shop::form.control-group.label>
@@ -80,6 +108,18 @@
             <x-shop::form.control-group.error class="mb-2" control-name="address_details">
             </x-shop::form.control-group.error>
         </x-shop::form.control-group>
+
+        <x-shop::form.control-group class="!mb-4">
+            <x-shop::form.control-group.label>
+                @lang('shop::app.checkout.onepage.addresses.shipping.location')
+            </x-shop::form.control-group.label>
+            <x-shop::form.control-group.control type="text" name="pac-input" placeholder="بحث" class="mb-2">
+            </x-shop::form.control-group.control>
+            <div id="map"></div>
+            <input type="hidden" name="lng" id="lngInput" />
+            <input type="hidden" name="lat" id="latInput" />
+        </x-shop::form.control-group>
+
 
         <button type="submit" class="sn-button-primary">
             @lang('shop::app.customers.account.addresses.save')
@@ -112,7 +152,7 @@
                     });
                     google.maps.event.addListener(map, 'dragend', function() {
                         const center = map.getCenter();
-                        
+
                         document.getElementById("latInput").value = center.lat()
                         document.getElementById("lngInput").value = center.lng()
                     });
