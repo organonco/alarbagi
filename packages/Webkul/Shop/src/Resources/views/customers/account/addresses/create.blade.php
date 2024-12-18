@@ -116,8 +116,8 @@
             <x-shop::form.control-group.control type="text" name="pac-input" placeholder="بحث" class="mb-2">
             </x-shop::form.control-group.control>
             <div id="map"></div>
-            <input type="hidden" name="lng" id="lngInput" />
-            <input type="hidden" name="lat" id="latInput" />
+            <input type="hidden" name="lng" id="lngInput" value="33.51370659236307"/>
+            <input type="hidden" name="lat" id="latInput" value="36.27639307403564"/>
         </x-shop::form.control-group>
 
 

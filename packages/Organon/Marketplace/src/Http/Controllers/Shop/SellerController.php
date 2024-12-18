@@ -19,9 +19,7 @@ class SellerController extends Controller
 {
     use DispatchesJobs, ValidatesRequests;
 
-    public function __construct(public SellerRepository $sellerRepository, public AdminRepository $adminRepository)
-    {
-    }
+    public function __construct(public SellerRepository $sellerRepository, public AdminRepository $adminRepository) {}
 
     public function store(Request $request)
     {
@@ -35,6 +33,11 @@ class SellerController extends Controller
             'email' => ['required', 'email', 'unique:admins'],
             'password' => ['required', 'min:8', Password::min(8)->letters()->numbers()],
             'ref' => ['nullable'],
+            'lat' => ['required'],
+            'lng' => ['required'],
+            'building' => ['required'],
+            'floor' => ['required'],
+            'street' => ['required']
         ]);
 
         $sellerData = $request->only([
@@ -44,13 +47,18 @@ class SellerController extends Controller
             'address',
             'area_id',
             'seller_category_id',
-			'opening_time',
-			'opening_days', 
-			'owner_name',
-            'ref'
+            'opening_time',
+            'opening_days',
+            'owner_name',
+            'ref',
+            'lat',
+            'lng',
+            'building',
+            'floor',
+            'street'
         ]);
 
-        if($this->sellerRepository->where('ref', $sellerData['ref'])->count() > 0)
+        if ($this->sellerRepository->where('ref', $sellerData['ref'])->count() > 0)
             $sellerData['ref'] = null;
 
         $sellerData['token'] = md5(uniqid(rand(), true));
@@ -86,7 +94,7 @@ class SellerController extends Controller
     public function verifyEmail($token)
     {
         $seller = $this->sellerRepository->findOneByField('token', $token);
-        if(!isset($seller)) {
+        if (!isset($seller)) {
             session()->flash('warning', trans('shop::app.customers.signup-form.verify-failed'));
             return redirect()->route('admin.session.create');
         }

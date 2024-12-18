@@ -30,7 +30,7 @@
 
                 <div class="mt-[60px] rounded max-sm:mt-[30px]">
                     <x-shop::form :action="route('shop.marketplace.register')" enctype="multipart/form-data" id="registerForm">
-                        <input type="hidden" name="ref" value="{{$ref}}"/>
+                        <input type="hidden" name="ref" value="{{ $ref }}" />
                         <x-shop::form.control-group class="mb-4">
                             <x-shop::form.control-group.label class="required">
                                 @lang('marketplace::app.register.labels.shop_name')
@@ -165,18 +165,71 @@
                             </x-shop::form.control-group.error>
                         </x-shop::form.control-group>
 
+                        <div class="flex gap-2 w-full">
+
+                            <x-shop::form.control-group class="w-full">
+                                <x-shop::form.control-group.label class="required">
+                                    @lang('shop::app.checkout.onepage.addresses.shipping.street')
+                                </x-shop::form.control-group.label>
+                                <x-shop::form.control-group.control class="w-full" type="text" name="street"
+                                    rules="required" :label="trans('shop::app.checkout.onepage.addresses.shipping.street')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.street')" :value="old('street')">
+                                </x-shop::form.control-group.control>
+                                <x-shop::form.control-group.error class="mb-2" control-name="street">
+                                </x-shop::form.control-group.error>
+                            </x-shop::form.control-group>
+
+
+                            <x-shop::form.control-group class="w-full">
+                                <x-shop::form.control-group.label class="required">
+                                    @lang('shop::app.checkout.onepage.addresses.shipping.building')
+                                </x-shop::form.control-group.label>
+                                <x-shop::form.control-group.control class="w-full" type="text" name="building"
+                                    rules="required" :label="trans('shop::app.checkout.onepage.addresses.shipping.building')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.building')" :value="old('building')">
+                                </x-shop::form.control-group.control>
+                                <x-shop::form.control-group.error class="mb-2" control-name="building">
+                                </x-shop::form.control-group.error>
+                            </x-shop::form.control-group>
+
+                            <x-shop::form.control-group class="w-full">
+                                <x-shop::form.control-group.label class="required">
+                                    @lang('shop::app.checkout.onepage.addresses.shipping.floor')
+                                </x-shop::form.control-group.label>
+                                <x-shop::form.control-group.control class="w-full" type="text" name="floor"
+                                    rules="required" :label="trans('shop::app.checkout.onepage.addresses.shipping.floor')" :placeholder="trans('shop::app.checkout.onepage.addresses.shipping.floor')" :value="old('floor')">
+                                </x-shop::form.control-group.control>
+                                <x-shop::form.control-group.error class="mb-2" control-name="floor">
+                                </x-shop::form.control-group.error>
+                            </x-shop::form.control-group>
+                        </div>
+
                         <x-shop::form.control-group class="mb-4">
                             <x-shop::form.control-group.label class="required">
                                 @lang('shop::app.customers.signup-form.address')
                             </x-shop::form.control-group.label>
                             <x-shop::form.control-group.control type="textarea" name="address"
-                                class="!p-[20px_25px] rounded-lg" rules="required" :value="old('address')" :label="trans('shop::app.customers.signup-form.address')"
+                                class="!p-[20px_25px] rounded-lg" rules="required" :value="old('address')"
+                                :label="trans('shop::app.customers.signup-form.address')"
                                 placeholder="المنطقة - الشارع أو الحارة - البناء - جانب أو مقابل (مدرسة، جامع، مشفى…)">
                             </x-shop::form.control-group.control>
                             <x-shop::form.control-group.error control-name="address">
                             </x-shop::form.control-group.error>
                         </x-shop::form.control-group>
 
+                        <x-shop::form.control-group class="!mb-4">
+                            <x-shop::form.control-group.label class="required">
+                                @lang('shop::app.checkout.onepage.addresses.shipping.location')
+                            </x-shop::form.control-group.label>
+                            <x-shop::form.control-group.control type="text" name="pac-input" placeholder="بحث"
+                                class="mb-2">
+                            </x-shop::form.control-group.control>
+                            <div id="map"></div>
+
+                            <x-shop::form.control-group.error control-name="lng">
+                            </x-shop::form.control-group.error>
+
+                            <input type="hidden" name="lng" id="lngInput" value="33.51370659236307" />
+                            <input type="hidden" name="lat" id="latInput" value="36.27639307403564" />
+                        </x-shop::form.control-group>
 
                         <x-shop::form.control-group class="mb-4">
                             <x-shop::form.control-group.label class="required">
@@ -314,5 +367,62 @@
                 }
             }
         </script>
+
+        <script>
+            window.addEventListener("load", function(event) {
+                window.loader.load().then((google) => {
+                    const map = new google.maps.Map(document.getElementById('map'), {
+                        center: {
+                            lat: Number(document.getElementById("lngInput").value),
+                            lng: Number(document.getElementById("latInput").value)
+                        },
+                        zoom: 12,
+                    });
+                    google.maps.event.addListener(map, 'dragend', function() {
+                        const center = map.getCenter();
+
+                        document.getElementById("lngInput").value = center.lng()
+                        document.getElementById("latInput").value = center.lat()
+                    });
+
+                    const input = document.getElementById('pac-input');
+                    const autocomplete = new google.maps.places.Autocomplete(input);
+
+                    autocomplete.addListener('place_changed', () => {
+                        const place = autocomplete.getPlace();
+                        const location = place.geometry.location;
+                        map.setCenter(location);
+                        marker.setPosition(map.getCenter());
+                    });
+
+                    const marker = new google.maps.Marker({
+                        center: {
+                            lat: Number(document.getElementById("lngInput").value),
+                            lng: Number(document.getElementById("latInput").value)
+                        },
+                        map: map,
+                        draggable: false
+                    });
+
+                    marker.setPosition(map.getCenter());
+
+                    google.maps.event.addListener(map, 'drag', () => {
+                        marker.setPosition(map.getCenter());
+                    });
+
+                    google.maps.event.addListener(map, 'zoom_changed', () => {
+                        marker.setPosition(map.getCenter());
+                    });
+                })
+            });
+        </script>
+    @endpush
+
+    @push('styles')
+        <style>
+            #map {
+                height: 500px;
+            }
+        </style>
     @endpush
 </x-shop::layouts>

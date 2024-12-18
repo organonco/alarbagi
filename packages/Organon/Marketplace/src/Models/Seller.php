@@ -42,7 +42,12 @@ class Seller extends Model implements SellerContract, HasMedia
 		'owner_name',
 		'opening_time',
 		'opening_days',
-        'ref'
+        'ref',
+        'lat',
+        'lng', 
+        'building',
+        'floor',
+        'street'
     ];
 
     public function admin()
