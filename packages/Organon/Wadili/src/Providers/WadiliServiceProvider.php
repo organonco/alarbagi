@@ -37,6 +37,10 @@ class WadiliServiceProvider extends ServiceProvider
         );
 
         $this->mergeConfigFrom(
+            dirname(__DIR__) . '/Config/wadili.php', 'wadili'
+        );
+
+        $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/system.php', 'core'
         );
 

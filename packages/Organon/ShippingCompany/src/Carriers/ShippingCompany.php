@@ -41,6 +41,20 @@ class ShippingCompany extends AbstractShipping
 		];
 	}
 
+	private static function hasValue($value)
+    {
+        return !is_null($value) && !$value == "";
+    }
+
+    private static function addressIsvalid($address)
+    {
+        $values = [$address->lat, $address->lng, $address->street, $address->building, $address->floor, $address->area_id, $address->address_details];
+        foreach($values as $value)
+            if(!self::hasValue($value))
+                return false;
+        return true;
+    }
+
 	private function checkAvailability()
 	{
 		$cart = Cart::getCart();
@@ -48,7 +62,7 @@ class ShippingCompany extends AbstractShipping
 
 		if (!$cart->hasDeliverableItems())
 			return $this->generateUnavailableObject('no-deliverable-items');
-		if (is_null($shippingAddress->area_id) || is_null($shippingAddress->address_details))
+		if (!self::addressIsvalid($shippingAddress))
 			return $this->generateUnavailableObject('address-or-area-not-found');
 		if (!$shippingAddress->area->is_shippable)
 			return $this->generateUnavailableObject('delivery-not-available-to-this-area');;

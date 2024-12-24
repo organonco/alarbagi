@@ -11,6 +11,7 @@ return [
 		'address-or-area-not-found' => 'يجب تحديد المنطقة وتفاصيل العنوان داخل تفاصيل المستلم',
 		'no-deliverable-items' => 'لا يوجد منتجات قابلة للتوصيل في العربة',
 		'delivery-not-available-to-this-area' => 'التوصيل غير متاح لهذه المنطقة',
-		'price-defined-later' => 'يتم تحديد كلفة التوصيل لاحقاً'
+		'price-defined-later' => 'يتم تحديد كلفة التوصيل لاحقاً',
+		'more-than-one-seller' => 'التوصيل غير متاح بسبب اختيار منتجات من أكثر من تاجر',
 	]
 ];

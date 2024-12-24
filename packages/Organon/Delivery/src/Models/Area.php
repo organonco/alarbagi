@@ -51,7 +51,7 @@ class Area extends Model implements AreaContract, HasMedia
 
 	public function getIsShippableAttribute()
 	{
-		return !is_null($this->shippingCompany) && $this->shippingCompany->isWorking();
+		return (!is_null($this->shippingCompany) && $this->shippingCompany->isWorking()) || $this->is_external;
 	}
 
 	public function sellers()
