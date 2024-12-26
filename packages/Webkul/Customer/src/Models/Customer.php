@@ -2,6 +2,7 @@
 
 namespace Webkul\Customer\Models;
 
+use Alhelwany\LaravelMtn\Interfaces\MTNNotifiable;
 use App\Notifications\NotificationDotPlacements;
 use App\Notifications\OfferCreated;
 use App\Notifications\OrderUpdated;
@@ -21,7 +22,7 @@ use Webkul\Sales\Models\OrderProxy;
 use Webkul\Customer\Models\CustomerNoteProxy;
 use Webkul\Sales\Models\InvoiceProxy;
 
-class Customer extends Authenticatable implements CustomerContract
+class Customer extends Authenticatable implements CustomerContract, MTNNotifiable
 {
     use HasFactory, Notifiable, Visitor;
 
@@ -317,4 +318,15 @@ class Customer extends Authenticatable implements CustomerContract
 		return $this->offersNotifications()->count() > 0;
 	}
 
+    public function getPhone() : string
+    {
+        return $this->phone;
+    }
+
+    public function setAsActive()
+    {
+        $this->is_verified = 1;
+        $this->status = 1;
+        $this->save();
+    }
 }

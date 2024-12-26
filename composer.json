@@ -17,6 +17,7 @@
         "ext-pdo": "*",
         "ext-pdo_mysql": "*",
         "ext-tokenizer": "*",
+        "alhelwany/laravel-mtn": "dev-main",
         "astrotomic/laravel-translatable": "^11.0.0",
         "bagisto/bagisto-package-generator": "dev-master",
         "barryvdh/laravel-dompdf": "^2.0.0",

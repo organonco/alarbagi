@@ -2,8 +2,11 @@
 
 namespace Webkul\Shop\Http\Controllers\Customer;
 
+use App\Notifications\VerificationNotification;
+use App\Verification;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Event;
+use Webkul\Customer\Models\Customer;
 use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Shop\Http\Requests\Customer\LoginRequest;
 
@@ -45,20 +48,20 @@ class SessionController extends Controller
         if (! auth()->guard('customer')->user()->is_verified) {
             session()->flash('info', trans('shop::app.customers.login-form.verify-first'));
 
-            Cookie::queue(Cookie::make('enable-resend', 'true', 1));
-
-            Cookie::queue(Cookie::make('email-for-resend', $loginRequest->get('email'), 1));
-
+            /** @var Customer */
+            $customer = auth()->guard('customer')->user();
             auth()->guard('customer')->logout();
 
-            return redirect()->route('shop.customers.resend.verification_email.show', ['email' => $loginRequest->get('email')]);
+            $verificationData = Verification::createVerification($customer);
+            $customer->notify(new VerificationNotification($verificationData['code']));
+            return redirect()->route('shop.customers.register.verify.show', $verificationData['token']);
         }
 
         /**
          * Event passed to prepare cart after login.
          */
         Event::dispatch('customer.after.login', $loginRequest->get('email'));
-
+ 
         return redirect()->route('shop.home.index');
     }
 

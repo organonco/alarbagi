@@ -51,14 +51,17 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
                 Route::get('seller', 'indexSeller')->name('shop.customers.register.index-seller');
                 Route::post('', 'store')->name('shop.customers.register.store');
             });
-
+            
             /**
              * Customer verification routes.
              */
             Route::get('verify-account/{token}', 'verifyAccount')->name('shop.customers.verify');
-
+            
             Route::post('resend/verification', 'resendVerificationEmail')->name('shop.customers.resend.verification_email');
             Route::get('resend/verification', 'showResendVerificationEmail')->name('shop.customers.resend.verification_email.show');
+
+            Route::get('verify/{uuid}', 'showVerify')->name('shop.customers.register.verify.show');
+            Route::post('verify/{uuid}', 'verify')->name('shop.customers.register.verify.verify');
         });
 
         /**
