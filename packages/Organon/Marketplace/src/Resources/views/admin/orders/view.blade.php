@@ -249,7 +249,7 @@
                         </div>
                         @include ('admin::sales.address', [
                             'address' => $order->order->shipping_address,
-                            'method' => $order->order->shipping_title,
+                            'method' => $order->order->shipping_description,
                             'isPickup' => $order->order->shipping_method == 'pickup_pickup',
                         ])
 

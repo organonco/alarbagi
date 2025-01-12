@@ -9,7 +9,7 @@
         @if (!$isPickup)
         {{ __('admin::app.sales.orders.view.area') }} : {{ $address->area_name }}<br>
         {{ __('admin::app.sales.orders.view.details') }} : {{ $address->address_details }}<br>
-            @if($address->area->is_shippable)
+            @if($address->area->is_shippable && !$address->area->is_external)
             {{ __('admin::app.sales.orders.view.shipping-company') }} : {{ $address->area->shippingCompany->name }}<br>
             @endif
         @endif

@@ -64,3 +64,8 @@ networks:
 volumes:
     sail-mysql:
         driver: local
+        driver_opts:
+          com.docker.network.driver.mtu: 1500
+
+
+

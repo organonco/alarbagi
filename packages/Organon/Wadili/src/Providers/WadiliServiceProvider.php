@@ -2,6 +2,7 @@
 
 namespace Organon\Wadili\Providers;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class WadiliServiceProvider extends ServiceProvider
@@ -43,6 +44,8 @@ class WadiliServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             dirname(__DIR__) . '/Config/system.php', 'core'
         );
+
+        Route::middleware([])->group(__DIR__ . '/../Http/api.php');
 
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'shipping-wadili');
     }

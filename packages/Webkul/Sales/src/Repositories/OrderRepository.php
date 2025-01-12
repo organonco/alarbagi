@@ -2,6 +2,7 @@
 
 namespace Webkul\Sales\Repositories;
 
+use App\WadiliOrder;
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Event;
@@ -119,6 +120,10 @@ class OrderRepository extends Repository
                 });
 
             $this->sellerOrderRepository->createMany($order, $suborders);
+            if($data['shipping_method'] == 'wadili_wadili'){
+                $wadiliOrder = WadiliOrder::findForCart($data['cart_id'], $data['sub_total']);
+                $wadiliOrder->update(['order_id' => $order->id]);
+            }
 
         } catch (\Exception $e) {
             DB::rollBack();

@@ -82,10 +82,10 @@ class Order extends \Webkul\Sales\Models\Order
 			$this->updateStatus(Order::STATUS_APPROVED);
 		elseif ($allCount == $rejectedCount)
 			$this->updateStatus(Order::STATUS_REJECTED);
-		elseif ($pendingCount == 0){
-			foreach($this->sellerOrders()->where('status', SellerOrderStatusEnum::APPROVED->value)->get() as $sellerOrder)
-				foreach($sellerOrder->items as $item)
-					if($item->product->is_deliverable)
+		elseif ($pendingCount == 0) {
+			foreach ($this->sellerOrders()->where('status', SellerOrderStatusEnum::APPROVED->value)->get() as $sellerOrder)
+				foreach ($sellerOrder->items as $item)
+					if ($item->product->is_deliverable)
 						return $this->updateStatus(Order::STATUS_PARTIALLY_APPROVED);
 			$this->updateStatus(Order::STATUS_COMPLETED);
 		}
@@ -104,17 +104,24 @@ class Order extends \Webkul\Sales\Models\Order
 				$refunded += $item->total;
 			elseif ($item->status == 0)
 				$pending += $item->total;
-		
-		if($this->shipping_method == "shippingcompany_shippingcompany"){
+
+		if ($this->shipping_method == "shippingcompany_shippingcompany") {
 			$items = collect([]);
-			foreach($this->sellerOrders()->whereIn('status', [SellerOrderStatusEnum::APPROVED->value, SellerOrderStatusEnum::PENDING->value]) as $sellerOrder)
+			foreach ($this->sellerOrders()->whereIn('status', [SellerOrderStatusEnum::APPROVED->value, SellerOrderStatusEnum::PENDING->value]) as $sellerOrder)
 				$items->push($sellerOrder->items);
 			$newShipping = $this->shipping_address->area->shippingCompany->calculate($items);
-			if($this->shipping_amount > $newShipping)
+			if ($this->shipping_amount > $newShipping)
 				$refunded += $this->shipping_amount - $newShipping;
 		}
 
-		$this->update(['grand_total_invoiced' => $invoiced, 'grand_total_refunded' => $refunded, 'grand_total' => $this->base_grand_total - $refunded, 'sub_total' => $invoiced + $pending]);
+		if ($this->shipping_method == 'wadili_wadili') {
+			if ($this->sellerOrders()->where('status', SellerOrderStatusEnum::CANCELLED_BY_SELLER)->count() == $this->sellerOrders()->count()) {
+				$refunded += $this->shipping_amount;
+				$newShipping = 0;
+			}
+		}
+
+		$this->update(['grand_total_invoiced' => $invoiced, 'grand_total_refunded' => $refunded, 'grand_total' => $this->base_grand_total - $refunded]);
 	}
 
 	public function approvedItems()
