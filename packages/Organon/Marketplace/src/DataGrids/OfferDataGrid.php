@@ -17,11 +17,13 @@ class OfferDataGrid extends DataGrid
         $query = DB::table('offers')->orderBy('offers.created_at', 'DESC');
         if (!is_null($this->sellerId))
             $query->where('seller_id', $this->sellerId);
+
         $query->addSelect('title');
         $query->addSelect('post');
         $query->addSelect('status');
         $query->addSelect('image_url');
         $query->addSelect('id');
+        $query->addSelect(DB::raw(' IF(created_at < DATE(NOW()) - INTERVAL 7 DAY, 1, 0) as expired'));
 
         return $query;
     }
@@ -68,6 +70,18 @@ class OfferDataGrid extends DataGrid
             'searchable' => false,
             'filterable' => false,
             'sortable' => false,
+        ]);
+
+        $this->addColumn([
+            'index' => 'expired',
+            'label' => trans('marketplace::app.admin.offers.index.datagrid.expired'),
+            'type' => 'string',
+            'searchable' => false,
+            'filterable' => false,
+            'sortable' => false,
+            'closure'    => function ($value) {
+                return $value->expired == 1 ? "نعم" : 'لا';
+            },
         ]);
     }
 

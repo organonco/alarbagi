@@ -53,7 +53,7 @@
                         <x-admin::form.control-group.label>
                             @lang('marketplace::app.admin.offers.create.attributes.status')
                         </x-admin::form.control-group.label>
-                        <x-admin::form.control-group.control type="switch" name="status" value="1"  :checked="$model->status">
+                        <x-admin::form.control-group.control type="switch" name="status" value="1"  :checked="(bool)$model->status">
                         </x-admin::form.control-group.control>
                         <x-admin::form.control-group.error control-name="status">
                         </x-admin::form.control-group.error>

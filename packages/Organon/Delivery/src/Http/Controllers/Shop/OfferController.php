@@ -21,7 +21,7 @@ class OfferController extends Controller
 		if($authenticatedUser)
 			$authenticatedUser->offersNotifications()->update(['read_at' => now()]);
 
-        $offers = Offer::query()->isActive()->latest()->get();
+        $offers = Offer::query()->isActive()->isNotExpired()->latest()->get();
         return view('shop::offers.index')->with(compact('offers'));
     }
 }

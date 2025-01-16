@@ -2,6 +2,7 @@
 
 namespace Organon\Marketplace\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Organon\Marketplace\Contracts\Offer as OfferContract;
 use Organon\Marketplace\Traits\RelatedToSellerTrait;
@@ -57,6 +58,11 @@ class Offer extends Model implements OfferContract, HasMedia
     public function scopeIsActive($query)
     {
         return $query->where('status', true);
+    }
+
+    public function scopeIsNotExpired($query)
+    {
+        return $query->where('created_at', '>=', Carbon::now()->subDays(config('shop.offer_timeout'))->toDateTimeString());
     }
     
 }
