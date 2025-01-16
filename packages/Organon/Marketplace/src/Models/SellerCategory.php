@@ -12,7 +12,12 @@ class SellerCategory extends Model implements SellerCategoryContract, HasMedia
 {
     use HasImage;
 
-    protected $fillable = ['name', 'parent_id', 'sort'];
+    protected $fillable = ['name', 'parent_id', 'sort', 'is_active'];
+
+    public function scopeIsActive($query)
+	{
+		return $query->where('is_active', true);
+	}
 
     public function isParent(): bool
     {

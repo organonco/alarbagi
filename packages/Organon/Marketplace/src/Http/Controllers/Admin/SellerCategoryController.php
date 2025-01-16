@@ -49,9 +49,12 @@ class SellerCategoryController extends Controller
             'name' => 'required|max:500',
             'parent_id' => 'required',
 			'sort' => 'required|numeric',
+            'is_active' => 'sometimes|in:1',
         ]);
         $data = $request->all();
         $data['parent_id'] = $data['parent_id'] == 0 ? null : $data['parent_id'];
+        $data['is_active'] = (bool)request()->input('is_active');
+        
         $this->sellerCategoryRepository->createSellerCategory($data);
         return redirect()->route('admin.seller_categories.index');
     }
@@ -70,9 +73,12 @@ class SellerCategoryController extends Controller
             'name' => 'required|max:500',
             'parent_id' => ['required', Rule::notIn([$id])],
 			'sort' => 'required|numeric',
+            'is_active' => 'sometimes|in:1',
         ]);
         
         $data = $request->all();
+        $data['is_active'] = (bool)request()->input('is_active');
+
         $data['parent_id'] = $data['parent_id'] == 0 ? null : $data['parent_id'];
 
         $this->sellerCategoryRepository->updateSellerCategory($model, $data);

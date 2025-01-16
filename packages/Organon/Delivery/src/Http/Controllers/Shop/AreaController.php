@@ -18,7 +18,7 @@ class AreaController extends Controller
     public function view(Request $request, $areaId)
     {
         $area = Area::query()->isActive()->findOrFail($areaId);
-        $categories = SellerCategory::query()->main()->get()->sortBy('sort');
+        $categories = SellerCategory::query()->main()->isActive()->get()->sortBy('sort');
 
         $mobileBanners = Banner::transform(Banner::forArea($area->id)->mobile()->get());
         $desktopBanners = Banner::transform(Banner::forArea($area->id)->desktop()->get());

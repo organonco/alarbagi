@@ -19,7 +19,7 @@ class SellerCategoryController extends Controller
     public function view(Request $request, $areaId, $categoryId)
     {
         /** @var SellerCategory */
-        $sellerCategory = SellerCategory::query()->findOrFail($categoryId);
+        $sellerCategory = SellerCategory::query()->isActive()->findOrFail($categoryId);
         $area = Area::query()->isActive()->findOrFail($areaId);
 
         $sellers = Seller::query()->isActive()->area($area->id)->sellerCategory($categoryId)->get();

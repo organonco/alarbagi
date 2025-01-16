@@ -17,6 +17,9 @@ class SellerCategoryDataGrid extends DataGrid
         $query->addSelect('parents.name as parent_name');
         $query->addSelect('seller_categories.id');
 
+        $this->addFilter('name', 'seller_categories.name');
+        $this->addFilter('parent_name', 'parents.name');
+
         return $query;
     }
 
