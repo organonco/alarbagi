@@ -22,12 +22,12 @@
     </a>
 
     <a class="flex flex-col items-center px-1 border-l sn-border-color-primary"
-        href="{{ route('shop.checkout.cart.index') }}">
+        href="{{ route('shop.customers.account.orders.index') }}">
         <img class="w-6 h-6"
-            src="{{ Route::currentRouteName() == 'shop.checkout.cart.index' ? asset('assets/images/icons/bar/selected/cart.png') : asset('assets/images/icons/bar/cart.png') }}" />
+            src="{{ Route::currentRouteName() == 'shop.customers.account.orders.index' ? asset('assets/images/icons/bar/selected/orders.png') : asset('assets/images/icons/bar/orders.png') }}" />
         <div
-            class="text-center mt-1 {{ Route::currentRouteName() == 'shop.checkout.cart.index' ? 'sn-color-secondary' : 'text-white' }}">
-            العربة
+            class="text-center mt-1 {{ Route::currentRouteName() == 'shop.customers.account.orders.index' ? 'sn-color-secondary' : 'text-white' }}">
+            الطلبات
         </div>
     </a>
 

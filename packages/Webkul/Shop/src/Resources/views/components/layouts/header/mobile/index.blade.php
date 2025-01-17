@@ -1,5 +1,5 @@
 <div class="gap-[10px] flex-wrap p-[10px] hidden max-lg:flex sn-background-light-main">
-    <div class="w-full flex justify-center items-center">
+    <div class="w-full flex justify-between items-center mx-2">
         {{-- Left Navigation --}}
 
         {{-- <div class="flex items-center gap-x-[5px]">
@@ -71,8 +71,11 @@
             <img src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}" alt="Logo"
                 width="160" height="29">
         </a>
-        <div class="flex items-center gap-x-[5px]">
-        </div>
+        <a class="flex flex-col items-center py-2"
+            href="{{ route('shop.checkout.cart.index') }}">
+            <img class="w-6 h-6"
+                src="{{ asset('assets/images/icons/cart-mobile.png') }}" />
+        </a>
     </div>
 
     {{-- Serach Catalog Form --}}
