@@ -36,15 +36,15 @@
 
                     <x-shop::form.control-group class="mb-4">
                         <x-shop::form.control-group.label class="required">
-                            @lang('shop::app.customers.login-form.email')
+                            @lang('shop::app.customers.login-form.phone')
                         </x-shop::form.control-group.label>
 
-                        <x-shop::form.control-group.control type="email" name="email"
-                            class="!p-[20px_25px] rounded-lg" value="" rules="required|email" :label="trans('shop::app.customers.login-form.email')"
-                            placeholder="email@example.com">
+                        <x-shop::form.control-group.control type="text" name="phone"
+                            class="!p-[20px_25px] rounded-lg" value="" rules="required" :label="trans('shop::app.customers.login-form.phone')"
+                            :placeholder="trans('shop::app.customers.login-form.phone')">
                         </x-shop::form.control-group.control>
 
-                        <x-shop::form.control-group.error control-name="email">
+                        <x-shop::form.control-group.error control-name="phone">
                         </x-shop::form.control-group.error>
                     </x-shop::form.control-group>
 
@@ -54,7 +54,7 @@
                         </x-shop::form.control-group.label>
 
                         <x-shop::form.control-group.control type="password" name="password"
-                            class="!p-[20px_25px] rounded-lg" value="" id="password" rules="required|min:6"
+                            class="!p-[20px_25px] rounded-lg" valu e="" id="password" rules="required|min:6"
                             :label="trans('shop::app.customers.login-form.password')" :placeholder="trans('shop::app.customers.login-form.password')">
                         </x-shop::form.control-group.control>
 

@@ -31,7 +31,7 @@ class SessionController extends Controller
      */
     public function create(LoginRequest $loginRequest)
     {
-        if (! auth()->guard('customer')->attempt($loginRequest->only(['email', 'password']), true)) {
+        if (! auth()->guard('customer')->attempt($loginRequest->only(['phone', 'password']), true)) {
             session()->flash('error', trans('shop::app.customers.login-form.invalid-credentials'));
 
             return redirect()->back();
@@ -60,7 +60,7 @@ class SessionController extends Controller
         /**
          * Event passed to prepare cart after login.
          */
-        Event::dispatch('customer.after.login', $loginRequest->get('email'));
+        // Event::dispatch('customer.after.login', $loginRequest->get('email'));
  
         return redirect()->route('shop.home.index');
     }
