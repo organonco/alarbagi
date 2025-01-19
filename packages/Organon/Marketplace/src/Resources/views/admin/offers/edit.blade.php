@@ -23,7 +23,7 @@
                         <x-admin::form.control-group.label>
                             @lang('marketplace::app.admin.offers.create.attributes.title')
                         </x-admin::form.control-group.label>
-                        <x-admin::form.control-group.control type="text" name="title" value="{{$model->title}}">
+                        <x-admin::form.control-group.control type="text" name="title" value="{{ $model->title }}">
                         </x-admin::form.control-group.control>
                         <x-admin::form.control-group.error control-name="title">
                         </x-admin::form.control-group.error>
@@ -33,11 +33,26 @@
                         <x-admin::form.control-group.label>
                             @lang('marketplace::app.admin.offers.create.attributes.post')
                         </x-admin::form.control-group.label>
-                        <x-admin::form.control-group.control type="textarea" name="post" value="{{$model->post}}">
+                        <x-admin::form.control-group.control type="textarea" name="post" value="{{ $model->post }}">
                         </x-admin::form.control-group.control>
                         <x-admin::form.control-group.error control-name="post">
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
+
+                    <x-shop::form.control-group>
+                        <x-shop::form.control-group.label>
+                            @lang('marketplace::app.admin.offers.create.attributes.product_id')
+                        </x-shop::form.control-group.label>
+                        <x-shop::form.control-group.control type="select" name="product_id" class="py-2 mb-2" style="padding-right: 10px"
+                            :label="trans('marketplace::app.admin.offers.create.attributes.product_id')" :placeholder="trans('marketplace::app.admin.offers.create.attributes.product_id')" value="{{ $model->product_id }}">
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id }}">
+                                    {{ $product->name }}</option>
+                            @endforeach
+                        </x-shop::form.control-group.control>
+                        <x-shop::form.control-group.error control-name="product_id">
+                        </x-shop::form.control-group.error>
+                    </x-shop::form.control-group>
 
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label>
@@ -53,7 +68,8 @@
                         <x-admin::form.control-group.label>
                             @lang('marketplace::app.admin.offers.create.attributes.status')
                         </x-admin::form.control-group.label>
-                        <x-admin::form.control-group.control type="switch" name="status" value="1"  :checked="(bool)$model->status">
+                        <x-admin::form.control-group.control type="switch" name="status" value="1"
+                            :checked="(bool) $model->status">
                         </x-admin::form.control-group.control>
                         <x-admin::form.control-group.error control-name="status">
                         </x-admin::form.control-group.error>

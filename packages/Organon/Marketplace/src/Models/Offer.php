@@ -16,7 +16,7 @@ class Offer extends Model implements OfferContract, HasMedia
     use InteractsWithMedia, RelatedToSellerTrait;
 
     protected $fillable = [
-        'title', 'post', 'status', 'image_url', 'seller_id', 'seller_status'
+        'title', 'post', 'status', 'image_url', 'seller_id', 'seller_status', 'product_id'
     ];
     
 
@@ -63,6 +63,11 @@ class Offer extends Model implements OfferContract, HasMedia
     public function scopeIsNotExpired($query)
     {
         return $query->where('created_at', '>=', Carbon::now()->subDays(config('shop.offer_timeout'))->toDateTimeString());
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
     
 }

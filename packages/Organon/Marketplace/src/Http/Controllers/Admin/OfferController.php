@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Organon\Marketplace\DataGrids\OfferDataGrid;
 use Organon\Marketplace\Models\Offer;
+use Organon\Marketplace\Models\Product;
 use Organon\Marketplace\Repositories\OfferRepository;
 use Organon\Marketplace\Traits\InteractsWithAuthenticatedAdmin;
 
@@ -14,9 +15,7 @@ class OfferController extends Controller
 
     use InteractsWithAuthenticatedAdmin;
 
-    public function __construct(private OfferRepository $offerRepository)
-    {
-    }
+    public function __construct(private OfferRepository $offerRepository) {}
     /**
      * @param Request $request
      * @return mixed
@@ -33,7 +32,11 @@ class OfferController extends Controller
      */
     public function create()
     {
-        return view('marketplace::admin.offers.create');
+        $productsQuery = Product::query();
+        if ($this->getAuthenticatedAdmin()->isSeller())
+            $productsQuery = $productsQuery->where('seller_id', $this->getAuthenticatedSeller()->id);
+
+        return view('marketplace::admin.offers.create', ['products' => $productsQuery->get()]);
     }
 
     /**
@@ -61,7 +64,12 @@ class OfferController extends Controller
     public function edit($id)
     {
         $model = Offer::query()->forSeller($this->getAuthenticatedAdmin()->getSellerId())->findOrFail($id);
-        return view('marketplace::admin.offers.edit', ['model' => $model]);
+
+        $productsQuery = Product::query();
+        if ($this->getAuthenticatedAdmin()->isSeller())
+            $productsQuery = $productsQuery->where('seller_id', $this->getAuthenticatedSeller()->id);
+
+        return view('marketplace::admin.offers.edit', ['model' => $model, 'products' => $productsQuery->get()]);
     }
 
     public function update(Request $request, $id)
@@ -73,6 +81,7 @@ class OfferController extends Controller
             'post' => 'required_without_all:title,image',
             'image' => 'required_without_all:post,title',
             'status' => 'sometimes|in:1',
+            'product_id' => 'exists:products,id'
         ]);
 
         $data = request()->all();

@@ -280,7 +280,8 @@ return [
 					'title' => 'العنوان',
 					'post' => 'النص',
 					'image' => 'الصورة',
-					'status' => 'الحالة'
+					'status' => 'الحالة',
+					'product_id' => 'المنتج',
 				]
 			],
 			'edit' => [
@@ -289,7 +290,8 @@ return [
 					'title' => 'العنوان',
 					'post' => 'النص',
 					'image' => 'الصورة',
-					'status' => 'الحالة'
+					'status' => 'الحالة',
+					'product_id' => 'المنتج',
 				]
 			],
 			'preview' => [

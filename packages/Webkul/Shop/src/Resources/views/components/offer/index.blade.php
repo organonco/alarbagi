@@ -1,5 +1,5 @@
-@props(['title', 'post', 'image', 'seller'])
-<a href="{{ route('shop.marketplace.show', $seller->slug) }}"
+@props(['title', 'post', 'image', 'seller', 'product'])
+<a href="{{ is_null($product) ? route('shop.marketplace.show', $seller->slug) : route('shop.product_or_category.index', $product) }}"
     class="flex flex-col max-w-[360px] sn-background-light-green p-4 rounded-lg">
     <div class="text-2xl font-medium first-line:sn-color-primary sn-background-secondary w-fit px-4 py-2 mb-4 rounded-lg" style="color: white" >
         {{ $seller['name'] }}
