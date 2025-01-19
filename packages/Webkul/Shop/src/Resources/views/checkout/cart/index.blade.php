@@ -304,6 +304,7 @@
 
                     updateAllSelected() {
                         this.allSelected = this.cart.items.every(item => item.selected);
+                        this.$emitter.emit('update-mini-cart', this.cart);
                     },
 
                     update() {
@@ -360,6 +361,7 @@
                                         this.cart = response.data.data;
 
                                         this.$emitter.emit('update-mini-cart', response.data.data);
+                                        console.log(response.data.data)
 
                                         this.$emitter.emit('add-flash', {
                                             type: 'success',

@@ -126,6 +126,8 @@ class CartController extends APIController
         foreach (request()->input('ids') as $id) {
             Cart::removeItem($id);
         }
+        
+        Cart::collectTotals();
 
         return new JsonResource([
             'data'     => new CartResource(Cart::getCart()) ?? null,

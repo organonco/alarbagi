@@ -1,8 +1,9 @@
 {{-- Mini Cart Vue Component --}}
 <v-mini-cart>
-    <div style="display: flex; gap: 8px; align-items: center; border-right: 2px solid #153939; padding-right: 10px" class="cursor-pointer">
+    <div style="display: flex; gap: 8px; align-items: center; border-right: 2px solid #153939; padding-right: 10px"
+        class="cursor-pointer">
         <span class="sn-color-primary text-[16px]">@lang('shop::app.components.layouts.header.cart')</span>
-        <img src="{{asset('assets/images/icons/cart.png')}}" style="width: 30px">
+        <img src="{{ asset('assets/images/icons/cart.png') }}" style="width: 30px">
     </div>
 </v-mini-cart>
 
@@ -11,9 +12,10 @@
         <x-shop::drawer>
             <!-- Drawer Toggler -->
             <x-slot:toggle>
-                <div style="display: flex; gap: 8px; align-items: center; border-right: 2px solid #153939; padding-right: 10px" class="cursor-pointer">
+                <div style="display: flex; gap: 8px; align-items: center; border-right: 2px solid #153939; padding-right: 10px" class="cursor-pointer badge_button">
                     <span class="sn-color-primary text-[16px]">@lang('shop::app.components.layouts.header.cart')</span>
                     <img src="{{asset('assets/images/icons/cart.png')}}" style="width: 30px">
+                    <span v-if="this.cart" class="badge"></span>
                 </div>
             </x-slot:toggle>
 
@@ -187,12 +189,6 @@
 
             mounted() {
                 this.getCart();
-
-                /**
-                 * To Do: Implement this.
-                 *
-                 * Action.
-                 */
                 this.$emitter.on('update-mini-cart', (cart) => {
                     this.cart = cart;
                 });
