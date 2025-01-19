@@ -22,6 +22,10 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
             Route::get('', 'create')->name('shop.customers.forgot_password.create');
 
             Route::post('', 'store')->name('shop.customers.forgot_password.store');
+
+            Route::get('reset/{uuid}', 'verify')->name('shop.customers.forgot_password.verify');
+            Route::post('reset/{uuid}', 'reset')->name('shop.customers.forgot_password.reset');
+
         });
 
         /**

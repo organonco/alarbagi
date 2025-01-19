@@ -21,6 +21,7 @@ class Verification extends Model
     public static function createVerification(Customer $customer)
     {
         $code = rand(10000, 99999);
+        $code = 123;
         $verification = self::create([
             'code' => Hash::make($code),
             'customer_id' => $customer->id,

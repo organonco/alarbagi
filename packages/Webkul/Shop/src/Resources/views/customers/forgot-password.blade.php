@@ -24,33 +24,22 @@
                 @lang('shop::app.customers.forgot-password.forgot-password-text')
             </p>
 
-            {!! view_render_event('bagisto.shop.customers.forget_password.before') !!}
-
             <div class="mt-[60px] rounded max-sm:mt-[30px]">
                 <x-shop::form :action="route('shop.customers.forgot_password.store')">
-                    {!! view_render_event('bagisto.shop.customers.forget_password_form_controls.before') !!}
 
                     <x-shop::form.control-group class="mb-4">
                         <x-shop::form.control-group.label class="required">
-                            @lang('shop::app.customers.login-form.email')
+                            @lang('shop::app.customers.login-form.phone')
                         </x-shop::form.control-group.label>
 
-                        <x-shop::form.control-group.control type="email" name="email"
-                            class="!p-[20px_25px] rounded-lg" value="" rules="required|email" :label="trans('shop::app.customers.login-form.email')"
-                            placeholder="email@example.com">
+                        <x-shop::form.control-group.control type="text" name="phone"
+                            class="!p-[20px_25px] rounded-lg" value="" rules="required" :label="trans('shop::app.customers.login-form.phone')"
+                            :placeholder="trans('shop::app.customers.login-form.phone')">
                         </x-shop::form.control-group.control>
 
-                        <x-shop::form.control-group.error control-name="email">
+                        <x-shop::form.control-group.error control-name="phone">
                         </x-shop::form.control-group.error>
                     </x-shop::form.control-group>
-
-                    {!! view_render_event('bagisto.shop.customers.forget_password_form_controls.email.after') !!}
-
-                    <div>
-
-                        {!! Captcha::render() !!}
-
-                    </div>
 
                     <div class="flex gap-[36px] flex-wrap mt-[30px] items-center">
                         <button class="sn-button-primary" type="submit">
@@ -65,8 +54,6 @@
                             @lang('shop::app.customers.forgot-password.sign-in-button')
                         </a>
                     </p>
-
-                    {!! view_render_event('bagisto.shop.customers.forget_password.after') !!}
 
                 </x-shop::form>
             </div>
