@@ -26,6 +26,21 @@ class Wadili extends AbstractShipping
         return $shippingAddress->area ? $shippingAddress->area->is_external : false;
     }
 
+
+	private static function hasValue($value)
+    {
+        return !is_null($value) && !$value == "";
+    }
+
+    private static function addressIsvalid($address)
+    {
+        $values = [$address->lat, $address->lng, $address->street, $address->building, $address->floor, $address->area_id, $address->address_details];
+        foreach($values as $value)
+            if(!self::hasValue($value))
+                return false;
+        return true;
+    }
+
     public function getCartShippingRateObject(): CartShippingRate
     {
         $object = new CartShippingRate;
@@ -39,7 +54,12 @@ class Wadili extends AbstractShipping
 
         $cart = Cart::getCart();
 
-        if ($cart->items->groupBy('product.seller_id')->count() > 1) {
+        $shippingAddress = $cart->shipping_address;
+
+        if (!self::addressIsvalid($shippingAddress)){
+            $object->method_description = trans('shipping-company::app.messages.address-or-area-not-found');
+            $object->is_available = false;
+        } elseif ($cart->items->groupBy('product.seller_id')->count() > 1) {
             $object->method_description = trans('shipping-company::app.messages.more-than-one-seller');
             $object->is_available = false;
         } else {
