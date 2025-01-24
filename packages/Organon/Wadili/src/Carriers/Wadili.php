@@ -27,16 +27,16 @@ class Wadili extends AbstractShipping
     }
 
 
-	private static function hasValue($value)
+    private static function hasValue($value)
     {
-        return !is_null($value) && !$value == "";
+        return !is_null($value) && !($value == "");
     }
 
     private static function addressIsvalid($address)
     {
         $values = [$address->lat, $address->lng, $address->street, $address->building, $address->floor, $address->area_id, $address->address_details];
-        foreach($values as $value)
-            if(!self::hasValue($value))
+        foreach ($values as $value)
+            if (!self::hasValue($value))
                 return false;
         return true;
     }
@@ -56,40 +56,23 @@ class Wadili extends AbstractShipping
 
         $shippingAddress = $cart->shipping_address;
 
-        if (!self::addressIsvalid($shippingAddress)){
+        if (!self::addressIsvalid($shippingAddress)) {
             $object->method_description = trans('shipping-company::app.messages.address-or-area-not-found');
             $object->is_available = false;
         } elseif ($cart->items->groupBy('product.seller_id')->count() > 1) {
             $object->method_description = trans('shipping-company::app.messages.more-than-one-seller');
             $object->is_available = false;
         } else {
+
             $object->method_description = $this->getConfigData('description');
             $object->is_available = true;
             $wadiliOrder = Order::fromCart($cart);
 
-            $wadiliOrderModel = WadiliOrder::findForCart($cart->id, $cart->sub_total);
+            $wadiliOrderModel = WadiliOrder::findForCart($cart->id, WadiliOrder::createCartHashFromCart($cart));
 
             if ($wadiliOrderModel == null) {
-                $response = Http::withHeaders([
-                    'Authorization-Key' => config('wadili.key'),
-                    'x-access-token' => config('wadili.token'),
-                    'Content-Type' => 'application/json',
-                    'Accept' => "*/*",
-                    'Accept-Encoding' => "gzip, deflate, br",
-                    'Accept-Language' => "*"
-                ])->post('https://api.wadilydelivery.com/wadily/order/arbagi', $wadiliOrder->toArray());
-                $response = json_decode($response->body());
-                $wadiliOrderModel = WadiliOrder::create([
-                    'success' => $response->success,
-                    'message' => $response->message->ar,
-                    'number' => $response->number,
-                    'service_fees' => $response->totalServiceFees,
-                    'distance' => $response->tripDistanceKm,
-                    'wadili_order_id' => $response->orderId,
-                    'payment_method' => $response->paymentMethod,
-                    'cart_id' => $cart->id,
-                    'total' => $cart->sub_total
-                ]);
+                $response = self::callCreateOrderAPI($wadiliOrder);
+                $wadiliOrderModel = WadiliOrder::createFromWadiliResponse($response, $cart);
             }
 
             $object->price = $wadiliOrderModel->service_fees;
@@ -110,6 +93,19 @@ class Wadili extends AbstractShipping
         return $this->getCartShippingRateObject();
     }
 
+    public static function callCreateOrderAPI(Order $order)
+    {
+        $response = Http::withHeaders([
+            'Authorization-Key' => config('wadili.key'),
+            'x-access-token' => config('wadili.token'),
+            'Content-Type' => 'application/json',
+            'Accept' => "*/*",
+            'Accept-Encoding' => "gzip, deflate, br",
+            'Accept-Language' => "*"
+        ])->post('https://api.wadilydelivery.com/wadily/order/arbagi', $order->toArray());
+        return json_decode($response->body());
+    }
+
     public static function confirmOrder(WadiliOrder $order)
     {
         $orderId = $order->wadili_order_id;
@@ -126,9 +122,9 @@ class Wadili extends AbstractShipping
             'orderId' => $orderId
         ]);
 
-        if($response->successful())
+        if ($response->successful())
             $order->update(['status' => WadiliOrderStatus::UNREAD]);
-        
+
         return $response;
     }
 }

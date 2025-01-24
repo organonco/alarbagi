@@ -119,13 +119,22 @@ class OrderRepository extends Repository
                     ];
                 });
 
-            $this->sellerOrderRepository->createMany($order, $suborders);
+            $sellerOrders = $this->sellerOrderRepository->createMany($order, $suborders);
             if($data['shipping_method'] == 'wadili_wadili'){
-                $wadiliOrder = WadiliOrder::findForCart($data['cart_id'], $data['sub_total']);
+                
+                $wadiliOrder = WadiliOrder::findForCart($data['cart_id'], WadiliOrder::createCartHash(
+                    $sellerOrders[0]->seller->lat,
+                    $sellerOrders[0]->seller->lng,
+                    $data['shipping_address']['lat'],
+                    $data['shipping_address']['lng'],
+                    $data['sub_total'],
+                ));
+
                 $wadiliOrder->update(['order_id' => $order->id]);
             }
 
         } catch (\Exception $e) {
+            dd($e);
             DB::rollBack();
             Log::error(
                 'OrderRepository:createOrderIfNotThenRetry: ' . $e->getMessage(),
