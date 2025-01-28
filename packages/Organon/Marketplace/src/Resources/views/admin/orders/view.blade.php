@@ -116,6 +116,9 @@
                                                 @lang('admin::app.sales.orders.view.sku', ['sku' => $item->sku])
                                             </p>
 
+                                            <p class="text-gray-600 dark:text-gray-300">
+                                                @lang('admin::app.sales.orders.view.note'): {{ $item->note }}
+                                            </p>
 
                                         </div>
                                     </div>
@@ -260,7 +263,7 @@
                             </p>
                         </div>
                         <p class="text-gray-600 dark:text-gray-300">
-                            {{ $order->note?? "لا يوجد" }}
+                            {{ $order->note ?? 'لا يوجد' }}
                         </p>
 
 

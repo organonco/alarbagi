@@ -213,8 +213,16 @@
                                 @include('shop::products.view.types.downloadable')
 
 
+                                <div class="mt-[20px]">
+                                    <textarea 
+                                        placeholder="أضف ملاحظة مع الطلب!" 
+                                        name="note"
+                                        class="w-full pt-4 pb-4 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
+                                    />
+                                </div>
+        
                                 <!-- Product Actions and Qunatity Box -->
-                                <div class="flex gap-[15px] max-w-[470px] mt-[30px]">
+                                <div class="flex gap-[15px] max-w-[470px] mt-[20px]">
 
                                     {!! view_render_event('bagisto.shop.products.view.quantity.before', ['product' => $product]) !!}
 

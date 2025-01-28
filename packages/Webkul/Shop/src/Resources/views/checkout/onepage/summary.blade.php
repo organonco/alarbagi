@@ -110,7 +110,7 @@
 					
 						<div class="">
 							<textarea 
-								placeholder="أضف ملاحظة مع الطلب!" 
+								placeholder="أضف ملاحظة لكابتن التوصيل!" 
 								v-model="note"
 								class="w-full pt-4 pb-4 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
 							/>

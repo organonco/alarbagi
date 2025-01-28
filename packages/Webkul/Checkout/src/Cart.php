@@ -882,6 +882,7 @@ class Cart
             'discount_amount'      => $data['discount_amount'],
             'base_discount_amount' => $data['base_discount_amount'],
             'additional'           => array_merge($data['additional'] ?? [], ['locale' => core()->getCurrentLocale()->code]),
+            'note'                 => $data['note']
         ];
 
         if (!empty($data['children'])) {
