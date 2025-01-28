@@ -47,7 +47,8 @@ class Seller extends Model implements SellerContract, HasMedia
         'lng', 
         'building',
         'floor',
-        'street'
+        'street',
+        'is_online'
     ];
 
     public function admin()

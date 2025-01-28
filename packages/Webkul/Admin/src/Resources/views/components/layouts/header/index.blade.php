@@ -35,20 +35,22 @@
             <x-admin::form method="DELETE" action="{{ route('admin.session.destroy') }}" id="adminLogout">
             </x-admin::form>
 
-            <a class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
-                href="{{ route('admin.session.destroy') }}"
-                onclick="event.preventDefault(); document.getElementById('adminLogout').submit();">
-                @lang('admin::app.components.layouts.header.logout')
-            </a>
+            @if (bouncer()->hasPermission('marketplace'))
+                <a
+                    class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer">
+                    <x-admin::form method="PUT" action="{{ route('admin.account.settings.update-online-status') }}"
+                        id="onlineStatusUpdate">
 
-            
-            {{-- Dark mode Switcher --}}
-            <v-dark>
-                <div class="flex">
-                    <span
-                        class="{{ request()->cookie('dark_mode') ? 'icon-light' : 'icon-dark' }} p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950"></span>
-                </div>
-            </v-dark>
+                        <x-admin::form.control-group.label>{{ $admin->seller->is_online ? 'أونلاين' : 'أوفلاين' }}</x-admin::form.control-group.label>
+                        <x-admin::form.control-group>
+                            <x-admin::form.control-group.control type="switch" name="is_online" value="1"
+                                :checked="$admin->seller->is_online ? true : false"
+                                onchange="event.preventDefault(); document.getElementById('onlineStatusUpdate').submit();">
+                            </x-admin::form.control-group.control>
+                        </x-admin::form.control-group>
+                    </x-admin::form>
+                </a>
+            @endif
 
             {{-- Notification Component --}}
             <v-notifications {{ $attributes }}>
@@ -60,40 +62,42 @@
                 </span>
             </v-notifications>
 
+            @if (!bouncer()->hasPermission('marketplace'))
+                {{-- Admin profile --}}
+                <x-admin::dropdown
+                    position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
+                    <x-slot:toggle>
+                        @if ($admin->image_url)
+                            <button
+                                class="flex w-[36px] h-[36px] overflow-hidden rounded-full cursor-pointer hover:opacity-80 focus:opacity-80">
+                                <img src="{{ $admin->image_url }}" class="w-full" style="height: 100%" />
+                            </button>
+                        @else
+                            <button
+                                class="flex justify-center items-center w-[36px] h-[36px] bg-blue-400 rounded-full text-[14px] text-white font-semibold cursor-pointer leading-6 transition-all hover:bg-blue-500 focus:bg-blue-500">
+                                {{ substr($admin->name, 0, 1) }}
+                            </button>
+                        @endif
+                    </x-slot:toggle>
 
+                    {{-- Admin Dropdown --}}
+                    <x-slot:content class="!p-[0px]">
 
-            {{-- Admin profile --}}
-            <x-admin::dropdown
-                position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
-                <x-slot:toggle>
-                    @if ($admin->image_url)
-                        <button
-                            class="flex w-[36px] h-[36px] overflow-hidden rounded-full cursor-pointer hover:opacity-80 focus:opacity-80">
-                            <img src="{{ $admin->image_url }}" class="w-full" style="height: 100%" />
-                        </button>
-                    @else
-                        <button
-                            class="flex justify-center items-center w-[36px] h-[36px] bg-blue-400 rounded-full text-[14px] text-white font-semibold cursor-pointer leading-6 transition-all hover:bg-blue-500 focus:bg-blue-500">
-                            {{ substr($admin->name, 0, 1) }}
-                        </button>
-                    @endif
-                </x-slot:toggle>
-
-                {{-- Admin Dropdown --}}
-                <x-slot:content class="!p-[0px]">
-
-                    <div class="grid gap-[4px] pb-[10px]">
-                        @if (!bouncer()->hasPermission('marketplace'))
+                        <div class="grid gap-[4px] pb-[10px]">
                             <a class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
                                 href="{{ route('admin.account.edit') }}">
                                 @lang('admin::app.components.layouts.header.my-account')
                             </a>
-                        @endif
-                        {{-- Admin logout --}}
+                        </div>
+                    </x-slot:content>
+                </x-admin::dropdown>
+            @endif
 
-                    </div>
-                </x-slot:content>
-            </x-admin::dropdown>
+            <a class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer"
+                href="{{ route('admin.session.destroy') }}"
+                onclick="event.preventDefault(); document.getElementById('adminLogout').submit();">
+                @lang('admin::app.components.layouts.header.logout')
+            </a>
         </div>
     </div>
 </header>
@@ -613,67 +617,6 @@
                             });
                         })
                         .catch((error) => {});
-                },
-            },
-        });
-    </script>
-
-    <script type="text/x-template" id="v-dark-template">
-        <div class="flex">
-            <span
-                    class="p-[6px] rounded-[6px] text-[24px] cursor-pointer transition-all hover:bg-gray-100 dark:hover:bg-gray-950"
-                    :class="[isDarkMode ? 'icon-light' : 'icon-dark']"
-                    @click="toggle"
-            ></span>
-        </div>
-    </script>
-
-    <script type="module">
-        app.component('v-dark', {
-            template: '#v-dark-template',
-
-            data() {
-                return {
-                    isDarkMode: {{ request()->cookie('dark_mode') ?? 0 }},
-
-                    logo: "{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}",
-
-                    dark_logo: "{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}",
-                };
-            },
-
-            methods: {
-                toggle() {
-                    this.isDarkMode = parseInt(this.isDarkModeCookie()) ? 0 : 1;
-
-                    var expiryDate = new Date();
-
-                    expiryDate.setMonth(expiryDate.getMonth() + 1);
-
-                    document.cookie = 'dark_mode=' + this.isDarkMode + '; path=/; expires=' + expiryDate
-                        .toGMTString();
-
-                    document.documentElement.classList.toggle('dark', this.isDarkMode === 1);
-
-                    if (this.isDarkMode) {
-                        document.getElementById('logo-image').src = this.dark_logo;
-                    } else {
-                        document.getElementById('logo-image').src = this.logo;
-                    }
-                },
-
-                isDarkModeCookie() {
-                    const cookies = document.cookie.split(';');
-
-                    for (const cookie of cookies) {
-                        const [name, value] = cookie.trim().split('=');
-
-                        if (name === 'dark_mode') {
-                            return value;
-                        }
-                    }
-
-                    return 0;
                 },
             },
         });

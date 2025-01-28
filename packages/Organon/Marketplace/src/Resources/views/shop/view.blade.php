@@ -30,15 +30,23 @@
 							<h2 class="mt-[10px] mb-[10px] sn-color-primary sn-heading-1 max-lg:mb-[0px] max-lg:mt-8 text-center">
 								{{$seller->name}}
 							</h2>
-							<div class="sn-heading-3 sn-color-primary mb-[30px] text-center">
+							<div class="sn-heading-3 sn-color-primary text-center">
 								@if(!is_null($seller->sellerCategory->parent_id))
 									{{$seller->sellerCategory->parent->name}}
 									-
 								@endif
-								<a class="sn-heading-3 sn-color-primary mb-[30px] text-center" href="{{ route('seller-category.view', ['areaId' => $seller->area->id, 'sellerCategoryId' => $seller->sellerCategory->id]) }}" >
+								<a class="sn-heading-3 sn-color-primary text-center" href="{{ route('seller-category.view', ['areaId' => $seller->area->id, 'sellerCategoryId' => $seller->sellerCategory->id]) }}" >
 									{{$seller->sellerCategory->name}}
 								</a>
 							</div>
+                            <div class="text-center mb-[30px]">
+                                {{
+                                    $seller->is_online 
+                                    ? 'متصل' :
+                                     'غير متصل'
+                                }}
+                            </div>
+
                             <div style="background-color: #C7DDD8; padding: 10px 20px; margin: 0 -20px 10px -20px">
                                 <table>
                                     <tr>

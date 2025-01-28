@@ -98,4 +98,11 @@ class SellerAccountController extends Controller
             $seller->setStatus(SellerStatusEnum::PAUSED);
         return redirect(route('admin.account.settings.view'));
     }
+
+    public function updateOnlineStatus(Request $request)
+    {
+        $seller = $this->getAuthenticatedSeller();
+        $seller->update(['is_online' => $request->is_online]);
+        return redirect()->back();
+    }
 }

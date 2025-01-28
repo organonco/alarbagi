@@ -188,6 +188,9 @@
 
                                 {!! view_render_event('bagisto.shop.products.price.after', ['product' => $product]) !!}
 
+                                {{!$product->seller->is_online ? "هذا التاجر غير متصل الآن" : ""}}
+
+
                                 {!! view_render_event('bagisto.shop.products.short_description.before', ['product' => $product]) !!}
 
                                 <p class="mt-[25px] sn-text-body sn-color-black">
@@ -201,6 +204,7 @@
                                     </div> 
                                     @endforeach
                                 </div>
+
 
                                 {!! view_render_event('bagisto.shop.products.short_description.after', ['product' => $product]) !!}
 
@@ -289,7 +293,7 @@
 
                         is_buy_now: 0,
 
-                        selectedVariantId: "{{$product->has_variants ? $product->variants[0]->id : null}}",
+                        selectedVariantId: "{{ $product->has_variants ? $product->variants[0]->id : null }}",
                     }
                 },
 
