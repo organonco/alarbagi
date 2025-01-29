@@ -13,7 +13,7 @@ import { createApp } from "vue/dist/vue.esm-bundler";
  * all the `vee-validate` settings.
  */
 import { configure, defineRule, Field, Form, ErrorMessage } from "vee-validate";
-import {localize, setLocale} from "@vee-validate/i18n";
+import { localize, setLocale } from "@vee-validate/i18n";
 
 import ar from "@vee-validate/i18n/dist/locale/ar.json";
 
@@ -48,8 +48,8 @@ defineRule("phone", (value) => {
 });
 
 defineRule("strong_password", (value) => {
-	var strongRegex = new RegExp("^(?=.*[A-z])(?=.*[0-9])(?=.{8,})");
-	return strongRegex.test(value);
+    var strongRegex = new RegExp("^(?=.*[A-z])(?=.*[0-9])(?=.{8,})");
+    return strongRegex.test(value);
 });
 
 
@@ -64,7 +64,7 @@ configure({
             messages: {
                 ...ar.messages,
                 phone: "{field} يجب أن يكون رقم هاتف صحيح",
-				strong_password: "يجب أن تحتوي كلمة المرور على أحرف وأرقام"
+                strong_password: "يجب أن تحتوي كلمة المرور على أحرف وأرقام"
             },
         },
     }),
@@ -88,8 +88,8 @@ window.app = createApp({
     mounted() {
         var lazyImages = [].slice.call(document.querySelectorAll('img.lazy'));
 
-        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(function(entry) {
+        let lazyImageObserver = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
                     let lazyImage = entry.target;
 
@@ -102,15 +102,15 @@ window.app = createApp({
             });
         });
 
-        lazyImages.forEach(function(lazyImage) {
+        lazyImages.forEach(function (lazyImage) {
             lazyImageObserver.observe(lazyImage);
         });
     },
 
     methods: {
-        onSubmit() {},
+        onSubmit() { },
 
-        onInvalidSubmit() {},
+        onInvalidSubmit() { },
     },
 });
 
@@ -134,9 +134,9 @@ app.component("VForm", Form);
 app.component("VField", Field);
 app.component("VErrorMessage", ErrorMessage);
 
-import {Loader} from 'google-maps';
+import { Loader } from 'google-maps';
 
-const options = {libraries: ['places'], language: "ar"};
+const options = { libraries: ['places'], language: "ar" };
 const loader = new Loader('AIzaSyA2mtyhq14pKHoTX0JMCqyTd1oxVrnr3fE', options);
 
 window.loader = loader;
@@ -155,12 +155,13 @@ window.addEventListener("load", function (event) {
 
 import PullToRefresh from 'pulltorefreshjs';
 
-const ptr = PullToRefresh.init({
-	mainElement: '#app',
-	onRefresh() {
-	  window.location.reload();
-	},
-	instructionsPullToRefresh: "اسحب للتحديث",
-	instructionsReleaseToRefresh: "أفلت للتحديث",
-	instructionsRefreshing: "يتم تحديث المعلومات"
-  });
+if (!window.location.href.includes("checkout/onepage") && !window.location.href.includes("customer/account/addresses"))
+    PullToRefresh.init({
+        mainElement: '#app',
+        onRefresh() {
+            window.location.reload();
+        },
+        instructionsPullToRefresh: "اسحب للتحديث",
+        instructionsReleaseToRefresh: "أفلت للتحديث",
+        instructionsRefreshing: "يتم تحديث المعلومات"
+    });
