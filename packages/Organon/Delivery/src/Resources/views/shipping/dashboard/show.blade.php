@@ -1,57 +1,36 @@
 <x-delivery::layouts.shipping>
-    @if ((int) $order->shipping_amount == 0)
+    @if ($order->status == 'approved' || $order->status == 'partially-approved')
+        <form method="POST" action="{{ route('shipping.orders.mark-as-shipping', $order->id) }}">
+            @csrf
+            @method('PUT')
+            <button class="button-primary sn-heading-3"> تغيير حالة الطلب لـ "يتم التوصيل"</button>
+        </form>
         <div class="card">
             <div class="header">
-                تحديد رسوم التوصيل
+                إبلاغ سائق
             </div>
             <hr />
             <div class="description">
             </div>
             <div class="content">
-                <form method="POST" action="{{ route('shipping.orders.update-shipping', $order->id) }}">
-                    @csrf
-                    @method('PUT')
-                    <div class="input flex gap-4 items-center content-center justify-center">
-                        <input type="text" name="price" placeholder="رسوم التوصيل" />
-                        <button type="submit" class="button-primary sn-heading-3">حفظ</button>
-                    </div>
-                </form>
+                <div class="input flex gap-4 items-center content-center justify-center">
+                    <select id="select">
+                        @foreach ($drivers as $driver)
+                            <option value="{{ $driver->phone }}">{{ $driver->name }}</option>
+                        @endforeach
+                    </select>
+                    <button id="send" class="button-primary sn-heading-3">إبلاغ</button>
+                </div>
             </div>
         </div>
-    @else
-        @if ($order->status == 'approved' || $order->status == 'partially-approved')
-            <form method="POST" action="{{ route('shipping.orders.mark-as-shipping', $order->id) }}">
-                @csrf
-                @method('PUT')
-                <button class="button-primary sn-heading-3"> تغيير حالة الطلب لـ "يتم التوصيل"</button>
-            </form>
-			<div class="card">
-				<div class="header">
-					إبلاغ سائق
-				</div>
-				<hr />
-				<div class="description">
-				</div>
-				<div class="content">
-					<div class="input flex gap-4 items-center content-center justify-center">
-						<select id="select">
-							@foreach ($drivers as $driver)
-								<option value="{{ $driver->phone }}">{{ $driver->name }}</option>
-							@endforeach
-						</select>
-						<button id="send" class="button-primary sn-heading-3">إبلاغ</button>
-					</div>
-				</div>
-			</div>
-        @endif
+    @endif
 
-        @if ($order->status == 'shipping')
-            <form method="POST" action="{{ route('shipping.orders.mark-as-complete', $order->id) }}">
-                @csrf
-                @method('PUT')
-                <button class="button-primary sn-heading-3"> تغيير حالة الطلب لـ "مكتمل" (تم التوصيل)</button>
-            </form>
-        @endif
+    @if ($order->status == 'shipping')
+        <form method="POST" action="{{ route('shipping.orders.mark-as-complete', $order->id) }}">
+            @csrf
+            @method('PUT')
+            <button class="button-primary sn-heading-3"> تغيير حالة الطلب لـ "مكتمل" (تم التوصيل)</button>
+        </form>
     @endif
 
     <div class="card">
@@ -73,9 +52,12 @@
                                         <td class="sn-heading-3" colspan="4">
                                             {{ $sellerOrder->seller->name }} -
                                             {{ $sellerOrder->seller->area->name }} -
-                                            {{ $sellerOrder->seller->address }} -
-                                            <a
-                                                href="tel:{{ $sellerOrder->seller->phone }}">{{ $sellerOrder->seller->phone }}</a>
+                                            شارع {{ $sellerOrder->seller->street }} -
+                                            طابق {{ $sellerOrder->seller->floor }} -
+                                            بناء {{ $sellerOrder->seller->building }} -
+                                            <a class="sn-heading-3 underline"
+                                                href="tel:{{ $sellerOrder->seller->phone }}">{{ $sellerOrder->seller->phone }}</a> <br/>
+                                            <a href="{{"https://maps.google.com/?q=" . $sellerOrder->seller->lat . ',' . $sellerOrder->seller->lng}}" class="sn-heading-3 underline" target="_blank"> فتح العنوان على الخريطة </a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -121,14 +103,24 @@
         <hr />
         <div class="content">
             <div class="sn-heading-3">
-                {{ $order->shipping_address->name }}
+                اسم المستلم: {{ $order->shipping_address->name }}
             </div>
             <div class="sn-heading-3">
-                {{ $order->shipping_address->phone }}
+                رقم الهاتف: {{ $order->shipping_address->phone }}
             </div>
             <div class="sn-heading-3">
-                {{ $order->shipping_address->area->name }} - {{ $order->shipping_address->address_details }}
+                شارع: {{ $order->shipping_address->street }}
             </div>
+            <div class="sn-heading-3">
+                بناء: {{ $order->shipping_address->building }}
+            </div>
+            <div class="sn-heading-3">
+                طابق: {{ $order->shipping_address->floor }}
+            </div>
+            <div class="sn-heading-3">
+                تفاصيل العنوان: {{ $order->shipping_address->area->name }} - {{ $order->shipping_address->address_details }}
+            </div>
+            <a href="{{"https://maps.google.com/?q=" . $order->shipping_address->lat . ',' . $order->shipping_address->lng}}" class="sn-heading-3 underline" target="_blank"> فتح العنوان على الخريطة </a>
         </div>
     </div>
 
@@ -181,7 +173,7 @@
                         <td class="sn-heading-3" colspan="3">أجور التوصيل</td>
                         <td class="sn-heading-3">
                             @if ((int) $order->shipping_amount > 0)
-                                {{ (int) $order->shipping_amount }} ل.س
+                                {{ (int) $order->shipping_invoiced }} ل.س
                             @else
                                 غير محددة
                             @endif
@@ -191,7 +183,8 @@
 
                     <tr>
                         <td class="sn-heading-3" colspan="3">المجموع الكلي</td>
-                        <td class="sn-heading-3">{{ (int) $order->deliverable_total + $order->shipping_amount }} ل.س</td>
+                        <td class="sn-heading-3">{{ (int) $order->deliverable_total + $order->shipping_invoiced }} ل.س
+                        </td>
                     </tr>
 
 

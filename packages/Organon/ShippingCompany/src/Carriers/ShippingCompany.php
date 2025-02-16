@@ -4,7 +4,9 @@ namespace Organon\ShippingCompany\Carriers;
 
 use Config;
 use Illuminate\Support\Facades\Http;
+use Organon\Marketplace\Models\Order;
 use Webkul\Checkout\Facades\Cart;
+use Webkul\Checkout\Models\Cart as ModelsCart;
 use Webkul\Shipping\Carriers\AbstractShipping;
 use Webkul\Checkout\Models\CartShippingRate;
 
@@ -84,15 +86,15 @@ class ShippingCompany extends AbstractShipping
 	}
 
 
-	private function getShippingPrice(): int
+	public static function getShippingPrice($order): int
 	{
-		$cart = Cart::getCart();
-		$kmPrice = $cart->shipping_address->area->shippingCompany->km_price;
+		$kmPrice = $order->shipping_address->area->shippingCompany->km_price;
 		$sellers = collect([]);
 
-		foreach ($cart->items as $item)
+		foreach ($order->items as $item)
 			if ($item->product->is_deliverable)
-				$sellers->push($item->product->seller);
+				if ($order instanceof ModelsCart || ($order instanceof Order && $item->status != -1))
+					$sellers->push($item->product->seller);
 
 		$sellers->unique('id');
 
@@ -101,12 +103,12 @@ class ShippingCompany extends AbstractShipping
 			$destinations->push(['lat' => $seller->lat, 'lng' => $seller->lng]);
 
 		$origin = [
-			'lat' => $cart->shipping_address->lat,
-			'lng' => $cart->shipping_address->lng
+			'lat' => $order->shipping_address->lat,
+			'lng' => $order->shipping_address->lng
 		];
 
-		$distance = $this->getDistance($origin, $destinations);
-		
+		$distance = self::getDistance($origin, $destinations);
+
 		return $kmPrice * $distance / 1000;
 	}
 
@@ -114,7 +116,9 @@ class ShippingCompany extends AbstractShipping
 	{
 		$waypoints = "";
 		$destinationsCount = $destinations->count();
-
+		if ($destinationsCount == 0)
+			return 0;
+		
 		if ($destinationsCount > 1)
 			for ($i = 1; $i < $destinationsCount; $i++)
 				$waypoints .= $destinations[$i]['lat'] . ',' . $destinations[$i]['lng'];
@@ -150,7 +154,7 @@ class ShippingCompany extends AbstractShipping
 		$object->is_visible = $this->isVisible();
 
 		if ($object->is_available) {
-			$price = $this->getShippingPrice();
+			$price = self::getShippingPrice(Cart::getCart());
 			$object->price = $price;
 			$object->base_price = $price;
 			$object->method_description = $this->getConfigData('description');

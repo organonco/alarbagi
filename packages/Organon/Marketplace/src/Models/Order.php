@@ -6,6 +6,7 @@ use App\Notifications\OrderUpdated;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Organon\Delivery\Models\Area;
 use Organon\Marketplace\Enums\SellerOrderStatusEnum;
+use Organon\ShippingCompany\Carriers\ShippingCompany;
 use Webkul\Sales\Models\OrderAddress;
 
 class Order extends \Webkul\Sales\Models\Order
@@ -105,11 +106,10 @@ class Order extends \Webkul\Sales\Models\Order
 			elseif ($item->status == 0)
 				$pending += $item->total;
 
+		$newShipping = 0;
+
 		if ($this->shipping_method == "shippingcompany_shippingcompany") {
-			$items = collect([]);
-			foreach ($this->sellerOrders()->whereIn('status', [SellerOrderStatusEnum::APPROVED->value, SellerOrderStatusEnum::PENDING->value]) as $sellerOrder)
-				$items->push($sellerOrder->items);
-			$newShipping = $this->shipping_address->area->shippingCompany->calculate($items);
+			$newShipping = ShippingCompany::getShippingPrice($this);
 			if ($this->shipping_amount > $newShipping)
 				$refunded += $this->shipping_amount - $newShipping;
 		}
@@ -121,7 +121,7 @@ class Order extends \Webkul\Sales\Models\Order
 			}
 		}
 
-		$this->update(['grand_total_invoiced' => $invoiced, 'grand_total_refunded' => $refunded, 'grand_total' => $this->base_grand_total - $refunded]);
+		$this->update(['grand_total_invoiced' => $invoiced, 'grand_total_refunded' => $refunded, 'grand_total' => $this->base_grand_total - $refunded, 'shipping_invoiced' => $newShipping]);
 	}
 
 	public function approvedItems()

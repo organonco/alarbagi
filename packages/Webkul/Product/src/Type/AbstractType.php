@@ -938,7 +938,7 @@ abstract class AbstractType
                 'type'              => $this->product->type,
                 'additional'        => $this->getAdditionalOptions($data),
                 'variant_id'        => $data['variant'] ?? null,
-                'note'              => $data['note']
+                'note'              => $data['note'] ?? ''
             ],
         ];
 

@@ -40,9 +40,8 @@
                     class="px-5 py-2 text-[16px] text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-950 cursor-pointer">
                     <x-admin::form method="PUT" action="{{ route('admin.account.settings.update-online-status') }}"
                         id="onlineStatusUpdate">
-
-                        <x-admin::form.control-group.label>{{ $admin->seller->is_online ? 'أونلاين' : 'أوفلاين' }}</x-admin::form.control-group.label>
                         <x-admin::form.control-group>
+                            <x-admin::form.control-group.label>{{ $admin->seller->is_online ? 'أونلاين' : 'أوفلاين' }}</x-admin::form.control-group.label>
                             <x-admin::form.control-group.control type="switch" name="is_online" value="1"
                                 :checked="$admin->seller->is_online ? true : false"
                                 onchange="event.preventDefault(); document.getElementById('onlineStatusUpdate').submit();">
