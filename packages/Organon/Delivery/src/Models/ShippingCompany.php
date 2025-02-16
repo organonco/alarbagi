@@ -14,8 +14,7 @@ class ShippingCompany extends Authenticatable implements ShippingCompanyContract
 		'username',
 		'password',
 		'area_id',
-		'per_order_price',
-		'per_product_price'
+		'km_price',
 	];
 
 	public function scopeIsActive($query)
@@ -37,19 +36,6 @@ class ShippingCompany extends Authenticatable implements ShippingCompanyContract
 	{
 		return
 			$this->is_active &&
-			$this->per_order_price > 0 &&
-			$this->per_product_price > 0;
-	}
-
-	public function calculate($items)
-	{
-		$sellers = collect([]);
-		foreach ($items as $item)
-			if ($item->product->is_deliverable)
-				$sellers->push($item->product->seller_id);
-		$numberOfSellers = $sellers->unique()->count();
-		if ($numberOfSellers == 0)
-			return 0;
-		return $this['per_order_price'] + ($this['per_product_price'] * $numberOfSellers);
+			$this->km_price > 0;
 	}
 }

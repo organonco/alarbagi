@@ -40,6 +40,10 @@ class ShippingCompanyServiceProvider extends ServiceProvider
             dirname(__DIR__) . '/Config/system.php', 'core'
         );
 
+        $this->mergeConfigFrom(
+            dirname(__DIR__) . '/Config/google.php', 'google'
+        );
+
         $this->loadTranslationsFrom(__DIR__ . '/../Resources/lang', 'shipping-company');
     }
 }

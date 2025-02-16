@@ -17,18 +17,17 @@ class SettingsController extends Controller
     public function index()
     {
         $model = $this->getAuthenticatedShippingCompany();
-        return view('delivery::shipping.settings.index', ['per_order_price' => $model->per_order_price, 'per_product_price' => $model->per_product_price]);
+        return view('delivery::shipping.settings.index', ['km_price' => $model->km_price]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'per_order_price' => 'required|numeric',
-            'per_product_price' => 'required|numeric',
+            'km_price' => 'required|numeric',
         ]);
         $model = $this->getAuthenticatedShippingCompany();
         $model->update($request->only([
-            'per_order_price', 'per_product_price'
+            'km_price'
         ]));
         return redirect()->route('shipping.settings');
     }

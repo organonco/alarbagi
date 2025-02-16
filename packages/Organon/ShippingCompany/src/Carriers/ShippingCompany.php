@@ -3,6 +3,7 @@
 namespace Organon\ShippingCompany\Carriers;
 
 use Config;
+use Illuminate\Support\Facades\Http;
 use Webkul\Checkout\Facades\Cart;
 use Webkul\Shipping\Carriers\AbstractShipping;
 use Webkul\Checkout\Models\CartShippingRate;
@@ -42,18 +43,18 @@ class ShippingCompany extends AbstractShipping
 	}
 
 	private static function hasValue($value)
-    {
-        return !is_null($value) && !$value == "";
-    }
+	{
+		return !is_null($value) && !$value == "";
+	}
 
-    private static function addressIsvalid($address)
-    {
-        $values = [$address->lat, $address->lng, $address->street, $address->building, $address->floor, $address->area_id, $address->address_details];
-        foreach($values as $value)
-            if(!self::hasValue($value))
-                return false;
-        return true;
-    }
+	private static function addressIsvalid($address)
+	{
+		$values = [$address->lat, $address->lng, $address->street, $address->building, $address->floor, $address->area_id, $address->address_details];
+		foreach ($values as $value)
+			if (!self::hasValue($value))
+				return false;
+		return true;
+	}
 
 	private function checkAvailability()
 	{
@@ -86,8 +87,55 @@ class ShippingCompany extends AbstractShipping
 	private function getShippingPrice(): int
 	{
 		$cart = Cart::getCart();
-		$company = $cart->shipping_address->area->shippingCompany;
-		return $company->calculate($cart->items);
+		$kmPrice = $cart->shipping_address->area->shippingCompany->km_price;
+		$sellers = collect([]);
+
+		foreach ($cart->items as $item)
+			if ($item->product->is_deliverable)
+				$sellers->push($item->product->seller);
+
+		$sellers->unique('id');
+
+		$destinations = collect([]);
+		foreach ($sellers as $seller)
+			$destinations->push(['lat' => $seller->lat, 'lng' => $seller->lng]);
+
+		$origin = [
+			'lat' => $cart->shipping_address->lat,
+			'lng' => $cart->shipping_address->lng
+		];
+
+		$distance = $this->getDistance($origin, $destinations);
+		
+		return $kmPrice * $distance / 1000;
+	}
+
+	public static function getDistance($origin, $destinations)
+	{
+		$waypoints = "";
+		$destinationsCount = $destinations->count();
+
+		if ($destinationsCount > 1)
+			for ($i = 1; $i < $destinationsCount; $i++)
+				$waypoints .= $destinations[$i]['lat'] . ',' . $destinations[$i]['lng'];
+
+		$response = Http::withHeaders([
+			'Content-Type' => 'application/json',
+			'Accept' => "*/*",
+			'Accept-Encoding' => "gzip, deflate, br",
+			'Accept-Language' => "*"
+		])->get('https://maps.googleapis.com/maps/api/directions/json', [
+			'origin' => $origin['lat'] . ',' . $origin['lng'],
+			'destination' => $destinations[0]['lat'] . ',' . $destinations[0]['lng'],
+			'waypoints' => $waypoints,
+			'key' => config('google.key')
+		]);
+
+		$distance = 0;
+
+		foreach (json_decode($response->body())->routes[0]->legs as $leg)
+			$distance += $leg->distance->value;
+		return $distance;
 	}
 
 	/**
@@ -101,16 +149,11 @@ class ShippingCompany extends AbstractShipping
 		$object->is_available = $availability['isAvailable'];
 		$object->is_visible = $this->isVisible();
 
-		if ($object->is_available && $availability['sameArea']) {
+		if ($object->is_available) {
 			$price = $this->getShippingPrice();
 			$object->price = $price;
 			$object->base_price = $price;
 			$object->method_description = $this->getConfigData('description');
-		} elseif ($object->is_available) {
-			$price = 0;
-			$object->price = $price;
-			$object->base_price = $price;
-			$object->method_description = trans('shipping-company::app.messages.price-defined-later');
 		} else {
 			$object->method_description = $availability['reason'];
 		}
@@ -122,6 +165,6 @@ class ShippingCompany extends AbstractShipping
 	{
 		$cart = Cart::getCart();
 		$shippingAddress = $cart->shipping_address;
-		return !($shippingAddress->area? $shippingAddress->area->is_external : false);
+		return !($shippingAddress->area ? $shippingAddress->area->is_external : false);
 	}
 }
