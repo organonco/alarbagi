@@ -2,6 +2,7 @@
 
 namespace Webkul\Sales\Models;
 
+use App\Events\OrderUpdated;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -165,3 +165,69 @@ if (!window.location.href.includes("checkout/onepage") && !window.location.href.
         instructionsReleaseToRefresh: "أفلت للتحديث",
         instructionsRefreshing: "يتم تحديث المعلومات"
     });
+
+
+// Notifications Setup
+
+import { initializeApp } from "firebase/app";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCuu5HyjJ0zPma-jwvxlLcNrhrpubyftMk",
+    authDomain: "alarbagi-8c44a.firebaseapp.com",
+    databaseURL: "https://alarbagi-8c44a-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "alarbagi-8c44a",
+    storageBucket: "alarbagi-8c44a.firebasestorage.app",
+    messagingSenderId: "524130844148",
+    appId: "1:524130844148:web:3597ca019ef052a6934da1"
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+
+const messaging = getMessaging(firebaseApp);
+
+async function requestPermission() {
+    try {
+        const permission = await Notification.requestPermission();
+        return permission === 'granted';
+    } catch (error) {
+        return false;
+    }
+}
+
+async function getTokenFromFirebase() {
+    const hasPermission = await requestPermission();
+
+    if (!hasPermission) {
+        return null;
+    }
+
+    try {
+        const token = await getToken(messaging, { vapidKey: 'BHuh506I50KIAEO4_JD_r7BNeSdz-oVHUQ0CuqWT_WW8Fe-fxZEVeIMecCmd4dzaUKYF1NmEyFvTdUJvTX5Evl4' });
+        await sendTokenToServer(token);
+        return token;
+    } catch (error) {
+        console.error('Error getting FCM token:', error);
+        if (error.code === 'messaging/permission-blocked') {
+            console.log('Notification permission blocked.');
+        } else if (error.code === 'messaging/unsupported-browser') {
+            console.log('This browser does not support notifications.');
+        }
+        return null;
+    }
+}
+
+
+onMessage(messaging, (payload) => {
+    new Notification(payload.notification.title, {
+        body: payload.notification.body,
+        icon: payload.notification.icon,
+    });
+});
+
+
+async function sendTokenToServer(token) {
+    axios.post('/fcm', {token: token});
+}
+
+getTokenFromFirebase();

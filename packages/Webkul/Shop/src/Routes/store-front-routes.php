@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FcmController;
 use Illuminate\Support\Facades\Route;
 use Organon\Delivery\Http\Controllers\Shop\AreaController;
 use Organon\Delivery\Http\Controllers\Shop\OfferController;
@@ -75,4 +76,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
     Route::get('area/{id}', [AreaController::class, 'view'])->name('area.view');
     Route::get('category/{areaId}/{sellerCategoryId}', [SellerCategoryController::class, 'view'])->name('seller-category.view');
     Route::get('offers', [OfferController::class, 'index'])->name('offer.index');
+
+    Route::post('fcm', FcmController::class);
+    
 });

@@ -3,6 +3,7 @@
 namespace Webkul\Customer\Models;
 
 use Alhelwany\LaravelMtn\Interfaces\MTNNotifiable;
+use App\FcmToken;
 use App\Notifications\NotificationDotPlacements;
 use App\Notifications\OfferCreated;
 use App\Notifications\OrderUpdated;
@@ -328,5 +329,15 @@ class Customer extends Authenticatable implements CustomerContract, MTNNotifiabl
         $this->is_verified = 1;
         $this->status = 1;
         $this->save();
+    }
+
+    public function fcmTokens()
+    {
+        return $this->hasMany(FcmToken::class);
+    }
+
+    public function routeNotificationForFcm()
+    {
+        return $this->fcmTokens()->pluck('token')->toArray();
     }
 }
