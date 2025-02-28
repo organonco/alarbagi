@@ -42,8 +42,8 @@
                             <div class="text-center mb-[30px]">
                                 {{
                                     $seller->is_online 
-                                    ? 'متصل' :
-                                     'غير متصل'
+                                    ? 'مفتوح' :
+                                     'مغلق'
                                 }}
                             </div>
 

@@ -102,9 +102,9 @@ window.app = createApp({
     },
 
     methods: {
-        onSubmit() {},
+        onSubmit() { },
 
-        onInvalidSubmit() {},
+        onInvalidSubmit() { },
     },
 });
 
@@ -159,4 +159,17 @@ window.Flatpickr = Flatpickr;
  */
 window.addEventListener("load", function (event) {
     app.mount("#app");
+});
+
+
+import PullToRefresh from 'pulltorefreshjs';
+
+PullToRefresh.init({
+    mainElement: '#app',
+    onRefresh() {
+        window.location.reload();
+    },
+    instructionsPullToRefresh: "اسحب للتحديث",
+    instructionsReleaseToRefresh: "أفلت للتحديث",
+    instructionsRefreshing: "يتم تحديث المعلومات"
 });

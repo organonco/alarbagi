@@ -188,7 +188,7 @@
 
                                 {!! view_render_event('bagisto.shop.products.price.after', ['product' => $product]) !!}
 
-                                {{!$product->seller->is_online ? "هذا التاجر غير متصل الآن" : ""}}
+                                {{!$product->seller->is_online ? "هذا التاجر مغلق الآن" : ""}}
 
 
                                 {!! view_render_event('bagisto.shop.products.short_description.before', ['product' => $product]) !!}
