@@ -7,11 +7,8 @@
     <div class="flex justify-center items-center h-[100vh]">
         <div class="flex flex-col gap-[20px] items-center">
             {{-- Logo --}}
-            <img
-                width="250"
-                src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
-                alt="Logo"
-            >
+            <img width="250" src="{{ core()->getCurrentChannel()->logo_url ?? asset('assets/images/logo.png') }}"
+                alt="Logo">
 
             <div class="flex flex-col min-w-[300px] bg-white dark:bg-gray-900 rounded-[6px] box-shadow">
                 {{-- Login Form --}}
@@ -30,20 +27,12 @@
                                     @lang('admin::app.users.sessions.email')
                                 </x-admin::form.control-group.label>
 
-                                <x-admin::form.control-group.control
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    class="w-[254px] max-w-full"
-                                    rules="required|email"
-                                    :label="trans('admin::app.users.sessions.email')"
-                                    :placeholder="trans('admin::app.users.sessions.email')"
-                                    >
+                                <x-admin::form.control-group.control type="email" name="email" id="email"
+                                    class="w-[254px] max-w-full" rules="required|email" :label="trans('admin::app.users.sessions.email')"
+                                    :placeholder="trans('admin::app.users.sessions.email')">
                                 </x-admin::form.control-group.control>
 
-                                <x-admin::form.control-group.error
-                                    control-name="email"
-                                >
+                                <x-admin::form.control-group.error control-name="email">
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
                         </div>
@@ -55,41 +44,33 @@
                                     @lang('admin::app.users.sessions.password')
                                 </x-admin::form.control-group.label>
 
-                                <x-admin::form.control-group.control
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    class="w-[254px] max-w-full ltr:pr-10 rtl:pl-10"
-                                    rules="required|min:6"
-                                    :label="trans('admin::app.users.sessions.password')"
-                                    :placeholder="trans('admin::app.users.sessions.password')"
-                                >
+                                <x-admin::form.control-group.control type="password" name="password" id="password"
+                                    class="w-[254px] max-w-full ltr:pr-10 rtl:pl-10" rules="required|min:6"
+                                    :label="trans('admin::app.users.sessions.password')" :placeholder="trans('admin::app.users.sessions.password')">
                                 </x-admin::form.control-group.control>
 
                                 <span
                                     class="icon-view text-[22px] cursor-pointer absolute top-[42px] transform -translate-y-1/2 ltr:right-2 rtl:left-2"
-                                    onclick="switchVisibility()"
-                                    id="visibilityIcon"
-                                >
+                                    onclick="switchVisibility()" id="visibilityIcon">
                                 </span>
 
-                                <x-admin::form.control-group.error
-                                    control-name="password"
-                                >
+                                <x-admin::form.control-group.error control-name="password">
                                 </x-admin::form.control-group.error>
                             </x-admin::form.control-group>
                         </div>
                     </div>
                     <div class="flex justify-between items-center p-[16px]">
-                        <a
-                            class="text-[12px] font-semibold leading-[24px] cursor-pointer"
-                            style="margin-left: 100px"
-                            href="{{ route('admin.forget_password.create') }}"
-                        >
-                            @lang('admin::app.users.sessions.forget-password-link')
-                        </a>
-                        <button
-                            class="sn-button-primary">
+                        <div class="flex flex-col">
+                            <a class="text-[12px] font-semibold leading-[24px] cursor-pointer"
+                                style="margin-left: 100px" href="{{ route('admin.forget_password.create') }}">
+                                @lang('admin::app.users.sessions.forget-password-link')
+                            </a>
+                            <a class="text-[12px] font-semibold leading-[24px] cursor-pointer"
+                                style="margin-left: 100px" href="{{ route('shop.customers.register.index-seller') }}">
+                                تسجيل حساب جديد
+                            </a>
+                        </div>
+                        <button class="sn-button-primary">
                             @lang('admin::app.users.sessions.submit-btn')
                         </button>
                     </div>
