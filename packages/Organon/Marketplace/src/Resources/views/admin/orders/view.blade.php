@@ -116,10 +116,6 @@
                                                 @lang('admin::app.sales.orders.view.sku', ['sku' => $item->sku])
                                             </p>
 
-                                            <p class="text-gray-600 dark:text-gray-300">
-                                                @lang('admin::app.sales.orders.view.note'): {{ $item->note }}
-                                            </p>
-
                                         </div>
                                     </div>
                                 </div>
@@ -255,16 +251,6 @@
                             'method' => $order->order->shipping_description,
                             'isPickup' => $order->order->shipping_method == 'pickup_pickup',
                         ])
-
-                        <span class="block w-full border-b-[1px] dark:border-gray-800"></span>
-                        <div class="flex items-center justify-between">
-                            <p class="text-gray-600 dark:text-gray-300 text-[16px] py-[16px] font-semibold">
-                                @lang('admin::app.sales.orders.view.note')
-                            </p>
-                        </div>
-                        <p class="text-gray-600 dark:text-gray-300">
-                            {{ $order->note ?? 'لا يوجد' }}
-                        </p>
 
 
                     </x-slot:content>
