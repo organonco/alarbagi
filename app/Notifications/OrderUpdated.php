@@ -23,7 +23,8 @@ class OrderUpdated extends Notification
 	{
 		return [
 			'text' => trans("marketplace::app.notifications.OrderUpdated"),
-			'link' => route('shop.customers.account.orders.view', $this->order_id)
+			'link' => route('shop.customers.account.orders.view', $this->order_id),
+			'image' => 'https://alarbagi.com/icon.png'
 		];
 	}
 
