@@ -124,9 +124,7 @@ abstract class AbstractType
         protected ProductImageRepository $productImageRepository,
         protected ProductVideoRepository $productVideoRepository,
         protected ProductCustomerGroupPriceRepository $productCustomerGroupPriceRepository
-    )
-    {
-    }
+    ) {}
 
     /**
      * Create product.
@@ -161,7 +159,7 @@ abstract class AbstractType
 
         $product->update($data);
 
-        if(isset($data['url_key'])) {
+        if (isset($data['url_key'])) {
             $existingUrlKeys = $this->attributeValueRepository->hasTheSameValueCount(3, $data['url_key'], $id);
             if ($existingUrlKeys > 0)
                 $data['url_key'] .= '-' . $existingUrlKeys;
@@ -171,7 +169,7 @@ abstract class AbstractType
 
         foreach ($product->attribute_family->custom_attributes as $attribute) {
 
-            if($ignoreEmpty && !isset($data[$attribute['code']]))
+            if ($ignoreEmpty && !isset($data[$attribute['code']]))
                 continue;
 
             if (
@@ -286,7 +284,7 @@ abstract class AbstractType
 
         $this->productInventoryRepository->saveInventories($data, $product);
 
-        if($ignoreEmpty)
+        if ($ignoreEmpty)
             return $product;
 
         $product->categories()->sync($this->getCategoriesWithParents($data['categories']));
@@ -316,11 +314,11 @@ abstract class AbstractType
         /** @var Collection $categories */
         $categories = Category::query()->whereIn('id', $category_ids)->get();
         $i = 0;
-        while(true){
-            if($i >= $categories->count())
+        while (true) {
+            if ($i >= $categories->count())
                 break;
             $category = $categories[$i];
-            if(!is_null($category->parent))
+            if (!is_null($category->parent))
                 $categories->push($category->parent);
             $i++;
         }
@@ -841,7 +839,10 @@ abstract class AbstractType
      */
     public function getPriceHtml($price = null)
     {
-        if($price === 0 || ($this->product->price == 0 && is_null($price)))
+        if ($this->product->variants->count() > 0)
+            $price = $this->product->variants->first()->price;
+
+        if ($price === 0 || ($this->product->price == 0 && is_null($price)))
             return trans('marketplace::app.catalog.products.view.no_price');
         return view('shop::products.prices.index', [
             'product' => $this->product,
@@ -982,9 +983,9 @@ abstract class AbstractType
     {
         if ($this->product->id != $options2['product_id']) {
             return false;
-        } elseif($this->product->has_variants) {
+        } elseif ($this->product->has_variants) {
             return $options1['variant'] == $options2['variant'];
-        }else {
+        } else {
             if (
                 isset($options1['parent_id'])
                 && isset($options2['parent_id'])
@@ -1120,9 +1121,9 @@ abstract class AbstractType
         $customerGroup = $this->customerRepository->getCurrentGroup();
 
         $customerGroupPrices = $this->product->customer_group_prices()->where(function ($query) use ($customerGroup) {
-                $query->where('customer_group_id', $customerGroup->id)
-                    ->orWhereNull('customer_group_id');
-            })
+            $query->where('customer_group_id', $customerGroup->id)
+                ->orWhereNull('customer_group_id');
+        })
             ->where('qty', '>', 1)
             ->groupBy('qty')
             ->orderBy('qty')
