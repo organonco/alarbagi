@@ -10,12 +10,16 @@
     </x-slot>
     <div class="sn-background-light-green min-h-screen">
         
+        @if (count($desktopBanners['images']))
         <div class="desktop-only">
             <x-shop::carousel :options='$desktopBanners'></x-shop::carousel>
         </div>
+        @endif
+        @if (count($mobileBanners['images']))
         <div class="mobile-only">
             <x-shop::carousel-mobile :options='$mobileBanners'></x-shop::carousel-mobile>
         </div>
+        @endif
 
         <div class="w-full flex justify-center pt-10">
             <img src="{{ $sellerCategory->image_url }}" class="w-72 h-72 rounded-full max-lg:w-40 max-lg:h-40">

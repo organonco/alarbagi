@@ -14,17 +14,21 @@
     <meta name="keywords" content="{{ $channel->home_seo['meta_keywords'] ?? '' }}" />
 @endPush
 
-<x-shop::layouts  :has-footer="true">
+<x-shop::layouts :has-footer="true">
     <x-slot:title>
         {{ $channel->home_seo['meta_title'] ?? '' }}
     </x-slot>
- 
-    <div class="desktop-only">
-        <x-shop::carousel :options='$desktopBanners'></x-shop::carousel>
-    </div>
-    <div class="mobile-only">
-        <x-shop::carousel-mobile :options='$mobileBanners'></x-shop::carousel-mobile>
-    </div>
+
+    @if (count($desktopBanners['images']))
+        <div class="desktop-only">
+            <x-shop::carousel :options='$desktopBanners'></x-shop::carousel>
+        </div>
+    @endif
+    @if (count($mobileBanners['images']))
+        <div class="mobile-only">
+            <x-shop::carousel-mobile :options='$mobileBanners'></x-shop::carousel-mobile>
+        </div>
+    @endif
 
     {{-- <div
         class="bg-[#FF6B30] h-[30rem] flex justify-between max-lg:flex-col-reverse max-lg:pb-8 max-lg:items-center max-lg:h-[45rem] max-lg:justify-center">

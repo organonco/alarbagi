@@ -9,21 +9,25 @@
         {{ $area->name }}
     </x-slot>
     <div class="sn-background-light-green">
-        
-        <div class="desktop-only">
-            <x-shop::carousel :options='$desktopBanners'></x-shop::carousel>
-        </div>
-        <div class="mobile-only">
-            <x-shop::carousel-mobile :options='$mobileBanners'></x-shop::carousel-mobile>
-        </div>
 
+        @if (count($desktopBanners['images']))
+            <div class="desktop-only">
+                <x-shop::carousel :options='$desktopBanners'></x-shop::carousel>
+            </div>
+        @endif
+        @if (count($mobileBanners['images']))
+            <div class="mobile-only">
+                <x-shop::carousel-mobile :options='$mobileBanners'></x-shop::carousel-mobile>
+            </div>
+        @endif
+{{-- 
         <div class="w-full flex justify-center pt-10">
             <img src="{{ $area->image_url }}" class="w-72 h-72 rounded-full max-lg:w-40 max-lg:h-40">
         </div>
 
         <div class="sn-heading-1 text-center sn-color-primary pt-4">
             {{ $area->name }}
-        </div>
+        </div> --}}
 
         <div class="flex gap-6 max-lg:gap-3 px-20 py-10 max-lg:py-14 flex-wrap justify-center max-lg:px-6">
             @foreach ($categories as $index => $category)
