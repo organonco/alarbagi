@@ -26,7 +26,8 @@ class Area extends Model implements AreaContract, HasMedia
 		'is_active',
 		'info',
 		'sort',
-		'is_external'
+		'is_external',
+		'is_visible'
 	];
 
 	public $appends = [
@@ -36,13 +37,20 @@ class Area extends Model implements AreaContract, HasMedia
 	public $hidden = [
 		'created_at',
 		'updated_at',
-		'is_active'
+		'is_active',
+		'is_visible'
 	];
 
 	public function scopeIsActive($query)
 	{
 		return $query->where('is_active', true);
 	}
+
+	public function scopeIsVisible($query)
+	{
+		return $query->where('is_visible', true);
+	}
+
 
 	public function shippingCompany()
 	{

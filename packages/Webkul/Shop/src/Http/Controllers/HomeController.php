@@ -35,7 +35,7 @@ class HomeController extends Controller
         ]);
 
         $categories = $this->categoryRepository->where('parent_id', '1')->get();
-        $areas = Area::query()->isActive()->get();
+        $areas = Area::query()->isActive()->isVisible()->get();
 
         $desktopBanners = Banner::transform(Banner::main()->desktop()->get());
         $mobileBanners = Banner::transform(Banner::main()->mobile()->get());

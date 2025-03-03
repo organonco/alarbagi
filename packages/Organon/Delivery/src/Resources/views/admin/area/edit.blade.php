@@ -73,6 +73,18 @@
                         </x-admin::form.control-group.error>
                     </x-admin::form.control-group>
 
+
+                    <x-admin::form.control-group class="mb-[10px]">
+                        <x-admin::form.control-group.label class="required">
+                            تظهر في الصفحة الرئيسية
+                        </x-admin::form.control-group.label>
+                        <x-admin::form.control-group.control type="switch" name="is_visible" value="1"
+                            :checked="(bool) $area->is_visible">
+                        </x-admin::form.control-group.control>
+                        <x-admin::form.control-group.error control-name="is_visible">
+                        </x-admin::form.control-group.error>
+                    </x-admin::form.control-group>
+
                     <x-admin::form.control-group class="mb-[10px]">
                         <x-admin::form.control-group.label>
                             @lang('marketplace::app.admin.seller_categories.create.attributes.image')

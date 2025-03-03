@@ -47,11 +47,13 @@ class AreaController extends Controller
 		request()->validate([
 			'name' => 'required',
 			'is_active' => 'sometimes|in:1',
+			'is_visible' => 'sometimes|in:1',
 			'sort' => 'required|numeric'
 		]);
 
 		$data = request()->all();
 		$data['is_active'] = (bool)request()->input('is_active');
+		$data['is_visible'] = (bool)request()->input('is_visible');
 
 		/** @var Area */
 		$area = Area::create($data);
@@ -73,11 +75,13 @@ class AreaController extends Controller
 		request()->validate([
 			'name' => 'required',
 			'is_active' => 'sometimes|in:1',
+			'is_visible' => 'sometimes|in:1',
 			'sort' => 'required|numeric'
 		]);
 
 		$data = request()->all();
 		$data['is_active'] = (bool)request()->input('is_active');
+		$data['is_visible'] = (bool)request()->input('is_visible');
 
 		$area->update($data);
 		$area->updateImage($data);
