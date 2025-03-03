@@ -82,6 +82,8 @@ class RegistrationController extends Controller
         $verification->setAsUsed();
         $verification->customer->setAsActive();
 
+        auth()->guard('customer')->login($verification->customer);
+
         session()->flash('success', trans('shop::app.customers.signup-form.success'));
 
         return redirect()->route('shop.customer.session.index');
