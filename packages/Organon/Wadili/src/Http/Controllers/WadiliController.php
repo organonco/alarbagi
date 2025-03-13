@@ -34,23 +34,15 @@ class WadiliController extends Controller
 
         switch ($newStatus) {
             case WadiliOrderStatus::ACCEPTED:
-                if ($wadiliOrder->status != WadiliOrderStatus::UNREAD->value)
-                    abort(403, "Invalid Status");
                 $order->refreshStatus();
                 break;
             case WadiliOrderStatus::DELIVERING:
-                if ($wadiliOrder->status != WadiliOrderStatus::ACCEPTED->value)
-                    abort(403, "Invalid Status");
                 $order->update(['status' => Order::STATUS_SHIPPING]);
                 break;
             case WadiliOrderStatus::DELIVERED:
-                if ($wadiliOrder->status != WadiliOrderStatus::DELIVERING->value)
-                    abort(403, "Invalid Status");
                 $order->update(['status' => Order::STATUS_COMPLETED]);
                 break;
             case WadiliOrderStatus::REJECTED:
-                if ($wadiliOrder->status != WadiliOrderStatus::UNREAD->value)
-                    abort(403, "Invalid Status");
                 foreach ($order->sellerOrders as $sellerOrder)
                     $this->sellerOrderRepository->cancel($sellerOrder);
                 break;
