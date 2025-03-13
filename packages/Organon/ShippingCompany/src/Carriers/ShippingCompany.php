@@ -62,13 +62,13 @@ class ShippingCompany extends AbstractShipping
 	{
 		$cart = Cart::getCart();
 		$shippingAddress = $cart->shipping_address;
-
+		
 		if (!$cart->hasDeliverableItems())
 			return $this->generateUnavailableObject('no-deliverable-items');
 		if (!self::addressIsvalid($shippingAddress))
 			return $this->generateUnavailableObject('address-or-area-not-found');
-		if (!$shippingAddress->area->is_shippable)
-			return $this->generateUnavailableObject('delivery-not-available-to-this-area');;
+		if (!$shippingAddress->area->is_shippable || $shippingAddress->area->is_external)
+			return $this->generateUnavailableObject('delivery-not-available-to-this-area');
 
 		return [
 			'isAvailable' => true,
