@@ -13,9 +13,10 @@
                 </p>
 
                 <div>
-					<span class="label-{{trans('marketplace::app.order.statuses.' . $order->status . '.class')}} text-[14px] mx-[5px]">
-						@lang('marketplace::app.order.statuses.' . $order->status . '.label')
-					</span>
+                    <span
+                        class="label-{{ trans('marketplace::app.order.statuses.' . $order->status . '.class') }} text-[14px] mx-[5px]">
+                        @lang('marketplace::app.order.statuses.' . $order->status . '.label')
+                    </span>
                 </div>
             </div>
 
@@ -74,6 +75,11 @@
                                         <p class="text-[16x] text-gray-800 dark:text-white font-semibold">
                                             {{ $item->name }}
                                         </p>
+                                        @if ($item->note)
+                                            <p class="text-[16x] text-gray-800 dark:text-white font-semibold">
+                                                {{ $item->note }}
+                                            </p>
+                                        @endif
 
                                         <div class="flex flex-col gap-[6px] place-items-start">
                                             <p class="text-gray-600 dark:text-gray-300">

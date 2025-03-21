@@ -94,6 +94,12 @@
                                         <p class="text-[16x] text-gray-800 dark:text-white font-semibold">
                                             {{ $item->name }}
                                         </p>
+                                        
+                                        @if ($item->note)
+                                            <p class="text-[16x] text-gray-800 dark:text-white font-semibold">
+                                                {{ $item->note }}
+                                            </p>
+                                        @endif
 
                                         <div class="flex flex-col gap-[6px] place-items-start">
                                             <p class="text-gray-600 dark:text-gray-300">
