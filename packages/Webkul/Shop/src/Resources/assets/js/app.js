@@ -137,7 +137,7 @@ app.component("VErrorMessage", ErrorMessage);
 import { Loader } from 'google-maps';
 
 const options = { libraries: ['places'], language: "ar" };
-const loader = new Loader('AIzaSyA2mtyhq14pKHoTX0JMCqyTd1oxVrnr3fE', options);
+const loader = new Loader('AIzaSyBK402RVDguDJWbivQIss2V78WPeaNi5_8', options);
 
 window.loader = loader;
 
