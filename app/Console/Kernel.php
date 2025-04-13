@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\RejectOldOrders;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Organon\Marketplace\Console\Commands\AttachAdmins;
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         AttachAdmins::class,
         ImportCategories::class,
+        RejectOldOrders::class,
     ];
 
     /**
@@ -27,8 +29,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('invoice:cron')->dailyAt('3:00');
-        $schedule->command('product:index --type=price')->dailyAt('24:00');
+        $schedule->command('app:reject-old-orders')->everyMinute();
     }
 
     /**
